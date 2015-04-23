@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>�f�C���� SuSE Linux -- ���Y�B�ƥ��u��P�M��޲z</title>
+<title>柏青哥的 SuSE Linux -- 壓縮、備份工具與套件管理</title>
 <style type="text/css">
 <!--
 a {
@@ -14,411 +14,411 @@ a {
 
 <body background="sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
 <a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
-�@�@<font color="#000000">�@�̡G���f��</font><font color="#000000" size="+1">�@</font><font color="#000000"> 
-E-mail�Gpachingko@ms96.url.com.tw </font> 
+　　<font color="#000000">作者：陳柏菁</font><font color="#000000" size="+1">　</font><font color="#000000"> 
+E-mail：pachingko@ms96.url.com.tw </font> 
 <table width="100%" border="0">
   <tr> 
-    <td nowrap> <div align="center"><strong><font color="#000000" size="7">�ĤC���@���Y�B�ƥ��u��P�M��޲z</font></strong></div>
+    <td nowrap> <div align="center"><strong><font color="#000000" size="7">第七章　壓縮、備份工具與套件管理</font></strong></div>
       <div align="center"></div></td>
   </tr>
 </table>
 <br>
-<strong><font color="#000099" size="+1">���ޡG</font></strong><br>
+<strong><font color="#000099" size="+1">索引：</font></strong><br>
 <table width="100%" border="0">
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>7.1 <a href="#1">�򥻪����Y���O</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>7.1 <a href="#1">基本的壓縮指令</a></strong></font></td>
   </tr>
   <tr> 
     <td width="3%"><font color="#000099">&nbsp;</font></td>
     <td width="5%" align="center" valign="top" nowrap><font color="#000099">7.1.1 
       </font></td>
-    <td width="92%"><a href="#2">�ϥ� gzip ���Y</a></td>
+    <td width="92%"><a href="#2">使用 gzip 壓縮</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">7.1.2</font></td>
-    <td><a href="#3">�ϥ� bzip2 ���Y</a></td>
+    <td><a href="#3">使用 bzip2 壓縮</a></td>
   </tr>
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>7.2 <a href="#4">�ƥ��u��</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>7.2 <a href="#4">備份工具</a></strong></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">7.2.1</font></td>
-    <td><a href="#5">tar ���O</a></td>
+    <td><a href="#5">tar 指令</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">7.2.2</font></td>
-    <td><a href="#6">cpio ���O</a></td>
+    <td><a href="#6">cpio 指令</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">7.2.3</font></td>
-    <td><font color="#000099"><a href="#7">dd ���O</a> --- <a href="#8">�إ� swap 
-      file</a>�B<a href="#9">�ƥ� MBR �ϰϤΤ��ΰ�</a></font></td>
+    <td><font color="#000099"><a href="#7">dd 指令</a> --- <a href="#8">建立 swap 
+      file</a>、<a href="#9">備份 MBR 磁區及分割區</a></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">7.2.4</font></td>
-    <td><a href="#10">�ƥ��ɻݦҼ{�ƶ�</a></td>
+    <td><a href="#10">備份時需考慮事項</a></td>
   </tr>
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>7.3 <a href="#11">�b Linux �W�w�˳n��M��</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>7.3 <a href="#11">在 Linux 上安裝軟體套件</a></strong></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">7.3.1</font></td>
-    <td><font color="#000099"><a href="#12">�w�� Tarball</a> ---<br>
-      <a href="#13">��l�X�sĶ����</a> �B<a href="#14">�갵�m��</a> (<a href="#15">configure 
-      script</a>�B<a href="#16">make</a>�B<a href="#17">make install</a>)</font></td>
+    <td><font color="#000099"><a href="#12">安裝 Tarball</a> ---<br>
+      <a href="#13">原始碼編譯介紹</a> 、<a href="#14">實做練習</a> (<a href="#15">configure 
+      script</a>、<a href="#16">make</a>、<a href="#17">make install</a>)</font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">7.3.2</font></td>
-    <td><font color="#000099"><a href="#18">RPM �M��޲z</a> --- <br>
-      <a href="#19">�M��d��</a> �B<a href="#20">�M��w��</a>�B<a href="#21">�M��ɯ�</a>�B<a href="#22">�M�󲾰�</a>�B<a href="#23">�M�󤺮e�ֹ�</a>�B<a href="#24">���� 
-      RPM ��Ʈw</a></font></td>
+    <td><font color="#000099"><a href="#18">RPM 套件管理</a> --- <br>
+      <a href="#19">套件查詢</a> 、<a href="#20">套件安裝</a>、<a href="#21">套件升級</a>、<a href="#22">套件移除</a>、<a href="#23">套件內容核對</a>、<a href="#24">重建 
+      RPM 資料庫</a></font></td>
   </tr>
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>7.4 <a href="#26">�ʺA�s����Ʈw�GDLL</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>7.4 <a href="#26">動態連結資料庫：DLL</a></strong></font></td>
   </tr>
 </table>
 <br>
 <hr>
 <br>
-<font color="#0000FF" size="+1"><strong><a name="1"></a><font size="6">7.1 �򥻪����Y���O</font></strong></font><br>
+<font color="#0000FF" size="+1"><strong><a name="1"></a><font size="6">7.1 基本的壓縮指令</font></strong></font><br>
 <br>
-�@����ɭԱz�|�Q�n���Y�ɮשO ? �����M�O���ɮפӤj�o�C��p�z�n�H���[�ɮ׵��O�H�ɡA�N�|�Ʊ�o���ɮׯ�p�@�I�A�H�[�ֶǿ�Ĳv �Q�t�~���b���j�q����Ƴƥ��ɡA�i��|��ߦ��αz�x�s�˸m�Ӧh���Ŷ��A�]���|�Ҽ{��o�ǳƥ���ư������Y 
-�Q�A�̹����`���ѵ� Client �ݨӤU�����ɮסA�]�i�H�ƥ��N�����Y�A�o�ˤ@�譱�i�H�`�ٱz���ϺЪŶ��A�t�@�譱�]���Y�u�U�����ɶ��C<br>
+　什麼時候您會想要壓縮檔案呢 ? 那當然是嫌檔案太大囉。比如您要寄附加檔案給別人時，就會希望這個檔案能小一點，以加快傳輸效率 ﹔另外像在做大量的資料備份時，可能會擔心佔用您儲存裝置太多的空間，因此會考慮把這些備份資料做個壓縮 
+﹔再者像平常提供給 Client 端來下載的檔案，也可以事先將其壓縮，這樣一方面可以節省您的磁碟空間，另一方面也能縮短下載的時間。<br>
 <br>
-�@�b Linux �W�Y���Y�ɪ����ɦW�@�묰 xx.gz�Bxx.bz2�Bxx.tar.gz�Bxx.tgz �����A�ܩ�o�Ǫ��ɦW���D�n�@�άO���F�ѧO�Ϊ��A�]���ǥѪ��ɦW�A�~��F�ѷ���O�ϥΤ������Y�u��Ӳ������Y�ɪ��A���ɱz�n�N���Ѷ}���s���䤺�e�ɡA�~���D�n������ӫ��O�C<br>
+　在 Linux 上頭壓縮檔的附檔名一般為 xx.gz、xx.bz2、xx.tar.gz、xx.tgz 等等，至於這些附檔名的主要作用是為了識別用的，因為藉由附檔名，才能了解當初是使用什麼壓縮工具來產生壓縮檔的，此時您要將它解開或瀏覽其內容時，才知道要執行哪個指令。<br>
 <font size="+1"><strong><br>
-<a name="2"></a><font size="5">7.1.1 �ϥ� gzip ���Y</font><br>
+<a name="2"></a><font size="5">7.1.1 使用 gzip 壓縮</font><br>
 <br>
-�@</strong></font>gzip �O GUN �p���Ҭ�o���@�����Y�ɮת����O�A��u��w��ӧO�ɮװ����Y�C�ܩ�����Y�ɥi�ϥ� gunzip ���O�C<font size="+1"><strong><br>
+　</strong></font>gzip 是 GUN 計劃所研發的一個壓縮檔案的指令，其只能針對個別檔案做壓縮。至於解壓縮時可使用 gunzip 指令。<font size="+1"><strong><br>
 <br>
-</strong></font><strong>���O�y�k</strong>�G<br>
+</strong></font><strong>指令語法</strong>：<br>
 <table width="100%" border="0" bgcolor="#CCCCCC">
   <tr>
-    <td><strong><font face="�ө���">gzip [-cdflr1~9] [filename ...]</font></strong></td>
+    <td><strong><font face="細明體">gzip [-cdflr1~9] [filename ...]</font></strong></td>
   </tr>
 </table>
 <br>
-�@���z����u<font color="#0000FF">gzip file</font>�v�ɡA����ɮ� file �N�|�ܦ�<font color="#0000FF"> 
-file.gz</font> �����Y�ɡA����ɦW�O�۰ʲ��ͪ��C<strong><br>
+　當您執行「<font color="#0000FF">gzip file</font>」時，原來檔案 file 就會變成<font color="#0000FF"> 
+file.gz</font> 的壓縮檔，其副檔名是自動產生的。<strong><br>
 <br>
-�Ѽƻ���</strong>�G 
+參數說明</strong>： 
 <table width="85%" border="1">
   <tr> 
     <td width="8%" align="center" valign="middle" nowrap><font color="#000099">-c</font></td>
-    <td width="92%" nowrap><font color="#000099">�P�� --stdout�C�N���Y�θ����Y�᪺���e�� standard 
-      output�A���ɭ���ɮ��٬O�s�b�C</font></td>
+    <td width="92%" nowrap><font color="#000099">同於 --stdout。將壓縮或解壓縮後的內容做 standard 
+      output，此時原來檔案還是存在。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-d</font></td>
-    <td><font color="#000099">�P�� --decompress�C�N�O�����Y�o�C�ugzip -d�v�N���� gunzip�C</font></td>
+    <td><font color="#000099">同於 --decompress。就是解壓縮囉。「gzip -d」就等於 gunzip。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-l</font></td>
-    <td nowrap><font color="#000099">�P�� --list�C�C�X gzip ���Y�ɦb�����Y�e���j�p�B�ɦW�B���Y�᪺�j�p�����Y��C</font></td>
+    <td nowrap><font color="#000099">同於 --list。列出 gzip 壓縮檔在未壓縮前的大小、檔名、壓縮後的大小及壓縮比。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-r</font></td>
-    <td><font color="#000099">�P�� --recursive�C��ҫ��w���ؿ����j�a�����Y�Cgunzip ��A�Φ��ѼơC </font></td>
+    <td><font color="#000099">同於 --recursive。對所指定的目錄遞迴地做壓縮。gunzip 亦適用此參數。 </font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-f</font></td>
-    <td><font color="#000099">�P�� --force�C���i�����Y�θ����Y�ɡA�p�ɦW�w�s�b�A�h�i��j���мg�C</font></td>
+    <td><font color="#000099">同於 --force。當進行壓縮或解壓縮時，如檔名已存在，則進行強制覆寫。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-1 ~ -9</font></td>
-    <td><p><font color="#000099">�ϥ� -9 �ಣ�ͳ̨Ϊ����Y��A�� -1 ���M���Y��O�̧C���A�������t�׳̧֡C�w�]�O -6�C</font></p></td>
+    <td><p><font color="#000099">使用 -9 能產生最佳的壓縮比，而 -1 雖然壓縮比是最低的，但其執行速度最快。預設是 -6。</font></p></td>
   </tr>
 </table>
 <br>
-<strong>�d�һ���</strong>�G 
+<strong>範例說明</strong>： 
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF"> suse:/tmp #<font color="#FFFF00"> 
       <strong>cp /etc/passwd file1 ; cp /etc/fstab file2</strong></font><strong><br>
-      </strong></font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">���إߨ���ɮסA�H�ǳƵ��|������</font><font color="#00FFFF" size="2">�C</font></font><font color="#FFFFFF"><br>
+      </strong></font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">先建立兩個檔案，以準備等會兒實驗用</font><font color="#00FFFF" size="2">。</font></font><font color="#FFFFFF"><br>
       <br>
       suse:/tmp #<font color="#FFFF00"><strong> gzip file1 file2</strong></font><br>
       suse:/tmp #<font color="#FFFF00"> <strong>ls</strong></font><br>
-      <font color="#FF0000">file1.gz�@file2.gz</font><br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font> <font color="#00FFFF" size="2">�� 
-      file1 �� file2 �ӧO�� gzip ���Y</font><font color="#00FFFF" size="2">�A</font></font><font color="#00FFFF" size="2">���Y��|�۰ʲ��� 
-      .gz �����ɦW�C�t�~�p�G</font><br>
-      <font color="#00FFFF"># </font> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">���Y�ɪ��ɦW</font></font><font color="#00FFFF" size="2">�쥻�w�s�b�A</font></font></font><font color="#00FFFF" size="2">�h�|�߰ݱz�O�_�n�л\���T���A�p�H�U�ҥܡG<br>
+      <font color="#FF0000">file1.gz　file2.gz</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font> <font color="#00FFFF" size="2">對 
+      file1 及 file2 個別做 gzip 壓縮</font><font color="#00FFFF" size="2">，</font></font><font color="#00FFFF" size="2">壓縮後會自動產生 
+      .gz 的附檔名。另外如果</font><br>
+      <font color="#00FFFF"># </font> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">壓縮檔的檔名</font></font><font color="#00FFFF" size="2">原本已存在，</font></font></font><font color="#00FFFF" size="2">則會詢問您是否要覆蓋的訊息，如以下所示：<br>
       </font><font color="#FFFFFF"><font color="#00FFFF"># </font> <font color="#00FFFF" size="2"></font></font><font color="#00FFFF" size="2">gzip: 
       file1.gz already exists; do you wish to overwrite (y or n)? </font><br>
       </font> <font color="#FFFFFF"> <br>
       </font><font color="#FFFFFF"> suse:/tmp # <font color="#FFFF00"><strong>gzip 
       -l file1.gz</strong></font><br>
-      <font face="�ө���">compressed �@uncompressed �@ratio�@uncompressed_name<br>
-      �@�@�@ 631 �@�@�@�@�@1413 �@57.0%�@file1</font><br>
-      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">������Y�e�᪺�@�Ǽƾ�</font><font color="#FFFFFF"><font color="#00FFFF" size="2">�C</font> 
+      <font face="細明體">compressed 　uncompressed 　ratio　uncompressed_name<br>
+      　　　 631 　　　　　1413 　57.0%　file1</font><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">比較壓縮前後的一些數據</font><font color="#FFFFFF"><font color="#00FFFF" size="2">。</font> 
       </font><font color="#FFFFFF">&nbsp;</font><font color="#FFFFFF"> <br>
       </font><font color="#FFFFFF">&nbsp; </font><font color="#FFFFFF"><br>
-      suse:/tmp #<strong> <font color="#FFFF00">gzip -d file1.gz</font></strong>�@<br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�� file1.gz 
-      �������Y</font><font color="#00FFFF" size="2">�C</font><br>
+      suse:/tmp #<strong> <font color="#FFFF00">gzip -d file1.gz</font></strong>　<br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">對 file1.gz 
+      做解壓縮</font><font color="#00FFFF" size="2">。</font><br>
       <br>
       suse:/tmp #<strong> <font color="#FFFF00">ls</font></strong><br>
-      file1�@<font color="#FF0000">file2.gz</font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">file1.gz �w�ܦ� 
-      file1�C�b�i������Y�ɡA�p file1 �w�s�b�A�]�|�߰ݱz�O�_�n�л\�C</font><br>
+      file1　<font color="#FF0000">file2.gz</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">file1.gz 已變成 
+      file1。在進行解壓縮時，如 file1 已存在，也會詢問您是否要覆蓋。</font><br>
       </font> <font color="#FFFFFF"> <br>
       suse:/tmp # <font color="#FFFF00"><strong>gunzip file2.gz</strong></font><br>
       suse:/tmp # <font color="#FFFF00"><strong>ls</strong></font><br>
-      file1�@file2 <br>
-      </font><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�ϥγ�@���O 
-      gunzip�A��i�F��P &quot;gzip -d&quot; �P�˪��ĪG</font><font color="#FFFFFF"><font color="#00FFFF" size="2">�C</font></font><br>
+      file1　file2 <br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2">使用單一指令 
+      gunzip，亦可達到與 &quot;gzip -d&quot; 同樣的效果</font><font color="#FFFFFF"><font color="#00FFFF" size="2">。</font></font><br>
       <br>
       suse:/tmp # <font color="#FFFF00"><strong>gzip -c file1 &gt; file1.gz </strong></font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�N file1 ���Y�᪺���e��V��X�� 
-      file1.gz�C���� file1 �٬O�s�b�C</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">將 file1 壓縮後的內容轉向輸出到 
+      file1.gz。此時 file1 還是存在。</font><br>
       </font> <font color="#FFFFFF"> <br>
       suse:/tmp #<strong> <font color="#FFFF00">cat file1 file2 | gzip &gt; file3.gz</font></strong><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�N cat ���O����X���� 
-      gzip ���O����J�A�ñN gzip ���Y�L�᪺���e��V��X�� file3.gz�C</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">將 cat 指令的輸出當成 
+      gzip 指令的輸入，並將 gzip 壓縮過後的內容轉向輸出到 file3.gz。</font><br>
       </font> <font color="#FFFFFF"> <br>
       suse:/tmp # <font color="#FFFF00"><strong>gzip -c file1 file2 &gt; file4.gz</strong></font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">��W�������k�������P�u�����C 
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">跟上面的做法有異曲同工之妙。 
       </font><br>
       </font> <font color="#FFFFFF"> <br>
       suse:/tmp # <font color="#FFFF00"><strong>gzip -c file1 &gt; file5.gz</strong></font><br>
       suse:/tmp #<strong> <font color="#FFFF00">gzip -c file2 &gt;&gt; file5.gz</font></strong><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">���N file1 ���Y�᪺���e��X�� 
-      file5.gz�A�A�N file2 ���Y�᪺���e���[�� file5.gz�C </font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">先將 file1 壓縮後的內容輸出至 
+      file5.gz，再將 file2 壓縮後的內容附加至 file5.gz。 </font><br>
       </font> <font color="#FFFFFF"> <br>
       suse:/tmp # <font color="#FFFF00"><strong>gzip -cd file1.gz</strong></font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�N file1.gz 
-      �����Y�᪺���e�� standard output�A�o�˱z�N�i�H�ݨ����Y�ɪ����e�F�C</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">將 file1.gz 
+      解壓縮後的內容做 standard output，這樣您就可以看到壓縮檔的內容了。</font><br>
       </font> <font color="#FFFFFF"> <br>
       suse:/tmp # <font color="#FFFF00"><strong>gunzip -c file1.gz </strong></font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�ϥ� &quot;gunzip&quot; 
-      �ӥN�� &quot;gzip -d&quot;�A�ҥH��W�������浲�G�O�ۦP���C</font><br>
-      </font> <font color="#FFFFFF"> <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�t�~ 
-      gunzip ��i�䴩���ɦW�� .z�B.Z�B.tgz �� .tar.gz �̡C</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">使用 &quot;gunzip&quot; 
+      來代替 &quot;gzip -d&quot;，所以跟上面的執行結果是相同的。</font><br>
+      </font> <font color="#FFFFFF"> <font color="#00FFFF"># </font><font color="#00FFFF" size="2">另外 
+      gunzip 亦可支援附檔名為 .z、.Z、.tgz 及 .tar.gz 者。</font><br>
       <br>
       suse:/tmp #<strong> <font color="#FFFF00">zcat file1.gz </font></strong><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�ϥ� zcat �o�ӳ�@���O���s�� 
-      xx.gz ���Y�ɪ����e�C</font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�t�~ zcat ��i�䴩���ɦW�� 
-      .z�B.Z�B.tgz�B.tar.gz �̡C</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">使用 zcat 這個單一指令來瀏覽 
+      xx.gz 壓縮檔的內容。</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">另外 zcat 亦可支援附檔名為 
+      .z、.Z、.tgz、.tar.gz 者。</font><br>
       </font> <font color="#FFFFFF"> <br>
-      <font color="#00FFFF"># <font size="2">�H�U�O���إߤ@�ǥؿ����ɮסA�M��A�ϥ� gzip -r �Ӱ����j���Y�G</font></font><br>
+      <font color="#00FFFF"># <font size="2">以下是先建立一些目錄及檔案，然後再使用 gzip -r 來做遞迴壓縮：</font></font><br>
       suse:/tmp # <font color="#FFFF00"><strong>mkdir -p dir/dir1 </strong></font><br>
       suse:/tmp # <font color="#FFFF00"><strong>cp /etc/passwd dir/file1 ; cp 
       /etc/passwd dir/dir1/file2</strong></font><br>
       suse:/tmp # <font color="#FFFF00"><strong>gzip -r dir</strong></font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">���槹��i�� dir 
-      �� dir1 �ؿ��U�˵��ݬݡC</font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">�p�Q���j�����Y���ܡA�h���� 
-      &quot;gunzip -r dir&quot; �Y�i�C</font></font></td>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">執行完後可至 dir 
+      及 dir1 目錄下檢視看看。</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">如想遞迴解壓縮的話，則執行 
+      &quot;gunzip -r dir&quot; 即可。</font></font></td>
   </tr>
 </table>
 <strong><br>
 </strong><br>
-<font size="+1"><strong> <a name="3"></a><font size="5">7.1.2 �ϥ� bzip2 ���Y</font><br>
+<font size="+1"><strong> <a name="3"></a><font size="5">7.1.2 使用 bzip2 壓縮</font><br>
 <br>
-�@</strong></font>�o�O�t�@�Ӱw��ӧO�ɮװ����Y�����O�A�B�����Y�ĪG�� gzip �n�� ! �ܩ�����Y�ɥi�ϥ� bunzip2 ���O�C<font size="+1"><strong><br>
+　</strong></font>這是另一個針對個別檔案做壓縮的指令，且其壓縮效果比 gzip 好噢 ! 至於解壓縮時可使用 bunzip2 指令。<font size="+1"><strong><br>
 <br>
-</strong></font><strong>���O�y�k</strong>�G<font size="+1"><br>
+</strong></font><strong>指令語法</strong>：<font size="+1"><br>
 </font>
 <table width="100%" border="0" bgcolor="#CCCCCC">
   <tr>
-    <td><strong><font face="�ө���">bzip2 [-cdkf1~9] [filenames ...]</font></strong></td>
+    <td><strong><font face="細明體">bzip2 [-cdkf1~9] [filenames ...]</font></strong></td>
   </tr>
 </table>
 <font size="+1"><br>
-</font>�@���z����u<font color="#0000FF">bzip2 file</font>�v�ɡA����ɮ� file �N�|�ܦ�<font color="#0000FF"> 
-file.bz2</font> �����Y�ɡA�B����ɦW�]�O�۰ʲ��ͪ��C<font size="+1"><strong><br>
+</font>　當您執行「<font color="#0000FF">bzip2 file</font>」時，原來檔案 file 就會變成<font color="#0000FF"> 
+file.bz2</font> 的壓縮檔，且其副檔名也是自動產生的。<font size="+1"><strong><br>
 <br>
-</strong></font><strong>�Ѽƻ���</strong>�G<font size="+1"> </font> 
+</strong></font><strong>參數說明</strong>：<font size="+1"> </font> 
 <table width="100%" border="1">
   <tr> 
     <td width="7%" align="center" valign="middle" nowrap><font color="#000099">-c</font></td>
-    <td width="93%"><font color="#000099">�P�� --stdout�C�N���Y�θ����Y�᪺���e�� standard output�A���ɭ���ɮ��٬O�s�b�C</font></td>
+    <td width="93%"><font color="#000099">同於 --stdout。將壓縮或解壓縮後的內容做 standard output，此時原來檔案還是存在。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-d</font></td>
-    <td><font color="#000099">�P�� --decompress�C�����Y�C�ubzip2 -d�v�N���� bunzip2�C</font></td>
+    <td><font color="#000099">同於 --decompress。解壓縮。「bzip2 -d」就等於 bunzip2。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-k</font></td>
-    <td><font color="#000099">�P�� --keep�C�O�d����ɮסCbunzip2 ��A�Φ��ѼơC </font></td>
+    <td><font color="#000099">同於 --keep。保留原來檔案。bunzip2 亦適用此參數。 </font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-f</font></td>
-    <td><font color="#000099"> �P�� --force�C���i�����Y�θ����Y�ɡA�p�ɦW�w�s�b�A�h�i��j���мg�C</font></td>
+    <td><font color="#000099"> 同於 --force。當進行壓縮或解壓縮時，如檔名已存在，則進行強制覆寫。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-1 ~ -9</font></td>
-    <td><font color="#000099">�P gzip �N��ۦP�C�w�]�� -9�C</font></td>
+    <td><font color="#000099">與 gzip 意思相同。預設為 -9。</font></td>
   </tr>
 </table>
 <br>
-<strong>�d�һ���</strong>�G 
+<strong>範例說明</strong>： 
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF"> suse:/tmp # <font color="#FFFF00"><strong>bzip2 
       file1 file2</strong></font><br>
       suse:/tmp #<font color="#FFFF00"><strong> ls</strong></font><br>
-      <font color="#FF0000">file1.bz2�@file2.bz2 </font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">���ͨ�� 
-      xx.bz2 �����Y�ɡC</font><br>
+      <font color="#FF0000">file1.bz2　file2.bz2 </font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">產生兩個 
+      xx.bz2 的壓縮檔。</font><br>
       <br>
       suse:/tmp #<strong> <font color="#FFFF00">bzip2 -d file1.bz2 ; bunzip2 file2.bz2 
       </font></strong><br>
       suse:/tmp #<font color="#FFFF00"> <strong>ls</strong></font><br>
-      file1�@file2 <br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">�����Y��S�^�Ш��Ӫ��ɮצW�١C</font><br>
+      file1　file2 <br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">解壓縮後又回覆到原來的檔案名稱。</font><br>
       <br>
       suse:/tmp #<strong> <font color="#FFFF00">bzip2 -k file1</font></strong><br>
       suse:/tmp # <font color="#FFFF00"><strong>ls</strong></font><br>
-      file1�@<font color="#FF0000"> file1.bz2</font>�@file2 <br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�[�W -k �ѼƨӫO�d��l�ɮ� 
-      file1�C</font><br>
+      file1　<font color="#FF0000"> file1.bz2</font>　file2 <br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">加上 -k 參數來保留原始檔案 
+      file1。</font><br>
       <br>
       suse:/tmp # <font color="#FFFF00"><strong>bzip2 file1</strong></font><br>
       bzip2: Output file file1.bz2 already exists.<br>
       suse:/tmp # <font color="#FFFF00"><strong>bunzip2 file1.bz2</strong></font><br>
       bunzip2: Output file file1 already exists.<br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�H�W��ӽd�ҡA�����F�����\�мg�ɦW�w�g�s�b���ɮסC<br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">以上兩個範例，說明了不允許覆寫檔名已經存在的檔案。<br>
       </font><br>
       suse:/tmp #<font color="#FFFF00"> <strong>bunzip2 -f file1.bz2</strong></font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�p�n�j���мg�A�N�[�W 
-      -f �Ѽ��o�C</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">如要強制覆寫，就加上 
+      -f 參數囉。</font><br>
       <br>
       suse:/tmp # <font color="#FFFF00"><strong>bzip2 -c file1 file2 &gt; file3.bz2</strong></font><br>
       suse:/tmp #<font color="#FFFF00"><strong> cat file1 file2 | bzip2 &gt; file5.bz2</strong></font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�H�W��ӽd�ҬO�N file1 
-      �� file2 ���Y��</font><font color="#FFFFFF"><font color="#00FFFF" size="2">�����e</font></font><font color="#00FFFF" size="2">��V��X�ܥt�@���ɮסC</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">以上兩個範例是將 file1 
+      及 file2 壓縮後</font><font color="#FFFFFF"><font color="#00FFFF" size="2">的內容</font></font><font color="#00FFFF" size="2">轉向輸出至另一個檔案。</font><br>
       <br>
       suse:/tmp # <font color="#FFFF00"><strong>bzip2 -cd file3.bz2</strong></font><br>
       suse:/tmp # <font color="#FFFF00"><strong>bunzip2 -c file3.bz2</strong></font><br>
       suse:/tmp #<font color="#FFFF00"> <strong>bzcat file3.bz2 </strong></font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�W���o�T�ؤ覡�A���i�H�Ψ��s�� 
-      file3.bz2 �����e�C</font></font></td>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">上面這三種方式，都可以用來瀏覽 
+      file3.bz2 的內容。</font></font></td>
   </tr>
 </table>
 <p><font size="+1"><strong> </strong></font><br>
   <strong><font size="+1"> <a name="4"></a><font color="#0000FF" size="6">7.2 
-  �ƥ��u��</font><br>
+  備份工具</font><br>
   </font></strong><br>
-  �@����ƥ��A���i���O�t�κ޲z�W�D�`���n���@���C���`�p�G���i���ƥ����ߺD�A�U�@���Ѧ]�Y�Ǧ]���y���z�t�θ�ƪ��y���ɡA�N�i�H����ƥ��٭�A�ӫ�_�t�έ쥻���@�Ǭ������n��ơC<br>
+  　講到備份，那可說是系統管理上非常重要的一環。平常如果有養成備份的習慣，萬一哪天因某些因素造成您系統資料的流失時，就可以執行備份還原，來恢復系統原本的一些相關重要資料。<br>
   <br>
-  �@�@��b����ƥ��ɡA���|�N�ƥ����u�@�g��Ƶ{�̡A�o�ˤl�Ƶ{�ɶ��@��A�t�δN�|�۰ʰ��o�Ǥu�@�A�Ӥ����ڭ̾ޤߡA���L�����p���A�z�٬O�n�w�����h�˵��z���ƥ��ɡA�H�F�ѬO�_�ƥ�����C<br>
+  　一般在執行備份時，都會將備份的工作寫到排程裡，這樣子排程時間一到，系統就會自動做這些工作，而不須我們操心，不過話雖如此，您還是要定期的去檢視您的備份檔，以了解是否備份完整。<br>
   <br>
-  �@�ӯள�Ӱ��ƥ����u�㦳�ܦh�A�γ\�z�|�ݨ쩳���Ӥu�����n�ΩO ? ���o�èS���@�w�����סA�]���o�n���z��ڪ��ݨD�Υ��`�ϥβߺD�Ӱ��M�w�A�B���ǮɫJ�|�ݦҼ{���x�s�˸m�B�ƥ��e�q�B�ƥ��٭쪺��K�ʡB&#8230; 
-  ���������D�A�ҥH�i��|�ϥΤ��P���u��ӹF��z���ت��C�H�U�N��j�a���дX�ӱ`�����ƥ����O�C<br>
+  　而能拿來做備份的工具有很多，或許您會問到底哪個工具比較好用呢 ? 其實這並沒有一定的答案，因為這要視您實際的需求及平常使用習慣來做決定，且有些時侯尚需考慮到儲存裝置、備份容量、備份還原的方便性、&#8230; 
+  等等的問題，所以可能會使用不同的工具來達到您的目的。以下就跟大家介紹幾個常見的備份指令。<br>
   <font size="+1"><strong><br>
-  <a name="5"></a><font size="5">7.2.1 tar ���O</font><br>
+  <a name="5"></a><font size="5">7.2.1 tar 指令</font><br>
   <br>
-  </strong></font>�@tar ���O�i�H�N�@���ɮץؿ��@�_���]��@���ɮפ��A�өҫإߪ��o���ɮ״N�٬� tarfile�A�O�ݩ� archive 
-  file ���@�ءC�ڭ̤]�i�H�ϥ� tar �ӱN��ƥ��]���x�s�C��W�A��p�ϱa���������˸m (�p /dev/st0�B/dev/ht0)�C</p>
+  </strong></font>　tar 指令可以將一些檔案目錄一起打包到一個檔案內，而所建立的這個檔案就稱為 tarfile，是屬於 archive 
+  file 的一種。我們也可以使用 tar 來將資料打包至儲存媒體上，比如磁帶機之類的裝置 (如 /dev/st0、/dev/ht0)。</p>
 <blockquote> 
-  <p><strong><font color="#000099">Tips�G</font></strong><font size="+1"><font color="#000099"><font size="2">�ҿת� 
-    archive file �O�x�����ǥ]�t�ܦh�ɮץؿ���ƪ��ɮסC</font></font></font></p>
+  <p><strong><font color="#000099">Tips：</font></strong><font size="+1"><font color="#000099"><font size="2">所謂的 
+    archive file 是泛指那些包含很多檔案目錄資料的檔案。</font></font></font></p>
 </blockquote>
-<strong>���O�y�k</strong>�G<font size="+1"></font>
+<strong>指令語法</strong>：<font size="+1"></font>
 <table width="100%" border="0" bgcolor="#CCCCCC">
   <tr>
-    <td><strong><font face="�ө���">tar [-] [cvftxrzjP] tarfile filename&#8230; dirname&#8230;</font></strong></td>
+    <td><strong><font face="細明體">tar [-] [cvftxrzjP] tarfile filename&#8230; dirname&#8230;</font></strong></td>
   </tr>
 </table>
 <br>
-�@�ϥ� tar �ҫإ߰_�Ӫ� tarfile �W�١A�]�A����ɦW�A�һݦۦ���w�A�@�볣�O�� xx.tar�A���p�G�� tarfile ���ϥ� gzip �h���Y�A�h�i���w�� 
-xx.tar.gz �� xx.tgz�A���M�� bzip2 ���Y���ܡA�N�i���w�� xx.tar.bz2 �� xx.tbz�C<br>
+　使用 tar 所建立起來的 tarfile 名稱，包括其附檔名，皆需自行指定，一般都是用 xx.tar，那如果此 tarfile 有使用 gzip 去壓縮，則可指定為 
+xx.tar.gz 或 xx.tgz，當然用 bzip2 壓縮的話，就可指定為 xx.tar.bz2 或 xx.tbz。<br>
 <br>
-<strong>�Ѽƻ���</strong>�G 
+<strong>參數說明</strong>： 
 <table width="100%" border="1">
   <tr> 
     <td width="7%" align="center" valign="middle" nowrap><font color="#000099">-c</font></td>
-    <td width="93%"><font color="#000099">�P�� --create�C<br>
-      �Ψӫإߤ@�ӷs�� archive file�C</font></td>
+    <td width="93%"><font color="#000099">同於 --create。<br>
+      用來建立一個新的 archive file。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-v</font></td>
-    <td><font color="#000099">�P�� --verbose�C<br>
-      ��ܰ���L�{�C</font></td>
+    <td><font color="#000099">同於 --verbose。<br>
+      顯示執行過程。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-f</font></td>
-    <td><font color="#000099"> �P�� --file=filename�C<br>
-      ���ܨ��n���w�@�� archive file �� device name�C�ϥ� tar ���ƥ��ɡA�̰򥻪��N�O�u-cvf�v�o�T�ӰѼƪ��զX�C </font></td>
+    <td><font color="#000099"> 同於 --file=filename。<br>
+      表示其後要指定一個 archive file 或 device name。使用 tar 做備份時，最基本的就是「-cvf」這三個參數的組合。 </font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-t</font></td>
-    <td><font color="#000099">�P�� --list�C<br>
-      �C�X archive file �����e�C</font></td>
+    <td><font color="#000099">同於 --list。<br>
+      列出 archive file 的內容。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-x</font></td>
-    <td><font color="#000099">�P�� --extract�C<br>
-      �q archive file ���Ѷ}�o�ǳQ���]���ɮץؿ��A�]�N�O�ƥ��٭�� !</font></td>
+    <td><font color="#000099">同於 --extract。<br>
+      從 archive file 中解開這些被打包的檔案目錄，也就是備份還原啦 !</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-r</font></td>
-    <td><font color="#000099">�P�� --append�C<br>
-      ���[�ɮצ� archive file ���e���᭱�C</font></td>
+    <td><font color="#000099">同於 --append。<br>
+      附加檔案至 archive file 內容的後面。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-k</font></td>
-    <td><font color="#000099">�P�� --keep-old-files�C <br>
-      ����ƥ��٭�ɡA���л\�w�g�s�b���ɮסC�w�]�O�|�л\���C</font></td>
+    <td><font color="#000099">同於 --keep-old-files。 <br>
+      執行備份還原時，不覆蓋已經存在的檔案。預設是會覆蓋的。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-P</font></td>
-    <td><font color="#000099">�P�� --absolute-paths�C</font><font color="#000099"><br>
-      �ƥ��i�h���ɮץؿ��A�ҫO�d������|�C�N�ӭn�٭�ɡA�]�i�[�o�ӰѼƨӨ̭쥻���|���٭�C</font></td>
+    <td><font color="#000099">同於 --absolute-paths。</font><font color="#000099"><br>
+      備份進去的檔案目錄，皆保留完整路徑。將來要還原時，也可加這個參數來依原本路徑做還原。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-z</font></td>
-    <td><font color="#000099"> �P�� --gzip �� --ungzip�C<br>
-      �� gzip �����Y archive file�C��p�z�n�إߤ@�ӥ� gzip ���Y�� archive file�A�N�i�f�t�u-zcvf�v�ѼƨӨϥ� 
-      �Q�ϹL�ӻ��A�n�Ѷ}����� gzip ���Y�� archive file�A�h�ϥΡu-zxvf�v�Y�i�C </font></td>
+    <td><font color="#000099"> 同於 --gzip 或 --ungzip。<br>
+      用 gzip 來壓縮 archive file。比如您要建立一個用 gzip 壓縮的 archive file，就可搭配「-zcvf」參數來使用 
+      ﹔反過來說，要解開當初用 gzip 壓縮的 archive file，則使用「-zxvf」即可。 </font></td>
   </tr>
   <tr> 
     <td height="38" align="center" valign="middle" nowrap><font color="#000099">-j</font></td>
-    <td><font color="#000099"> �P�� --bzip2 �� --bunzip2�C<br>
-      �� bzip2 �����Y archive file�C��p�z�n�إߤ@�ӥ� bzip2 ���Y�� archive file�A�N�i�f�t�u-jcvf�v�ѼƨӨϥ� 
-      �Q�ϹL�ӻ��A�n�Ѷ}����� bzip2 ���Y�� archive file�A�h�ϥΡu-jxvf�v�Y�i�C</font></td>
+    <td><font color="#000099"> 同於 --bzip2 或 --bunzip2。<br>
+      用 bzip2 來壓縮 archive file。比如您要建立一個用 bzip2 壓縮的 archive file，就可搭配「-jcvf」參數來使用 
+      ﹔反過來說，要解開當初用 bzip2 壓縮的 archive file，則使用「-jxvf」即可。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-C</font></td>
-    <td><font color="#000099">�P�� --directory=DIR�C<br>
-      �ƥ��٭�� -C �ҫ��w���ؿ������C</font></td>
+    <td><font color="#000099">同於 --directory=DIR。<br>
+      備份還原至 -C 所指定的目錄之中。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-X</font></td>
-    <td><font color="#000099">�P�� --exclude-from=filename�C<br>
-      ����ƥ��ɡA�i�H�ƥ��N���ư��ƥ����ɮץؿ��]�w�b�@���ɮפ��A�M��A�ϥΡu-X file�v�ӱư��N��F�C</font></td>
+    <td><font color="#000099">同於 --exclude-from=filename。<br>
+      執行備份時，可以事先將欲排除備份的檔案目錄設定在一個檔案內，然後再使用「-X file」來排除就行了。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-g</font></td>
-    <td><font color="#000099">�P�� --listed-incremental=filename�C<br>
-      �����W�ƥ��ɡA�ҫ��w���ƥ������ɮסC</font></td>
+    <td><font color="#000099">同於 --listed-incremental=filename。<br>
+      做遞增備份時，所指定的備份紀錄檔案。</font></td>
   </tr>
 </table>
 <strong><br>
-�d�һ���</strong>�G 
+範例說明</strong>： 
 <table width="100%" border="0">
   <tr> 
     <td height="400" bgcolor="#000000"><p><font color="#FFFFFF">suse:~ #<strong> 
         <font color="#FFFF00">mkdir /backup</font><br>
-        </strong> <font color="#00FFFF"># <font size="2">���إߤ@�ӳƥ��ؿ��Ӷ����޲z�C</font></font><strong><br>
+        </strong> <font color="#00FFFF"># <font size="2">先建立一個備份目錄來集中管理。</font></font><strong><br>
         <br>
         </strong>suse:~ #<strong><font color="#FFFF00"> tar -cvf /backup/bck.tar 
         /etc/passwd /home</font></strong><br>
-        <strong>tar :�@Removing leading ' / ' from member names</strong><br>
-        <font color="#00FFFF"># <font size="2">�W���T�������Ftar �w�]�|�N�ƥ��ɸ��|���̫e���� &quot; 
-        / &quot; �����A�M��A�ƥ��� tarfile �̡C</font></font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">�p�G�n�ƥ���ӧ�����|�A�[�W 
-        -P �ѼƧY�i�C</font><br>
+        <strong>tar :　Removing leading ' / ' from member names</strong><br>
+        <font color="#00FFFF"># <font size="2">上面訊息說明了tar 預設會將備份檔路徑中最前面的 &quot; 
+        / &quot; 移除，然後再備份至 tarfile 裡。</font></font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">如果要備份整個完整路徑，加上 
+        -P 參數即可。</font><br>
         </font> <font color="#FFFFFF">/etc/passwd<br>
         /home/barry/<br>
         /home/barry/bin/<br>
@@ -426,117 +426,117 @@ xx.tar.gz �� xx.tgz�A���M�� bzip2 ���Y���ܡA�N�i���w�� xx.tar.bz2 �� xx.tbz�C<br
         /home/barry/Documents/.directory<br>
         /home/barry/.exrc<br>
         /home/barry/.bashrc<br>
-        �@�@�@<font color="#00FFFF" size="2">�G�@��</font><font size="2"><br>
-        </font><font color="#FFFFFF"> <font color="#00FFFF"># </font></font><font size="2"><font color="#00FFFF">�N 
-        /etc/passwd �ɮפ� /home �ؿ��ƥ��� bck.tar �̡C<br>
+        　　　<font color="#00FFFF" size="2">：　略</font><font size="2"><br>
+        </font><font color="#FFFFFF"> <font color="#00FFFF"># </font></font><font size="2"><font color="#00FFFF">將 
+        /etc/passwd 檔案及 /home 目錄備份至 bck.tar 裡。<br>
         </font></font><br>
         suse:~ #<font color="#FFFF00"> <strong>cd /backup</strong></font><br>
         suse:/backup #<strong> <font color="#FFFF00">tar -tf bck.tar</font></strong><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�C�X tarfile 
-        �̡A�ҥ��]���ɮץؿ��M��C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">列出 tarfile 
+        裡，所打包的檔案目錄清單。</font><br>
         <br>
         suse:/backup #<font color="#FFFF00"> <strong>tar -rvf bck.tar /etc/fstab 
         /var/spool/mail</strong></font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">���[�ɮצ� tarfile 
-        �̡C���B�p�ϥ� &quot;-cvf&quot; ���ܡA�h�|���s�إ߰_�@�ӷs�� tarfile�A</font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">����Ӫ� tarfile 
-        ���M�N�Q���N�F�C</font><font size="2"><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">附加檔案至 tarfile 
+        裡。此處如使用 &quot;-cvf&quot; 的話，則會重新建立起一個新的 tarfile，</font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">那原來的 tarfile 
+        當然就被取代了。</font><font size="2"><br>
         </font><br>
         suse:/backup #<strong> <font color="#FFFF00">tar --delete -f bck.tar etc/fstab</font></strong><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�N fstab 
-        �ɮױq tarfile �������C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">將 fstab 
+        檔案從 tarfile 中移除。</font><br>
         <br>
         suse:/backup # <font color="#FFFF00"><strong>tar -xvf bck.tar etc/passwd</strong></font><strong><br>
-        </strong> <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�u�Ѷ} 
-        etc �ؿ��U�� passwd �ɮסC</font><br>
+        </strong> <font color="#00FFFF"># </font><font color="#00FFFF" size="2">只解開 
+        etc 目錄下的 passwd 檔案。</font><br>
         <br>
         suse:/backup #<strong> <font color="#FFFF00">ls </font></strong><br>
-        <font color="#FF0000">bck.tar<font color="#0099FF">�@</font></font><font color="#0099FF">etc 
+        <font color="#FF0000">bck.tar<font color="#0099FF">　</font></font><font color="#0099FF">etc 
         </font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�Ѷ}��h�F�@�� 
-        etc �ؿ��X�ӡA�Ӧ��ؿ������e�N�O passwd �ɮסC</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">解開後多了一個 
+        etc 目錄出來，而此目錄的內容就是 passwd 檔案。</font><br>
         <br>
         suse:/backup #<strong> <font color="#FFFF00">tar -xvf bck.tar</font></strong><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�N tarfile 
-        �����Ѷ}�C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">將 tarfile 
+        全部解開。</font><br>
         <br>
         suse:/backup #<font color="#FFFF00"> <strong>ls</strong></font><br>
-        <font color="#FF0000">bck.tar<font color="#0099FF">�@</font></font><font color="#0099FF">etc�@home�@var 
+        <font color="#FF0000">bck.tar<font color="#0099FF">　</font></font><font color="#0099FF">etc　home　var 
         </font><br>
         <br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">����ƥ��٭�ɡA���w�g�s�b���ɮסA�w�]�O�|�л\���A�ܩ��L�ɮ׫h�O�����v�T�A</font><br>
-        <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">�z�i�H���W���ӹ���G</font></font><font color="#00FFFF" size="2">���ק� 
-        /backup/etc/passwd�A�M��A����@���ƥ��٭�A�ݬ� </font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">執行備份還原時，對於已經存在的檔案，預設是會覆蓋的，至於其他檔案則是不受影響，</font><br>
+        <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">您可以馬上做個實驗：</font></font><font color="#00FFFF" size="2">先修改 
+        /backup/etc/passwd，然後再執行一次備份還原，看看 </font><br>
         <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">passwd 
-        �����e���L�Q�л\ ? </font></font></font><br>
+        的內容有無被覆蓋 ? </font></font></font><br>
         <br>
-        <font color="#FFFFFF"> <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�p�G�z���Q�л\�w�g�s�b���ɮסA�i�[�W 
-        &quot;-k&quot; �ѼơG</font><br>
+        <font color="#FFFFFF"> <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">如果您不想覆蓋已經存在的檔案，可加上 
+        &quot;-k&quot; 參數：</font><br>
         suse:/backup #<font color="#FFFF00"> <strong>tar -xkvf bck.tar etc/passwd</strong></font><br>
         etc/passwd<br>
         tar: etc/passwd: Cannot open: File exists<br>
         tar: Error exit delayed from previous errors<br>
         <br>
-        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�w����ҫإ߰_�Ӫ� 
-        tarfile�A�i�H�ϥ� gzip �� bzip2 ���i�����Y�A</font><br>
-        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">�H 
-        gzip �Ӱ��d�Ҧn�F�G</font><br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">針對剛剛所建立起來的 
+        tarfile，可以使用 gzip 或 bzip2 對其進行壓縮，</font><br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">以 
+        gzip 來做範例好了：</font><br>
         suse:/backup #<strong> <font color="#FFFF00">gzip bck.tar</font></strong><br>
         suse:/backup #<font color="#FFFF00"> <strong>ls</strong></font><br>
-        <font color="#FF0000">bck.tar.gz<font color="#0099FF">�@</font></font><font color="#0099FF">etc�@home�@var</font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">���G�N���ͤF bck.tar.gz�C�o�سQ���Y�L�᪺ 
-        tarfile�A�@��N�٬� tarball�C</font><br>
+        <font color="#FF0000">bck.tar.gz<font color="#0099FF">　</font></font><font color="#0099FF">etc　home　var</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">結果就產生了 bck.tar.gz。這種被壓縮過後的 
+        tarfile，一般就稱為 tarball。</font><br>
         <br>
-        <font color="#FFFFFF"> <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�ڭ̤]�i�H�ϥ� 
-        tar ���O�Ӫ����i�楴�]�����Y�G</font><br>
+        <font color="#FFFFFF"> <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">我們也可以使用 
+        tar 指令來直接進行打包兼壓縮：</font><br>
         suse:/backup #<font color="#FFFF00"><strong> tar -zcvf test.tar.gz /etc/passwd 
         /var/spool/mail</strong></font><br>
-        <font color="#00FFFF"># <font size="2">�ϥ� -z �ѼơA�� tarfile �i�� gzip ���Y�C</font></font><br>
+        <font color="#00FFFF"># <font size="2">使用 -z 參數，對 tarfile 進行 gzip 壓縮。</font></font><br>
         <br>
         suse:/backup # <font color="#FFFF00"><strong>tar -jcvf test.tar.bz2 /etc/passwd 
         /var/spool/mail</strong></font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF"><font size="2">�ϥ� 
-        -j �ѼơA�� tarfile �i�� bzip2 ���Y�C</font></font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF"><font size="2">使用 
+        -j 參數，對 tarfile 進行 bzip2 壓縮。</font></font><br>
         <br>
         suse:/backup #<strong> <font color="#FFFF00">tar -ztf test.tar.gz </font></strong><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�s�� tarball 
-        �M��C�p���s�� test.tar.bz2 ���M��A�h���� &quot;tar -jtf test.tar.bz2&quot;�C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">瀏覽 tarball 
+        清單。如欲瀏覽 test.tar.bz2 的清單，則執行 &quot;tar -jtf test.tar.bz2&quot;。</font><br>
         <br>
         suse:/backup #<strong> <font color="#FFFF00">tar -zxvf test.tar.gz etc/passwd</font></strong><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�u�Ѷ} passwd 
-        �ɮסC�w�� bzip2�G&quot;tar -jxvf test.tar.bz2 etc/passwd&quot;�C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">只解開 passwd 
+        檔案。針對 bzip2：&quot;tar -jxvf test.tar.bz2 etc/passwd&quot;。</font><br>
         <br>
         suse:/backup # <font color="#FFFF00"><strong>tar -zxvf test.tar.gz</strong></font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�N��� tarball 
-        �Ѷ}�C�w�� bzip2�G&quot;tar -jxvf test.tar.bz2&quot;�C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">將整個 tarball 
+        解開。針對 bzip2：&quot;tar -jxvf test.tar.bz2&quot;。</font><br>
         <br>
-        </font><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�H�U���Ф@�ؤ���S�����Ѷ}�覡�G</font><br>
+        </font><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2">以下介紹一種比較特殊的解開方式：</font><br>
         suse:/backup #<font color="#FFFF00"> <strong>zcat test.tar.gz | tar xvf 
         -</strong></font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�ϥ� zcat 
-        ��Ū�� tarball �� test.tar ���榡���e��A�浹 tar ���O�B�z�A<br>
-        </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">���� 
-        tar �|�q stdin Ū��</font><font color="#00FFFF" size="2">���e�øѶ}�� tarfile�C�ҥH���Atar 
-        ���O�᪺ &quot;-&quot;</font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2"> �N�N���� stdin�A�]�N�O���� 
-        test.tar �o�C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">使用 zcat 
+        來讀取 tarball 裡 test.tar 的格式內容後，交給 tar 指令處理，<br>
+        </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">此時 
+        tar 會從 stdin 讀取</font><font color="#00FFFF" size="2">內容並解開此 tarfile。所以說，tar 
+        指令後的 &quot;-&quot;</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2"> 就代表著 stdin，也就是那個 
+        test.tar 囉。</font><br>
         <br>
-        <font color="#FFFFFF"> <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�ϥ� 
-        -C �ѼơA�ӫ��w�n�ƥ��٭�� /tmp �ؿ��G</font><br>
+        <font color="#FFFFFF"> <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">使用 
+        -C 參數，來指定要備份還原至 /tmp 目錄：</font><br>
         suse:/backup #<font color="#FFFF00"> <strong>tar </strong></font><strong> 
         <font color="#FFFFFF"></font> <font color="#FFFF00">-jxvf test.tar.bz2 
         </font></strong><strong><font color="#FFFFFF"><font color="#FFFF00">-C 
         /tmp</font></font></strong><br>
         <br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">���ǮɭԦb��ؿ��i��ƥ��ɡA�|�Q�ư��ؿ������Y���ɮשΤl�ؿ��A�]�N�O���Q�N��</font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�ƥ��i�h���N�A���n��򰵩O 
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">有些時候在對目錄進行備份時，會想排除目錄中的某些檔案或子目錄，也就是不想將其</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">備份進去之意，那要怎麼做呢 
         ? </font><br>
-        <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">�H 
-        /home ���Ҥl�n�F�A���ϲ{�b�n�ƥ�/home�A��</font></font><font color="#00FFFF" size="2">/home/user01 
-        �� /home/user02 </font><br>
-        <font color="#00FFFF"># </font> <font color="#FFFFFF"><font color="#00FFFF" size="2">�o��Ӯa�ؿ����Q�ƥ��i�h�A�h���ɥi�H���N</font></font><font color="#00FFFF" size="2">�o��ӱ��ư����ؿ��g�J�@���ɮפ��A<font color="#FFFFFF"><br>
-        </font></font><font color="#00FFFF"># </font> <font color="#00FFFF" size="2">�M���Q�� 
-        tar ���O�i��ƥ��ɡA�f�t -X �ѼƨӨϥΧY�i�G</font><br>
+        <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">以 
+        /home 做例子好了，假使現在要備份/home，但</font></font><font color="#00FFFF" size="2">/home/user01 
+        及 /home/user02 </font><br>
+        <font color="#00FFFF"># </font> <font color="#FFFFFF"><font color="#00FFFF" size="2">這兩個家目錄不想備份進去，則此時可以先將</font></font><font color="#00FFFF" size="2">這兩個欲排除的目錄寫入一個檔案中，<font color="#FFFFFF"><br>
+        </font></font><font color="#00FFFF"># </font> <font color="#00FFFF" size="2">然後於利用 
+        tar 指令進行備份時，搭配 -X 參數來使用即可：</font><br>
         suse:~ #<font color="#FFFF00"> <strong>vi excludefile</strong></font><br>
         /home/user01<br>
         /home/user02<br>
@@ -544,29 +544,29 @@ xx.tar.gz �� xx.tgz�A���M�� bzip2 ���Y���ܡA�N�i���w�� xx.tar.bz2 �� xx.tbz�C<br
         <font color="#FFFF00">-zcvf /backup/home.tar.gz /home </font></strong><strong><font color="#FFFFFF"><font color="#FFFF00">-X 
         excludefile</font></font></strong><br>
         <br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">����ƥ��u�@�ɡA���F�W�[�ƥ����Ĳv�A�i�H�Ҽ{�ϥλ��W�ƥ� 
-        (incremental backup) ��</font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�覡�C�ҿת����W�ƥ��A�N�O�����ƥ��u�w��e���X���ƥ�����|�����ʪ���ư��ƥ��Ӥw 
-        �Q</font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">���z���ƥ�����ƫܦh�ɡA�Q�γo�ؤ覡�|��o�S�O�����Ĳv�C</font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�i��H�U�����礤�A�z�i�H�b�C���ƥ�����A���խק��ɮץؿ����e�A�M��A�i��U�@����</font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">�ƥ��A�o�˱N�Ӧb���ƥ��٭�ɤ~�ݱo�X�ĪG�C���U�N�갵�@���o�G</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">執行備份工作時，為了增加備份的效率，可以考慮使用遞增備份 
+        (incremental backup) 的</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">方式。所謂的遞增備份，就是此次備份只針對前面幾次備份完後尚有異動的資料做備份而已 
+        ﹔</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">當您欲備份的資料很多時，利用這種方式會顯得特別的有效率。</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">進行以下的實驗中，您可以在每次備份完後，嘗試修改檔案目錄內容，然後再進行下一次的</font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">備份，這樣將來在做備份還原時才看得出效果。底下就實做一次囉：</font><br>
         suse:/backup #<font color="#FFFF00"><strong> tar </strong></font><strong><font color="#FFFFFF"><font color="#FFFF00">-g 
         increfile</font></font> <font color="#FFFF00">-zcvf home.tgz /home</font></strong><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�ϥ� &quot;-g&quot; 
-        �ѼơA�ӱN�����ƥ����O���s��b increfile ���C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">使用 &quot;-g&quot; 
+        參數，來將首次備份的記錄存放在 increfile 內。</font><br>
         <br>
         suse:/backup #<font color="#FFFF00"> <strong>tar -g increfile</strong></font> 
         <strong><font color="#FFFF00">-zcvf home1.tgz /home </font></strong><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">����Ĥ@�����W�ƥ��C�аO�o�C�����滼�W�ƥ��ɡA���������w���ӳƥ������ɡC</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">執行第一次遞增備份。請記得每次執行遞增備份時，都必須指定那個備份紀錄檔。</font><br>
         <br>
         suse:/backup #<font color="#FFFF00"> <strong>tar </strong></font><strong><font color="#FFFFFF"><font color="#FFFF00">-g 
         increfile</font></font> <font color="#FFFF00">-zcvf home2.tgz /home </font></strong><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">����ĤG�����W�ƥ��C 
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">執行第二次遞增備份。 
         </font><br>
         <br>
-        <font color="#FFFFFF"> <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">������A���ۧ� 
-        /home �ؿ��R���A�M��}�l����ƥ��٭� (�q�����Ұ����ƥ��Ӷ}�l�٭�_)�G</font><br>
+        <font color="#FFFFFF"> <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">完成後，接著把 
+        /home 目錄刪除，然後開始執行備份還原 (從首次所做的備份來開始還原起)：</font><br>
         suse:/backup #<strong> <font color="#FFFF00">rm -rf /home</font></strong><br>
         suse:/backup # <font color="#FFFF00"><strong>tar </strong></font><strong><font color="#FFFFFF"></font> 
         <font color="#FFFF00">-zxvf home.tgz </font></strong><strong><font color="#FFFFFF"><font color="#FFFF00">-C 
@@ -578,265 +578,250 @@ xx.tar.gz �� xx.tgz�A���M�� bzip2 ���Y���ܡA�N�i���w�� xx.tar.bz2 �� xx.tbz�C<br
         home2.tgz </font><font color="#FFFFFF"><strong><font color="#FFFFFF"><font color="#FFFF00">-C 
         /</font></font></strong></font><font color="#FFFF00"><br>
         </font></strong><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-        </font></font></font><font color="#00FFFF"><font size="2">�p�G�z�� home �P 
-        / ���ݤ��P partition�A�|�y�� /home �ؿ��L�k�R���A���ɰ���G<br>
+        </font></font></font><font color="#00FFFF"><font size="2">如果您的 home 與 
+        / 分屬不同 partition，會造成 /home 目錄無法刪除，此時執行：<br>
         </font></font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-        </font></font></font><font color="#00FFFF" size="2">rm -rf /home/* �Y�i�C</font></font><font color="#00FFFF"><br>
+        </font></font></font><font color="#00FFFF" size="2">rm -rf /home/* 即可。</font></font><font color="#00FFFF"><br>
         </font></font></p></td>
   </tr>
 </table>
 <strong><font color="#000000" size="+1"> <br>
-<a name="6"></a><font size="5">7.2.2 cpio ���O</font></font><font color="#000000"><br>
+<a name="6"></a><font size="5">7.2.2 cpio 指令</font></font><font color="#000000"><br>
 </font><br>
-�@</strong> cpio ���O�i�Ψӳƥ��ɮצ� archive �αq archive ����ƥ��٭�A�]�����i�H��O�z���`���ƥ��ɪ��@�Ӧn�u��C�t�~�o�̪� 
-archive file �i�H�O�ɮשκϱa���������˸m�C<br>
+　</strong> cpio 指令可用來備份檔案至 archive 或從 archive 執行備份還原，因此它可以算是您平常做備份時的一個好工具。另外這裡的 
+archive file 可以是檔案或磁帶機之類的裝置。<br>
 <br>
-�@cpio �|�q�зǿ�JŪ���ɮצW�٦C�� (�@���ɮצW�٤@��)�A�ñN���G��X�ܱz�ҫ��w�� archive file �̡C�@��`�ΨӲ����ɮצW�٦C�������O�O 
-find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
+　cpio 會從標準輸入讀取檔案名稱列表 (一個檔案名稱一行)，並將結果輸出至您所指定的 archive file 裡。一般常用來產生檔案名稱列表的指令是 
+find，因此 cpio 常常會搭配 find 指令來使用。<strong><strong><br>
 </strong><br>
-�Ѽƻ���</strong>�G 
+參數說明</strong>： 
 <table width="100%" border="1">
   <tr> 
     <td width="7%" align="center" valign="middle" nowrap><font color="#000099">-o</font></td>
-    <td width="93%" nowrap><font color="#000099">���ѼƬO����b copy-out �Ҧ��A�N�Y���ƶi��ƻs�ÿ�X���ɮשθ˸m�W�C</font></td>
+    <td width="93%" nowrap><font color="#000099">此參數是執行在 copy-out 模式，意即把資料進行複製並輸出至檔案或裝置上。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-i</font></td>
-    <td nowrap><font color="#000099">���ѼƬO����b copy-in �Ҧ��A�N�Y���Ʊq�ɮשθ˸m���ƻs�X�ӡA�N�O�ƥ��٭��o 
+    <td nowrap><font color="#000099">此參數是執行在 copy-in 模式，意即把資料從檔案或裝置中複製出來，就是備份還原囉 
       !</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-t</font></td>
-    <td nowrap><font color="#000099">�C�X cpio �ɮשθ˸m�����e�M��C</font></td>
+    <td nowrap><font color="#000099">列出 cpio 檔案或裝置的內容清單。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-F</font></td>
-    <td nowrap><font color="#000099">�ǥѫ��w�@�� archive file ���W�١A�Ӵ��N stdin �� stdout�C</font></td>
+    <td nowrap><font color="#000099">藉由指定一個 archive file 的名稱，來替代 stdin 或 stdout。</font></td>
   </tr>
 </table>
 <br>
-<strong>�d�һ���</strong>�G 
+<strong>範例說明</strong>： 
 <table width="100%" border="0">
   <tr> 
     <td height="106" bgcolor="#000000"><p><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>find 
         /home | cpio -o &gt; /backup/home.cpio</strong></font><br>
         suse:~ # <font color="#FFFF00"><strong>find /home | cpio -oF /backup/home.cpio 
         </strong></font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�N /home 
-        �ؿ��ƥ��� /backup/home.cpio�C�H�W��ذ��k���澾�C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">將 /home 
+        目錄備份至 /backup/home.cpio。以上兩種做法都行噢。</font><br>
         <br>
         suse:~ # <font color="#FFFF00"><strong>cpio -t &lt; /backup/home.cpio 
         </strong></font><br>
         suse:~ #<font color="#FFFF00"><strong> cpio -tF /backup/home.cpio </strong></font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�d�� /backup/home.cpio 
-        �����e�C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">查看 /backup/home.cpio 
+        的內容。</font><br>
         <font size="2"><br>
-        </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">���ۧ� 
-        /home ���e�R���A�M��A�i��ƥ��٭쪺���աG</font><font size="2"><br>
+        </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">接著把 
+        /home 內容刪除，然後再進行備份還原的測試：</font><font size="2"><br>
         </font>suse:~ #<font color="#FFFF00"><strong> rm -rf /home/*</strong></font><font size="2"><br>
         <br>
         </font>suse:~ #<font color="#FFFF00"><strong> cpio -i &lt; /backup/home.cpio</strong></font></font><font color="#FFFF00"><strong><font size="2"> 
         </font></strong></font><font color="#FFFFFF" size="2"><br>
         </font><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>cpio 
         -iF /backup/home.cpio </strong></font><br>
-        <font color="#00FFFF">#<font size="2"> </font></font><font color="#00FFFF" size="2">����ƥ��٭��A 
-        home �ؿ��|�b�ثe�u�@�ؿ��U���͡A�]���٭�ɡA�w�]�|��</font><br>
+        <font color="#00FFFF">#<font size="2"> </font></font><font color="#00FFFF" size="2">執行備份還原後， 
+        home 目錄會在目前工作目錄下產生，因為還原時，預設會把</font><br>
         <font color="#00FFFF">#<font size="2"> </font></font><font color="#00FFFF" size="2">home 
-        �e���� &quot; / &quot; �h���A�ҥH�L�k���ӭ�������|�Ӱ��٭�C</font></font><font color="#FFFFFF"><br>
-        <font color="#00FFFF">#<font size="2"> </font></font><font color="#00FFFF" size="2">�p�n�̷ӧ�����|���٭�A�[�W 
-        --absolute-filenames �Y�i�G</font> <br>
+        前面的 &quot; / &quot; 去除，所以無法按照原先的路徑來做還原。</font></font><font color="#FFFFFF"><br>
+        <font color="#00FFFF">#<font size="2"> </font></font><font color="#00FFFF" size="2">如要依照完整路徑做還原，加上 
+        --absolute-filenames 即可：</font> <br>
         suse:~ # <font color="#FFFF00"><strong>cpio --absolute-filenames -iF /backup/home.cpio<br>
         </strong></font><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"> 
-        </font></font></font><font color="#00FFFF" size="2">������A�ˬd�ݬ� /home �̭�������٭�S�C</font><font color="#FFFF00"><strong><br>
+        </font></font></font><font color="#00FFFF" size="2">完成後，檢查看看 /home 裡面的資料還原沒。</font><font color="#FFFF00"><strong><br>
         </strong></font></font></p></td>
   </tr>
 </table>
 <strong><font size="+1"> <br>
-<a name="7"></a><font size="5">7.2.3 dd ���O</font></font></strong><font color="#000000"><br>
+<a name="7"></a><font size="5">7.2.3 dd 指令</font></font></strong><font color="#000000"><br>
 <br>
-�@�o�O�t�@�ӽƻs���u��A�B��㦳�Y�ǯS��O��L�ƥ��u�㰵���Ӫ��A��p�i�H�ƥ� MBR �ϰϡBpartition �W�� Boot Sector�A�Ʀ��٥i�H�ƥ��Y�Ӥ��ΰϤξ����w�СA�ܯ��_�a 
+　這是另一個複製的工具，且其具有某些特色是其他備份工具做不來的，比如可以備份 MBR 磁區、partition 上的 Boot Sector，甚至還可以備份某個分割區及整顆硬碟，很神奇吧 
 !<br>
 <br>
-</font><strong>���O�y�k</strong>�G<br>
+</font><strong>指令語法</strong>：<br>
 <table width="100%" border="0" bgcolor="#CCCCCC">
   <tr>
-    <td><strong><font face="�ө���">dd if=FILE of=FILE [bs=BYTES|ibs=BYTES|obs=BYTES] 
-      count=BLOCKS �K</font></strong></td>
+    <td><strong><font face="細明體">dd if=FILE of=FILE [bs=BYTES|ibs=BYTES|obs=BYTES] 
+      count=BLOCKS …</font></strong></td>
   </tr>
 </table>
 <br>
-<strong>�`�ΰѼ�</strong>�G 
+<strong>常用參數</strong>： 
 <table width="100%" border="1">
   <tr> 
     <td width="12%" align="center" valign="middle" nowrap><font color="#000099">if=FILE</font></td>
-    <td width="88%"><font color="#000099">if �N�O input file ���N�A���i�H�O�ɮשθ˸m�C�� if=FILE 
-      �Y�O�ǵ�Ū�� FILE �����e�ӥN�� stdin�C</font></td>
+    <td width="88%"><font color="#000099">if 就是 input file 之意，其後可以是檔案或裝置。而 if=FILE 
+      即是藉著讀取 FILE 的內容來代替 stdin。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">of=FILE</font></td>
-    <td><font color="#000099">o</font><font color="#000099">f �N�O output file ���N�A���i�H�O�ɮשθ˸m�C�� 
-      of=FILE �Y�O�N output �g�J FILE �ӥN�� stdout�C</font></td>
+    <td><font color="#000099">o</font><font color="#000099">f 就是 output file 之意，其後可以是檔案或裝置。而 
+      of=FILE 即是將 output 寫入 FILE 來代替 stdout。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">ibs=BYTES</font></td>
-    <td><font color="#000099">�@��Ū�J���϶��j�p (block size) �O�h�� bytes�C</font></td>
+    <td><font color="#000099">一次讀入的區塊大小 (block size) 是多少 bytes。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">obs=BYTES</font></td>
-    <td><font color="#000099">�@���g�J���϶��j�p�O�h�� bytes�C</font></td>
+    <td><font color="#000099">一次寫入的區塊大小是多少 bytes。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">bs=BYTES</font></td>
-    <td><font color="#000099">�Y ibs �P obs ���ۦP�A�]�N�OŪ�J�P�g�J���϶��j�p�O�@�˪��C�w�] bs=512�C </font></td>
+    <td><font color="#000099">即 ibs 與 obs 都相同，也就是讀入與寫入的區塊大小是一樣的。預設 bs=512。 </font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">count=BLOCKS</font></td>
-    <td><font color="#000099">���wŪ���h�֭Ӱ϶��ơC</font></td>
+    <td><font color="#000099">指定讀取多少個區塊數。</font></td>
   </tr>
 </table>
 <br>
-<strong>�d�һ���</strong>�G<br>
+<strong>範例說明</strong>：<br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>ls 
       -l /etc/passwd</strong></font><br>
-      <font face="�ө���">-rw-r--r-- 1 root root <font color="#FFFF00">1413</font> 
+      <font face="細明體">-rw-r--r-- 1 root root <font color="#FFFF00">1413</font> 
       Dec 9 19:13 /etc/passwd</font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">���F�� /etc/passwd 
-      ���ɮפj�p�� 1413 bytes�C</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">先了解 /etc/passwd 
+      的檔案大小為 1413 bytes。</font><br>
       <br>
       suse:~ #<font color="#FFFF00"><strong> dd if=/etc/passwd of=/tmp/file1 bs=1024 
       </strong></font><br>
       1+1 records in<br>
       1+1 records out<br>
       1413 bytes (1.4 kB) copied, 0.000509 seconds, 2.8 MB/s<br>
-      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�ѩ���wŪ�J�P�g�J���϶��j�p�� 
-      1024 bytes�A�S�]�� passwd �ɮפj�p�� 1413 bytes�A</font><font color="#FFFFFF"><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�]���|�q /etc/passwd 
-      Ū�J��� blocks�A�ñNŪ�������e�g�J /tmp/file1�A���ɷ��M�]�O</font><br>
-      <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">�g�J��� blocks�C�ܩ�ù��W�X�{�� 
-      &quot;1+1 records in&quot;�A���ܦ@Ū����Ӱ϶�����</font><font color="#00FFFF">�A</font><br>
-      <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">���]���@�� block 
-      ����ƬO���񺡪��A�ҥH�~�|��� 1+1�A�p�G��� block ���O�����A</font><br>
-      <font color="#00FFFF">#<font size="2"> </font></font> <font color="#00FFFF" size="2">�N�|�ܦ� 
-      2+0 �Q&quot;1+1 records out&quot;</font> <font color="#00FFFF" size="2">�]�O�@�˪��N��C</font>�@ 
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">由於指定讀入與寫入的區塊大小為 
+      1024 bytes，又因為 passwd 檔案大小為 1413 bytes，</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">因此會從 /etc/passwd 
+      讀入兩個 blocks，並將讀取的內容寫入 /tmp/file1，此時當然也是</font><br>
+      <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">寫入兩個 blocks。至於螢幕上出現的 
+      &quot;1+1 records in&quot;，表示共讀取兩個區塊紀錄</font><font color="#00FFFF">，</font><br>
+      <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">但因有一個 block 
+      的資料是未填滿的，所以才會顯示 1+1，如果兩個 block 都是滿的，</font><br>
+      <font color="#00FFFF">#<font size="2"> </font></font> <font color="#00FFFF" size="2">就會變成 
+      2+0 ﹔&quot;1+1 records out&quot;</font> <font color="#00FFFF" size="2">也是一樣的意思。</font>　 
       <br>
       </font> <font color="#FFFFFF"><br>
       suse:~ # <strong><font color="#FFFF00">dd if=/etc/passwd of=/tmp/file2 bs=512 
       count=2</font></strong><br>
       2+0 records in<br>
       2+0 records out<br>
-      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">���wŪ���P�g�J���϶��j�p�� 
-      512 bytes�A�åB�ϥ� count �h���wŪ�J��Ӱ϶������e�A</font><font color="#FFFFFF"><br>
-      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�]�N�O�u�ƻs 
-      1024 bytes �աC</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">指定讀取與寫入的區塊大小為 
+      512 bytes，並且使用 count 去限定讀入兩個區塊的內容，</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">也就是只複製 
+      1024 bytes 啦。</font><font color="#FFFFFF"><br>
        <br>
       suse:/tmp #<font color="#FFFF00"><strong> dd if=/etc/passwd of=/tmp/file3 
       ibs=512 obs=2k count=2</strong></font><br>
       2+0 records in<br>
       0+1 records out<br>
-      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">���wŪ����� 
-      512 bytes ���϶��j�p�A�������N�O�u�ƻs 1024 bytes�C</font><font color="#FFFFFF"><br>
-      <font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">�� 
-      obs=2k�A�O���ܧ���Ū�J 1024 bytes ����Ƽg�J�j�p�� 2048 bytes ���϶��A����<br>
-      </font><font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">�ѩ�Ӱ϶��O���񺡪��A�]���ù��W�O�X�{ 
-      &quot;0+1 records out&quot;�C</font></td>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">指定讀取兩個 
+      512 bytes 的區塊大小，換言之就是只複製 1024 bytes。</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">而 
+      obs=2k，是表示把剛剛讀入 1024 bytes 的資料寫入大小為 2048 bytes 的區塊，此時<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">由於該區塊是未填滿的，因此螢幕上是出現 
+      &quot;0+1 records out&quot;。</font></td>
   </tr>
 </table>
 <br>
-�@���ۦA�Ӭݬ� dd ���O����L���ΡC<br>
+　接著再來看看 dd 指令的其他應用。<br>
 <br>
 <strong><a name="8"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-<font size="4">�إ� swap file</font></strong><font size="4"><br>
+<font size="4">建立 swap file</font></strong><font size="4"><br>
 </font><br>
-�@�@��ڭ̩Ҽ������O�ϥΤ��ΰϨӧ@ swap �Ŷ��A�� dd ���O�����z�ϥ��ɮרӳW���X swap �Ŷ����C�p�G�zı�o�ثe�� swap �Ŷ��Ӥ֡A�Q�n�h�W�[�� 
-100 M�A�o�ɭԱz�N�i�H�o�򰵡G <br>
+　一般我們所熟知的是使用分割區來作 swap 空間，而 dd 指令能讓您使用檔案來規劃出 swap 空間噢。如果您覺得目前的 swap 空間太少，想要多增加個 
+100 M，這時候您就可以這麼做： <br>
 <br>
 <table width="100%" border="0">
   <tr> 
-    <td bgcolor="#000000"><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2">���W���X 
-      swapfile �Ŷ����j�p�� 100 M�G</font><br>
+    <td bgcolor="#000000"><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2">先規劃出 
+      swapfile 空間的大小為 100 M：</font><br>
       suse:~ #<font color="#FFFF00"><strong> dd if=/dev/zero of=/tmp/swapfile 
       bs=1000k count=100 </strong></font><br>
       100+0 records in<br>
       100+0 records out<br>
       </font><font color="#00FFFF" size="2"><br>
       </font><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2"> 
-      �� swapfile �i��榡��</font><font color="#FFFFFF"><font color="#00FFFF" size="2">�G</font></font><br>
-      suse:~ #<font color="#FFFF00"><strong> mkswap /tmp/swapfile</strong></font>�@<br>
+      對 swapfile 進行格式化</font><font color="#FFFFFF"><font color="#00FFFF" size="2">：</font></font><br>
+      suse:~ #<font color="#FFFF00"><strong> mkswap /tmp/swapfile</strong></font>　<br>
       Setting up swapspace version 1, size = 102395 kB <br>
       </font><font color="#00FFFF" size="2"><br>
       </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font><font color="#00FFFF" size="2">�ҥ� swapfile</font></font><font color="#00FFFF" size="2">�G</font><br>
-      suse:~ #<font color="#FFFF00"><strong> swapon /tmp/swapfile�@</strong></font></font></td>
+      </font><font color="#00FFFF" size="2">啟用 swapfile</font></font><font color="#00FFFF" size="2">：</font><br>
+      suse:~ #<font color="#FFFF00"><strong> swapon /tmp/swapfile　</strong></font></font></td>
   </tr>
 </table>
 <br>
-�@������A�i�ϥ� free ���O�h�@�@ swap �Ŷ����S���h�F 100 M�C�t�~�p�G�Q�b�U���}���ɡA��۰ʱҥΦ� swap file�A���N�b /etc/fstab 
-���ɤW�@��]�w�G<br>
+　完成後，可使用 free 指令去瞧瞧 swap 空間有沒有多了 100 M。另外如果想在下次開機時，能自動啟用此 swap file，那就在 /etc/fstab 
+內補上一行設定：<br>
 <br>
 <table width="50%" border="0" bgcolor="#CCCCCC">
   <tr> 
-    <td nowrap><font color="#000000"><strong>/tmp/swapfile �@�@swap �@�@swap �@�@defaults 
-      �@�@0�@ 0</strong></font></td>
+    <td nowrap><font color="#000000"><strong>/tmp/swapfile 　　swap 　　swap 　　defaults 
+      　　0　 0</strong></font></td>
   </tr>
 </table>
 <p><strong><a name="9"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-  <font size="4">�ƥ� MBR �ϰϤΤ��ΰ�</font></strong><br>
+  <font size="4">備份 MBR 磁區及分割區</font></strong><br>
   <br>
-  �@�u�O���_�Add �~�M�]��ƥ� MBR �ϰϩΤ��ΰϡA�ӥB�٫�²��A�аѦҥH�U���d�ҡG</p>
+  　真是神奇，dd 居然也能備份 MBR 磁區或分割區，而且還很簡單，請參考以下的範例：</p>
 <table width="100%" border="0" bgcolor="#CCCCCC">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font></font><font color="#00FFFF" size="2">�ƥ� MBR �ϰϡG</font><br>
+      </font></font><font color="#00FFFF" size="2">備份 MBR 磁區：</font><br>
       suse:~ # <font color="#FFFF00"><strong>dd if=/dev/hda of=mbrbck bs=512 count=1</strong></font><br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">�i���n�ѤF���w 
-      count=1 �ڡA���M�|�ܦ��ƥ������w�о��C</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">可不要忘了指定 
+      count=1 啊，不然會變成備份整顆硬碟噢。</font><br>
       <br>
       suse:~ #<font color="#FFFF00"><strong> file mbrbck</strong></font><br>
       mbrbck: x86 boot sector, code offset 0x48<br>
       <br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�ƥ� 
-      partition<font color="#FFFFFF">�G</font> 
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">備份 
+      partition<font color="#FFFFFF">：</font> 
       <br>
       </font><font color="#FFFFFF">suse:~ #</font><font color="#FFFF00"><strong> 
       dd if=/dev/hda3 of=hda3bck <br>
       </strong></font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font></font><font color="#00FFFF" size="2">�Ъ`�N�Aof ��ҫ��w���ɮצ�m�A�����O�s�b�� /dev/hda3 
-      �H�~�� partition�C</font></font></font></td>
+      </font></font><font color="#00FFFF" size="2">請注意，of 後所指定的檔案位置，必須是存在於 /dev/hda3 
+      以外的 partition。</font></font></font></td>
   </tr>
 </table>
 <p> <font color="#000000" size="+1"><strong><a name="10"></a><font size="5">7.2.4 
-  �ƥ��ɻݦҼ{�ƶ�</font></strong></font> <br>
+  備份時需考慮事項</font></strong></font> <br>
   <br>
-  �@�ƥ��O�ݭn�g�L�ƥ��W�����A�ӱz�b��w�ƥ������ɡA�i��ݭn�����ӥ��L�Ҽ{�A�o�˪��ƥ��~�|��������C�H�U�N�C�X�X�I�ӵ��U��ѦҡG</p>
+  　備份是需要經過事先規劃的，而您在制定備份策略時，可能需要先做個全盤考慮，這樣的備份才會比較完善。以下就列出幾點來給各位參考：</p>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
     <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td width="95%"><strong><font color="#000099">���ƥ������</font></strong><font color="#000099">�G</font></td>
+    <td width="95%"><strong><font color="#000099">欲備份的資料</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td>�z�O�Q������w�СB�Y�X�� partition �٬O�Y���ɮװ��ƥ��A�o�i�O�n�n�n���Q�@�Q�ڡC�p�G�u�O�Q�w�������n����ư��ƥ��ɡA�h������M�O�w�� 
-      /etc�B/home�B/srv�B/var�B/root�B/boot �o�X�ӥؿ��ӤU��A�t�~�Y�z����n��w�˦b /usr/local �����ܡA�]�i��o�ӥؿ��ƥ��_�ӡC�ܩ󤣻ݳƥ����ؿ��� 
-      /dev�B/proc�B/mnt�B/media�B/tmp ���A�t�~ swap ���M�]���ݳƥ��� !</td>
-  </tr>
-  <tr> 
-    <td>&nbsp;</td>
-    <td align="center">&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr> 
-    <td>&nbsp;</td>
-    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">�n�ƥ�����̡G</font></strong></td>
-  </tr>
-  <tr> 
-    <td>&nbsp;</td>
-    <td align="center">&nbsp;</td>
-    <td>����n�ƥ��ܦP�D�����t�@���w�СB���P�D�����w�СB���a�ƴ��B�Ϊ̬O�� CD-ROM�BMO�BTap�B&#8230; �o�@�����x�s�C��C</td>
+    <td>您是想對整顆硬碟、某幾個 partition 還是某些檔案做備份，這可是要好好的想一想啊。如果只是想針對比較重要的資料做備份時，則首選當然是針對 
+      /etc、/home、/srv、/var、/root、/boot 這幾個目錄來下手，另外若您有把軟體安裝在 /usr/local 中的話，也可把這個目錄備份起來。至於不需備份的目錄有 
+      /dev、/proc、/mnt、/media、/tmp 等，另外 swap 當然也不需備份啦 !</td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -846,17 +831,32 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">�Ĩ����ƥ��Ҧ��G</font></strong></td>
+    <td><strong><font color="#000099">要備份到哪裡：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>打算要備份至同主機的另一顆硬碟、不同主機的硬碟、異地備援、或者是像 CD-ROM、MO、Tap、&#8230; 這一類的儲存媒體。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">採取的備份模式：</font></strong></td>
   </tr>
   <tr> 
     <td height="105">&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td>�@��`���쪺�ƥ��覡�������ƥ� (full backup)�B�����ƥ� (partial backup)�B���W�ƥ� (incremental 
-      backup)�B�t���ƥ� (differential backup)�C��N�q�p�U�G<br>
-      <font size="4">�@<font color="#0000FF">��</font></font><font color="#0000FF">�����ƥ�</font>�G�N����ɮרt�γƥ��U�ӡC<br>
-      <font size="4">�@<font color="#0000FF">��</font></font><font color="#0000FF">�����ƥ�</font>�G�u�w��Y�ӥؿ��Τ��ΰ϶i��ƥ��C<br>
-      <font size="4">�@<font color="#0000FF">��</font></font><font color="#0000FF">���W�ƥ�</font>�G�w��W�������ƥ��λ��W�ƥ���~���ʪ���ƶi��ƥ��C<br>
-      <font size="4">�@<font color="#0000FF">��</font></font><font color="#0000FF">�t���ƥ�</font>�G�w��W�������ƥ���~���ʪ���ƶi��ƥ��C</td>
+    <td>一般常見到的備份方式有完全備份 (full backup)、部分備份 (partial backup)、遞增備份 (incremental 
+      backup)、差異備份 (differential backup)。其意義如下：<br>
+      <font size="4">　<font color="#0000FF">˙</font></font><font color="#0000FF">完全備份</font>：將整個檔案系統備份下來。<br>
+      <font size="4">　<font color="#0000FF">˙</font></font><font color="#0000FF">部分備份</font>：只針對某個目錄或分割區進行備份。<br>
+      <font size="4">　<font color="#0000FF">˙</font></font><font color="#0000FF">遞增備份</font>：針對上次完全備份及遞增備份後才異動的資料進行備份。<br>
+      <font size="4">　<font color="#0000FF">˙</font></font><font color="#0000FF">差異備份</font>：針對上次完全備份後才異動的資料進行備份。</td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -866,48 +866,48 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">�h�[�ƥ��@���G</font></strong></td>
+    <td><strong><font color="#000099">多久備份一次：</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td>�o�n���z��ƪ����n�ʤ~�వ�M�w�C��p�z�O�H full backup �� incremental backup �ӷf�t�ϥΪ��ܡA�i�H�W���C�Ӥ몺�Ĥ@�g�i�� 
-      full backup�A���᪺�C�@�g�i��@�� incremental backup�A���M�p�G�O�S�O���n����ơA�h�i��n�B�~���i��C�ѳƥ��o ! 
+    <td>這要視您資料的重要性才能做決定。比如您是以 full backup 及 incremental backup 來搭配使用的話，可以規劃每個月的第一週進行 
+      full backup，爾後的每一週進行一次 incremental backup，當然如果是特別重要的資料，則可能要額外的進行每天備份囉 ! 
     </td>
   </tr>
 </table>
 <p><strong><font color="#0000FF" size="+1"> <a name="11"></a><font size="6">7.3 
-  �b Linux �W�w�˳n��M��</font></font><br>
+  在 Linux 上安裝軟體套件</font></font><br>
   <br>
-  </strong>�@�j�a���ӳ����b Windows ���w�˳n�骺�g��A�N�O��n��U���^�ӫ�A��������w�˵{���A�M��@���� [�U�@�B ]�A�̫�N�ܻ����a�����w�ˤF�C<br>
+  </strong>　大家應該都有在 Windows 中安裝軟體的經驗，就是把軟體下載回來後，直接執行安裝程式，然後一直按 [下一步 ]，最後就很輕易地完成安裝了。<br>
   <br>
-  �@�]�� Windows �Ҵ��Ѫ��n����l�X�����}�A���M�z�N�L�k�ק復�A�ҥH�b�w�ˮɥu����� [������] ���B�J�h�i��C���b Linux ���S�p��O ? 
-  �ٰO�o Linux ���@�j�S��GOpen Source �a ! �]���j������ Linux �n����l�X�O���}���A�ҥH�i�H�̷Ӧۤv���ݨD�h���վ�A���ױz�Q�ק�n�骺��l�X�Χ��ܦw�˸��|���O�i�檺�C<br>
+  　因為 Windows 所提供的軟體其原始碼未公開，當然您就無法修改它，所以在安裝時只能按照 [公式化] 的步驟去進行。那在 Linux 中又如何呢 ? 
+  還記得 Linux 的一大特色：Open Source 吧 ! 因為大部分的 Linux 軟體其原始碼是公開的，所以可以依照自己的需求去做調整，不論您想修改軟體的原始碼或改變安裝路徑都是可行的。<br>
   <br>
-  �@���U�ڭ̷|���Ш�ئb Linux �W�Y�w�˳n�骺�覡�A�@�جO�U�� tarball �M��Ӧw�ˡA�t�@�جO�Q�εo��өҴ��Ѫ� RPM �M��Ӧw�ˡC<br>
+  　底下我們會介紹兩種在 Linux 上頭安裝軟體的方式，一種是下載 tarball 套件來安裝，另一種是利用發行商所提供的 RPM 套件來安裝。<br>
   <br>
-  <strong><font size="+1"><a name="12"></a><font size="5">7.3.1 �w�� Tarball</font></font><br>
+  <strong><font size="+1"><a name="12"></a><font size="5">7.3.1 安裝 Tarball</font></font><br>
   </strong><br>
-  �@tarball �o�ӦW�������ٰO�o�a ! ���L�����W���ѵ��ڭ̤U���� tarball�A�i���O�u�]�t��ª���r�ɮצӤw���A�ӬO�]�A�{������l�X�B�t�A�ɡB���դu��B�w�˻����Ψ�L��������󵥵��C�q�`���Ѫ̷|�N�H�W�Ҵ��Ϊ��o�Ǹ�Ƶ��������b�@�ӥؿ����A�M��ϥ� 
-  tar �ӧ�o�ӥؿ����]�_�Ө����Y�A�ҥH���z�U���^�ӫ�A�Ĥ@�Ӱʧ@�N�O�� tarball �Ѷ}�A�M������ܳo�ӥؿ��W�A����Ҷi�檺�sĶ�w�˨B�J�N�O�b�o�ӥؿ��U�i�檺�C<br>
+  　tarball 這個名稱應該還記得吧 ! 不過網路上提供給我們下載的 tarball，可不是只包含單純的文字檔案而已噢，而是包括程式的原始碼、含括檔、測試工具、安裝說明及其他的說明文件等等。通常提供者會將以上所提及的這些資料給它集中在一個目錄中，然後使用 
+  tar 來把這個目錄打包起來並壓縮，所以當您下載回來後，第一個動作就是把 tarball 解開，然後切換至這個目錄上，爾後所進行的編譯安裝步驟就是在這個目錄下進行的。<br>
   <br>
-  �@�ѩ� tarball ���Y�t�� C �y������l�X�A�ҥH�K���F�n�ϥνsĶ�� (compiler) �ӹ��i��sĶ���ʧ@�A�o�˽sĶ�����᪺ binary 
-  file�A�~����b Linux �t�Τ��Q����C�ӥثe�Q�s���ϥΪ� compiler�A�O GNU �p������ gcc (g++) �{���A���O�ΨӰw�� C �� 
-  C++ �i�� compile ���C<br>
+  　由於 tarball 裡頭含有 C 語言的原始碼，所以免不了要使用編譯器 (compiler) 來對其進行編譯的動作，這樣編譯完成後的 binary 
+  file，才能夠在 Linux 系統中被執行。而目前被廣為使用的 compiler，是 GNU 計劃中的 gcc (g++) 程式，它是用來針對 C 及 
+  C++ 進行 compile 的。<br>
   <br>
   <a name="13"></a><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> 
-  <strong><font color="#000000" size="+1">��l�X���sĶ����</font></strong><br>
+  <strong><font color="#000000" size="+1">原始碼的編譯介紹</font></strong><br>
   <br>
-  �@���ۨӻ{�Ѥ@�U��l�X�sĶ���y�{�G</p>
+  　接著來認識一下原始碼編譯的流程：</p>
 <blockquote> 
   <ol>
-    <li><font color="#0000FF">���ϥ� vi �h�s�� C ����l�X�ɮסA�B���ݨϥΡu.c�v�����ɦW�A�p barry.c�C</font></li>
-    <li><font color="#0000FF">���� gcc �ӹ� xxx.c �i��sĶ�C</font></li>
-    <li><font color="#0000FF">�sĶ�L�{���|���ͥؼ��� (xxx.o)�A�s�����|�N���ؼ��ɻP�禡�w���ӳs���C</font></li>
-    <li><font color="#0000FF">�̫�N�|���ͥi���檺 binary file�C</font></li>
+    <li><font color="#0000FF">先使用 vi 去編輯 C 的原始碼檔案，且必需使用「.c」的附檔名，如 barry.c。</font></li>
+    <li><font color="#0000FF">執行 gcc 來對 xxx.c 進行編譯。</font></li>
+    <li><font color="#0000FF">編譯過程中會產生目標檔 (xxx.o)，連結器會將此目標檔與函式庫做個連結。</font></li>
+    <li><font color="#0000FF">最後就會產生可執行的 binary file。</font></li>
   </ol>
 </blockquote>
-<p>�@�|��²�檺�Ҥl�A�����бz���ϥ� vi �h�s�� barry.c�G</p>
+<p>　舉個簡單的例子，首先請您先使用 vi 去編輯 barry.c：</p>
 <table width="60%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:/tmp # <font color="#FFFF00"><strong>vi 
@@ -916,112 +916,112 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
       <font color="#0099FF">#include <font color="#FF00FF">&lt;stdio.h&gt;</font></font><br>
       main(<font color="#00FF00">void<font color="#FFFFFF">)</font></font><br>
       {<br>
-      �@�@printf(<font color="#FF00FF">&quot;Hello,everybody!</font><font color="#FF0000">\n</font><font color="#FF00FF">&quot;</font>);<br>
-      �@�@printf(<font color="#FF00FF">&quot;I am barry.</font><font color="#FF0000">\n</font><font color="#FF00FF">&quot;</font>);<br>
+      　　printf(<font color="#FF00FF">&quot;Hello,everybody!</font><font color="#FF0000">\n</font><font color="#FF00FF">&quot;</font>);<br>
+      　　printf(<font color="#FF00FF">&quot;I am barry.</font><font color="#FF0000">\n</font><font color="#FF00FF">&quot;</font>);<br>
       } </font></td>
   </tr>
 </table>
-<p align="left">�@�A�Ӱ��� gcc (�нT�w�z gcc �����M�󦳦w��)�G</p>
+<p align="left">　再來執行 gcc (請確定您 gcc 相關套件有安裝)：</p>
 <table width="60%" border="0">
   <tr> 
     <td height="114" bgcolor="#000000"><font color="#FFFFFF">suse:/tmp #<font color="#FFFF00"><strong> 
       gcc -c barry.c</strong></font><strong><br>
       </strong>suse:/tmp #<strong><font color="#FFFF00"> ls</font></strong><br>
-      barry.c�@barry.o<font color="#00FFFF"> <font size="2">�� ���ͥؼ��ɡC</font><br>
+      barry.c　barry.o<font color="#00FFFF"> <font size="2">← 產生目標檔。</font><br>
       </font><br>
       suse:/tmp # <font color="#FFFF00"><strong>gcc -o barry barry.o</strong></font><br>
       suse:/tmp #<font color="#FFFF00"><strong> ls</strong></font><br>
-      barry.c�@barry.o�@<font color="#00FF00">barry</font> <font color="#00FFFF" size="2">�� 
-      ���ͤF binary file�C</font><font color="#00FFFF"><br>
+      barry.c　barry.o　<font color="#00FF00">barry</font> <font color="#00FFFF" size="2">← 
+      產生了 binary file。</font><font color="#00FFFF"><br>
       <br>
       <font color="#FFFFFF">suse:/tmp #</font> <strong><font color="#FFFF00">./barry</font></strong><br>
       <font color="#FFFFFF">Hello,everybody!<br>
       I am barry. </font></font></font></td>
   </tr>
 </table>
-<p> <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#000000">�@</font><font color="#000000">�p�G�z�n�������� 
-  binary file�A�]�i����u<font color="#0000FF">gcc -o barry barry.c</font>�v�C</font></font></font></font>�γ\�z�S�|���ðݡA�J�M�i�H�������� 
-  binary file�A������W�����d�Ҥ��o�˰��O ? �]����ڤW�{���]�p�v�ҽs�g����l�X�ɮסA�b�sĶ�L�{�`�|�ϥΨ��L��l�X�ɮשҲ��ͪ��ؼ��ɡA�ҥH�~�|�ĥνd�Ҥ����覡�Ӳ��� 
-  binary file�C<br>
+<p> <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#000000">　</font><font color="#000000">如果您要直接產生 
+  binary file，也可執行「<font color="#0000FF">gcc -o barry barry.c</font>」。</font></font></font></font>或許您又會有疑問，既然可以直接產生 
+  binary file，那為何上面的範例不這樣做呢 ? 因為實際上程式設計師所編寫的原始碼檔案，在編譯過程常會使用到其他原始碼檔案所產生的目標檔，所以才會採用範例中的方式來產生 
+  binary file。<br>
   <br>
-  �@���L tarball �̪���l�X�ɮש������Ƥ��֡A���F²�Ƨڭ̪��ާ@�{�ǡA�i�H�ϥ� <font color="#0000FF">make</font> 
-  ���O�Ӱ���o���u�@�A���z�ݭn���h�s�� <font color="#0000FF">Makefile</font><strong> </strong>�ɮסA�]�� 
-  make �|Ū�� Makefile �� makefile �����e�G</p>
+  　不過 tarball 裡的原始碼檔案往往為數不少，為了簡化我們的操作程序，可以使用 <font color="#0000FF">make</font> 
+  指令來執行這項工作，但您需要先去編輯 <font color="#0000FF">Makefile</font><strong> </strong>檔案，因為 
+  make 會讀取 Makefile 或 makefile 的內容：</p>
 <table width="60%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:/tmp #<strong> <font color="#FFFF00">vi 
       Makefile</font><br>
       </strong><br>
-      <font color="#00FFFF" face="�ө���">target_first:</font><font face="�ө���"> barry<br>
-      </font><font color="#00FFFF" face="�ө���">barry:</font><font face="�ө���"><br>
-      </font><font color="#FF00FF" face="�ө���"><strong>�@�@�@ gcc -c barry.c<br>
-      �@�@�@ gcc -o barry barry.o</strong></font><font face="�ө���"><font color="#FF00FF"><strong> 
+      <font color="#00FFFF" face="細明體">target_first:</font><font face="細明體"> barry<br>
+      </font><font color="#00FFFF" face="細明體">barry:</font><font face="細明體"><br>
+      </font><font color="#FF00FF" face="細明體"><strong>　　　 gcc -c barry.c<br>
+      　　　 gcc -o barry barry.o</strong></font><font face="細明體"><font color="#FF00FF"><strong> 
       </strong></font><br>
-      </font><font color="#00FFFF" face="�ө���">install:</font><font face="�ө���"><br>
-      </font><font color="#FF00FF" face="�ө���"><strong>�@�@�@ install -m 755 barry 
-      /home/mary/bin</strong></font><font face="�ө���"><br>
-      </font><font color="#00FFFF" face="�ө���">uninstall:</font><font face="�ө���"><br>
-      </font><font color="#FF00FF" face="�ө���"><strong>�@�@�@ rm -f /home/mary/bin/barry</strong></font><font face="�ө���"><font color="#FF00FF"><strong><br>
-      </strong></font></font><font color="#FF00FF"><font color="#00FFFF" face="�ө���">distclean:</font></font><font face="�ө���"><br>
-      </font><font color="#FF00FF" face="�ө���"><strong>�@�@�@ rm -f barry barry.o 
+      </font><font color="#00FFFF" face="細明體">install:</font><font face="細明體"><br>
+      </font><font color="#FF00FF" face="細明體"><strong>　　　 install -m 755 barry 
+      /home/mary/bin</strong></font><font face="細明體"><br>
+      </font><font color="#00FFFF" face="細明體">uninstall:</font><font face="細明體"><br>
+      </font><font color="#FF00FF" face="細明體"><strong>　　　 rm -f /home/mary/bin/barry</strong></font><font face="細明體"><font color="#FF00FF"><strong><br>
+      </strong></font></font><font color="#FF00FF"><font color="#00FFFF" face="細明體">distclean:</font></font><font face="細明體"><br>
+      </font><font color="#FF00FF" face="細明體"><strong>　　　 rm -f barry barry.o 
       </strong></font></font></td>
   </tr>
 </table>
-<p align="left">�@�b Makefile ���Y�A�]�t�F�ܦh target�A�z�b�u:�v����Ҭݨ쪺���O�ݩ� target�A�ܩ�o�� target 
-  �ҭn���檺�{���A�h�O�]�w�b target ���U�A�B�����ϥ� Tab ��Ө�����C<br>
+<p align="left">　在 Makefile 裡頭，包含了很多 target，您在「:」左邊所看到的都是屬於 target，至於這個 target 
+  所要執行的程式，則是設定在 target 底下，且必須使用 Tab 鍵來取間格。<br>
   <br>
-  �@���z����<strong> </strong><font color="#0000FF">make</font><strong> </strong>���O�ɡA�|�ϥ� 
-  Makefile �̩ҩw�q���Ĥ@�� target�A�H�o�ӽd�Ҩӻ��N�O target_first�A�� target_first �S���V barry �o�� 
-  target�A�ҥH�̫�|���� barry target ���U���{���C<br>
+  　當您執行<strong> </strong><font color="#0000FF">make</font><strong> </strong>指令時，會使用 
+  Makefile 裡所定義的第一個 target，以這個範例來說就是 target_first，而 target_first 又指向 barry 這個 
+  target，所以最後會執行 barry target 底下的程式。<br>
   <br>
-  �@������ <font color="#0000FF">make install</font> �ɡA�����M�N���� install target ��U���{���o 
-  ! �ҥH install �{���N�|�� barry �o�� binary file �ƻs�� /home/mary/bin �ؿ��̡A�ë��w�� binary file 
-  ���v���� 755�C�̫᪺ <font color="#0000FF">make uninstall</font> �� <font color="#0000FF">make 
-  distclean</font> ���Ӥ��θ����F�a !<br>
+  　當執行 <font color="#0000FF">make install</font> 時，那當然就執行 install target 其下的程式囉 
+  ! 所以 install 程式就會把 barry 這個 binary file 複製到 /home/mary/bin 目錄裡，並指定此 binary file 
+  的權限為 755。最後的 <font color="#0000FF">make uninstall</font> 及 <font color="#0000FF">make 
+  distclean</font> 應該不用解釋了吧 !<br>
   <br>
-  �@���۴N�Ӱ��Ӵ��աG</p>
+  　接著就來做個測試：</p>
 <table width="82%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:/tmp # <font color="#FFFF00"><strong>make</strong> 
       </font><br>
       gcc -c barry.c<br>
       gcc -o barry barry.o<br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�ھ� Makefile 
-      ���e�Ӷ}�l�i��sĶ�C<font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">根據 Makefile 
+      內容來開始進行編譯。<font color="#FFFFFF"><br>
       </font> </font><br>
       suse:/tmp #<strong> <font color="#FFFF00">ls</font></strong><br>
-      Makefile�@<font color="#00FF00"><strong>barry</strong>�@</font>barry.c�@<strong>barry.o 
+      Makefile　<font color="#00FF00"><strong>barry</strong>　</font>barry.c　<strong>barry.o 
       </strong><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">���� make ���O��A�N���ͤF 
-      barry.o ( object file ) �� barry ( binary file )�C<font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">執行 make 指令後，就產生了 
+      barry.o ( object file ) 及 barry ( binary file )。<font color="#FFFFFF"><br>
       </font></font> <br>
       suse:/tmp #<font color="#FFFF00"><strong> make install</strong> </font><br>
       install -m 755 barry /home/mary/bin<br>
-      <font color="#00FFFF"># <font size="2">���� Makefile �� target �� install �������O�A�]�N�O�� 
-      barry �ƻs�� /home/mary/bin �̡C</font></font><font color="#00FFFF"><br>
+      <font color="#00FFFF"># <font size="2">執行 Makefile 裡 target 為 install 中的指令，也就是把 
+      barry 複製到 /home/mary/bin 裡。</font></font><font color="#00FFFF"><br>
       </font><br>
       suse:/tmp #<font color="#FFFF00"><strong> ls /home/mary/bin</strong></font> 
       <br>
-      <font color="#00FF00"><strong>barry</strong></font>�@<br>
+      <font color="#00FF00"><strong>barry</strong></font>　<br>
       <font color="#00FFFF"># <font size="2"></font></font><font color="#00FFFF" size="2">barry 
-      �w�Q�ƻs�� /home/mary/bin ���F�C</font><br>
+      已被複製到 /home/mary/bin 中了。</font><br>
       <br>
       suse:/tmp # <font color="#FFFF00"><strong>make uninstall</strong></font><br>
       rm -f /home/mary/bin/barry<strong><br>
-      </strong><font color="#00FFFF"># <font size="2">���� Makefile �� target �� uninstall 
-      �������O�A�]�N�O�R�� /home/mary/bin/barry�C</font></font><br>
+      </strong><font color="#00FFFF"># <font size="2">執行 Makefile 裡 target 為 uninstall 
+      中的指令，也就是刪除 /home/mary/bin/barry。</font></font><br>
       <br>
       suse:/tmp # <font color="#FFFF00"><strong>make distclean</strong></font><br>
       rm -f barry barry.o <br>
-      <font color="#00FFFF"># <font size="2">���� Makefile �� target �� distclean 
-      �������O�A�]�N�O�R�� barry �� barry.o �o����ɮסC</font></font></font></td>
+      <font color="#00FFFF"># <font size="2">執行 Makefile 裡 target 為 distclean 
+      中的指令，也就是刪除 barry 及 barry.o 這兩個檔案。</font></font></font></td>
   </tr>
 </table>
 <p align="left"><strong><font size="+1"><a name="14"></a></font><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-  <font size="+1">��@�m��</font></strong><br>
+  <font size="+1">實作練習</font></strong><br>
   <br>
-  �@�����ϥ� ncftp �{���ӳs�W FTP ���x ( ncftp ���O���Ϊk�A�аѦ� [<font color="#000000">�����պA�]�w�P�A��</font>] 
-  ���@�� )�G</p>
+  　首先使用 ncftp 程式來連上 FTP 站台 ( ncftp 指令的用法，請參考 [<font color="#000000">網路組態設定與服務</font>] 
+  那一章 )：</p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
@@ -1034,59 +1034,59 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
       Logged in to ftp.proftpd.org.<br>
       <br>
       ncftp / &gt;<strong><font color="#FFFF00"> ls</font></strong><br>
-      <font face="�ө���">MIRMON.PROBE�@�@�@contrib/�@�@distrib/�@<br>
-      README.MIRRORS�@�@devel/�@�@�@historic/�@</font><br>
+      <font face="細明體">MIRMON.PROBE　　　contrib/　　distrib/　<br>
+      README.MIRRORS　　devel/　　　historic/　</font><br>
       </font> <br>
       <font color="#FFFFFF"> ncftp / &gt; <strong><font color="#FFFF00">cd distrib/</font></strong><br>
       ncftp /distrib &gt; <font color="#FFFF00"><strong>ls</strong></font><br>
-      packages/�@�@source/<br>
+      packages/　　source/<br>
       <br>
       ncftp /distrib &gt;<font color="#FFFF00"><strong> cd source/</strong></font><br>
       <br>
       ncftp /distrib/source &gt; <strong><font color="#FFFF00">get proftpd-1.3.0rc2.tar.gz 
       </font></strong><br>
-      proftpd-1.3.0rc2.tar.gz: �@�@ETA: �@0:05�@ 1.28/ �@1.76 MB �@93.00 kB/s <br>
+      proftpd-1.3.0rc2.tar.gz: 　　ETA: 　0:05　 1.28/ 　1.76 MB 　93.00 kB/s <br>
       <br>
       ncftp /distrib/source &gt; <strong><font color="#FFFF00">by </font></strong><br>
       <br>
       You have not saved a bookmark for this site. <br>
       <br>
       Would you like to save a bookmark to:<br>
-      �@�@�@ftp://ftp.proftpd.org/distrib/source/<br>
+      　　　ftp://ftp.proftpd.org/distrib/source/<br>
       <br>
       Save? (yes/no) <strong><font color="#FFFF00">no</font></strong><br>
       Not saved. (If you don't want to be asked this, &quot;set confirm-close 
       no&quot;) <br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�p�G�H�ᤣ�Q�A�ݨ�o�Ӹ߰ݰT���A�i�����} 
-      ncftp �e�A������ &quot;set confirm-close no&quot;�C</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">如果以後不想再看到這個詢問訊息，可於離開 
+      ncftp 前，先執行 &quot;set confirm-close no&quot;。</font><br>
       <br>
-      suse:~ #�@ </font></td>
+      suse:~ #　 </font></td>
   </tr>
 </table>
-<p align="left"> �@�A�Ӷi������Y�G</p>
+<p align="left"> 　再來進行解壓縮：</p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
       <strong>tar -zxvf proftpd-1.3.0rc2.tar.gz</strong></font><br>
       suse:~ #<font color="#FFFF00"><strong> cd proftpd-1.3.0rc2/ </strong></font><br>
       suse:~/proftpd-1.3.0rc2 #<font color="#00FFFF"><br>
-      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font size="2">���@�U���sĶ�B�w�˨B�J�A���O�b 
-      proftpd-1.3.0rc2 �o�ӥؿ��U�������C</font></font></font></td>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font size="2">等一下的編譯、安裝步驟，都是在 
+      proftpd-1.3.0rc2 這個目錄下完成的。</font></font></font></td>
   </tr>
 </table>
-<p align="left"><font color="#FFFFFF"><font color="#000000">�@</font><font color="#000000">�b 
-  proftpd-1.3.0rc2 �o�ӥؿ����A�s�b�ۤ@��ܭ��n�����դu��s <font color="#0000FF">configure</font> 
-  (�O�@�� script)�A���O�ΨӰ����z���@�~���ҡA�æ۰ʲ��� <font color="#0000FF">Makefile</font><strong> 
-  </strong>(�� makefile) �ɮסA�ݷ|�ण�׶i��sĶ�B�w�ˡB�������u�@�A�i���O�a Makefile �ӧ@�����檺�̾ڡC�ҥH���@�U���� configure 
-  script ���L�{���A�p�G���o�{������~�T�����i���ܡA����᭱�n�~��i�檺�B�J�i�N�j�����D�F�C</font></font><br>
+<p align="left"><font color="#FFFFFF"><font color="#000000">　</font><font color="#000000">在 
+  proftpd-1.3.0rc2 這個目錄中，存在著一支很重要的測試工具叫 <font color="#0000FF">configure</font> 
+  (是一支 script)，它是用來偵測您的作業環境，並自動產生 <font color="#0000FF">Makefile</font><strong> 
+  </strong>(或 makefile) 檔案，待會兒不論進行編譯、安裝、移除等工作，可都是靠 Makefile 來作為執行的依據。所以等一下執行 configure 
+  script 的過程中，如果有發現任何錯誤訊息報告的話，那麼後面要繼續進行的步驟可就大有問題了。</font></font><br>
   <br>
-  �@�t�~�i�H�Ѧҥؿ����� README �� INSTALL �ɮסA���䦳�ԲӪ��w�˨B�J���СC�̫�z�i�d�ݤ@�U���Ǥl�ؿ������e�A�]�A�ܦh����l�X�ɮפΧt�A�ɡA�o�ǳ��O���@�U���sĶ�L�{�ݭn�Ψ쪺�C<br>
+  　另外可以參考目錄中的 README 或 INSTALL 檔案，裡邊有詳細的安裝步驟介紹。最後您可查看一下那些子目錄的內容，包括很多的原始碼檔案及含括檔，這些都是等一下的編譯過程需要用到的。<br>
   <br>
-  �@���۽ж}�l���ӥH�U�B�J�i��G</p>
+  　接著請開始按照以下步驟進行：</p>
 <blockquote> 
   <ol>
-    <li><strong align="left"><font color="#000099"><a name="15"></a>���� configure 
-      script�G<br>
+    <li><strong align="left"><font color="#000099"><a name="15"></a>執行 configure 
+      script：<br>
       <br>
       </font></strong> 
       <table width="90%" border="0">
@@ -1104,7 +1104,7 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
             checking for suffix of object files... o<br>
             checking whether we are using the GNU C compiler... yes<br>
             checking whether gcc accepts -g... yes<br>
-            �@�@�@�@�@�@�@<font color="#00FFFF" size="2">�G��</font><br>
+            　　　　　　　<font color="#00FFFF" size="2">：略</font><br>
             config.status: creating utils/ftptop.1<br>
             config.status: creating utils/ftpwho.1<br>
             config.status: creating<strong> </strong><font color="#FFFF00">Makefile</font><br>
@@ -1114,13 +1114,13 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
         </tr>
       </table>
       <br>
-      <font color="#FFFFFF"><font color="#000000">--prefix �O�Ψӫ��w�ݷ|��i��w�ˮɭԪ���m�A�o�̧ڬO�⥦�����b 
-      /usr/local/proftpd �ؿ����A�o�ˤ����K�޲z�C�p�����w�w�˸��|���ܡA�w�]�O�|�w�˦b /usr/local �U�������l�ؿ����C<br>
+      <font color="#FFFFFF"><font color="#000000">--prefix 是用來指定待會兒進行安裝時候的位置，這裡我是把它集中在 
+      /usr/local/proftpd 目錄中，這樣比較方便管理。如未指定安裝路徑的話，預設是會安裝在 /usr/local 下的相關子目錄中。<br>
       <br>
-      �ܩ�i�f�t configure ����L�ѼƥΪk�A�i����u./configure -h�v�ۦ�d�\�C</font></font> <font color="#000099"><br>
+      至於可搭配 configure 的其他參數用法，可執行「./configure -h」自行查閱。</font></font> <font color="#000099"><br>
       <br>
       </font></li>
-    <li><strong><font color="#000099"><a name="16"></a>�i��sĶ�G<br>
+    <li><strong><font color="#000099"><a name="16"></a>進行編譯：<br>
       <br>
       </font></strong> 
       <table width="90%" border="0">
@@ -1135,12 +1135,12 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
             gcc -DHAVE_CONFIG_H -DLINUX -I.. -I../include -O2 -Wall -c strsep.c<br>
             gcc -DHAVE_CONFIG_H -DLINUX -I.. -I../include -O2 -Wall -c vsnprintf.c 
             <br>
-            �@�@�@�@�@�@�@�@�@�@�@�@�@<font color="#00FFFF" size="2">�G�� </font></font></td>
+            　　　　　　　　　　　　　<font color="#00FFFF" size="2">：略 </font></font></td>
         </tr>
       </table>
       <strong><font color="#000099"><br>
       </font></strong></li>
-    <li><strong><font color="#000099"><a name="17"></a>����w�ˡG<br>
+    <li><strong><font color="#000099"><a name="17"></a>執行安裝：<br>
       <br>
       </font></strong> 
       <table width="90%" border="0">
@@ -1153,7 +1153,7 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
             make[1]: Leaving directory `/root/proftpd-1.3.0rc2/lib'<br>
             cd src/ &amp;&amp; make src<br>
             make[1]: Entering directory `/root/proftpd-1.3.0rc2/src'<br>
-            �@�@�@�@�@�@�@�@�@�@<font color="#00FFFF" size="2">�G��</font><font color="#00FFFF"><br>
+            　　　　　　　　　　<font color="#00FFFF" size="2">：略</font><font color="#00FFFF"><br>
             <font color="#FFFFFF">/usr/bin/install -c -s -o root -g root -m 0755 
             ftpcount /usr/local/proftpd/bin/ftpcount<br>
             /usr/bin/install -c -s -o root -g root -m 0755 ftpshut /usr/local/proftpd/sbin/ftpshut 
@@ -1161,37 +1161,37 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
             /usr/bin/install -c -o root -g root -m 0644 ./src/proftpd.8 /usr/local/proftpd/man/man8<br>
             /usr/bin/install -c -o root -g root -m 0644 ./utils/ftpshut.8 /usr/local/proftpd/man/man8</font> 
             <br>
-            �@�@�@�@�@�@�@�@�@�@<font size="2">�G��</font></font></font></td>
+            　　　　　　　　　　<font size="2">：略</font></font></font></td>
         </tr>
       </table>
       <strong><font color="#000099"> </font></strong></li>
   </ol>
 </blockquote>
-<p align="left">�@��� tarball ���w�˨B�J�j�P�p���C���۱z�i���������� /usr/local/proftpd �h�ݬݡA����O���O�]�t 
-  bin�Bsbin�Bman�Betc�Bvar ���ؿ��C���L���F�N�Ӿާ@�W����K�A�|�����@�I�վ�A�H��K�z������J���O�άd�� manpage�A��ڰ��k�аѦҥH�U�G</p>
+<p align="left">　整個 tarball 的安裝步驟大致如此。接著您可直接切換到 /usr/local/proftpd 去看看，裡邊是不是包含 
+  bin、sbin、man、etc、var 等目錄。不過為了將來操作上的方便，尚須做一點調整，以方便您直接輸入指令及查看 manpage，實際做法請參考以下：</p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font></font></font></font><font color="#FFFF00"><font color="#00FFFF" size="2">���N���ҳ]�w�ɽƻs��a�ؿ��U�G</font></font></font><br>
+      </font></font></font></font><font color="#FFFF00"><font color="#00FFFF" size="2">先將環境設定檔複製到家目錄下：</font></font></font><br>
       suse:/etc/skel #<font color="#FFFF00"><strong> cp .profile .bashrc ~</strong><br>
       </font><font color="#FFFFFF"><font size="2"><br>
       </font><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font></font></font></font><font color="#00FFFF" size="2">�ק� PATH</font></font><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF" size="2">�G</font></font></font><br>
+      </font></font></font></font><font color="#00FFFF" size="2">修改 PATH</font></font><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF" size="2">：</font></font></font><br>
       suse:~ #<strong> <font color="#FFFF00">vi .profile</font></strong><br>
       PATH=&quot;$PATH:/usr/local/proftpd/bin:/usr/local/proftpd/sbin<font color="#FFFFFF">&quot;</font><br>
       export PATH<br>
       suse:~ #<font color="#FFFF00"> <strong>source .profile </strong></font><br>
       <br>
       <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font></font></font></font><font color="#00FFFF" size="2">�ק� MANPATH</font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF" size="2">�G</font></font></font></font></font><br>
+      </font></font></font></font><font color="#00FFFF" size="2">修改 MANPATH</font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF" size="2">：</font></font></font></font></font><br>
       suse:~ # <font color="#FFFF00"><strong>vi /etc/profile</strong></font><br>
-      MANPATH=`test -x /usr/bin/manpath &amp;&amp; /usr/bin/manpath -q`<font color="#FFFF00">:/usr/local/proftpd/man</font><strong><font color="#00FFFF" size="2">�@</font></strong><br>
+      MANPATH=`test -x /usr/bin/manpath &amp;&amp; /usr/bin/manpath -q`<font color="#FFFF00">:/usr/local/proftpd/man</font><strong><font color="#00FFFF" size="2">　</font></strong><br>
       export MANPATH<br>
       <br>
       suse:~ # <font color="#FFFF00"><strong>source /etc/profile </strong></font></font></td>
   </tr>
 </table>
-<p align="left">�@�p�G�zı�o�o�˶����޲z���覡���ӲߺD ( �]���٭n�վ���| )�A�������b���� configure script �ɥi�H�o�򰵡G</p>
+<p align="left">　如果您覺得這樣集中管理的方式不太習慣 ( 因為還要調整路徑 )，那麼當初在執行 configure script 時可以這麼做：</p>
 <table width="100%" border="0">
   <tr> 
     <td height="43" bgcolor="#000000"><font color="#FFFFFF">suse:~/proftpd-1.3.0rc2 
@@ -1200,247 +1200,247 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
       &gt;<strong> <font color="#FFFF00">--mandir=/usr/share/man</font></strong></font></td>
   </tr>
 </table>
-<p align="left">�@�o�ˤ@�ӡA�sĶ�n���{���N�|��b /usr/bin�B/usr/sbin ����A�]�w�ɴN�s��b /etc �ؿ��Amanpage 
-  ���M�N�b /usr/share/man ���U�աC</p>
-<p align="left">�@tarball �򥻪��w�ˤ覡�N�O�p���A�ܩ��L���� proftpd ������ζi�@�B�]�w�A�o�̴N���ͤF�C<br>
+<p align="left">　這樣一來，編譯好的程式就會放在 /usr/bin、/usr/sbin 裡邊，設定檔就存放在 /etc 目錄，manpage 
+  當然就在 /usr/share/man 底下啦。</p>
+<p align="left">　tarball 基本的安裝方式就是如此，至於其他有關 proftpd 的執行及進一步設定，這裡就不談了。<br>
   <br>
-  <font size="+1"><strong><a name="18"></a><font size="5">7.3.2 RPM �M��޲z</font></strong></font><br>
+  <font size="+1"><strong><a name="18"></a><font size="5">7.3.2 RPM 套件管理</font></strong></font><br>
   <br>
-  �@RPM �� <font color="#0000FF">R</font>edHat <font color="#0000FF">P</font>ackage 
-  <font color="#0000FF">M</font>anager ��²�g�A�O�� RedHat ���q�ҵo�i�A���O�ѵo��Өƥ��N�ɮסB�sĶ�L������{���B�������ά����禡�w�����]��M����Y�A�B�o���ɮת��w�˸��|�����z�W���n�F�A�t�~�]�|�O���ۮM�󪺬̩ۨʡC�b�ڭ̦w�� 
-  RPM �M��ɡA�]�u���L�O��o�Ǭ������ɮת����w�˦b���w����m�Ӥw�A�]���w�˳t�׷|�� tarball �֤W�\�h �Q�]�ѩ󥦪���K�ʡA�ϱo�@�� distribution 
-  ���~�ĥΡC<br>
+  　RPM 為 <font color="#0000FF">R</font>edHat <font color="#0000FF">P</font>ackage 
+  <font color="#0000FF">M</font>anager 的簡寫，是由 RedHat 公司所發展，它是由發行商事先將檔案、編譯過的執行程式、說明文件及相關函式庫等打包到套件裡頭，且這些檔案的安裝路徑都幫您規劃好了，另外也會記載著套件的相依性。在我們安裝 
+  RPM 套件時，也只不過是把這些相關的檔案直接安裝在指定的位置而已，因此安裝速度會比 tarball 快上許多 ﹔也由於它的方便性，使得一些 distribution 
+  相繼採用。<br>
   <br>
-  �@RPM ����Ʈw�O�b<strong> </strong><font color="#0000FF">/var/lib/rpm</font> �ؿ����C���Ѧp�G�w�ˤF�@�ӷs���M��A����o�ӮM���T�N�|�O���b��Ʈw�̡A�N�ӭn�O�Q�d�ߡB�����B�ɯŮM��ɡA�]���|�ϥΨ��Ʈw���ҰO������T�C<br>
+  　RPM 的資料庫是在<strong> </strong><font color="#0000FF">/var/lib/rpm</font> 目錄中。今天如果安裝了一個新的套件，那麼這個套件資訊就會記錄在資料庫裡，將來要是想查詢、移除、升級套件時，也都會使用到資料庫內所記載的資訊。<br>
   <br>
-  �@���M�ϥ� RPM �Ӧw�˫D�`��K�A���۹諸�]���@�ǯ��I�A�䤤�̬��H�Ҹ�f���O�L���M��̩ۨʰ��D�A��p�z�U���F�M�� A�A�n�w�ˮɫo�X�{�M�� A �ݭn�̮ۨM�� 
-  B ���T���A�ҥH�u�n�A�h�U���M�� B�A���G�n���e���N�M��B�U���^�ӤF�A�Ӧb�w�ˮM�� B �ɤS�X�{�M�� B �ݭn�M�� C ���T���A�i��ܦ��i��|�Q���a 
-  ! ���L�٦n���� apt�Byum ���o���u��i�H�J�A�o�譱�����D�A���o���b�ڭ̰Q�׽d�򤺡C�t�~�b SuSE ���Y�A�p�z�n�w�˪��M��N�b���и̡A���ϥ� YaST 
-  �h�w�ˮɡA�|�۰����z��X�̪ۨ��M��A�i�H�h�[�Q�ΡC<br>
+  　雖然使用 RPM 來安裝非常方便，但相對的也有一些缺點，其中最為人所詬病的是他的套件相依性問題，比如您下載了套件 A，要安裝時卻出現套件 A 需要相依套件 
+  B 的訊息，所以只好再去下載套件 B，結果好不容易將套件B下載回來了，而在安裝套件 B 時又出現套件 B 需要套件 C 的訊息，進行至此可能會想放棄吧 
+  ! 不過還好有像 apt、yum 等這類工具可以克服這方面的問題，但這不在我們討論範圍內。另外在 SuSE 裡頭，如您要安裝的套件就在光碟裡，那使用 YaST 
+  去安裝時，會自動幫您抓出相依的套件，可以多加利用。<br>
   <br>
-  �@�t�~ RPM �٦��� distribution �����D�A�ѩ�U�a distribution �ұ��X�� RPM�A�O�̷ӥL�̩ҵo�檺���Ӫ��������Ҩӻs�@ 
-  RPM ���A�]���z�n�O�Q�� SuSE �� RPM �w�˦b RedHat �W�Y�A�i��N�|�����D�o ! �Y�ϬO�P�@�� distribution �]�����i��A��p 
-  SuSE 9.3 �� RPM �w�˦b SuSE 8.2 �N���@�w��o�q�C�ҥH���ѱz�Q�w�˪��n��䤣��X�A�� RPM �M��ɡA���u�n�Ҽ{�U�� tarball 
-  �Ӧw���o !<br>
+  　另外 RPM 還有個 distribution 的問題，由於各家 distribution 所推出的 RPM，是依照他們所發行的那個版本的環境來製作 
+  RPM 的，因此您要是想把 SuSE 的 RPM 安裝在 RedHat 上頭，可能就會有問題囉 ! 即使是同一個 distribution 也未必可行，比如 
+  SuSE 9.3 的 RPM 安裝在 SuSE 8.2 就不一定行得通。所以今天您想安裝的軟體找不到合適的 RPM 套件時，那只好考慮下載 tarball 
+  來安裝囉 !<br>
   <br>
-  �@�H�U���Ѩ�ӥi�H���U���� RPM �M�󪺺����G</p>
-<p align="left">�@�@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <a href="javascript:if(confirm(%27http://rpmfind.net/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://rpmfind.net/%27" tppabs="http://rpmfind.net/" target="_blank">http://rpmfind.net/</a> 
+  　以下提供兩個可以找到各版本 RPM 套件的網站：</p>
+<p align="left">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <a href="javascript:if(confirm(%27http://rpmfind.net/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://rpmfind.net/%27" tppabs="http://rpmfind.net/" target="_blank">http://rpmfind.net/</a> 
   <br>
   <br>
-  �@�@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <a href="javascript:if(confirm(%27http://www.rpmseek.com/index.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.rpmseek.com/index.html%27" tppabs="http://www.rpmseek.com/index.html" target="_blank">http://www.rpmseek.com/index.html</a><a href="javascript:if(confirm(%27http://rpmfind.net/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://rpmfind.net/%27" tppabs="http://rpmfind.net/" target="_blank">�@</a><br>
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <a href="javascript:if(confirm(%27http://www.rpmseek.com/index.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.rpmseek.com/index.html%27" tppabs="http://www.rpmseek.com/index.html" target="_blank">http://www.rpmseek.com/index.html</a><a href="javascript:if(confirm(%27http://rpmfind.net/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://rpmfind.net/%27" tppabs="http://rpmfind.net/" target="_blank">　</a><br>
   <br>
-  �@���ۨӻ{�Ѥ@�U RPM �M��쩳������ˤl�A�H ncftp-3.1.9-15.2.i586.rpm �M���ɮ� (package file) �ӻ����n�F�G<br>
+  　接著來認識一下 RPM 套件到底長什麼樣子，以 ncftp-3.1.9-15.2.i586.rpm 套件檔案 (package file) 來說明好了：<br>
   <br>
-  �@�@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <strong><font color="#000099" face="�ө���">ncftp</font><font color="#000099">�G</font></strong><font color="#000099">�M��W�� 
-  (package name)�C</font><br>
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <strong><font color="#000099" face="細明體">ncftp</font><font color="#000099">：</font></strong><font color="#000099">套件名稱 
+  (package name)。</font><br>
   <br>
-  �@�@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <strong><font color="#000099" face="�ө���">3.1.9</font><font color="#000099">�G</font></strong><font color="#000099">�M�󪩥� 
-  (version)�C</font><br>
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <strong><font color="#000099" face="細明體">3.1.9</font><font color="#000099">：</font></strong><font color="#000099">套件版本 
+  (version)。</font><br>
   <br>
-  �@�@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <strong><font color="#000099" face="�ө���">15.2</font><font color="#000099">�G</font></strong><font color="#000099">�ץ��� 
-  (release)�C</font><br>
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <strong><font color="#000099" face="細明體">15.2</font><font color="#000099">：</font></strong><font color="#000099">修正版 
+  (release)。</font><br>
   <br>
-  �@�@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099"><strong><font face="�ө���">i586</font>�G</strong>i 
-  �O���P intel �ۮe�� CPU�A586 �h�O�� CPU ���šC</font></p>
-<p><font color="#000099">�@<font color="#000000">�p�G RPM �M���ɮ׬� xxx.i586.rpm �ɡA�����ܳo�� 
-  RPM ����O�H 586 �q���@�����ժ����x�A�H�M�D�̨Τƪ��]�w�C�t�~�ٱ`�ݨ� i386�Bi686�Bnoarch �o�@���� RPM �Q i386 RPM 
-  �X�G�i�A�Φb�Ҧ� X86 �q���W�A�� i686 RPM �N���@�w�i�H�A�Φb 386 �� 586 �q���W�C�ܩ� noarch RPM �h�O��������ާ@���x���C<br>
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099"><strong><font face="細明體">i586</font>：</strong>i 
+  是指與 intel 相容的 CPU，586 則是指 CPU 等級。</font></p>
+<p><font color="#000099">　<font color="#000000">如果 RPM 套件檔案為 xxx.i586.rpm 時，那表示這個 
+  RPM 當初是以 586 電腦作為測試的平台，以尋求最佳化的設定。另外還常看到 i386、i686、noarch 這一類的 RPM ﹔ i386 RPM 
+  幾乎可適用在所有 X86 電腦上，但 i686 RPM 就不一定可以適用在 386 或 586 電腦上。至於 noarch RPM 則是不分任何操作平台的。<br>
   <br>
-  �@�i��z��ť�L SRPM�A���O����F�F ? �N�O Source RPM (xxx.src.rpm) �աA�]�N�O�M����Y�]�t�F�@�ǭ�l�X�A�ҥH SRPM 
-  �����g�L�sĶ���]���ʧ@�A�����ͤF RPM ����~���~��w�ˡC </font></font></p>
-<p> �@���U�N�}�l�Ӥ��Цp��޲z RPM �M��C�o�̬O�ϥ� <font color="#0000FF">rpm</font> ���O�ӹ�M��i��d�ߡB�w�ˡB�ɯšB�������ʧ@�C</p>
+  　可能您還聽過 SRPM，那是什麼東東 ? 就是 Source RPM (xxx.src.rpm) 啦，也就是套件裡頭包含了一些原始碼，所以 SRPM 
+  須先經過編譯打包的動作，等產生了 RPM 之後才能繼續安裝。 </font></font></p>
+<p> 　底下就開始來介紹如何管理 RPM 套件。這裡是使用 <font color="#0000FF">rpm</font> 指令來對套件進行查詢、安裝、升級、移除等動作。</p>
 <strong><a name="19"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-<font size="+1">�M��d��</font><br>
+<font size="+1">套件查詢</font><br>
 <br>
-</strong>�@�p�G�O�d�ߤw�w�ˮM�󪺬�����T�A�h�᭱�O�� <font color="#0000FF">package-name</font>�A�_�h�ݱ�<strong> 
-</strong><font color="#0000FF">package-file</font>�C <br>
+</strong>　如果是查詢已安裝套件的相關資訊，則後面是接 <font color="#0000FF">package-name</font>，否則需接<strong> 
+</strong><font color="#0000FF">package-file</font>。 <br>
 <br>
-<strong>�d�һ���</strong>�G
+<strong>範例說明</strong>：
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"> <p><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
         rpm -q quota</strong></font><strong><br>
         </strong>quota-3.13-17.2<br>
         <font color="#00FFFF"># </font><font color="#00FF00" size="2"><strong>-q 
-        �P�� --query</strong>�C</font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�d�� quota 
-        �M��O�_�w�w�ˡC</font><br>
+        同於 --query</strong>。</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">查詢 quota 
+        套件是否已安裝。</font><br>
         <br>
         suse:~ #<font color="#FFFF00"> <strong>rpm -qa</strong></font><br>
         <font color="#00FFFF"># </font><font color="#00FF00" size="2"><strong>-a 
-        �P�� --all</strong>�C</font><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�d�ߥثe�t�ΤW�A�Ҧ��w�w�˪��M��C</font><br>
+        同於 --all</strong>。</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">查詢目前系統上，所有已安裝的套件。</font><br>
         <br>
         suse:~ #<font color="#FFFF00"><strong> rpm -qa | grep openssh</strong></font><br>
         openssh-askpass-4.2p1-18.2<br>
         openssh-4.2p1-18.2<br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�d�߮M��W�٤��t�� 
-        openssh ���Ҧ��M��C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">查詢套件名稱中含有 
+        openssh 的所有套件。</font><br>
         <br>
         suse:~ #<font color="#FFFF00"><strong> rpm -ql quota</strong></font><br>
         <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FF00" size="2"> 
-        </font></font><font color="#00FF00" size="2"><strong>-l �P�� --list</strong>�C</font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">�d�� quota 
-        �M�󪺤��e�M��C</font><font size="2"><br>
+        </font></font><font color="#00FF00" size="2"><strong>-l 同於 --list</strong>。</font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">查詢 quota 
+        套件的內容清單。</font><font size="2"><br>
         </font><br>
         suse:~ #<font color="#FFFF00"> <strong>rpm -qi </strong></font><strong><font color="#FFFF00">quota</font></strong><br>
         <font color="#00FFFF"># </font><strong><font color="#00FF00" size="2">-i 
-        �P�� --info</font></strong><font color="#00FF00" size="2">�C</font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">�d�߮M���T�A�p�M��W�١B�����B�M��j�p�B�o��ӡB�Ʀ�ñ���ήM��²��y�z�����C</font><br>
+        同於 --info</font></strong><font color="#00FF00" size="2">。</font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">查詢套件資訊，如套件名稱、版本、套件大小、發行商、數位簽章及套件的簡單描述等等。</font><br>
         <br>
         suse:~ #<strong> <font color="#FFFF00">rpm -qR bind</font></strong><br>
         <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FF00" size="2"> 
-        </font></font><strong><font color="#00FF00" size="2">-R �P�� --requires</font></strong><font color="#00FF00" size="2">�C</font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">�d�� bind 
-        �M�󪺬����ݨD��T�C</font><br>
+        </font></font><strong><font color="#00FF00" size="2">-R 同於 --requires</font></strong><font color="#00FF00" size="2">。</font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">查詢 bind 
+        套件的相關需求資訊。</font><br>
         <br>
         suse:~ #<font color="#FFFF00"><strong> rpm -qf /etc/inittab</strong></font><br>
         aaa_base-10-12.8<br>
         <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FF00" size="2"> 
-        </font></font><font color="#00FF00" size="2"><strong>-f �P�� --file</strong>�C</font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">�d�� /etc/inittab 
-        �o���ɮ׬O�ݩ���ӮM��C</font><br>
+        </font></font><font color="#00FF00" size="2"><strong>-f 同於 --file</strong>。</font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">查詢 /etc/inittab 
+        這個檔案是屬於哪個套件。</font><br>
         <br>
         suse:~ # <font color="#FFFF00"><strong>rpm -qc openssh<br>
         </strong></font> <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FF00" size="2"> 
-        </font></font><strong><font color="#00FF00" size="2">-c �P�� --configfiles</font></strong><font color="#00FF00" size="2">�C</font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">�u�d�߮M�󤺪������պA�ɡC</font><br>
+        </font></font><strong><font color="#00FF00" size="2">-c 同於 --configfiles</font></strong><font color="#00FF00" size="2">。</font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">只查詢套件內的相關組態檔。</font><br>
         <br>
         suse:~ #<strong> <font color="#FFFF00">rpm -qd openssh<br>
         </font></strong> <font color="#00FFFF"># </font><font color="#00FF00" size="2"><strong>-d 
-        �P�� --docfiles</strong>�C</font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">�u�d�߮M�󤺪�������������ɡC</font><br>
+        同於 --docfiles</strong>。</font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">只查詢套件內的相關說明文件檔。</font><br>
         <br>
         suse:~ #<font color="#FFFF00"><strong> rpm -qilp ncftp-3.1.9-15.2.i586.rpm<br>
         </strong></font> <font color="#00FFFF"># </font><strong><font color="#00FF00" size="2">-p 
-        �P�� --package</font></strong><font color="#00FF00" size="2">�C</font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">���z�Ҭd�ߪ��M��|���w�˩�t�Τ��ɡA�i�[�W<strong> 
-        </strong>-p<strong> </strong>�ѼƨӬd�ߦ��M���ɮת�������T�C</font><font color="#00FFFF"><br>
+        同於 --package</font></strong><font color="#00FF00" size="2">。</font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">當您所查詢的套件尚未安裝於系統中時，可加上<strong> 
+        </strong>-p<strong> </strong>參數來查詢此套件檔案的相關資訊。</font><font color="#00FFFF"><br>
         </font><br>
         suse:~ #<strong> <font color="#FFFF00">rpm -q --changelog openssh</font></strong><br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�d�߸ӮM��C�Ӫ������ק�����C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">查詢該套件每個版本的修改紀錄。</font><br>
         <font color="#00FFFF"><br>
         </font> suse:~ #<strong><font color="#FFFF00"> rpm -q --whatrequires openssh</font></strong><br>
         openssh-askpass-4.2p1-18.2<br>
-        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�d�߸ӮM�󪺬̮ۨM�󬰦�C</font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">查詢該套件的相依套件為何。</font><br>
         </font></p>
       </td>
   </tr>
 </table>
 <strong> </strong> 
 <p><strong><a name="22"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-  <font size="+1">�M�󲾰�</font></strong></p>
-<strong><font size="+1">�@</font></strong>�M��b�w�˩β����ɡA���|����̩ۨʪ����D�s�b�C�H�����M��ӻ��A�p�G�ҭn�������M�󦳬̩ۨʪ����D�A����ݥ��������̮ۨM���A�~��N�쥻�n�������M��R���C<br>
+  <font size="+1">套件移除</font></strong></p>
+<strong><font size="+1">　</font></strong>套件在安裝或移除時，都會有其相依性的問題存在。以移除套件來說，如果所要移除的套件有相依性的問題，那麼需先移除此相依套件後，才能將原本要移除的套件刪除。<br>
 <br>
-<strong>�d�һ���</strong>�G 
+<strong>範例說明</strong>： 
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
       rpm -e ncftp</strong></font><br>
       <font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font><strong><font color="#00FF00" size="2">-e 
-      �P�� --erase</font></strong><font color="#00FF00" size="2">�C</font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font> <font color="#00FFFF" size="2">���� 
-      ncftp �M��C</font><br>
+      同於 --erase</font></strong><font color="#00FF00" size="2">。</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font> <font color="#00FFFF" size="2">移除 
+      ncftp 套件。</font><br>
       <br>
       suse:~ #<font color="#FFFF00"><strong> rpm -q ncftp</strong></font><br>
       package ncftp is not installed<br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font> <font color="#00FFFF" size="2">�@�A��Ʈw���Y�A�w�S�� 
-      ncftp ���M������F�C<br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font> <font color="#00FFFF" size="2">瞧，資料庫裡頭，已沒有 
+      ncftp 的套件紀錄了。<br>
       <br>
       </font><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> </strong></font></font><strong><font color="#FFFF00">rpm 
       -e samba</font></strong><br>
       error: Failed dependencies:<br>
       samba &gt;= 3.0.21a-4.2 is needed by (installed) nautilus-share-0.6.4-31.8.i586<font color="#00FFFF" size="2"><br>
       </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font> </font></font><font color="#00FFFF" size="2">�o�T���O���ܱz�A�b���� samba �M��H�e�A�ݥ����� 
-      nautilus-share �M��C<br>
+      </font> </font></font><font color="#00FFFF" size="2">這訊息是提示您，在移除 samba 套件以前，需先移除 
+      nautilus-share 套件。<br>
       </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font> </font></font><font color="#00FFFF" size="2">�p�����ɷQ�ư��̩ۨʪ����D�A�i�[�W --nodeps<strong> 
-      </strong>�ѼơC</font></font></td>
+      </font> </font></font><font color="#00FFFF" size="2">如移除時想排除相依性的問題，可加上 --nodeps<strong> 
+      </strong>參數。</font></font></td>
   </tr>
 </table>
 <strong><br>
-<a name="20"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="+1">�M��w��</font><br>
+<a name="20"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="+1">套件安裝</font><br>
 <br>
-</strong>�@�U�W��q�N�O�N�M���ɮ� (package-file) �w�˩�t�ΤW�A�S�w�˧�����A�� RPM ��Ʈw�̴N�|���o�ӮM�󪺬����s�b�C<br>
-�@<br>
-�@�ݷ|��m�߮ɡA�i���X�z���䪺���Шӹ�@�ݬݡG<br>
+</strong>　顧名思義就是將套件檔案 (package-file) 安裝於系統上，俟安裝完成後，於 RPM 資料庫裡就會有這個套件的紀錄存在。<br>
+　<br>
+　待會兒練習時，可拿出您手邊的光碟來實作看看：<br>
 <br>
-<strong>�d�һ���</strong>�G 
+<strong>範例說明</strong>： 
 <table width="100%" border="0">
   <tr> 
-    <td bgcolor="#000000"><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">���N���б����W�ӡG</font><br>
+    <td bgcolor="#000000"><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">先將光碟掛載上來：</font><br>
       suse:~ # <font color="#FFFF00"><strong>mount /dev/cdrom /media</strong></font><br>
       suse:~ # <font color="#FFFF00"><strong>cd /media/suse/i586</strong></font><br>
       suse:/media/suse/i586 # <br>
       <br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�w�� 
-      nmap �M��G</font><font color="#FFFFFF"><br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">安裝 
+      nmap 套件：</font><font color="#FFFFFF"><br>
       suse:/media/suse/i586 # <font color="#FFFF00"><strong>rpm -ivh nmap-4.00-14.2.i586.rpm</strong><br>
-      <font color="#FFFFFF" face="�ө���">Preparing... �@�@########################################### 
+      <font color="#FFFFFF" face="細明體">Preparing... 　　########################################### 
       [100%]<br>
-      �@ 1:nmap�@�@�@�@########################################### [100%]</font></font><br>
+      　 1:nmap　　　　########################################### [100%]</font></font><br>
       </font> <font color="#FFFFFF"> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font> </font></font><font color="#00FF00" size="2" face="�ө���">-i �P�� --install</font><font color="#00FF00" size="2">�C</font><font color="#00FFFF" size="2">�w�ˮM��ɪ��D�n�ѼơC 
+      </font> </font></font><font color="#00FF00" size="2" face="細明體">-i 同於 --install</font><font color="#00FF00" size="2">。</font><font color="#00FFFF" size="2">安裝套件時的主要參數。 
       </font><br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2"><font color="#00FF00" face="�ө���">-v 
-      �P�� --verbose</font><font color="#00FF00">�C</font>��ܰ���L�{�C </font><br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2"><font color="#00FF00" face="�ө���">-h 
-      �P�� --hash</font><font color="#00FF00">�C</font>��ܦw�˪��i�סA���W������ &quot;#&quot; 
-      �N�O -h �Ѽƪ��ĪG�C</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2"><font color="#00FF00" face="細明體">-v 
+      同於 --verbose</font><font color="#00FF00">。</font>顯示執行過程。 </font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2"><font color="#00FF00" face="細明體">-h 
+      同於 --hash</font><font color="#00FF00">。</font>顯示安裝的進度，像上面那個 &quot;#&quot; 
+      就是 -h 參數的效果。</font><br>
       <br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�w�� 
-      bind �M��G</font><font color="#FFFFFF"><br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">安裝 
+      bind 套件：</font><font color="#FFFFFF"><br>
       suse:/media/suse/i586 # <font color="#FFFF00"><strong>rpm -ivh bind-9.3.2-17.4.i586.rpm</strong></font><br>
-      <font face="�ө���">error: Failed dependencies:<br>
-      �@�@�@ bind-chrootenv is needed by bind-9.3.2-17.4.i586</font><br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">�W���T���O���ܱz�n�w�� 
-      bind �M��e�A�ݥ��ˤW��̮ۨM�� bind-chrootenv�C</font><br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">�Ӧp�G�������M��̩ۨʨӦw�˪��ܡA�i�[�W<strong> 
-      </strong><font color="#00FF00">--nodeps</font><strong> </strong>�ѼơG</font><br>
+      <font face="細明體">error: Failed dependencies:<br>
+      　　　 bind-chrootenv is needed by bind-9.3.2-17.4.i586</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">上面訊息是提示您要安裝 
+      bind 套件前，需先裝上其相依套件 bind-chrootenv。</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">而如果欲忽略套件相依性來安裝的話，可加上<strong> 
+      </strong><font color="#00FF00">--nodeps</font><strong> </strong>參數：</font><br>
       suse:/media/suse/i586 # <font color="#FFFF00"><strong>rpm -ivh bind-9.3.2-17.4.i586.rpm 
       --nodeps</strong></font><br>
-      <font face="�ө���">Preparing... �@�@########################################### 
+      <font face="細明體">Preparing... 　　########################################### 
       [100%]<br>
-      �@ 1:bind �@�@�@ ########################################### [100%]<br>
-      </font> <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">���`�b�w�ˮM��ɡA�ɶq�Ũϥγo�ؤ覡�w�ˡA�����t�η|���ܱz�̩ۨʪ����D�A</font><br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font> <font color="#FFFFFF"><font color="#00FFFF" size="2">�N���ܻ�</font></font><font color="#00FFFF" size="2">�o�ӮM�󦳨ϥΨ쨺�Ǭ̮ۨM�󪺬Y�ǥ\��A�]���p�G�w�O�⥦�ˤW�h�A��<font color="#FFFFFF"><br>
+      　 1:bind 　　　 ########################################### [100%]<br>
+      </font> <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">平常在安裝套件時，盡量勿使用這種方式安裝，畢竟系統會提示您相依性的問題，</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font> <font color="#FFFFFF"><font color="#00FFFF" size="2">就表示說</font></font><font color="#00FFFF" size="2">這個套件有使用到那些相依套件的某些功能，因此如果硬是把它裝上去，那<font color="#FFFFFF"><br>
       </font></font><font color="#FFFFFF"><font color="#00FFFF"># </font> </font> 
-      <font color="#FFFFFF"><font color="#00FFFF" size="2">�N�Ӧ��M��Ҵ��Ѫ��\��A�i��]�|</font></font><font color="#00FFFF" size="2">�L�k���`�ϥΡC</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF" size="2">將來此套件所提供的功能，可能也會</font></font><font color="#00FFFF" size="2">無法正常使用。</font><br>
       <font size="2"><br>
       </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font> </font> </font><font size="2"><font color="#00FFFF">���M��w�w�˦b�t�ΤW�A�z�S�Q�A�w�ˤ@���A�Ϊ̦w�ˮɥX�{ 
-      [confilcting files] �T���ɡA</font></font><br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font> <font size="2"><font color="#00FFFF">�h�i�[�W 
-      --force<font color="#00FF00"><strong> </strong></font>�Ѽƨӱj���w�ˡG</font></font><br>
+      </font> </font> </font><font size="2"><font color="#00FFFF">當套件已安裝在系統上，您又想再安裝一次，或者安裝時出現 
+      [confilcting files] 訊息時，</font></font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font> <font size="2"><font color="#00FFFF">則可加上 
+      --force<font color="#00FF00"><strong> </strong></font>參數來強迫安裝：</font></font><br>
       suse:/media/suse/i586 #<strong><font color="#FFFF00"> rpm -ivh nmap-4.00-14.2.i586.rpm 
       --force</font></strong><br>
-      <font face="�ө���">Preparing... �@�@########################################### 
+      <font face="細明體">Preparing... 　　########################################### 
       [100%]<br>
-      �@ 1:nmap �@�@�@ ########################################### [100%]</font></font><br>
+      　 1:nmap 　　　 ########################################### [100%]</font></font><br>
       <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font> 
-      </font> </font><font color="#00FFFF" size="2">--force �۷��� --replacepkgs�B--replacefiles�B 
-      --oldpackage�A�ܩ�o�ǰѼƪ�</font><br>
+      </font> </font><font color="#00FFFF" size="2">--force 相當於 --replacepkgs、--replacefiles、 
+      --oldpackage，至於這些參數的</font><br>
       <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font> 
-      </font> <font color="#00FFFF" size="2"></font></font> <font color="#00FFFF" size="2">�ԲӥΪk�A�� 
-      &quot;man rpm&quot;�C���L�٬O�Ѹܤ@�y�A���D�z���D�b������A�_�h�ɶq�ŨϥΡC</font> </td>
+      </font> <font color="#00FFFF" size="2"></font></font> <font color="#00FFFF" size="2">詳細用法，請 
+      &quot;man rpm&quot;。不過還是老話一句，除非您知道在做什麼，否則盡量勿使用。</font> </td>
   </tr>
 </table>
 <p align="left"> <strong><a name="21"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-  <font size="+1">�M��ɯ�</font></strong><br>
+  <font size="+1">套件升級</font></strong><br>
   <br>
-  �@RPM ���ɯŤ]�ܮe���A�u�n�ϥ� -U �� -F �ѼơA�Y�i�����z�ɯŪ����ȡC���L�o��ӰѼƪ��\�Φ��I���P�A�аѦҥH�U�������G</p>
+  　RPM 的升級也很容易，只要使用 -U 或 -F 參數，即可完成您升級的任務。不過這兩個參數的功用有點不同，請參考以下的說明：</p>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
     <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td width="95%"><strong><font color="#000099">-U</font></strong><font color="#000099">�G�P�� 
+    <td width="95%"><strong><font color="#000099">-U</font></strong><font color="#000099">：同於 
       --upgrade</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td>���t�Τw�s�b�ª����M��ɡA�����i��ɯšA���Y���s�b�A�h�����s�w�ˮM��Ӧw�ˡC�p�G�s�b���{�������P�ɯŪ����ۦP�A�h�|��ܮM��w�w�˪��T���C</td>
+    <td>當系統已存在舊版本套件時，直接進行升級，但若不存在，則當成新安裝套件來安裝。如果存在的現有版本與升級版本相同，則會顯示套件已安裝的訊息。</td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -1450,13 +1450,13 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">-F</font></strong><font color="#000099">�G�P�� 
+    <td><strong><font color="#000099">-F</font></strong><font color="#000099">：同於 
       --freshen</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td>���t�Τw�s�b�ª����M��ɡA�����i��ɯšA���Y���s�b�A�h���|�w�ˡC�p�G�s�b���{�������P�ɯŪ����ۦP�A�]���|�i��w�ˡC�ϥγo�ӰѼƨӱN�Ҧ��w�˹L���M��i����t�ΤɯūD�`��K�C�Ҧp�G 
+    <td>當系統已存在舊版本套件時，直接進行升級，但若不存在，則不會安裝。如果存在的現有版本與升級版本相同，也不會進行安裝。使用這個參數來將所有安裝過的套件進行全系統升級非常方便。例如： 
       <table width="30%" border="0" bgcolor="#CCCCCC">
         <tr> 
           <td nowrap>suse:~ #<strong> rpm -Fvh *.rpm</strong></td>
@@ -1464,98 +1464,98 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
       </table></td>
   </tr>
 </table>
-<p> �@�b SLES10 �̡A�z�٥i�H�Q�� YaST2 �Ӷi��n�骺�u�W��s�A���L�o���ܩx������ӽФ@�ձb���K�X�A�ï��� �u�ҥνX�v�A�o�˴N�i�H���z�K�O�ɨ� 
-  60 �Ѫ��u�W�ɯšC�ܩ�u�W�ɯŪ��B�J�ܮe���A�u�n�b YaST2 ����ߵe���̡A�q [�n��] �� [Novell Customer Center Configuration] 
-  �i�J�A�M����ӫ��ܡA�@�B�B���U���N��F�Q�o�L�{���A�̭��n���N�O��J�z���T���u�q�l�l��a�}�v�H�Ρu�ҥνX�v�A�p�G����J�ҥνX�A�h�u��ɨ� 15 �Ѫ��u�W�ɯšC�ӵ��z��ӨB�J��������A�Y�i�b�ୱ�u�@�C���k��A�ݨ�@�Ӿ��⪺�ϥܡA�I��i�h����A�N�i�H�}�l�i��n�骺�ɯ��o�C</p>
+<p> 　在 SLES10 裡，您還可以利用 YaST2 來進行軟體的線上更新，不過得先至官方網站申請一組帳號密碼，並索取 「啟用碼」，這樣就可以讓您免費享受 
+  60 天的線上升級。至於線上升級的步驟很容易，只要在 YaST2 控制中心畫面裡，從 [軟體] → [Novell Customer Center Configuration] 
+  進入，然後按照指示，一步步往下做就行了﹔這過程中，最重要的就是輸入您正確的「電子郵件地址」以及「啟用碼」，如果未輸入啟用碼，則只能享受 15 天的線上升級。而等您整個步驟都完成後，即可在桌面工作列的右方，看到一個橙色的圖示，點選進去之後，就可以開始進行軟體的升級囉。</p>
 <p><strong><a name="23"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-  <font size="+1">�M�󤺮e�ֹ�</font></strong><font size="+1"><br>
+  <font size="+1">套件內容核對</font></strong><font size="+1"><br>
   </font><br>
-  �@�p�Q�F�ѬY�ӮM�󤺦������ɮײ��ʹL�A�Ϊ��ˬd�|���w�ˮM�󪺧���ʡA����N�n�Ƿ|�H�U���Ϊk���G<br>
+  　如想了解某個套件內有哪些檔案異動過，或者檢查尚未安裝套件的完整性，那麼就要學會以下的用法噢：<br>
   <br>
-  <strong>�d�һ���</strong>�G </p>
+  <strong>範例說明</strong>： </p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><p><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
         rpm -V vsftpd</strong></font><br>
         S.5 . . . . T c /etc/vsftpd.conf<br>
         <font color="#FFFFFF"><font color="#00FFFF"># </font> </font> <font color="#00FF00" size="2">-V 
-        �P�� --verify�C</font></font><font color="#00FFFF" size="2"><br>
+        同於 --verify。</font></font><font color="#00FFFF" size="2"><br>
         </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-        </font> </font> <font color="#00FFFF" size="2">�ֹ�M�󤺪������ɮװ��F���ǲ��ʡC�ܩ�e���i��X�{���r���A��ҥN�����N�q�p�U�G</font></font><br>
+        </font> </font> <font color="#00FFFF" size="2">核對套件內的哪些檔案做了哪些異動。至於前面可能出現的字元，其所代表的意義如下：</font></font><br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font> 
-        </font> </font><strong><font color="#00FFFF" size="2" face="�ө���">S :</font></strong> 
-        <font color="#00FFFF" size="2" face="�ө���">file Size differs�C</font><font color="#00FFFF" size="2">�ɮפj�p�����ʹL�C</font><br>
+        </font> </font><strong><font color="#00FFFF" size="2" face="細明體">S :</font></strong> 
+        <font color="#00FFFF" size="2" face="細明體">file Size differs。</font><font color="#00FFFF" size="2">檔案大小有異動過。</font><br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font> 
-        </font> </font><strong><font color="#00FFFF" size="2" face="�ө���">M :</font></strong> 
-        <font color="#00FFFF" size="2" face="�ө���"></font><font color="#00FFFF" size="2" face="�ө���">Mode 
-        differs (includes permissions and file type)</font><font color="#00FFFF" size="2"><font face="�ө���">�C</font>�ɮ��������v�����ק�L�C 
+        </font> </font><strong><font color="#00FFFF" size="2" face="細明體">M :</font></strong> 
+        <font color="#00FFFF" size="2" face="細明體"></font><font color="#00FFFF" size="2" face="細明體">Mode 
+        differs (includes permissions and file type)</font><font color="#00FFFF" size="2"><font face="細明體">。</font>檔案類型或權限有修改過。 
         </font><br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font> 
-        </font> </font><strong><font color="#00FFFF" size="2" face="�ө���">5 :</font></strong> 
-        <font color="#00FFFF" size="2" face="�ө���">MD5 sum differs�C</font><font color="#00FFFF" size="2">MD5 
-        �ˬd�X���P�C</font><br>
+        </font> </font><strong><font color="#00FFFF" size="2" face="細明體">5 :</font></strong> 
+        <font color="#00FFFF" size="2" face="細明體">MD5 sum differs。</font><font color="#00FFFF" size="2">MD5 
+        檢查碼不同。</font><br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font> 
-        </font> </font><strong><font color="#00FFFF" size="2" face="�ө���">D :</font></strong> 
-        <font color="#00FFFF" size="2" face="�ө���">Device major/minor number mis-match</font><font color="#00FFFF" size="2">�C�D�n�Φ��n���˸m�N�����šC 
+        </font> </font><strong><font color="#00FFFF" size="2" face="細明體">D :</font></strong> 
+        <font color="#00FFFF" size="2" face="細明體">Device major/minor number mis-match</font><font color="#00FFFF" size="2">。主要或次要的裝置代號不符。 
         </font><br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font> 
-        </font> </font><strong><font color="#00FFFF" size="2" face="�ө���">L :</font></strong> 
-        <font color="#00FFFF" size="2" face="�ө���">readLink(2) path mis-match�C</font><font color="#00FFFF" size="2">�s���ɪ��s�����|���ק�L�C 
+        </font> </font><strong><font color="#00FFFF" size="2" face="細明體">L :</font></strong> 
+        <font color="#00FFFF" size="2" face="細明體">readLink(2) path mis-match。</font><font color="#00FFFF" size="2">連結檔的連結路徑有修改過。 
         </font><br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font> 
-        </font> </font><strong><font color="#00FFFF" size="2" face="�ө���">U :</font></strong> 
-        <font color="#00FFFF" size="2" face="�ө���">User ownership differs�C</font><font color="#00FFFF" size="2">�ɮת��֦����ܧ�L�C 
+        </font> </font><strong><font color="#00FFFF" size="2" face="細明體">U :</font></strong> 
+        <font color="#00FFFF" size="2" face="細明體">User ownership differs。</font><font color="#00FFFF" size="2">檔案的擁有者變更過。 
         </font><br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font> 
-        </font> </font><strong><font color="#00FFFF" size="2" face="�ө���">G :</font></strong> 
-        <font color="#00FFFF" size="2" face="�ө���">Group ownership differs�C</font><font color="#00FFFF" size="2">�ɮת��֦��s���ܧ�L�C 
+        </font> </font><strong><font color="#00FFFF" size="2" face="細明體">G :</font></strong> 
+        <font color="#00FFFF" size="2" face="細明體">Group ownership differs。</font><font color="#00FFFF" size="2">檔案的擁有群組變更過。 
         </font><br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font> 
-        </font> </font><strong><font color="#00FFFF" size="2" face="�ө���">T :</font></strong> 
-        <font color="#00FFFF" size="2" face="�ө���">mTime differs�C</font><font color="#00FFFF" size="2">�ɮת��ק�ɶ����ʹL�C 
+        </font> </font><strong><font color="#00FFFF" size="2" face="細明體">T :</font></strong> 
+        <font color="#00FFFF" size="2" face="細明體">mTime differs。</font><font color="#00FFFF" size="2">檔案的修改時間異動過。 
         </font><br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
-        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">�ܩ�̫᭱���Ӥp�g�� 
-        c (configuration file)�A�O�N���պA�ɪ��N��C</font></font><font color="#00FFFF" size="2"> 
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">至於最後面那個小寫的 
+        c (configuration file)，是代表組態檔的意思。</font></font><font color="#00FFFF" size="2"> 
         </font></font> <br>
         <font color="#FFFFFF"><font color="#FFFFFF"></font></font><font color="#FFFFFF">&nbsp; 
         <br>
         suse:~ # <font color="#FFFF00"><strong>rpm -Va &gt; verifyfile &amp; </strong></font><br>
-        <font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font><font color="#00FFFF" size="2">�˵��t�ΩҦ��w�w�ˮM�󤤦����ʹL���ɮסA�ñN���G��X�� 
-        verifyfile�C</font><br>
-        <font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> <font color="#FFFFFF"><font color="#00FFFF" size="2">�R�O�C�W�̫᭱���� 
-        &quot;&amp;&quot; �O���ܭn�⦹�{�����I���h���檺�N��C</font><br>
+        <font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font><font color="#00FFFF" size="2">檢視系統所有已安裝套件中有異動過的檔案，並將結果輸出至 
+        verifyfile。</font><br>
+        <font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> <font color="#FFFFFF"><font color="#00FFFF" size="2">命令列上最後面那個 
+        &quot;&amp;&quot; 是表示要把此程式放到背景去執行的意思。</font><br>
         </font><font color="#FFFFFF"> <br>
         suse:~ #<font color="#FFFF00"><strong> rpm --checksig </strong></font><font color="#FFFFFF"><font color="#FFFF00"><strong>ncftp-3.1.9-15.2.i586.rpm</strong></font></font><br>
         ncftp-3.1.9-15.2.i586.rpm: sha1 md5 gpg OK <br>
         <font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> <font color="#FFFFFF"><font color="#00FFFF" size="2">--checksig 
-        �O�Ψ��ˬd�M���ɮת��Ʀ�ñ���A�H�T�O��l�M�󪺧���ʡC </font><br>
-        <font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> <font color="#FFFFFF"><font color="#00FFFF" size="2">���ˬd���G�O 
-        ok �ɡA�z�N�i�H�ܦw�ߪ��⦹�M��w�˦b�t�ΤW�F�C</font><br>
+        是用來檢查套件檔案的數位簽章，以確保原始套件的完整性。 </font><br>
+        <font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> <font color="#FFFFFF"><font color="#00FFFF" size="2">當檢查結果是 
+        ok 時，您就可以很安心的把此套件安裝在系統上了。</font><br>
         </font><font color="#FFFFFF"><br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
-        <font color="#00FFFF" size="2">�t�~�z�]�i�H�ϥ�<strong> </strong>md5sum ���O�Ӱ����ҡA���ڭ̤��O�`�`�|�� 
-        FTP ���x��� ISO �ɶܡA<br>
+        <font color="#00FFFF" size="2">另外您也可以使用<strong> </strong>md5sum 指令來做驗證，像我們不是常常會到 
+        FTP 站台抓取 ISO 檔嗎，<br>
         </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
-        </font><font color="#00FFFF" size="2">���p��T�{�o�� ISO �ɨS�Q��L�H�ʹL�O�A��²��A�u�n�N��责�Ѫ� 
+        </font><font color="#00FFFF" size="2">那如何確認這個 ISO 檔沒被其他人動過呢，很簡單，只要將對方提供的 
         MD5SUMS <br>
         </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
-        </font></font><font color="#00FFFF" size="2">�ɮפU���^�ӫ�A�d�@�U�o�� ISO �ɪ� md5 
-        �ˬd�X�A���ۦb��������G</font><br>
+        </font></font><font color="#00FFFF" size="2">檔案下載回來後，查一下這個 ISO 檔的 md5 
+        檢查碼，接著在本機執行：</font><br>
         suse:~ #<font color="#FFFF00"><strong> md5sum SUSE-9.3-Eval-DVD.iso</strong><font color="#FFFFFF"><br>
         04d2ebe4e0b8b00bc83cdc180a79e667 <br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
-        </font></font><font color="#00FFFF" size="2">�M���C�X���o�@���ˬd�X�A���h���� MD5SUMS 
-        �ɮפ��e�����A�ݬݬO�_�@�P�C</font></font></font></font></p>
+        </font></font><font color="#00FFFF" size="2">然後把列出的這一組檢查碼，拿去跟剛剛 MD5SUMS 
+        檔案內容做比對，看看是否一致。</font></font></font></font></p>
       </td>
   </tr>
 </table>
 <p> <strong><a name="24"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-  <font size="+1">���� RPM ��Ʈw</font></strong><font size="+1"><br>
+  <font size="+1">重建 RPM 資料庫</font></strong><font size="+1"><br>
   </font><br>
-  �@�ѩ�b�w�ˡB�����B�ɯŮM��έק� RPM �M�󤺪��ɮ׮ɡARPM ��Ʈw�������������������A�]�����i�O�D�`�����L�A�ҥH�ɶ��@�Ԫ��A�γ\��Ʈw�|��o���L���ǡA���ɱz�K�i�H�Ҽ{����@�U��Ʈw�C�t�~���ɭԱz�w�ˮM��ɡA�o�X�{�@�ǥH�e�����J�L�����~�T�� 
-  (�D�̩ۨʪ����D)�A�ɭP�z�L�k���`�w�ˡA�o�ɭԤ]�i���ե����� RPM ��Ʈw��A��w�ˡC�̫�N�O���z������t�Τɯŧ�����A���W���� RPM ��Ʈw�A�]�O�Ӥ�������ܡC���F�b�ѡA���쩳�n��򰵩O 
-  ? ��²�檺<font color="#000000">�A�а���G</font></p>
+  　由於在安裝、移除、升級套件或修改 RPM 套件內的檔案時，RPM 資料庫都必須做相關的紀錄，因此它可是非常的忙碌，所以時間一拉長，或許資料庫會顯得較無次序，此時您便可以考慮重整一下資料庫。另外有時候您安裝套件時，卻出現一些以前不曾遇過的錯誤訊息 
+  (非相依性的問題)，導致您無法正常安裝，這時候也可嘗試先重建 RPM 資料庫後再行安裝。最後就是當您執行全系統升級完畢後，馬上重建 RPM 資料庫，也是個不錯的選擇。講了半天，那到底要怎麼做呢 
+  ? 很簡單的<font color="#000000">，請執行：</font></p>
 <table width="30%" border="0" bgcolor="#CCCCCC">
   <tr> 
     <td height="24" nowrap>suse:~ # <strong>rpm --rebuilddb</strong></td>
@@ -1563,35 +1563,35 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
 </table>
 <p><strong><font color="#0000FF" size="+1"><br>
   </font><font color="#0000FF"><font size="+1"><a name="26"></a><font size="6">7.4 
-  �ʺA�s����Ʈw�GDLL</font></font></font></strong><font size="+1"><br>
+  動態連結資料庫：DLL</font></font></font></strong><font size="+1"><br>
   </font><br>
-  �@�b Linux �t�ΤW�Ұ��檺�{�����|�ϥΨ�禡�w�A�Ө̷����ε{���P�禡�w�s�����覡�A�i�Ϥ����R�A�禡�w (Static Libraries) �ΰʺA�禡�w 
-  (Dynamic Link Libraries�BShared Libraries) �A�o��̨��O�ܦn�ϧO���C�R�A�禡�w (�q�`�� xx.a) �̪��禡��l�X�ݭn�Q�sĶ��D�{�����Y�A�ҥH�D�{���|��o����s�~�ǡA���n�B�O�ӵ{���i�H�W�߰��� 
-  �Q�ʺA�禡�w (�q�`�� xx.so�A�p�z�ݨ쪺�O xx.so.2.1 �������A���� 2.1 �N�O�����o ) �h���ݾ�ӳQ�sĶ��D�{������A�u�ݦb�{������l�X�̳]�p�h�I�s�ʺA�禡�w�Y�i�C�b 
-  Linux ���Ұ��檺�{���X�G���O�ϥΰʺA�s����Ʈw�C<br>
+  　在 Linux 系統上所執行的程式都會使用到函式庫，而依照應用程式與函式庫連結的方式，可區分為靜態函式庫 (Static Libraries) 及動態函式庫 
+  (Dynamic Link Libraries、Shared Libraries) ，這兩者其實是很好區別的。靜態函式庫 (通常為 xx.a) 裡的函式原始碼需要被編譯到主程式裡頭，所以主程式會顯得比較臃腫些，但好處是該程式可以獨立執行 
+  ﹔動態函式庫 (通常為 xx.so，如您看到的是 xx.so.2.1 之類的，那個 2.1 就是版本囉 ) 則不需整個被編譯到主程式裡邊，只需在程式的原始碼裡設計去呼叫動態函式庫即可。在 
+  Linux 中所執行的程式幾乎都是使用動態連結資料庫。<br>
   <br>
-  �@�@��ǲΪ��禡�w�O�w�m�b<strong> </strong><font color="#0000FF">/lib</font><strong> </strong>�� 
-  <font color="#0000FF">/usr/lib</font> �ؿ����A�Ӵ��Ѩt�Ψӷj�M���禡�w�A��ҩ�m���ؿ��O�w�q�b<strong> </strong><font color="#0000FF">/etc/ld.so.conf</font><strong> 
-  </strong>�̡C������ <font color="#0000FF">ldconfig ���O</font>�ɡA�|���hŪ��<strong> </strong>/etc/ld.so.conf�A�H��X�禡�w�ҩ�m���ؿ���m�A�M��~��N�o�Ǩ禡�w��Ƽg�J<strong> 
-  </strong>cache ���A�æs��@���b <font color="#0000FF">/etc/ld.so.cache</font><strong> 
-  </strong>���C�ӧڭ̦b����@��{���ɡA�N�|�� ld.so �o�ӰʺA�s���� (dynamic linker) �{���A�� cache ���h�M�����{���һݪ��禡�A�H���ѵ{�����ʺA�s���C<br>
+  　一般傳統的函式庫是安置在<strong> </strong><font color="#0000FF">/lib</font><strong> </strong>及 
+  <font color="#0000FF">/usr/lib</font> 目錄中，而提供系統來搜尋的函式庫，其所放置的目錄是定義在<strong> </strong><font color="#0000FF">/etc/ld.so.conf</font><strong> 
+  </strong>裡。當執行 <font color="#0000FF">ldconfig 指令</font>時，會先去讀取<strong> </strong>/etc/ld.so.conf，以找出函式庫所放置的目錄位置，然後才能將這些函式庫資料寫入<strong> 
+  </strong>cache 內，並存放一份在 <font color="#0000FF">/etc/ld.so.cache</font><strong> 
+  </strong>中。而我們在執行一支程式時，就會由 ld.so 這個動態連結器 (dynamic linker) 程式，到 cache 內去尋找執行程式所需的函式，以提供程式做動態連結。<br>
   <br>
-  �@���L�z�n�O�ݹL /etc/ld.so.conf�A�|�o�{ /lib �� /usr/lib �èS���w�q�b ld.so.conf ���A�]���o��ӥؿ��O���w�ȡA�ҥH���ݭn���]�w�� 
-  ! �̫�p�G�z���]�w <font color="#0000FF">LD_LIBRARY_PATH</font> �o�������ܼƪ��ܡA��ҩw�q���ؿ��]�|�QŪ�J�C<br>
+  　不過您要是看過 /etc/ld.so.conf，會發現 /lib 及 /usr/lib 並沒有定義在 ld.so.conf 內，因為這兩個目錄是內定值，所以不需要做設定啦 
+  ! 最後如果您有設定 <font color="#0000FF">LD_LIBRARY_PATH</font> 這個環境變數的話，其所定義的目錄也會被讀入。<br>
   <br>
-  �@�p�G���ѱz�禡�w�Ҧs�񪺥ؿ����Ҳ��ʡA�аO�o�ק� /etc/ld.so.conf�A�M��A���� ldconfig ���O�A�o�ˤ~�i�H��s cache ������ơC�H�U�ڭ̵y�@��z�G 
+  　如果哪天您函式庫所存放的目錄有所異動，請記得修改 /etc/ld.so.conf，然後再執行 ldconfig 指令，這樣才可以更新 cache 內的資料。以下我們稍作整理： 
 </p>
 <ol>
   <ol>
-    <li><font color="#000099">DLL �@��O�w�m�b /lib �� /usr/lib �ؿ��U�A�Ӱ��F�o��ӥؿ��~�ADLL �Ҧs�񪺥ؿ������b 
-      /etc/ld.so.conf �� LD_LIBRARY_PATH �����w�q�C <br>
+    <li><font color="#000099">DLL 一般是安置在 /lib 或 /usr/lib 目錄下，而除了這兩個目錄外，DLL 所存放的目錄必須在 
+      /etc/ld.so.conf 或 LD_LIBRARY_PATH 中做定義。 <br>
       <br>
       </font></li>
-    <li><font color="#000099">������O ldconfig �ɡA�|���hŪ�� /etc/ld.so.conf�A�M��N DLL Ū�J 
-      cache�A�ì����@���b /etc/ld.so.cache�C������{���b����ɡAld.so �N�|�ھ� cache �ӧ�X�ø��J�{���һݪ��禡�w�A�H���{���ॿ�T������C<br>
+    <li><font color="#000099">執行指令 ldconfig 時，會先去讀取 /etc/ld.so.conf，然後將 DLL 讀入 
+      cache，並紀錄一份在 /etc/ld.so.cache。當執行程式在執行時，ld.so 就會根據 cache 來找出並載入程式所需的函式庫，以讓程式能正確的執行。<br>
       <br>
       </font></li>
-    <li><font color="#000099">���s�� /etc/ld.so.cache ������ơA�i����G<br>
+    <li><font color="#000099">欲瀏覽 /etc/ld.so.cache 內的資料，可執行：<br>
       <br>
       </font> 
       <table width="30%" border="0" bgcolor="#CCCCCC">
@@ -1601,46 +1601,46 @@ find�A�]�� cpio �`�`�|�f�t find ���O�ӨϥΡC<strong><strong><br>
       </table>
       <font color="#000099"> <br>
       </font> <font color="#000099"> </font></li>
-    <li><font color="#000099"> �W�[�B��֡B�R������ DLL �� DLL �ؿ������ʡA�N������ ldconfig�A�H��s cache 
-      ����ơC<br>
+    <li><font color="#000099"> 增加、減少、刪除部份 DLL 或 DLL 目錄有異動，就須執行 ldconfig，以更新 cache 
+      的資料。<br>
       <br>
       </font></li>
-    <li><font color="#000099">�t�Ω�}���ɡA�w�]�N�|���� ldconfig�A�H�T�O cache ������ƬO�̷s���C</font></li>
+    <li><font color="#000099">系統於開機時，預設就會執行 ldconfig，以確保 cache 內的資料是最新的。</font></li>
   </ol>
 </ol>
-<p>�@�ܩ�n�d�ߩҰ��檺�{���ϥΤF���� DLL�A�h���� <font color="#0000FF">ldd</font><strong> </strong>���O�Y�i�G</p>
+<p>　至於要查詢所執行的程式使用了哪些 DLL，則執行 <font color="#0000FF">ldd</font><strong> </strong>指令即可：</p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
-      <font color="#00FFFF" size="2">���d�X���O����m�G</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF" size="2">先查出指令的位置：</font><font color="#FFFFFF"><br>
       suse:~ #<strong> <font color="#FFFF00">which fdisk rpm</font></strong><br>
       /sbin/fdisk<br>
       /bin/rpm<br>
       <br>
-      <font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> <font color="#00FFFF" size="2">�ˬd�{���ҨϥΪ� 
-      DLL�G </font><font color="#FFFFFF"> <br>
+      <font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> <font color="#00FFFF" size="2">檢查程式所使用的 
+      DLL： </font><font color="#FFFFFF"> <br>
       suse:~ #<font color="#FFFF00"><strong> ldd /sbin/fdisk /bin/rpm</strong></font><br>
       /sbin/fdisk:<br>
-      �@�@�@linux-gate.so.1 =&gt; (0xffffe000)<br>
-      �@�@�@libc.so.6 =&gt; /lib/tls/libc.so.6 (0x40025000)<br>
-      �@�@�@/lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)<br>
+      　　　linux-gate.so.1 =&gt; (0xffffe000)<br>
+      　　　libc.so.6 =&gt; /lib/tls/libc.so.6 (0x40025000)<br>
+      　　　/lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)<br>
       /bin/rpm:<br>
-      �@�@�@linux-gate.so.1 =&gt; (0xffffe000)<br>
-      �@�@�@librpmbuild-4.1.so =&gt; /usr/lib/librpmbuild-4.1.so (0x40025000)<br>
-      �@�@�@librpm-4.1.so =&gt; /usr/lib/librpm-4.1.so (0x40057000)<br>
-      �@�@�@librpmdb-4.1.so =&gt; /usr/lib/librpmdb-4.1.so (0x400a5000)<br>
-      �@�@�@librpmio-4.1.so =&gt; /usr/lib/librpmio-4.1.so (0x40185000)<br>
-      �@�@�@libpopt.so.0 =&gt; /usr/lib/libpopt.so.0 (0x401d4000)<br>
-      �@�@�@librt.so.1 =&gt; /lib/tls/librt.so.1 (0x401dd000)<br>
-      �@�@�@libpthread.so.0 =&gt; /lib/tls/libpthread.so.0 (0x401e5000)<br>
-      �@�@�@libz.so.1 =&gt; /lib/libz.so.1 (0x401f5000)<br>
-      �@�@�@libbz2.so.1 =&gt; /usr/lib/libbz2.so.1 (0x40206000)<br>
-      �@�@�@libc.so.6 =&gt; /lib/tls/libc.so.6 (0x40216000)<br>
-      �@�@�@/lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)</font></td>
+      　　　linux-gate.so.1 =&gt; (0xffffe000)<br>
+      　　　librpmbuild-4.1.so =&gt; /usr/lib/librpmbuild-4.1.so (0x40025000)<br>
+      　　　librpm-4.1.so =&gt; /usr/lib/librpm-4.1.so (0x40057000)<br>
+      　　　librpmdb-4.1.so =&gt; /usr/lib/librpmdb-4.1.so (0x400a5000)<br>
+      　　　librpmio-4.1.so =&gt; /usr/lib/librpmio-4.1.so (0x40185000)<br>
+      　　　libpopt.so.0 =&gt; /usr/lib/libpopt.so.0 (0x401d4000)<br>
+      　　　librt.so.1 =&gt; /lib/tls/librt.so.1 (0x401dd000)<br>
+      　　　libpthread.so.0 =&gt; /lib/tls/libpthread.so.0 (0x401e5000)<br>
+      　　　libz.so.1 =&gt; /lib/libz.so.1 (0x401f5000)<br>
+      　　　libbz2.so.1 =&gt; /usr/lib/libbz2.so.1 (0x40206000)<br>
+      　　　libc.so.6 =&gt; /lib/tls/libc.so.6 (0x40216000)<br>
+      　　　/lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)</font></td>
   </tr>
 </table>
 <br>
-<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( �f�C�� 
+<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( 柏青哥 
   )</em></font> <br>
 </p>
 </body>

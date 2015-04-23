@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>�f�C���� SuSE Linux -- ²���� Shell Scripts</title>
+<title>柏青哥的 SuSE Linux -- 簡易的 Shell Scripts</title>
 <style type="text/css">
 <!--
 a {
@@ -14,181 +14,181 @@ a {
 </head>
 
 <body background="sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#0000FF" vlink="#660066" leftmargin="40">
-<font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a><font size="+2"><strong>�@</strong></font></font>�@�̡G���f��<font size="+1">�@</font>E-mail�Gpachingko@ms96.url.com.tw 
+<font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a><font size="+2"><strong>　</strong></font></font>作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw 
 <table width="100%" border="0">
   <tr> 
     <td nowrap> <div align="left"></div>
-      <div align="center"><font color="#000000" size="7"><strong>�ĤQ���@²���� Shell 
+      <div align="center"><font color="#000000" size="7"><strong>第十章　簡易的 Shell 
         Scripts</strong></font></div>
       <div align="center"></div></td>
   </tr>
 </table>
 <font color="#0000FF" size="+1"><strong><font color="#000099"><br>
-���ޡG</font></strong></font> 
+索引：</font></strong></font> 
 <table width="100%" border="0">
   <tr> 
     <td colspan="3"><font color="#000099"><strong>10.1 <a href="#1">Shell Scripts 
-      �Ψ禡²��</a></strong></font></td>
+      及函式簡介</a></strong></font></td>
   </tr>
   <tr> 
     <td width="4%"><font color="#000099">&nbsp;</font></td>
     <td width="6%" align="center" valign="top" nowrap><font color="#000099">10.1.1</font></td>
-    <td width="90%"><a href="#2">��� scripts</a></td>
+    <td width="90%"><a href="#2">何謂 scripts</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.1.2</font></td>
-    <td><a href="#3">�p�󼶼g�@�� shell script</a></td>
+    <td><a href="#3">如何撰寫一支 shell script</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.1.3</font></td>
-    <td><font color="#000099"><a href="#4">BASH �禡²��</a> --- <a href="#5">�R�O���檺�u������</a></font></td>
+    <td><font color="#000099"><a href="#4">BASH 函式簡介</a> --- <a href="#5">命令執行的優先順序</a></font></td>
   </tr>
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>10.2 <a href="#6">shell �S���������ܼ�</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>10.2 <a href="#6">shell 特殊的內建變數</a></strong></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.2.1</font></td>
-    <td><font color="#000099"><a href="#7">��m�Ѽ� (positional parameter)</a> --- 
-      $0�B$1�B$2�B$3�B&#8230;</font></td>
+    <td><font color="#000099"><a href="#7">位置參數 (positional parameter)</a> --- 
+      $0、$1、$2、$3、&#8230;</font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.2.2</font></td>
-    <td><font color="#000099"><a href="#8">��L���n�������ܼ�</a> --- $#�B$*�B$@�B$?�B$$</font></td>
+    <td><font color="#000099"><a href="#8">其他重要的內建變數</a> --- $#、$*、$@、$?、$$</font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.2.3</font></td>
-    <td><font color="#000099"><a href="#9">"$*" �P "$@" ���t�O </a>--- <a href="#10">IFS 
-      �� metacharacter ������</a></font></td>
+    <td><font color="#000099"><a href="#9">"$*" 與 "$@" 的差別 </a>--- <a href="#10">IFS 
+      及 metacharacter 的說明</a></font></td>
   </tr>
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>10.3 <a href="#11">test ���O���Ϊk</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>10.3 <a href="#11">test 指令的用法</a></strong></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.3.1</font></td>
-    <td><a href="#12">test ���O</a></td>
+    <td><a href="#12">test 指令</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.3.2</font></td>
-    <td><font color="#000099"><a href="#13">�B���</a> --- <a href="#14">�ɮ��ݩʪ��B���</a>�B<a href="#15">�ƭȤ�����B���</a>�B<a href="#16">�r�������B���</a></font></td>
+    <td><font color="#000099"><a href="#13">運算符</a> --- <a href="#14">檔案屬性的運算符</a>、<a href="#15">數值比較的運算符</a>、<a href="#16">字串比較的運算符</a></font></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td align="center" valign="top" nowrap><font color="#000099">10.3.3</font></td>
-    <td><a href="#17">" || " �� " && " �޿���</a></td>
+    <td><a href="#17">" || " 及 " && " 邏輯算符</a></td>
   </tr>
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>10.4 <a href="#18">if ����P�_��</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>10.4 <a href="#18">if 條件判斷式</a></strong></font></td>
   </tr>
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>10.5 <a href="#19">�ƭȹB��P shift 
-      ���ϥ�</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>10.5 <a href="#19">數值運算與 shift 
+      的使用</a></strong></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.5.1</font></td>
-    <td><font color="#000099"><a href="#20">�ƭȹB��</a> --- declare -i�Bexpr�Blet</font></td>
+    <td><font color="#000099"><a href="#20">數值運算</a> --- declare -i、expr、let</font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.5.2</font></td>
-    <td><a href="#21">shift ���Ϊk</a></td>
+    <td><a href="#21">shift 的用法</a></td>
   </tr>
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>10.6 <a href="#22">�j�餶��</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>10.6 <a href="#22">迴圈介紹</a></strong></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.6.1</font></td>
-    <td><font color="#000099"><a href="#23">for �j��</a> --- <a href="#24">continue 
-      �P break ���O</a></font></td>
+    <td><font color="#000099"><a href="#23">for 迴圈</a> --- <a href="#24">continue 
+      與 break 指令</a></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.6.2</font></td>
-    <td><a href="#25">while�Buntil �j��</a></td>
+    <td><a href="#25">while、until 迴圈</a></td>
   </tr>
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>10.7 <a href="#26">case �y�{����</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>10.7 <a href="#26">case 流程控制</a></strong></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.7.1</font></td>
-    <td><a href="#27">case ���򥻻y�k</a></td>
+    <td><a href="#27">case 的基本語法</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.7.2</font></td>
-    <td><a href="#28">read ���O����</a></td>
+    <td><a href="#28">read 指令介紹</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.7.3</font></td>
-    <td><a href="#29">�[�J�禡���\��</a></td>
+    <td><a href="#29">加入函式的功能</a></td>
   </tr>
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>10.8 <a href="#30">�ܼƭȴ������ܼƭȼ˦����</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>10.8 <a href="#30">變數值替換及變數值樣式比對</a></strong></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.8.1</font></td>
-    <td><a href="#31">�ܼƭȴ���</a></td>
+    <td><a href="#31">變數值替換</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">10.8.2</font></td>
-    <td><a href="#32">�ܼƭȼ˦����</a></td>
+    <td><a href="#32">變數值樣式比對</a></td>
   </tr>
 </table>
 <font color="#0000FF" size="+1"><strong><font color="#000099"> </font></strong></font> 
 <br>
 <hr>
 <font color="#0000FF" size="+1"><strong><br>
-<a name="1"></a><font size="6">10.1 Shell Scripts �Ψ禡²��</font><font size="+2"><br>
+<a name="1"></a><font size="6">10.1 Shell Scripts 及函式簡介</font><font size="+2"><br>
 </font><font color="#000000"><br>
 </font></strong></font><font color="#000000"><strong><font size="+1"><a name="2"></a><font size="5">10.1.1 
-��� scripts</font></font></strong><br>
+何謂 scripts</font></font></strong><br>
 </font><br>
-�@���ڭ̷Q�n�ǥѰ���@�s�ꪺ���O�ӱo���X���G�ɡA�i�H��o�ǫ��O���զX�ƥ��g�J�@���ɮ׸̡A�ӳo���ɮ״N�s�� script file�C�ҥH�@�� Shell Script 
-�N�O�@�ӧt�� shell �R�O�զX���ɮסA�P�ɤ]�i�H��O�@�� shell �{���A�ǥѰ��榹 script file�A�N�i�H�o��@�s����檺���G�C ���M�H�W�������u�O�@�붧�K���� 
-script file�A�Y�z�Q�n���z�ҳ]�p�� script �ܱo����o���è㦳�P�_��O�A����i�H�b scripts ����[�W�@�� if ����y�Bfor �� 
-while (until) �j��Bcase �y�{������A�ܩ�ԲӰ��k�᭱���|�����C 
-<p align="left">�@���g�n�@�� script �ɡA���������L�֦����檺�v���A�o�ˤ~�i�H���楦�A���L�Y�O�H�@��ϥΪ̪������g�@�� shell script�A����z������o�� 
-  script �P�ɾ֦�<strong> </strong>r�Bx<strong> </strong>���v���~��A�o�I�бz�h�[�d�N�C<br>
+　當我們想要藉由執行一連串的指令而得到輸出結果時，可以把這些指令的組合事先寫入一個檔案裡，而這個檔案就叫做 script file。所以一支 Shell Script 
+就是一個含有 shell 命令組合的檔案，同時也可以算是一支 shell 程式，藉由執行此 script file，就可以得到一連串執行的結果。 當然以上所講的只是一般陽春型的 
+script file，若您想要讓您所設計的 script 變得比較聰明並具有判斷能力，那麼可以在 scripts 裡邊加上一些 if 條件句、for 及 
+while (until) 迴圈、case 流程控制等等，至於詳細做法後面都會說明。 
+<p align="left">　當寫好一支 script 時，必須先讓他擁有執行的權限，這樣才可以執行它，不過若是以一般使用者的身分寫一支 shell script，那麼您必須對這支 
+  script 同時擁有<strong> </strong>r、x<strong> </strong>的權限才行，這點請您多加留意。<br>
   <br>
-  �@�q���@����{�b�n�����S����u�sĶ�v�o��Ӧr�A���M�o�A�]�� Shell Scripts �O�ݩ�Ķ�����y��<font color="#000000" size="+1">�A</font><font color="#000000">�ҥH���z�{���X�s�g�n��A���ݸg�L�sĶ�����sĶ�N�i�H��������A�ܤ�K�a�C<br>
+  　從剛剛一直到現在好像都沒提到「編譯」這兩個字，當然囉，因為 Shell Scripts 是屬於直譯式的語言<font color="#000000" size="+1">，</font><font color="#000000">所以當您程式碼編寫好後，不需經過編譯器的編譯就可以直接執行，很方便吧。<br>
   <br>
   <strong><font color="#0000FF" size="+1"><font color="#000000"><a name="3"></a><font size="5">10.1.2 
-  �p��</font></font></font></strong><font color="#000000" size="5"><strong>���g�@�� 
+  如何</font></font></font></strong><font color="#000000" size="5"><strong>撰寫一支 
   shell script </strong></font><font color="#0000FF" size="+1"><strong><br>
   </strong></font><font color="#0000FF"><font color="#000000"><br>
-  </font></font>�@<font color="#000000">�H�U�C�X�n�s�g�@�� script ���j�P�B�J�G</font> </font></p>
+  </font></font>　<font color="#000000">以下列出要編寫一支 script 的大致步驟：</font> </font></p>
 <ol>
-  <li>�b script ���@�}�Y���ŧi�� script �ҨϥΪ��R�O�ѪR������A�p�G�O bash ���ܡA�N�H<strong>�u<font color="#0000FF">#! 
-    /bin/bash</font>�v</strong>���覡�Ӱ��ŧi�C<br>
-    �t�~�z�b���� file ���O���˵� script �ɮ������ɡA�N�O�ھڳo�̪��ŧi���C<br>
+  <li>在 script 的一開頭先宣告此 script 所使用的命令解析器為何，如果是 bash 的話，就以<strong>「<font color="#0000FF">#! 
+    /bin/bash</font>」</strong>的方式來做宣告。<br>
+    另外您在執行 file 指令來檢視 script 檔案類型時，就是根據這裡的宣告噢。<br>
     <br>
   </li>
-  <li> ������ script ���γ~�B²���y�z�B�@�̡B���ɤ�����A�n��K�޲z�A�ӳo�Ǥ��e�e���O�o�[�W�u#�v�A�b�u#�v�᭱���ԭz�A���F�Ĥ@��H�~�A���|�Q�������ѨӬݫݦӤ��|�Q����C 
+  <li> 註明此 script 的用途、簡易描述、作者、建檔日期等，好方便管理，而這些內容前面記得加上「#」，在「#」後面的敘述，除了第一行以外，都會被當成註解來看待而不會被執行。 
     <br>
     <br>
   </li>
-  <li>���۴N�i�H�}�l�ŧi�@���ܼƤνs�g�z�����檺�u�@���e�C<br>
+  <li>接著就可以開始宣告一些變數及編寫您欲執行的工作內容。<br>
     <br>
   </li>
-  <li>���g������A�O�o�N script �令�㦳�i���檺�v���C<br>
+  <li>撰寫完畢後，記得將 script 改成具有可執行的權限。<br>
     <br>
   </li>
-  <li>����K������J�R�O�A�i�H�N script �Ҧb���ؿ��[�J PATH �����ܼƤ��A�Ϊ̱N�Ҧ� scripts �������b ~/bin ����A���L�ݥ��T�w 
-    ~/bin ���w�q�b PATH ���C</li>
+  <li>為方便直接輸入命令，可以將 script 所在的目錄加入 PATH 環境變數中，或者將所有 scripts 都集中在 ~/bin 裡邊，不過需先確定 
+    ~/bin 有定義在 PATH 中。</li>
 </ol>
-<strong>�򥻽d��</strong>�G 
+<strong>基本範例</strong>： 
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">barry@suse:~&gt; <font color="#FFFF00"><strong>cd 
@@ -202,33 +202,33 @@ while (until) �j��Bcase �y�{������A�ܩ�ԲӰ��k�᭱���|�����C
       echo -n &quot;my kernel version is : &quot;<br>
       uname -r<br>
       <font color="#FFFF00"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">uname 
-      -r �i�Ψ���ܮ֤ߪ�����T�C</font><br>
+      -r 可用來顯示核心版本資訊。</font><br>
       <br>
       barry@suse:~/bin&gt; <font color="#FFFF00"><strong>chmod +x test.sh <br>
-      </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�� 
-      test.sh �㦳�i�����v���C<br>
+      </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">讓 
+      test.sh 具有可執行權限。<br>
       <br>
       </font><font color="#00FFFF"> <font color="#FFFFFF">barry@suse:~/bin&gt; 
       <strong><font color="#FFFF00">echo $PATH</font></strong><br>
       <font color="#FFFF00">/home/barry/bin</font>:/usr/local/bin:/usr/bin:/usr/X11R6/bin:/bin:/usr/games:/opt/gnome/bin:/opt/kde3/bin:/usr/lib/java/jre/bin</font></font><font color="#00FFFF" size="2"><br>
       </font><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"># 
-      </font></font></font><font color="#00FFFF" size="2">/home/barry/bin �ؿ����s�b�� 
-      PATH ���A�ҥH���@�U�N�i�H�������� test.sh�C<br>
+      </font></font></font><font color="#00FFFF" size="2">/home/barry/bin 目錄有存在於 
+      PATH 中，所以等一下就可以直接執行 test.sh。<br>
       <br>
       </font><font color="#00FFFF"> <font color="#FFFFFF">barry@suse:~/bin&gt; 
       <font color="#FFFF00"><strong>test.sh</strong></font><br>
       it is my first shell script.<br>
       my kernel version is : 2.6.16.21-0.8-smp<br>
       <font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"># 
-      </font></font></font></font></font><font color="#00FFFF" size="2"> �o�� script 
-      �����浲�G�C</font></font></font></font></font></td>
+      </font></font></font></font></font><font color="#00FFFF" size="2"> 這支 script 
+      的執行結果。</font></font></font></font></font></td>
   </tr>
 </table>
 <font color="#000000"> <br>
-�@�p�G�z script �Ҧs�b����m�O�b /tmp �ؿ��U<font size="+1">�A</font>�� /tmp �b PATH ���èS���w�q<font size="+1">�A</font>���ɥi�Ĩ��H�U���覡�Ӱ���o�� 
-script�G<br>
+　如果您 script 所存在的位置是在 /tmp 目錄下<font size="+1">，</font>而 /tmp 在 PATH 中並沒有定義<font size="+1">，</font>此時可採取以下的方式來執行這支 
+script：<br>
 <br>
-<strong>�k�@</strong>�G<br>
+<strong>法一</strong>：<br>
 </font> 
 <table width="70%" border="0">
   <tr> 
@@ -238,54 +238,39 @@ script�G<br>
   </tr>
 </table>
 <br>
-�@�ϥγo�Ǥ覡���� script �ɡA���� shell �|���ͤ@�ӫD���ʼҦ��� subshell (shell ���l��{)�A�A�� subshell ���o script 
-���ҭn���檺���O (subshell ���l��{) �ð��椧�A�����槹����A�N�D���v���ٵ��쥻�� shell�C�����򥻽d�Ҥ��� script �i�H�����Q����ɡA�]�O�o�˪�����y�{�C<br>
+　使用這些方式執行 script 時，首先 shell 會產生一個非互動模式的 subshell (shell 的子行程)，再由 subshell 取得 script 
+中所要執行的指令 (subshell 的子行程) 並執行之，等執行完畢後再將主控權交還給原本的 shell。像剛剛基本範例中的 script 可以直接被執行時，也是這樣的執行流程。<br>
 <br>
-<strong>�k�G</strong>�G<br>
+<strong>法二</strong>：<br>
 <font color="#000000"> </font> 
 <table width="70%" border="0">
   <tr> 
-    <td bgcolor="#000000"><font color="#FFFFFF">suse:/tmp #<font color="#FFFF00" face="�ө���"><strong> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:/tmp #<font color="#FFFF00" face="細明體"><strong> 
       . test.sh</strong></font><br>
-      suse:/tmp #<font color="#FFFF00" face="�ө���"><strong> source test.sh</strong></font></font></td>
+      suse:/tmp #<font color="#FFFF00" face="細明體"><strong> source test.sh</strong></font></font></td>
   </tr>
 </table>
 <font color="#000000"><br>
-�@�ϥ� <font color="#0000FF">source</font><strong> </strong>���O�Ρu<font color="#0000FF">.</font>�v�Ӱ��� 
-script �ɡA�|�b���e�� shell �U�A���榹 script �������O�A�N�n���b�R�O�C�W��J���O�@�ˡC<br>
+　使用 <font color="#0000FF">source</font><strong> </strong>指令或「<font color="#0000FF">.</font>」來執行 
+script 時，會在當前的 shell 下，執行此 script 中的指令，就好像在命令列上輸入指令一樣。<br>
 </font> 
 <p align="left"><font color="#000000" size="+1"><strong><a name="4"></a><font size="5">10.1.3 
-  BASH �禡²��</font></strong></font><br>
+  BASH 函式簡介</font></strong></font><br>
   <br>
-  �@�Y�z�O�Ĥ@���ǵ{���y�����ܡA�i��|��o�ӦW���Pı�쭯�͡A��껡��F�A�禡�u���L�O�t�@�ӥi�H�Q���檺�{���}�F�A�H script �ӻ��N�n��O script 
-  ���� script �@�ˡC<br>
+  　若您是第一次學程式語言的話，可能會對這個名詞感覺到陌生，其實說穿了，函式只不過是另一個可以被執行的程式罷了，以 script 來說就好比是 script 
+  中的 script 一樣。<br>
   <br>
-  �@�禡�������ҿת��禡�W�١A�ڭ̥i�H�N shell �{���X�g�b�o�Ө禡���Y�A�ñN��s�J shell ���O���餧���A�H�K�H�ɳQ�I�s����C�禡�b��L�{���y���̤S�Q�٬��Ƶ{���A�o�i�O�{���]�p�v���̷R�A�]���ϥΨ禡���\�h���n�B�G</p>
+  　函式本身有所謂的函式名稱，我們可以將 shell 程式碼寫在這個函式裡頭，並將其存入 shell 的記憶體之中，以便隨時被呼叫執行。函式在其他程式語言裡又被稱為副程式，這可是程式設計師的最愛，因為使用函式有許多的好處：</p>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
     <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td width="95%"><font color="#000099"><strong>²�Ƶ{�����]�p�G</strong></font></td>
+    <td width="95%"><font color="#000099"><strong>簡化程式的設計：</strong></font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td>�����b�]�p�@�ǵ{���ɡA�i�ೣ�|�ϥΨ�P�@�q���{���X�A�o�ɭԱz�i�H�N�o�Ǹg�`�ϥΪ��{���X�����]�p���禡�A�o�˷��D�{���ݭn�Ψ�o�q�{���X�ɡA�A�ɪ��h�I�s�禡�N��F�A�p���K�i�j�j��֤F���Ƽg�{�����·СC</td>
-  </tr>
-  <tr> 
-    <td>&nbsp;</td>
-    <td align="center">&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr> 
-    <td>&nbsp;</td>
-    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">�[�ְ���Ĳv�G</font></strong></td>
-  </tr>
-  <tr> 
-    <td>&nbsp;</td>
-    <td align="center">&nbsp;</td>
-    <td>�D�{���b�ޥΨ禡�ɡA�O������O���餤�@�s���A�]���i�[�֨���檺�į�C</td>
+    <td>往往在設計一些程式時，可能都會使用到同一段的程式碼，這時候您可以將這些經常使用的程式碼給它設計成函式，這樣當主程式需要用到這段程式碼時，適時的去呼叫函式就行了，如此便可大大減少了重複寫程式的麻煩。</td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -295,22 +280,37 @@ script �ɡA�|�b���e�� shell �U�A���榹 script �������O�A�N�n���b�R�O�C�W��J���O
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">�K����@�P�ק�G</font></strong></td>
+    <td><strong><font color="#000099">加快執行效率：</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td>�p�G�z�ҳ]�p���{���A�䤤�t���j�q���{���X�A�o�ɭԥi�H��X�q���n���{���X������줣�P���禡���Y�A�o�˥i�H���D�{�����{���X�K�o²��B����\Ū�A��ѱz�n�O�Q�վ�έק�o��{���������\��ɡA�i�H�w��禡�h���B�z�Y�i�C</td>
+    <td>主程式在引用函式時，是直接於記憶體中作存取，因此可加快其執行的效能。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">便於維護與修改：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>如果您所設計的程式，其中含有大量的程式碼，這時候可以把幾段重要的程式碼給它放到不同的函式裡頭，這樣可以讓主程式的程式碼便得簡潔且易於閱讀，改天您要是想調整或修改這支程式的部分功能時，可以針對函式去做處理即可。</td>
   </tr>
 </table>
 <br>
-�@�ܩ�ŧi�禡����k���H�U��ءG<br>
+　至於宣告函式的方法有以下兩種：<br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
     <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td width="95%"><font color="#000099"><strong>�ϥ� function �ӫŧi�禡�G</strong></font></td>
+    <td width="95%"><font color="#000099"><strong>使用 function 來宣告函式：</strong></font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -319,12 +319,12 @@ script �ɡA�|�b���e�� shell �U�A���榹 script �������O�A�N�n���b�R�O�C�W��J���O
         <tr> 
           <td>function name <br>
             {<br>
-            �@�@ shell commands<br>
+            　　 shell commands<br>
             } </td>
         </tr>
       </table>
       <br>
-      name �Y�O�z�ҫŧi���禡�W�١A�Ӧ��禡�ҭn���檺���O�h��b { } �����C</td>
+      name 即是您所宣告的函式名稱，而此函式所要執行的指令則放在 { } 之間。</td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -334,34 +334,34 @@ script �ɡA�|�b���e�� shell �U�A���榹 script �������O�A�N�n���b�R�O�C�W��J���O
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">�W�٤���[�W<font face="�ө���"> ()</font>�G</font></strong></td>
+    <td><strong><font color="#000099">名稱之後加上<font face="細明體"> ()</font>：</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
     <td><table width="30%" border="0" bgcolor="#CCCCCC">
         <tr> 
-          <td> <font face="�ө���">name ()</font><br>
+          <td> <font face="細明體">name ()</font><br>
             {<br>
-            �@�@ shell commands<br>
+            　　 shell commands<br>
             } </td>
         </tr>
       </table>
       <br>
-      �o�O�t�@�ثŧi�禡���覡�A�� name ���M�N�O�禡�o�C</td>
+      這是另一種宣告函式的方式，那 name 當然就是函式囉。</td>
   </tr>
 </table>
 <br>
-�@�z�i�H�b script �������ŧi�禡�A�]�i�H�N�禡�w�q�b���ҳ]�w�ɩΨ�L�ۭq���ɮ׸̡C���L�Ъ`�N�@�I�A����禡�w�q���̮ɡA�z�ҳ]�p�� script �b�ޥΨ禡���e�A�ݥ���s��禡���ɮװ��� 
-source �~��A��p�usource /etc/bash.bashrc�v�A�o�ˤ~�����ޤJ�禡�ܰO���餤�C<br>
+　您可以在 script 中直接宣告函式，也可以將函式定義在環境設定檔或其他自訂的檔案裡。不過請注意一點，當把函式定義於後者時，您所設計的 script 在引用函式之前，需先對存放函式的檔案執行 
+source 才行，比如「source /etc/bash.bashrc」，這樣才能先行引入函式至記憶體中。<br>
 <br>
 <strong><a name="5"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-<font size="+1">�R�O���檺�u������</font></strong><br>
+<font size="+1">命令執行的優先順序</font></strong><br>
 <br>
-�@���b�R�O�C�W��J�@�ӫ��O�� shell ���ѪR�ɡA�p�G�P�ɦs�b�@�ӧO�W�Ψ禡���P�z�ҿ�J���o�ӫ��O�W�٬ۦP�A�h shell ���檺�u�����Ǭ��G<strong><font color="#0000FF">�O�W 
-�� �禡 �� shell ���ةR�O �� �s�b�� PATH �ҩw�q���ؿ��C�������{��</font></strong><font color="#000000">�C</font>���U�Y�H�@�ӽd�Ҩӧ@�����C<br>
+　當在命令列上輸入一個指令給 shell 做解析時，如果同時存在一個別名及函式都與您所輸入的這個指令名稱相同，則 shell 執行的優先順序為：<strong><font color="#0000FF">別名 
+→ 函式 → shell 內建命令 → 存在於 PATH 所定義的目錄列表中之程式</font></strong><font color="#000000">。</font>底下即以一個範例來作說明。<br>
 <br>
-�@���g�@��²�檺 script�G<br>
+　先寫一支簡單的 script：<br>
 <br>
 <table width="70%" border="0">
   <tr> 
@@ -377,14 +377,14 @@ source �~��A��p�usource /etc/bash.bashrc�v�A�o�ˤ~�����ޤJ�禡�ܰO���餤�C<b
         barry is a shell script.<br>
         <font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"># 
         </font></font></font><font color="#00FFFF"></font></font></font><font color="#00FFFF" size="2"> 
-        </font></font></font></font></font><font color="#00FFFF" size="2"> �o�O 
+        </font></font></font></font></font><font color="#00FFFF" size="2"> 這是 
         </font><font color="#00FFFF">barry</font><font color="#00FFFF" size="2"> 
-        �o�� </font><font color="#00FFFF">script </font><font color="#00FFFF" size="2">�Ұ��檺���G�C</font><br>
+        這支 </font><font color="#00FFFF">script </font><font color="#00FFFF" size="2">所執行的結果。</font><br>
         </font></p></td>
   </tr>
 </table>
 <br>
-�@���ۨ� /etc/bash.bashrc �̥h�ŧi�禡�G<br>
+　接著到 /etc/bash.bashrc 裡去宣告函式：<br>
 <br>
 <table width="70%" border="0">
   <tr> 
@@ -392,14 +392,14 @@ source �~��A��p�usource /etc/bash.bashrc�v�A�o�ˤ~�����ޤJ�禡�ܰO���餤�C<b
       /etc/bash.bashrc</font></strong><br>
       function barry<br>
       {<br>
-      �@ echo &quot;barry is a function.&quot;<br>
+      　 echo &quot;barry is a function.&quot;<br>
       }<br>
       <br>
       suse:~ #<strong> <font color="#FFFF00">source /etc/bash.bashrc </font></strong></font></td>
   </tr>
 </table>
 <br>
-�@�A����@�� barry�G<br>
+　再執行一次 barry：<br>
 <br>
 <table width="70%" border="0">
   <tr> 
@@ -407,12 +407,12 @@ source �~��A��p�usource /etc/bash.bashrc�v�A�o�ˤ~�����ޤJ�禡�ܰO���餤�C<b
       barry is a function.<br>
       <font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"># 
       </font></font></font><font color="#00FFFF"></font></font></font><font color="#00FFFF" size="2"> 
-      </font></font></font></font></font><font color="#00FFFF" size="2"> </font><font color="#00FFFF" size="2">�o�O�禡</font><font color="#00FFFF"> 
-      barry</font><font color="#00FFFF" size="2"> �����浲�G�C</font> </font></td>
+      </font></font></font></font></font><font color="#00FFFF" size="2"> </font><font color="#00FFFF" size="2">這是函式</font><font color="#00FFFF"> 
+      barry</font><font color="#00FFFF" size="2"> 的執行結果。</font> </font></td>
   </tr>
 </table>
 <br>
-�@�̫�]�w�O�W�G<br>
+　最後設定別名：<br>
 <br>
 <table width="70%" border="0">
   <tr> 
@@ -424,7 +424,7 @@ source �~��A��p�usource /etc/bash.bashrc�v�A�o�ˤ~�����ޤJ�禡�ܰO���餤�C<b
   </tr>
 </table>
 <br>
-�@�A������ barry�G<br>
+　再次執行 barry：<br>
 <br>
 <table width="70%" border="0">
   <tr> 
@@ -433,28 +433,28 @@ source �~��A��p�usource /etc/bash.bashrc�v�A�o�ˤ~�����ޤJ�禡�ܰO���餤�C<b
       <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"># 
       </font></font></font><font color="#00FFFF"></font></font></font><font color="#00FFFF" size="2"> 
       </font></font></font></font></font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2"> 
-      �o�O�O�W </font><font color="#00FFFF">barry</font><font color="#00FFFF" size="2"> 
-      �����浲�G�C</font> </font></td>
+      這是別名 </font><font color="#00FFFF">barry</font><font color="#00FFFF" size="2"> 
+      的執行結果。</font> </font></td>
   </tr>
 </table>
 <br>
-�@�ݧ��W���o�ǨҤl�A���ӴN�i�H���զW�٬ۦP�ɪ�������ᶶ�ǤF�a !<br>
+　看完上面這些例子，應該就可以明白名稱相同時的執行先後順序了吧 !<br>
 <strong><font color="#0000FF" size="+1"><br>
-</font></strong>�@�z�i���� &quot;declare -f&quot; �h�d�ݥثe�s�b�����Ǩ禡�A��p��観�ŧi�@�� barry ���禡�A���ɴN�i�Q�� 
-declare �h�d�ߤ@�U�G<br>
+</font></strong>　您可執行 &quot;declare -f&quot; 去查看目前存在有哪些函式，比如剛剛有宣告一個 barry 的函式，此時就可利用 
+declare 去查詢一下：<br>
 <br>
 <table width="70%" border="0">
   <tr> 
     <td nowrap bgcolor="#000000"><font color="#FFFFFF"> suse:~ # <font color="#FFFF00"><strong>declare 
       -f barry</strong></font><br>
-      <font face="�ө���">barry ()<br>
+      <font face="細明體">barry ()<br>
       {<br>
-      �@�@echo &quot;barry is a function.&quot;<br>
+      　　echo &quot;barry is a function.&quot;<br>
       }</font></font></td>
   </tr>
 </table>
 <br>
-�@���n�O�Q��禡�������ܡA���� &quot;unset -f function-name&quot; �Y�i�G<br>
+　那要是想把函式移除的話，執行 &quot;unset -f function-name&quot; 即可：<br>
 <br>
 <table width="70%" border="0">
   <tr> 
@@ -464,19 +464,19 @@ declare �h�d�ߤ@�U�G<br>
 </table>
 <br>
 <font size="+1"><strong><font color="#0000FF"><a name="6"></a><font size="6">10.2 
-shell �S���������ܼ�</font></font><font size="+2"><br>
+shell 特殊的內建變數</font></font><font size="+2"><br>
 </font></strong></font><br>
-<strong><font size="+1"><a name="7"></a><font size="5">10.2.1 ��m�Ѽ� (positional 
+<strong><font size="+1"><a name="7"></a><font size="5">10.2.1 位置參數 (positional 
 parameter)</font></font></strong><br>
 <br>
-�@�b�ĤT���w�g��U�줶�йL�����ܼƪ������A�]�N�O�����ڭ̦b�n�J�t�Ϊ��ɭԡA�|�a�o�������ܼƨӱN�z�ӤH���ҫإ߰_�ӡA�ӳo�������ܼƤ��A���ǬO�w�q�b���ҳ]�w�ɸ��Y�A���ǫh�O�� 
-shell �ƥ��w�q�n�������ܼơA���M�٦����֦a��]���ݱo�������ܼƪ��v�l�աC���L�������~�Ashell �ٴ��Ѥ@�Ǥ���S���������ܼơA�ӳo���ܼƱ`�`�b�s�g 
-scripts �ɷ|�ϥΨ�C<br>
+　在第三章已經跟各位介紹過環境變數的概念，也就是說當我們在登入系統的時候，會靠這些環境變數來將您個人環境建立起來，而這些環境變數中，有些是定義在環境設定檔裡頭，有些則是由 
+shell 事先定義好的內建變數，當然還有不少地方也都看得到環境變數的影子啦。不過除此之外，shell 還提供一些比較特殊的內建變數，而這些變數常常在編寫 
+scripts 時會使用到。<br>
 <br>
-�@���ϳo�Ǥ����ܼƬO�H�Ʀr�өR�W���A�p 0�B1�B2�B3�B&#8230; �������A�N�٨䬰��m�Ѽ� (positional parameter)�A���M�����o���ܼƭȡA�N�b�W�٫e���[�W�ӡu$�v�Ÿ��A�p 
-$0�B$1�B$2�B$3�B�K �C $0 ���ܨ��o�{���������W�١A$1 ���ܨ��o�{���᭱�ұ����Ĥ@�Ӥ޼ƦW�١A$2 ���ܨ��o�{���᭱�ұ����ĤG�Ӥ޼ƦW�١A�l�̦������C<font size="+1"><strong><br>
+　假使這些內建變數是以數字來命名的，如 0、1、2、3、&#8230; 之類的，就稱其為位置參數 (positional parameter)，當然欲取得其變數值，就在名稱前面加上個「$」符號，如 
+$0、$1、$2、$3、… 。 $0 表示取得程式本身的名稱，$1 表示取得程式後面所接的第一個引數名稱，$2 表示取得程式後面所接的第二個引數名稱，餘依此類推。<font size="+1"><strong><br>
 <br>
-</strong></font><strong>�d��</strong>�G
+</strong></font><strong>範例</strong>：
 <table width="70%" border="0">
   <tr> 
     <td bgcolor="#000000"><p><font color="#FFFFFF">suse:~/bin #<font color="#FFFF00"><strong> 
@@ -493,10 +493,10 @@ $0�B$1�B$2�B$3�B�K �C $0 ���ܨ��o�{���������W�١A$1 ���ܨ��o�{���᭱�ұ����Ĥ@��
   </tr>
 </table>
 <br>
-�@�W���d�ҨS���D���ܡA���ۨӽͨ禡������m�ѼơC�ѩ�C�Ө禡���|�h�B�z�ݩ󥦦ۤv���޼ơA�]�����z�N��m�ѼƳ]�w�b�禡���Y���ɭԡA��Ҩ��o���N�O�禡�������޼ơA�ӫD�R�O�C�W���޼ơA�ܩ� 
-$0 �٬O���{�������C�ݥH�U���d�ҴN��o�F�G<br>
+　上面範例沒問題的話，接著來談函式中的位置參數。由於每個函式都會去處理屬於它自己的引數，因此當您將位置參數設定在函式裡頭的時候，其所取得的將是函式本身的引數，而非命令列上的引數，至於 
+$0 還是指程式本身。看以下的範例就曉得了：<br>
 <br>
-<strong>�d��</strong>�G<br>
+<strong>範例</strong>：<br>
 <table width="70%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin #<strong><font color="#FFFF00"> 
@@ -504,8 +504,8 @@ $0 �٬O���{�������C�ݥH�U���d�ҴN��o�F�G<br>
       <font color="#0099FF">#! /bin/bash</font><br>
       function func<br>
       {<br>
-      �@�@echo '$0' is : $0<br>
-      �@�@echo '$1' is $1 and '$2' is $2<br>
+      　　echo '$0' is : $0<br>
+      　　echo '$1' is $1 and '$2' is $2<br>
       } 
       <p>func arg1 arg2<br>
         <br>
@@ -519,158 +519,158 @@ $0 �٬O���{�������C�ݥH�U���d�ҴN��o�F�G<br>
   </tr>
 </table>
 <blockquote>
-  <p><font color="#000099"><strong>Tips�G</strong><font size="2">�ɥR�@�U�A�b�禡�����{���X�A�u���b�I�s�禡�ɤ~�|�Q����A���`�ä��|�D�ʰ��檺�C</font></font></p>
+  <p><font color="#000099"><strong>Tips：</strong><font size="2">補充一下，在函式中的程式碼，只有在呼叫函式時才會被執行，平常並不會主動執行的。</font></font></p>
 </blockquote>
 <p><br>
-  <font size="+1"><strong><a name="8"></a><font size="5">10.2.2 ��L���n�������ܼ�</font></strong></font><br>
+  <font size="+1"><strong><a name="8"></a><font size="5">10.2.2 其他重要的內建變數</font></strong></font><br>
   <br>
-  �@�t�~�٦��X�� shell �������ܼơA�]�O�z�b�]�p scripts �ɸg�`�|�ޥΪ��G</p>
+  　另外還有幾個 shell 的內建變數，也是您在設計 scripts 時經常會引用的：</p>
 <table width="100%" border="1">
   <tr bgcolor="#CCCCCC"> 
-    <td align="center" valign="middle" nowrap><strong><font color="#000099">�����ܼ�</font></strong></td>
-    <td><strong><font color="#000099">�N�@���@�N�@�q</font></strong></td>
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">內建變數</font></strong></td>
+    <td><strong><font color="#000099">代　表　意　義</font></strong></td>
   </tr>
   <tr> 
     <td width="7%" align="center" valign="middle" nowrap><font color="#000099">#</font></td>
-    <td width="93%"><font color="#000099">���ܵ{������Ҧ���m�Ѽƪ��`�Ƭ���C</font></td>
+    <td width="93%"><font color="#000099">表示程式之後所有位置參數的總數為何。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">*</font></td>
-    <td><font color="#000099">���ܵ{������Ҧ���m�ѼƦW�٦C���C</font></td>
+    <td><font color="#000099">表示程式之後所有位置參數名稱列表。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">@</font></td>
-    <td><font color="#000099">�P�u*�v�O�@�˪��N��A���p�G�b���o���ܼƭȮɡA�ϥ����޸��N���̥]���A���N���Үt���F�A�o�����b�y�᪺�d�Ҥ��|�����C</font></td>
+    <td><font color="#000099">與「*」是一樣的意思，但如果在取得其變數值時，使用雙引號將它們包住，那就有所差異了，這部分在稍後的範例中會說明。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">?</font></td>
-    <td><font color="#000099">���ܵ{�����������A�Ǧ^�� (exit value �� return value)�C�b Shell 
-      �U�Ұ��檺�{�������ɡA�|�Ǧ^�@�Ӿ�ƪ��s���� Shell�A�@��Ǧ^ 0 ���ܵ{������L�~ (true)�A�Y�Ǧ^�D 0 ���ȡA���ܵ{������L�{�X�F���~ 
-      (false)�C<br>
-      �b scripts ���A�i�H�ϥ�<strong> </strong>exit ���O�Ӱh�X script ������A�åi�P�ɳ]�w exit value�C���p�G�O�b�禡���Y�A�h�ݨϥ� 
-      return ���O�ӵ����禡������A���M�]�i�P�ɱN return value �]�w�W�h�C </font></td>
+    <td><font color="#000099">表示程式的結束狀態傳回值 (exit value 或 return value)。在 Shell 
+      下所執行的程式結束時，會傳回一個整數的編號給 Shell，一般傳回 0 表示程式執行無誤 (true)，若傳回非 0 的值，表示程式執行過程出了錯誤 
+      (false)。<br>
+      在 scripts 中，可以使用<strong> </strong>exit 指令來退出 script 的執行，並可同時設定 exit value。但如果是在函式裡頭，則需使用 
+      return 指令來結束函式的執行，當然也可同時將 return value 設定上去。 </font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">$</font></td>
-    <td><font color="#FF0000"><font color="#000099">���ܷ��e shell �� pid�C</font></font></td>
+    <td><font color="#FF0000"><font color="#000099">表示當前 shell 的 pid。</font></font></td>
   </tr>
 </table>
 <br>
-�@�n���o�H�W�o�Ǥ����ܼƪ��ȡA�N�b�ܼƦW�٤��e�[�W $ �Ÿ��Y�i�A�p�y$#�z�B�y$@�z�B�y$?�z���C<br>
+　要取得以上這些內建變數的值，就在變數名稱之前加上 $ 符號即可，如『$#』、『$@』、『$?』等。<br>
 <br>
-<strong>�d�Ҥ@</strong>�G 
+<strong>範例一</strong>： 
 <table width="100%" border="0" bgcolor="#CCCCCC">
   <tr> 
     <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
       cat /etc/passwd &gt; bckfile</strong></font><br>
       suse:~ #<font color="#FFFF00"><strong> echo $?</strong></font><br>
-      <font color="#00FFFF" size="2"> <font color="#FFFFFF"><strong>0</strong></font>�@ 
-      �� ���� cat ���O�����T�Q����C</font><br>
+      <font color="#00FFFF" size="2"> <font color="#FFFFFF"><strong>0</strong></font>　 
+      ← 表示 cat 指令有正確被執行。</font><br>
       <br>
       suse:~ #<font color="#FFFF00"><strong> nocmd </strong></font><br>
       bash: nocmd: command not found<br>
       suse:~ #<font color="#FFFF00"><strong> echo $?</strong></font><br>
-      <font size="2"><strong>127</strong></font><font color="#00FFFF" size="2">�@�� 
-      ���� nocmd ���O���榳�~�C</font></font></td>
+      <font size="2"><strong>127</strong></font><font color="#00FFFF" size="2">　← 
+      表示 nocmd 指令執行有誤。</font></font></td>
   </tr>
 </table>
 <br>
-<strong>�d�ҤG</strong>�G<strong><br>
+<strong>範例二</strong>：<strong><br>
 </strong> 
 <table width="100%" border="0">
   <tr> 
     <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~/bin #<font color="#FFFF00"><strong> 
       vi test3.sh</strong></font><br>
       <font color="#0099FF">#! /bin/bash</font><br>
-      <font face="�ө���">echo \$*:positional parameter:$*<br>
+      <font face="細明體">echo \$*:positional parameter:$*<br>
       echo \$@:positional parameter:$@<br>
       echo Total is:$#<br>
       exit 0</font><br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>chmod +x test3.sh </strong></font><br>
       suse:~/bin # <strong><font color="#FFFF00">test3.sh para1 para2</font></strong><br>
-      <font face="�ө���">$*:positional parameter:para1 para2<br>
+      <font face="細明體">$*:positional parameter:para1 para2<br>
       $@:positional parameter:para1 para2<br>
       Total is:2</font><br>
       <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"># 
       </font></font></font><font color="#00FFFF"></font></font></font><font color="#00FFFF" size="2"> 
       </font></font></font></font></font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2"> 
-      </font></font><font color="#00FFFF" size="2"> �i�H�ݥX $@ �P $* �����G�ۦP�C</font><br>
+      </font></font><font color="#00FFFF" size="2"> 可以看出 $@ 與 $* 的結果相同。</font><br>
       <br>
       suse:~/bin # <strong><font color="#FFFF00">echo $?</font></strong><br>
       0 <br>
       <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"># 
       </font></font></font></font></font></font></font></font></font></font></font></font><font color="#00FFFF" size="2"> 
-      exit value �O 0�C<br>
+      exit value 是 0。<br>
       <br>
       </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"># 
       </font></font></font></font></font></font></font></font></font></font></font></font><font color="#00FFFF" size="2"> 
-      </font></font><font color="#00FFFF" size="2">�{�b�N�o script ���e��@�U�G</font><font color="#00FFFF" size="2"><br>
+      </font></font><font color="#00FFFF" size="2">現在將這 script 內容改一下：</font><font color="#00FFFF" size="2"><br>
       </font><font color="#FFFFFF">suse:~/bin #<font color="#FFFF00"><strong> 
       vi test3.sh</strong></font><br>
       <font color="#0099FF">#! /bin/bash</font><br>
-      <font face="�ө���">echo \$*:positional parameter:</font><font color="#00FF00" face="�ө���">&quot;$*&quot;</font><font face="�ө���">�@<font color="#00FFFF">#<font size="2"> 
-      </font></font></font><font color="#00FFFF" size="2" face="�ө���">�N $* �[�W���޸��C</font><font face="�ө���"><br>
-      echo \$@:positional parameter:</font><font color="#00FF00" face="�ө���">&quot;$@&quot;</font><font face="�ө���">�@<font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
-      </font></font></font></font><font color="#00FFFF" size="2" face="�ө���">�N 
-      $@ �[�W���޸��C</font><font face="�ө���"><br>
+      <font face="細明體">echo \$*:positional parameter:</font><font color="#00FF00" face="細明體">&quot;$*&quot;</font><font face="細明體">　<font color="#00FFFF">#<font size="2"> 
+      </font></font></font><font color="#00FFFF" size="2" face="細明體">將 $* 加上雙引號。</font><font face="細明體"><br>
+      echo \$@:positional parameter:</font><font color="#00FF00" face="細明體">&quot;$@&quot;</font><font face="細明體">　<font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
+      </font></font></font></font><font color="#00FFFF" size="2" face="細明體">將 
+      $@ 加上雙引號。</font><font face="細明體"><br>
       echo Total is:$#<br>
       exit 0</font></font><font color="#00FFFF" size="2"><br>
       <br>
       </font><font color="#00FFFF"> <font color="#FFFFFF">suse:~/bin #<font color="#FFFF00"><strong> 
       test3.sh &quot;para1 para2&quot; para3</strong></font><br>
-      <font face="�ө���">$*:positional parameter:para1 para2 para3<br>
+      <font face="細明體">$*:positional parameter:para1 para2 para3<br>
       $@:positional parameter:para1 para2 para3<br>
       Total is:2</font><br>
       <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"># 
-      </font></font></font></font></font></font></font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">�ѩ� 
-      para1 �� para2 �Q���޸��]�b�@�_�A�ҥH�|�Q�����@�Ӥ޼ƨӬݫݡA�]�� $# �����G�O 2�C</font><font color="#FFFFFF"><br>
+      </font></font></font></font></font></font></font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">由於 
+      para1 及 para2 被雙引號包在一起，所以會被當成一個引數來看待，因此 $# 的結果是 2。</font><font color="#FFFFFF"><br>
       <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"># 
-      </font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">�t�~ 
-      &quot;$*&quot; �� &quot;$@&quot; �ݰ_�Ӧn���O�ۦP�����G�A����ڤW &quot;$*&quot; �N�����O &quot;para1 
+      </font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">另外 
+      &quot;$*&quot; 及 &quot;$@&quot; 看起來好像是相同的結果，但實際上 &quot;$*&quot; 代表的是 &quot;para1 
       para2 para3&quot;</font><font color="#FFFFFF"><br>
       <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF"># 
       </font></font></font></font></font></font></font></font></font></font></font></font></font></font></font> 
-      </font><font color="#00FFFF" size="2">�o�ӳ�@�r��A�� &quot;$@&quot; �h�O���� &quot;para1 
-      para2&quot; �� &quot;para3&quot; �o��Ӧr��C </font></font></font></td>
+      </font><font color="#00FFFF" size="2">這個單一字串，而 &quot;$@&quot; 則是表示 &quot;para1 
+      para2&quot; 及 &quot;para3&quot; 這兩個字串。 </font></font></font></td>
   </tr>
 </table>
 <br>
-�@�p�G���� &quot;$*&quot; �� &quot;$@&quot; ���d�ұz�٤��O�ܲM�����ܡA���~��ݤU�@�p�`�������C<br>
+　如果關於 &quot;$*&quot; 及 &quot;$@&quot; 的範例您還不是很清楚的話，請繼續看下一小節的說明。<br>
 <br>
-<strong><font size="+1"><a name="9"></a><font size="5">10.2.3 &quot;$*&quot; �P 
-&quot;$@&quot; ���t�O</font></font></strong><br>
+<strong><font size="+1"><a name="9"></a><font size="5">10.2.3 &quot;$*&quot; 與 
+&quot;$@&quot; 的差別</font></font></strong><br>
 <br>
-�@* �P @ �o��Ӥ����ܼƬO�]�t����m�Ѽ� 0 �H�~����L��m�ѼơA���z���o���̪��ܼƭȮɡA�p�G�S���[�W���޸��A�h��̪����G�O�ۦP���A�ܩ�[�W���޸���i�N���P�F�C<br>
+　* 與 @ 這兩個內建變數是包含除位置參數 0 以外的其他位置參數，當您取得它們的變數值時，如果沒有加上雙引號，則兩者的結果是相同的，至於加上雙引號後可就不同了。<br>
 <br>
-�@&quot;$*&quot; �ҥN�����O���o�@�ӥ]�t����m�Ѽ� 0 �H�~���Ҧ���m�Ѽƪ���@�r��A�åB�H IFS �����Ĥ@�ӹw�]�r�Ũӧ@���C�Ӧ�m�ѼƤ��������j�Ÿ��A�ӳo�ӹw�]�r�ųq�`���ťզr���A��p���z���� 
-�yscript.sh arg1 arg2 arg3�z �ɡA�h &quot;$*&quot; �ҥN�����N�O &quot;arg1 arg2 arg3&quot;�C<br>
+　&quot;$*&quot; 所代表的是取得一個包含除位置參數 0 以外的所有位置參數的單一字串，並且以 IFS 中的第一個預設字符來作為每個位置參數之間的分隔符號，而這個預設字符通常為空白字元，比如當您執行 
+『script.sh arg1 arg2 arg3』 時，則 &quot;$*&quot; 所代表的就是 &quot;arg1 arg2 arg3&quot;。<br>
 <br>
-�@�Q�γo�ӯS�ʡA�h�i�H�ǵۧ��� IFS ���w�]���j�Ÿ��A�ӥH���P�����j�Ÿ��ӰϹj�o�Ǧ�m�ѼơC<br>
+　利用這個特性，則可以藉著改變 IFS 的預設分隔符號，而以不同的分隔符號來區隔這些位置參數。<br>
 <br>
-<strong>�d��</strong>�G<br>
+<strong>範例</strong>：<br>
 <table width="70%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin # <strong><font color="#FFFF00">vi 
       test4.sh</font></strong><br>
       <font color="#0099FF">#! /bin/bash</font> <br>
       IFS= :<br>
-      echo $*�@<font color="#00FFFF">#</font><font color="#00FFFF" size="2"> $* 
-      ���[���޸��C</font><br>
+      echo $*　<font color="#00FFFF">#</font><font color="#00FFFF" size="2"> $* 
+      未加雙引號。</font><br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>chmod +x test4.sh</strong></font><br>
       suse:~/bin #<font color="#FFFF00"><strong> test4.sh arg1 arg2 arg3</strong></font><br>
-      <font face="�ө���">arg1 arg2 arg3 </font><br>
+      <font face="細明體">arg1 arg2 arg3 </font><br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>vi test4.sh</strong></font><br>
       <font color="#0099FF">#! /bin/bash</font> <br>
       IFS= :<br>
-      echo &quot;$*&quot;�@<font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
-      </font></font></font><font color="#00FFFF" size="2"> $* �[�W�F���޸��C</font><br>
+      echo &quot;$*&quot;　<font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
+      </font></font></font><font color="#00FFFF" size="2"> $* 加上了雙引號。</font><br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>test4.sh arg1 arg2 arg3</strong></font><br>
-      <font face="�ө���">arg1:arg2:arg3 </font><br>
-      <font color="#00FFFF">#</font><font color="#00FFFF" size="2"></font> <font color="#00FFFF" size="2">�ݥX�[�W���޸����᪺���G�F�a�C</font></font></td>
+      <font face="細明體">arg1:arg2:arg3 </font><br>
+      <font color="#00FFFF">#</font><font color="#00FFFF" size="2"></font> <font color="#00FFFF" size="2">看出加上雙引號之後的結果了吧。</font></font></td>
   </tr>
 </table>
 <br>
@@ -678,77 +678,77 @@ $0 �٬O���{�������C�ݥH�U���d�ҴN��o�F�G<br>
 <table width="100%" border="1" cellspacing="0">
   <tr>
     <td bgcolor="#CCCCCC">
-<p align="center"><strong><font color="#000099" size="+1">IFS �� metacharacter ������</font></strong></p>
-      <p><font color="#000099">IFS ���W�� Internal Field Separator�A�O shell �w�]�ҨϥΪ����������j�Ÿ��A�o�ӲŸ��q�`�O 
-        Space (�ť���)�BTab (������) �� NewLine (Enter ��)�A���L &quot;$*&quot; �u���|�ޥΪ����j�Ÿ��A�O�H 
-        IFS �Ĥ@�өw�q���r�Ŭ��D�A�]�N�O�ťզr���աC<br>
+<p align="center"><strong><font color="#000099" size="+1">IFS 及 metacharacter 的說明</font></strong></p>
+      <p><font color="#000099">IFS 全名為 Internal Field Separator，是 shell 預設所使用的內部欄位分隔符號，這個符號通常是 
+        Space (空白鍵)、Tab (跳位鍵) 及 NewLine (Enter 鍵)，不過 &quot;$*&quot; 真正會引用的分隔符號，是以 
+        IFS 第一個定義的字符為主，也就是空白字元啦。<br>
         <br>
-        �t�~�j�a�`�|�b command line �W�ϥΤ޸��A���o����o�o�Ǥ޸����D�n�@�ΡA�]�ӱ`�d��w�Y��V�A�ҥH���̦b�o�̵y�L�����@�U�A���L�b�����e�z�o���F�� 
-        metacharacter ���[�q�~��C <br>
+        另外大家常會在 command line 上使用引號，但卻不曉得這些引號的主要作用，因而常搞到暈頭轉向，所以筆者在這裡稍微說明一下，不過在此之前您得先了解 
+        metacharacter 的涵義才行。 <br>
         <br>
-        metacharacter �O�ҿת������r�šA�ӭ��~���쪺 IFS �r�ŴN�O�ݩ� metacharacter�A���~���ڭ̱`�b command 
-        line �ҿ�J���@�ǲŸ��p�u ; �v�B�u ( �v�B�u ) �v�B�u &lt; �v�B�u &gt; �v�B�u &amp; �v�B�u | �v�����A�]���٬� 
-        metacharacter�C���z�Q��o�ǲŸ����\������ɡA�N�i�H�ϥγ�޸� (single quotes)�B���޸� (double quotes) 
-        �� �u \ �v(backslash)�C<br>
+        metacharacter 是所謂的中介字符，而剛剛才提到的 IFS 字符就是屬於 metacharacter，此外像我們常在 command 
+        line 所輸入的一些符號如「 ; 」、「 ( 」、「 ) 」、「 &lt; 」、「 &gt; 」、「 &amp; 」、「 | 」等等，也都稱為 
+        metacharacter。當您想把這些符號的功能取消時，就可以使用單引號 (single quotes)、雙引號 (double quotes) 
+        或 「 \ 」(backslash)。<br>
         <br>
-        ���ϥγ�޸��ɡA�H�W�ҦC metacharacter ���\�ೣ�|�Q�����A�t�~���O�W�B�u ~ �v�B�u $ �v�u ` �v(�o�O�Ϥ޸��ӫD��޸�) 
-        �θU�Φr�����A��\��]���|�Q�����C<br>
+        當使用單引號時，以上所列 metacharacter 的功能都會被取消，另外像別名、「 ~ 」、「 $ 」「 ` 」(這是反引號而非單引號) 
+        及萬用字元等，其功能也都會被關閉。<br>
         <br>
-        ���ϥ����޸��ɡA���F�u $ �v�B�u `�v ��O�d�즳���\��H�~�A��L���Ҵ��Ϊ��r�Ť]���|�Q�����C <br>
+        當使用雙引號時，除了「 $ 」、「 `」 能保留原有的功能以外，其他剛剛所提及的字符也都會被關閉。 <br>
         <br>
-        ���ϥΡu \ �v�ɡA�u�n�򱵦b�u \ �v���᪺�S���r�šA�N�|�Q������\��C<br>
+        當使用「 \ 」時，只要緊接在「 \ 」之後的特殊字符，就會被取消其功能。<br>
         <br>
-        �ݧ��H�W�����A�i��߲z�٦��ǰݸ��C�O���O�o�b���� grep �� sed ���O�ɡA�᭱�� pattern ���γ�޸��]���A�����Y���@�ǯS���r���٬O����\��s�b�ڡA����o�Ӱ��D�A�����q 
-        shell meta �� command meta �����רӬݡC�����b�z����@�Ǥ䴩 RE �����O�ɡA���O�ᤧ�ҥH�[�W��޸��A�O���F�קK�o�ǯS���r�Ŵ����Q 
-        shell �ѪR���A�Өϥγ�޸��]����A�N�i�H�⨺�Ǧr�ŧ��㪺�浹�䴩 RE �����O�ӳB�z�A�����M���ɳo�ǯS���Ÿ��N��N���b RE �������ǯS���[�q�o 
+        看完以上說明，可能心理還有些問號。記不記得在介紹 grep 及 sed 指令時，後面的 pattern 都用單引號包住，但裡頭的一些特殊字符還是有其功能存在啊，關於這個問題，必須從 
+        shell meta 及 command meta 的角度來看。首先在您執行一些支援 RE 的指令時，指令後之所以加上單引號，是為了避免這些特殊字符提早被 
+        shell 解析掉，而使用單引號包住後，就可以把那些字符完整的交給支援 RE 的指令來處理，那當然此時這些特殊符號就能代表在 RE 中的那些特殊涵義囉 
         ! </font></p></td>
   </tr>
 </table>
 <br>
-�@�F�ѤF &quot;$*&quot; ��A���ۨӬ� &quot;$@&quot;�C&quot;$@&quot; �i�H�N�C�Ӧ�m�Ѽƥ����޸��A���A�o�˰����ت��O�i�H���z�ӧO���Υ��̪��ȨӨϥΡA��p���� 
-�yscript.sh arg1 arg2 arg3�z �ɡA&quot;$@&quot; �ҥN�����N�O &quot;arg1&quot; &quot;arg2&quot; 
-&quot;arg3&quot; �o�T�Ӧr��C<br>
+　了解了 &quot;$*&quot; 後，接著來看 &quot;$@&quot;。&quot;$@&quot; 可以將每個位置參數用雙引號括住，這樣做的目的是可以讓您個別取用它們的值來使用，比如執行 
+『script.sh arg1 arg2 arg3』 時，&quot;$@&quot; 所代表的就是 &quot;arg1&quot; &quot;arg2&quot; 
+&quot;arg3&quot; 這三個字串。<br>
 <br>
-<strong>�d��</strong>�G<br>
+<strong>範例</strong>：<br>
 <table width="70%" border="0">
   <tr> 
-    <td bgcolor="#000000"><font color="#999999">1. &quot;$*&quot; �d�ҡG</font><font color="#FFFFFF">&nbsp;</font><font color="#FFFFFF"><br>
+    <td bgcolor="#000000"><font color="#999999">1. &quot;$*&quot; 範例：</font><font color="#FFFFFF">&nbsp;</font><font color="#FFFFFF"><br>
       suse:~/bin # <font color="#FFFF00"><strong>vi test5.sh</strong></font><br>
       <font color="#0099FF">#! /bin/bash</font><br>
       function arg {<br>
-      �@�@echo &quot;use double quotes :&quot;<br>
-      �@�@echo -e &quot;\tTotal is $#&quot;<br>
+      　　echo &quot;use double quotes :&quot;<br>
+      　　echo -e &quot;\tTotal is $#&quot;<br>
       } <br>
       arg &quot;$*&quot;<br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>chmod +x test5.sh</strong></font><br>
       suse:~/bin #<font color="#FFFF00"><strong> test5.sh arg1 arg2 arg3</strong></font><br>
-      <font face="�ө���">use double quotes :<br>
-      �@�@�@�@Total is 1 </font><br>
-      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">�] &quot;$*&quot; 
-      �N�� &quot;arg1 arg2 arg3&quot;�A�ҥH $# �O 1�C<br>
+      <font face="細明體">use double quotes :<br>
+      　　　　Total is 1 </font><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">因 &quot;$*&quot; 
+      代表 &quot;arg1 arg2 arg3&quot;，所以 $# 是 1。<br>
       </font><font color="#999999"><br>
-      2. &quot;$@&quot; �d�ҡG</font><br>
+      2. &quot;$@&quot; 範例：</font><br>
       suse:~/bin # <font color="#FFFF00"><strong>vi test5.sh</strong></font><br>
       <font color="#0099FF">#! /bin/bash</font><br>
       function arg {<br>
-      �@�@echo &quot;use double quotes :&quot;<br>
-      �@�@echo -e &quot;\tTotal is $#&quot;<br>
+      　　echo &quot;use double quotes :&quot;<br>
+      　　echo -e &quot;\tTotal is $#&quot;<br>
       } <br>
       arg &quot;$@&quot; <br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>test5.sh arg1 arg2 arg3</strong></font><br>
-      <font face="�ө���">use double quotes :<br>
-      �@�@�@�@Total is 3</font><br>
+      <font face="細明體">use double quotes :<br>
+      　　　　Total is 3</font><br>
       <font color="#00FFFF">#</font> <font color="#00FFFF" size="2"> 
-      �] &quot;$@&quot; �N�� &quot;arg1&quot; &quot;arg2&quot; &quot;arg3&quot;�A�ҥH 
-      $# �O 3�C</font></font> </td>
+      因 &quot;$@&quot; 代表 &quot;arg1&quot; &quot;arg2&quot; &quot;arg3&quot;，所以 
+      $# 是 3。</font></font> </td>
   </tr>
 </table>
 <br>
-�@�A�|�ӧ�²�檺�Ҥl�A���L�]�� script ���|�ϥΨ� for �j��A�ҥH�o�ӽd�ҥi���z���x for �j�骺�Ϊk��A�A�^�L�Y�ӬݡG<br>
+　再舉個更簡單的例子，不過因為 script 中會使用到 for 迴圈，所以這個範例可等您熟悉 for 迴圈的用法後，再回過頭來看：<br>
 <br>
-<strong>�d��</strong>�G<br>
+<strong>範例</strong>：<br>
 <table width="70%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin # <font color="#FFFF00"><strong>vi 
@@ -756,7 +756,7 @@ $0 �٬O���{�������C�ݥH�U���d�ҴN��o�F�G<br>
       <font color="#0099FF">#! /bin/bash</font><br>
       for var in<strong> </strong>&quot;$*&quot;<br>
       do<br>
-      �@echo $var is positional parameter.<br>
+      　echo $var is positional parameter.<br>
       done <br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>chmod +x test6.sh</strong></font><br>
@@ -767,7 +767,7 @@ $0 �٬O���{�������C�ݥH�U���d�ҴN��o�F�G<br>
       <font color="#0099FF">#! /bin/bash</font><br>
       for var in<strong> </strong>&quot;$@&quot;<br>
       do<br>
-      �@echo $var is a positional parameter.<br>
+      　echo $var is a positional parameter.<br>
       done <br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>test6.sh arg1 arg2 arg3</strong></font><br>
@@ -778,193 +778,193 @@ $0 �٬O���{�������C�ݥH�U���d�ҴN��o�F�G<br>
 </table>
 <br>
 <font color="#0000FF" size="+1"><strong><a name="11"></a><font size="6">10.3 
-test ���O���Ϊk</font></strong></font><br>
+test 指令的用法</font></strong></font><br>
 <br>
-�@�b 10.2.2 �`������F�{���������A���Ǧ^�� (exit value)�A�p exit value �� 0 �N�O true�Aexit value �D 0 
-�Y�O false�C�Ӳ{�b�n���Ъ� test ���O�A�h�O�i�H�w��z�Ҵ��Ѫ�����ӧ@���աA��������յ��G�� true �ɡAtest �N�Ǧ^ 0�A���յ��G�� false�A�����M�N�Ǧ^�D 
-0 ���ȡC�b scripts ���Atest �i�O�ܱ`�Ϊ��@�Ӵ��դu��A�ҥH�бz�ȥ��F�ѡC<br>
+　在 10.2.2 節中提到了程式結束狀態的傳回值 (exit value)，如 exit value 為 0 就是 true，exit value 非 0 
+即是 false。而現在要介紹的 test 指令，則是可以針對您所提供的條件來作測試，當條件測試結果為 true 時，test 就傳回 0，測試結果為 false，那當然就傳回非 
+0 的值。在 scripts 中，test 可是很常用的一個測試工具，所以請您務必了解。<br>
 <br>
-<font size="+1"><strong><a name="12"></a><font size="5">10.3.1 test ���O</font></strong></font><br>
+<font size="+1"><strong><a name="12"></a><font size="5">10.3.1 test 指令</font></strong></font><br>
 <br>
-<strong>���O�y�k</strong>�G<br>
+<strong>指令語法</strong>：<br>
 <table width="100%" border="0" bgcolor="#CCCCCC">
   <tr>
-    <td><strong><font face="�ө���">test EXPRESSION<br>
+    <td><strong><font face="細明體">test EXPRESSION<br>
       [ EXPRESSION ]</font></strong></td>
   </tr>
 </table>
 <br>
-<strong>�@</strong>EXPRESSION �N�O�z�ҿ�J������A�]�N�O���ܦ��A�� test �N�O�ھڳo�ӱ���ӨM�w�n�Ǧ^����ȡC�z�]�i�H�ϥ� 
-[ ] �ӥN�� test ������A���L�]�b [ ] ���� EXPRESSION �i�n�P [ ] �����O���ťզr�����A�]�N�O�b &quot; [ &quot; 
-����� &quot; ] &quot; ���e�n�d���Ů�աC<br>
+<strong>　</strong>EXPRESSION 就是您所輸入的條件，也就是表示式，而 test 就是根據這個條件來決定要傳回什麼值。您也可以使用 
+[ ] 來代替 test 的執行，不過包在 [ ] 中的 EXPRESSION 可要與 [ ] 之間保有空白字元噢，也就是在 &quot; [ &quot; 
+之後及 &quot; ] &quot; 之前要留有空格啦。<br>
 <br>
-�@�ܩ�d�Ҫ������A���B��Ť��޿��Ť��Ч���|�|�һ����C<br>
+　至於範例的部分，等運算符及邏輯算符介紹完後會舉例說明。<br>
 <br>
-<font size="+1"><strong><a name="13"></a><font size="5">10.3.2 �B���</font></strong></font><br>
+<font size="+1"><strong><a name="13"></a><font size="5">10.3.2 運算符</font></strong></font><br>
 <br>
-�@�b�]�p EXPRESSION (����) ���ɭԡA�`�`�|�Ψ�@�ǹB��Ÿ���䤤�A�M��A�浹 test �h���P�_�A�ҥH���U�N���O�w��r��B�ƭȤ��ˬd�ɮ��ݩʪ��P�_�B��ŨӸ�j�a�@�����C<br>
+　在設計 EXPRESSION (條件式) 的時候，常常會用到一些運算符號於其中，然後再交給 test 去做判斷，所以底下就分別針對字串、數值及檢查檔案屬性的判斷運算符來跟大家作說明。<br>
 <br>
 <strong><a name="14"></a><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
-<font color="#000099">�ɮ��ݩʪ��B���</font></strong><br>
+<font color="#000099">檔案屬性的運算符</font></strong><br>
 <br>
 <table width="100%" border="1">
   <tr bgcolor="#CCCCCC"> 
-    <td align="center" valign="middle"><font color="#000099"><strong>�B �� ��</strong></font></td>
-    <td nowrap><font color="#000099"><strong>���@��</strong></font></td>
+    <td align="center" valign="middle"><font color="#000099"><strong>運 算 符</strong></font></td>
+    <td nowrap><font color="#000099"><strong>說　明</strong></font></td>
   </tr>
   <tr> 
     <td width="15%" align="center" valign="middle"><font color="#000099">-f file</font></td>
-    <td width="85%" nowrap><font color="#000099">file �s�b�A�åB���@�ɮסC</font></td>
+    <td width="85%" nowrap><font color="#000099">file 存在，並且為一檔案。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle"><font color="#000099">-d file</font></td>
-    <td nowrap><font color="#000099">file �s�b�A�åB���@�ؿ��C</font></td>
+    <td nowrap><font color="#000099">file 存在，並且為一目錄。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle"><font color="#000099">-r file</font></td>
-    <td nowrap><font color="#000099">���榹 script �̹� file �㦳Ū���v���C</font></td>
+    <td nowrap><font color="#000099">執行此 script 者對 file 具有讀取權限。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle"><font color="#000099">-w file</font></td>
-    <td nowrap><font color="#000099">���榹 script �̹� file �㦳�g�J�v���C</font></td>
+    <td nowrap><font color="#000099">執行此 script 者對 file 具有寫入權限。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle"><font color="#000099">-x file</font></td>
-    <td nowrap><font color="#000099">���榹 script �̹� file �㦳�����v���C</font></td>
+    <td nowrap><font color="#000099">執行此 script 者對 file 具有執行權限。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle"><font color="#000099">-e file</font></td>
-    <td nowrap><font color="#000099">file �s�b��t�ΤW�C</font></td>
+    <td nowrap><font color="#000099">file 存在於系統上。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle"><font color="#000099">-s file</font></td>
-    <td nowrap><font color="#000099">file �s�b�A�åB�ɮפj�p���� 0�C</font></td>
+    <td nowrap><font color="#000099">file 存在，並且檔案大小不為 0。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle"><font color="#000099">-u file</font></td>
-    <td nowrap><font color="#000099">file �㦳 SUID ���ݩʡC</font></td>
+    <td nowrap><font color="#000099">file 具有 SUID 的屬性。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle"><font color="#000099">-g file</font></td>
-    <td nowrap><font color="#000099">file �㦳 SGID ���ݩʡC</font></td>
+    <td nowrap><font color="#000099">file 具有 SGID 的屬性。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle"><font color="#000099">-k file</font></td>
-    <td nowrap><font color="#000099">file �㦳 Sticky bit ���ݩʡC</font></td>
+    <td nowrap><font color="#000099">file 具有 Sticky bit 的屬性。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">file1 -nt 
       file2</font></td>
-    <td nowrap><font color="#000099">file1 �� file2 ���s ( �ھڭק�ɶ��@��� )�C</font></td>
+    <td nowrap><font color="#000099">file1 較 file2 為新 ( 根據修改時間作比較 )。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">file1 -ot 
       file2</font></td>
-    <td nowrap><font color="#000099">file1 �� file2 ���� ( �ھڭק�ɶ��@��� )�C</font></td>
+    <td nowrap><font color="#000099">file1 較 file2 為舊 ( 根據修改時間作比較 )。</font></td>
   </tr>
 </table>
 <br>
-�@�z�i�H�[�W &quot;<strong> ! </strong>&quot; (not ���) �b�B��Ť��e�A��p &quot;! -d file&quot; 
-�N�O�� file ���O�@�ӥؿ��C<br>
+　您可以加上 &quot;<strong> ! </strong>&quot; (not 算符) 在運算符之前，比如 &quot;! -d file&quot; 
+就是說 file 不是一個目錄。<br>
 <strong><br>
-<a name="15"></a><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">�ƭȤ�����B���</font></strong><br>
+<a name="15"></a><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">數值比較的運算符</font></strong><br>
 <br>
 <table width="100%" border="1">
   <tr bgcolor="#CCCCCC"> 
-    <td align="center" valign="middle" nowrap><font color="#000099"><strong>�B 
-      �� ��</strong></font></td>
-    <td nowrap><font color="#000099"><strong>���@��</strong></font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099"><strong>運 
+      算 符</strong></font></td>
+    <td nowrap><font color="#000099"><strong>說　明</strong></font></td>
   </tr>
   <tr> 
     <td width="15%" align="center" valign="middle" nowrap><font color="#000099">n1 
       -eq n2</font></td>
-    <td width="85%" nowrap><font color="#000099">n1 ���� n2�C-eq : equal�C</font></td>
+    <td width="85%" nowrap><font color="#000099">n1 等於 n2。-eq : equal。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">n1 -ne n2</font></td>
-    <td nowrap><font color="#000099">n1 ������ n2�C-ne : not equal�C</font></td>
+    <td nowrap><font color="#000099">n1 不等於 n2。-ne : not equal。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">n1 -gt n2</font></td>
-    <td nowrap><font color="#000099">n1 �j�� n2�C-gt : greater than�C</font></td>
+    <td nowrap><font color="#000099">n1 大於 n2。-gt : greater than。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">n1 -ge n2</font></td>
-    <td nowrap><font color="#000099">n1 �j�󵥩� n2�C-ge : greater than or equal�C</font></td>
+    <td nowrap><font color="#000099">n1 大於等於 n2。-ge : greater than or equal。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">n1 -lt n2</font></td>
-    <td nowrap><font color="#000099">n1 �p�� n2�C-lt : less than�C</font></td>
+    <td nowrap><font color="#000099">n1 小於 n2。-lt : less than。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">n1 -le n2</font></td>
-    <td nowrap><font color="#000099">n1 �p�󵥩� n2�C-le : less than or equal�C</font></td>
+    <td nowrap><font color="#000099">n1 小於等於 n2。-le : less than or equal。</font></td>
   </tr>
 </table>
 <br>
 <strong><a name="16"></a><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
-<font color="#000099">�r�������B���</font></strong><br>
+<font color="#000099">字串比較的運算符</font></strong><br>
 <br>
 <table width="100%" border="1">
   <tr bgcolor="#CCCCCC"> 
-    <td align="center" valign="middle" nowrap><font color="#000099"><strong>�B 
-      �� ��</strong></font></td>
-    <td nowrap><font color="#000099"><strong>���@��</strong></font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099"><strong>運 
+      算 符</strong></font></td>
+    <td nowrap><font color="#000099"><strong>說　明</strong></font></td>
   </tr>
   <tr> 
     <td width="15%" align="center" valign="middle" nowrap><font color="#000099">str1 
       = str2</font></td>
-    <td width="85%" nowrap><font color="#000099">str1 ���� str2�C</font></td>
+    <td width="85%" nowrap><font color="#000099">str1 等於 str2。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">str1 != str2</font></td>
-    <td nowrap><font color="#000099">str1 ������ str2�C</font></td>
+    <td nowrap><font color="#000099">str1 不等於 str2。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">str1 &gt; 
       str2</font></td>
-    <td nowrap><font color="#000099">str1 �j�� str2�C</font></td>
+    <td nowrap><font color="#000099">str1 大於 str2。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">str1 &lt; 
       str2</font></td>
-    <td nowrap><font color="#000099">str1 �p�� str2�C</font></td>
+    <td nowrap><font color="#000099">str1 小於 str2。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-z str</font></td>
-    <td nowrap><font color="#000099">str ���Ŧr��C</font></td>
+    <td nowrap><font color="#000099">str 為空字串。</font></td>
   </tr>
   <tr> 
     <td align="center" valign="middle" nowrap><font color="#000099">-n str</font></td>
-    <td nowrap><font color="#000099">str ���D�Ŧr��C</font></td>
+    <td nowrap><font color="#000099">str 為非空字串。</font></td>
   </tr>
 </table>
 <br>
 <font size="+1"><strong><a name="17"></a><font size="5">10.3.3 &quot; || &quot; 
-�� &quot; &amp;&amp; &quot; �޿���</font></strong></font><br>
+及 &quot; &amp;&amp; &quot; 邏輯算符</font></strong></font><br>
 <br>
-�@�b test �y�k���]�i�H�ϥ� &quot;||&quot; �� &quot;&amp;&amp;&quot; �o����޿��šC�ٰO�o�b�ĤT�����쪺 &quot;command1 
-&amp;&amp; command2&quot; �� &quot;command1 || command2&quot; ���N��a ! ���L���ɭԨèS���ζǦ^�Ȫ��[���Ӹ����C<br>
+　在 test 語法中也可以使用 &quot;||&quot; 及 &quot;&amp;&amp;&quot; 這兩個邏輯算符。還記得在第三章提到的 &quot;command1 
+&amp;&amp; command2&quot; 及 &quot;command1 || command2&quot; 的意思吧 ! 不過那時候並沒有用傳回值的觀念來解釋。<br>
 <br>
-�@������ &quot;command1 &amp;&amp; command2&quot;�A�� command1 �� exit value �� 0 (true) 
-�ɡA�~�|���۰��� command2�A�Y command1 �� exit value ���D 0 (false)�A�h command2 �N���|�Q����A�]�N�O�� 
-command2 �u���b command1�� true �����p�U�~�|�Q����C�� &quot;command1 || command2&quot; �h�O���� 
-command2 �u���b command1 �� false �ɤ~�|�Q�����o ! ���F�o���[����A�� test �]�O�@�˪��N��A��p�G<br>
+　先說說 &quot;command1 &amp;&amp; command2&quot;，當 command1 的 exit value 為 0 (true) 
+時，才會接著執行 command2，若 command1 的 exit value 為非 0 (false)，則 command2 將不會被執行，也就是說 
+command2 只有在 command1為 true 的情況下才會被執行。而 &quot;command1 || command2&quot; 則是表示 
+command2 只有在 command1 為 false 時才會被執行囉 ! 有了這個觀念後，那 test 也是一樣的意思，比如：<br>
 <br>
 <table width="30%" border="0" bgcolor="#CCCCCC">
   <tr>
-    <td nowrap><font face="�ө���"><strong>test expression &amp;&amp; command</strong></font></td>
+    <td nowrap><font face="細明體"><strong>test expression &amp;&amp; command</strong></font></td>
   </tr>
 </table>
 <br>
-�@�o���ܻ��� test ���յ��G�Ǧ^ 0 �ɡA�N�|���� command�A���p�G�ϥ� &quot;||&quot; �ɡA�h�u���b test �Ǧ^�D 0 �ɤ~�|���� 
-command�C<br>
+　這表示說當 test 測試結果傳回 0 時，就會執行 command，那如果使用 &quot;||&quot; 時，則只有在 test 傳回非 0 時才會執行 
+command。<br>
 <br>
-�@�b�P�@�� expression ���A�]�i�H�ϥ� -a (and) �� -o (or) �ӹ�@�ӥH�W�����󰵧P�_�C<br>
+　在同一個 expression 中，也可以使用 -a (and) 及 -o (or) 來對一個以上的條件做判斷。<br>
 <br>
-�@�H�U�|�X�ӨҤl�Ӭݬݦp��ϥ� test (�� [ ] )�÷f�t�B��ŨϥΡG<br>
+　以下舉幾個例子來看看如何使用 test (或 [ ] )並搭配運算符使用：<br>
 <br>
-<strong>�d�һ���</strong>�G<br>
+<strong>範例說明</strong>：<br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
@@ -972,17 +972,17 @@ command�C<br>
       passwd is a file.<br>
       <font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"></font> 
       <font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2"> 
-      ���� /etc/passwd �O�_���ɮסA�p�G�O���� (ture)�Atest �N�Ǧ^ 0�A<br>
+      測試 /etc/passwd 是否為檔案，如果是的話 (ture)，test 就傳回 0，<br>
       </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"></font> 
       <font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2"> 
-      </font></font><font color="#00FFFF" size="2"> �ñ��۰����᪺ echo ���O�C</font><br>
+      </font></font><font color="#00FFFF" size="2"> 並接著執行其後的 echo 指令。</font><br>
       <br>
       suse:~ # <font color="#FFFF00"><strong>[ -f /etc/passwd ] &amp;&amp; echo 
       &quot;passwd is a file.&quot;</strong></font><br>
       passwd is a file. <br>
       <font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"></font> 
       <font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2"> 
-      �H [ ] �Ӵ��N test�C�o�إΪk�]�n���x���C</font><br>
+      以 [ ] 來替代 test。這種用法也要熟悉噢。</font><br>
       <br>
       suse:~ #<font color="#FFFF00"><strong> test ! -x /usr/bin/passwd || var=&quot;The 
       expression is false.&quot;</strong></font><br>
@@ -990,10 +990,10 @@ command�C<br>
       The expression is false.<br>
       <font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"></font> 
       <font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2"> 
-      �P�_ /usr/bin/passwd �O�_���i����A���G���M�O false�A�ҥH���۴N��<br>
+      判斷 /usr/bin/passwd 是否不可執行，結果當然是 false，所以接著就把<br>
       </font><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"></font> 
       <font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2"> 
-      &quot;The expression is false.&quot; �o�ӭȳ]�w�� var �ܼơC</font><br>
+      &quot;The expression is false.&quot; 這個值設定給 var 變數。</font><br>
       <br>
       suse:~ # <font color="#FFFF00"><strong>var1=3;var2=5 </strong></font><br>
       suse:~ #<font color="#FFFF00"><strong> [ &quot;$var1&quot; -lt &quot;$var2&quot; 
@@ -1001,99 +1001,99 @@ command�C<br>
       good <br>
       <font color="#FFFFFF"><font color="#00FFFF">#</font> 
       </font><font color="#00FFFF" size="2"> 
-      �Ĥ@�� expression �� true�A�ҥH�|�i��ĤG�� expression ���P�_�A�p�P�_���G<br>
+      第一個 expression 為 true，所以會進行第二個 expression 的判斷，如判斷結果<br>
       </font><font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2"> 
-      �� false �ɡA�~�|����̫᪺ echo ���O�C<br>
+      為 false 時，才會執行最後的 echo 指令。<br>
       </font><br>
       suse:~ #<font color="#FFFF00"><strong> [ -n &quot;$USER&quot; -a &quot;$UID&quot; 
       = 0 ] &amp;&amp; echo &quot;you are super user.&quot;</strong></font><br>
       you are super user. <br>
       <font color="#00FFFF">#</font><font color="#00FFFF" size="2"></font> <font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"> 
-      </font></font><font color="#00FFFF" size="2">�o�ӱ���y���A�ϥ� -a �ӳs����ӱ��󪺧P�_�A������󳣥��T�ɡA<br>
+      </font></font><font color="#00FFFF" size="2">這個條件句中，使用 -a 來連接兩個條件的判斷，當兩條件都正確時，<br>
       </font><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"></font> 
       <font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2"> 
-      �o�ӱ���y�~�O true�A�]�~���~��i��U���� echo ���O�C</font></td>
+      這個條件句才是 true，也才能繼續進行下面的 echo 指令。</font></td>
   </tr>
 </table>
 <br>
 <strong><font color="#0000FF" size="+1"><a name="18"></a><font size="6">10.4 if 
-����P�_��</font><br>
+條件判斷式</font><br>
 </font></strong><font color="#000000"><br>
-�@if ����y���Ӻ�O�{���y���̨ϥβv�������@�ر���P�_���A���i�H�ھڱz�ҳ]�w����y���u���A�ӨM�w����n�Ĩ����欰�C���ӤF�ѥ����򥻥Ϊk�G</font><font color="#0000FF" size="+1"><strong><br>
+　if 條件句應該算是程式語言裡使用率極高的一種條件判斷式，它可以根據您所設定條件句的真假，來決定後續要採取的行為。先來了解它的基本用法：</font><font color="#0000FF" size="+1"><strong><br>
 </strong></font><font color="#000000"><br>
 </font>
 <table width="40%" border="0" bgcolor="#CCCCCC">
   <tr>
-    <td><font color="#000000"><strong>if</strong> [ ����y 1 ] ;<strong> then</strong><br>
-      <strong><font size="+1">�@</font></strong>�@���O�ԭz 1<br>
-      <strong>elif</strong> [ ����y 2 ] ; <strong>then</strong><br>
-      <strong><font size="+1">�@</font></strong>�@���O�ԭz 2</font><font color="#000000" size="+1"><strong><br>
+    <td><font color="#000000"><strong>if</strong> [ 條件句 1 ] ;<strong> then</strong><br>
+      <strong><font size="+1">　</font></strong>　指令敘述 1<br>
+      <strong>elif</strong> [ 條件句 2 ] ; <strong>then</strong><br>
+      <strong><font size="+1">　</font></strong>　指令敘述 2</font><font color="#000000" size="+1"><strong><br>
       </strong></font><font color="#000000"> <strong>else</strong><br>
-      �@ �@���O�ԭz 3<br>
+      　 　指令敘述 3<br>
       <strong>fi </strong></font></td>
   </tr>
 </table>
 <font color="#000000"><br>
-</font><font color="#000000">�@</font><font color="#000000">�W���N��O���p�G����y 1 ���յ��G���u�A�h���� 
-then �᭱�����O�ԭz 1�A���槹������ if �z�y�N�����C���p�G����y 1 �����ɡA�h�A�i�� elif ��t�@�ӱ���y 2 ���P�_�A���ɭY����y 2 
-�P�_���G���u�A�N������O�ԭz 2�A�p�G����y 2 �P�_�笰���ɡA�h���� else ���ҫ��w�����O�ԭz 3�C<br>
+</font><font color="#000000">　</font><font color="#000000">上面意思是說如果條件句 1 測試結果為真，則執行 
+then 後面的指令敘述 1，執行完畢後整個 if 述句就結束。但如果條件句 1 為假時，則再進行 elif 後另一個條件句 2 的判斷，此時若條件句 2 
+判斷結果為真，就執行指令敘述 2，如果條件句 2 判斷亦為假時，則執行 else 其後所指定的指令敘述 3。<br>
 <br>
-�@�b if ����y���A�z�i�H�ϥΦn�X�� elif �h�B�~���w�@�Ǥ��P������C�t�~�b if �y�{�̡Aelif �� else �ëD���n�A���O then �h�O�@�w�n���C<br>
+　在 if 條件句中，您可以使用好幾個 elif 去額外指定一些不同的條件。另外在 if 流程裡，elif 及 else 並非必要，但是 then 則是一定要的。<br>
 <br>
-�@���M if ����y���y�k <strong>if [ &#8230; ]</strong>�A�]�i�H�ϥ�<font color="#FF0000"><strong><font color="#000000"> 
+　當然 if 條件句的語法 <strong>if [ &#8230; ]</strong>，也可以使用<font color="#FF0000"><strong><font color="#000000"> 
 if test</font></strong></font> <font color="#000000"><strong>&#8230;</strong></font> 
-�Ӵ��N�A�аѦҤW�@�` test �������������C<br>
+來替代，請參考上一節 test 的相關說明噢。<br>
 </font><font color="#0000FF" size="+1"><strong> <br>
-</strong></font>�@�ϥ� if �Ӱ��ƦX�����P�_�]��²��A�N�O�ϥέ��~�йL�� &quot; &amp;&amp; &quot; ( and 
-)�B&quot; || &quot; ( or ) �ӳs����ӱ���y�A��p�G<br>
+</strong></font>　使用 if 來做複合式的判斷也很簡單，就是使用剛剛才教過的 &quot; &amp;&amp; &quot; ( and 
+)、&quot; || &quot; ( or ) 來連接兩個條件句，比如：<br>
 <br>
 <table width="40%" border="0" bgcolor="#CCCCCC">
   <tr> 
-    <td nowrap><font color="#000000">if [ ����y 1 ] &amp;&amp; [ ����y 2 ] ; then<br>
-      �@�@���O�ԭz 1<br>
+    <td nowrap><font color="#000000">if [ 條件句 1 ] &amp;&amp; [ 條件句 2 ] ; then<br>
+      　　指令敘述 1<br>
       else<br>
-      �@�@���O�ԭz 2<br>
+      　　指令敘述 2<br>
       fi</font></td>
   </tr>
 </table>
 <br>
-�@�o�O������ӱ��󦡬Ҭ��u�����p�U�~�|������O�ԭz 1�A�_�h�N������O�ԭz 2�C�Y���� &quot;||&quot; �ɡA�h�u�n����y 1 �α���y 2 ���@�̫����u�A�N�|������O�ԭz 
-1�A�u������̬Ҭ����ɤ~�|������O�ԭz 2�C<br>
+　這是說當兩個條件式皆為真的情況下才會執行指令敘述 1，否則就執行指令敘述 2。若換成 &quot;||&quot; 時，則只要條件句 1 或條件句 2 有一者恆為真，就會執行指令敘述 
+1，只有當兩者皆為假時才會執行指令敘述 2。<br>
 <br>
-�@�p�G if �᭱�����O command�A��p�G<br>
+　如果 if 後面接的是 command，比如：<br>
 <br>
 <table width="40%" border="0" bgcolor="#CCCCCC">
   <tr> 
     <td nowrap><font color="#000000">if command1 &amp;&amp; command2 ; then<br>
-      �@�@���O�ԭz 1 <br>
+      　　指令敘述 1 <br>
       else<br>
-      �@�@���O�ԭz 2<br>
+      　　指令敘述 2<br>
       fi</font></td>
   </tr>
 </table>
 <br>
-�@�o���ܻ��� command1 �Ǧ^ 0 �ɤ~�|���۰��� command2�A�Y command2 �]�Ǧ^ 0�A���N������O�ԭz 1�A�_�h������O�ԭz 2 �Q���Y 
-command1�Ǧ^�D 0�A�۵M�N�u����� else �᪺���O�ԭz 2 �F�C<br>
+　這表示說當 command1 傳回 0 時才會接著執行 command2，若 command2 也傳回 0，那就執行指令敘述 1，否則執行指令敘述 2 ﹔但若 
+command1傳回非 0，自然就只能執行 else 後的指令敘述 2 了。<br>
 <br>
-<font color="#000000">�@�z��i�����y�P comand ���ƦX�����P�_�G</font><font color="#0000FF"><br>
+<font color="#000000">　您亦可對條件句與 comand 做複合式的判斷：</font><font color="#0000FF"><br>
 <br>
 </font>
 <table width="40%" border="0" bgcolor="#CCCCCC">
   <tr> 
-    <td nowrap><p><font color="#000000">if [ ����y 1 ] || command1 ; then<br>
-        �@�@���O�ԭz 1<br>
+    <td nowrap><p><font color="#000000">if [ 條件句 1 ] || command1 ; then<br>
+        　　指令敘述 1<br>
         </font><font color="#000000">else<br>
-        �@�@���O�ԭz 2<br>
+        　　指令敘述 2<br>
         fi<br>
         </font> </p>
       </td>
   </tr>
 </table>
 <font color="#0000FF"><br>
-<font color="#000000">�@������y 1 �� true �Ϊ̱���y 1 �� false �� command1 �� true �ɡA�|������O�ԭz 
-1�A�_�h������O�ԭz 2�C</font></font><br>
+<font color="#000000">　當條件句 1 為 true 或者條件句 1 為 false 但 command1 為 true 時，會執行指令敘述 
+1，否則執行指令敘述 2。</font></font><br>
 <br>
-<font color="#000000"><strong>�d��</strong>�G</font><br>
+<font color="#000000"><strong>範例</strong>：</font><br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF"> suse:~/bin # <font color="#FFFF00"><strong>vi 
@@ -1102,9 +1102,9 @@ command1�Ǧ^�D 0�A�۵M�N�u����� else �᪺���O�ԭz 2 �F�C<br>
       var=/etc/passwd<br>
       if test -e &quot;$var&quot; &amp;&amp; grep -q barry &quot;$var&quot; ; 
       then<br>
-      �@�@echo &quot;`id barry`&quot;<br>
+      　　echo &quot;`id barry`&quot;<br>
       else<br>
-      �@�@echo &quot;passwd file is not exist or barry not found.&quot;<br>
+      　　echo &quot;passwd file is not exist or barry not found.&quot;<br>
       fi <br>
       <br>
       suse:~/bin #<font color="#FFFF00"><strong> chmod +x script1.sh</strong></font><br>
@@ -1113,11 +1113,11 @@ command1�Ǧ^�D 0�A�۵M�N�u����� else �᪺���O�ԭz 2 �F�C<br>
   </tr>
 </table>
 <br>
-�@[ -e &quot;$var&quot; ] ���յ��G�� true�A�ҥH���۰��� grep ���O�A���ɭY /etc/passwd �̦s�b�� barry 
-�o�ӱb�����ܡA���� grep �]�|�Ǧ^ 0�A�̫���M�N���� then �᭱�����O�ԭz�F�A�_�h�ù��W�|��ܡupasswd file is not exist 
-or barry not found�v�C<br>
+　[ -e &quot;$var&quot; ] 測試結果為 true，所以接著執行 grep 指令，此時若 /etc/passwd 裡存在著 barry 
+這個帳號的話，那麼 grep 也會傳回 0，最後當然就執行 then 後面的指令敘述了，否則螢幕上會顯示「passwd file is not exist 
+or barry not found」。<br>
 <br>
-<strong>�d��</strong>�G<br>
+<strong>範例</strong>：<br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin #<font color="#FFFF00"><strong> 
@@ -1127,9 +1127,9 @@ or barry not found�v�C<br>
       b=5<br>
       <br>
       if [ &quot;$a&quot; -gt 6 -o &quot;$a&quot; -le &quot;$b&quot; ] ; then<br>
-      �@�@echo the larger number is &quot;$b&quot;.<br>
+      　　echo the larger number is &quot;$b&quot;.<br>
       else<br>
-      �@�@echo it is bad .<br>
+      　　echo it is bad .<br>
       fi<br>
       <br>
       suse:~/bin #<font color="#FFFF00"><strong> chmod +x script2.sh</strong></font><br>
@@ -1138,9 +1138,9 @@ or barry not found�v�C<br>
   </tr>
 </table>
 <br>
-�@�o�O�@�� expression ���ܦ��̧t����ӱ��󪺴��աA�]�������O�ϥ� -o ���s���A�ҥH�u�n�䤤�@�ӱ��󥿽T�A�h�䵲�G�N�����u�C<br>
+　這是一個 expression 表示式裡含有兩個條件的測試，因為兩條件是使用 -o 做連接，所以只要其中一個條件正確，則其結果就恆為真。<br>
 <br>
-<strong>�d��</strong>�G 
+<strong>範例</strong>： 
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin # <font color="#FFFF00"><strong>vi 
@@ -1149,35 +1149,35 @@ or barry not found�v�C<br>
       prog=/usr/sbin/named<br>
       if [ -e &quot;$prog&quot; ] &amp;&amp; [ -n &quot;$(/sbin/pidof named)&quot; 
       ] ; then<br>
-      �@�@echo named is running now.<br>
+      　　echo named is running now.<br>
       else<br>
-      �@�@echo named is not running.<br>
+      　　echo named is not running.<br>
       fi<br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>chmod +x script3.sh</strong></font><br>
       suse:~/bin # <font color="#FFFF00"><strong>script3.sh</strong></font><br>
       <font color="#CCCCCC">named is not running.</font><br>
-      <font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">�o�O 
-      named �A�ȥ��ҰʤU�����浲�G�C</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">這是 
+      named 服務未啟動下的執行結果。</font><br>
       <br>
-      <font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">�N 
-      named �A�ȱҰʡG</font><br>
-      suse:~/bin # <font color="#FFFF00"><strong>rcnamed start</strong></font>�@<br>
-      Starting name server BIND�@�@�@�@�@�@<strong> <font color="#00FF00">done</font></strong><br>
+      <font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">將 
+      named 服務啟動：</font><br>
+      suse:~/bin # <font color="#FFFF00"><strong>rcnamed start</strong></font>　<br>
+      Starting name server BIND　　　　　　<strong> <font color="#00FF00">done</font></strong><br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>script3.sh</strong></font><br>
       <font color="#CCCCCC">named is running now.<strong> <br>
       </strong></font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font> 
-      </font><font color="#00FFFF" size="2">�o�O named �A�Ȥw�ҰʤU�����浲�G�C</font></font></font></td>
+      </font><font color="#00FFFF" size="2">這是 named 服務已啟動下的執行結果。</font></font></font></td>
   </tr>
 </table>
 <br>
-�@���� /usr/sbin/named �O�s�b���A�ҥH [ -e &quot;$prog&quot; ] ���u �Q�� /sbin/pidof named �O�ΨӬd�� 
-named �� pid�A���] named �A�Ȯڥ��S���ҰʡA�h���� /sbin/pidof named �N�L�k��ܥ��� pid ����T�A���M�N��O�Ŧr��F�A�ҥH 
-[ -n &quot;$(/sbin/pidof named)&quot; ] �����A�]���|���� else �᭱�����O�ԭz�ӥX�{ &quot;named is 
-not running&quot; �����浲�G�X�ӡC<br>
+　首先 /usr/sbin/named 是存在的，所以 [ -e &quot;$prog&quot; ] 為真 ﹔而 /sbin/pidof named 是用來查詢 
+named 的 pid，假設 named 服務根本沒有啟動，則執行 /sbin/pidof named 就無法顯示任何 pid 的資訊，當然就算是空字串了，所以 
+[ -n &quot;$(/sbin/pidof named)&quot; ] 為假，因此會執行 else 後面的指令敘述而出現 &quot;named is 
+not running&quot; 的執行結果出來。<br>
 <br>
-<strong>�d��</strong>�G<br>
+<strong>範例</strong>：<br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin #<font color="#FFFF00"><strong> 
@@ -1187,49 +1187,49 @@ not running&quot; �����浲�G�X�ӡC<br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>vi script4.sh</strong></font><br>
       <font color="#0099FF">#! /bin/bash</font><br>
-      <font face="�ө���">[ -e /etc/passwd ] || exit 5</font>�@<font color="#00FFFF" size="2"><br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�p�G 
-      /etc/passwd ���s�b�ɡA�����h�X�� script ������A�ó]�w�� exit value �� 5�C<br>
+      <font face="細明體">[ -e /etc/passwd ] || exit 5</font>　<font color="#00FFFF" size="2"><br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">如果 
+      /etc/passwd 不存在時，直接退出此 script 的執行，並設定其 exit value 為 5。<br>
       </font><br>
-      <font face="�ө���">if [ -e /root/testfile ] ; then�@<font color="#00FFFF" size="2"><br>
-      �@�@</font></font><font color="#00FFFF"><font color="#FFFFFF" face="�ө���">. 
-      /root/testfile</font></font><font face="�ө���"><br>
+      <font face="細明體">if [ -e /root/testfile ] ; then　<font color="#00FFFF" size="2"><br>
+      　　</font></font><font color="#00FFFF"><font color="#FFFFFF" face="細明體">. 
+      /root/testfile</font></font><font face="細明體"><br>
       else<br>
-      �@�@exit 6<br>
+      　　exit 6<br>
       fi </font><br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�p�G 
-      /root/testfile �s�b�A�|���J /root/testfile�A���ɧY�� var1 �� var2 Ū�J�O����<br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">如果 
+      /root/testfile 存在，會載入 /root/testfile，此時即把 var1 及 var2 讀入記憶體<br>
       </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font></font><font color="#00FFFF" size="2">��</font></font><font color="#00FFFF" size="2">�C���p�G 
-      testfile ���s�b�A�N���� script ������A�ó]�w exit value �� 6�C</font><br>
-      <p>if [ -n &quot;$var1&quot; -a ! -z &quot;$var2&quot; ] ; then�@<font color="#00FFFF" size="2"><br>
+      </font></font><font color="#00FFFF" size="2">中</font></font><font color="#00FFFF" size="2">。那如果 
+      testfile 不存在，就結束 script 的執行，並設定 exit value 為 6。</font><br>
+      <p>if [ -n &quot;$var1&quot; -a ! -z &quot;$var2&quot; ] ; then　<font color="#00FFFF" size="2"><br>
         </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-        </font></font></font></font><font color="#00FFFF" size="2">�p�G var1 �� var2 
-        �ҫD�Ŧr��A�h����H�U��� echo ���O�C</font><br>
-        �@�@echo &quot;barry's uid is $var1&quot;<br>
-        �@�@echo &quot;barry's gid is $var2&quot;<br>
+        </font></font></font></font><font color="#00FFFF" size="2">如果 var1 及 var2 
+        皆非空字串，則執行以下兩個 echo 指令。</font><br>
+        　　echo &quot;barry's uid is $var1&quot;<br>
+        　　echo &quot;barry's gid is $var2&quot;<br>
         else<br>
-        �@�@echo &quot;barry's id not found.&quot;�@<br>
-        �@�@exit 7<br>
-        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">�@�@# 
-        </font></font></font></font></font><font color="#00FFFF" size="2">���W���� 
-        if ����y���յ��G�����ɡA�h���� else �᪺���O�A�M��N�h�X script <br>
-        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">�@�@# 
+        　　echo &quot;barry's id not found.&quot;　<br>
+        　　exit 7<br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">　　# 
+        </font></font></font></font></font><font color="#00FFFF" size="2">當上面的 
+        if 條件句測試結果為假時，則執行 else 後的指令，然後就退出 script <br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">　　# 
         </font></font></font></font></font><font color="#00FFFF" size="2"></font> 
-        <font color="#FFFFFF"><font color="#00FFFF" size="2">������A</font></font><font color="#00FFFF" size="2">�ë��w�� 
-        exit value �� 7�C</font><br>
+        <font color="#FFFFFF"><font color="#00FFFF" size="2">的執行，</font></font><font color="#00FFFF" size="2">並指定其 
+        exit value 為 7。</font><br>
         fi</p>
       </font> 
-      <p><font color="#FFFFFF"> if [ &quot;$#&quot; -eq 0 ] ; then�@<br>
-        �@echo Success.<br>
+      <p><font color="#FFFFFF"> if [ &quot;$#&quot; -eq 0 ] ; then　<br>
+        　echo Success.<br>
         else<br>
-        �@echo &quot;You do</font><font color="#FFFFFF">n't need to input positional 
+        　echo &quot;You do</font><font color="#FFFFFF">n't need to input positional 
         parameter.&quot;<br>
-        �@exit 8<br>
+        　exit 8<br>
         fi <br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-        </font></font></font></font><font color="#00FFFF" size="2">�����榹 script 
-        �ɥ�������޼ơA�h��� &quot;Success&quot;�A�_�h�|���ܱz���ݿ�J��m�ѼơC</font></font> </font></p>
+        </font></font></font></font><font color="#00FFFF" size="2">當執行此 script 
+        時未接任何引數，則顯示 &quot;Success&quot;，否則會提示您不需輸入位置參數。</font></font> </font></p>
       <font color="#FFFFFF"> suse:~/bin # <font color="#FFFF00"><strong>chmod 
       +x script4.sh</strong></font><br>
       suse:~/bin #<font color="#FFFF00"><strong> script4.sh</strong></font><br>
@@ -1248,48 +1248,48 @@ not running&quot; �����浲�G�X�ӡC<br>
 </table>
 <br>
 <br>
-<strong><font color="#0000FF" size="+1"><a name="19"></a><font size="6">10.5 �ƭȹB��� 
-shift ���ϥ�</font></font></strong><font size="+2"><br>
+<strong><font color="#0000FF" size="+1"><a name="19"></a><font size="6">10.5 數值運算及 
+shift 的使用</font></font></strong><font size="+2"><br>
 </font><br>
-<font size="+1"><strong><a name="20"></a><font size="5">10.5.1 �ƭȹB��</font><br>
+<font size="+1"><strong><a name="20"></a><font size="5">10.5.1 數值運算</font><br>
 </strong></font><br>
-�@���b�ŧi�ܼƮɡA�p�L�S�O���w�A�|�N�ܼƤ��e�����r��ӬݫݡA���U�@�Q���ƭȹB��ɫ���O ? �H�U���ѴX�ذ��k�G<br>
+　當在宣告變數時，如無特別指定，會將變數內容當成字串來看待，那萬一想做數值運算時怎麼辦呢 ? 以下提供幾種做法：<br>
 <br>
-�@�@<font color="#000099"><strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong> 
-�ϥ� &quot;declare -i&quot; �ӫŧi���ܼƬ�����ܼơC<br>
-�@�@<strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong> �ϥ� expr 
-�o�ӥ~�����O�Ӱ��ƭȹB��C<br>
-�@�@<strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong> �ϥ� let 
-�o�� bash �����ةR�O�Ӱ��ƭȹB��C</font><br>
+　　<font color="#000099"><strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong> 
+使用 &quot;declare -i&quot; 來宣告此變數為整數變數。<br>
+　　<strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong> 使用 expr 
+這個外部指令來做數值運算。<br>
+　　<strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong> 使用 let 
+這個 bash 的內建命令來做數值運算。</font><br>
 <br>
-�@�ܩ�ƭȹB�⪺�[����N�ϥ� �u+�v �B�u-�v�B�u*�v�B�u/�v �N��F�C <br>
+　至於數值運算的加減乘除就使用 「+」 、「-」、「*」、「/」 就行了。 <br>
 <br>
-<strong>�d��</strong>�G 
+<strong>範例</strong>： 
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin #<font color="#FFFF00"><strong> 
       vi script5.sh</strong></font><br>
       <font color="#0099FF">#! /bin/bash</font><br>
-      <font face="�ө���">a=6<br>
+      <font face="細明體">a=6<br>
       b=3<br>
-      declare -i c=a-b�@<font color="#00FFFF">�@<font color="#FFFFFF"><font color="#00FFFF">#<font size="2" face="�ө���"> 
-      </font></font></font></font><font color="#00FFFF" size="2">�ŧi�ܼ� c ����ơC</font><br>
-      let d=a*b�@�@�@�@ </font><font color="#FFFFFF"><font color="#00FFFF">�@#<font size="2" face="�ө���"> 
-      </font></font></font><font color="#00FFFF" size="2" face="�ө���">�ϥ� let ���O���ƭȹB��C</font><font face="�ө���"><br>
-      e=`expr $a / $b`�@�@</font><font color="#FFFFFF"><font color="#00FFFF">#</font></font><font color="#00FFFF" size="2" face="�ө���"> 
-      �ϥ� expr ���O���ƭȹB��C</font><font face="�ө���"><br>
-      f=$(expr $a + $b)�@ <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#<font size="2" face="�ө���"> 
-      </font></font></font></font><font color="#00FFFF" size="2">�P 
-      f=`expr $a + $b` �O�@�˪��C</font><br>
-      g=$(($a+$b))�@�@�@�@</font><font color="#FFFFFF"><font color="#00FFFF">#</font></font><font color="#00FFFF" size="2" face="�ө���"> 
-      �t�@�ؼƭȹB�⪺�覡�C</font><br>
+      declare -i c=a-b　<font color="#00FFFF">　<font color="#FFFFFF"><font color="#00FFFF">#<font size="2" face="細明體"> 
+      </font></font></font></font><font color="#00FFFF" size="2">宣告變數 c 為整數。</font><br>
+      let d=a*b　　　　 </font><font color="#FFFFFF"><font color="#00FFFF">　#<font size="2" face="細明體"> 
+      </font></font></font><font color="#00FFFF" size="2" face="細明體">使用 let 指令做數值運算。</font><font face="細明體"><br>
+      e=`expr $a / $b`　　</font><font color="#FFFFFF"><font color="#00FFFF">#</font></font><font color="#00FFFF" size="2" face="細明體"> 
+      使用 expr 指令做數值運算。</font><font face="細明體"><br>
+      f=$(expr $a + $b)　 <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#<font size="2" face="細明體"> 
+      </font></font></font></font><font color="#00FFFF" size="2">與 
+      f=`expr $a + $b` 是一樣的。</font><br>
+      g=$(($a+$b))　　　　</font><font color="#FFFFFF"><font color="#00FFFF">#</font></font><font color="#00FFFF" size="2" face="細明體"> 
+      另一種數值運算的方式。</font><br>
       <br>
-      <font face="�ө���">if [ &quot;$c&quot; -eq 3 -a &quot;$d&quot; -eq 18 -a &quot;$e&quot; 
+      <font face="細明體">if [ &quot;$c&quot; -eq 3 -a &quot;$d&quot; -eq 18 -a &quot;$e&quot; 
       -eq 2 -a &quot;$f&quot; -eq 9 -a &quot;$g&quot; -eq 9 ] <br>
       then<br>
-      �@�@echo &quot;c=$c ; d=$d ; e=$e ; f=$f ; g=$g&quot;<br>
+      　　echo &quot;c=$c ; d=$d ; e=$e ; f=$f ; g=$g&quot;<br>
       else<br>
-      �@�@exit 3<br>
+      　　exit 3<br>
       fi</font><br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>chmod +x script5.sh </strong></font><br>
@@ -1298,20 +1298,20 @@ shift ���ϥ�</font></font></strong><font size="+2"><br>
   </tr>
 </table>
 <br>
-�@ <br>
-<strong><a name="21"></a><font size="5">10.5.2 shift ���Ϊk</font></strong><br>
+　 <br>
+<strong><a name="21"></a><font size="5">10.5.2 shift 的用法</font></strong><br>
 <br>
-�@�����ٰO�o�e���ҾǹL����m�ѼƧa ! ���L���ɱz�ߤ��γ\�|���ӺðݡA���ڦb command line ���������� &quot;test.sh -a arg1 
-arg2&quot; �ɡA�� $1 �N�O -a�A$2 �� $3 �~�O arg1 �� arg2�A�p�G�{�b�Q�n�� $1 ������ arg1 �� $2 ������ arg2 
-�i��� ? ���M�O�i�H���աA�u�n��<strong> </strong>shift<strong> </strong>���O�N�i�H�d�w�F�C<br>
+　應該還記得前面所學過的位置參數吧 ! 不過當時您心中或許會有個疑問，當我在 command line 執行類似於 &quot;test.sh -a arg1 
+arg2&quot; 時，那 $1 就是 -a，$2 及 $3 才是 arg1 及 arg2，如果現在想要把 $1 對應到 arg1 及 $2 對應到 arg2 
+可行嗎 ? 當然是可以的啦，只要用<strong> </strong>shift<strong> </strong>指令就可以搞定了。<br>
 <br>
-�@shift ���O���Ϊk��²��A�u�n����[�ӼƦr�N��F�C������ shift n (n �N���ҫ��w�� number) �ɡA�� n+1�Bn+2�Bn+3�B�K �Ӧ�m�ѼƷ|�Q��W���� 
-1�B2�B3�B�K �Ӧ�m�ѼơA��p����F shift 2 ��A�ĤT�Ӧ�m�ѼƷ|�Q��W���Ĥ@�Ӧ�m�ѼơA�ĥ|�Ӧ�m�ѼƷ|�Q��W���ĤG�Ӧ�m�ѼơA�l�̦������C�A��²��@�I�A�N�O���� 
-shift 2 ����A$1 �N�|���o�쥻 $3 �����ӰѼƭȰաC<br>
+　shift 指令的用法很簡單，只要於其後加個數字就對了。當執行 shift n (n 代表所指定的 number) 時，第 n+1、n+2、n+3、… 個位置參數會被更名為第 
+1、2、3、… 個位置參數，比如執行了 shift 2 後，第三個位置參數會被更名為第一個位置參數，第四個位置參數會被更名為第二個位置參數，餘依此類推。再說簡單一點，就是執行 
+shift 2 之後，$1 將會取得原本 $3 的那個參數值啦。<br>
 <br>
-�@���ڭ̨ϥ� shift �ӥ����w number �ɡA�N�O�ϥιw�]�� shift 1�A�|�Ҧp�U�G<br>
+　當我們使用 shift 而未指定 number 時，就是使用預設的 shift 1，舉例如下：<br>
 <br>
-<strong>�d��</strong>�G<br>
+<strong>範例</strong>：<br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><p><font color="#FFFFFF">suse:~/bin # <font color="#FFFF00"><strong>vi 
@@ -1320,15 +1320,15 @@ shift 2 ����A$1 �N�|���o�쥻 $3 �����ӰѼƭȰաC<br>
         </font><font color="#FFFFFF">echo The total of positional parameter is 
         : &quot;$#&quot;<br>
         if [ &quot;$1&quot; = -a ] ; then<br>
-        �@�@echo correct positional parameter :<br>
-        �@�@shift<br>
-        �@�@echo -e &quot;\tThe first parameter is $1&quot;�@<font color="#00FFFF" size="2"><br>
-        </font><font color="#FFFFFF">�@�@</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�ѩ�e���w���� 
-        shift�A�ҥH 1=$2�A�� $1 ���M�N�O���쥻���ĤG�Ӧ�m�Ѽ��o�C</font><br>
-        �@�@echo -e &quot;\tThe second parameter is $2&quot;�@<br>
-        �@�@echo The total of positional parameter is : &quot;$#&quot;<br>
+        　　echo correct positional parameter :<br>
+        　　shift<br>
+        　　echo -e &quot;\tThe first parameter is $1&quot;　<font color="#00FFFF" size="2"><br>
+        </font><font color="#FFFFFF">　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">由於前面已執行 
+        shift，所以 1=$2，那 $1 當然就是指原本的第二個位置參數囉。</font><br>
+        　　echo -e &quot;\tThe second parameter is $2&quot;　<br>
+        　　echo The total of positional parameter is : &quot;$#&quot;<br>
         else<br>
-        �@�@echo You need to use \&quot;-a\&quot;.<br>
+        　　echo You need to use \&quot;-a\&quot;.<br>
         fi<br>
         <br>
         suse:~/bin #<font color="#FFFF00"><strong> chmod +x script6.sh <br>
@@ -1337,9 +1337,9 @@ shift 2 ����A$1 �N�|���o�쥻 $3 �����ӰѼƭȰաC<br>
         </font></strong></font><strong><font color="#FFFF00">script6.sh -a arg1 
         arg2</font></strong><br>
         <font color="#FFFFFF">The total of positional parameter is : 3<br>
-        <font face="�ө���">correct positional parameter :<br>
-        �@�@�@�@The first parameter is arg1<br>
-        �@�@�@�@The second parameter is arg2<br>
+        <font face="細明體">correct positional parameter :<br>
+        　　　　The first parameter is arg1<br>
+        　　　　The second parameter is arg2<br>
         The total of positional parameter is : 2</font></font><strong><br>
         <br>
         </strong><font color="#FFFFFF">suse:~/bin # <strong><font color="#FFFF00">script6.sh 
@@ -1352,40 +1352,40 @@ shift 2 ����A$1 �N�|���o�쥻 $3 �����ӰѼƭȰաC<br>
 </table>
 <font color="#0000FF" size="+1"><strong><br>
 </strong></font> <font color="#0000FF" size="+1"><strong> <a name="22"></a><font size="6">10.6 
-�j�餶��</font></strong></font><br>
+迴圈介紹</font></strong></font><br>
 <br>
-�@�ҿת��j�� (loop)�A�N�O���b�ҫ��w������U�ӯ�Q���ư��檺�@�q�{���X�C�b script ���`�ϥΨ쪺�j�鵲�c�� for�Bwhile �� until 
-�o�T�ءA�б��۬ݥH�U�U�p�`�������C<br>
+　所謂的迴圈 (loop)，就是指在所指定的條件下而能被重複執行的一段程式碼。在 script 中常使用到的迴圈結構有 for、while 及 until 
+這三種，請接著看以下各小節的說明。<br>
 <br>
-<font size="+1"><strong><a name="23"></a><font size="5">10.6.1 for �j��</font></strong></font><br>
+<font size="+1"><strong><a name="23"></a><font size="5">10.6.1 for 迴圈</font></strong></font><br>
 <br>
-�@for �j��y�k���G<strong>for &#8230; in &#8230; do &#8230; done </strong><br>
+　for 迴圈語法為：<strong>for &#8230; in &#8230; do &#8230; done </strong><br>
 <br>
 <table width="50%" border="0" bordercolor="#000000" bgcolor="#CCCCCC">
   <tr>
-    <td nowrap><strong>for</strong>�@�ܼƦW��<strong>�@in</strong>�@�ܼƭ�1�@�ܼƭ�2�@�ܼƭ� 3 &#8230;<br>
+    <td nowrap><strong>for</strong>　變數名稱<strong>　in</strong>　變數值1　變數值2　變數值 3 &#8230;<br>
       <strong>do</strong> <br>
       <br>
-      �@�@���O�ԭz <br>
+      　　指令敘述 <br>
       <br>
       <strong>done</strong></td>
   </tr>
 </table>
-<p> �@�� for �j��ӻ��A�Y in �᭱���T���ܼƭȡA�N�|����T�� do�Bdone ���������O�ԭz�A��p�G</p>
+<p> 　對 for 迴圈來說，若 in 後面有三個變數值，就會執行三次 do、done 之間的指令敘述，比如：</p>
 <table width="30%" border="0" bgcolor="#CCCCCC">
   <tr>
     <td nowrap>
 <p><strong>for </strong>var<strong> in</strong> barry mary<br>
         <strong>do</strong><br>
-        �@�@echo hello,&quot;$var&quot;<br>
+        　　echo hello,&quot;$var&quot;<br>
         <strong>done</strong></p></td>
   </tr>
 </table>
-�@<br>
-�@�o�ӷN��N�O���A�� var=barry �ɰ��� echo ���O�A�� var=mary �ɦA����@���A�`�@�|����⦸�j��A���槹���N�����C�ҥH���榹 script 
-�����G�A�z�N��b�ù��W�ݨ� &quot;hello,barry&quot; �� &quot;hello,mary&quot; �o���C<br>
+　<br>
+　這個意思就是說，當 var=barry 時執行 echo 指令，當 var=mary 時再執行一次，總共會執行兩次迴圈，執行完畢就結束。所以執行此 script 
+的結果，您將能在螢幕上看到 &quot;hello,barry&quot; 及 &quot;hello,mary&quot; 這兩行。<br>
 <br>
-<strong>�d��</strong>�G 
+<strong>範例</strong>： 
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"> <p><font color="#FFFFFF">suse:~/bin #<font color="#FFFF00"><strong> 
@@ -1393,15 +1393,15 @@ shift 2 ����A$1 �N�|���o�쥻 $3 �����ӰѼƭȰաC<br>
         <font color="#0099FF">#! /bin/bash</font><br>
         for x in 5 10 15 20<br>
         do <br>
-        �@�@if [ &quot;$x&quot; -lt 18 ] ; then<br>
-        �@�@�@�@echo The value of x is &quot;$x&quot; <br>
-        �@�@else<br>
-        �@�@�@�@echo The value of x is too big.<br>
-        �@�@fi<br>
+        　　if [ &quot;$x&quot; -lt 18 ] ; then<br>
+        　　　　echo The value of x is &quot;$x&quot; <br>
+        　　else<br>
+        　　　　echo The value of x is too big.<br>
+        　　fi<br>
         <br>
-        �@�@sleep 2�@<font color="#00FFFF" size="2"><br>
-        </font><font color="#FFFFFF">�@�@<font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">if 
-        ����y���槹��A�|�����������A�M��A�i��U�@�� loop�C</font><br>
+        　　sleep 2　<font color="#00FFFF" size="2"><br>
+        </font><font color="#FFFFFF">　　<font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">if 
+        條件句執行完後，會先延遲兩秒鐘，然後再進行下一個 loop。</font><br>
         done<br>
         <br>
         suse:~/bin # <font color="#FFFF00"><strong>chmod +x script7.sh <br>
@@ -1414,24 +1414,24 @@ shift 2 ����A$1 �N�|���o�쥻 $3 �����ӰѼƭȰաC<br>
   </tr>
 </table>
 <br>
-�@�b for �j��y�k���A�p�G�ٲ��F in �Ψ�᪺�ܼƭȦC�� (list)�A�h�|�۰����z���w�� <strong>in &quot;$@&quot;</strong>�C�ڭ̧��診�ӽd�ҧ�@�U�G<br>
+　在 for 迴圈語法中，如果省略了 in 及其後的變數值列表 (list)，則會自動幫您指定成 <strong>in &quot;$@&quot;</strong>。我們把剛剛那個範例改一下：<br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin #<font color="#FFFF00"><strong> 
       vi script7.sh</strong></font><br>
       <font color="#0099FF">#! /bin/bash</font><br>
-      for x�@<font color="#00FFFF" size="2"><br>
-      </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> �N�P���� 
-      for x in &quot;$@&quot;�C</font><br>
+      for x　<font color="#00FFFF" size="2"><br>
+      </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 就同等於 
+      for x in &quot;$@&quot;。</font><br>
       do <br>
-      �@�@if [ &quot;$x&quot; -lt 18 ] ; then<br>
-      �@�@�@�@echo The value of x is &quot;$x&quot; <br>
-      �@�@else<br>
-      �@�@�@�@echo The value of x is too big.<br>
-      �@�@fi<br>
+      　　if [ &quot;$x&quot; -lt 18 ] ; then<br>
+      　　　　echo The value of x is &quot;$x&quot; <br>
+      　　else<br>
+      　　　　echo The value of x is too big.<br>
+      　　fi<br>
       <br>
-      �@�@sleep 2�@<br>
+      　　sleep 2　<br>
       done<br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>script7.sh 5 15 25</strong></font><br>
@@ -1440,17 +1440,17 @@ shift 2 ����A$1 �N�|���o�쥻 $3 �����ӰѼƭȰաC<br>
       The value of x is too big. </font></td>
   </tr>
 </table>
-<p> �@�t�~�@�� for �j�骺���c�p�U�G</p>
+<p> 　另外一種 for 迴圈的結構如下：</p>
 <table width="40%" border="0" bgcolor="#CCCCCC">
   <tr>
-    <td>for (( �_�l�� ; ���� ; �B�i�� ))<br>
+    <td>for (( 起始值 ; 條件式 ; 步進式 ))<br>
       do<br>
-      �@�@���O�ԭz<br>
+      　　指令敘述<br>
       done </td>
   </tr>
 </table>
 <br>
-<strong>�d��</strong>�G 
+<strong>範例</strong>： 
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin # <font color="#FFFF00"><strong>vi 
@@ -1459,13 +1459,13 @@ shift 2 ����A$1 �N�|���o�쥻 $3 �����ӰѼƭȰաC<br>
       b=5<br>
       for (( a=0 ; a&lt;=b ; a=a+1 ))<br>
       do<br>
-      �@�@echo The number is &quot;$a&quot;.<br>
+      　　echo The number is &quot;$a&quot;.<br>
       done <br>
-      <font color="#00FFFF">#</font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2">�� 
-      a=0 �ɡA�i�� a&lt;=b ���P�_�A�p�G����ŦX�h����j��A���槹����^�� for �B�i��</font><font color="#FFFFFF"><br>
-      <font color="#00FFFF">#</font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2">���̡A���� 
-      a �|�ܦ� 1�A�M��A�ݬ� a&lt;=b �O�_���T�A�p�G�٬O�ŦX���󪺸ܡA�A����j��A</font><font color="#FFFFFF"><br>
-      <font color="#00FFFF">#</font><font color="#00FFFF" size="2"> </font> </font><font color="#00FFFF" size="2">�@���i�����󤣲ŦX����C</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF">#</font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2">當 
+      a=0 時，進行 a&lt;=b 的判斷，如果條件符合則執行迴圈，執行完畢後回到 for 步進式</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF">#</font><font color="#00FFFF" size="2"> </font></font><font color="#00FFFF" size="2">那裡，此時 
+      a 會變成 1，然後再看看 a&lt;=b 是否正確，如果還是符合條件的話，再執行迴圈，</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF">#</font><font color="#00FFFF" size="2"> </font> </font><font color="#00FFFF" size="2">一直進行到條件不符合為止。</font><font color="#FFFFFF"><br>
       </font> <font color="#FFFFFF"><br>
       suse:~/bin # <font color="#FFFF00"><strong>chmod +x script8.sh</strong></font><br>
       suse:~/bin # <font color="#FFFF00"><strong>script8.sh</strong></font><br>
@@ -1479,35 +1479,35 @@ shift 2 ����A$1 �N�|���o�쥻 $3 �����ӰѼƭȰաC<br>
 </table>
 <br>
 <strong> <a name="24"></a><font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
-continue �P break ���O</font></strong><br>
+continue 與 break 指令</font></strong><br>
 <br>
-�@�o��ӫ��O�`�ϥΦb do --- done ���j����Y�C continue �O�~��i��U�@�Ӱj��A�]�N�O���b continue �P done ���������O�ԭz�N���A�Q����A�ӬO�^��j�鳻�ݨӷǳư���U�@�����j��C�ܩ� 
-break �h���ܭn���_�j��A�]�N�O�j�餣�A�Q����F�C�� break �P exit �� return�A�@��H�ܮe���d�V�A²�檺���A<font color="#0000FF">exit 
-�O�ΨӰh�X script ������Areturn �O�h�X�禡������Abreak �h�O�ϥΦb���_�j��W�Y</font>�C<br>
+　這兩個指令常使用在 do --- done 的迴圈裡頭。 continue 是繼續進行下一個迴圈，也就是說在 continue 與 done 之間的指令敘述將不再被執行，而是回到迴圈頂端來準備執行下一次的迴圈。至於 
+break 則表示要中斷迴圈，也就是迴圈不再被執行了。而 break 與 exit 及 return，一般人很容易搞混，簡單的說，<font color="#0000FF">exit 
+是用來退出 script 的執行，return 是退出函式的執行，break 則是使用在中斷迴圈上頭</font>。<br>
 <br>
-<strong>�d��</strong>�G�Х��b /tmp �ؿ����إߨ�Ӥj�p���� 0 ���ɮ� file1 �� file2�A�M��A�إߨ�Ӫ��ɮ� file3 
-�� file4�A���۽s�� script�G<br>
+<strong>範例</strong>：請先在 /tmp 目錄中建立兩個大小不為 0 的檔案 file1 及 file2，然後再建立兩個空檔案 file3 
+及 file4，接著編輯 script：<br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"> <p><font color="#FFFFFF">suse:~/bin # <font color="#FFFF00"><strong>vi 
         script9.sh</strong></font><br>
-        #<font face="�ө���">!/bin/bash<br>
+        #<font face="細明體">!/bin/bash<br>
         for file in $(ls /tmp/file*)<br>
         do<br>
-        �@if [ -f &quot;$file&quot; ] ; then<br>
-        �@�@ if [ -s &quot;$file&quot; ] ; then<br>
-        �@�@�@�@echo &quot;$file&quot; is not empty.<br>
-        �@�@�@�@continue�@<font color="#00FFFF" size="2"><br>
-        </font></font><font color="#FFFFFF" face="�ө���"><font color="#00FFFF">�@�@�@�@#<font size="2"> 
-        </font></font></font><font color="#00FFFF" size="2" face="�ө���">�b continue 
-        �� done ���������O���|�Q����A�ӬO�^�� for �ӱa�J<br>
-        </font><font color="#FFFFFF" face="�ө���"><font color="#00FFFF">�@�@�@�@#<font size="2"> 
-        </font></font></font><font color="#00FFFF" size="2" face="�ө���">�t�@�� file 
-        ���ȡA�H�~�����j��C</font><font face="�ө���"><br>
-        �@�@ fi<br>
-        �@�@ echo Delete &quot;$file&quot;<br>
-        �@�@ rm -f &quot;$file&quot;<br>
-        �@fi <br>
+        　if [ -f &quot;$file&quot; ] ; then<br>
+        　　 if [ -s &quot;$file&quot; ] ; then<br>
+        　　　　echo &quot;$file&quot; is not empty.<br>
+        　　　　continue　<font color="#00FFFF" size="2"><br>
+        </font></font><font color="#FFFFFF" face="細明體"><font color="#00FFFF">　　　　#<font size="2"> 
+        </font></font></font><font color="#00FFFF" size="2" face="細明體">在 continue 
+        至 done 中間的指令不會被執行，而是回到 for 來帶入<br>
+        </font><font color="#FFFFFF" face="細明體"><font color="#00FFFF">　　　　#<font size="2"> 
+        </font></font></font><font color="#00FFFF" size="2" face="細明體">另一個 file 
+        的值，以繼續執行迴圈。</font><font face="細明體"><br>
+        　　 fi<br>
+        　　 echo Delete &quot;$file&quot;<br>
+        　　 rm -f &quot;$file&quot;<br>
+        　fi <br>
         done</font><br>
         <br>
         suse:~/bin #<font color="#FFFF00"><strong> chmod +x script9.sh</strong></font><br>
@@ -1518,25 +1518,25 @@ break �h���ܭn���_�j��A�]�N�O�j�餣�A�Q����F�C�� break �P exit �� return�A�@��
         Delete /tmp/file4 </font></p></td>
   </tr>
 </table>
-<p> <font size="+1"><strong><a name="25"></a><font size="5">10.6.2 while�Buntil 
-  �j��</font><br>
+<p> <font size="+1"><strong><a name="25"></a><font size="5">10.6.2 while、until 
+  迴圈</font><br>
   <br>
-  </strong></font>�@�ϥ� while �j��ɡA�@��O�ھڨ��ҫ��w������y�Ϋ��O�Ӱ��P�_�A�u�n���յ��G�� exit value �Ǧ^ 0 
-  (true)�A�N����j��A���槹����A�A�^�� while �ӭ��s�i��P�w�A�p�G�٬O ture�A���N�~�����j���o�A�@���n��Ǧ^�D 0 (false) �~�|����C<br>
+  </strong></font>　使用 while 迴圈時，一般是根據其後所指定的條件句或指令來做判斷，只要測試結果其 exit value 傳回 0 
+  (true)，就執行迴圈，執行完畢後，再回到 while 來重新進行判定，如果還是 ture，那就繼續執行迴圈囉，一直要到傳回非 0 (false) 才會停止。<br>
   <br>
-  �@while �j��y�k���G<strong>while --- do --- done</strong></p>
+  　while 迴圈語法為：<strong>while --- do --- done</strong></p>
 <table width="40%" border="0" bordercolor="#000000" bgcolor="#CCCCCC">
   <tr>
     <td nowrap>
-<p><strong>while </strong>[ ����y ]�@(�Ϊ̬O while command)<br>
+<p><strong>while </strong>[ 條件句 ]　(或者是 while command)<br>
         <strong>do</strong><br>
-        �@�@���O�ԭz<br>
+        　　指令敘述<br>
         <strong>done</strong> </p>
       </td>
   </tr>
 </table>
 <br>
-<strong>�d��</strong>�G<br>
+<strong>範例</strong>：<br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin # <font color="#FFFF00"><strong>vi 
@@ -1545,9 +1545,9 @@ break �h���ܭn���_�j��A�]�N�O�j�餣�A�Q����F�C�� break �P exit �� return�A�@��
       declare -i x=0<br>
       while [ &quot;$x&quot; -le 5 ]<br>
       do<br>
-      �@�@echo The value of x is : &quot;$x&quot;<br>
-      �@�@x=x+1<br>
-      �@�@sleep 1<br>
+      　　echo The value of x is : &quot;$x&quot;<br>
+      　　x=x+1<br>
+      　　sleep 1<br>
       done<br>
       <br>
       suse:~/bin # <font color="#FFFF00"><strong>chmod +x script10.sh</strong></font><br>
@@ -1561,9 +1561,9 @@ break �h���ܭn���_�j��A�]�N�O�j�餣�A�Q����F�C�� break �P exit �� return�A�@��
   </tr>
 </table>
 <br>
-�@�t�~�@�ػP while �j��ۤϪ��O until �j��A�]�N�O���u��������y�Ϋ��O�����ɡA�~�|����j��A�@���n�����y�Ϋ��O�P�_���u�ɡA�~�����j�骺����C<br>
+　另外一種與 while 迴圈相反的是 until 迴圈，也就是說只有當條件句或指令為假時，才會執行迴圈，一直要到條件句或指令判斷為真時，才結束迴圈的執行。<br>
 <br>
-<strong>�d��</strong>�G<br>
+<strong>範例</strong>：<br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin # <font color="#FFFF00"><strong>vi 
@@ -1572,64 +1572,64 @@ break �h���ܭn���_�j��A�]�N�O�j�餣�A�Q����F�C�� break �P exit �� return�A�@��
       num=0<br>
       until [ &quot;$num&quot; -eq 30 ]<br>
       do<br>
-      �@�@ echo -n &quot;Please input a number here : &quot;<br>
-      �@�@ read num<font color="#00FFFF">�@# <font size="2">read ���O�Ϊk�A�аѦ� 10.7.2 
-      �p�`�C</font></font></font> 
-      <p><font color="#FFFFFF"> �@�@ if [ &quot;$num&quot; -gt 
+      　　 echo -n &quot;Please input a number here : &quot;<br>
+      　　 read num<font color="#00FFFF">　# <font size="2">read 指令用法，請參考 10.7.2 
+      小節。</font></font></font> 
+      <p><font color="#FFFFFF"> 　　 if [ &quot;$num&quot; -gt 
         30 ] ; then<br>
-        �@�@�@�@echo &quot;$num&quot; is too big , try again.<br>
-        �@�@�@�@echo<br>
-        �@�@ elif [ &quot;$num&quot; -eq 30 ] ; then<br>
-        �@�@�@�@echo BINGO !! you got it.<br>
-        �@�@ else<br>
-        �@�@�@�@echo &quot;$num&quot; is too small , try again.<br>
-        �@�@�@�@echo <br>
-        �@�@ fi<br>
+        　　　　echo &quot;$num&quot; is too big , try again.<br>
+        　　　　echo<br>
+        　　 elif [ &quot;$num&quot; -eq 30 ] ; then<br>
+        　　　　echo BINGO !! you got it.<br>
+        　　 else<br>
+        　　　　echo &quot;$num&quot; is too small , try again.<br>
+        　　　　echo <br>
+        　　 fi<br>
         done<br>
         <font color="#00FFFF">#</font><font color="#00FFFF" size="2"> </font> 
-        </font><font color="#00FFFF" size="2"></font><font color="#FFFFFF"> </font><font color="#00FFFF" size="2">�o�O�@��q�Ʀr�� 
-        script�A���Ӭݱo���a !</font><font color="#FFFFFF"><br>
+        </font><font color="#00FFFF" size="2"></font><font color="#FFFFFF"> </font><font color="#00FFFF" size="2">這是一支猜數字的 
+        script，應該看得懂吧 !</font><font color="#FFFFFF"><br>
         </font><font color="#000000"> <font color="#FFFFFF"><br>
         suse:~/bin # <font color="#FFFF00"><strong>script11.sh</strong></font><br>
-        Please input a number here : <strong>50</strong>�@<font color="#00FFFF" size="2">�� 
-        ��J 50�C</font><br>
+        Please input a number here : <strong>50</strong>　<font color="#00FFFF" size="2">← 
+        輸入 50。</font><br>
         50 is too big , try again.</font></font> </p>
       <p><font color="#FFFFFF">Please 
-        input a number here :<strong> 20</strong>�@<font color="#00FFFF" size="2">��</font></font><font color="#00FFFF" size="2"> 
-        ��J 20�C</font><font color="#FFFFFF"><br>
+        input a number here :<strong> 20</strong>　<font color="#00FFFF" size="2">←</font></font><font color="#00FFFF" size="2"> 
+        輸入 20。</font><font color="#FFFFFF"><br>
         20 is too small , try again.</font></p>
-      <p><font color="#FFFFFF">Please input a number here : <strong>30</strong>�@<font color="#00FFFF" size="2">��</font></font> 
-        <font color="#00FFFF" size="2">��J 30�C</font> <font color="#FFFFFF"><br>
+      <p><font color="#FFFFFF">Please input a number here : <strong>30</strong>　<font color="#00FFFF" size="2">←</font></font> 
+        <font color="#00FFFF" size="2">輸入 30。</font> <font color="#FFFFFF"><br>
         BINGO !! you got it.</font></p>
       </td>
   </tr>
 </table>
 <p><strong><font color="#0000FF"><a name="26"></a><font size="6">10.7</font></font></strong> 
-  <font color="#0000FF" size="6"><strong>case �y�{����</strong></font><font color="#0000FF" size="+1"><strong><br>
+  <font color="#0000FF" size="6"><strong>case 流程控制</strong></font><font color="#0000FF" size="+1"><strong><br>
   <br>
   </strong></font><font color="#0000FF"><font color="#000000"><strong><font size="+1"><a name="27"></a><font size="5">10.7.1 
-  case ���򥻻y�k</font></font></strong><br>
+  case 的基本語法</font></font></strong><br>
   <br>
-  �@���{�Ѥ@�U case ���y�k�G</font></font></p>
+  　先認識一下 case 的語法：</font></font></p>
 <table width="40%" border="0" bordercolor="#000000" bgcolor="#CCCCCC">
   <tr> 
-    <td><strong><font color="#000000" face="�ө���">case</font></strong> <font color="#000000" face="�ө���">string 
+    <td><strong><font color="#000000" face="細明體">case</font></strong> <font color="#000000" face="細明體">string 
       <strong>in</strong><br>
-      �@�@�˦�1 ) ���O�ԭz 1;;<br>
-      �@�@�˦�2 ) ���O�ԭz 2;;<br>
-      �@�@�˦�3 ) ���O�ԭz 3;; <br>
-      �@�@* ) ���O�ԭz 4;;<br>
+      　　樣式1 ) 指令敘述 1;;<br>
+      　　樣式2 ) 指令敘述 2;;<br>
+      　　樣式3 ) 指令敘述 3;; <br>
+      　　* ) 指令敘述 4;;<br>
       <strong>esac</strong> </font></td>
   </tr>
 </table>
-<p><font color="#0000FF"><font color="#000000">�@</font><font color="#000000">²�檺���A�� 
-  case �᪺ string �ŦX in �U���ҫ��w���䤤�@�Ӽ˦��ɡA�h����Ӽ˦��᪺���O�ԭz�A���p�G���S���ŦX���˦��ɡA�h���� &quot; * &quot; 
-  �᭱�����O�ԭz�C�y�k���n�`�N���O�A�C�Ӽ˦��᪺�̫�@�ӫ��O��J������A�ݨϥ������� (;;) �ӥN�����O�q�������� �Q�t�~ case �y�{�����ݥ����H 
-  esac �ӧ@�������A�N�O case �˹L�Ӽg�աC<br>
+<p><font color="#0000FF"><font color="#000000">　</font><font color="#000000">簡單的說，當 
+  case 後的 string 符合 in 下面所指定的其中一個樣式時，則執行該樣式後的指令敘述，但如果都沒有符合的樣式時，則執行 &quot; * &quot; 
+  後面的指令敘述。語法中要注意的是，每個樣式後的最後一個指令輸入完畢後，需使用雙分號 (;;) 來代表指令段落的結束 ﹔另外 case 流程的末端必須以 
+  esac 來作為結束，就是 case 倒過來寫啦。<br>
   <br>
-  �@�b�y�k���� string �����A�@�볣�|�ϥΡu$�ܼƦW�١v�Ө��o���P�� string�A�M��A�h�򩳤U���˦������A�o�ˤ~��I�� case �y�{�㦳��j���u�ʡC<br>
+  　在語法中的 string 部分，一般都會使用「$變數名稱」來取得不同的 string，然後再去跟底下的樣式做比對，這樣才能付予 case 流程具有更大的彈性。<br>
   <br>
-  �@�b Linux ���A�ܦh�t�ΪA�ȳ��O�ϥ� case �y�{�ӱ���A���ڷQ�޲z atd �A�Ȯɥi����p�U�G</font></font></p>
+  　在 Linux 中，很多系統服務都是使用 case 流程來控制的，比方我想管理 atd 服務時可執行如下：</font></font></p>
 <table width="40%" border="0" bgcolor="#CCCCCC">
   <tr>
     <td nowrap>suse:~ # /etc/init.d/atd stop<br>
@@ -1638,69 +1638,69 @@ break �h���ܭn���_�j��A�]�N�O�j�餣�A�Q����F�C�� break �P exit �� return�A�@��
       suse:~ # /etc/init.d/atd status</td>
   </tr>
 </table>
-<p><font color="#000000">�@��ꤧ�ҥH������z�p����K���޲z�A�ȡA�a���N�O atd script �̪� case �ӱ���A�� atd 
-  script �����e���I���o�ˡG</font></p>
+<p><font color="#000000">　其實之所以能夠讓您如此方便的管理服務，靠的就是 atd script 裡的 case 來控制的，而 atd 
+  script 的內容有點像這樣：</font></p>
 <table width="40%" border="0" bgcolor="#CCCCCC">
   <tr>
     <td><p>case $1 in<br>
-        �@�@start ) <br>
-        �@�@�@�@command1<br>
-        �@�@�@�@command2<br>
-        �@�@�@�@;;<br>
-        �@�@stop )<br>
-        �@�@�@�@command3<br>
-        �@�@�@�@;;<br>
-        �@�@restart ) <br>
-        �@�@�@�@command4<br>
-        �@�@�@�@command5<br>
-        �@�@�@�@;;<br>
-        �@�@status )<br>
-        �@�@�@�@command6<br>
-        �@�@�@�@;;<br>
+        　　start ) <br>
+        　　　　command1<br>
+        　　　　command2<br>
+        　　　　;;<br>
+        　　stop )<br>
+        　　　　command3<br>
+        　　　　;;<br>
+        　　restart ) <br>
+        　　　　command4<br>
+        　　　　command5<br>
+        　　　　;;<br>
+        　　status )<br>
+        　　　　command6<br>
+        　　　　;;<br>
         esac<br>
       </p>
       </td>
   </tr>
 </table>
-<p><font color="#000000">�@�o�˷����� atd script �ɡA�p���ҫ��w���Ĥ@�Ӧ�m�ѼƬ� start �ɡA�۵M�N�|�h���� command1 
-  �� command2�A�Y�� stop�A�h���� command3�A�o�N�O case �y�{����n�Ϊ��a��C<br>
+<p><font color="#000000">　這樣當執行 atd script 時，如其後所指定的第一個位置參數為 start 時，自然就會去執行 command1 
+  及 command2，若為 stop，則執行 command3，這就是 case 流程控制好用的地方。<br>
   <br>
-  <font size="+1"><strong><a name="28"></a><font size="5">10.7.2 read ���O����</font></strong></font><br>
+  <font size="+1"><strong><a name="28"></a><font size="5">10.7.2 read 指令介紹</font></strong></font><br>
   <br>
-  �@��褶�Ъ� case �y�{�̡A�O�ǥ� command line �ҿ�J����m�ѼơA�ӷ��� $1 ���ܼƭȡA�ӥt�~�@�ب��o�ܼƭȪ��覡�A�h�i�z�L <font color="#0000FF">read</font><strong> 
-  </strong>���O�����z�q keyboard �ҿ�J���r������ܼƭȡA�ҥH���ۨӤ��� read ��²��Ϊk�C<br>
+  　剛剛介紹的 case 流程裡，是藉由 command line 所輸入的位置參數，來當成 $1 的變數值，而另外一種取得變數值的方式，則可透過 <font color="#0000FF">read</font><strong> 
+  </strong>指令來讓您從 keyboard 所輸入的字串當成變數值，所以接著來介紹 read 的簡單用法。<br>
   <br>
   <strong><font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font><font size="4"> 
-  ���O </font></strong><font size="+1"><strong>read<br>
+  指令 </font></strong><font size="+1"><strong>read<br>
   <br>
-  </strong></font>�@<font color="#000000">read ���O�D�n�O�q stdin Ū����ơA�@��̱`�����N�O��q keyboard 
-  �ҿ�J<font color="#000000">��</font>�r��A��i read ��ҫ��w���ܼƤ��A�]�� read ���O�᭱�q�`�|���w�@���ܼƦW�پ��C���b�R�O�C�W�m�ߤ@�U�G</font><font size="+1"><strong> 
+  </strong></font>　<font color="#000000">read 指令主要是從 stdin 讀取資料，一般最常見的就是把從 keyboard 
+  所輸入<font color="#000000">的</font>字串，放進 read 後所指定的變數中，因此 read 指令後面通常會指定一個變數名稱噢。先在命令列上練習一下：</font><font size="+1"><strong> 
   </strong></font></font></p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
       <strong>read var</strong></font><br>
-      /etc/passwd <font color="#00FFFF" size="2">�� �o�O�q��L�Ұ�����J�A���۫��U Enter ���A�N�|�� 
+      /etc/passwd <font color="#00FFFF" size="2">← 這是從鍵盤所做的輸入，接著按下 Enter 鍵後，就會把 
       /etc/passwd <br>
-      �@�@�@�@�@�@�@�]�w�� var �o���ܼơC</font><br>
+      　　　　　　　設定給 var 這個變數。</font><br>
       <br>
       suse:~ # <font color="#FFFF00"><strong>echo $var</strong></font><font color="#00FFFF" size="2"> 
-      �� ��� var ���ܼƭȡC</font><br>
+      ← 顯示 var 的變數值。</font><br>
       /etc/passwd <br>
       <br>
       suse:~ #<strong> <font color="#FFFF00">read -p &quot;Please input your name: 
       &quot; name</font></strong> <font color="#00FFFF" size="2"><br>
       </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">&quot;-p&quot; 
-      �O�Ψ����z�b��J�r��e�A�ү�ݨ쪺���ܤ��e�C</font><br>
+      是用來讓您在輸入字串前，所能看到的提示內容。</font><br>
       Please input your name: <strong><font color="#FFFF00">barry</font></strong> 
-      <font color="#00FFFF" size="2">�� ��J�������U Enter ��A�Y�⦹�ȳ]�w�� name �ܼơC</font><br>
+      <font color="#00FFFF" size="2">← 輸入完畢按下 Enter 後，即把此值設定給 name 變數。</font><br>
       <br>
       suse:~ # <strong><font color="#FFFF00">echo $name</font></strong><br>
       barry </font></td>
   </tr>
 </table>
 <font color="#000000"><br>
-<strong>�d��</strong>�G</font> 
+<strong>範例</strong>：</font> 
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin # <strong><font color="#FFFF00">vi 
@@ -1710,63 +1710,63 @@ break �h���ܭn���_�j��A�]�N�O�j�餣�A�Q����F�C�� break �P exit �� return�A�@��
       echo -n &quot;Please input yes or no: &quot;<br>
       read ANS<br>
       case &quot;$ANS&quot; in<br>
-      �@�@[Yy] | yes | YES )<br>
-      �@�@�@�@�@�@read -p &quot;Your name is: &quot; name<br>
-      �@�@�@�@�@�@echo Hello,&quot;$name&quot;,thanks for your answer.<br>
-      �@�@�@�@�@�@;;<br>
-      �@�@[Nn] | no | NO )<br>
-      �@�@�@�@�@�@echo &quot;It's ok. Good-bye.&quot;<br>
-      �@�@�@�@�@�@;;<br>
-      �@�@* )<br>
-      �@�@�@�@�@�@echo See you next time.<br>
-      �@�@�@�@�@�@;;<br>
+      　　[Yy] | yes | YES )<br>
+      　　　　　　read -p &quot;Your name is: &quot; name<br>
+      　　　　　　echo Hello,&quot;$name&quot;,thanks for your answer.<br>
+      　　　　　　;;<br>
+      　　[Nn] | no | NO )<br>
+      　　　　　　echo &quot;It's ok. Good-bye.&quot;<br>
+      　　　　　　;;<br>
+      　　* )<br>
+      　　　　　　echo See you next time.<br>
+      　　　　　　;;<br>
       esac <br>
       <br>
       suse:~/bin #<font color="#FFFF00"><strong> chmod +x script12.sh</strong></font><br>
       suse:~/bin # <font color="#FFFF00"><strong>script12.sh</strong></font><br>
       Can you tell me your name ?<br>
       Please input yes or no: <strong><font color="#FFFF00">yes</font></strong> 
-      <font color="#00FFFF" size="2">�� �o�̥i�H��J yes�BYES�By �� Y�C</font><br>
-      Your name is: <strong><font color="#FFFF00">barry</font></strong> <font color="#00FFFF" size="2">�� 
-      ��J barry�C</font><br>
+      <font color="#00FFFF" size="2">← 這裡可以輸入 yes、YES、y 或 Y。</font><br>
+      Your name is: <strong><font color="#FFFF00">barry</font></strong> <font color="#00FFFF" size="2">← 
+      輸入 barry。</font><br>
       Hello,barry,thanks for your answer. </font></td>
   </tr>
 </table>
-<p><font color="#000000">�@</font><font color="#000000">�o�ӽd�Ҥ����˦������ϥΤF &quot; | 
-  &quot;�A�� yes | YES �N�O��� $ANS �O�_�ŦX yes �� YES �˦��A�� [Yy] �h�O��� $ANS �O�_�ŦX Y �� y ���˦��A�]�� 
-  [Yy] | yes | YES</font><font color="#000000"> �զX�_�����ӴN���D�N��F�a !<br>
+<p><font color="#000000">　</font><font color="#000000">這個範例中的樣式部分使用了 &quot; | 
+  &quot;，像 yes | YES 就是比對 $ANS 是否符合 yes 或 YES 樣式，而 [Yy] 則是比對 $ANS 是否符合 Y 或 y 的樣式，因此 
+  [Yy] | yes | YES</font><font color="#000000"> 組合起來應該就知道意思了吧 !<br>
   <br>
-  <strong><font size="+1"><a name="29"></a><font size="5">10.7.3 �[�J�禡 (function) 
-  ���\��</font></font></strong></font></p>
-�@�禡�������b�����@�}�l�w���ΡA���I��Ѫ��ܡA�n���֦^�L�Y�h�Ʋߤ@�U�C�p�G�N�禡�g�b script ���Y�ɡA�i�n�`�N��@��Ʊ��A�N�O�z�ҫŧi���禡�����]�w�b 
-script ���e�Y�A�o�˦b���榹 script �ɡA�~�����N�禡Ū�J�O���餤�A�H�����H�ɳQ�I�s�C�z���ξ�ߨ禡���Y���{���X�|���W�Q����A�]���S���H�h�I�s�禡�ɬO���|�D�ʰ��檺�C<br>
+  <strong><font size="+1"><a name="29"></a><font size="5">10.7.3 加入函式 (function) 
+  的功能</font></font></strong></font></p>
+　函式的概念在本章一開始已提及，有點遺忘的話，要趕快回過頭去複習一下。如果將函式寫在 script 裡頭時，可要注意到一件事情，就是您所宣告的函式必須設定在 
+script 的前頭，這樣在執行此 script 時，才能先行將函式讀入記憶體中，以等待隨時被呼叫。您不用擔心函式裡頭的程式碼會馬上被執行，因為沒有人去呼叫函式時是不會主動執行的。<br>
 <br>
-<strong>�d��</strong>�G<br>
+<strong>範例</strong>：<br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~/bin # <font color="#FFFF00"><strong>vi 
       script13.sh</strong></font><br>
       <font color="#0099FF">#!/bin/bash</font><br>
-      <font face="�ө���">user ()<br>
+      <font face="細明體">user ()<br>
       {<br>
-      �@�@echo &quot;preparing to add a new user.&quot;<br>
-      �@�@sleep 1<br>
-      �@�@if [ $(grep &quot;^$USER&quot; /etc/passwd | cut -d : -f 3) -ne 0 ] ; 
+      　　echo &quot;preparing to add a new user.&quot;<br>
+      　　sleep 1<br>
+      　　if [ $(grep &quot;^$USER&quot; /etc/passwd | cut -d : -f 3) -ne 0 ] ; 
       then<br>
-      �@�@�@�@echo you are not administrators , so can not add a new user.<br>
-      �@�@�@�@return 5<br>
-      �@�@else<br>
-      �@�@�@�@useradd<br>
-      �@�@fi<br>
+      　　　　echo you are not administrators , so can not add a new user.<br>
+      　　　　return 5<br>
+      　　else<br>
+      　　　　useradd<br>
+      　　fi<br>
       }</font></font> 
-      <p><font color="#FFFFFF" face="�ө���">echo 1. add a new user.<br>
+      <p><font color="#FFFFFF" face="細明體">echo 1. add a new user.<br>
         echo 2. exit the script.<br>
         echo -n &quot;Enter your choice : &quot;<br>
         read choice<br>
         case $choice in<br>
-        �@�@ 1 ) user ;;<br>
-        �@�@ 2 ) exit ;;<br>
-        �@�@ * ) echo &quot;your choice must be 1 or 2.&quot; ;;<br>
+        　　 1 ) user ;;<br>
+        　　 2 ) exit ;;<br>
+        　　 * ) echo &quot;your choice must be 1 or 2.&quot; ;;<br>
         esac<br>
         </font><font color="#FFFFFF"><br>
         suse:~/bin #<font color="#FFFF00"><strong> chmod +x script13.sh<br>
@@ -1774,18 +1774,18 @@ script ���e�Y�A�o�˦b���榹 script �ɡA�~�����N�禡Ū�J�O���餤�A�H�����H�ɳQ�
         1. add a new user.<br>
         2. exit the script.<br>
         Enter your choice : <font color="#FFFF00"><strong>2</strong></font></font><strong> 
-        </strong> <font color="#00FFFF" size="2">�� ��J 2 ��|�����h�X script�C</font><strong><br>
+        </strong> <font color="#00FFFF" size="2">← 輸入 2 後會直接退出 script。</font><strong><br>
         </strong><font color="#FFFFFF">suse:~/bin # </font><strong><br>
         <br>
         </strong><font color="#FFFFFF">suse:~/bin #<font color="#FFFF00"><strong> 
         script13.sh</strong></font><br>
         1. add a new user.<br>
         2. exit the script.<br>
-        Enter your choice :<font color="#FFFF00"><strong> 1</strong></font> <font color="#FFFF00"><font color="#00FFFF" size="2">�� 
-        ��J 1 �ɷ|�I�s user �禡�C</font></font><br>
+        Enter your choice :<font color="#FFFF00"><strong> 1</strong></font> <font color="#FFFF00"><font color="#00FFFF" size="2">← 
+        輸入 1 時會呼叫 user 函式。</font></font><br>
         preparing to add a new user.<br>
-        useradd: Too few arguments. <font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF" size="2">��</font></font></font></font> 
-        <font color="#00FFFF" size="2">�o�O���� useradd ���O�Ҭݨ쪺�T���C</font><br>
+        useradd: Too few arguments. <font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF" size="2">←</font></font></font></font> 
+        <font color="#00FFFF" size="2">這是執行 useradd 指令所看到的訊息。</font><br>
         Try `useradd --help' or `useradd --usage' for more information.</font><strong><br>
         <br>
         </strong><font color="#FFFFFF">suse:~/bin #<font color="#FFFF00"><strong> 
@@ -1800,16 +1800,16 @@ script ���e�Y�A�o�˦b���榹 script �ɡA�~�����N�禡Ū�J�O���餤�A�H�����H�ɳQ�
         </strong></font> </font></p></td>
   </tr>
 </table>
-�@<br>
-�@�w�� user �禡���� if ����y�ӵy�L�����@�U<font color="#000000">�C�b�u<font color="#0000FF">grep 
-&quot;^$USER&quot; /etc/passwd</font>�v���O�ԭz���� ^$USER�A�d�U���n�γ�޸��N��]���A���M $ �|�Q�����@��r���ӳB�z�A�ӳy���L�k���o 
-USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H barry �ϥΪ̨Ӱ��檺�ܡA�� $USER 
-�� barry�C </font><br>
+　<br>
+　針對 user 函式中的 if 條件句來稍微解釋一下<font color="#000000">。在「<font color="#0000FF">grep 
+&quot;^$USER&quot; /etc/passwd</font>」指令敘述中的 ^$USER，千萬不要用單引號將其包住，不然 $ 會被當成一般字元來處理，而造成無法取得 
+USER 的變數值。另外如果您是以 root 身分執行這支 script，則 $USER 為 root，換成以 barry 使用者來執行的話，其 $USER 
+為 barry。 </font><br>
 <br>
-<font color="#0000FF"><strong><a name="30"></a><font size="6">10.8</font> </strong><font size="6"><strong>�ܼƭȴ������ܼƭȼ˦����</strong></font></font><br>
+<font color="#0000FF"><strong><a name="30"></a><font size="6">10.8</font> </strong><font size="6"><strong>變數值替換及變數值樣式比對</strong></font></font><br>
 <br>
-�@�@�몬�p�U�A�ϥ� $variable �� ${variable} �o��ؤ覡�Ҩ��o���ܼƭȬO�ۦP���A�]�N�O�� $variable �u�O ${variable} 
-���@��²�ƻy�k�}�F�C�ܩ�[�W { } ���ηN�A�O���F�����z�b { } ���ϥΦr��B��šA�ӹ�z���ܼƭȰ����F�����ާ@�C<br>
+　一般狀況下，使用 $variable 及 ${variable} 這兩種方式所取得的變數值是相同的，也就是說 $variable 只是 ${variable} 
+的一種簡化語法罷了。至於加上 { } 的用意，是為了能讓您在 { } 中使用字串運算符，來對您的變數值做更靈活的操作。<br>
 <br>
 <table width="100%" border="0">
   <tr> 
@@ -1823,17 +1823,17 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
 <br>
 <br>
 <font color="#000000" size="+1"><strong><a name="31"></a><font size="5">10.8.1 
-�ܼƭȴ���</font></strong></font> 
-<p> �@�H�U�N�ӻ����X���ܼƭȴ����譱���r��B��Ū��ܤ�k�G</p>
+變數值替換</font></strong></font> 
+<p> 　以下就來說說幾種變數值替換方面的字串運算符表示方法：</p>
 <table width="100%" border="1">
   <tr bgcolor="#CCCCCC"> 
-    <td align="center" nowrap><strong><font color="#000099">�������</font></strong></td>
-    <td><strong><font color="#000099">���@���@�\�@��</font></strong></td>
+    <td align="center" nowrap><strong><font color="#000099">替換算符</font></strong></td>
+    <td><strong><font color="#000099">替　換　功　能</font></strong></td>
   </tr>
   <tr> 
     <td width="11%" align="center" nowrap><font color="#000099"><strong>${var:-str}</strong></font></td>
-    <td width="89%">�p�G var �ܼƦs�b�B���D�ŭȡA�N�Ǧ^��� �Q�p�G var �ܼƦs�b�����ŭȩΪ� var �ܼƮڥ����s�b�A<font color="#000000">�h�Ǧ^ 
-      str</font>�C<br> 
+    <td width="89%">如果 var 變數存在且為非空值，就傳回其值 ﹔如果 var 變數存在但為空值或者 var 變數根本不存在，<font color="#000000">則傳回 
+      str</font>。<br> 
       <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF"> suse:~ # <font color="#FFFF00"><strong>var=test</strong></font><br>
@@ -1847,10 +1847,10 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
             /etc/passwd<br>
             suse:~ # <font color="#FFFF00"><strong>echo $var</strong></font><br>
             <br>
-            <font color="#00FFFF"># </font><font color="#00FFFF" face="�ө���"><font size="2">&quot;unset 
-            var&quot; �O���� var �ܼơA�]�N�O var �w�Q�����Ӥ��s�b�C</font></font><font color="#00FFFF"><br>
-            # </font></font><font color="#000099" face="�ө���"><font color="#00FFFF" size="2">&quot;var= 
-            &quot; �O�N var �]�w���ŭ� (null value)�C</font></font></td>
+            <font color="#00FFFF"># </font><font color="#00FFFF" face="細明體"><font size="2">&quot;unset 
+            var&quot; 是取消 var 變數，也就是 var 已被移除而不存在。</font></font><font color="#00FFFF"><br>
+            # </font></font><font color="#000099" face="細明體"><font color="#00FFFF" size="2">&quot;var= 
+            &quot; 是將 var 設定成空值 (null value)。</font></font></td>
         </tr>
       </table>
       
@@ -1858,8 +1858,8 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var-str}</strong></font></td>
-    <td>�p�G var �ܼƦs�b�B���D�ŭȡA�N�Ǧ^��� �Q�Y var �ܼƦs�b�����ŭȡA�h�Ǧ^�ŭ� �Q�p�G var �ܼƤ��s�b�A<font color="#000000">�h�Ǧ^ 
-      str</font>�C<br> <table width="60%" border="0">
+    <td>如果 var 變數存在且為非空值，就傳回其值 ﹔若 var 變數存在但為空值，則傳回空值 ﹔如果 var 變數不存在，<font color="#000000">則傳回 
+      str</font>。<br> <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF"> suse:~ # <font color="#FFFF00"><strong>var=test</strong></font><br>
             suse:~ # <font color="#FFFF00"><strong>echo ${var-/etc/passwd}</strong></font><br>
@@ -1875,8 +1875,8 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var:=str}</strong></font></td>
-    <td>�p�G var �ܼƦs�b�B���D�ŭȡA�N�Ǧ^��� �Q�p�G var �ܼƦs�b�����ŭȩΪ� var �ܼƮڥ����s�b�A�N�� str �]�w�� <font color="#000000">var 
-      �A�öǦ^ str</font>�C<br> <table width="60%" border="0">
+    <td>如果 var 變數存在且為非空值，就傳回其值 ﹔如果 var 變數存在但為空值或者 var 變數根本不存在，就把 str 設定給 <font color="#000000">var 
+      ，並傳回 str</font>。<br> <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>var=test</strong></font><br>
             suse:~ #<font color="#FFFF00"><strong> echo ${var:=/etc/passwd}</strong></font><br>
@@ -1896,8 +1896,8 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var=str}</strong></font></td>
-    <td>�p�G var �ܼƦs�b�B���D�ŭȡA�N�Ǧ^��� �Q�Y var �ܼƦs�b�����ŭȡA�h�Ǧ^�ŭ� �Q�p�G var �ܼƤ��s�b�A�N�� str �]�w�� 
-      <font color="#000000">var �A�öǦ^ str</font>�C<br> <table width="60%" border="0">
+    <td>如果 var 變數存在且為非空值，就傳回其值 ﹔若 var 變數存在但為空值，則傳回空值 ﹔如果 var 變數不存在，就把 str 設定給 
+      <font color="#000000">var ，並傳回 str</font>。<br> <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>var=test</strong></font><br>
             suse:~ #<font color="#FFFF00"><strong> echo ${var=/etc/passwd}</strong></font><br>
@@ -1915,8 +1915,8 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var:?info}</strong></font></td>
-    <td>�p�G var �ܼƦs�b�B���D�ŭȡA�N�Ǧ^��� �Q�p�G var �ܼƦs�b�����ŭȩΪ� var �ܼƮڥ����s�b�A�N�|��� var: �� info 
-      ���T���C<br> <table width="60%" border="0">
+    <td>如果 var 變數存在且為非空值，就傳回其值 ﹔如果 var 變數存在但為空值或者 var 變數根本不存在，就會顯示 var: 及 info 
+      的訊息。<br> <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF"> 
             <p>suse:~ #<font color="#FFFF00"><strong> var=test</strong></font><br>
@@ -1934,8 +1934,8 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var?info}</strong></font></td>
-    <td>�p�G var �ܼƦs�b�B���D�ŭȡA�N�Ǧ^��� �Q�Y var �ܼƦs�b�����ŭȡA�h�Ǧ^�ŭ� �Q�p�G var �ܼƤ��s�b�A�N�|��� var: �� 
-      info ���T���C<br> <table width="60%" border="0">
+    <td>如果 var 變數存在且為非空值，就傳回其值 ﹔若 var 變數存在但為空值，則傳回空值 ﹔如果 var 變數不存在，就會顯示 var: 及 
+      info 的訊息。<br> <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF"> 
             <p>suse:~ #<font color="#FFFF00"><strong> var=test</strong></font><br>
@@ -1955,7 +1955,7 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var:+str}</strong></font></td>
-    <td>�p�G var �ܼƦs�b�B���D�ŭȡA�h�Ǧ^ str �Q�p�G var �ܼƦs�b�����ŭȩΪ� var �ܼƮڥ����s�b�A�N<font color="#000000">�Ǧ^�ŭ�</font>�C<br> 
+    <td>如果 var 變數存在且為非空值，則傳回 str ﹔如果 var 變數存在但為空值或者 var 變數根本不存在，就<font color="#000000">傳回空值</font>。<br> 
       <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><p><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
@@ -1973,7 +1973,7 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var+str}</strong></font></td>
-    <td>�p�G var �ܼƦs�b�A�B���׬��ŭȩΫD�ŭȡA�ҶǦ^ str �Q�p�G var �ܼƤ��s�b�A�N<font color="#000000">�Ǧ^�ŭ�</font>�C<br> 
+    <td>如果 var 變數存在，且不論為空值或非空值，皆傳回 str ﹔如果 var 變數不存在，就<font color="#000000">傳回空值</font>。<br> 
       <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><p><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
@@ -1993,7 +1993,7 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var:number}</strong></font></td>
-    <td>number ���@�Ʀr�A�Y var ���ܼƭȧt�� 8 �Ӧr���A�� number �� 3 �ɡA���ܨ��o�ĤT�Ӧr���H�᪺�����C<br> <table width="60%" border="0">
+    <td>number 為一數字，若 var 的變數值含有 8 個字元，當 number 為 3 時，表示取得第三個字元以後的部分。<br> <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>var=myshellscript</strong></font><br>
             suse:~ # <font color="#FFFF00"><strong>echo ${var:2}</strong></font><br>
@@ -2003,7 +2003,7 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var:n1:n2}</strong></font></td>
-    <td>�Y var ���ܼƭȧt�� 8 �Ӧr���A�� n1 �� 3�An2 �� 6 �ɡA���ܨ��o�ĤT�Ӧr���H�᪺���Ӧr���C<br> <table width="60%" border="0">
+    <td>若 var 的變數值含有 8 個字元，當 n1 為 3，n2 為 6 時，表示取得第三個字元以後的六個字元。<br> <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>var=myshellscript</strong></font><br>
             suse:~ #<font color="#FFFF00"><strong> echo ${var:2:5}</strong></font><br>
@@ -2013,7 +2013,7 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${#var}</strong></font></td>
-    <td>�Ǧ^ var �ܼƭȪ��r���ơC<br> <table width="60%" border="0">
+    <td>傳回 var 變數值的字元數。<br> <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>var=myshellscript</strong></font><br>
             suse:~ #<font color="#FFFF00"><strong> echo ${#var}</strong></font><br>
@@ -2023,17 +2023,17 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
 </table>
 <p><strong><font color="#000000" size="+1"><a name="32"></a><font size="5">10.8.2 
-  �ܼƭȼ˦����</font></font></strong><br>
+  變數值樣式比對</font></font></strong><br>
   <br>
-  �@�t�~�@�ئr��B��Ū����A�A�O��ҫ��w���˦� ( pattern ) ���ܼƭȧ@���A�M��~�ھڤ�諸���G�ӨM�w�Ǧ^���ܼƭȡC </p>
+  　另外一種字串運算符的型態，是把所指定的樣式 ( pattern ) 跟變數值作比對，然後才根據比對的結果來決定傳回的變數值。 </p>
 <table width="100%" border="1">
   <tr bgcolor="#CCCCCC"> 
-    <td align="center" nowrap><strong><font color="#000099">�����</font></strong></td>
-    <td><font color="#000099"><strong>�N�@���@�N�@�q</strong></font></td>
+    <td align="center" nowrap><strong><font color="#000099">比對算符</font></strong></td>
+    <td><font color="#000099"><strong>代　表　意　義</strong></font></td>
   </tr>
   <tr> 
     <td width="13%" align="center" nowrap><font color="#000099"><strong>${var#pattern}</strong></font></td>
-    <td width="87%">�� pattern �P var �ܼƭȰ����ɡA�O�q var �ܼƭȪ��e���������_�A�p�G���ŦX���B�A�N�R���ܼƭȤ��̵u�������A�öǦ^��l���ܼƭȡC<br> 
+    <td width="87%">把 pattern 與 var 變數值做比對時，是從 var 變數值的前面部分比對起，如果有符合之處，就刪除變數值中最短的部分，並傳回其餘的變數值。<br> 
       <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>var=/home/barry/dir/file</strong></font><br>
@@ -2044,7 +2044,7 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var##pattern}</strong></font></td>
-    <td>�� pattern �P var �ܼƭȰ����ɡA�O�q var �ܼƭȪ��e���������_�A�p�G���ŦX���B�A�N�R���ܼƭȤ��̪��������A�öǦ^��l���ܼƭȡC<br> 
+    <td>把 pattern 與 var 變數值做比對時，是從 var 變數值的前面部分比對起，如果有符合之處，就刪除變數值中最長的部分，並傳回其餘的變數值。<br> 
       <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>var=/home/barry/dir/file</strong></font><br>
@@ -2055,7 +2055,7 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var%pattern}</strong></font></td>
-    <td>�� pattern �P var �ܼƭȰ����ɡA�O�q var �ܼƭȪ��᭱�������_�A�p�G���ŦX���B�A�N�R���ܼƭȤ��̵u�������A�öǦ^��l���ܼƭȡC<br> 
+    <td>把 pattern 與 var 變數值做比對時，是從 var 變數值的後面部分比對起，如果有符合之處，就刪除變數值中最短的部分，並傳回其餘的變數值。<br> 
       <table width="60%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>var=/home/barry/dir/</strong></font><br>
@@ -2066,7 +2066,7 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var%%pattern}</strong></font></td>
-    <td>�� pattern �P var �ܼƭȰ����ɡA�O�q var �ܼƭȪ��᭱�������_�A�p�G���ŦX���B�A�N�R���ܼƭȤ��̪��������A�öǦ^��l���ܼƭȡC<br> 
+    <td>把 pattern 與 var 變數值做比對時，是從 var 變數值的後面部分比對起，如果有符合之處，就刪除變數值中最長的部分，並傳回其餘的變數值。<br> 
       <table width="60%" border="0">
         <tr> 
           <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>var=/home/barry/test.tar.gz</strong></font><br>
@@ -2077,7 +2077,7 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var/pat1/pat2}</strong></font></td>
-    <td>�Y�ܼƭȤ��t�� pat1�A�N�N�Ĥ@�� pat1�� pat2 �@���N �C<br> <table width="60%" border="0">
+    <td>若變數值中含有 pat1，就將第一個 pat1用 pat2 作替代 。<br> <table width="60%" border="0">
         <tr> 
           <td nowrap bgcolor="#000000"><font color="#FFFFFF">s</font><font color="#FFFFFF">use:~ 
             # <font color="#FFFF00"><strong>var=/home/barry/barrydir/barryfile</strong></font><br>
@@ -2088,7 +2088,7 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
   </tr>
   <tr> 
     <td align="center" nowrap><font color="#000099"><strong>${var//pat1/pat2}</strong></font></td>
-    <td>�Y�ܼƭȤ��t�� pat1�A�N�N������ pat1�� pat2 �@���N �C<br> <table width="60%" border="0">
+    <td>若變數值中含有 pat1，就將全部的 pat1用 pat2 作替代 。<br> <table width="60%" border="0">
         <tr> 
           <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
             var=/home/barry/barrydir/barryfile</strong></font><br>
@@ -2100,7 +2100,7 @@ USER ���ܼƭȡC�t�~�p�G�z�O�H root ��������o�� script�A�h $USER �� root�A�����H
 </table>
 <br>
 <br>
-<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( �f�C�� 
+<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( 柏青哥 
   )</em></font> </p>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>¬f«C­ôªº SuSE Linux -- ¬[³] SSH  Server</title>
+<title>æŸé’å“¥çš„ SuSE Linux -- æ¶è¨­ SSH  Server</title>
 <style type="text/css">
 <!--
 a {
@@ -15,153 +15,153 @@ a {
 
 <body bgcolor="#FFFFFF" background="sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
 <a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
-¡@¡@§@ªÌ¡G³¯¬fµ×<font size="+1">¡@</font>E-mail¡Gpachingko@ms96.url.com.tw 
+ã€€ã€€ä½œè€…ï¼šé™³æŸè<font size="+1">ã€€</font>E-mailï¼špachingko@ms96.url.com.tw 
 <table width="100%" border="0">
   <tr> 
     <td nowrap> <strong><font size="+1"></font></strong> <div align="center"> 
-        <div align="center"><font size="+1"><font size="7"><strong>²Ä¤Q¤E³¹¡@»·ºİ³s½u¦øªA¾¹</strong></font></font></div>
+        <div align="center"><font size="+1"><font size="7"><strong>ç¬¬åä¹ç« ã€€é ç«¯é€£ç·šä¼ºæœå™¨</strong></font></font></div>
         <font color="#0000FF" size="+1"><strong></strong></font></div>
       <div align="center"></div></td>
   </tr>
 </table>
 <br>
-<font color="#000099" size="+1"><strong>¯Á¤Ş¡G</strong></font><br>
+<font color="#000099" size="+1"><strong>ç´¢å¼•ï¼š</strong></font><br>
 <table width="100%" border="0">
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>19.1 <a href="#1">¬[³] SSH Server</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>19.1 <a href="#1">æ¶è¨­ SSH Server</a></strong></font></td>
   </tr>
   <tr> 
     <td width="4%"><font color="#000099">&nbsp;</font></td>
     <td width="6%" align="center" valign="top" nowrap><font color="#000099">19.1.1</font></td>
-    <td width="90%"><a href="#2">SSH ¨ó©w¤Î¥[±K§Ş³N</a></td>
+    <td width="90%"><a href="#2">SSH å”å®šåŠåŠ å¯†æŠ€è¡“</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">19.1.2</font></td>
-    <td><a href="#3">¬d¸ß®M¥ó¦w¸Ë¤ÎÀËµø®M¥ó¤º®e</a></td>
+    <td><a href="#3">æŸ¥è©¢å¥—ä»¶å®‰è£åŠæª¢è¦–å¥—ä»¶å…§å®¹</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">19.1.3</font></td>
-    <td><a href="#4">³]©w OpenSSH Server</a></td>
+    <td><a href="#4">è¨­å®š OpenSSH Server</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">19.1.4</font></td>
-    <td><font color="#000099"><a href="#5">SSH Client ºİ±`¨Ï¥Îªº³s½u¤u¨ã</a> ---<br>
-      <a href="#6">ssh ¤Î putty</a> ¡B<a href="#7">scp</a>¡B<a href="#8">sftp</a></font></td>
+    <td><font color="#000099"><a href="#5">SSH Client ç«¯å¸¸ä½¿ç”¨çš„é€£ç·šå·¥å…·</a> ---<br>
+      <a href="#6">ssh åŠ putty</a> ã€<a href="#7">scp</a>ã€<a href="#8">sftp</a></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">19.1.5</font></td>
-    <td><a href="#9">¨Ï¥Î key ¨Ó°µ»{ÃÒ</a></td>
+    <td><a href="#9">ä½¿ç”¨ key ä¾†åšèªè­‰</a></td>
   </tr>
   <tr> 
-    <td colspan="3"><font color="#000099"><strong>19.2 <a href="#10">VNC »·ºİ®à­±»»±±</a></strong></font></td>
+    <td colspan="3"><font color="#000099"><strong>19.2 <a href="#10">VNC é ç«¯æ¡Œé¢é™æ§</a></strong></font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">19.2.1</font></td>
-    <td><a href="#11">VNC ·§­z</a></td>
+    <td><a href="#11">VNC æ¦‚è¿°</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">19.2.2</font></td>
-    <td><a href="#12">¦w¸Ë©Ò»İ³nÅé</a></td>
+    <td><a href="#12">å®‰è£æ‰€éœ€è»Ÿé«”</a></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">19.2.3</font></td>
-    <td><font color="#000099"><a href="#13">Windows »·ºİ»»±± Linux</a> ---<br>
-      <a href="#14">³]©w Linux ¾á¥ô VNC Server</a> <br>
-      <a href="#15">Windows »·ºİ¾Ş±± Linux</a> </font></td>
+    <td><font color="#000099"><a href="#13">Windows é ç«¯é™æ§ Linux</a> ---<br>
+      <a href="#14">è¨­å®š Linux æ“”ä»» VNC Server</a> <br>
+      <a href="#15">Windows é ç«¯æ“æ§ Linux</a> </font></td>
   </tr>
   <tr> 
     <td><font color="#000099">&nbsp;</font></td>
     <td align="center" valign="top" nowrap><font color="#000099">19.2.4</font></td>
-    <td><a href="#17">Linux »·ºİ»»±± Windows</a></td>
+    <td><a href="#17">Linux é ç«¯é™æ§ Windows</a></td>
   </tr>
 </table>
 <br>
 <hr>
 <font color="#660066"><br>
 </font> <strong><font color="#0000FF" size="+2"><a name="1"></a><font size="6">19.1 
-¬[³] SSH Server </font></font></strong> 
+æ¶è¨­ SSH Server </font></font></strong> 
 <p><strong><font color="#000000" size="+1"><a name="2"></a><font size="5">19.1.1 
-  SSH ¨ó©w¤Î¥[±K§Ş³N </font></font></strong><br>
+  SSH å”å®šåŠåŠ å¯†æŠ€è¡“ </font></font></strong><br>
   <br>
-  ¡@ÁÙ°O±o¦b²Ä¤Q¤@³¹¤¶²Ğ¹Lªº<a href="lesson11.htm#23" tppabs="http://www.suse.url.tw/sles10/lesson11.htm#23" target="_blank">»·ºİ³s½u«ü¥O</a> telnet ¤Î ssh 
-  §a ! ¥Ñ©ó telnet ¦b¸ê®Æ¶Ç¿é¹Lµ{ªº¤£¦w¥ş¡A¦]¦¹³£¹ªÀy¤j®a¨Ï¥Î ssh¡C¨º­n´£¨Ñ SSH ªA°È¨Óµ¹ Client ºİ°µ»·ºİ³s½u®É¡A·íµM´N­n¬[³] 
-  SSH Server ¤F¡C<br>
+  ã€€é‚„è¨˜å¾—åœ¨ç¬¬åä¸€ç« ä»‹ç´¹éçš„<a href="lesson11.htm#23" tppabs="http://www.suse.url.tw/sles10/lesson11.htm#23" target="_blank">é ç«¯é€£ç·šæŒ‡ä»¤</a> telnet åŠ ssh 
+  å§ ! ç”±æ–¼ telnet åœ¨è³‡æ–™å‚³è¼¸éç¨‹çš„ä¸å®‰å…¨ï¼Œå› æ­¤éƒ½é¼“å‹µå¤§å®¶ä½¿ç”¨ sshã€‚é‚£è¦æä¾› SSH æœå‹™ä¾†çµ¦ Client ç«¯åšé ç«¯é€£ç·šæ™‚ï¼Œç•¶ç„¶å°±è¦æ¶è¨­ 
+  SSH Server äº†ã€‚<br>
   <br>
-  ¡@SSH ¥i¥H¨ú¥N¶Ç²Îªº r «ü¥O (rsh¡Brlogin¡Brcp)¡Bfinger ¤Î telnet ³o¤@Ãş¸û¤£¦w¥şªº³s½u¤u¨ã¡C¨Ï¥Î SSH (Secure 
-  SHell)¡A¥iÅı§Ú­Ì©Ò¶Ç¿éªº¸ê®Æ³£¨Æ¥ı¸g¹L¥[±K¡A¦]¦¹ Client ºİ¥i¥H¨Ï¥Î scp «ü¥O¦b¨â¥x¹q¸£¶¡«Ü¦w¥şªº½Æ»s¸ê®Æ¡A¤]¥i¥H¨Ï¥Î sftp «ü¥O¨Ó¦w¤ßªº¦s¨ú 
-  ftp ªA°È¡C <br>
+  ã€€SSH å¯ä»¥å–ä»£å‚³çµ±çš„ r æŒ‡ä»¤ (rshã€rloginã€rcp)ã€finger åŠ telnet é€™ä¸€é¡è¼ƒä¸å®‰å…¨çš„é€£ç·šå·¥å…·ã€‚ä½¿ç”¨ SSH (Secure 
+  SHell)ï¼Œå¯è®“æˆ‘å€‘æ‰€å‚³è¼¸çš„è³‡æ–™éƒ½äº‹å…ˆç¶“éåŠ å¯†ï¼Œå› æ­¤ Client ç«¯å¯ä»¥ä½¿ç”¨ scp æŒ‡ä»¤åœ¨å…©å°é›»è…¦é–“å¾ˆå®‰å…¨çš„è¤‡è£½è³‡æ–™ï¼Œä¹Ÿå¯ä»¥ä½¿ç”¨ sftp æŒ‡ä»¤ä¾†å®‰å¿ƒçš„å­˜å– 
+  ftp æœå‹™ã€‚ <br>
   <br>
   <strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-  SSH ¨ó©wªºª©¥»<br>
+  SSH å”å®šçš„ç‰ˆæœ¬<br>
   <br>
-  </font></strong>¡@SSH ¨ó©w¥Ø«e¦³ SSH1 ( SSH protocol version 1 ) ¤Î SSH2 ( SSH protocol 
-  version 1 ) ¨âºØª©¥»¡A·íµM²{¦bªº¥D¬y¬O SSH2¡A¦]¬°¥¦´£¨Ñ¤F¤ñ SSH1 §ó¦w¥şªº¸ê®Æ¶Ç¿é¡C<br>
+  </font></strong>ã€€SSH å”å®šç›®å‰æœ‰ SSH1 ( SSH protocol version 1 ) åŠ SSH2 ( SSH protocol 
+  version 1 ) å…©ç¨®ç‰ˆæœ¬ï¼Œç•¶ç„¶ç¾åœ¨çš„ä¸»æµæ˜¯ SSH2ï¼Œå› ç‚ºå®ƒæä¾›äº†æ¯” SSH1 æ›´å®‰å…¨çš„è³‡æ–™å‚³è¼¸ã€‚<br>
   <br>
-  ¡@¦b SSH ¤WÀY¡A±`¨£¨ìªº¥[±Kºtºâªk¦³ RSA¡BDSA ¤Î Diffie-Hellman µ¥¡CSSH1 ¥D­n¬O¨Ï¥Î RSA ªº¥[±K§Ş³N¡A¦Ó SSH2 
-  °£¤F RSA ¥H¥~¡AÁÙ¦³ DSA ¤Î Diffie-Hellman µ¥µ¥¡C </p>
+  ã€€åœ¨ SSH ä¸Šé ­ï¼Œå¸¸è¦‹åˆ°çš„åŠ å¯†æ¼”ç®—æ³•æœ‰ RSAã€DSA åŠ Diffie-Hellman ç­‰ã€‚SSH1 ä¸»è¦æ˜¯ä½¿ç”¨ RSA çš„åŠ å¯†æŠ€è¡“ï¼Œè€Œ SSH2 
+  é™¤äº† RSA ä»¥å¤–ï¼Œé‚„æœ‰ DSA åŠ Diffie-Hellman ç­‰ç­‰ã€‚ </p>
 <p><font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font> 
-  SSH ¥[±K¬yµ{</strong></font></p>
+  SSH åŠ å¯†æµç¨‹</strong></font></p>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
     <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td width="95%"><strong><font color="#000099">SSH1 ¥[±K§Ş³N</font></strong></td>
+    <td width="95%"><strong><font color="#000099">SSH1 åŠ å¯†æŠ€è¡“</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
     <td><table width="100%" border="0">
         <tr> 
-          <td width="4%" align="center" valign="top"><font size="4">£»</font></td>
-          <td width="96%"><font color="#000000">Client ¦V SSH Server ªº 22 port 
-            °µ¥X³s½u½Ğ¨D¡C</font></td>
+          <td width="4%" align="center" valign="top"><font size="4">Ë™</font></td>
+          <td width="96%"><font color="#000000">Client å‘ SSH Server çš„ 22 port 
+            åšå‡ºé€£ç·šè«‹æ±‚ã€‚</font></td>
         </tr>
         <tr> 
-          <td align="center" valign="top"><font size="4">£»</font></td>
-          <td><font color="#000000">Server ¶Ç°e public key µ¹ Client¡G<br>
-            Ãö©ó³o­Ó¦a¤è¡A±z»İ¥ı¤F¸Ñ¤°»ò¬O host key pair ¤Î server key pair¡C<br>
-            <font color="#0000FF">host key pair</font> ¬O«ü¦s¦b©ó SSH Server ¤Wªº¤@¹ï¤½Æ_ 
-            (host public key) ¤Î¨pÆ_ (host private key)¡C<br>
-            <font color="#0000FF">server key pair </font>¬O«ü¦b¨C¦¸ SSH ªA°È±Ò°Ê®É¡A©ÒÀH¾÷²£¥Íªº¤@¹ï¤½Æ_ 
-            (server public key) ¤Î¨pÆ_ (server private key)¡A¥B³o­Ó server key ¹w³]¨C¤p®É·|§ó´«¤@¦¸¡C<br>
-            ¦Ó SSH Server ©Ò¦^À³µ¹ Client ªº public key¡A´N¬O«ü host public key ¤Î server 
-            public key¡C</font></td>
+          <td align="center" valign="top"><font size="4">Ë™</font></td>
+          <td><font color="#000000">Server å‚³é€ public key çµ¦ Clientï¼š<br>
+            é—œæ–¼é€™å€‹åœ°æ–¹ï¼Œæ‚¨éœ€å…ˆäº†è§£ä»€éº¼æ˜¯ host key pair åŠ server key pairã€‚<br>
+            <font color="#0000FF">host key pair</font> æ˜¯æŒ‡å­˜åœ¨æ–¼ SSH Server ä¸Šçš„ä¸€å°å…¬é‘° 
+            (host public key) åŠç§é‘° (host private key)ã€‚<br>
+            <font color="#0000FF">server key pair </font>æ˜¯æŒ‡åœ¨æ¯æ¬¡ SSH æœå‹™å•Ÿå‹•æ™‚ï¼Œæ‰€éš¨æ©Ÿç”¢ç”Ÿçš„ä¸€å°å…¬é‘° 
+            (server public key) åŠç§é‘° (server private key)ï¼Œä¸”é€™å€‹ server key é è¨­æ¯å°æ™‚æœƒæ›´æ›ä¸€æ¬¡ã€‚<br>
+            è€Œ SSH Server æ‰€å›æ‡‰çµ¦ Client çš„ public keyï¼Œå°±æ˜¯æŒ‡ host public key åŠ server 
+            public keyã€‚</font></td>
         </tr>
         <tr> 
-          <td align="center" valign="top"><font size="4">£»</font></td>
-          <td><font color="#000000">Client ºİ¤ñ¹ï host public key¡G<br>
-            Client ºİ¹ï SSH Server ©Ò¶Ç°e¹L¨Óªº host public key ¶i¦æ¤ñ¹ï¡A¦pªG»P ~/.ssh/known_hosts 
-            ÀÉ®×¤º®e¬Û²Å¡A«hÄ~Äò¶i¦æ¤U¤@¨B¡A§_«h·|¸ß°İ±z¬O§_­n±µ¨ü³o­Ó key¡A¦¹®É¿é¤J yes ´N¹ï¤F¡C<br>
-            ·í¨Ï¥ÎªÌ²Ä¤@¦¸»P Server °µ³s½u®É¡A¥Ñ©ó¤§«e¨Ã¨S¦³¨ú±o³o­Ó key¡A¦]¦¹·|¸ß°İ±z¬O§_­n±µ¨ü Server ©Ò¶Ç¨Óªº host 
-            public key¡A¨º¸U¤@¥ı«e¤w°µ¹L³s½u¡A²{¦bÁÙ¬O¬İ¨ì³o­Ó°T®§¡A³o´Nªí¥Ü Server ¤Wªº host public key »P 
-            Client ªº known_hosts ¤ñ¹ï¤£²Å¦Xªºµ²ªG¡A¤ñ¦p¹³ Server ªº SSH ®M¥ó­«·s¦w¸Ë¹L«á´N·|¦³³oºØ±¡§Îµo¥Í¡C¨º¸U¤@±z¹J¨ìªºª¬ªp¬O¦b 
-            key ¤ñ¹ï¤£²Å«á¡Aª½±µ©Úµ´±z³s½u¡A³o¸Ó«ç»ò¿ì©O ? «ÜÂ²³æ¡A¥u­n§â Client ªº ~/.ssh/ ¥Ø¿ı¤Uªº known_hosts 
-            ÀÉ§R°£«á¡A¦A»P Server °µ³s½u¡A¥H­«·s¨ú±o host public key ´N¦æ¤F¡C</font></td>
+          <td align="center" valign="top"><font size="4">Ë™</font></td>
+          <td><font color="#000000">Client ç«¯æ¯”å° host public keyï¼š<br>
+            Client ç«¯å° SSH Server æ‰€å‚³é€éä¾†çš„ host public key é€²è¡Œæ¯”å°ï¼Œå¦‚æœèˆ‡ ~/.ssh/known_hosts 
+            æª”æ¡ˆå…§å®¹ç›¸ç¬¦ï¼Œå‰‡ç¹¼çºŒé€²è¡Œä¸‹ä¸€æ­¥ï¼Œå¦å‰‡æœƒè©¢å•æ‚¨æ˜¯å¦è¦æ¥å—é€™å€‹ keyï¼Œæ­¤æ™‚è¼¸å…¥ yes å°±å°äº†ã€‚<br>
+            ç•¶ä½¿ç”¨è€…ç¬¬ä¸€æ¬¡èˆ‡ Server åšé€£ç·šæ™‚ï¼Œç”±æ–¼ä¹‹å‰ä¸¦æ²’æœ‰å–å¾—é€™å€‹ keyï¼Œå› æ­¤æœƒè©¢å•æ‚¨æ˜¯å¦è¦æ¥å— Server æ‰€å‚³ä¾†çš„ host 
+            public keyï¼Œé‚£è¬ä¸€å…ˆå‰å·²åšéé€£ç·šï¼Œç¾åœ¨é‚„æ˜¯çœ‹åˆ°é€™å€‹è¨Šæ¯ï¼Œé€™å°±è¡¨ç¤º Server ä¸Šçš„ host public key èˆ‡ 
+            Client çš„ known_hosts æ¯”å°ä¸ç¬¦åˆçš„çµæœï¼Œæ¯”å¦‚åƒ Server çš„ SSH å¥—ä»¶é‡æ–°å®‰è£éå¾Œå°±æœƒæœ‰é€™ç¨®æƒ…å½¢ç™¼ç”Ÿã€‚é‚£è¬ä¸€æ‚¨é‡åˆ°çš„ç‹€æ³æ˜¯åœ¨ 
+            key æ¯”å°ä¸ç¬¦å¾Œï¼Œç›´æ¥æ‹’çµ•æ‚¨é€£ç·šï¼Œé€™è©²æ€éº¼è¾¦å‘¢ ? å¾ˆç°¡å–®ï¼Œåªè¦æŠŠ Client çš„ ~/.ssh/ ç›®éŒ„ä¸‹çš„ known_hosts 
+            æª”åˆªé™¤å¾Œï¼Œå†èˆ‡ Server åšé€£ç·šï¼Œä»¥é‡æ–°å–å¾— host public key å°±è¡Œäº†ã€‚</font></td>
         </tr>
         <tr> 
-          <td align="center" valign="top"><font size="4">£»</font></td>
-          <td><font color="#000000">Client ÀH¾÷²£¥Í¤@­Ó 256 bit ªº¶Ã¼Æ (session key)¡G<br>
-            ·í²Ä¤T¨BÆJ³q¹L«á¡AClient ÀH§Y²£¥Í³o­Ó¶Ã¼Æ¡A¨Ã¨Ï¥Î­è­è±q Server ¨º¸Ì©Ò±o¨ìªº¨º¨â§â key ¨Ó¤@°_°µ¥[±K¡A§¹¦¨«á´N¶Ç¦^µ¹ 
-            Server¡C</font></td>
+          <td align="center" valign="top"><font size="4">Ë™</font></td>
+          <td><font color="#000000">Client éš¨æ©Ÿç”¢ç”Ÿä¸€å€‹ 256 bit çš„äº‚æ•¸ (session key)ï¼š<br>
+            ç•¶ç¬¬ä¸‰æ­¥é©Ÿé€šéå¾Œï¼ŒClient éš¨å³ç”¢ç”Ÿé€™å€‹äº‚æ•¸ï¼Œä¸¦ä½¿ç”¨å‰›å‰›å¾ Server é‚£è£¡æ‰€å¾—åˆ°çš„é‚£å…©æŠŠ key ä¾†ä¸€èµ·åšåŠ å¯†ï¼Œå®Œæˆå¾Œå°±å‚³å›çµ¦ 
+            Serverã€‚</font></td>
         </tr>
         <tr> 
-          <td align="center" valign="top"><font size="4">£»</font></td>
-          <td><font color="#000000">Server ¨Ï¥Î private key ¨Ó¸Ñ±K¡C</font></td>
+          <td align="center" valign="top"><font size="4">Ë™</font></td>
+          <td><font color="#000000">Server ä½¿ç”¨ private key ä¾†è§£å¯†ã€‚</font></td>
         </tr>
         <tr> 
-          <td align="center" valign="top"><font size="4">£»</font></td>
-          <td><font color="#000000">º¸«á´N³z¹L³o session key ¨Ó§@¹ïºÙ¦¡ªº¥[±K¨Ï¥Î¡C</font></td>
+          <td align="center" valign="top"><font size="4">Ë™</font></td>
+          <td><font color="#000000">çˆ¾å¾Œå°±é€éé€™ session key ä¾†ä½œå°ç¨±å¼çš„åŠ å¯†ä½¿ç”¨ã€‚</font></td>
         </tr>
         <tr> 
-          <td align="center" valign="top"><font size="4">£»</font></td>
-          <td><font color="#000000">Client ºİ¶}©l¶i¦æ»{ÃÒ¡A³q¹L«á¡ASSH ³s½u¥¿¦¡«Ø¥ß°_¨Ó¡C</font></td>
+          <td align="center" valign="top"><font size="4">Ë™</font></td>
+          <td><font color="#000000">Client ç«¯é–‹å§‹é€²è¡Œèªè­‰ï¼Œé€šéå¾Œï¼ŒSSH é€£ç·šæ­£å¼å»ºç«‹èµ·ä¾†ã€‚</font></td>
         </tr>
       </table></td>
   </tr>
@@ -173,60 +173,60 @@ a {
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">SSH2 ¥[±K§Ş³N</font></strong></td>
+    <td><strong><font color="#000099">SSH2 åŠ å¯†æŠ€è¡“</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
     <td><table width="100%" border="0">
         <tr> 
-          <td width="4%" align="center" valign="top"><font size="4">£»</font></td>
-          <td width="96%"><font color="#000000">Client ¦V SSH Server ªº 22 port 
-            °µ¥X³s½u½Ğ¨D¡C</font></td>
+          <td width="4%" align="center" valign="top"><font size="4">Ë™</font></td>
+          <td width="96%"><font color="#000000">Client å‘ SSH Server çš„ 22 port 
+            åšå‡ºé€£ç·šè«‹æ±‚ã€‚</font></td>
         </tr>
         <tr> 
-          <td align="center" valign="top"><font size="4">£»</font></td>
-          <td><font color="#000000">Server ¶Ç°e host public key µ¹ Client¡G<br>
-            ¦b SSH2 ¸Ì¡Asshd daemon ±Ò°Ê®É¡A¨Ã¤£·|²£¥Í&nbsp;server key¡A©Ò¥H¥u·|¶Ç°e host public 
-            key µ¹ Client¡C</font></td>
+          <td align="center" valign="top"><font size="4">Ë™</font></td>
+          <td><font color="#000000">Server å‚³é€ host public key çµ¦ Clientï¼š<br>
+            åœ¨ SSH2 è£¡ï¼Œsshd daemon å•Ÿå‹•æ™‚ï¼Œä¸¦ä¸æœƒç”¢ç”Ÿ&nbsp;server keyï¼Œæ‰€ä»¥åªæœƒå‚³é€ host public 
+            key çµ¦ Clientã€‚</font></td>
         </tr>
         <tr> 
-          <td align="center" valign="top"><font size="4">£»</font></td>
-          <td><font color="#000000">Client ºİ¤ñ¹ï host public key¡G<br>
-            »P SSH1 ªº°µªk¬Û¦P¡A¤£¦AÂØ­z¡C</font></td>
+          <td align="center" valign="top"><font size="4">Ë™</font></td>
+          <td><font color="#000000">Client ç«¯æ¯”å° host public keyï¼š<br>
+            èˆ‡ SSH1 çš„åšæ³•ç›¸åŒï¼Œä¸å†è´…è¿°ã€‚</font></td>
         </tr>
         <tr> 
-          <td align="center" valign="top"><font size="4">£»</font></td>
-          <td><font color="#000000">¨Ï¥Î Diffie-Hellman ªººtºâªk¨Ó²£¥Í&nbsp;session key¡A¥H§@¬°³s½u¥[±K¨Ï¥Î¡C</font></td>
+          <td align="center" valign="top"><font size="4">Ë™</font></td>
+          <td><font color="#000000">ä½¿ç”¨ Diffie-Hellman çš„æ¼”ç®—æ³•ä¾†ç”¢ç”Ÿ&nbsp;session keyï¼Œä»¥ä½œç‚ºé€£ç·šåŠ å¯†ä½¿ç”¨ã€‚</font></td>
         </tr>
         <tr> 
-          <td align="center" valign="top"><font size="4">£»</font></td>
-          <td><font color="#000000">Client ºİ¶}©l¶i¦æ»{ÃÒ¡A³q¹L«á¡ASSH ³s½u¥¿¦¡«Ø¥ß°_¨Ó¡C</font></td>
+          <td align="center" valign="top"><font size="4">Ë™</font></td>
+          <td><font color="#000000">Client ç«¯é–‹å§‹é€²è¡Œèªè­‰ï¼Œé€šéå¾Œï¼ŒSSH é€£ç·šæ­£å¼å»ºç«‹èµ·ä¾†ã€‚</font></td>
         </tr>
       </table></td>
   </tr>
 </table>
 <p><strong><font size="+1"><font color="#000000"><a name="3"></a><font size="5">19.1.2 
-  »İ¦w¸Ë®M¥ó¤ÎÀËµø®M¥ó¤º®e</font><br>
+  éœ€å®‰è£å¥—ä»¶åŠæª¢è¦–å¥—ä»¶å…§å®¹</font><br>
   <br>
   </font></font><font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
-  <font color="#000000" size="4">SSH ©Ò»İ®M¥ó</font></strong></p>
+  <font color="#000000" size="4">SSH æ‰€éœ€å¥—ä»¶</font></strong></p>
 <table width="35%" border="1">
   <tr bgcolor="#CCCCCC"> 
-    <td width="29%" nowrap> <div align="center"><font color="#000099"><strong>®M 
-        ¥ó ¦W ºÙ</strong></font></div></td>
-    <td width="71%" nowrap> <div align="center"><font color="#000099"><strong>Â²¡@³æ¡@´y¡@­z</strong></font></div></td>
+    <td width="29%" nowrap> <div align="center"><font color="#000099"><strong>å¥— 
+        ä»¶ å ç¨±</strong></font></div></td>
+    <td width="71%" nowrap> <div align="center"><font color="#000099"><strong>ç°¡ã€€å–®ã€€æã€€è¿°</strong></font></div></td>
   </tr>
   <tr> 
     <td nowrap> <div align="center"><font color="#000099">openssh</font></div></td>
-    <td nowrap><font color="#FFFFFF"><font color="#000099">SSH Server ªº¥D­n®M¥ó¡C</font></font></td>
+    <td nowrap><font color="#FFFFFF"><font color="#000099">SSH Server çš„ä¸»è¦å¥—ä»¶ã€‚</font></font></td>
   </tr>
 </table>
-<p><strong><font color="#000000"> ¡@</font></strong><font color="#000000">SuSE 
-  ¹w³]´N¤w¸g§â¦¹®M¥ó¥H¤Î¨ä¬Û¨Ì®M¥ó³£À°±z¸Ë¤W¤F¡A©Ò¥H³o³¡¤À¤£¥Î¦U¦ì¾Ş¤ß¡C <strong><br>
+<p><strong><font color="#000000"> ã€€</font></strong><font color="#000000">SuSE 
+  é è¨­å°±å·²ç¶“æŠŠæ­¤å¥—ä»¶ä»¥åŠå…¶ç›¸ä¾å¥—ä»¶éƒ½å¹«æ‚¨è£ä¸Šäº†ï¼Œæ‰€ä»¥é€™éƒ¨åˆ†ä¸ç”¨å„ä½æ“å¿ƒã€‚ <strong><br>
   <br>
   <font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
-  <font size="4">¬d¸ß®M¥ó¤º®e</font></strong></font></p>
+  <font size="4">æŸ¥è©¢å¥—ä»¶å…§å®¹</font></strong></font></p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF"> suse:~ # <font color="#FFFF00"><strong>rpm 
@@ -235,102 +235,102 @@ a {
       </font> <table width="100%" border="0">
         <tr> 
           <td width="19%"><font color="#FFFFFF">/etc/init.d/sshd</font></td>
-          <td width="81%"><font color="#00FFFF" size="2">ºŞ²z SSH ªA°Èªº script¡C</font></td>
+          <td width="81%"><font color="#00FFFF" size="2">ç®¡ç† SSH æœå‹™çš„ scriptã€‚</font></td>
         </tr>
         <tr> 
           <td><font color="#FFFFFF">/etc/pam.d/sshd</font></td>
-          <td><font color="#00FFFF" size="2"> sshd ©Ò¨Ï¥Îªº pam ¼Ò²Õ³]©wÀÉ¡C</font></td>
+          <td><font color="#00FFFF" size="2"> sshd æ‰€ä½¿ç”¨çš„ pam æ¨¡çµ„è¨­å®šæª”ã€‚</font></td>
         </tr>
         <tr> 
           <td><font color="#FFFFFF">/etc/ssh/sshd_config</font></td>
-          <td><font color="#00FFFF" size="2">SSH Server ªº¥D­n³]©wÀÉ¡C</font></td>
+          <td><font color="#00FFFF" size="2">SSH Server çš„ä¸»è¦è¨­å®šæª”ã€‚</font></td>
         </tr>
         <tr> 
           <td><font color="#FFFFFF">/usr/bin/scp</font></td>
-          <td><font color="#00FFFF" size="2">³o¬O¨Ï¥Î SSH ¨ó©w©ó¨â¥x¹q¸£¶¡«Ü¦w¥şªº¶i¦æ½Æ»s¤u§@ªº«ü¥O¡C</font></td>
+          <td><font color="#00FFFF" size="2">é€™æ˜¯ä½¿ç”¨ SSH å”å®šæ–¼å…©å°é›»è…¦é–“å¾ˆå®‰å…¨çš„é€²è¡Œè¤‡è£½å·¥ä½œçš„æŒ‡ä»¤ã€‚</font></td>
         </tr>
         <tr> 
           <td><font color="#FFFFFF">/usr/bin/sftp</font></td>
-          <td><font color="#00FFFF" size="2">·í­n¤U¸ü©Î¤W¶ÇÀÉ®×®É¡A¥i¨Ï¥Î³o­Ó¤u¨ã¨Ó«O»Ù¸ê®Æ¶Ç¿éªº¦w¥ş©Ê¡C</font></td>
+          <td><font color="#00FFFF" size="2">ç•¶è¦ä¸‹è¼‰æˆ–ä¸Šå‚³æª”æ¡ˆæ™‚ï¼Œå¯ä½¿ç”¨é€™å€‹å·¥å…·ä¾†ä¿éšœè³‡æ–™å‚³è¼¸çš„å®‰å…¨æ€§ã€‚</font></td>
         </tr>
         <tr> 
           <td><font color="#FFFFFF">/usr/bin/ssh</font></td>
-          <td><font color="#00FFFF" size="2">SSH Client ªº»·ºİ³s½u¤u¨ã¡C</font></td>
+          <td><font color="#00FFFF" size="2">SSH Client çš„é ç«¯é€£ç·šå·¥å…·ã€‚</font></td>
         </tr>
         <tr> 
           <td><font color="#FFFFFF">/usr/bin/ssh-agent</font></td>
-          <td><font color="#00FFFF" size="2">±Ò¥Î¥N²z»{ÃÒªº¤u¨ã¡C</font></td>
+          <td><font color="#00FFFF" size="2">å•Ÿç”¨ä»£ç†èªè­‰çš„å·¥å…·ã€‚</font></td>
         </tr>
         <tr> 
           <td><font color="#FFFFFF">/usr/bin/ssh-add</font></td>
-          <td><p><font color="#00FFFF" size="2">·í±z±Ò¥Î»{ÃÒ¥N²z®É¡A¥i§Q¥Î¦¹«ü¥O¨ÓÀ°±z±N private key 
-              µn¿ı¦Ü¥N²z»{ÃÒ¤§¤¤¡C</font></p></td>
+          <td><p><font color="#00FFFF" size="2">ç•¶æ‚¨å•Ÿç”¨èªè­‰ä»£ç†æ™‚ï¼Œå¯åˆ©ç”¨æ­¤æŒ‡ä»¤ä¾†å¹«æ‚¨å°‡ private key 
+              ç™»éŒ„è‡³ä»£ç†èªè­‰ä¹‹ä¸­ã€‚</font></p></td>
         </tr>
         <tr> 
           <td><font color="#FFFFFF">/usr/bin/ssh-keygen</font></td>
-          <td><font color="#00FFFF" size="2">±ı±Ä¨ú key »{ÃÒ®É¡A»İ¨Ï¥Î³o¤äµ{¦¡¨Ó²£¥Í¤@¹ï key pair¡C</font></td>
+          <td><font color="#00FFFF" size="2">æ¬²æ¡å– key èªè­‰æ™‚ï¼Œéœ€ä½¿ç”¨é€™æ”¯ç¨‹å¼ä¾†ç”¢ç”Ÿä¸€å° key pairã€‚</font></td>
         </tr>
         <tr> 
           <td><font color="#FFFFFF">/usr/sbin/rcsshd</font></td>
-          <td><font color="#00FFFF" size="2">³sµ²¦Ü /etc/init.d/sshd ªº²Å¸¹³sµ²ÀÉ¡C</font></td>
+          <td><font color="#00FFFF" size="2">é€£çµè‡³ /etc/init.d/sshd çš„ç¬¦è™Ÿé€£çµæª”ã€‚</font></td>
         </tr>
         <tr> 
           <td><font color="#FFFFFF">/usr/sbin/sshd</font></td>
-          <td><font color="#00FFFF" size="2">´£¨Ñ SSH ªA°Èªº daemon¡C</font></td>
+          <td><font color="#00FFFF" size="2">æä¾› SSH æœå‹™çš„ daemonã€‚</font></td>
         </tr>
       </table></td>
   </tr>
 </table>
 <strong><font color="#000000" size="+1"><br>
-<a name="4"></a><font size="5">19.1.3 ³]©w OpenSSH Server</font></font></strong><br>
+<a name="4"></a><font size="5">19.1.3 è¨­å®š OpenSSH Server</font></font></strong><br>
 <br>
-¡@¦b¤¶²Ğ³]©wÀÉ¤§«e¡A¥ı»{ÃÑ¤@¤U /etc/ssh ¥Ø¿ı¤¤ªº´X­ÓÀÉ®×¡G<br>
+ã€€åœ¨ä»‹ç´¹è¨­å®šæª”ä¹‹å‰ï¼Œå…ˆèªè­˜ä¸€ä¸‹ /etc/ssh ç›®éŒ„ä¸­çš„å¹¾å€‹æª”æ¡ˆï¼š<br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td height="72" bgcolor="#000000"><font color="#FFFFFF">suse:/etc/ssh # <strong><font color="#FFFF00">ls</font></strong><br>
-      <font face="²Ó©úÅé">ssh_host_dsa_key¡@¡@¡@¡@ssh_host_key.pub¡@¡@¡@¡@sshd_config<br>
-      ssh_host_dsa_key.pub¡@¡@ssh_host_rsa_key<br>
-      ssh_host_key¡@¡@¡@¡@¡@¡@ssh_host_rsa_key.pub</font></font></td>
+      <font face="ç´°æ˜é«”">ssh_host_dsa_keyã€€ã€€ã€€ã€€ssh_host_key.pubã€€ã€€ã€€ã€€sshd_config<br>
+      ssh_host_dsa_key.pubã€€ã€€ssh_host_rsa_key<br>
+      ssh_host_keyã€€ã€€ã€€ã€€ã€€ã€€ssh_host_rsa_key.pub</font></font></td>
   </tr>
 </table>
-<p> ¡@°w¹ï¥H¤W´X­ÓÀÉ®×°µ­ÓÂ²µu»¡©ú¡G</p>
-<p><font color="#000099"><strong>¡@¡@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
-  sshd_config</strong></font>¡GSSH Server ªº¥D­n³]©wÀÉ¡C</p>
-<p><font color="#000099"><strong>¡@¡@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
-  ssh_host_key¡Bssh_host_key.pub¡G</strong><font color="#000000"> ssh1 ªº RSA private 
-  key ¤Î RSA public key¡C</font></font></p>
-<p><font color="#000099"><strong>¡@¡@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
-  ssh_host_rsa_key¡Bssh_host_rsa_key.pub¡G</strong><font color="#000000">ssh2 ªº 
-  RSA private key ¤Î RSA public key¡C</font></font></p>
-<p><font color="#000099"><strong>¡@¡@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
-  ssh_host_dsa_key¡Bssh_host_dsa_key.pub¡G</strong><font color="#000000">ssh2 ªº 
-  DSA private key ¤Î DSA public key¡C</font><strong><br>
+<p> ã€€é‡å°ä»¥ä¸Šå¹¾å€‹æª”æ¡ˆåšå€‹ç°¡çŸ­èªªæ˜ï¼š</p>
+<p><font color="#000099"><strong>ã€€ã€€<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  sshd_config</strong></font>ï¼šSSH Server çš„ä¸»è¦è¨­å®šæª”ã€‚</p>
+<p><font color="#000099"><strong>ã€€ã€€<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  ssh_host_keyã€ssh_host_key.pubï¼š</strong><font color="#000000"> ssh1 çš„ RSA private 
+  key åŠ RSA public keyã€‚</font></font></p>
+<p><font color="#000099"><strong>ã€€ã€€<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  ssh_host_rsa_keyã€ssh_host_rsa_key.pubï¼š</strong><font color="#000000">ssh2 çš„ 
+  RSA private key åŠ RSA public keyã€‚</font></font></p>
+<p><font color="#000099"><strong>ã€€ã€€<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  ssh_host_dsa_keyã€ssh_host_dsa_key.pubï¼š</strong><font color="#000000">ssh2 çš„ 
+  DSA private key åŠ DSA public keyã€‚</font><strong><br>
   </strong></font><br>
   <strong><font color="#000000"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font></strong> 
-  <font size="4"><strong>³]©w sshd_config</strong></font><br>
+  <font size="4"><strong>è¨­å®š sshd_config</strong></font><br>
   <br>
-  ¡@±µµÛ´N¹ï SSH Server ªº³]©wÀÉ°µ­Ó¤j²¤ªº¸Ñ»¡¡G</p>
+  ã€€æ¥è‘—å°±å° SSH Server çš„è¨­å®šæª”åšå€‹å¤§ç•¥çš„è§£èªªï¼š</p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:/etc/ssh # <font color="#FFFF00"><strong>vi 
       sshd_config<br>
-      </strong></font> <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">¥H¤U³Qµù¸Ñ°_¨Óªº°Ñ¼Æ¬°¨t²Îªº¹w³]­È¡C­Y­n­×§ï®É¡A±Nµù¸Ñ®³±¼¨Ã«ü©w·sªº°Ñ¼Æ­È§Y¥i¡C</font><br>
+      </strong></font> <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">ä»¥ä¸‹è¢«è¨»è§£èµ·ä¾†çš„åƒæ•¸ç‚ºç³»çµ±çš„é è¨­å€¼ã€‚è‹¥è¦ä¿®æ”¹æ™‚ï¼Œå°‡è¨»è§£æ‹¿æ‰ä¸¦æŒ‡å®šæ–°çš„åƒæ•¸å€¼å³å¯ã€‚</font><br>
       <br>
       <strong># Port 22</strong><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">SSH ¹w³]©Ò¨Ï¥Îªº 
-      port¡C</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">SSH é è¨­æ‰€ä½¿ç”¨çš„ 
+      portã€‚</font><br>
       <strong><br>
       # Protocol 2,1</strong><br>
-      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">ªí¥Ü¤ä´© SSH1 
-      ¤Î SSH2¡C</font><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">è¡¨ç¤ºæ”¯æ´ SSH1 
+      åŠ SSH2ã€‚</font><br>
       <strong><br>
       # ListenAddress 0.0.0.0</strong><br>
-      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">sshd ©ÒºÊÅ¥ªº¤¶­±¦ì§}¡C¹w³]¬OºÊÅ¥©Ò¦³ªº¤¶­±¦ì§}¡C 
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">sshd æ‰€ç›£è½çš„ä»‹é¢ä½å€ã€‚é è¨­æ˜¯ç›£è½æ‰€æœ‰çš„ä»‹é¢ä½å€ã€‚ 
       <br>
       </font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">¥H¤Uªº HostKey 
-      °Ñ¼Æ¡A¬O«ü©w host private key</font> <font color="#00FFFF" size="2">©Ò¦s©ñªºÀÉ®× ¡C</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">ä»¥ä¸‹çš„ HostKey 
+      åƒæ•¸ï¼Œæ˜¯æŒ‡å®š host private key</font> <font color="#00FFFF" size="2">æ‰€å­˜æ”¾çš„æª”æ¡ˆ ã€‚</font><br>
       # HostKey for protocol version 1<strong><br>
       </strong># HostKey /etc/ssh/ssh_host_key<br>
       <strong> </strong># HostKeys for protocol version 2<strong><br>
@@ -340,54 +340,54 @@ a {
       # Lifetime and size of ephemeral version 1 server key<strong><br>
       # KeyRegenerationInterval 1h<br>
       </strong><font color="#00FFFF">#</font><strong> </strong><font color="#00FFFF" size="2">SSH1 
-      ¹w³]¨C¤p®É·|­«·s²£¥Í¤@¦¸ server key¡C</font><strong><br>
+      é è¨­æ¯å°æ™‚æœƒé‡æ–°ç”¢ç”Ÿä¸€æ¬¡ server keyã€‚</font><strong><br>
       <br>
       # ServerKeyBits 768</strong><br>
       <font color="#00FFFF">#</font> <font color="#FFFFFF"><font color="#00FFFF" size="2">SSH</font></font><font color="#00FFFF" size="2">1 
-      ¹w³]©Ò¨Ï¥Î server key ªºªø«×¬° 768 bits¡C</font><br>
+      é è¨­æ‰€ä½¿ç”¨ server key çš„é•·åº¦ç‚º 768 bitsã€‚</font><br>
       <br>
       <strong># SyslogFacility AUTH</strong><br>
-      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">«ü©w SSH ªº°T®§¬ö¿ı¬O¨Ï¥Î¹w³]ªº 
-      AUTH ³o­Ó facility¡C¦Ü©ó¨ä¥L¥i¥ÎªÌ¦p <br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">æŒ‡å®š SSH çš„è¨Šæ¯ç´€éŒ„æ˜¯ä½¿ç”¨é è¨­çš„ 
+      AUTH é€™å€‹ facilityã€‚è‡³æ–¼å…¶ä»–å¯ç”¨è€…å¦‚ <br>
       </font><font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">DAEMON, 
-      USER, LOCAL0 ~ LOCAL7<font color="#FFFFFF"> <font color="#00FFFF">µ¥¡C</font></font></font><br>
+      USER, LOCAL0 ~ LOCAL7<font color="#FFFFFF"> <font color="#00FFFF">ç­‰ã€‚</font></font></font><br>
       <br>
       <strong># LoginGraceTime 2m</strong><br>
-      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">·í¨Ï¥ÎªÌ³s¤W SSH 
-      Server «á¡A­Y¨â¤ÀÄÁ¤ºµLªk»{ÃÒ¦¨¥\¡A«h·|³QÂ_½u¡C<br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">¦p³]©w¦¨ 
-      0¡A ªíµL®É¶¡­­¨î¡A¥t¥~®É¶¡³æ¦ì¥¼«ü©w®É¡A¹w³]¬°¬í¡C</font><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">ç•¶ä½¿ç”¨è€…é€£ä¸Š SSH 
+      Server å¾Œï¼Œè‹¥å…©åˆ†é˜å…§ç„¡æ³•èªè­‰æˆåŠŸï¼Œå‰‡æœƒè¢«æ–·ç·šã€‚<br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">å¦‚è¨­å®šæˆ 
+      0ï¼Œ è¡¨ç„¡æ™‚é–“é™åˆ¶ï¼Œå¦å¤–æ™‚é–“å–®ä½æœªæŒ‡å®šæ™‚ï¼Œé è¨­ç‚ºç§’ã€‚</font><br>
       <br>
       <strong># PermitRootLogin yes</strong><br>
       <font color="#00FFFF"># </font><font color="#00FFFF" size="2">SSH Server 
-      ¹w³]¬O¤¹³\ root µn¤Jªº¡C±z¥i¥H¦Ò¼{§â¥¦§ï¦¨ no¡C</font><br>
+      é è¨­æ˜¯å…è¨± root ç™»å…¥çš„ã€‚æ‚¨å¯ä»¥è€ƒæ…®æŠŠå®ƒæ”¹æˆ noã€‚</font><br>
       <strong><br>
       # RSAAuthentication yes</strong><br>
-      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">¬O§_¤¹³\¨Ï¥Î SSH1 
-      ªº RSA »{ÃÒ¡C</font><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">æ˜¯å¦å…è¨±ä½¿ç”¨ SSH1 
+      çš„ RSA èªè­‰ã€‚</font><br>
       <br>
       <strong># PubkeyAuthentication yes</strong><br>
-      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">¬O§_¤¹³\¨Ï¥Î SSH2 
-      ªº public key §@»{ÃÒ¡C <br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">æ˜¯å¦å…è¨±ä½¿ç”¨ SSH2 
+      çš„ public key ä½œèªè­‰ã€‚ <br>
       </font><br>
       <strong># AuthorizedKeysFile .ssh/authorized_keys</strong><br>
-      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">·í±Ä¥Î key »{ÃÒ®É¡A©ó 
-      Client ºİ©Ò²£¥Íªº public key¡A­n¦s©ñ¦b Server ¤Wªº­ş­ÓÀÉ®×¤º¡C</font><strong><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">ç•¶æ¡ç”¨ key èªè­‰æ™‚ï¼Œæ–¼ 
+      Client ç«¯æ‰€ç”¢ç”Ÿçš„ public keyï¼Œè¦å­˜æ”¾åœ¨ Server ä¸Šçš„å“ªå€‹æª”æ¡ˆå…§ã€‚</font><strong><br>
       </strong><br>
       <strong> PasswordAuthentication no</strong><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">¬O§_­n±Ä¥Î±K½X»{ÃÒ¡C¹w³]¬° 
-      yes¡C </font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">æ˜¯å¦è¦æ¡ç”¨å¯†ç¢¼èªè­‰ã€‚é è¨­ç‚º 
+      yesã€‚ </font><br>
       <br>
       <strong>UsePAM yes</strong><br>
-      <font color="#00FFFF"># <font size="2">¬O§_¨Ï¥Î PAM »{ÃÒ¼Ò²Õ¨Ó¶i¦æ»{ÃÒ¤u§@¡C¹w³]¬° no¡C</font></font><br>
+      <font color="#00FFFF"># <font size="2">æ˜¯å¦ä½¿ç”¨ PAM èªè­‰æ¨¡çµ„ä¾†é€²è¡Œèªè­‰å·¥ä½œã€‚é è¨­ç‚º noã€‚</font></font><br>
       <strong><br>
       DenyUsers user1 user2</strong> <br>
-      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">³]©w©Úµ´µn¤Jªº¨Ï¥ÎªÌ¦W³æ¡C 
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">è¨­å®šæ‹’çµ•ç™»å…¥çš„ä½¿ç”¨è€…åå–®ã€‚ 
       </font></font></td>
   </tr>
 </table>
 <br>
-¡@SuSE ¹w³]¶}¾÷®É·|±Ò°Ê SSH ªA°È¡A©Ò¥H³]©wÀÉ¦p¦³°µ¥ô¦óªº­×§ï¡A½Ğ­«·s±Ò°Ê sshd¡G<br>
+ã€€SuSE é è¨­é–‹æ©Ÿæ™‚æœƒå•Ÿå‹• SSH æœå‹™ï¼Œæ‰€ä»¥è¨­å®šæª”å¦‚æœ‰åšä»»ä½•çš„ä¿®æ”¹ï¼Œè«‹é‡æ–°å•Ÿå‹• sshdï¼š<br>
 <br>
 <table width="100%" border="0" bgcolor="#000000">
   <tr>
@@ -398,19 +398,19 @@ a {
 <br>
 <br>
 <font size="+1"><strong><font color="#000000"><a name="5"></a><font size="5">19.1.4 
-SSH Client ºİ±`¨Ï¥Îªº³s½u¤u¨ã</font></font></strong></font><br>
+SSH Client ç«¯å¸¸ä½¿ç”¨çš„é€£ç·šå·¥å…·</font></font></strong></font><br>
 <br>
 <strong><font size="+1"><a name="6"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
-<font color="#000000" size="+1"><strong>«ü¥O ssh</strong></font><strong><font size="+1"> 
-¤Î putty</font></strong> <font size="4"><strong>³nÅé</strong></font><br>
+<font color="#000000" size="+1"><strong>æŒ‡ä»¤ ssh</strong></font><strong><font size="+1"> 
+åŠ putty</font></strong> <font size="4"><strong>è»Ÿé«”</strong></font><br>
 <br>
-¡@³o­Ó ssh «ü¥O¬O Linux Client ±`¨Ï¥Îªº»·ºİ³s½uµ{¦¡¡A¦Ü©ó putty ©Î pietty «h¬O windows ¤¤¸û¥X¦Wªº³s½u¤u¨ã¡C<br>
+ã€€é€™å€‹ ssh æŒ‡ä»¤æ˜¯ Linux Client å¸¸ä½¿ç”¨çš„é ç«¯é€£ç·šç¨‹å¼ï¼Œè‡³æ–¼ putty æˆ– pietty å‰‡æ˜¯ windows ä¸­è¼ƒå‡ºåçš„é€£ç·šå·¥å…·ã€‚<br>
 <br>
 <table width="100%" border="0">
   <tr>
     <td width="2%">&nbsp;</td>
     <td width="3%" align="center" valign="middle"><font color="#000099"><strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong></font></td>
-    <td width="95%"><strong><font color="#000099">ssh for Linux¡G</font></strong></td>
+    <td width="95%"><strong><font color="#000099">ssh for Linuxï¼š</font></strong></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -424,8 +424,8 @@ SSH Client ºİ±`¨Ï¥Îªº³s½u¤u¨ã</font></font></strong></font><br>
         </tr>
       </table>
       <br>
-      ¥H¤Wªº½d¨ÒÀ³¸Ó¨S°İÃD¤~¬O¡C¦p¦³©Ò¿ò§Ñ¡A½Ğ¦^¨ì [<a href="lesson11.htm#23" tppabs="http://www.suse.url.tw/sles10/lesson11.htm#23" target="_blank">11.3.3 
-      »·ºİ³s½u«ü¥O</a>] ¥h°µ­Ó½Æ²ß¡C </td>
+      ä»¥ä¸Šçš„ç¯„ä¾‹æ‡‰è©²æ²’å•é¡Œæ‰æ˜¯ã€‚å¦‚æœ‰æ‰€éºå¿˜ï¼Œè«‹å›åˆ° [<a href="lesson11.htm#23" tppabs="http://www.suse.url.tw/sles10/lesson11.htm#23" target="_blank">11.3.3 
+      é ç«¯é€£ç·šæŒ‡ä»¤</a>] å»åšå€‹è¤‡ç¿’ã€‚ </td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -435,268 +435,268 @@ SSH Client ºİ±`¨Ï¥Îªº³s½u¤u¨ã</font></font></strong></font><br>
   <tr>
     <td>&nbsp;</td>
     <td align="center" valign="middle"><font color="#000099"><strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong></font></td>
-    <td><strong><font color="#000099">putty for Windows¡G</font></strong></td>
+    <td><strong><font color="#000099">putty for Windowsï¼š</font></strong></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td align="center" valign="middle">&nbsp;</td>
-    <td><p>·Q¦b Windows ¤¤¹ï Linux ªº SSH Server °µ»·ºİ³s½u¡A¥i¦Ü©x¤èºô¯¸¥h¤U¸ü putty ³nÅé¡G<br>
+    <td><p>æƒ³åœ¨ Windows ä¸­å° Linux çš„ SSH Server åšé ç«¯é€£ç·šï¼Œå¯è‡³å®˜æ–¹ç¶²ç«™å»ä¸‹è¼‰ putty è»Ÿé«”ï¼š<br>
         <a href="javascript:if(confirm(%27http://www.chiark.greenend.org.uk/%7Esgtatham/putty/download.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.chiark.greenend.org.uk/%7Esgtatham/putty/download.html%27" tppabs="http://www.chiark.greenend.org.uk/%7Esgtatham/putty/download.html" target="_blank">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a> 
         <br>
-        ¦b³o­Óºô­¶¸Ì¡AÁÙ¥i¬İ¨ì¹³ pscp¡Bpsftp µ¥³o¤@Ãşªº¤u¨ã¡Aµø±z»İ­n¦Ó°µ¿ï¾ÜÅo¡C<br>
+        åœ¨é€™å€‹ç¶²é è£¡ï¼Œé‚„å¯çœ‹åˆ°åƒ pscpã€psftp ç­‰é€™ä¸€é¡çš„å·¥å…·ï¼Œè¦–æ‚¨éœ€è¦è€Œåšé¸æ“‡å›‰ã€‚<br>
         <br>
-        ·í±z±N putty ¤U¸ü¦^¨Ó«á¡A½Ğª½±µ°õ¦æ putty µ{¦¡¡AµM«á´N·|¬İ¨ì³]©wµe­±¡G</p>
+        ç•¶æ‚¨å°‡ putty ä¸‹è¼‰å›ä¾†å¾Œï¼Œè«‹ç›´æ¥åŸ·è¡Œ putty ç¨‹å¼ï¼Œç„¶å¾Œå°±æœƒçœ‹åˆ°è¨­å®šç•«é¢ï¼š</p>
       <p align="center"> <img src="ssh1.png" tppabs="http://www.suse.url.tw/picture/ssh1.png" width="426" height="435"> 
         <br>
-        <font size="2">¹Ï¤@¡Gputty ³]©w¥Dµe­±</font></p>
-      <p> ±µµÛ½Ğ¿é¤J¦øªA¾¹ªº¦ì§}¤Î©Ò¨Ï¥Î¨ó©w¡A¨Ã©ó [Saved Sessions] ³B¶ñ¼g­Ó¨ã¥Nªí©Êªº¦WºÙ¡A³Ì«á«ö¤U [Save] ¨Ó±N³]©w¬ö¿ı«O¯d¤U¨Ó¡G</p>
+        <font size="2">åœ–ä¸€ï¼šputty è¨­å®šä¸»ç•«é¢</font></p>
+      <p> æ¥è‘—è«‹è¼¸å…¥ä¼ºæœå™¨çš„ä½å€åŠæ‰€ä½¿ç”¨å”å®šï¼Œä¸¦æ–¼ [Saved Sessions] è™•å¡«å¯«å€‹å…·ä»£è¡¨æ€§çš„åç¨±ï¼Œæœ€å¾ŒæŒ‰ä¸‹ [Save] ä¾†å°‡è¨­å®šç´€éŒ„ä¿ç•™ä¸‹ä¾†ï¼š</p>
       <p align="center"> <img src="ssh2.png" tppabs="http://www.suse.url.tw/picture/ssh2.png" width="426" height="435"> 
         <br>
-        <font size="2">¹Ï¤G¡G³]©w SSH Server ¦ì§}¤Î¨Ï¥Î¨ó©w</font></p>
-      <p> ¥H¤U¬O¿ï¾Ü©Êªº½Õ¾ã¡C­º¥ı½Õ¾ã putty µøµ¡¤j¤p¡G</p>
+        <font size="2">åœ–äºŒï¼šè¨­å®š SSH Server ä½å€åŠä½¿ç”¨å”å®š</font></p>
+      <p> ä»¥ä¸‹æ˜¯é¸æ“‡æ€§çš„èª¿æ•´ã€‚é¦–å…ˆèª¿æ•´ putty è¦–çª—å¤§å°ï¼š</p>
       <p align="center"> <img src="ssh3.png" tppabs="http://www.suse.url.tw/picture/ssh3.png" width="426" height="435"> 
         <br>
-        <font size="2">¹Ï¤T¡G½Õ¾ã putty µøµ¡¤j¤p</font></p>
-      <p>¦A¨Ó½Õ¾ã¤@¤U¦r«¬ªº³¡¤À¡A½Ğ¥ıÂI¿ï [Appearance]¡AµM«á«ö¤U¥kÃäªº [Change]¡G</p>
+        <font size="2">åœ–ä¸‰ï¼šèª¿æ•´ putty è¦–çª—å¤§å°</font></p>
+      <p>å†ä¾†èª¿æ•´ä¸€ä¸‹å­—å‹çš„éƒ¨åˆ†ï¼Œè«‹å…ˆé»é¸ [Appearance]ï¼Œç„¶å¾ŒæŒ‰ä¸‹å³é‚Šçš„ [Change]ï¼š</p>
       <p align="center"><img src="ssh4.png" tppabs="http://www.suse.url.tw/picture/ssh4.png" width="426" height="435"> 
         <br>
-        <font size="2">¹Ï¥|¡G­×§ï³ß¦n³]©w </font></p>
-      <p>³o¸Ì´Nµø±z»İ­n°µ½Õ¾ãÅo¡G </p>
+        <font size="2">åœ–å››ï¼šä¿®æ”¹å–œå¥½è¨­å®š </font></p>
+      <p>é€™è£¡å°±è¦–æ‚¨éœ€è¦åšèª¿æ•´å›‰ï¼š </p>
       <p align="center"><img src="ssh5.png" tppabs="http://www.suse.url.tw/picture/ssh5.png" width="437" height="319"> 
         <br>
-        <font size="2">¹Ï¤­¡G½Õ¾ã¨Ï¥Î¦r«¬¤Î¤j¤p</font></p>
-      <p>­×§ï§¹¦¨«á¡A½ĞÂI¿ï [Session] ¨Ó¦^¨ì¥Dµe­±¡A¦A«ö¤@¦¸ [Save] §â­è­è©Ò°µªº­×§ï«O¯d¤U¨Ó¡G</p>
+        <font size="2">åœ–äº”ï¼šèª¿æ•´ä½¿ç”¨å­—å‹åŠå¤§å°</font></p>
+      <p>ä¿®æ”¹å®Œæˆå¾Œï¼Œè«‹é»é¸ [Session] ä¾†å›åˆ°ä¸»ç•«é¢ï¼Œå†æŒ‰ä¸€æ¬¡ [Save] æŠŠå‰›å‰›æ‰€åšçš„ä¿®æ”¹ä¿ç•™ä¸‹ä¾†ï¼š</p>
       <p align="center"><img src="ssh6.png" tppabs="http://www.suse.url.tw/picture/ssh6.png" width="426" height="435"> 
         <br>
-        <font size="2">¹Ï¤»¡G§¹¦¨«á¤§µe­±</font></p>
-      <p>´N³o»òÂ²³æ¦Ó¤w¡A¦Û¤v¸Õ¸Õ¬İ¾¾¡C </p>
+        <font size="2">åœ–å…­ï¼šå®Œæˆå¾Œä¹‹ç•«é¢</font></p>
+      <p>å°±é€™éº¼ç°¡å–®è€Œå·²ï¼Œè‡ªå·±è©¦è©¦çœ‹å™¢ã€‚ </p>
               </td>
   </tr>
 </table>
 <br>
 <strong><font size="+1"><a name="7"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong><font size="+1"><strong> 
-«ü¥O scp</strong></font> <br>
+æŒ‡ä»¤ scp</strong></font> <br>
 <br>
-¡@·Q­n¦b¨â¥D¾÷¤§¶¡«Ü¦w¥şªº°õ¦æ½Æ»sªº°Ê§@¡A´N¨Ï¥Î³o­Ó«ü¥O§a !<strong><br>
+ã€€æƒ³è¦åœ¨å…©ä¸»æ©Ÿä¹‹é–“å¾ˆå®‰å…¨çš„åŸ·è¡Œè¤‡è£½çš„å‹•ä½œï¼Œå°±ä½¿ç”¨é€™å€‹æŒ‡ä»¤å§ !<strong><br>
 <br>
-½d¨Ò»¡©ú</strong>¡G<br>
+ç¯„ä¾‹èªªæ˜</strong>ï¼š<br>
 <table width="100%" border="0">
   <tr> 
-    <td bgcolor="#000000"><font color="#FFFFFF"><font color="#00FFFF" size="2">½d¨Ò¤@¡G±N»·ºİ 
-      SSH Server ¤Wªº /etc/passwd ½Æ»s¨ì¥»¾÷ /tmp ¥Ø¿ı¤U</font><font size="2"><font color="#00FFFF">¡C</font></font><br>
+    <td bgcolor="#000000"><font color="#FFFFFF"><font color="#00FFFF" size="2">ç¯„ä¾‹ä¸€ï¼šå°‡é ç«¯ 
+      SSH Server ä¸Šçš„ /etc/passwd è¤‡è£½åˆ°æœ¬æ©Ÿ /tmp ç›®éŒ„ä¸‹</font><font size="2"><font color="#00FFFF">ã€‚</font></font><br>
       client:~ #<font color="#FFFF00"> <strong>scp 192.168.1.111:/etc/passwd /tmp</strong></font><br>
-      Password:¡@<font color="#CCCCCC" size="2">¡ö</font> <font color="#CCCCCC" size="2">¿é¤J»·ºİ¥D¾÷¤W 
-      root ªº±K½X¡C</font><font size="2"><strong><br>
+      Password:ã€€<font color="#CCCCCC" size="2">â†</font> <font color="#CCCCCC" size="2">è¼¸å…¥é ç«¯ä¸»æ©Ÿä¸Š 
+      root çš„å¯†ç¢¼ã€‚</font><font size="2"><strong><br>
       </strong></font><font size="2"><strong><br>
-      </strong></font></font> <font color="#FFFFFF"><font color="#00FFFF" size="2">½d¨Ò¤G¡G</font></font><font color="#00FFFF" size="2">±N¥»¾÷ªº 
-      /var/log ¥Ø¿ı½Æ»s¨ì»·ºİ¥D¾÷ªº /tmp/logdir ¤¤</font><font color="#FFFFFF"><font size="2"><font color="#00FFFF">¡C</font></font><br>
+      </strong></font></font> <font color="#FFFFFF"><font color="#00FFFF" size="2">ç¯„ä¾‹äºŒï¼š</font></font><font color="#00FFFF" size="2">å°‡æœ¬æ©Ÿçš„ 
+      /var/log ç›®éŒ„è¤‡è£½åˆ°é ç«¯ä¸»æ©Ÿçš„ /tmp/logdir ä¸­</font><font color="#FFFFFF"><font size="2"><font color="#00FFFF">ã€‚</font></font><br>
       client:~ # <strong><font color="#FFFF00">scp -r /var/log 192.168.1.111:/tmp/logdir</font></strong><br>
-      Password:¡@<font color="#CCCCCC" size="2">¡ö</font> <font color="#CCCCCC" size="2">¿é¤J»·ºİ¥D¾÷¤W 
-      root ªº±K½X¡C</font><br>
-      <font color="#00FFFF">#</font><font size="2"><strong> </strong></font></font><font color="#00FFFF" size="2">³o­Ó½d¨Ò¤¤¡A¦p 
-      logdir ¤w¦s¦b©ó»·ºİ¥D¾÷¤W¡A¨º»ò·|§â log ¥Ø¿ı¾ã­Ó½Æ»s¨ì logdir <br>
+      Password:ã€€<font color="#CCCCCC" size="2">â†</font> <font color="#CCCCCC" size="2">è¼¸å…¥é ç«¯ä¸»æ©Ÿä¸Š 
+      root çš„å¯†ç¢¼ã€‚</font><br>
+      <font color="#00FFFF">#</font><font size="2"><strong> </strong></font></font><font color="#00FFFF" size="2">é€™å€‹ç¯„ä¾‹ä¸­ï¼Œå¦‚ 
+      logdir å·²å­˜åœ¨æ–¼é ç«¯ä¸»æ©Ÿä¸Šï¼Œé‚£éº¼æœƒæŠŠ log ç›®éŒ„æ•´å€‹è¤‡è£½åˆ° logdir <br>
       </font><font color="#FFFFFF"><font color="#00FFFF">#</font><font size="2"><strong> 
-      </strong></font><font color="#FFFFFF"><font color="#00FFFF" size="2">¥Ø¿ı¤U¡A</font></font><font color="#00FFFF" size="2">¦p 
-      logdir ¤£¦s¦b¡A«h·|±N log ¥Ø¿ıªº¤º®e½Æ</font></font><font color="#00FFFF" size="2">»s¨ì 
-      logdir ¤¤¡C</font><font color="#FFFFFF"><br>
+      </strong></font><font color="#FFFFFF"><font color="#00FFFF" size="2">ç›®éŒ„ä¸‹ï¼Œ</font></font><font color="#00FFFF" size="2">å¦‚ 
+      logdir ä¸å­˜åœ¨ï¼Œå‰‡æœƒå°‡ log ç›®éŒ„çš„å…§å®¹è¤‡</font></font><font color="#00FFFF" size="2">è£½åˆ° 
+      logdir ä¸­ã€‚</font><font color="#FFFFFF"><br>
       </font> <font color="#FFFFFF"><br>
-      <font color="#00FFFF" size="2">½d¨Ò¤T¡G</font><font color="#FFFFFF"><font size="2"><font color="#00FFFF">±N»·ºİ¥D¾÷ 
-      tina ®a¥Ø¿ı¤Uªº file¡A½Æ»s¨ì¥»¦aºİªº /tmp ¥Ø¿ı¤¤</font></font></font><font size="2"><font color="#00FFFF">¡C</font></font><br>
+      <font color="#00FFFF" size="2">ç¯„ä¾‹ä¸‰ï¼š</font><font color="#FFFFFF"><font size="2"><font color="#00FFFF">å°‡é ç«¯ä¸»æ©Ÿ 
+      tina å®¶ç›®éŒ„ä¸‹çš„ fileï¼Œè¤‡è£½åˆ°æœ¬åœ°ç«¯çš„ /tmp ç›®éŒ„ä¸­</font></font></font><font size="2"><font color="#00FFFF">ã€‚</font></font><br>
       mary@client:~&gt; <strong><font color="#FFFF00">scp tina@192.168.1.111:~/file 
       /tmp</font></strong><br>
-      Password:¡@<font color="#CCCCCC" size="2">¡ö</font> <font color="#CCCCCC" size="2">¿é¤J»·ºİ¥D¾÷¤W 
-      tina ªº±K½X¡C</font><br>
+      Password:ã€€<font color="#CCCCCC" size="2">â†</font> <font color="#CCCCCC" size="2">è¼¸å…¥é ç«¯ä¸»æ©Ÿä¸Š 
+      tina çš„å¯†ç¢¼ã€‚</font><br>
       </font> <font color="#FFFFFF"><font color="#00FFFF">#</font><font size="2"><strong> 
-      </strong><font color="#00FFFF">ÀÉ®×½Æ»s¦^¨Ó«á¡AÆ[¹î¤@¤U /tmp/file ªº¾Ö¦³ªÌ¥i¬O mary ¾¾¡C</font></font><br>
+      </strong><font color="#00FFFF">æª”æ¡ˆè¤‡è£½å›ä¾†å¾Œï¼Œè§€å¯Ÿä¸€ä¸‹ /tmp/file çš„æ“æœ‰è€…å¯æ˜¯ mary å™¢ã€‚</font></font><br>
       <br>
-      <font color="#00FFFF" size="2">½d¨Ò¥|¡G</font><font size="2"><font color="#00FFFF">±N¥»¾÷ 
-      /tmp/file ½Æ»s¦Ü»·ºİ¥D¾÷ªº /tmp ¥Ø¿ı¤¤¡C</font></font><br>
+      <font color="#00FFFF" size="2">ç¯„ä¾‹å››ï¼š</font><font size="2"><font color="#00FFFF">å°‡æœ¬æ©Ÿ 
+      /tmp/file è¤‡è£½è‡³é ç«¯ä¸»æ©Ÿçš„ /tmp ç›®éŒ„ä¸­ã€‚</font></font><br>
       mary@client:~&gt;<strong> <font color="#FFFF00">scp /tmp/file tina@192.168.1.111:/tmp</font></strong><br>
-      Password:¡@<font color="#CCCCCC" size="2">¡ö</font> <font color="#CCCCCC" size="2">¿é¤J»·ºİ¥D¾÷¤W 
-      tina ªº±K½X¡C</font> <br>
-      <font color="#00FFFF">#</font><font size="2"><strong> </strong><font color="#FFFFFF"><font color="#00FFFF">¦¹®É»·ºİ¥D¾÷ªº 
-      /tmp/file¡A¨ä¾Ö¦³ªÌ¬° tina¡C</font></font></font></font></td>
+      Password:ã€€<font color="#CCCCCC" size="2">â†</font> <font color="#CCCCCC" size="2">è¼¸å…¥é ç«¯ä¸»æ©Ÿä¸Š 
+      tina çš„å¯†ç¢¼ã€‚</font> <br>
+      <font color="#00FFFF">#</font><font size="2"><strong> </strong><font color="#FFFFFF"><font color="#00FFFF">æ­¤æ™‚é ç«¯ä¸»æ©Ÿçš„ 
+      /tmp/fileï¼Œå…¶æ“æœ‰è€…ç‚º tinaã€‚</font></font></font></font></td>
   </tr>
 </table>
 <br>
 <strong><font size="+1"><a name="8"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
-<strong><font size="+1">«ü¥O sftp</font></strong> <br>
+<strong><font size="+1">æŒ‡ä»¤ sftp</font></strong> <br>
 <br>
-¡@³o¬O¥t¤@­Ó¥i¥H¨Ï¥ÎªºÀÉ®×¶Ç¿é¤u¨ã¡A»P ftp ¾Ş§@¤¶­±Ãş¦ü¡A¤£¹L¨ä©Ò¶Ç¿éªº¸ê®Æ¬O·|¨Æ¥ı¸g¹L¥[±Kªº¾¾¡C<br>
+ã€€é€™æ˜¯å¦ä¸€å€‹å¯ä»¥ä½¿ç”¨çš„æª”æ¡ˆå‚³è¼¸å·¥å…·ï¼Œèˆ‡ ftp æ“ä½œä»‹é¢é¡ä¼¼ï¼Œä¸éå…¶æ‰€å‚³è¼¸çš„è³‡æ–™æ˜¯æœƒäº‹å…ˆç¶“éåŠ å¯†çš„å™¢ã€‚<br>
 <br>
-<strong>½d¨Ò»¡©ú</strong>¡G<br>
+<strong>ç¯„ä¾‹èªªæ˜</strong>ï¼š<br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">mary@client:~&gt;<font color="#FFFF00"> 
       <strong>sftp tina@192.168.1.111</strong></font><br>
       Connecting to 192.168.1.111...<br>
-      Password:¡@<font color="#CCCCCC" size="2">¡ö ¿é¤J»·ºİ¥D¾÷¤W tina ªº±K½X¡C</font><br>
+      Password:ã€€<font color="#CCCCCC" size="2">â† è¼¸å…¥é ç«¯ä¸»æ©Ÿä¸Š tina çš„å¯†ç¢¼ã€‚</font><br>
       sftp&gt;<br>
-      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">³o¸Ìªº¾Ş§@»P¶Ç²Îªº 
-      ftp ®t¤£¦h¡C¤£²M·¡ªº¸Ü¡A¥i¿é¤J &quot;<strong>?</strong>&quot; ¨Ó¤F¸Ñ¦³­ş¨Ç«ü¥O¥i¥H§Q¥Î¡A<br>
-      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">«Ü®e©öªº¡A¦Û¤v½m²ß¬İ¬İ¡C</font></td>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">é€™è£¡çš„æ“ä½œèˆ‡å‚³çµ±çš„ 
+      ftp å·®ä¸å¤šã€‚ä¸æ¸…æ¥šçš„è©±ï¼Œå¯è¼¸å…¥ &quot;<strong>?</strong>&quot; ä¾†äº†è§£æœ‰å“ªäº›æŒ‡ä»¤å¯ä»¥åˆ©ç”¨ï¼Œ<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">å¾ˆå®¹æ˜“çš„ï¼Œè‡ªå·±ç·´ç¿’çœ‹çœ‹ã€‚</font></td>
   </tr>
 </table>
 <br>
 <br>
 <font size="+1"><strong><font color="#000000"><a name="9"></a><font size="5">19.1.5 
-¨Ï¥Î key ¨Ó°µ»{ÃÒ</font></font></strong></font><br>
+ä½¿ç”¨ key ä¾†åšèªè­‰</font></font></strong></font><br>
 <br>
-¡@«e­±§Ú­Ì©Ò¤¶²Ğªº SSH ³s½u¹Lµ{¡A³£¬O¨Ï¥Î±K½X¨Ó°µ»{ÃÒ¡A¦Ó³o¤@¤p¸`­n¤¶²Ğ¥t¤@­Ó§ó¦w¥şªº°µªk¡A´N¬O¨Ï¥Î public key »{ÃÒ¡C¥ı»¡©úµ¥¤@¤U key 
-»{ÃÒªº°õ¦æ¨BÆJ¡G<br>
+ã€€å‰é¢æˆ‘å€‘æ‰€ä»‹ç´¹çš„ SSH é€£ç·šéç¨‹ï¼Œéƒ½æ˜¯ä½¿ç”¨å¯†ç¢¼ä¾†åšèªè­‰ï¼Œè€Œé€™ä¸€å°ç¯€è¦ä»‹ç´¹å¦ä¸€å€‹æ›´å®‰å…¨çš„åšæ³•ï¼Œå°±æ˜¯ä½¿ç”¨ public key èªè­‰ã€‚å…ˆèªªæ˜ç­‰ä¸€ä¸‹ key 
+èªè­‰çš„åŸ·è¡Œæ­¥é©Ÿï¼š<br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td width="2%" align="center" valign="top" nowrap>&nbsp;</td>
     <td width="3%" align="center" valign="top" nowrap><font color="#000099">1.</font></td>
-    <td width="95%"><font color="#000099">Client ºİªº¨Ï¥ÎªÌ mary¡A·Q¥H Server ¤W barry 
-      ªº¨­¤À°µ»·ºİ³s½u¡C­º¥ı Client ºİªº mary¡A¥ı°õ¦æ ssh-keygen «ü¥O¡A¥H²£¥Í¤@¹ï RSA ©Î DSA key pair (¤½Æ_¤Î¨pÆ_)¡C</font></td>
+    <td width="95%"><font color="#000099">Client ç«¯çš„ä½¿ç”¨è€… maryï¼Œæƒ³ä»¥ Server ä¸Š barry 
+      çš„èº«åˆ†åšé ç«¯é€£ç·šã€‚é¦–å…ˆ Client ç«¯çš„ maryï¼Œå…ˆåŸ·è¡Œ ssh-keygen æŒ‡ä»¤ï¼Œä»¥ç”¢ç”Ÿä¸€å° RSA æˆ– DSA key pair (å…¬é‘°åŠç§é‘°)ã€‚</font></td>
   </tr>
   <tr> 
     <td align="center" valign="top" nowrap>&nbsp;</td>
     <td align="center" valign="top" nowrap><font color="#000099">2.</font></td>
-    <td><font color="#000099">Client ºİ½T»{¦b /home/mary/.ssh/ ¥Ø¿ı¤U¡A¦³²£¥Í¤@¹ï public key 
-      ¤Î private key¡A¶¶«KÀËµø .ssh ¥Ø¿ı¤Î¦¹¥Ø¿ı¤Uªº private key¡A¨äÅv­­¬O§_¤À§O¬° 700 ¤Î 600¡C</font></td>
+    <td><font color="#000099">Client ç«¯ç¢ºèªåœ¨ /home/mary/.ssh/ ç›®éŒ„ä¸‹ï¼Œæœ‰ç”¢ç”Ÿä¸€å° public key 
+      åŠ private keyï¼Œé †ä¾¿æª¢è¦– .ssh ç›®éŒ„åŠæ­¤ç›®éŒ„ä¸‹çš„ private keyï¼Œå…¶æ¬Šé™æ˜¯å¦åˆ†åˆ¥ç‚º 700 åŠ 600ã€‚</font></td>
   </tr>
   <tr> 
     <td align="center" valign="top" nowrap>&nbsp;</td>
     <td align="center" valign="top" nowrap><font color="#000099">3.</font></td>
-    <td><font color="#000099">¦A¨Ó±N­è­è©Ò²£¥Íªº public key¡A¦s©ñ¦Ü Server ºİ /home/barry/.ssh/authorized_keys 
-      ¤¤¡C</font></td>
+    <td><font color="#000099">å†ä¾†å°‡å‰›å‰›æ‰€ç”¢ç”Ÿçš„ public keyï¼Œå­˜æ”¾è‡³ Server ç«¯ /home/barry/.ssh/authorized_keys 
+      ä¸­ã€‚</font></td>
   </tr>
 </table>
 <br>
-¡@¨BÆJ´N¨º»òÂ²³æ¡A°¨¤W¹ê°µ¤@¦¸§a¡G<br>
+ã€€æ­¥é©Ÿå°±é‚£éº¼ç°¡å–®ï¼Œé¦¬ä¸Šå¯¦åšä¸€æ¬¡å§ï¼š<br>
 <br>
 <table width="100%" border="0">
   <tr> 
-    <td nowrap bgcolor="#000000"><p><font color="#00FF00" size="2">1. Client ºİ¥ı²£¥Í¤@¹ï key 
-        pair¡G</font><font color="#FFFFFF"><br>
-        mary@Client:~&gt;<strong><font color="#FFFF00"> ssh-keygen -t dsa</font></strong>¡@<font color="#00FFFF" size="2"><br>
-        </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">¨Ï¥Î 
-        ssh-keygen «ü¥O¡A¨Ó²£¥Í¤@¹ï DSA key pair¡C<br>
-        </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">¦pªG·Q²£¥Í 
-        RSA key pair¡A½Ğ°õ¦æ &quot;ssh-keygen -t rsa&quot;¡C</font><br>
+    <td nowrap bgcolor="#000000"><p><font color="#00FF00" size="2">1. Client ç«¯å…ˆç”¢ç”Ÿä¸€å° key 
+        pairï¼š</font><font color="#FFFFFF"><br>
+        mary@Client:~&gt;<strong><font color="#FFFF00"> ssh-keygen -t dsa</font></strong>ã€€<font color="#00FFFF" size="2"><br>
+        </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">ä½¿ç”¨ 
+        ssh-keygen æŒ‡ä»¤ï¼Œä¾†ç”¢ç”Ÿä¸€å° DSA key pairã€‚<br>
+        </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">å¦‚æœæƒ³ç”¢ç”Ÿ 
+        RSA key pairï¼Œè«‹åŸ·è¡Œ &quot;ssh-keygen -t rsa&quot;ã€‚</font><br>
         Generating public/private dsa key pair.<br>
-        Enter file in which to save the key (/home/mary/.ssh/id_dsa):¡@<br>
-        <font color="#00FFFF"># </font> <font size="2"><font color="#00FFFF">¤W­±¬A©·¤º©ÒÅã¥Üªº¬O 
-        key ¹w³]©Ò¦s©ñªº¦ì¸m¡C½Ğ«ö¤U Enter Áä</font></font></font><font color="#00FFFF" size="2">¨ÓÄ~Äò¡C</font><font color="#FFFFFF"><br>
-        Enter passphrase (empty for no passphrase):¡@¡@¡@¡@¡@¡@ <br>
+        Enter file in which to save the key (/home/mary/.ssh/id_dsa):ã€€<br>
+        <font color="#00FFFF"># </font> <font size="2"><font color="#00FFFF">ä¸Šé¢æ‹¬å¼§å…§æ‰€é¡¯ç¤ºçš„æ˜¯ 
+        key é è¨­æ‰€å­˜æ”¾çš„ä½ç½®ã€‚è«‹æŒ‰ä¸‹ Enter éµ</font></font></font><font color="#00FFFF" size="2">ä¾†ç¹¼çºŒã€‚</font><font color="#FFFFFF"><br>
+        Enter passphrase (empty for no passphrase):ã€€ã€€ã€€ã€€ã€€ã€€ <br>
         Enter same passphrase again:<br>
-        <font color="#00FFFF"># </font> <font size="2"><font color="#00FFFF">³o¬O³qÃö±K»yªº³]©w¡Aµ§ªÌ³o¸Ì´N¿é¤J 
-        123456¡C</font><br>
-        </font><font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">µ¥µy«á¾ã­Ó 
-        key »{ÃÒ³]©w§¹¦¨«á¡A¦b°µ³s½u´ú¸Õ®É¡A´N·|­n¨D±z¿é¤J³qÃö±K»y¡C</font><br>
-        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">¦pªG¦¹³B¥¼°µ³]©w¡A¨ºµ¥·|¨àªº³s½u¹Lµ{´N¤£·|­n¨D±z°µ¿é¤J¤F¡C</font><br>
+        <font color="#00FFFF"># </font> <font size="2"><font color="#00FFFF">é€™æ˜¯é€šé—œå¯†èªçš„è¨­å®šï¼Œç­†è€…é€™è£¡å°±è¼¸å…¥ 
+        123456ã€‚</font><br>
+        </font><font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">ç­‰ç¨å¾Œæ•´å€‹ 
+        key èªè­‰è¨­å®šå®Œæˆå¾Œï¼Œåœ¨åšé€£ç·šæ¸¬è©¦æ™‚ï¼Œå°±æœƒè¦æ±‚æ‚¨è¼¸å…¥é€šé—œå¯†èªã€‚</font><br>
+        <font color="#00FFFF"># </font> <font color="#00FFFF" size="2">å¦‚æœæ­¤è™•æœªåšè¨­å®šï¼Œé‚£ç­‰æœƒå…’çš„é€£ç·šéç¨‹å°±ä¸æœƒè¦æ±‚æ‚¨åšè¼¸å…¥äº†ã€‚</font><br>
         Your identification has been saved in /home/mary/.ssh/id_dsa. <br>
         Your public key has been saved in /home/mary/.ssh/id_dsa.pub. <br>
         The key fingerprint is:<br>
         c4:08:fd:70:8d:66:b0:dc:d4:ed:c1:0f:2f:09:3c:7f mary@Client<br>
         <br>
-        <font color="#00FF00" size="2">2. ÀË¬d¤@¤UÅv­­¡G</font><br>
+        <font color="#00FF00" size="2">2. æª¢æŸ¥ä¸€ä¸‹æ¬Šé™ï¼š</font><br>
         mary@Client:~&gt;<strong><font color="#FFFF00"> ls -ld .ssh .ssh/id_dsa</font></strong><br>
-        <font face="²Ó©úÅé">drwx------¡@2¡@mary¡@users¡@136¡@Nov 30 02:28¡@<font color="#0099FF">.ssh</font></font><br>
-        <font face="²Ó©úÅé">-rw-------¡@1¡@mary¡@users¡@736¡@Nov 30 02:28¡@.ssh/id_dsa</font><br>
+        <font face="ç´°æ˜é«”">drwx------ã€€2ã€€maryã€€usersã€€136ã€€Nov 30 02:28ã€€<font color="#0099FF">.ssh</font></font><br>
+        <font face="ç´°æ˜é«”">-rw-------ã€€1ã€€maryã€€usersã€€736ã€€Nov 30 02:28ã€€.ssh/id_dsa</font><br>
         <br>
-        <font color="#00FF00" size="2">3. ±N public key ½Æ»s¨ì Server ¤W¡G</font><font color="#FF0000"><br>
+        <font color="#00FF00" size="2">3. å°‡ public key è¤‡è£½åˆ° Server ä¸Šï¼š</font><font color="#FF0000"><br>
         </font> mary@Client:~/.ssh&gt; <strong><font color="#FFFF00">scp id_dsa.pub 
         barry@192.168.1.111:~/.ssh/authorized_keys</font></strong><br>
         Password:<br>
-        id_dsa.pub ¡@¡@¡@100% ¡@¡@¡@601¡@¡@¡@ 0.6KB/s ¡@¡@¡@00:00 <br>
-        <font color="#00FFFF"># </font> <font size="2"><font color="#00FFFF" size="2">¦p»·ºİ¥D¾÷ªº 
-        barry ®a¥Ø¿ı¤¤¡A©|µL .ssh ¥Ø¿ı¡A½Ğ¥ı«Ø¥ß°_¨Ó«á¦A°õ¦æ³o­Ó¨BÆJ¡C</font></font> <br>
+        id_dsa.pub ã€€ã€€ã€€100% ã€€ã€€ã€€601ã€€ã€€ã€€ 0.6KB/s ã€€ã€€ã€€00:00 <br>
+        <font color="#00FFFF"># </font> <font size="2"><font color="#00FFFF" size="2">å¦‚é ç«¯ä¸»æ©Ÿçš„ 
+        barry å®¶ç›®éŒ„ä¸­ï¼Œå°šç„¡ .ssh ç›®éŒ„ï¼Œè«‹å…ˆå»ºç«‹èµ·ä¾†å¾Œå†åŸ·è¡Œé€™å€‹æ­¥é©Ÿã€‚</font></font> <br>
         </font></p>
       </td>
   </tr>
 </table>
 <font color="#000000"><br>
-¡@±µµÛ¶i¦æ´ú¸Õ¡G<br>
+ã€€æ¥è‘—é€²è¡Œæ¸¬è©¦ï¼š<br>
 <br>
 </font> 
 <table width="100%" border="0">
   <tr> 
     <td nowrap bgcolor="#000000"><font color="#FFFFFF">mary@Client:~&gt;<strong><font color="#FFFF00"> 
       ssh barry@192.168.1.111</font></strong><br>
-      Enter passphrase for key '/home/mary/.ssh/id_dsa':¡@<font color="#00FFFF" size="2">¡ö 
-      ¿é¤J·íªì³]©wªº³qÃö±K»y¡C</font><br>
+      Enter passphrase for key '/home/mary/.ssh/id_dsa':ã€€<font color="#00FFFF" size="2">â† 
+      è¼¸å…¥ç•¶åˆè¨­å®šçš„é€šé—œå¯†èªã€‚</font><br>
       Last login: Mon Dec 5 16:25:25 2006 from 192.168.1.130<br>
       barry@<strong>suse</strong>:~&gt;</font></td>
   </tr>
 </table>
-<font color="#000000">¡@¡@<br>
-</font> ¡@¦n¤F¡A¥Ø«e¤w¸g¦¨¥\ªº¨Ï¥Î public key ¨Ó°µ»{ÃÒ¤F¡C¤£¹L¦b³o­Ó½d¨Ò¤¤¡A¦]¬°·íªì¦³³]©w³qÃö±K»yªºÃö«Y¡A©Ò¥H¦b³s½u¹Lµ{·|­n¨D±z°µ¿é¤J¡C¦pªG²{¦b§Æ±æ¯à²¤¹L³o­Ó¨BÆJ¡A¤]´N¬O¤£·Q¿é¤J³qÃö±K»y¦Ó¯àª½±µ³s½u¡A«h»İ±Ò¥Î¥N²z»{ÃÒ¡A¸Ô²Ó°µªk¦p¤U¡G<br>
+<font color="#000000">ã€€ã€€<br>
+</font> ã€€å¥½äº†ï¼Œç›®å‰å·²ç¶“æˆåŠŸçš„ä½¿ç”¨ public key ä¾†åšèªè­‰äº†ã€‚ä¸éåœ¨é€™å€‹ç¯„ä¾‹ä¸­ï¼Œå› ç‚ºç•¶åˆæœ‰è¨­å®šé€šé—œå¯†èªçš„é—œä¿‚ï¼Œæ‰€ä»¥åœ¨é€£ç·šéç¨‹æœƒè¦æ±‚æ‚¨åšè¼¸å…¥ã€‚å¦‚æœç¾åœ¨å¸Œæœ›èƒ½ç•¥éé€™å€‹æ­¥é©Ÿï¼Œä¹Ÿå°±æ˜¯ä¸æƒ³è¼¸å…¥é€šé—œå¯†èªè€Œèƒ½ç›´æ¥é€£ç·šï¼Œå‰‡éœ€å•Ÿç”¨ä»£ç†èªè­‰ï¼Œè©³ç´°åšæ³•å¦‚ä¸‹ï¼š<br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">mary@Client:~&gt; <font color="#FFFF00"><strong>ssh-agent 
       bash</strong></font><br>
-      <font color="#00FFFF"># </font> <font size="2"><font color="#00FFFF">±Ò¥Î¥N²z»{ÃÒ¡C<font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font> <font size="2"><font color="#00FFFF">å•Ÿç”¨ä»£ç†èªè­‰ã€‚<font color="#FFFFFF"><br>
       </font></font></font><br>
       mary@Client:~&gt; <font color="#FFFF00"><strong>ssh-add</strong></font><br>
-      Enter passphrase for /home/mary/.ssh/id_dsa:¡@<font color="#00FFFF" size="2">¡ö 
-      ½Ğ¿é¤J³qÃö±K»y¡C</font><br>
+      Enter passphrase for /home/mary/.ssh/id_dsa:ã€€<font color="#00FFFF" size="2">â† 
+      è«‹è¼¸å…¥é€šé—œå¯†èªã€‚</font><br>
       Identity added: /home/mary/.ssh/id_dsa (/home/mary/.ssh/id_dsa)<br>
-      <font color="#00FFFF"># </font> <font size="2"><font color="#00FFFF">±N private 
-      key </font></font><font color="#00FFFF" size="2">¥[¤J¥N²z»{ÃÒ¤§¤¤¡C</font><br>
+      <font color="#00FFFF"># </font> <font size="2"><font color="#00FFFF">å°‡ private 
+      key </font></font><font color="#00FFFF" size="2">åŠ å…¥ä»£ç†èªè­‰ä¹‹ä¸­ã€‚</font><br>
       <br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">§¹¦¨«á°µ­Ó³s½u´ú¸Õ¡G</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">å®Œæˆå¾Œåšå€‹é€£ç·šæ¸¬è©¦ï¼š</font><br>
       mary@Client:~&gt; <font color="#FFFF00"><strong>ssh barry@192.168.1.111</strong></font><br>
       Last login: Mon Dec 5 18:00:13 2006 from 192.168.1.130<br>
       barry@suse:~&gt;<br>
-      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">ª`·N¨ì¨S¡A³o¦¸³s½u¹Lµ{¨S¦³­n¨D±z¿é¤J³qÃö±K»y¡C<br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">æ³¨æ„åˆ°æ²’ï¼Œé€™æ¬¡é€£ç·šéç¨‹æ²’æœ‰è¦æ±‚æ‚¨è¼¸å…¥é€šé—œå¯†èªã€‚<br>
       </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font> </font><font color="#00FFFF" size="2">±Ò¥Î¥N²z»{ÃÒ®É¡A·|¶i¤J¨ì¥t¤@­Óshell (sub-shell) 
-      ¤§¤¤¡A¦]¦¹·í±z­nµ²§ô<br>
+      </font> </font><font color="#00FFFF" size="2">å•Ÿç”¨ä»£ç†èªè­‰æ™‚ï¼Œæœƒé€²å…¥åˆ°å¦ä¸€å€‹shell (sub-shell) 
+      ä¹‹ä¸­ï¼Œå› æ­¤ç•¶æ‚¨è¦çµæŸ<br>
       </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font> </font><font color="#00FFFF" size="2">¥N²z»{ÃÒ®É¡A<font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">§Y¥i</font></font></font></font>°õ¦æ 
-      exit «ü¥O¡A¨Ó°h¦^­ì¨Óªº shell¡C</font></font></font></font></font></td>
+      </font> </font><font color="#00FFFF" size="2">ä»£ç†èªè­‰æ™‚ï¼Œ<font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">å³å¯</font></font></font></font>åŸ·è¡Œ 
+      exit æŒ‡ä»¤ï¼Œä¾†é€€å›åŸä¾†çš„ shellã€‚</font></font></font></font></font></td>
   </tr>
 </table>
 <br>
-¡@±Ä¥Î key »{ÃÒªº°µªk´N¤j­P¦p¦¹¡C²{¦b¦A¥X­Óª¬ªp¡A¦pªG¦b Client ºİ¤S¦³¥t¤@­Ó¨Ï¥ÎªÌ tina¡A¤]·Q³z¹L key »{ÃÒ¤è¦¡¨Ó¥H server ¤W 
-barry ªº¨­¤À°µ»·ºİ³s½u®É¸Ó«ç»ò°µ©O ? ½Ğ°Ñ¦Ò¥H¤Uªº°µªk¡G<br>
+ã€€æ¡ç”¨ key èªè­‰çš„åšæ³•å°±å¤§è‡´å¦‚æ­¤ã€‚ç¾åœ¨å†å‡ºå€‹ç‹€æ³ï¼Œå¦‚æœåœ¨ Client ç«¯åˆæœ‰å¦ä¸€å€‹ä½¿ç”¨è€… tinaï¼Œä¹Ÿæƒ³é€é key èªè­‰æ–¹å¼ä¾†ä»¥ server ä¸Š 
+barry çš„èº«åˆ†åšé ç«¯é€£ç·šæ™‚è©²æ€éº¼åšå‘¢ ? è«‹åƒè€ƒä»¥ä¸‹çš„åšæ³•ï¼š<br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><p><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-        </font> </font><font color="#00FFFF" size="2">¥ı²£¥Í RSA key pair¡G</font></font></font></font><br>
-        tina@Client:~&gt;<strong><font color="#FFFF00"> ssh-keygen -t rsa</font></strong>¡@<br>
+        </font> </font><font color="#00FFFF" size="2">å…ˆç”¢ç”Ÿ RSA key pairï¼š</font></font></font></font><br>
+        tina@Client:~&gt;<strong><font color="#FFFF00"> ssh-keygen -t rsa</font></strong>ã€€<br>
         Generating public/private rsa key pair.<br>
-        Enter file in which to save the key (/home/tina/.ssh/id_rsa):¡@<br>
+        Enter file in which to save the key (/home/tina/.ssh/id_rsa):ã€€<br>
         Created directory '/home/tina/.ssh'.<br>
-        Enter passphrase (empty for no passphrase): <font color="#00FFFF" size="2">¡ö 
-        ³o¦¸¤£¿é¤J³qÃö±K»y¡Aª½±µ«ö¤U Enter Áä¡C</font><br>
-        Enter same passphrase again:¡@<font color="#00FFFF" size="2">¡ö «ö¤U Enter 
-        Áä¡C</font><br>
+        Enter passphrase (empty for no passphrase): <font color="#00FFFF" size="2">â† 
+        é€™æ¬¡ä¸è¼¸å…¥é€šé—œå¯†èªï¼Œç›´æ¥æŒ‰ä¸‹ Enter éµã€‚</font><br>
+        Enter same passphrase again:ã€€<font color="#00FFFF" size="2">â† æŒ‰ä¸‹ Enter 
+        éµã€‚</font><br>
         Your identification has been saved in /home/tina/.ssh/id_rsa.<br>
         Your public key has been saved in /home/tina/.ssh/id_rsa.pub.<br>
         The key fingerprint is:</font><br>
         <font color="#FFFFFF">52:05:89:eb:b1:f6:95:c6:b5:bf:d4:f9:c1:73:a2:60 
         tina@Client<br>
         <br>
-        <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">§â 
-        rsa public key ½Æ»s¨ì server ¤W barry ªº®a¥Ø¿ı¸Ì¡G</font><br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">æŠŠ 
+        rsa public key è¤‡è£½åˆ° server ä¸Š barry çš„å®¶ç›®éŒ„è£¡ï¼š</font><br>
         tina@Client:~&gt; <font color="#FFFF00"><strong>scp .ssh/id_rsa.pub barry@192.168.1.111:~</strong></font><br>
         barry@192.168.1.111's password:<br>
-        id_rsa.pub¡@¡@100%¡@¡@221¡@¡@0.2KB/s¡@¡@00:00 <br>
+        id_rsa.pubã€€ã€€100%ã€€ã€€221ã€€ã€€0.2KB/sã€€ã€€00:00 <br>
         <br>
         <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font> 
-        </font></font><font color="#00FFFF" size="2">³Ì«á½Ğ¦b server ¥D¾÷¤W¡A±N id_rsa.pub 
-        ¤º®eªş¥[¦Ü authorized_keys ÀÉ®×¤¤¡G</font><br>
+        </font></font><font color="#00FFFF" size="2">æœ€å¾Œè«‹åœ¨ server ä¸»æ©Ÿä¸Šï¼Œå°‡ id_rsa.pub 
+        å…§å®¹é™„åŠ è‡³ authorized_keys æª”æ¡ˆä¸­ï¼š</font><br>
         barry@suse:~&gt;<font color="#FFFF00"><strong> cat id_rsa.pub &gt;&gt; 
         .ssh/authorized_keys<br>
         </strong></font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-        </font> </font></font><font color="#00FFFF" size="2">³o­Ó¦a¤è¤d¸U¤£­n§â authorized_keys 
-        ªº­ì¥ı¤º®eÂĞ»\±¼¡A<br>
+        </font> </font></font><font color="#00FFFF" size="2">é€™å€‹åœ°æ–¹åƒè¬ä¸è¦æŠŠ authorized_keys 
+        çš„åŸå…ˆå…§å®¹è¦†è“‹æ‰ï¼Œ<br>
         </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-        </font> </font></font></font></font><font color="#00FFFF" size="2">¤£µM¤§«eªº¨Ï¥ÎªÌ 
-        mary ´NµLªk°µ key »{ÃÒ¤F¡C </font></font><font color="#00FFFF"></font><font color="#FFFF00"><strong><br>
+        </font> </font></font></font></font><font color="#00FFFF" size="2">ä¸ç„¶ä¹‹å‰çš„ä½¿ç”¨è€… 
+        mary å°±ç„¡æ³•åš key èªè­‰äº†ã€‚ </font></font><font color="#00FFFF"></font><font color="#FFFF00"><strong><br>
         </strong></font></font></p>
       </td>
   </tr>
 </table>
 <br>
-¡@Client ºİ´ú¸Õ¡G<br>
+ã€€Client ç«¯æ¸¬è©¦ï¼š<br>
 <br>
 <table width="100%" border="0">
   <tr> 
@@ -705,101 +705,101 @@ barry ªº¨­¤À°µ»·ºİ³s½u®É¸Ó«ç»ò°µ©O ? ½Ğ°Ñ¦Ò¥H¤Uªº°µªk¡G<br>
       Last login: Tue Dec 6 15:23:49 2006 from 192.168.1.130<br>
       barry@suse:~&gt;<br>
       <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font> </font></font></font><font color="#00FFFF" size="2">ª`·N¨ì¨S ? ³o¦¸³s½u¹Lµ{¨S¦³­n¨D±z¿é¤J³qÃö±K»y¾¾¡A¦]¬°<br>
+      </font> </font></font></font><font color="#00FFFF" size="2">æ³¨æ„åˆ°æ²’ ? é€™æ¬¡é€£ç·šéç¨‹æ²’æœ‰è¦æ±‚æ‚¨è¼¸å…¥é€šé—œå¯†èªå™¢ï¼Œå› ç‚º<br>
       </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-      </font> </font></font></font><font color="#00FFFF" size="2"> ­è­è¦b«Ø¥ß RSA key 
-      pair ªº¹Lµ{¡A®Ú¥»´N¨S¦³°µ³]©w°Ú¡C</font></font></td>
+      </font> </font></font></font><font color="#00FFFF" size="2"> å‰›å‰›åœ¨å»ºç«‹ RSA key 
+      pair çš„éç¨‹ï¼Œæ ¹æœ¬å°±æ²’æœ‰åšè¨­å®šå•Šã€‚</font></font></td>
   </tr>
 </table>
 <br>
 <font color="#0000FF" size="+2"><strong><br>
-<a name="10"></a><font size="6">19.2 VNC »·ºİ®à­±»»±±</font></strong></font><br>
+<a name="10"></a><font size="6">19.2 VNC é ç«¯æ¡Œé¢é™æ§</font></strong></font><br>
 <br>
 <font color="#000000" size="+1"><strong><a name="11"></a><font size="5">19.2.1 
-VNC ·§­z</font></strong></font><br>
+VNC æ¦‚è¿°</font></strong></font><br>
 <br>
-¡@VNC (Virtual Network Computing) ¬°¤@»·ºİ®à­±»»±±³nÅé¡A¬O¥Ñ AT&amp;T ©Ò¶}µoªº¡A¨Ã¨Ï¥Î GPL ±ÂÅv¼Ò¦¡¨Ó¹ï¥~µo¦æ¡A¥ç§Y¨ä¬O¤@¶}©ñ­ì©l½Xªº³nÅé¡A¥ô¦ó¤H¬Ò¥i§K¶O¦Û¥Ñ¨ú±o¡C<br>
+ã€€VNC (Virtual Network Computing) ç‚ºä¸€é ç«¯æ¡Œé¢é™æ§è»Ÿé«”ï¼Œæ˜¯ç”± AT&amp;T æ‰€é–‹ç™¼çš„ï¼Œä¸¦ä½¿ç”¨ GPL æˆæ¬Šæ¨¡å¼ä¾†å°å¤–ç™¼è¡Œï¼Œäº¦å³å…¶æ˜¯ä¸€é–‹æ”¾åŸå§‹ç¢¼çš„è»Ÿé«”ï¼Œä»»ä½•äººçš†å¯å…è²»è‡ªç”±å–å¾—ã€‚<br>
 <br>
-¡@VNC ³Ì¤j¯S¦â¬O¤ä´©³\¦h¤£¦Pªº¾Ş§@¥­¥x¡A±z¥i¥H±N¨ä¦w¸Ë¦b Windows¡BMacOS¡BUnix¡BUnix-Like µ¥µ¥ªº§@·~¨t²Î¤W¡A¨Ã¥i¦b³o¨Ç¤£¦Pªº§@·~¨t²Î¶¡¨Ó¬Û¤¬¾Ş§@¡C<br>
+ã€€VNC æœ€å¤§ç‰¹è‰²æ˜¯æ”¯æ´è¨±å¤šä¸åŒçš„æ“ä½œå¹³å°ï¼Œæ‚¨å¯ä»¥å°‡å…¶å®‰è£åœ¨ Windowsã€MacOSã€Unixã€Unix-Like ç­‰ç­‰çš„ä½œæ¥­ç³»çµ±ä¸Šï¼Œä¸¦å¯åœ¨é€™äº›ä¸åŒçš„ä½œæ¥­ç³»çµ±é–“ä¾†ç›¸äº’æ“ä½œã€‚<br>
 <br>
-¡@VNC ³nÅé¥i°Ï¤À¦¨¨â­Ó³¡¤À¡A§Y VNC viewer ( ¥D±±ºİ ) ¸ò VNC server ( ³Q±±ºİ )¡A±z¥u­n¦b Sever ºİ¦w¸Ë VNC server 
-³nÅé«á¡A´N¥i¥H©ó Client ºİ¨Ï¥Î VNC viewer ³nÅé¨Ó¹ï¨ä¶i¦æ»·ºİ»»±±¡C¥t¥~§Y¨Ï Client ºİ¨S¦³¦w¸Ë VNC viewer ³nÅé¤]¨SÃö«Y¡A¦]¬° 
-Client ºİ¤]¥i¥Hª½±µ³z¹LÂsÄı¾¹¨Ó¶i¦æ»·ºİ®à­±¾Ş±±¡C<br>
+ã€€VNC è»Ÿé«”å¯å€åˆ†æˆå…©å€‹éƒ¨åˆ†ï¼Œå³ VNC viewer ( ä¸»æ§ç«¯ ) è·Ÿ VNC server ( è¢«æ§ç«¯ )ï¼Œæ‚¨åªè¦åœ¨ Sever ç«¯å®‰è£ VNC server 
+è»Ÿé«”å¾Œï¼Œå°±å¯ä»¥æ–¼ Client ç«¯ä½¿ç”¨ VNC viewer è»Ÿé«”ä¾†å°å…¶é€²è¡Œé ç«¯é™æ§ã€‚å¦å¤–å³ä½¿ Client ç«¯æ²’æœ‰å®‰è£ VNC viewer è»Ÿé«”ä¹Ÿæ²’é—œä¿‚ï¼Œå› ç‚º 
+Client ç«¯ä¹Ÿå¯ä»¥ç›´æ¥é€éç€è¦½å™¨ä¾†é€²è¡Œé ç«¯æ¡Œé¢æ“æ§ã€‚<br>
 <br>
-<font size="+1"><strong><a name="12"></a><font size="5">19.2.2 ¦w¸Ë©Ò»İ³nÅé</font></strong></font><br>
+<font size="+1"><strong><a name="12"></a><font size="5">19.2.2 å®‰è£æ‰€éœ€è»Ÿé«”</font></strong></font><br>
 <br>
-¡@¥Ñ©ó VNC ¥i¥H¦b¬Û¦P©Î¤£¦Pªº§@·~¨t²Î¶¡°µ»·ºİ»»±±¡A¦]¦¹µ¥·|¨à§Ú­Ì´N¹Á¸Õ¬İ¬İ¦p¦ó¦b windows ¤Î linux ¶¡¡A¬Û¤¬¨Ï¥Î VNC ¨Ó°µ»·ºİ¾Ş±±Åo¡C¤£¹L©ó¹ê§@¤§«e¡A½Ğ±z¥ı§â¦b 
-linux ¤Î windows ¤WÀY©Ò»İ¦w¸Ëªº³nÅé¥ı·d©w¦A»¡¡C¡@¡@<br>
+ã€€ç”±æ–¼ VNC å¯ä»¥åœ¨ç›¸åŒæˆ–ä¸åŒçš„ä½œæ¥­ç³»çµ±é–“åšé ç«¯é™æ§ï¼Œå› æ­¤ç­‰æœƒå…’æˆ‘å€‘å°±å˜—è©¦çœ‹çœ‹å¦‚ä½•åœ¨ windows åŠ linux é–“ï¼Œç›¸äº’ä½¿ç”¨ VNC ä¾†åšé ç«¯æ“æ§å›‰ã€‚ä¸éæ–¼å¯¦ä½œä¹‹å‰ï¼Œè«‹æ‚¨å…ˆæŠŠåœ¨ 
+linux åŠ windows ä¸Šé ­æ‰€éœ€å®‰è£çš„è»Ÿé«”å…ˆæå®šå†èªªã€‚ã€€ã€€<br>
 <br>
-¡@SuSE Linux ¸Ì¤w¸g¦P®É¥]§t¤F VNC server ¤Î VNC viewer ³nÅé¡A¦]¦¹±z¤£¶·ÃB¥~¤U¸ü¡C¦Ü©ó©Ò»İ®M¥ó¬° xorg-x11-Xvnc 
-¤Î tightvnc¡A»°§ÖÀË¬d¬İ¬İ§a ! <br>
+ã€€SuSE Linux è£¡å·²ç¶“åŒæ™‚åŒ…å«äº† VNC server åŠ VNC viewer è»Ÿé«”ï¼Œå› æ­¤æ‚¨ä¸é ˆé¡å¤–ä¸‹è¼‰ã€‚è‡³æ–¼æ‰€éœ€å¥—ä»¶ç‚º xorg-x11-Xvnc 
+åŠ tightvncï¼Œè¶•å¿«æª¢æŸ¥çœ‹çœ‹å§ ! <br>
 <br>
-¡@¦Ü©ó windows ªº¸Ü¡A½Ğ¥ı¦Ü www.realvnc.com ¤U¸ü VNC ³nÅé¡AµM«á¦A¶i¦æ¦w¸Ë¡C¸Ô²Ó¨BÆJ½Ğ°Ñ¦Ò¥H¤U¡C<br>
+ã€€è‡³æ–¼ windows çš„è©±ï¼Œè«‹å…ˆè‡³ www.realvnc.com ä¸‹è¼‰ VNC è»Ÿé«”ï¼Œç„¶å¾Œå†é€²è¡Œå®‰è£ã€‚è©³ç´°æ­¥é©Ÿè«‹åƒè€ƒä»¥ä¸‹ã€‚<br>
 <br>
-<strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> <font size="+1"><strong>¤U¸ü 
-VNC ³nÅé ( for windows )</strong></font><br>
+<strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> <font size="+1"><strong>ä¸‹è¼‰ 
+VNC è»Ÿé«” ( for windows )</strong></font><br>
 <br>
-¡@¡@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#0000CC">³s¤W 
-VNC ºô¯¸¡A¨ÃÂI¿ï <strong>[download it now]</strong>¡G </font> 
+ã€€ã€€<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#0000CC">é€£ä¸Š 
+VNC ç¶²ç«™ï¼Œä¸¦é»é¸ <strong>[download it now]</strong>ï¼š </font> 
 <p align="center"> <img src="vnc1.png" tppabs="http://www.suse.url.tw/picture/vnc1.png" width="666" height="479"></p>
-<p align="left">¡@¡@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099"></font><font color="#000099">ÂI¿ï 
-  <strong>[Download &amp; use]</strong>¡G</font></p>
+<p align="left">ã€€ã€€<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099"></font><font color="#000099">é»é¸ 
+  <strong>[Download &amp; use]</strong>ï¼š</font></p>
 <p align="center"> <img src="vnc2.png" tppabs="http://www.suse.url.tw/picture/vnc2.png" width="666" height="479"></p>
-<p align="left">¡@¡@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">ÂI¿ï 
-  <strong>[Procceed to download]</strong>¡G</font></p>
+<p align="left">ã€€ã€€<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">é»é¸ 
+  <strong>[Procceed to download]</strong>ï¼š</font></p>
 <p align="center"> <img src="vnc3.png" tppabs="http://www.suse.url.tw/picture/vnc3.png" width="666" height="479"></p>
-<p align="left"> ¡@¡@ <img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"><font color="#000099"> 
-  ¤U¸ü for windows ªº§K¶O VNC ³nÅé¡G</font> </p>
+<p align="left"> ã€€ã€€ <img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"><font color="#000099"> 
+  ä¸‹è¼‰ for windows çš„å…è²» VNC è»Ÿé«”ï¼š</font> </p>
 <p align="center"> <img src="vnc4.png" tppabs="http://www.suse.url.tw/picture/vnc4.png" width="666" height="479"></p>
-¡@¡@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">±µ¨üÁn©ú¨Ã¤U¸ü¡G</font> 
+ã€€ã€€<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">æ¥å—è²æ˜ä¸¦ä¸‹è¼‰ï¼š</font> 
 <p align="center"> <img src="vnc5.png" tppabs="http://www.suse.url.tw/picture/vnc5.png" width="666" height="479"></p>
-<p align="left">¡@¡@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">±N¤U¸üÀÉ®×Àx¦s°_¨Ó¡G 
+<p align="left">ã€€ã€€<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">å°‡ä¸‹è¼‰æª”æ¡ˆå„²å­˜èµ·ä¾†ï¼š 
   </font></p>
 <p align="center"><img src="vnc6.png" tppabs="http://www.suse.url.tw/picture/vnc6.png" width="398" height="269"></p>
 <div align="left"> <strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
-  ¦w¸Ë VNC<br>
+  å®‰è£ VNC<br>
   <br>
-  ¡@</font></strong>±Ò°Ê­è­è¤U¸ü¦^¨Óªº°õ¦æµ{¦¡¨Ó¶}©l¶i¦æ¦w¸Ë¡A¨BÆJ¦p¤U¡G <font size="+1"><strong><br>
+  ã€€</font></strong>å•Ÿå‹•å‰›å‰›ä¸‹è¼‰å›ä¾†çš„åŸ·è¡Œç¨‹å¼ä¾†é–‹å§‹é€²è¡Œå®‰è£ï¼Œæ­¥é©Ÿå¦‚ä¸‹ï¼š <font size="+1"><strong><br>
   </strong></font> 
   <p align="center"> <img src="vnc7.png" tppabs="http://www.suse.url.tw/picture/vnc7.png" width="503" height="385"><br>
-    <font size="2">¹Ï¤@¡GVNC ³]©wºëÆFµe­±</font><br>
+    <font size="2">åœ–ä¸€ï¼šVNC è¨­å®šç²¾éˆç•«é¢</font><br>
     <br>
     <img src="vnc8.png" tppabs="http://www.suse.url.tw/picture/vnc8.png" width="503" height="385"><br>
-    <font size="2">¹Ï¤G¡G±µ¨ü±ÂÅv¦P·NÁn©ú</font><br>
+    <font size="2">åœ–äºŒï¼šæ¥å—æˆæ¬ŠåŒæ„è²æ˜</font><br>
     <br>
     <img src="vnc9.png" tppabs="http://www.suse.url.tw/picture/vnc9.png" width="503" height="385"><br>
-    <font size="2">¹Ï¤T¡GVNC ¹w³]ªº¦w¸Ë¦ì¸mµe­±</font><font size="1"> </font> </p>
+    <font size="2">åœ–ä¸‰ï¼šVNC é è¨­çš„å®‰è£ä½ç½®ç•«é¢</font><font size="1"> </font> </p>
   <p align="center"> <img src="vnc10.png" tppabs="http://www.suse.url.tw/picture/vnc10.png" width="503" height="385"><br>
-    <font size="2">¹Ï¥|¡G¿ï¾Ü¦w¸Ë¶µ¥Ø</font><br>
+    <font size="2">åœ–å››ï¼šé¸æ“‡å®‰è£é …ç›®</font><br>
     <br>
     <img src="vnc11.png" tppabs="http://www.suse.url.tw/picture/vnc11.png" width="503" height="385"> <br>
-    <font size="2">¹Ï¤­¡G ³]©w¦s©ñ VNC µ{¦¡±¶®|¤§³B</font><br>
+    <font size="2">åœ–äº”ï¼š è¨­å®šå­˜æ”¾ VNC ç¨‹å¼æ·å¾‘ä¹‹è™•</font><br>
     <br>
     <img src="vnc12.png" tppabs="http://www.suse.url.tw/picture/vnc12.png" width="503" height="385"> <br>
-    <font size="2">¹Ï¤»¡G°õ¦æÃB¥~¤u§@ªº³]©wµe­± </font></p>
-  <p align="center">¡@¡@<img src="vnc13.png" tppabs="http://www.suse.url.tw/picture/vnc13.png" width="503" height="385"><br>
-    <font size="2">¹Ï¤C¡G·Ç³Æ¦w¸Ëµe­± </font><font size="1"> </font> </p>
+    <font size="2">åœ–å…­ï¼šåŸ·è¡Œé¡å¤–å·¥ä½œçš„è¨­å®šç•«é¢ </font></p>
+  <p align="center">ã€€ã€€<img src="vnc13.png" tppabs="http://www.suse.url.tw/picture/vnc13.png" width="503" height="385"><br>
+    <font size="2">åœ–ä¸ƒï¼šæº–å‚™å®‰è£ç•«é¢ </font><font size="1"> </font> </p>
   <p align="center"> <img src="vnc13.2.png" tppabs="http://www.suse.url.tw/picture/vnc13.2.png" width="353" height="428"> 
     <br>
-    <font size="2">¹Ï¤K¡G·Ç³Æ³]©w VNC Server ªº±K½X</font><br>
+    <font size="2">åœ–å…«ï¼šæº–å‚™è¨­å®š VNC Server çš„å¯†ç¢¼</font><br>
     <br>
     <img src="vnc13.4.png" tppabs="http://www.suse.url.tw/picture/vnc13.4.png" width="325" height="139"><br>
-    <font size="2">¹Ï¤E¡G³]©w VNC Server ±K½Xµe­±</font> </p>
-  <p align="left">¡@¡@¦b¹Ï¤E¤¤«ö¤U [OK] «á¡A·|¦^¨ì¹Ï¤Kµe­±¡A¦¹®ÉÂI¿ï [½T©w] §Y¥i¡C</p>
+    <font size="2">åœ–ä¹ï¼šè¨­å®š VNC Server å¯†ç¢¼ç•«é¢</font> </p>
+  <p align="left">ã€€ã€€åœ¨åœ–ä¹ä¸­æŒ‰ä¸‹ [OK] å¾Œï¼Œæœƒå›åˆ°åœ–å…«ç•«é¢ï¼Œæ­¤æ™‚é»é¸ [ç¢ºå®š] å³å¯ã€‚</p>
   <p align="center"> <img src="vnc14.png" tppabs="http://www.suse.url.tw/picture/vnc14.png" width="503" height="385"><br>
-    <font size="2">¹Ï¤Q¡G­«­n°T®§µe­±</font> <br>
+    <font size="2">åœ–åï¼šé‡è¦è¨Šæ¯ç•«é¢</font> <br>
     <br>
     <img src="vnc15.png" tppabs="http://www.suse.url.tw/picture/vnc15.png" width="503" height="385"><br>
-    <font size="2">¹Ï¤Q¤@¡GVNC ³]©wºëÆF§¹¦¨µe­±</font> </p>
-  <p align="left">¡@³o¼Ë´N¦w¸Ë§¹²¦¤F¡A°÷Â²³æ§a¡C</p>
+    <font size="2">åœ–åä¸€ï¼šVNC è¨­å®šç²¾éˆå®Œæˆç•«é¢</font> </p>
+  <p align="left">ã€€é€™æ¨£å°±å®‰è£å®Œç•¢äº†ï¼Œå¤ ç°¡å–®å§ã€‚</p>
   <font size="+1"><strong> </strong></font><strong><font size="+1"> <a name="13"></a><font size="5">19.2.3 
-  Windows »·ºİ»»±± Linux</font></font></strong><font color="#000000"><br>
+  Windows é ç«¯é™æ§ Linux</font></font></strong><font color="#000000"><br>
   <br>
-  ¡@³o¤@¤p¸`¥D­n¬O­n¤¶²Ğ¦p¦ó¥H Linux ¾á¥ô VNC server¡A¨ÃÅı Windows ªº Client ºİ¯à¹ï¨ä¶i¦æ»·ºİ¾Ş±±¡A¦]¦¹­«ÂI´N©ñ¦b Linux 
-  ªº³]©w¤WÀYÅo¡C<br>
+  ã€€é€™ä¸€å°ç¯€ä¸»è¦æ˜¯è¦ä»‹ç´¹å¦‚ä½•ä»¥ Linux æ“”ä»» VNC serverï¼Œä¸¦è®“ Windows çš„ Client ç«¯èƒ½å°å…¶é€²è¡Œé ç«¯æ“æ§ï¼Œå› æ­¤é‡é»å°±æ”¾åœ¨ Linux 
+  çš„è¨­å®šä¸Šé ­å›‰ã€‚<br>
   <br>
   <strong><font size="+1"><a name="14"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-  </font><font color="#000000"><font size="+1"><strong>³]©w Linux ¾á¥ô VNC server</strong></font></font><font size="+1"> 
+  </font><font color="#000000"><font size="+1"><strong>è¨­å®š Linux æ“”ä»» VNC server</strong></font></font><font size="+1"> 
   </font></strong><br>
   <br>
   </font> 
@@ -807,7 +807,7 @@ VNC ºô¯¸¡A¨ÃÂI¿ï <strong>[download it now]</strong>¡G </font>
     <tr> 
       <td width="2%">&nbsp;</td>
       <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-      <td width="95%"><strong><font color="#000099">ªì¦¸±Ò°Ê VNC server</font></strong></td>
+      <td width="95%"><strong><font color="#000099">åˆæ¬¡å•Ÿå‹• VNC server</font></strong></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
@@ -817,23 +817,23 @@ VNC ºô¯¸¡A¨ÃÂI¿ï <strong>[download it now]</strong>¡G </font>
             <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
               vncserver </strong></font> <br>
               <br>
-              <font face="²Ó©úÅé">You will require a password to access your desktops.</font></font> 
-              <br> <br> <font color="#FFFFFF" face="²Ó©úÅé">Password:¡@<font color="#00FFFF" size="2">¡ö 
-              ­º¦¸±Ò°Ê VNC server ®É¡A¶·³]©w´£¨Ñµ¹ Client ºİ°µ»·ºİ¾Ş±±®É¡A</font><br>
-              Verify:<strong><font size="2"> ¡@¡@¡@ </font></strong><font size="2"><font color="#00FFFF">©Ò»İ</font></font><font color="#00FFFF" size="2">¿é¤Jªº±K½X¡C</font></font><font color="#FFFFFF"><br>
-              <font face="²Ó©úÅé">¡@¡@ <br>
+              <font face="ç´°æ˜é«”">You will require a password to access your desktops.</font></font> 
+              <br> <br> <font color="#FFFFFF" face="ç´°æ˜é«”">Password:ã€€<font color="#00FFFF" size="2">â† 
+              é¦–æ¬¡å•Ÿå‹• VNC server æ™‚ï¼Œé ˆè¨­å®šæä¾›çµ¦ Client ç«¯åšé ç«¯æ“æ§æ™‚ï¼Œ</font><br>
+              Verify:<strong><font size="2"> ã€€ã€€ã€€ </font></strong><font size="2"><font color="#00FFFF">æ‰€éœ€</font></font><font color="#00FFFF" size="2">è¼¸å…¥çš„å¯†ç¢¼ã€‚</font></font><font color="#FFFFFF"><br>
+              <font face="ç´°æ˜é«”">ã€€ã€€ <br>
               Would you like to enter a view-only password (y/n)? <strong><font color="#FFFF00">n</font> 
-              </strong><font size="2">¡ö</font></font></font> <font color="#FFFFFF" size="2">½Ğ¿é¤J 
-              n<font face="²Ó©úÅé">¡C</font></font><font color="#FFFFFF" face="²Ó©úÅé"><strong><br>
-              </strong></font><font color="#00FFFF"># </font><font color="#00FFFF" face="²Ó©úÅé"><font size="2">³o¬O¸ß°İ±z¡A­n¤£­n³]©w¤@­Ó¥u¤¹³\µ¹ 
-              Client ºİÂsÄı¦Ó¤£¯à¾Ş±±ªº±K½X¡C</font></font><font color="#FFFFFF"> <br>
+              </strong><font size="2">â†</font></font></font> <font color="#FFFFFF" size="2">è«‹è¼¸å…¥ 
+              n<font face="ç´°æ˜é«”">ã€‚</font></font><font color="#FFFFFF" face="ç´°æ˜é«”"><strong><br>
+              </strong></font><font color="#00FFFF"># </font><font color="#00FFFF" face="ç´°æ˜é«”"><font size="2">é€™æ˜¯è©¢å•æ‚¨ï¼Œè¦ä¸è¦è¨­å®šä¸€å€‹åªå…è¨±çµ¦ 
+              Client ç«¯ç€è¦½è€Œä¸èƒ½æ“æ§çš„å¯†ç¢¼ã€‚</font></font><font color="#FFFFFF"> <br>
               <br>
-              <font face="²Ó©úÅé">New 'X' desktop is suselinux:1<br>
-              <font color="#00FFFF">#<font color="#FFFFFF"><font face="²Ó©úÅé"><font color="#00FFFF"> 
-              <font size="2">½Ğ¯d</font></font></font></font><font size="2">·Nµ²§Àªº¼Æ¦r 
-              1¡A¦¹¤D VNC ©Ò´£¨Ñªº X Server µøµ¡½s¸¹¡C</font></font></font> <br>
+              <font face="ç´°æ˜é«”">New 'X' desktop is suselinux:1<br>
+              <font color="#00FFFF">#<font color="#FFFFFF"><font face="ç´°æ˜é«”"><font color="#00FFFF"> 
+              <font size="2">è«‹ç•™</font></font></font></font><font size="2">æ„çµå°¾çš„æ•¸å­— 
+              1ï¼Œæ­¤ä¹ƒ VNC æ‰€æä¾›çš„ X Server è¦–çª—ç·¨è™Ÿã€‚</font></font></font> <br>
               <br>
-              <font face="²Ó©úÅé">Creating default startup script /root/.vnc/xstartup<br>
+              <font face="ç´°æ˜é«”">Creating default startup script /root/.vnc/xstartup<br>
               Starting applications specified in /root/.vnc/xstartup<br>
               Log file is /root/.vnc/suselinux:1.log</font></font></td>
           </tr>
@@ -847,7 +847,7 @@ VNC ºô¯¸¡A¨ÃÂI¿ï <strong>[download it now]</strong>¡G </font>
     <tr> 
       <td>&nbsp;</td>
       <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-      <td><strong><font color="#000099">­×§ï VNC ¹w³]­n°õ¦æªº Script</font></strong></td>
+      <td><strong><font color="#000099">ä¿®æ”¹ VNC é è¨­è¦åŸ·è¡Œçš„ Script</font></strong></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
@@ -856,16 +856,16 @@ VNC ºô¯¸¡A¨ÃÂI¿ï <strong>[download it now]</strong>¡G </font>
           <tr> 
             <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
               vi .vnc/xstartup</strong></font><br>
-              <font color="#0066FF">#</font><font color="#0066FF" face="²Ó©úÅé">!/bin/sh</font><font face="²Ó©úÅé"> 
-              </font></font> <br> <br> <font color="#FFFFFF" face="²Ó©úÅé">xrdb $HOME/.Xresources<br>
+              <font color="#0066FF">#</font><font color="#0066FF" face="ç´°æ˜é«”">!/bin/sh</font><font face="ç´°æ˜é«”"> 
+              </font></font> <br> <br> <font color="#FFFFFF" face="ç´°æ˜é«”">xrdb $HOME/.Xresources<br>
               xsetroot -solid grey<br>
               xterm -geometry 80x24+10+10 -ls -title &quot;$VNCDESKTOP Desktop&quot; 
               &amp;<br>
               <strong>gnome-session</strong> &amp;<br>
-              </font><font color="#00FFFF">#<font size="2" face="²Ó©úÅé"> </font></font><font color="#FFFFFF"><font color="#00FFFF" size="2" face="²Ó©úÅé">·í®à­±Àô¹Ò¬O 
-              gnome ®É¡A´N§â twm §ï¦¨ gnome-session §Y¥i</font></font><font color="#00FFFF" size="2" face="²Ó©úÅé">¡C<br>
-              </font><font color="#00FFFF">#<font size="2" face="²Ó©úÅé"> </font></font><font color="#00FFFF" size="2" face="²Ó©úÅé">¦p¬O 
-              kde ªº¸Ü¡A´N­×§ï¦¨ startkde¡C</font></td>
+              </font><font color="#00FFFF">#<font size="2" face="ç´°æ˜é«”"> </font></font><font color="#FFFFFF"><font color="#00FFFF" size="2" face="ç´°æ˜é«”">ç•¶æ¡Œé¢ç’°å¢ƒæ˜¯ 
+              gnome æ™‚ï¼Œå°±æŠŠ twm æ”¹æˆ gnome-session å³å¯</font></font><font color="#00FFFF" size="2" face="ç´°æ˜é«”">ã€‚<br>
+              </font><font color="#00FFFF">#<font size="2" face="ç´°æ˜é«”"> </font></font><font color="#00FFFF" size="2" face="ç´°æ˜é«”">å¦‚æ˜¯ 
+              kde çš„è©±ï¼Œå°±ä¿®æ”¹æˆ startkdeã€‚</font></td>
           </tr>
         </table></td>
     </tr>
@@ -877,7 +877,7 @@ VNC ºô¯¸¡A¨ÃÂI¿ï <strong>[download it now]</strong>¡G </font>
     <tr> 
       <td>&nbsp;</td>
       <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-      <td><strong><font color="#000099">­«·s±Ò°Ê VNC server</font></strong></td>
+      <td><strong><font color="#000099">é‡æ–°å•Ÿå‹• VNC server</font></strong></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
@@ -885,12 +885,12 @@ VNC ºô¯¸¡A¨ÃÂI¿ï <strong>[download it now]</strong>¡G </font>
       <td><table width="100%" border="0">
           <tr> 
             <td bgcolor="#000000"><font color="#FFFFFF"><font color="#00FFFF">#</font> 
-              <font color="#00FFFF" size="2">¥ı°±¤î VNC server ªA°È¡G</font><br>
+              <font color="#00FFFF" size="2">å…ˆåœæ­¢ VNC server æœå‹™ï¼š</font><br>
               suse:~ #<font color="#FFFF00"><strong> vncserver -kill :1</strong></font><br>
               Killing Xvnc process ID 4453<br>
               <br>
-              <font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">¦A±Ò°Ê 
-              VNC Server¡G</font><br>
+              <font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">å†å•Ÿå‹• 
+              VNC Serverï¼š</font><br>
               suse:~ # <strong><font color="#FFFF00">vncserver </font></strong> 
               <br>
               <br>
@@ -899,54 +899,54 @@ VNC ºô¯¸¡A¨ÃÂI¿ï <strong>[download it now]</strong>¡G </font>
               Starting applications specified in /root/.vnc/xstartup<br>
               Log file is /root/.vnc/suselinux:1.log<font color="#FFFFFF"><strong><font color="#00FFFF"><br>
               <br>
-              </font></strong><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">¦¨¥\±Ò°Ê«á¡A¥i¶¶«KÀË¬d¤@¤U 
-              VNC ©Ò´£¨ÑªA°Èªº port¡G</font> <br>
+              </font></strong><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">æˆåŠŸå•Ÿå‹•å¾Œï¼Œå¯é †ä¾¿æª¢æŸ¥ä¸€ä¸‹ 
+              VNC æ‰€æä¾›æœå‹™çš„ portï¼š</font> <br>
               suse:~ # <strong><font color="#FFFF00">netstat -anp | egrep '5801|5901'</font></strong><br>
-              <font face="²Ó©úÅé">tcp ¡@0 ¡@0 ¡@0.0.0.0:5801 ¡@0.0.0.0:* ¡@LISTEN ¡@5889/Xvnc<br>
-              tcp ¡@0 ¡@0 ¡@0.0.0.0:5901 ¡@0.0.0.0:* ¡@LISTEN ¡@5889/Xvnc </font></font></td>
+              <font face="ç´°æ˜é«”">tcp ã€€0 ã€€0 ã€€0.0.0.0:5801 ã€€0.0.0.0:* ã€€LISTEN ã€€5889/Xvnc<br>
+              tcp ã€€0 ã€€0 ã€€0.0.0.0:5901 ã€€0.0.0.0:* ã€€LISTEN ã€€5889/Xvnc </font></font></td>
           </tr>
         </table>
         <br>
-        ³o¼Ë´N§¹¦¨¤F³Q±±ºİªº³]©w¤F¡C¦Ó±N¨Ó¦pªG±z·Q­×§ï VNC server ¤Wªº³s½u±K½X¡A«h½Ğª½±µ¿é¤J vncpasswd «ü¥O¥h­×§ï§Y¥i¡C </td>
+        é€™æ¨£å°±å®Œæˆäº†è¢«æ§ç«¯çš„è¨­å®šäº†ã€‚è€Œå°‡ä¾†å¦‚æœæ‚¨æƒ³ä¿®æ”¹ VNC server ä¸Šçš„é€£ç·šå¯†ç¢¼ï¼Œå‰‡è«‹ç›´æ¥è¼¸å…¥ vncpasswd æŒ‡ä»¤å»ä¿®æ”¹å³å¯ã€‚ </td>
     </tr>
   </table>
   <font color="#000000"> <br>
   <strong><font size="+1"><a name="15"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
-  <strong><font size="+1">Windows »·ºİ¾Ş±± Linux</font></strong> <br>
+  <strong><font size="+1">Windows é ç«¯æ“æ§ Linux</font></strong> <br>
   <br>
-  ¡@³o¸Ì·|¤À§O¥H¦w¸Ë¦b Windows ¤Wªº VNC viewer ³nÅé¤Îºô­¶ÂsÄı¾¹¤è¦¡¡A¨Ó¹ï Linux °µ»·ºİ¾Ş±±¡C <br>
+  ã€€é€™è£¡æœƒåˆ†åˆ¥ä»¥å®‰è£åœ¨ Windows ä¸Šçš„ VNC viewer è»Ÿé«”åŠç¶²é ç€è¦½å™¨æ–¹å¼ï¼Œä¾†å° Linux åšé ç«¯æ“æ§ã€‚ <br>
   <br>
   </font> 
   <table width="100%" border="0">
     <tr>
       <td width="2%">&nbsp;</td>
       <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-      <td width="95%"><strong><font color="#000099">¨Ï¥Î VNC viewer</font></strong> 
-        <font color="#000099"><strong>µ{¦¡</strong></font></td>
+      <td width="95%"><strong><font color="#000099">ä½¿ç”¨ VNC viewer</font></strong> 
+        <font color="#000099"><strong>ç¨‹å¼</strong></font></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
       <td align="center">&nbsp;</td>
-      <td><p align="left">¦pªG±z­è­è¦b Windows ¤WÀY¦w¸Ë VNC ³nÅé®É¡A¬O«ö·Óµ§ªÌªº¨BÆJ¶i¦æªº¸Ü¡A¨º»ò¦b±z¤u§@¦C¤WÀ³¸Ó¥i¥H¬İ¨ì 
-          VNC viewer ³o­ÓÀ³¥Îµ{¦¡ªº icon¡A½Ğª½±µÂI¿ï¨Ó°õ¦æ¡A¦¹®ÉÀ³¸Ó¥i¥H¬İ¨ì¦p¤Uªºµe­±¡G</p>
+      <td><p align="left">å¦‚æœæ‚¨å‰›å‰›åœ¨ Windows ä¸Šé ­å®‰è£ VNC è»Ÿé«”æ™‚ï¼Œæ˜¯æŒ‰ç…§ç­†è€…çš„æ­¥é©Ÿé€²è¡Œçš„è©±ï¼Œé‚£éº¼åœ¨æ‚¨å·¥ä½œåˆ—ä¸Šæ‡‰è©²å¯ä»¥çœ‹åˆ° 
+          VNC viewer é€™å€‹æ‡‰ç”¨ç¨‹å¼çš„ iconï¼Œè«‹ç›´æ¥é»é¸ä¾†åŸ·è¡Œï¼Œæ­¤æ™‚æ‡‰è©²å¯ä»¥çœ‹åˆ°å¦‚ä¸‹çš„ç•«é¢ï¼š</p>
         <p align="center"> <img src="vnc16.png" tppabs="http://www.suse.url.tw/picture/vnc16.png" width="342" height="133"><br>
-          <font size="2">¹Ï¤@¡G«ü©w VNC viewer ±ı³s½u¤§¥D¾÷</font> </p>
-        <p>½Ğ±N±z Linux ¥D¾÷¦ì§}¶ñ¼g¶i¥h§a¡A¥t¥~­nª`·N¨ì¦b¦ì§}«áºİ»İ«ü©w VNC ©Ò´£¨Ñªº X Server µøµ¡½s¸¹¾¾¡C¨S°İÃDªº¸Ü½ĞÂI¿ï 
-          [OK]¡A±µ¤U¨Ó§Y·|­n¨D±z¿é¤J·íªì¦b VNC Server ¤W©Ò³]©wªº±K½X¡G</p>
+          <font size="2">åœ–ä¸€ï¼šæŒ‡å®š VNC viewer æ¬²é€£ç·šä¹‹ä¸»æ©Ÿ</font> </p>
+        <p>è«‹å°‡æ‚¨ Linux ä¸»æ©Ÿä½å€å¡«å¯«é€²å»å§ï¼Œå¦å¤–è¦æ³¨æ„åˆ°åœ¨ä½å€å¾Œç«¯éœ€æŒ‡å®š VNC æ‰€æä¾›çš„ X Server è¦–çª—ç·¨è™Ÿå™¢ã€‚æ²’å•é¡Œçš„è©±è«‹é»é¸ 
+          [OK]ï¼Œæ¥ä¸‹ä¾†å³æœƒè¦æ±‚æ‚¨è¼¸å…¥ç•¶åˆåœ¨ VNC Server ä¸Šæ‰€è¨­å®šçš„å¯†ç¢¼ï¼š</p>
         <p align="center"><img src="vnc19.png" tppabs="http://www.suse.url.tw/picture/vnc19.png" width="368" height="99"><br>
-          <font color="#000000" size="2">¹Ï¤G¡G«ü©w³s½u±K½X </font></p>
-        <p>³o®É­ÔÀ³¸Ó¯à¶¶§Q¬İ¨ì Linux ªºµøµ¡®à­±¤F¡C¥t¥~¦pªG·Q¶}±Ò¦h­Óµøµ¡®à­±¡A¨º»ò½ĞÂI¿ï¹Ï¤@©³¤Uªº [options] ¶µ¥Ø¡A¨Ã©ó [Misc] 
-          ¤¤§â [Shared connection] ¿ï¶µ¥´¤Ä§Y¥i¡G</p>
+          <font color="#000000" size="2">åœ–äºŒï¼šæŒ‡å®šé€£ç·šå¯†ç¢¼ </font></p>
+        <p>é€™æ™‚å€™æ‡‰è©²èƒ½é †åˆ©çœ‹åˆ° Linux çš„è¦–çª—æ¡Œé¢äº†ã€‚å¦å¤–å¦‚æœæƒ³é–‹å•Ÿå¤šå€‹è¦–çª—æ¡Œé¢ï¼Œé‚£éº¼è«‹é»é¸åœ–ä¸€åº•ä¸‹çš„ [options] é …ç›®ï¼Œä¸¦æ–¼ [Misc] 
+          ä¸­æŠŠ [Shared connection] é¸é …æ‰“å‹¾å³å¯ï¼š</p>
         <p align="center"><img src="vnc17.png" tppabs="http://www.suse.url.tw/picture/vnc17.png" width="352" height="352"><br>
-          <font size="2">¹Ï¤T¡G³]©w¯à¶}±Ò¦hµøµ¡µe­±</font> </p>
-        <p>¦Ó¦b¦¹¿ï¶µ©³¤U¡AÁÙ¦³­Ó [Full-screen mode]¡A³o·íµM´N¬O¥ş¿Ã¹õ¼Ò¦¡Åo ¡Q¦b±z½Õ¾ã¦¨ Full-screen mode 
-          «á¡A¦p·Q½Õ¾ã¦^¨Ó¡A¥i«ö¤U F8 ¨Ã¿ï¨ú [ÁÙ­ì] ´N¦æ¤F¡C½Õ¾ã§¹²¦¡A½Ğ§â³]©w­È«O¯d°_¨Ó¡G</p>
+          <font size="2">åœ–ä¸‰ï¼šè¨­å®šèƒ½é–‹å•Ÿå¤šè¦–çª—ç•«é¢</font> </p>
+        <p>è€Œåœ¨æ­¤é¸é …åº•ä¸‹ï¼Œé‚„æœ‰å€‹ [Full-screen mode]ï¼Œé€™ç•¶ç„¶å°±æ˜¯å…¨è¢å¹•æ¨¡å¼å›‰ ï¹”åœ¨æ‚¨èª¿æ•´æˆ Full-screen mode 
+          å¾Œï¼Œå¦‚æƒ³èª¿æ•´å›ä¾†ï¼Œå¯æŒ‰ä¸‹ F8 ä¸¦é¸å– [é‚„åŸ] å°±è¡Œäº†ã€‚èª¿æ•´å®Œç•¢ï¼Œè«‹æŠŠè¨­å®šå€¼ä¿ç•™èµ·ä¾†ï¼š</p>
         <p align="center"><img src="vnc18.png" tppabs="http://www.suse.url.tw/picture/vnc18.png" width="352" height="352"><br>
-          <font size="2">¹Ï¥|¡GÀx¦s³]©w°Ñ¼Æµe­± </font></p>
+          <font size="2">åœ–å››ï¼šå„²å­˜è¨­å®šåƒæ•¸ç•«é¢ </font></p>
         <blockquote> 
-          <p><strong><font color="#000099">Tips¡G</font></strong><font color="#000099" size="2">­è­è¦b 
-            linux ¤WÀY¬O¨Ï¥Î root ªº¨­¤À¨Ó³]©w VNC Server¡A©Ò¥H¦b³s½u¦¨¥\«á¡A±z©Ò¾Ş±±ªº¥i¬O root ªº®à­±¾¾¡C²{¦b­n¬O·Q´«¦¨¤@¯ë 
-            user ¤S¦p¦ó©O ? ¤@¼Ëªº¨BÆJ°Õ¡A¥u¬O¦b VNC server ºİ¶·´«¦¨¥H¤@¯ë¨Ï¥ÎªÌ¨­¤À°õ¦æ vncserver ¦Ó¤w¡A¨ä¥L¨BÆJ³£¬Û¦P¾¾¡C</font></p>
+          <p><strong><font color="#000099">Tipsï¼š</font></strong><font color="#000099" size="2">å‰›å‰›åœ¨ 
+            linux ä¸Šé ­æ˜¯ä½¿ç”¨ root çš„èº«åˆ†ä¾†è¨­å®š VNC Serverï¼Œæ‰€ä»¥åœ¨é€£ç·šæˆåŠŸå¾Œï¼Œæ‚¨æ‰€æ“æ§çš„å¯æ˜¯ root çš„æ¡Œé¢å™¢ã€‚ç¾åœ¨è¦æ˜¯æƒ³æ›æˆä¸€èˆ¬ 
+            user åˆå¦‚ä½•å‘¢ ? ä¸€æ¨£çš„æ­¥é©Ÿå•¦ï¼Œåªæ˜¯åœ¨ VNC server ç«¯é ˆæ›æˆä»¥ä¸€èˆ¬ä½¿ç”¨è€…èº«åˆ†åŸ·è¡Œ vncserver è€Œå·²ï¼Œå…¶ä»–æ­¥é©Ÿéƒ½ç›¸åŒå™¢ã€‚</font></p>
         </blockquote>
         </td>
     </tr>
@@ -958,15 +958,15 @@ VNC ºô¯¸¡A¨ÃÂI¿ï <strong>[download it now]</strong>¡G </font>
     <tr>
       <td>&nbsp;</td>
       <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-      <td><strong><font color="#000099">¨Ï¥Îºô­¶ÂsÄı¾¹</font></strong></td>
+      <td><strong><font color="#000099">ä½¿ç”¨ç¶²é ç€è¦½å™¨</font></strong></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
       <td align="center">&nbsp;</td>
-      <td><p>¦pªG±z¨S¦w¸Ë VNC viewer ³nÅé¤]¨SÃö«Y°Õ¡Aª½±µ©óÂsÄı¾¹ªººô§}³B¿é¤J VNC server ªº¦ì§}§Y¥i¡G</p>
+      <td><p>å¦‚æœæ‚¨æ²’å®‰è£ VNC viewer è»Ÿé«”ä¹Ÿæ²’é—œä¿‚å•¦ï¼Œç›´æ¥æ–¼ç€è¦½å™¨çš„ç¶²å€è™•è¼¸å…¥ VNC server çš„ä½å€å³å¯ï¼š</p>
         <p align="center"><img src="vnc20.png" tppabs="http://www.suse.url.tw/picture/vnc20.png" width="534" height="340"></p>
-        <p>½Ğ¯d·Nºô§}«áºİªº³s±µ°ğ¶·«ü©w 5801 port¡A¤]´N¬O§â 5800 port ¥[¤W±z VNC server ©Ò´£¨Ñªº X Server 
-          µøµ¡½s¸¹ ¡Q¦pªG·íªì VNC server ´£¨Ñªºµøµ¡½s¸¹¬O 2 ªº¸Ü¡A¨º³o¸Ì´N¶·«ü©w 5802 port¡C</p></td>
+        <p>è«‹ç•™æ„ç¶²å€å¾Œç«¯çš„é€£æ¥åŸ é ˆæŒ‡å®š 5801 portï¼Œä¹Ÿå°±æ˜¯æŠŠ 5800 port åŠ ä¸Šæ‚¨ VNC server æ‰€æä¾›çš„ X Server 
+          è¦–çª—ç·¨è™Ÿ ï¹”å¦‚æœç•¶åˆ VNC server æä¾›çš„è¦–çª—ç·¨è™Ÿæ˜¯ 2 çš„è©±ï¼Œé‚£é€™è£¡å°±é ˆæŒ‡å®š 5802 portã€‚</p></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
@@ -975,20 +975,20 @@ VNC ºô¯¸¡A¨ÃÂI¿ï <strong>[download it now]</strong>¡G </font>
     </tr>
   </table>
   <p><font color="#000000"><font size="+1"><strong> <a name="17"></a><font size="5">19.2.4 
-    Linux »·ºİ»»±± Windows</font><br>
+    Linux é ç«¯é™æ§ Windows</font><br>
     </strong></font><br>
-    ¡@°²¦p±z Windows ¤WÀYªº VNC server ¤w±Ò°Ê¡A¥B¤]¤w³]©w¦n³s½u±K½X¤F¡A±µµÛ´N¥i¥H¦b Linux ¤W§@´ú¸ÕÅo¡C­º¥ı½Ğ±zµn¤J X-Window¡A¶}±Ò¤@­Ó 
-    terminal ¨Ã°õ¦æ vncviewer «ü¥O¡AµM«á¿é¤J server ªº IP ¤Î³s½u±K½X§Y¥i¡G</font></p>
+    ã€€å‡å¦‚æ‚¨ Windows ä¸Šé ­çš„ VNC server å·²å•Ÿå‹•ï¼Œä¸”ä¹Ÿå·²è¨­å®šå¥½é€£ç·šå¯†ç¢¼äº†ï¼Œæ¥è‘—å°±å¯ä»¥åœ¨ Linux ä¸Šä½œæ¸¬è©¦å›‰ã€‚é¦–å…ˆè«‹æ‚¨ç™»å…¥ X-Windowï¼Œé–‹å•Ÿä¸€å€‹ 
+    terminal ä¸¦åŸ·è¡Œ vncviewer æŒ‡ä»¤ï¼Œç„¶å¾Œè¼¸å…¥ server çš„ IP åŠé€£ç·šå¯†ç¢¼å³å¯ï¼š</font></p>
   <p align="center"><img src="vnc22.png" tppabs="http://www.suse.url.tw/picture/vnc22.png" width="671" height="232"></p>
   <p align="center"><font color="#000000"><img src="vnc23.png" tppabs="http://www.suse.url.tw/picture/vnc23.png" width="671" height="227"></font></p>
-  <p align="left"><font color="#000000">¡@»{ÃÒ¦¨¥\«á¡A´N¥i¥H¶}©l»·ºİ¾Ş±± Windows ¤F¾¾¡C¥t¥~¦pªG±z¬O·Q¨Ï¥ÎÂsÄı¾¹°µ³s½uªº¸Ü¡A½Ğ©ó 
-    URL ¤WÀY¿é¤J¡G http://192.168.1.220:5800/¡A¦Û¤v¸Õ¸Õ¬İ§a !<br>
+  <p align="left"><font color="#000000">ã€€èªè­‰æˆåŠŸå¾Œï¼Œå°±å¯ä»¥é–‹å§‹é ç«¯æ“æ§ Windows äº†å™¢ã€‚å¦å¤–å¦‚æœæ‚¨æ˜¯æƒ³ä½¿ç”¨ç€è¦½å™¨åšé€£ç·šçš„è©±ï¼Œè«‹æ–¼ 
+    URL ä¸Šé ­è¼¸å…¥ï¼š http://192.168.1.220:5800/ï¼Œè‡ªå·±è©¦è©¦çœ‹å§ !<br>
     <br>
-    ¡@¤£¦P§@·~¨t²Î¶¡ªº VNC ¾Ş§@¡A¤j­P¬O¦p¦¹°Õ¡AÂ²³æ§a ! ±µµÛ±z¥i¦Û¦æ½m²ß¦b¨â¥x¦P¬° Windows ©Î Linux ªº¥D¾÷¤W°µ VNC »·ºİ¾Ş±±Åo¡C<br>
+    ã€€ä¸åŒä½œæ¥­ç³»çµ±é–“çš„ VNC æ“ä½œï¼Œå¤§è‡´æ˜¯å¦‚æ­¤å•¦ï¼Œç°¡å–®å§ ! æ¥è‘—æ‚¨å¯è‡ªè¡Œç·´ç¿’åœ¨å…©å°åŒç‚º Windows æˆ– Linux çš„ä¸»æ©Ÿä¸Šåš VNC é ç«¯æ“æ§å›‰ã€‚<br>
     <br>
-    <em>¡@¡@¡@¡@</em> </font> </p>
+    <em>ã€€ã€€ã€€ã€€</em> </font> </p>
   </div>
-<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( ¬f«C­ô 
+<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( æŸé’å“¥ 
   )</em></font> <br>
 </p>
  

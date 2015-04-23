@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>�f�C���� SuSE Linux -- �[�] Postfix  Server</title>
+<title>柏青哥的 SuSE Linux -- 架設 Postfix  Server</title>
 <style type="text/css">
 <!--
 a {
@@ -15,187 +15,164 @@ a {
 
 <body background="sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
 <div align="left"> <a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
-  �@�@�@�̡G���f�� �@E-mail�Gpachingko@ms96.url.com.tw 
+  　　作者：陳柏菁 　E-mail：pachingko@ms96.url.com.tw 
   <table width="100%" border="0">
     <tr> 
       <td nowrap> <div align="left"></div>
         <div align="center"> 
-          <div align="center"><font size="7"><strong>�ĤQ�C���@�[ �] Postfix Server</strong></font></div>
+          <div align="center"><font size="7"><strong>第十七章　架 設 Postfix Server</strong></font></div>
         </div>
         <div align="center"></div></td>
     </tr>
   </table>
   <br>
-  <font color="#000099" size="+1"><strong>���ޡG</strong></font><br>
+  <font color="#000099" size="+1"><strong>索引：</strong></font><br>
   <table width="100%" border="0">
     <tr> 
-      <td colspan="3"><font color="#000099"><strong>17.1 <a href="#1">�l��t�η��z</a></strong></font></td>
+      <td colspan="3"><font color="#000099"><strong>17.1 <a href="#1">郵件系統概述</a></strong></font></td>
     </tr>
     <tr> 
       <td width="4%"><font color="#000099">&nbsp;</font></td>
       <td width="6%" align="center" valign="top" nowrap><font color="#000099">17.1.1</font></td>
-      <td width="90%"><a href="#2">�l��t�Ϊ��զ��GMUA�BMTA�BMDA</a></td>
+      <td width="90%"><a href="#2">郵件系統的組成：MUA、MTA、MDA</a></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.1.2</font></td>
-      <td><a href="#3">�l��ϥΪ���w�GSMTP</a><a href="#2">�B</a><a href="#3">POP</a><a href="#2">�B</a><a href="#3">IMAP</a></td>
+      <td><a href="#3">郵件使用的協定：SMTP</a><a href="#2">、</a><a href="#3">POP</a><a href="#2">、</a><a href="#3">IMAP</a></td>
     </tr>
     <tr> 
-      <td colspan="3"><font color="#000099"><strong>17.2 <a href="#4">�H��ǰe�y�{</a></strong></font></td>
+      <td colspan="3"><font color="#000099"><strong>17.2 <a href="#4">信件傳送流程</a></strong></font></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.2.1</font></td>
-      <td><a href="#5">�l��ǻ��y�{</a></td>
+      <td><a href="#5">郵件傳遞流程</a></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.2.2</font></td>
-      <td><a href="#6">MTA �P DNS �����Y</a></td>
+      <td><a href="#6">MTA 與 DNS 的關係</a></td>
     </tr>
     <tr> 
-      <td colspan="3"><font color="#000099"><strong>17.3 <a href="#7">�]�w Postfix 
+      <td colspan="3"><font color="#000099"><strong>17.3 <a href="#7">設定 Postfix 
         Server</a></strong></font></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.3.1</font></td>
-      <td><a href="#8">�d�߮M��w�ˤ��˵��M�󤺮e</a></td>
+      <td><a href="#8">查詢套件安裝及檢視套件內容</a></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.3.2</font></td>
-      <td><font color="#000099"><a href="#9">�]�w²���� Postfix Server</a> --- <a href="#10"><br>
-        �]�w SMTP Server</a>�B<a href="#35">SMTP �Ұʤ��᪺�ˬd</a><a href="#11"><br>
-        �]�w POP3 Server</a>�B<a href="#36">POP3 �Ұʤ��᪺�ˬd</a></font></td>
+      <td><font color="#000099"><a href="#9">設定簡易的 Postfix Server</a> --- <a href="#10"><br>
+        設定 SMTP Server</a>、<a href="#35">SMTP 啟動之後的檢查</a><a href="#11"><br>
+        設定 POP3 Server</a>、<a href="#36">POP3 啟動之後的檢查</a></font></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.3.3</font></td>
-      <td><a href="#12">MUA ���]�w�δ���</a></td>
+      <td><a href="#12">MUA 的設定及測試</a></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
       <td align="center" valign="top" nowrap><font color="#000099">17.3.4</font></td>
-      <td><font color="#000099"><a href="#13">Postfix �������ɮ�</a> ---<br>
-        <a href="#14">/var/spool/mail/*</a> �B<a href="#15">/var/spool/postfix/*</a>�B<a href="#16">/var/log/mail</a> 
+      <td><font color="#000099"><a href="#13">Postfix 的相關檔案</a> ---<br>
+        <a href="#14">/var/spool/mail/*</a> 、<a href="#15">/var/spool/postfix/*</a>、<a href="#16">/var/log/mail</a> 
         </font></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.3.5</font></td>
-      <td><font color="#000099"> <a href="#30">�ϥ� nail ���O�Ӧ��o�H��</a> </font></td>
+      <td><font color="#000099"> <a href="#30">使用 nail 指令來收發信件</a> </font></td>
     </tr>
     <tr> 
-      <td colspan="3"><font color="#000099"><strong>17.4 <a href="#17">�l��ǻ��W�� 
+      <td colspan="3"><font color="#000099"><strong>17.4 <a href="#17">郵件傳遞名單 
         (Mailing List)</a></strong></font></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.4.1</font></td>
-      <td><a href="#18">�]�w aliases �ɮ�</a></td>
+      <td><a href="#18">設定 aliases 檔案</a></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.4.2</font></td>
-      <td><a href="#19">�ϥΪ̦ۭq����e�W�� ( .forward)</a></td>
+      <td><a href="#19">使用者自訂的轉送名單 ( .forward)</a></td>
     </tr>
     <tr> 
-      <td colspan="3"><font color="#000099"><strong>17.5 <a href="#20">�]�w Postfix 
-        �{�ҥ\��</a></strong></font></td>
+      <td colspan="3"><font color="#000099"><strong>17.5 <a href="#20">設定 Postfix 
+        認證功能</a></strong></font></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.5.1</font></td>
-      <td><a href="#21">�]�w SMTP �{��</a></td>
+      <td><a href="#21">設定 SMTP 認證</a></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.5.2</font></td>
-      <td><a href="#22">Client �ݪ�����</a></td>
+      <td><a href="#22">Client 端的測試</a></td>
     </tr>
     <tr> 
-      <td colspan="3"><font color="#000099"><strong>17.6 <a href="#23">�[�] Mail 
+      <td colspan="3"><font color="#000099"><strong>17.6 <a href="#23">架設 Mail 
         Gateway</a></strong></font></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.6.1</font></td>
-      <td><a href="#24">���H Mail Gateway</a></td>
+      <td><a href="#24">收信 Mail Gateway</a></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">17.6.2</font></td>
-      <td><a href="#25">�H�H Mail Gateway</a></td>
+      <td><a href="#25">寄信 Mail Gateway</a></td>
     </tr>
     <tr> 
-      <td colspan="3"><font color="#000099"><strong>17.7 <a href="#26">�l��ƴ��d��</a></strong></font></td>
+      <td colspan="3"><font color="#000099"><strong>17.7 <a href="#26">郵件備援範例</a></strong></font></td>
     </tr>
   </table>
   <br>
   <hr>
   <font color="#000000"><br>
-  �@Mail Server �O�b�U�j���~�������M�s�b�����A���A�J�M�٤��� Mail Server�A�����M�N�O���ѻP�l�������A���o�C�b�o�Ӻ����@�ɸ̡A�z�L 
-  E-Mail �Ӥ��۶ǹF�T���O�ܴ��Ϊ��ơA��p�z�i�H�Q�Τ��q����T�����Ҭ[�]���l����A���ӻP�Ȥ��pô�A�]�i�H�h�ӽй� yahoo�Burl�Bpchome�Bgmail 
-  �����o�@�����K�O�q�l�H�c�ӨϥΡC<br>
+  　Mail Server 是在各大企業中都普遍存在的伺服器，既然稱之為 Mail Server，那當然就是提供與郵件有關的服務囉。在這個網路世界裡，透過 
+  E-Mail 來互相傳達訊息是很普及的事，比如您可以利用公司的資訊部門所架設的郵件伺服器來與客戶聯繫，也可以去申請像 yahoo、url、pchome、gmail 
+  等等這一類的免費電子信箱來使用。<br>
   <br>
-  �@���L���ǮɭԱz�|ı�o�ϥΤ��q�� Mail Server �ɡA�n���Φh�Τֳ����@�ǭ���s�b�A��p�W�w�z�u��b���q�����ϥΡA�Ϊ̷|����z���H�c�e�q�A�Ʀܦ������q�|����u��</font><font color="#000000">���o�� 
-  mail �H�@�����D�޳Ƭd�A���@�L�������p�i���C���p�G�ϥΪ��O�K�O�H�c���ܤS�p��O ? ���F�e�q������~ ( ����ҥ~���O yahoo �� 1G �� gmail 
-  �� 3G ���ϥΪŶ� )�A�i���٭n�Ԩ��C�ѩұ����쪺�@��U���H��A�]���H�c�J�M�O�~�̧K�O���Ѫ��A���L�̦۵M�N���i���z�� mail �z�S���ĤT�̪��D�A���M�U���H�󪺲��͡A�]�P�z�������ϥβߺD�����աC�t�~�N�O�j�������K�O�H�c���䴩 
-  pop3 ���H (���F url�Bpchome�Bxuite�Bgmail �~)�A�]�N�O�z�L�k�ϥι� outlook �o�����n��Ӧ��H�C <br>
+  　不過有些時候您會覺得使用公司的 Mail Server 時，好像或多或少都有一些限制存在，比如規定您只能在公司內部使用，或者會限制您的信箱容量，甚至有的公司會把員工所</font><font color="#000000">收發的 
+  mail 寄一份給主管備查，絲毫無任何隱私可言。那如果使用的是免費信箱的話又如何呢 ? 除了容量的限制外 ( 比較例外的是 yahoo 的 1G 及 gmail 
+  近 3G 的使用空間 )，可能還要忍受每天所接收到的一堆垃圾信件，因為信箱既然是業者免費提供的，那他們自然就有可能把您的 mail 透露給第三者知道，當然垃圾信件的產生，也與您本身的使用習慣有關啦。另外就是大部分的免費信箱不支援 
+  pop3 收信 (除了 url、pchome、xuite、gmail 外)，也就是您無法使用像 outlook 這類的軟體來收信。 <br>
   <br>
-  �@�n�F�A�ݨ�o�̦��S���Q�L�A�����ܦۤv�[�@�x Mail Server ���N�S���o�ǧx�Z�F�� ? �p�G�u���o�طQ�k���ܡA���������e�i�N�n�n�n����Ū�@�U�F�C���M�p�G�z�����N�q�� 
-  MIS �����u�@���ܡA����n�[�j�o�譱���ǲߤF�C<br>
+  　好了，看到這裡有沒有想過，那乾脆自己架一台 Mail Server 不就沒有這些困擾了嗎 ? 如果真有這種想法的話，那本章內容可就要好好的研讀一下了。當然如果您本身就從事 
+  MIS 相關工作的話，那更要加強這方面的學習了。<br>
   <br>
-  �@���L�b�ǲ߬[�] Mail Server ���e�A���@������l��t�Ϊ��X�ӦW���B�[���B�ҨϥΨ�w�ΫH��ǻ��y�{���A�z�ݭn���ҤF�ѡA�]���o��z���᪺�ǲ߬O���@�w�{�ת����U���C<br>
+  　不過在學習架設 Mail Server 之前，有一些關於郵件系統的幾個名詞、觀念、所使用協定及信件傳遞流程等，您需要有所了解，因為這對您往後的學習是有一定程度的幫助的。<br>
   <br>
   <font color="#0000FF" size="+1"><strong><a name="1"></a><font size="6">17.1 
-  �l��t�η��z</font></strong></font><br>
+  郵件系統概述</font></strong></font><br>
   <br>
-  �@�b�o�@�`�̡A�D�n�O�n���жl��t�Ϊ��զ��A�ζl��ҨϥΪ���w���ⳡ���C<br>
+  　在這一節裡，主要是要介紹郵件系統的組成，及郵件所使用的協定等兩部分。<br>
   <br>
-  <font size="+1"><strong><a name="2"></a><font size="5">17.1.1 �l��t�Ϊ��զ�</font></strong></font><br>
+  <font size="+1"><strong><a name="2"></a><font size="5">17.1.1 郵件系統的組成</font></strong></font><br>
   <br>
-  �@²�檺���A��Ӷl��t�άO�� MUA�BMTA �� MDA �Ҳզ��A�H�U���O�ӻ����o�Ǭ����W���ҥN�����[�q�G</font> <br>
+  　簡單的說，整個郵件系統是由 MUA、MTA 及 MDA 所組成，以下分別來說明這些相關名詞所代表的涵義：</font> <br>
   <br>
   <table width="100%" border="0">
     <tr> 
       <td width="2%">&nbsp;</td>
       <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-      <td width="95%"><strong><font color="#000099">MUA�G</font></strong></td>
+      <td width="95%"><strong><font color="#000099">MUA：</font></strong></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
       <td align="center">&nbsp;</td>
-      <td>���W�� Mail User Agent�A�Y�l��Τ�ݥN�z�{�����N�A�A���ոܤ@�I�A�N�O���Τ�ݥΨ�Ū�g���o�H�󪺵{���A��p�� Linux 
-        �W�Y�� <font color="#000000">pine�Belm�Bmutt�Bkmail ���A�� Windows ���� outlook�Boutlook 
-        express ���C�H�j�a������x�� outlook �ӻ��n�F�A���z�Q�n�g�@�ʫH���B�ͮɡA�|���b outlook �̡u�g�v�n�o�ʫH�����e�A�M��~�� 
-        mail �u�H�v�X ; �ϹL�ӻ��A���O�H�H�H���A�ɡA�z�]�ݭn������ outlook �{���A���ۧ�o�ʫH�u���v�U�ӫ�A�~��uŪ�v���H�󪺤��e�A�o�˦U�����ӲM�� 
-        MUA ���u�@�F�a ! �ҥH���A�Τ�ݬO�z�L MUA �n��Ӹ�l��D���f�W�u���C</font></td>
-    </tr>
-    <tr> 
-      <td>&nbsp;</td>
-      <td align="center">&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td>&nbsp;</td>
-      <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-      <td><strong><font color="#000099">MTA�G</font></strong></td>
-    </tr>
-    <tr> 
-      <td>&nbsp;</td>
-      <td align="center">&nbsp;</td>
-      <td><font color="#000000">���W�� Mail Transfer Agent</font>�A�Y�l��ǿ�N�z�{�����N�C���Τ�ݨϥ� 
-        MUA �ӱN�H��H�X�ɡA�o�ʫH�ëD�����e�F��� (�����) ��̡A�ӬO�z�L�@�x�w�˦� MTA �n�骺�D���N���B�z�A�o���D���N�O�ҿת��l����A���C�� 
-        Linux �W���� sendmail�Bpostfix (�������D��)�Bqmail �� Windows �� Exchange ���A���O�ݩ� MTA�A�ҥH�ڭ̥i�H�� 
-        MTA �����@�x Mail Server �ӬݫݡC<br>
-        �@��ӻ��A�� MTA ���� MUA �ұH�Ӫ� mail �ɡA�|���P�_�o�ʫH�O���O�ݩ󥻦a�ݪ� mail�A�O�A�h�N�� mail ���U�A�_�A�h�~��N�� 
-        mail �ǰe���t�@���t�d�o�ӫH�� MTA �ӳB�z ; �ӷ� <font color="#0000FF">MTA �N�H����H���t�@�x MTA 
-        �B�z���o�Ӧ欰�A�N�s�� Relay</font>�C<br>
-        ���a�ݪ� Mail Server�A�i�H�����N MUA �ұH�Ӫ��H Relay ���t�@�x MTA�A���M�]�i�H������L�� MTA �� Relay 
-        �L�ӵ����a�ݨϥΪ̪��H��A���M MUA �p�󦬫H�ڡA�z����a�C</td>
+      <td>全名為 Mail User Agent，即郵件用戶端代理程式之意，再說白話一點，就是指用戶端用來讀寫收發信件的程式，比如像 Linux 
+        上頭的 <font color="#000000">pine、elm、mutt、kmail 等，及 Windows 中的 outlook、outlook 
+        express 等。以大家比較熟悉的 outlook 來說好了，當您想要寫一封信給朋友時，會先在 outlook 裡「寫」好這封信的內容，然後才把 
+        mail 「寄」出 ; 反過來說，當別人寄信給你時，您也需要先執行 outlook 程式，接著把這封信「收」下來後，才能「讀」取信件的內容，這樣各位應該清楚 
+        MUA 的工作了吧 ! 所以說，用戶端是透過 MUA 軟體來跟郵件主機搭上線的。</font></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
@@ -205,57 +182,80 @@ a {
     <tr> 
       <td>&nbsp;</td>
       <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-      <td><font color="#000099"><strong>MDA�G</strong></font></td>
+      <td><strong><font color="#000099">MTA：</font></strong></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
       <td align="center">&nbsp;</td>
-      <td><font color="#000000">���W��<strong> </strong>Mail Delivery Agent�A�Y�l��뻼�N�z�{�����N�C�b 
-        MTA ���� MUA �ұH�Ӫ��H��ɡA�p�P�_�o�ʫH�O�ݩ󥻦a�ݪ��H��A�|�浹 Local MDA �B�z�A����<strong> </strong>Local 
-        MDA �N�⥦��m�b�ϥΪ̭ӤH�H�c (Mail Box) ���� ; ���p�G�� mail �O�ݩ�~�����H��A�h�|�z�L smtp MDA �ӱN 
-        mail ��H���t�@�x MTA �B�z�C</font></td>
+      <td><font color="#000000">全名為 Mail Transfer Agent</font>，即郵件傳輸代理程式之意。當用戶端使用 
+        MUA 來將信件寄出時，這封信並非直接送達對方 (收件者) 手裡，而是透過一台安裝有 MTA 軟體的主機代為處理，這部主機就是所謂的郵件伺服器。像 
+        Linux 上面的 sendmail、postfix (本章的主角)、qmail 及 Windows 的 Exchange 等，都是屬於 MTA，所以我們可以把 
+        MTA 當成一台 Mail Server 來看待。<br>
+        一般來說，當 MTA 收到 MUA 所寄來的 mail 時，會先判斷這封信是不是屬於本地端的 mail，是，則將此 mail 收下，否，則繼續將此 
+        mail 傳送給另一部負責這個信件的 MTA 來處理 ; 而當 <font color="#0000FF">MTA 將信件轉寄給另一台 MTA 
+        處理的這個行為，就叫做 Relay</font>。<br>
+        本地端的 Mail Server，可以幫忙將 MUA 所寄來的信 Relay 給另一台 MTA，當然也可以接受其他的 MTA 所 Relay 
+        過來給本地端使用者的信件，不然 MUA 如何收信啊，您說對吧。</td>
+    </tr>
+    <tr> 
+      <td>&nbsp;</td>
+      <td align="center">&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td>&nbsp;</td>
+      <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td><font color="#000099"><strong>MDA：</strong></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;</td>
+      <td align="center">&nbsp;</td>
+      <td><font color="#000000">全名為<strong> </strong>Mail Delivery Agent，即郵件投遞代理程式之意。在 
+        MTA 收到 MUA 所寄來的信件時，如判斷這封信是屬於本地端的信件，會交給 Local MDA 處理，接著<strong> </strong>Local 
+        MDA 就把它放置在使用者個人信箱 (Mail Box) 之中 ; 那如果此 mail 是屬於外部的信件，則會透過 smtp MDA 來將 
+        mail 轉寄給另一台 MTA 處理。</font></td>
     </tr>
   </table>
   <font color="#000000"> </font> 
   <p><font color="#000000"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font> 
-    <font size="4">��C�޲z�� </font>(<font size="+1">Queue Manager)</font></strong> 
+    <font size="4">佇列管理員 </font>(<font size="+1">Queue Manager)</font></strong> 
     <br>
     <br>
-    </font>�@�b�H��i�J Postfix �ɡA���|�g�L Queue Manager ������B�z�A�M��~�M�w�U�@�B�n��򰵡A�ӭt�d Queue Manager 
-    ���A�ȵ{���� qmgr<font color="#000000"> �o�� daemon�C<br>
+    </font>　在信件進入 Postfix 時，都會經過 Queue Manager 的先行處理，然後才決定下一步要怎麼做，而負責 Queue Manager 
+    的服務程式為 qmgr<font color="#000000"> 這個 daemon。<br>
     <br>
-    �@�@��ӻ��A�����H��i�J�ɡA�|����� [incoming queue]�A���� qmgr �A�⥦���� [active queue]�A�M��A�I�s Local 
-    MDA �� smtp MDA �Ӱ���A���p�G MDA �B�z�L�{�o�ͤF���D�A��p�L�k���o�P���� MTA ���pô�A�ΨϥΪ̪� Mail Box �e�q�w���A�h�ӫH��|�Q�Ȯɪ��s��b 
-    [deferred queue]�C�ӯd�b [deferred queue] �����H��A�C�j�@�q�ɶ��N�|�A���է뻼�A�p�G�b������F���ٵL�k�뻼���\�A���N�u�n�h�H�o�C</font><br>
+    　一般來說，當有信件進入時，會先放到 [incoming queue]，接著 qmgr 再把它移至 [active queue]，然後再呼叫 Local 
+    MDA 或 smtp MDA 來執行，那如果 MDA 處理過程發生了問題，比如無法取得與遠端 MTA 的聯繫，或使用者的 Mail Box 容量已滿，則該信件會被暫時的存放在 
+    [deferred queue]。而留在 [deferred queue] 中的信件，每隔一段時間就會再嘗試投遞，如果在期限到達時還無法投遞成功，那就只好退信囉。</font><br>
     <br>
-    <font color="#000000">�@�H�U�O qmgr �b�B�z�H���C���@��²��y�{�ϡG</font></p>
+    <font color="#000000">　以下是 qmgr 在處理信件佇列的一個簡單流程圖：</font></p>
   <p align="center"><font color="#000000"> <img src="mail2.png" tppabs="http://www.suse.url.tw/picture/mail2.png" width="634" height="157"></font> 
   </p>
-  <p> <font color="#000000">�@�Ч�o�Ӭy�{�ϸ���Ҵ��Ϊ����Ǥ��e���Ӥ��A �o�˱z�|��o�������[����[���M���C</font> 
+  <p> <font color="#000000">　請把這個流程圖跟剛剛所提及的那些內容做個比對， 這樣您會對這部分的觀念更加的清晰。</font> 
     <br>
     <font color="#000000"><font size="+1"><strong><br>
-    <a name="3"></a><font size="5">17.1.2 �l��ϥΪ���w</font></strong></font><br>
+    <a name="3"></a><font size="5">17.1.2 郵件使用的協定</font></strong></font><br>
     <br>
-    �@�F�ѤF�l��t�βզ���A�����ٻݶi�@�B�F�ѫH��b���o�ɩҨϥΪ���w�A�ӳo�ǳ��O�ݩ�D�`�򥻪��[���A�ҥH�бz�b�٨S�}�l�[�]�l����A�����e�A�n�n����o�Ǫ��Ѿǰ_�ӡC</font></p>
+    　了解了郵件系統組成後，接著還需進一步了解信件在收發時所使用的協定，而這些都是屬於非常基本的觀念，所以請您在還沒開始架設郵件伺服器之前，好好的把這些知識學起來。</font></p>
   <table width="100%" border="0">
     <tr> 
       <td width="2%">&nbsp;</td>
       <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
       <td width="95%"><strong><font color="#000099"><strong>SMTP</strong> ( Simple 
-        Mail Transport Protocol )�G</font> </strong></td>
+        Mail Transport Protocol )：</font> </strong></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
       <td align="center">&nbsp;</td>
-      <td><font color="#000000">�o�O�b�H�H�ɩҨϥΪ���w�A�� MUA �N�H��ǰe�� MTA�A�Ϊ� MTA �A��H����H���t�@�x 
-        MTA �ɡA�N�O�ϥ� SMTP ��w�C<br>
+      <td><font color="#000000">這是在寄信時所使用的協定，像 MUA 將信件傳送給 MTA，或者 MTA 再把信件轉寄給另一台 
+        MTA 時，就是使用 SMTP 協定。<br>
         <br>
-        SMTP ��w�ҭn�ϥΪ� port �� 25�A�]�N�O�� MUA �O�N�H��e�� SMTP Server �� 25 port �o�ӪA�ȵ��f�A�ӷ� 
-        MTA �oı�� mail �D���a�ݫH��ɡA�Y�|��H�� Relay ���t�@�x MTA �� 25 port�A���M�o�L�{�٬O�ϥ� SMTP ��w�C<br>
+        SMTP 協定所要使用的 port 為 25，也就是說 MUA 是將信件送往 SMTP Server 的 25 port 這個服務窗口，而當 
+        MTA 發覺此 mail 非本地端信件時，即會把信件 Relay 給另一台 MTA 的 25 port，當然這過程還是使用 SMTP 協定。<br>
         <br>
-        �۫H�j�a�����b outlook �̳]�w�L�ۤv���q�l�l��a�}�A�����ٰO�o�b�]�w�L�{�|�n�D�z���w [ �~�H�l�� - SMTP ]�A�o�N�O�n�z�]�w 
-        MTA ���l��D���աC��p�z���q�l�l��O�ݩ� hinet ���ܡA����o�Ӧa��N�n���w hinet �Ҵ��ѵ��z�� SMTP Server ���D���W�١A�o�˱z�ұH�X���H��A�~��z�L 
-        hinet �� MTA �ӳB�z�C</font></td>
+        相信大家都有在 outlook 裡設定過自己的電子郵件地址，應該還記得在設定過程會要求您指定 [ 外寄郵件 - SMTP ]，這就是要您設定 
+        MTA 的郵件主機啦。比如您的電子郵件是屬於 hinet 的話，那麼這個地方就要指定 hinet 所提供給您的 SMTP Server 的主機名稱，這樣您所寄出的信件，才能透過 
+        hinet 的 MTA 來處理。</font></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
@@ -266,19 +266,19 @@ a {
       <td>&nbsp;</td>
       <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
       <td><strong><font color="#000099"><strong>POP</strong> ( Post Office Protocol 
-        )�G</font></strong></td>
+        )：</font></strong></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
       <td align="center">&nbsp;</td>
-      <td><font color="#000000">�o�O���H�ɩҨϥΪ���w�A�]�N�O MUA ��H��q MTA �����^�ɩҨϥΪ���w�C<br>
+      <td><font color="#000000">這是收信時所使用的協定，也就是 MUA 把信件從 MTA 中取回時所使用的協定。<br>
         <br>
-        POP ���ҿת� POP2 �� POP3�A���ӼƦr�N�����O POP ��w�������A�ӥثe���O�H POP3 ���D�CPOP3 ��w�O�ϥ� 110 
-        port�A�]�����ϥΪ̭n���H�ɡAMUA �O�s�� POP Server �� 110 port �ӱN�H�󦬤U�C<br>
+        POP 有所謂的 POP2 及 POP3，那個數字代表的是 POP 協定的版本，而目前都是以 POP3 為主。POP3 協定是使用 110 
+        port，因此當使用者要收信時，MUA 是連接 POP Server 的 110 port 來將信件收下。<br>
         <br>
-        �b outlook �̳]�w�l��a�}�ɡA�٦��@�� [�����l�� - POP3]�A�o�N�O�b���w POP3 Server�A�]�N�O MUA �b���H�ɩҨϥΪ��l��D���աC<br>
+        在 outlook 裡設定郵件地址時，還有一個 [內收郵件 - POP3]，這就是在指定 POP3 Server，也就是 MUA 在收信時所使用的郵件主機啦。<br>
         <br>
-        �p�G�z�Ҭ[�]���l����A���A�P�ɨ㦳�� MUA �H�H�򦬫H���\��A����ڭ̥i�H���o�O�@�� SMTP �� POP3 Server�A���M�]�i�H�⥦�̤��}�Ӭ[�]�A�������z��ڻݨD�o�C</font></td>
+        如果您所架設的郵件伺服器，同時具有讓 MUA 寄信跟收信的功能，那麼我們可以說這是一部 SMTP 及 POP3 Server，當然也可以把它們分開來架設，完全視您實際需求囉。</font></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
@@ -289,63 +289,63 @@ a {
       <td>&nbsp;</td>
       <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
       <td><font color="#000000"><font color="#FF0000"><font color="#000099"><strong>IMAP</strong></font></font><font color="#000099"><strong> 
-        ( Internet Mail Application Protocol )�G</strong></font></font></td>
+        ( Internet Mail Application Protocol )：</strong></font></font></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
       <td align="center">&nbsp;</td>
-      <td><p><font color="#000000">Client �ݦb���H�ɡA���F�g�`�ϥΪ� POP3 ��w�~�A�t�~�@�إi�H�ϥΪ��N�O IMAP 
-          (�ϥ� 143 port)�A�o��ب�w���D�n�t���A�b��ϥΪ̹��H�c�޲z�覡�W�����P�C�ϥ� POP3 �� user�A�q�`�|��l��U���^�ۤv�D�����A�o�˴N�|����A���W�� 
-          Mail Box �M�šA�]���ϥΪ̥i�H���u�\Ū�H��C�t�~�ϥΪ̥i�H�إߤ��P����Ƨ��Ӭ��l�󰵤����A�B�o�Ǹ�Ƨ����O�s�b�󥻾����W�C<br>
-          �� IMAP �h�O��H�󳣫O�d�b���A���W�A�o�˪��n�B�O�z�i�H�Q�Τ��P���q���Ӧs�����A���W�Ҧ��s�ª��H�� �Q�t�~�A����Ƨ������ɡA�ҫإߪ��s��Ƨ��O�s�b����A���W�A�ӫD�ӤH�q�����CIMAP 
-          �]�i���z���u�\Ū�H��A�]���H�󪺰ƥ��O�s�b�󥻾������C<br>
+      <td><p><font color="#000000">Client 端在收信時，除了經常使用的 POP3 協定外，另外一種可以使用的就是 IMAP 
+          (使用 143 port)，這兩種協定的主要差異，在於使用者對於信箱管理方式上的不同。使用 POP3 的 user，通常會把郵件下載回自己主機內，這樣就會把伺服器上的 
+          Mail Box 清空，因此使用者可以離線閱讀信件。另外使用者可以建立不同的資料夾來為郵件做分類，且這些資料夾都是存在於本機之上。<br>
+          而 IMAP 則是把信件都保留在伺服器上，這樣的好處是您可以利用不同的電腦來存取伺服器上所有新舊的信件 ﹔另外再做資料夾分類時，所建立的新資料夾是存在於伺服器上，而非個人電腦中。IMAP 
+          也可讓您離線閱讀信件，因為信件的副本是存在於本機中的。<br>
           </font></p>
         </td>
     </tr>
   </table>
-  <p><font color="#000000">�@�F�ѤF�l���w��A�ڭ̥H���U�o�ӹϡA����ܶl��t�λP��w���������Y�G</font></p>
+  <p><font color="#000000">　了解了郵件協定後，我們以底下這個圖，來顯示郵件系統與協定之間的關係：</font></p>
   <p align="center"><font color="#000000"> <img src="mail3.png" tppabs="http://www.suse.url.tw/picture/mail3.png" width="454" height="145"> 
     </font></p>
-  <p><font color="#000000"> �@�o��O�@�ӫ�²�檺�y�{�ϡA���ӨS������D�~�O�C </font></p>
+  <p><font color="#000000"> 　這算是一個很簡單的流程圖，應該沒什麼問題才是。 </font></p>
   <p><font color="#000000"><br>
     <br>
     <font color="#0000FF" size="+1"><strong><a name="4"></a><font size="6">17.2 
-    �H��ǰe�y�{</font><br>
+    信件傳送流程</font><br>
     </strong></font><br>
-    �@�W�@�`���[���z���M�����ܡA���۴N�i�H�ӽͽͤ@�ʫH�󪺸ԲӶǻ��L�{�C<br>
+    　上一節的觀念您都清楚的話，接著就可以來談談一封信件的詳細傳遞過程。<br>
     <br>
-    <font size="+1"><strong><a name="5"></a><font size="5">17.2.1 �l��ǻ��y�{</font></strong></font><br>
+    <font size="+1"><strong><a name="5"></a><font size="5">17.2.1 郵件傳遞流程</font></strong></font><br>
     <br>
-    �@�o�̷|����� domain �ӬݡC�����O paching.idv.tw�A�ӭt�d�޲z�o�� domain ���l����A���̡A�s�b�� barry �� mary 
-    ���b���C�t�~�@�� domain �� domain.com�A�o�� domain ���l��D���̡A�s�b�� tina �o�ӱb���C<br>
+    　這裡會分兩個 domain 來看。首先是 paching.idv.tw，而負責管理這個 domain 的郵件伺服器裡，存在著 barry 及 mary 
+    的帳號。另外一個 domain 為 domain.com，這個 domain 的郵件主機裡，存在者 tina 這個帳號。<br>
     <br>
-    </font>�@�A�ӥH���U�o�ӱH�H�y�{�ϨӰ��ѻ��G</p>
+    </font>　再來以底下這個寄信流程圖來做解說：</p>
   <p align="center"><font color="#000000"> <img src="mail1.png" tppabs="http://www.suse.url.tw/picture/mail1.png" width="704" height="297"> 
     </font> </p>
   <br>
-  �@�b�W�Ϥ��A�O���] SMTP �� POP3 Server ���O�P�@�x�����C���ۥH�U�|����ت��p�A�ӻ����l��ǻ����y�{�G<br>
+  　在上圖中，是假設 SMTP 及 POP3 Server 都是同一台機器。接著以下會分兩種狀況，來說明郵件傳遞的流程：<br>
   <br>
   <table width="100%" border="0">
     <tr> 
       <td width="3%" align="center" valign="top" nowrap>&nbsp;</td>
       <td width="3%" align="center" valign="top" nowrap><strong><font color="#000099" size="4">1.</font></strong></td>
-      <td width="97%"><strong><font color="#000099" size="4">�P����H�H�y�{</font><font color="#000099">�G</font></strong>�ϥΪ� 
-        barry �H�@�ʫH���P���쪺 mary<br> <table width="100%" border="0">
+      <td width="97%"><strong><font color="#000099" size="4">同網域寄信流程</font><font color="#000099">：</font></strong>使用者 
+        barry 寄一封信給同網域的 mary<br> <table width="100%" border="0">
           <tr> 
-            <td width="3%" align="center" valign="top" nowrap><font size="4">��</font></td>
-            <td width="97%">Client �ݪ� barry �ϥ� MUA (outlook) �g�n�@�ʫH�A�ǳƭn�H���P���쪺 mary�A�Ӧb 
-              barry ���U [�ǰe] ��AMUA �|��H��浹���w�� SMTP Server �B�z�A�ӳo�x SMTP Server ���M�N�O���t�d 
-              paching.idv.tw �o�� domain �� MTA �o �C</td>
+            <td width="3%" align="center" valign="top" nowrap><font size="4">˙</font></td>
+            <td width="97%">Client 端的 barry 使用 MUA (outlook) 寫好一封信，準備要寄給同網域的 mary，而在 
+              barry 按下 [傳送] 後，MUA 會把信件交給指定的 SMTP Server 處理，而這台 SMTP Server 當然就是指負責 
+              paching.idv.tw 這個 domain 的 MTA 囉 。</td>
           </tr>
           <tr> 
-            <td align="center" valign="top" nowrap><font size="4">��</font></td>
-            <td>MTA ���즹�H��AQueue Manager �|��H��q incoming queue ���� active queue�A�M��A�ˬd����̪��l��a�}�A�ˬd���G�o�{�o�ʫH�O�ݩ󥻦a�ݪ��H��A�]�� 
-              Queue Manager �N��� Local MDA �ӱN�H���J mary �� Mail Box ���A�õ��� mary �Ӧ��H�C</td>
+            <td align="center" valign="top" nowrap><font size="4">˙</font></td>
+            <td>MTA 收到此信後，Queue Manager 會把信件從 incoming queue 移至 active queue，然後再檢查收件者的郵件地址，檢查結果發現這封信是屬於本地端的信件，因此 
+              Queue Manager 就交由 Local MDA 來將信件放入 mary 的 Mail Box 中，並等待 mary 來收信。</td>
           </tr>
           <tr> 
-            <td align="center" valign="top" nowrap><font size="4">��</font></td>
-            <td><p>�� mary �N outlook ���}�A�ë��U [�ǰe/����] ���s��AMUA �N�|�z�L POP3 �� IMAP ��w�A�ӹ� 
-                MTA �W mary �ӤH�� Mail Box ���s�� (�b�s���e�|�����ұb���K�X�O�_�ŦX)�C</p></td>
+            <td align="center" valign="top" nowrap><font size="4">˙</font></td>
+            <td><p>當 mary 將 outlook 打開，並按下 [傳送/接收] 按鈕後，MUA 就會透過 POP3 或 IMAP 協定，來對 
+                MTA 上 mary 個人的 Mail Box 做存取 (在存取前會先驗證帳號密碼是否符合)。</p></td>
           </tr>
         </table></td>
     </tr>
@@ -357,134 +357,134 @@ a {
     <tr> 
       <td align="center" valign="top" nowrap>&nbsp;</td>
       <td align="center" valign="top" nowrap><strong><font color="#000099" size="4">2.</font></strong></td>
-      <td><strong><font color="#000099" size="4">���P����H�H�y�{</font><font color="#000099">�G</font></strong>�ϥΪ� 
-        barry �H�@�ʫH���t�@�Ӻ��쪺 tina<br> <table width="100%" border="0">
+      <td><strong><font color="#000099" size="4">不同網域寄信流程</font><font color="#000099">：</font></strong>使用者 
+        barry 寄一封信給另一個網域的 tina<br> <table width="100%" border="0">
           <tr> 
-            <td width="3%" align="center" valign="top" nowrap><font size="4">��</font></td>
-            <td width="97%">�ϥΪ� barry �ǳƱH�@�ʫH�� domain.com �� tina�A�b barry ���U [�ǰe] 
-              ��AMUA �|��H��浹���a�ݪ� MTA �B�z�C</td>
+            <td width="3%" align="center" valign="top" nowrap><font size="4">˙</font></td>
+            <td width="97%">使用者 barry 準備寄一封信給 domain.com 的 tina，在 barry 按下 [傳送] 
+              後，MUA 會把信件交給本地端的 MTA 處理。</td>
           </tr>
           <tr> 
-            <td align="center" valign="top" nowrap><font size="4">��</font></td>
-            <td>MTA ���즹�H��AQueue Manager �|��H��q incoming queue ���� active queue�A�M��A�ˬd����̪��l��a�}�A�ˬd���G�o�{�o�ʫH���O�ݩ󥻦a�ݪ��H��A�]�� 
-              Queue Manager �|�浹 smtp MDA �ӳB�z�A���L smtp MDA �����n�����D�t�d domain.com ���l��D���b���̡A�~����k�N�H����H�X�h�A�ҥH���� 
-              MTA �|�z�L DNS ���ѪR�ӱo���誺 MTA ��}�A�]�ӯබ�Q�N�H����H�� domain.com �� MTA�C</td>
+            <td align="center" valign="top" nowrap><font size="4">˙</font></td>
+            <td>MTA 收到此信後，Queue Manager 會把信件從 incoming queue 移至 active queue，然後再檢查收件者的郵件地址，檢查結果發現這封信不是屬於本地端的信件，因此 
+              Queue Manager 會交給 smtp MDA 來處理，不過 smtp MDA 必須要先知道負責 domain.com 的郵件主機在哪裡，才有辦法將信件轉寄出去，所以此時 
+              MTA 會透過 DNS 的解析而得到對方的 MTA 位址，因而能順利將信件轉寄給 domain.com 的 MTA。</td>
           </tr>
           <tr> 
-            <td align="center" valign="top" nowrap><font size="4">��</font></td>
-            <td>domain.com �� MTA ���즹�H��A�N��� Local MDA �ӱN�H��s��b tina �� Mail Box ���C<br> 
-              <strong><font color="#000099" size="2">��</font></strong><font color="#000099" size="2">�G�p�G 
-              domain.com �� MTA �O����l��h�D�� (Mail Gateway) ������A�h�|�A��H�� Relay ���t�@�x���w�� 
-              MTA�C����o�����A�d�쥻����b�q�A���A�קK�y���j�a�[���W���V�c�C</font></td>
+            <td align="center" valign="top" nowrap><font size="4">˙</font></td>
+            <td>domain.com 的 MTA 收到此信後，就交由 Local MDA 來將信件存放在 tina 的 Mail Box 中。<br> 
+              <strong><font color="#000099" size="2">註</font></strong><font color="#000099" size="2">：如果 
+              domain.com 的 MTA 是擔任郵件閘道器 (Mail Gateway) 的角色，則會再把信件 Relay 給另一台指定的 
+              MTA。關於這部分，留到本章後半段再提，避免造成大家觀念上的混淆。</font></td>
           </tr>
           <tr> 
-            <td align="center" valign="top" nowrap><font size="4">��</font></td>
-            <td><p>�� tina �N outlook ���}�A�ë��U [�ǰe/����] ���s��AMUA �N�|�z�L POP3 �� IMAP ��w�A�ӹ� 
-                MTA �W tina �ӤH�� Mail Box ���s���C</p></td>
+            <td align="center" valign="top" nowrap><font size="4">˙</font></td>
+            <td><p>當 tina 將 outlook 打開，並按下 [傳送/接收] 按鈕後，MUA 就會透過 POP3 或 IMAP 協定，來對 
+                MTA 上 tina 個人的 Mail Box 做存取。</p></td>
           </tr>
         </table></td>
     </tr>
   </table>
   <p><font color="#000000"><strong><font size="+1"><a name="6"></a><font size="5">17.2.2</font></font></strong> 
-    <font size="5"><strong>MTA �P DNS �����Y</strong></font><font size="+1"><strong><br>
+    <font size="5"><strong>MTA 與 DNS 的關係</strong></font><font size="+1"><strong><br>
     <br>
-    </strong></font>�@�o�̥u�w�� Mail Server �P DNS ���������D�����Q�A�p�G�z�� DNS �������]�w���[���٤��Ӽ��x���ܡA���֦^��Q�G�����ӽƲߡC<br>
+    </strong></font>　這裡只針對 Mail Server 與 DNS 有關的課題做探討，如果您對 DNS 的相關設定及觀念還不太熟悉的話，趕快回到十二章做個複習。<br>
     <br>
-    �@�b�W�@�`���жl��ǻ��L�{�� (barry �H�H�� tina) ������A���a�ݪ� MTA �ݥ��z�L DNS ��t�d domain.com �� MTA 
-    ��}�d�ߥX�ӫ�A�~����k��H��ǰe�L�h�A�ӱ��۴N�O�n���Ьd�ߦ� MTA ��}���L�{�C�������a�ݪ� MTA�A�i�H�ھڦۤv�D���W /etc/resolv.conf 
-    ���ҳ]�w���w�]�W�٦��A����}�A�ӦV�䴣�X���j�d�� (���M�]���i�� MTA �����N�O�@�x Name Server)�A�Ӧb�̫�d�o�F�t�d domain.com 
-    �� DNS ��A�|�ھڦ� DNS ��Ʈw���� MX ������ A �����A�ӱN�H����浹 domain.com �� MX �D���C<br>
+    　在上一節介紹郵件傳遞過程中 (barry 寄信給 tina) 有提到，本地端的 MTA 需先透過 DNS 把負責 domain.com 的 MTA 
+    位址查詢出來後，才有辦法把信件傳送過去，而接著就是要介紹查詢此 MTA 位址的過程。首先本地端的 MTA，可以根據自己主機上 /etc/resolv.conf 
+    中所設定的預設名稱伺服器位址，來向其提出遞迴查詢 (當然也有可能 MTA 本身就是一台 Name Server)，而在最後查得了負責 domain.com 
+    的 DNS 後，會根據此 DNS 資料庫中的 MX 紀錄及 A 紀錄，來將信件轉交給 domain.com 的 MX 主機。<br>
     <br>
-    �@�]���b domain.com �� DNS ��Ʈw�̡A���Ӧ��p�U�������s�b�G</font></p>
+    　因此在 domain.com 的 DNS 資料庫裡，應該有如下的紀錄存在：</font></p>
   <table width="100%" border="0">
     <tr> 
-      <td height="57" bgcolor="#000000"><font color="#FFFFFF" face="�ө���">$ORIGIN 
+      <td height="57" bgcolor="#000000"><font color="#FFFFFF" face="細明體">$ORIGIN 
         domain.com.<strong><br>
-        </strong>@�@�@�@IN�@�@MX 10 mta.domain.com.<br>
-        mta�@�@IN�@�@A�@�@ 192.168.1.100�@</font><font color="#FFFFFF">�@ </font></td>
+        </strong>@　　　IN　　MX 10 mta.domain.com.<br>
+        mta　　IN　　A　　 192.168.1.100　</font><font color="#FFFFFF">　 </font></td>
     </tr>
   </table>
   <font color="#000000"><br>
-  �@���p�G��Ʈw�̨ä��s�b domain.com �� MX �����A�N�|�h�ӨD�䦸�A�ӧ�M domain.com ������ A �����C�ҥH²�檺���A���z�n�H�@�ʫH���~�����ϥΪ̦p 
-  tina@domain.com �ɡA���a�ݪ� MTA ��M�l��D�������Ǭ��G<br>
+  　那如果資料庫裡並不存在 domain.com 的 MX 紀錄，就會退而求其次，來找尋 domain.com 本身的 A 紀錄。所以簡單的說，當您要寄一封信給外部的使用者如 
+  tina@domain.com 時，本地端的 MTA 找尋郵件主機的順序為：<br>
   <br>
-  �@�@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">���d 
-  domain.com �� MX �����A�A�d�� MX �D���� A �����C</font><br>
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">先查 
+  domain.com 的 MX 紀錄，再查此 MX 主機的 A 紀錄。</font><br>
   <br>
-  �@�@<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">�Y�d�L 
-  MX �����ɡA�N��d domain.com �� A �����C</font><br>
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">若查無 
+  MX 紀錄時，就改查 domain.com 的 A 紀錄。</font><br>
   </font> 
-  <p><font color="#000000"> �@�A�ӱ��Q MX ��ұ��������u���v (preference) �����D�Cpreference �ү�]�w�����ĭȬ� 
-    0 ~ 65536�A�z�i�H�]�w�� 0�B1�B2�B&#8230;�A�]�i�H�]�w�� 10�B20�B30�B&#8230;�A�Ӥj�������޲z�̳����w�]�w����̡A���]�L�L�A�u�O����n���վ�Ӥw�A��p���n�O���Ѧh�F�@�x 
-    MX �D���ɡA�� preference ���ƭȴN�i�H�]�w�b 10~20 �� 20~30 ���d�򤺡C<br>
+  <p><font color="#000000"> 　再來探討 MX 後所接的那個優先權 (preference) 的問題。preference 所能設定的有效值為 
+    0 ~ 65536，您可以設定成 0、1、2、&#8230;，也可以設定成 10、20、30、&#8230;，而大部分的管理者都喜歡設定成後者，其原因無他，只是比較好做調整而已，比如說要是哪天多了一台 
+    MX 主機時，其 preference 的數值就可以設定在 10~20 或 20~30 的範圍內。<br>
     <br>
-    �@�p�G�z�֦��h�x���l��D���ɡA�i�H�]�w�h���� MX �����A�õ����ۦP���Τ��P�� preference �ƭȡC�H���U�o�ӽd�Ҩӻ����G</font></p>
+    　如果您擁有多台的郵件主機時，可以設定多筆的 MX 紀錄，並給於其相同的或不同的 preference 數值。以底下這個範例來說明：</font></p>
   <table width="100%" border="0">
     <tr> 
-      <td bgcolor="#000000"><font color="#FFFFFF" face="�ө���">$ORIGIN domain.com.<br>
-        @�@�@�@IN�@�@MX 10 mta.domain.com.<br>
-        �@�@�@ IN�@�@MX 20 mail.domain.com.<br>
-        mta�@�@IN�@�@A�@�@ 192.168.1.100<br>
-        mail�@ IN�@�@A �@�@192.168.1.200 </font><font color="#FFFFFF">�@�@ </font></td>
+      <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">$ORIGIN domain.com.<br>
+        @　　　IN　　MX 10 mta.domain.com.<br>
+        　　　 IN　　MX 20 mail.domain.com.<br>
+        mta　　IN　　A　　 192.168.1.100<br>
+        mail　 IN　　A 　　192.168.1.200 </font><font color="#FFFFFF">　　 </font></td>
     </tr>
   </table>
-  <p><font color="#000000">�@</font><font color="#000000">�o�̨ϥΨⵧ MX �����ӫ��w��x�l��洫�D���A�ӷ����a�� 
-    MTA �n��H�H�� domain.com �� MTA �ɡA�|�����o�Ҧ� MX ��������T�A�M���ܱN�H��浹 preference �ƭȳ̧C (�N���̰��u���v) 
-    �����x MX �D���A�H�o�̨ӻ��N�O mta.domain.com�A���p�G�o���D���]���Y�ǭ�]�ɭP�L�k�s�u�ɡA�h���a�� MTA �~�|��H��浹 preference 
-    �ƭȦ��C�����x MX �D���C<br>
+  <p><font color="#000000">　</font><font color="#000000">這裡使用兩筆 MX 紀錄來指定兩台郵件交換主機，而當本地端 
+    MTA 要轉寄信件給 domain.com 的 MTA 時，會先取得所有 MX 紀錄的資訊，然後選擇將信件交給 preference 數值最低 (代表最高優先權) 
+    的那台 MX 主機，以這裡來說就是 mta.domain.com，但如果這部主機因為某些原因導致無法連線時，則本地端 MTA 才會把信件交給 preference 
+    數值次低的那台 MX 主機。<br>
     <br>
-    �@preference �ƭȳ̧C�̡A�i�H�٤����D�n���l��洫�D���A�]�����`�H��i�Ӯɳ��O���b�B�z �Q�ܩ��L�� MX �D���N�i�R���ƴ��ӨϥΡC�@��ӻ��A�ƴ����l��D�����ä��O�u����H�󦬤U�A�ӥu�O�Ȯɪ��s��b��C�̡A���D�n���l��D����_���`�B�@�ɡA�|�A��o�ǥN�O�ު��H����ٵ��D�n�l��D�����C<br>
+    　preference 數值最低者，可以稱之為主要的郵件交換主機，因為平常信件進來時都是它在處理 ﹔至於其他的 MX 主機就可充當備援來使用。一般來說，備援的郵件主機它並不是真的把信件收下，而只是暫時的存放在佇列裡，等主要的郵件主機恢復正常運作時，會再把這些代保管的信件交還給主要郵件主機的。<br>
     <br>
-    �@���ɭԦb�@�Ǥ���j��������̡A�|��n�X�x MX �D���� preference �ƭȳ]�w���ۦP�A���ɦp�H Postfix �ӻ����ܡA��w�]�O�|�H����@�� 
-    MX �����ӨϥΪ��A���M�]�i�H�ǥѭק�]�w�Ѽ� (smtp_randomize_address)�A���� Postfix �ھکҨ��o MX ���������ǰ��M�w�C</font></p>
-  <p><font color="#000000">�@���z�N preference �ƭȳ��]�w���ۦP�ɡA�ٶ��n�Ҽ{��b���P�B�����D�A�o�i��S���z�Y�k�F�A�ҥH�o�@�譱�٬O��ĳ�z�� 
-    Linux �Ǩ�@�w�{�׫�A�A�C�C�h��s�b����X�����D�C</font></p>
+    　有時候在一些比較大型的網域裡，會把好幾台 MX 主機的 preference 數值設定成相同，此時如以 Postfix 來說的話，其預設是會隨機選一筆 
+    MX 紀錄來使用的，當然也可以藉由修改設定參數 (smtp_randomize_address)，來讓 Postfix 根據所取得 MX 紀錄的順序做決定。</font></p>
+  <p><font color="#000000">　當您將 preference 數值都設定成相同時，還須要考慮到帳號同步的問題，這可能又讓您頭疼了，所以這一方面還是建議您對 
+    Linux 學到一定程度後，再慢慢去研究帳號整合的問題。</font></p>
 </div>
 <blockquote> 
-  <div align="left"><strong><font color="#000099">Tips�G</font></strong><font color="#000099" size="2">�b 
-    DNS ���]�w MX �����ɡA���n�� MX �D���W�ٳ]�w���O�W�A�קK�y�� mail loop�A�ר���z�s�b�h�� MX �����ɡA�ܮe���o�ͳo�ز{�H�C</font></div>
+  <div align="left"><strong><font color="#000099">Tips：</font></strong><font color="#000099" size="2">在 
+    DNS 中設定 MX 紀錄時，不要把 MX 主機名稱設定成別名，避免造成 mail loop，尤其當您存在多筆 MX 紀錄時，很容易發生這種現象。</font></div>
 </blockquote>
 <div align="left"> <font color="#000000"><font color="#0000FF" size="+1"><strong> 
   </strong></font> <font color="#0000FF" size="+1"><strong><br>
-  <a name="7"></a><font size="6">17.3 �]�w Postfix Server</font><br>
+  <a name="7"></a><font size="6">17.3 設定 Postfix Server</font><br>
   </strong></font><font color="#0000FF"><font color="#000000"><br>
-  �@�[�] Mail Server ����X�W����M�n��A���O�O Sendmail �� Postfix�C��Ĳ�L UNIX-Like ���H�A���ӹ� Sendmail 
-  ���ռ���ԡA�]�����O�����D�`�ۦW���@�M MTA �n��A���L�ѩ� Sendmail ���w���ʤγ]�w�������ʡA���\�h�H��өĨB�C�H Sendmail ���]�w�ɨӻ��A���̭����]�w���e�A�O���F�� 
-  sendmail �{���b����ɯ��K��z�Ѧӳ]�p���A�]���@��H�b�ݳo���ɮת��]�w�榡�N�{�p�ѮѤ@��A�o�]�y���F�޲z�H�����@���x���סC�� Postfix 
-  ���A�ɥX�{�A���j�a���F��n���@�ӿ�ܡC<br>
+  　架設 Mail Server 比較出名的兩套軟體，分別是 Sendmail 及 Postfix。接觸過 UNIX-Like 的人，應該對 Sendmail 
+  都耳熟能詳，因為它是早期非常著名的一套 MTA 軟體，不過由於 Sendmail 的安全性及設定的複雜性，讓許多人望而怯步。以 Sendmail 的設定檔來說，它裡面的設定內容，是為了讓 
+  sendmail 程式在執行時能方便其理解而設計的，因此一般人在看這個檔案的設定格式就宛如天書一般，這也造成了管理人員維護的困難度。而 Postfix 
+  的適時出現，讓大家有了更好的一個選擇。<br>
   <br>
-  �@Postfix �O Wietse Venema �Ҭ�o�X�Ӫ��n��A����쪺�]�p�z���i�H���O�w�� Sendmail ���ʥ��ӨӪ��A��p�b�w���ʩ�<font color="#0000FF"><font color="#000000">����į�W�Ұ����ץ��A�t�@�譱���]�i�H�䴩 
-  Sendmail ���@�ǯS�ʡC���L�̬��H�ҫC�����@�I�O�A</font></font>Postfix ���]�w�ɮ榡������u�H�v��K�\Ū�γ]�w���@�C�F�ѤF�H�W�Ҵ��� 
-  Postfix ���@�ǯS���A�۫H�z���ӷ|�ܦw�ߪ��H Postfix �Ө��N�쥻�� Sendmail �a !<br>
+  　Postfix 是 Wietse Venema 所研發出來的軟體，其當初的設計理念可以說是針對 Sendmail 的缺失而來的，比如在安全性或<font color="#0000FF"><font color="#000000">執行效能上所做的修正，另一方面它也可以支援 
+  Sendmail 的一些特性。不過最為人所青睞的一點是，</font></font>Postfix 的設定檔格式能夠讓「人」方便閱讀及設定維護。了解了以上所提及 
+  Postfix 的一些特色後，相信您應該會很安心的以 Postfix 來取代原本的 Sendmail 吧 !<br>
   </font></font><br>
-  <strong><font size="+1"><a name="8"></a><font size="5">17.3.1 �d�߮M��w�ˤ��˵��M�󤺮e</font><br>
+  <strong><font size="+1"><a name="8"></a><font size="5">17.3.1 查詢套件安裝及檢視套件內容</font><br>
   <br>
   </font><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font> 
-  <font size="4">Postfix �����M��</font></strong><br>
+  <font size="4">Postfix 相關套件</font></strong><br>
   <br>
   </font> 
   <table width="35%" border="1">
     <tr bgcolor="#CCCCCC"> 
-      <td width="19%" nowrap> <div align="center"><font color="#000099"><strong>�M 
-          �� �W ��</strong></font></div></td>
-      <td width="81%" nowrap> <div align="center"><font color="#000099"><strong>²�@��@�y�@�z</strong></font></div></td>
+      <td width="19%" nowrap> <div align="center"><font color="#000099"><strong>套 
+          件 名 稱</strong></font></div></td>
+      <td width="81%" nowrap> <div align="center"><font color="#000099"><strong>簡　單　描　述</strong></font></div></td>
     </tr>
     <tr> 
       <td nowrap> <div align="center"><font color="#000099">postfix</font></div></td>
-      <td nowrap><font color="#FFFFFF"><font color="#000099">SMTP Server ���D�n�M��C</font></font></td>
+      <td nowrap><font color="#FFFFFF"><font color="#000099">SMTP Server 的主要套件。</font></font></td>
     </tr>
     <tr> 
       <td nowrap> <div align="center"><font color="#000099">qpopper</font></div></td>
-      <td nowrap><font color="#FFFFFF"><font color="#000099">POP3 Server ���D�n�M��C</font></font></td>
+      <td nowrap><font color="#FFFFFF"><font color="#000099">POP3 Server 的主要套件。</font></font></td>
     </tr>
   </table>
 </div>
 <blockquote> 
-  <div align="left"><font color="#000099"><strong>Tips�G</strong></font><font color="#000099" size="2">���[�]��{�ҥ\�઺�l��D���ɡA�|�ݦh�� 
-    cyrus-sasl �� cyrus-sasl-saslauthd �o��ӮM��C</font></div>
+  <div align="left"><font color="#000099"><strong>Tips：</strong></font><font color="#000099" size="2">欲架設具認證功能的郵件主機時，尚需多裝 
+    cyrus-sasl 及 cyrus-sasl-saslauthd 這兩個套件。</font></div>
 </blockquote>
 <div align="left"> <font color="#000000"><font size="+1"><strong> </strong></font></font><strong><font color="#000000"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
-  <font size="4">�˵��M�󤺮e</font></strong><br>
+  <font size="4">檢視套件內容</font></strong><br>
   <br>
   <table width="100%" border="0">
     <tr> 
@@ -494,94 +494,94 @@ a {
         </font> <table width="100%" border="0">
           <tr> 
             <td width="20%" align="left" valign="top" nowrap><font color="#FFFFFF">/etc/postfix/main.cf</font></td>
-            <td width="80%"><font color="#00FFFF" size="2">Postfix ���D�n�]�w�ɡC</font></td>
+            <td width="80%"><font color="#00FFFF" size="2">Postfix 的主要設定檔。</font></td>
           </tr>
           <tr> 
             <td align="left" valign="top" nowrap><font color="#FFFFFF">/etc/postfix/transport</font></td>
-            <td><font color="#00FFFF" size="2">��� Mail GW ���D���A�i�H�ǥѳ]�w�o���ɮסA�ӱN�H���൹���w�� 
-              MTA�C</font></td>
+            <td><font color="#00FFFF" size="2">擔任 Mail GW 的主機，可以藉由設定這個檔案，來將信件轉給指定的 
+              MTA。</font></td>
           </tr>
           <tr> 
             <td align="left" valign="top" nowrap><font color="#FFFFFF">/etc/init.d/postfix</font></td>
-            <td><font color="#00FFFF" size="2">�޲z Postfix �A�Ȫ� script�C</font></td>
+            <td><font color="#00FFFF" size="2">管理 Postfix 服務的 script。</font></td>
           </tr>
           <tr> 
             <td align="left" valign="top" nowrap><font color="#FFFFFF">/sbin/rcpostfix</font></td>
-            <td><font color="#00FFFF" size="2">�s���� /etc/init.d/postfix ���Ÿ��s���ɡC</font></td>
+            <td><font color="#00FFFF" size="2">連結至 /etc/init.d/postfix 的符號連結檔。</font></td>
           </tr>
           <tr> 
             <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/lib/postfix/master</font></td>
-            <td><font color="#00FFFF" size="2">���� Postfix �A�Ȫ� daemon�C</font></td>
+            <td><font color="#00FFFF" size="2">提供 Postfix 服務的 daemon。</font></td>
           </tr>
           <tr> 
             <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/bin/mailq</font></td>
-            <td><font color="#00FFFF" size="2">�d�߶l���C (mail queue) �����O�C</font></td>
+            <td><font color="#00FFFF" size="2">查詢郵件佇列 (mail queue) 的指令。</font></td>
           </tr>
           <tr> 
             <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/bin/newaliases</font></td>
-            <td><font color="#00FFFF" size="2">�إߩΧ�s�l��O�W��Ʈw�C</font></td>
+            <td><font color="#00FFFF" size="2">建立或更新郵件別名資料庫。</font></td>
           </tr>
           <tr> 
             <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/postalias</font></td>
-            <td><font color="#00FFFF" size="2">���@ Postfix �O�W��Ʈw�C</font></td>
+            <td><font color="#00FFFF" size="2">維護 Postfix 別名資料庫。</font></td>
           </tr>
           <tr> 
             <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/postconf</font></td>
-            <td><font color="#00FFFF" size="2">Postfix ���]�w�u��C</font></td>
+            <td><font color="#00FFFF" size="2">Postfix 的設定工具。</font></td>
           </tr>
           <tr> 
             <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/postfix</font></td>
-            <td><font color="#00FFFF" size="2">���� Postfix ���{���C</font></td>
+            <td><font color="#00FFFF" size="2">控管 Postfix 的程式。</font></td>
           </tr>
           <tr> 
             <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/postmap 
               </font></td>
-            <td><font color="#00FFFF" size="2"> �i�N���w���ɮפ��e�ഫ����Ʈw�榡�A�ñN�ഫ�᪺���G�g�J��Ʈw�ɮ׸̡C</font></td>
+            <td><font color="#00FFFF" size="2"> 可將指定的檔案內容轉換成資料庫格式，並將轉換後的結果寫入資料庫檔案裡。</font></td>
           </tr>
           <tr> 
             <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/postsuper 
               </font></td>
-            <td><font color="#00FFFF" size="2">�޲z��C�l�󪺤u��C</font></td>
+            <td><font color="#00FFFF" size="2">管理佇列郵件的工具。</font></td>
           </tr>
           <tr> 
             <td height="18" align="left" valign="top" nowrap><font color="#FFFFFF">/var/spool/postfix 
               </font></td>
-            <td><font color="#00FFFF" size="2">�w�m�B�z��d�H�󪺬����ؿ��A�p hold�Bincoming�Bactive 
-              �� deferred ���C</font></td>
+            <td><font color="#00FFFF" size="2">安置處理佇留信件的相關目錄，如 hold、incoming、active 
+              及 deferred 等。</font></td>
           </tr>
         </table></td>
     </tr>
   </table>
   <strong><br>
-  </strong>�@�w�惡�M�󤺮e�̪� /usr/sbin/postconf �� /usr/sbin/postfix ���O���ӸɥR�G<strong><br>
+  </strong>　針對此套件內容裡的 /usr/sbin/postconf 及 /usr/sbin/postfix 指令做個補充：<strong><br>
   <br>
   </strong> 
   <table width="100%" border="0">
     <tr> 
       <td width="2%">&nbsp;</td>
       <td width="2%" align="center" valign="middle"><font color="#000000"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
-      <td width="96%"><strong><font color="#000099">/usr/sbin/postconf�G</font></strong></td>
+      <td width="96%"><strong><font color="#000099">/usr/sbin/postconf：</font></strong></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
       <td align="center" valign="middle">&nbsp;</td>
-      <td><font color="#000000">���� </font><font color="#000000">Postfix ���]�w�u��A�i�H�ΨӦC�X 
-        Postfix ���w�]�ѼƤι�ڰѼƭȡA�]�i�H�����b�R�O�C�W�s��]�w�ѼơA�ñN���G�g�J main.cf ���C�|�Ҧp�U�G<br>
+      <td><font color="#000000">此為 </font><font color="#000000">Postfix 的設定工具，可以用來列出 
+        Postfix 的預設參數及實際參數值，也可以直接在命令列上編輯設定參數，並將結果寫入 main.cf 中。舉例如下：<br>
         </font> <table width="100%" border="0">
           <tr> 
             <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">postconf</font></strong><br>
-              <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�C�X 
-              Postfix �ثe�u�ꪺ�]�w�ѼƭȡC</font><font color="#FFFFFF"><br>
+              <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">列出 
+              Postfix 目前真實的設定參數值。</font><font color="#FFFFFF"><br>
               <br>
               suse:~ # <strong><font color="#FFFF00">postconf -d</font></strong><br>
-              <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�C�X 
-              Postfix �w�]���]�w�ѼƭȡC</font><font color="#FFFFFF" size="2">&nbsp;</font><font color="#FFFFFF" size="2"><br>
+              <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">列出 
+              Postfix 預設的設定參數值。</font><font color="#FFFFFF" size="2">&nbsp;</font><font color="#FFFFFF" size="2"><br>
               <br>
               </font><font color="#FFFFFF">suse:~ #</font><font color="#FFFF00" size="2">&nbsp; 
               </font><font color="#FFFF00"><strong>postconf -e 'alias_maps = hash:/etc/postfix/aliases'</strong> 
               </font><font color="#FFFFFF"><br>
-              <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�b�R�O�C�W�s��]�w�Ѽƫ�A�|�����g�J<strong> 
-              </strong>main.cf ���C</font><font color="#00FFFF">&nbsp; </font> </td>
+              <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">在命令列上編輯設定參數後，會直接寫入<strong> 
+              </strong>main.cf 中。</font><font color="#00FFFF">&nbsp; </font> </td>
           </tr>
         </table></td>
     </tr>
@@ -593,27 +593,27 @@ a {
     <tr> 
       <td>&nbsp;</td>
       <td align="center" valign="middle"><font color="#000000"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
-      <td> <font color="#000099"><strong>/usr/sbin/postfix�G</strong></font></td>
+      <td> <font color="#000099"><strong>/usr/sbin/postfix：</strong></font></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
       <td align="center" valign="middle">&nbsp;</td>
-      <td>�o�O postfix �����޵{���A�i�ΨӱҰʡB����B���s���J postfix �A�ȡC�|�Ҧp�U�G<br> <table width="100%" border="0">
+      <td>這是 postfix 的控管程式，可用來啟動、停止、重新載入 postfix 服務。舉例如下：<br> <table width="100%" border="0">
           <tr> 
-            <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#000000"><strong><font color="#FFFF00" face="�ө���">postfix 
+            <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#000000"><strong><font color="#FFFF00" face="細明體">postfix 
               stop [start|reload]</font></strong></font><br>
-              <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�o���ӨS���D�C</font><font color="#FFFFFF"><br>
+              <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">這應該沒問題。</font><font color="#FFFFFF"><br>
               <br>
               suse:~ # <font color="#000000"><strong><font color="#FFFF00">postfix 
               flush</font></strong></font><br>
-              <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�N��d�H��j���H�X�C</font></td>
+              <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">將佇留信件強迫寄出。</font></td>
           </tr>
         </table></td>
     </tr>
   </table>
   <strong><br>
   <font color="#000000"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
-  <font size="4">�]�w�}���ɱҰ� Postfix �A��</font></strong><br>
+  <font size="4">設定開機時啟動 Postfix 服務</font></strong><br>
   <br>
   <table width="100%" border="0" bgcolor="#000000">
     <tr> 
@@ -622,13 +622,13 @@ a {
     </tr>
   </table>
   <br>
-  <p><font size="+1"><strong> <a name="9"></a><font size="5">17.3.2 �]�w²���� Postfix 
+  <p><font size="+1"><strong> <a name="9"></a><font size="5">17.3.2 設定簡易的 Postfix 
     Server</font><font color="#000000"> </font></strong></font></p>
-  �@�o�@�p�`�|���]�w�@�� Postfix ���򥻰ѼơA�� Postfix �ॿ�`�B�@����A�A�Ӷi�@�B���Q��L��<font color="#000000">�ѼƳ]�w�C�t�~�o�̬O�� 
-  SMTP �� POP3 Server ���[�]�b�P�@���D���W�A�o�˦b��@�W�]�|�����¤Τ�K�C<br>
+  　這一小節會先設定一些 Postfix 的基本參數，等 Postfix 能正常運作之後，再來進一步探討其他的<font color="#000000">參數設定。另外這裡是把 
+  SMTP 及 POP3 Server 都架設在同一部主機上，這樣在實作上也會比較單純及方便。<br>
   <br>
   <strong><font size="+1"><a name="10"></a><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
-  �]�w SMTP Server</font></strong></font><br>
+  設定 SMTP Server</font></strong></font><br>
   <br>
   <table width="100%" border="0">
     <tr> 
@@ -637,43 +637,43 @@ a {
         <br>
         # The queue_directory specifies the location of the Postfix queue.<br>
         <strong>queue_directory = /var/spool/postfix <br>
-        </strong><font color="#00FFFF"># <font size="2">�o�O��d�H��Ҧs�񪺥ؿ���m�C</font></font></font> 
+        </strong><font color="#00FFFF"># <font size="2">這是佇留信件所存放的目錄位置。</font></font></font> 
         <font color="#FFFFFF"><strong><br>
         <br>
         </strong># The command_directory parameter specifies the location of all 
         postXXX commands. <br>
         <strong>command_directory = /usr/sbin</strong><br>
-        <font color="#00FFFF"># <font size="2">���w�Ҧ� postxxx ���O (�p postfix�Bpostalias�Bpostconf 
-        ��) �Ҧs�񪺥ؿ���m�C</font></font><br>
+        <font color="#00FFFF"># <font size="2">指定所有 postxxx 指令 (如 postfix、postalias、postconf 
+        等) 所存放的目錄位置。</font></font><br>
         <br>
         # The daemon_directory parameter specifies the location of all Postfix 
         daemon programs <br>
         # (i.e. programs listed in the master.cf file). This directory must be 
         owned by root. <br>
         <strong>daemon_directory = /usr/lib/postfix</strong><br>
-        <font color="#00FFFF"># <font size="2">���w�Ҧ� Postfix ���� daemon �Ҧs�񪺥ؿ���m�C</font></font><br>
+        <font color="#00FFFF"># <font size="2">指定所有 Postfix 相關 daemon 所存放的目錄位置。</font></font><br>
         <br>
         # The mail_owner parameter specifies the owner of the Postfix queue and 
         of most <br>
         # Postfix daemon processes.<br>
         <strong>mail_owner = postfix</strong><br>
-        <font color="#00FFFF"># <font size="2">���w Postfix ��C�ؿ����֦��̤Τj���� Postfix 
-        daemon �{�Ǫ����樭���C</font></font><br>
+        <font color="#00FFFF"># <font size="2">指定 Postfix 佇列目錄的擁有者及大部分 Postfix 
+        daemon 程序的執行身分。</font></font><br>
         <br>
         # The myhostname parameter specifies the internet hostname of this mail 
         system.<br>
         # $myhostname is used as a default value for many other configuration 
         parameters.<br>
         <strong>myhostname = mta.paching.idv.tw</strong><br>
-        <font color="#00FFFF"># <font size="2">���w�z Mail Server �b Internet �W������D���W�١C</font></font><br>
+        <font color="#00FFFF"># <font size="2">指定您 Mail Server 在 Internet 上的完整主機名稱。</font></font><br>
         <br>
         # The mydomain parameter specifies the local internet domain name.<br>
         # The default is to use $myhostname minus the first component.<br>
         # $mydomain is used as a default value for many other configuration parameters.<br>
         <strong>mydomain = paching.idv.tw</strong><br>
-        <font color="#00FFFF"># <font size="2">���w���a�ݪ�����W�١A�]�N�O�� $myhostname �h���̫e�Y�� 
-        Short hostname �Y�O�C</font><br>
-        # <font size="2">�p�G myhostname �]�w�� paching.idv.tw�A�� mydomain �N�O idv.tw�C</font><br>
+        <font color="#00FFFF"># <font size="2">指定本地端的網域名稱，也就是把 $myhostname 去除最前頭的 
+        Short hostname 即是。</font><br>
+        # <font size="2">如果 myhostname 設定為 paching.idv.tw，那 mydomain 就是 idv.tw。</font><br>
         </font><br>
         # For the sake of consistency between sender and recipient addresses,myorigin 
         also<br>
@@ -681,15 +681,15 @@ a {
         that<br>
         # have no @domain part.<br>
         <strong>myorigin = $mydomain</strong><br>
-        <font color="#00FFFF"># <font size="2">���z�b Postfix �D���W�o�H�ɡA�b��覬��H���A�|��ܱH��̪��l��a�}<font color="#FFFFFF"><font color="#00FFFF">��</font></font><br>
+        <font color="#00FFFF"># <font size="2">當您在 Postfix 主機上發信時，在對方收到信件後，會顯示寄件者的郵件地址<font color="#FFFFFF"><font color="#00FFFF">為</font></font><br>
         </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font size="2"> 
-        xx@[$myorigin]�A</font></font><font color="#FFFFFF"><font color="#00FFFF"><font size="2">�H�o�̨ӻ��N�O 
-        xx@paching.idv.tw�C</font></font></font><font color="#00FFFF"><br>
-        # <font size="2">�t�~�n���������]��G<strong><br>
+        xx@[$myorigin]，</font></font><font color="#FFFFFF"><font color="#00FFFF"><font size="2">以這裡來說就是 
+        xx@paching.idv.tw。</font></font></font><font color="#00FFFF"><br>
+        # <font size="2">另外要直接指派也行：<strong><br>
         </strong></font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font size="2">myorigin 
         = paching.idv.tw</font></font><br>
         <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font size="2"></font></font> 
-        <font color="#00FFFF" size="2">�p�G�z���]�w�l��O�W (�Ѧ� 17.4 �`) �ɡA�]�|�ϥΨ�o�ӰѼƪ��]�w�C</font><br>
+        <font color="#00FFFF" size="2">如果您有設定郵件別名 (參考 17.4 節) 時，也會使用到這個參數的設定。</font><br>
         <br>
         # The inet_interfaces parameter specifies the network interface addresses 
         that this mail<br>
@@ -698,19 +698,19 @@ a {
         # machine.<br>
         # Note: you need to stop/start Postfix when this parameter changes.<br>
         <strong>inet_interfaces = all</strong><br>
-        <font color="#00FFFF"># <font size="2">���w�b�l��D���W�A���\�����H�󪺺���������}�Call �O���ܩҦ������������i�H<br>
-        </font># <font color="#FFFFFF"><font color="#00FFFF"><font size="2">�����ϥΪ̩ұH�Ӫ�</font></font></font><font size="2">�H��A�o�]�O�w�]�ȡC<br>
-        </font># <font size="2">�t�~���z�ק�F�o�ӰѼƫ�A�ݭn���s�Ұ� Postfix�A�Ӥ��O���s���J�C</font></font><br>
+        <font color="#00FFFF"># <font size="2">指定在郵件主機上，允許接收信件的網路介面位址。all 是表示所有網路介面都可以<br>
+        </font># <font color="#FFFFFF"><font color="#00FFFF"><font size="2">接收使用者所寄來的</font></font></font><font size="2">信件，這也是預設值。<br>
+        </font># <font size="2">另外當您修改了這個參數後，需要重新啟動 Postfix，而不是重新載入。</font></font><br>
         <br>
         # The mydestination parameter specifies the list of domains that this 
         machine considers <br>
         # itself the final destination for. <br>
         <font size="2"> </font></font> <font color="#FFFFFF"><strong>mydestination 
         = $mydomain</strong><br>
-        <font color="#00FFFF"># <font size="2">Mail Server �O�_�|�N���ʫH�������a�ݪ��H��ӳB�z�A�N�O�a�o�ӰѼƨӨM�w���C��p</font></font><br>
-        <font color="#00FFFF"># <font color="#FFFFFF"><font color="#00FFFF"><font size="2">�H�o�̪��]�w�ӻ��A</font></font></font><font size="2">�u�n���쪺�H��a�}�O 
-        xxx@paching.idv.tw�A�h�� MTA ���|����<br>
-        </font>#<font size="2"> <font color="#FFFFFF"><font color="#00FFFF">���a�ݪ��H</font></font>��C�p�z���h�Ӻ���W�ٮɡA�b�o�ǦW�٤����i�ϥΪť����</font>�u<font size="2">,</font>�v<font size="2">�j�}�C</font></font><br>
+        <font color="#00FFFF"># <font size="2">Mail Server 是否會將此封信當成本地端的信件來處理，就是靠這個參數來決定的。比如</font></font><br>
+        <font color="#00FFFF"># <font color="#FFFFFF"><font color="#00FFFF"><font size="2">以這裡的設定來說，</font></font></font><font size="2">只要收到的信件地址是 
+        xxx@paching.idv.tw，則此 MTA 都會視為<br>
+        </font>#<font size="2"> <font color="#FFFFFF"><font color="#00FFFF">本地端的信</font></font>件。如您有多個網域名稱時，在這些名稱之間可使用空白鍵或</font>「<font size="2">,</font>」<font size="2">隔開。</font></font><br>
         <br>
         # By default (mynetworks_style = subnet), Postfix &quot;trusts&quot; SMTP 
         clients in the same IP <br>
@@ -721,17 +721,17 @@ a {
         # Specify &quot;mynetworks_style = host&quot; when Postfix should &quot;trust&quot; 
         only the local machine. <br>
         <strong>mynetworks_style = subnet</strong><br>
-        <font color="#00FFFF">#<font size="2"> ���w SMTP �ҫH�����ӷ��������A�ܩ�i�H���w���������H�U�T�ءG</font><br>
+        <font color="#00FFFF">#<font size="2"> 指定 SMTP 所信任的來源端類型，至於可以指定的類型有以下三種：</font><br>
         #<font size="2"> <strong>mynetworks_style = subnet</strong><br>
-        </font><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"> </font></font></font><font size="2">�u�n�P 
-        MTA ���P�@�Ӥl���q���D���A��ұH�L�Ӫ��H�󳣤��\&nbsp;Relay�C���D�w�]�C</font><br>
+        </font><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"> </font></font></font><font size="2">只要與 
+        MTA 位於同一個子網段的主機，其所寄過來的信件都允許&nbsp;Relay。此乃預設。</font><br>
         #<font size="2"><strong> mynetworks_style = class</strong> <br>
         </font><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"><strong> 
-        </strong></font></font></font><font size="2">�u�n�P MTA ���P�@ IP ���� (Class 
-        A/B/C) ���D���A��ұH�L�Ӫ��H�󳣤��\ Relay�C</font></font></font> <font color="#00FFFF"><br>
+        </strong></font></font></font><font size="2">只要與 MTA 位於同一 IP 類型 (Class 
+        A/B/C) 的主機，其所寄過來的信件都允許 Relay。</font></font></font> <font color="#00FFFF"><br>
         #<font size="2"> <strong>mynetworks_style = host</strong> <br>
         </font><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"><strong> 
-        </strong></font></font></font><font size="2"> �u���\���� Relay�A�]�N�O�u��b�l��D���W�ӱH�H���N��C</font></font><font color="#FFFFFF"><br>
+        </strong></font></font></font><font size="2"> 只允許本機 Relay，也就是只能在郵件主機上來寄信的意思。</font></font><font color="#FFFFFF"><br>
         <br>
         # Alternatively, you can specify the mynetworks list by hand, in which 
         case Postfix ignores<br>
@@ -740,22 +740,22 @@ a {
         specifies the number<br>
         # of bits in the network part of a host address.<br>
         <strong>mynetworks = 192.168.1.0/24,127.0.0.0/8</strong><br>
-        <font color="#00FFFF"># <font size="2">���w SMTP �ҫH�����ӷ��ݦ�}�C�H�o�̪��]�w�ӻ��A�u�n�O�q 
-        192.168.1.0/24 �o��</font><br>
-        # <font color="#FFFFFF"><font color="#00FFFF"><font size="2">�����q�ұH�L�Ӫ��H��A��</font></font></font><font size="2">�O�����b�����H�H�ɡA�����\ 
-        Relay�C</font><br>
-        #<font size="2"> �t�~�� mynetworks_style �� mynetworks �P�ɰ��]�w�ɡAmynetworks_style 
-        �|�Q�������C<br>
+        <font color="#00FFFF"># <font size="2">指定 SMTP 所信任的來源端位址。以這裡的設定來說，只要是從 
+        192.168.1.0/24 這個</font><br>
+        # <font color="#FFFFFF"><font color="#00FFFF"><font size="2">網路段所寄過來的信件，或</font></font></font><font size="2">是直接在本機寄信時，都允許 
+        Relay。</font><br>
+        #<font size="2"> 另外當 mynetworks_style 及 mynetworks 同時做設定時，mynetworks_style 
+        會被忽略掉。<br>
         </font><font color="#FFFFFF"><strong><br>
         always_bcc = david@paching.idv.tw<br>
-        </strong><font color="#00FFFF"># <font size="2">�o�ӰѼƥi�N postfix �Ҧ����o���H��A�Q�αK��ƥ����覡�H�����ҫ��w���b���C</font></font><br>
+        </strong><font color="#00FFFF"># <font size="2">這個參數可將 postfix 所有收發的信件，利用密件副本的方式寄給其後所指定的帳號。</font></font><br>
         <strong><br>
         message_size_limit = 10240000 <br>
-        </strong><font color="#00FFFF" size="2"># �]�w�C�ʫH��j�p���o�W�L 10 MB�C</font></font></font></font></td>
+        </strong><font color="#00FFFF" size="2"># 設定每封信件大小不得超過 10 MB。</font></font></font></font></td>
     </tr>
   </table>
   <br>
-  �@�H�W�N�O�@�ǰ򥻪��]�w�ѼơC�p�z Postfix �ثe�|���ҰʡA�h�ШϥΥH�U����@�ؤ覡�ӱҰʧa�G<br>
+  　以上就是一些基本的設定參數。如您 Postfix 目前尚未啟動，則請使用以下任何一種方式來啟動吧：<br>
   <br>
   <table width="100%" border="0" bgcolor="#000000">
     <tr> 
@@ -765,38 +765,38 @@ a {
         suse:~ # <strong><font color="#FFFF00">postfix start </font></strong></font></td>
     </tr>
   </table>
-  <p>�@�N�ӭn�O�@�F���󪺭ק�A������u<strong>rcpostfix restart</strong>�v�Ρu<strong>postfix reload</strong>�v�N��F�C 
+  <p>　將來要是作了任何的修改，那執行「<strong>rcpostfix restart</strong>」或「<strong>postfix reload</strong>」就行了。 
   </p>
   <p><font color="#000000"><strong><a name="35"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-    <font size="4">SMTP �Ұʤ��᪺�ˬd</font></strong></font></p>
+    <font size="4">SMTP 啟動之後的檢查</font></strong></font></p>
 </div>
 <ol>
   <li> 
-    <div align="left"><font color="#000000"><strong>�����ϥ� netstat �� ps ���O�ˬd</strong>�G<br>
+    <div align="left"><font color="#000000"><strong>本機使用 netstat 或 ps 指令檢查</strong>：<br>
       <br>
       </font> 
       <table width="96%" border="0">
         <tr> 
           <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
             netstat -anp | grep :25</strong></font><br>
-            tcp�@0�@0�@<strong>0.0.0.0:25</strong>�@0.0.0.0:*�@LISTEN�@11348/master<br>
-            �@�@�@�@�@�@�@<font color="#00FFFF" size="2">��</font><br>
-            <font color="#00FFFF" size="2">�o�̦p�G��� 127.0.0.1 ���ܡA���ܤ����~���� smtp �A�ȡA�бz�S�O�d�N�@�U�C</font><font color="#00FFFF">�@<br>
+            tcp　0　0　<strong>0.0.0.0:25</strong>　0.0.0.0:*　LISTEN　11348/master<br>
+            　　　　　　　<font color="#00FFFF" size="2">↑</font><br>
+            <font color="#00FFFF" size="2">這裡如果顯示 127.0.0.1 的話，表示不能對外提供 smtp 服務，請您特別留意一下。</font><font color="#00FFFF">　<br>
             </font><br>
             suse:~ #<font color="#FFFF00"><strong> ps aux | grep master</strong></font><br>
-            root�@11348�@0.0�@0.5�@4736�@1432�@?�@Ss�@18:17�@0:00�@<strong>/usr/lib/postfix/master</strong></font></td>
+            root　11348　0.0　0.5　4736　1432　?　Ss　18:17　0:00　<strong>/usr/lib/postfix/master</strong></font></td>
         </tr>
       </table>
       <font color="#000000"><br>
       </font></div>
   </li>
   <li> 
-    <div align="left"><strong>Client �ݨϥ� telnet ����</strong>�G<br>
+    <div align="left"><strong>Client 端使用 telnet 測試</strong>：<br>
       <br>
       <table width="96%" border="0">
         <tr> 
           <td width="4%" align="center" valign="middle"><font color="#000000"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
-          <td width="96%"><font color="#000099">Windows Client ������</font></td>
+          <td width="96%"><font color="#000099">Windows Client 的測試</font></td>
         </tr>
         <tr> 
           <td valign="middle">&nbsp;</td>
@@ -805,8 +805,8 @@ a {
                 <td height="18" nowrap bgcolor="#000000"><font color="#FFFFFF">C:\&gt;<strong><font color="#FFFF00"> 
                   telnet 192.168.1.111 25</font></strong><br>
                   <br>
-                  220 mta.paching.idv.tw ESMTP Postfix�@<strong><font color="#00FFFF" size="2">�� 
-                  �ݨ�o�@��N��F�C</font></strong></font></td>
+                  220 mta.paching.idv.tw ESMTP Postfix　<strong><font color="#00FFFF" size="2">← 
+                  看到這一行就對了。</font></strong></font></td>
               </tr>
             </table></td>
         </tr>
@@ -816,7 +816,7 @@ a {
         </tr>
         <tr> 
           <td valign="middle"><div align="center"><font color="#000000"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></div></td>
-          <td><font color="#000099">Linux Client ������ (���K�����P SMTP �����)</font></td>
+          <td><font color="#000099">Linux Client 的測試 (順便模擬與 SMTP 的對話)</font></td>
         </tr>
         <tr> 
           <td valign="middle">&nbsp;</td>
@@ -828,41 +828,41 @@ a {
                   Connected to 192.168.1.111.<br>
                   Escape character is '^]'.<br>
                   220 mta.paching.idv.tw ESMTP Postfix<br>
-                  <strong><font color="#FFFF00">helo client.paching.idv.tw</font></strong>�@<font color="#00FFFF" size="2"><strong><br>
-                  </strong></font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">���ϥ� 
-                  helo ���O�Ӥ��Цۤv�Ҧb���D���C</font><br>
+                  <strong><font color="#FFFF00">helo client.paching.idv.tw</font></strong>　<font color="#00FFFF" size="2"><strong><br>
+                  </strong></font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">先使用 
+                  helo 指令來介紹自己所在的主機。</font><br>
                   <br>
                   250 mta.paching.idv.tw<br>
                   <strong><font color="#FFFF00">mail from: barry@paching.idv.tw</font></strong><br>
-                  <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�ϥ� 
-                  mail from ���O���� SMTP Server �F�ѱH��̪��l��a�}�C</font><br>
+                  <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">使用 
+                  mail from 指令來讓 SMTP Server 了解寄件者的郵件地址。</font><br>
                   <br>
                   250 Ok<br>
                   <strong><font color="#FFFF00">rcpt to: mary@paching.idv.tw</font></strong><br>
                   <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-                  </font></font><font size="2">�ϥ� rcpt to ���O���� SMTP Server ���D����̪��l��a�}�C<br>
+                  </font></font><font size="2">使用 rcpt to 指令來讓 SMTP Server 知道收件者的郵件地址。<br>
                   </font></font><font color="#FFFFFF"><font color="#00FFFF"># 
-                  </font></font><font color="#00FFFF" size="2">�аȥ��T�w�l��D���W�s�b�� mary 
-                  ���b���C</font><br>
+                  </font></font><font color="#00FFFF" size="2">請務必確定郵件主機上存在著 mary 
+                  的帳號。</font><br>
                   <br>
                   250 Ok<br>
-                  <strong><font color="#FFFF00">data</font></strong>�@<br>
+                  <strong><font color="#FFFF00">data</font></strong>　<br>
                   <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
-                  </font></font><font size="2"></font></font><font color="#00FFFF" size="2">�ϥ� 
-                  data ���O�Ӫ��ܶ}�l�n���g�H�󪺤��e�F�C</font><br>
+                  </font></font><font size="2"></font></font><font color="#00FFFF" size="2">使用 
+                  data 指令來表示開始要撰寫信件的內容了。</font><br>
                   <br>
                   354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;<br>
-                  <strong><font color="#FFFF00">subject: test</font>�@</strong><font size="2"><font color="#00FFFF">�� 
-                  �o�ʫH���D���C�H�U�N�O�H�󪺤��e�o�C</font></font><strong><br>
+                  <strong><font color="#FFFF00">subject: test</font>　</strong><font size="2"><font color="#00FFFF">← 
+                  這封信的主旨。以下就是信件的內容囉。</font></font><strong><br>
                   <font color="#FFFF00">Hello mary, i am barry.<br>
                   How are you ?</font></strong><br>
-                  <strong><font color="#FFFF00">.</font></strong><font color="#FFFF00">�@</font><font color="#00FFFF" size="2">�� 
-                  �̫��J��</font><font color="#00FFFF">�u</font><font color="#00FFFF" size="2">.</font><font color="#00FFFF">�v</font><font color="#00FFFF" size="2">�A�Ӫ��ܫH��w���g�����C���� 
-                  SMTP �N�|�}�l�B�z�z���H��F�C</font><br>
+                  <strong><font color="#FFFF00">.</font></strong><font color="#FFFF00">　</font><font color="#00FFFF" size="2">← 
+                  最後輸入個</font><font color="#00FFFF">「</font><font color="#00FFFF" size="2">.</font><font color="#00FFFF">」</font><font color="#00FFFF" size="2">，來表示信件已撰寫完畢。接著 
+                  SMTP 就會開始處理您的信件了。</font><br>
                   <br>
                   250 Ok: queued as 5F2155E6A<br>
-                  <strong><font color="#FFFF00">quit</font></strong>�@<font color="#00FFFF" size="2">�� 
-                  �h�X�P SMTP Server ����ܡC</font><br>
+                  <strong><font color="#FFFF00">quit</font></strong>　<font color="#00FFFF" size="2">← 
+                  退出與 SMTP Server 的對話。</font><br>
                   <br>
                   221 Bye<br>
                   Connection closed by foreign host.</font></td>
@@ -874,58 +874,58 @@ a {
     </li>
 </ol>
 <div align="left"> <font color="#000000"><strong><font size="+1"><a name="11"></a></font><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-  <font size="+1">�]�w POP3 Server</font></strong><br>
+  <font size="+1">設定 POP3 Server</font></strong><br>
   <br>
   </font> 
-  <div align="left"><font color="#000000">�@</font><font color="#000000">�ثe�o�x Mail 
-    Server �u�ണ�ѱH�H���A�ȡA�٤��ണ�ѵ��z�� Client �ݦ��H�A�ҥH���֥h�]�w�@�U POP3 �N��F�CPOP3 �A�ȬO�a xinetd �ӱҰʪ��A�]���ݷ|�వ���ק��A�аO�o���s�Ұ� 
-    xinetd�C<br>
+  <div align="left"><font color="#000000">　</font><font color="#000000">目前這台 Mail 
+    Server 只能提供寄信的服務，還不能提供給您的 Client 端收信，所以趕快去設定一下 POP3 就行了。POP3 服務是靠 xinetd 來啟動的，因此待會兒做完修改後，請記得重新啟動 
+    xinetd。<br>
     </font> </div>
   <table width="99%" border="0">
     <tr> 
       <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
         vi /etc/xinetd.d/qpopper<br>
-        </strong></font> <font face="�ө���">service pop3<br>
+        </strong></font> <font face="細明體">service pop3<br>
         {<br>
-        �@�@�@�@disable�@�@�@�@</font></font><font color="#FFFFFF" face="�ө���">= no�@<font color="#00FFFF" size="2">�� 
-        �쥻�� yes�A�令 no �Y�i�C</font> <br>
-        �@�@�@�@socket_type�@�@= stream<br>
-        �@�@�@�@protocol �@�@�@= tcp<br>
-        �@�@�@�@wait �@�@�@�@�@= no<br>
-        �@�@�@�@user�@�@�@�@�@ = root<br>
-        �@�@�@�@server�@�@�@�@ = /usr/sbin/popper<br>
-        �@�@�@�@server_args �@ = -s<br>
-        �@�@�@�@flags�@�@�@�@�@= IPv4 <br>
-        </font> <font color="#FFFFFF" face="�ө���">} </font><font color="#FFFFFF"><br>
+        　　　　disable　　　　</font></font><font color="#FFFFFF" face="細明體">= no　<font color="#00FFFF" size="2">← 
+        原本為 yes，改成 no 即可。</font> <br>
+        　　　　socket_type　　= stream<br>
+        　　　　protocol 　　　= tcp<br>
+        　　　　wait 　　　　　= no<br>
+        　　　　user　　　　　 = root<br>
+        　　　　server　　　　 = /usr/sbin/popper<br>
+        　　　　server_args 　 = -s<br>
+        　　　　flags　　　　　= IPv4 <br>
+        </font> <font color="#FFFFFF" face="細明體">} </font><font color="#FFFFFF"><br>
         <br>
         suse:~ # <font color="#FFFF00"><strong>rcxinetd restart</strong></font></font></td>
     </tr>
   </table>
   <p><font color="#000000"> <strong><a name="36"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
-    <font color="#000000"><strong><font size="4">POP3 �Ұʤ��᪺�ˬd</font></strong></font></p>
+    <font color="#000000"><strong><font size="4">POP3 啟動之後的檢查</font></strong></font></p>
 </div>
 <ol>
   <li> 
-    <div align="left"><font color="#000000"><strong>�����ϥ� netstat ���O�ˬd</strong>�G<br>
+    <div align="left"><font color="#000000"><strong>本機使用 netstat 指令檢查</strong>：<br>
       <br>
       </font> 
       <table width="100%" border="0">
         <tr> 
           <td height="45" bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
             netstat -anp | grep :110</strong></font><br>
-            tcp�@0�@0�@<strong>0.0.0.0:110�@</strong>0.0.0.0:*�@LISTEN�@12082/xinetd</font></td>
+            tcp　0　0　<strong>0.0.0.0:110　</strong>0.0.0.0:*　LISTEN　12082/xinetd</font></td>
         </tr>
       </table>
       <font color="#000000"><br>
       </font></div>
   </li>
   <li> 
-    <div align="left"><strong>Client �ݨϥ� telnet ����</strong>�G<br>
+    <div align="left"><strong>Client 端使用 telnet 測試</strong>：<br>
       <br>
       <table width="96%" border="0">
         <tr> 
           <td width="4%" align="center" valign="middle"><font color="#000000"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
-          <td width="96%"><font color="#000099">Windows Client ������</font></td>
+          <td width="96%"><font color="#000099">Windows Client 的測試</font></td>
         </tr>
         <tr> 
           <td valign="middle">&nbsp;</td>
@@ -944,7 +944,7 @@ a {
         </tr>
         <tr> 
           <td valign="middle"><div align="center"><font color="#000000"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></div></td>
-          <td><font color="#000099">Linux Client ������ (���K�����P POP3 �����)</font></td>
+          <td><font color="#000099">Linux Client 的測試 (順便模擬與 POP3 的對話)</font></td>
         </tr>
         <tr> 
           <td valign="middle">&nbsp;</td>
@@ -956,28 +956,28 @@ a {
                   Connected to 192.168.1.111.<br>
                   Escape character is '^]'.<br>
                   +OK ready &lt;7752.1132790189@suse&gt;<br>
-                  <strong><font color="#FFFF00">user mary</font>�@<font color="#00FFFF" size="2"><br>
-                  </font></strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�ϥ� 
-                  user ���O�ӫ��X�z�b POP3 Server �W���b���C</font><br>
+                  <strong><font color="#FFFF00">user mary</font>　<font color="#00FFFF" size="2"><br>
+                  </font></strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">使用 
+                  user 指令來指出您在 POP3 Server 上的帳號。</font><br>
                   <br>
                   +OK Password required for mary.<br>
-                  <strong><font color="#FFFF00">pass mypasswd</font></strong>�@<strong><font color="#00FFFF" size="2"><br>
+                  <strong><font color="#FFFF00">pass mypasswd</font></strong>　<strong><font color="#00FFFF" size="2"><br>
                   </font></strong><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"> 
-                  </font></font></font><font color="#00FFFF" size="2">�ϥ� pass 
-                  ���O�ӿ�J mary ���K�X�C</font><br>
+                  </font></font></font><font color="#00FFFF" size="2">使用 pass 
+                  指令來輸入 mary 的密碼。</font><br>
                   <br>
                   +OK mary has 1 visible message (0 hidden) in 529 octets.<br>
-                  <strong><font color="#FFFF00">list</font></strong>�@<font color="#00FFFF" size="2"><br>
+                  <strong><font color="#FFFF00">list</font></strong>　<font color="#00FFFF" size="2"><br>
                   </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"> 
-                  </font></font></font></font><font color="#00FFFF" size="2">�C�X�H��@�����C</font><br>
+                  </font></font></font></font><font color="#00FFFF" size="2">列出信件一覽表。</font><br>
                   <br>
                   +OK 1 visible messages (529 octets)<br>
                   1 529<br>
                   .<br>
-                  <strong><font color="#FFFF00">retr 1</font>�@</strong> <font color="#00FFFF" size="2"><br>
+                  <strong><font color="#FFFF00">retr 1</font>　</strong> <font color="#00FFFF" size="2"><br>
                   </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"> 
-                  </font></font></font></font><font color="#00FFFF" size="2"></font></font><font color="#00FFFF" size="2">�ϥ� 
-                  retr ���O�Ӭd�ݲĤ@�ʫH�󪺤��e�C</font><br>
+                  </font></font></font></font><font color="#00FFFF" size="2"></font></font><font color="#00FFFF" size="2">使用 
+                  retr 指令來查看第一封信件的內容。</font><br>
                   <br>
                   +OK 529 octets<br>
                   Return-Path: &lt;barry@paching.idv.tw&gt;<br>
@@ -997,11 +997,11 @@ a {
                   <p>Hello mary, i am barry.<br>
                     How are you ?</p>
                   <p>.<br>
-                    <strong><font color="#FFFF00">dele 1</font></strong>�@<font color="#00FFFF" size="2">�� 
-                    �R���Ĥ@�ʫH�C</font><br>
+                    <strong><font color="#FFFF00">dele 1</font></strong>　<font color="#00FFFF" size="2">← 
+                    刪除第一封信。</font><br>
                     +OK Message 1 has been deleted.<br>
-                    <strong><font color="#FFFF00">quit</font></strong>�@<font color="#00FFFF" size="2">�� 
-                    �h�X�P POP3 Server ����ܡC</font><br>
+                    <strong><font color="#FFFF00">quit</font></strong>　<font color="#00FFFF" size="2">← 
+                    退出與 POP3 Server 的對話。</font><br>
                     +OK Pop server at suse signing off.<br>
                     Connection closed by foreign host.</p>
                   </font></td>
@@ -1016,38 +1016,38 @@ a {
 <div align="left"> 
   <p><br>
     <font color="#000000"><strong><font size="+1"><a name="12"></a><font size="5">17.3.3 
-    MUA ���]�w�δ���</font></font></strong><br>
-    �@<br>
-    �@���@�U�ڭ̥���b Windows �� outlook ���A�s�W�T�ӨϥΪ� barry�Bmary �� tina ���l��a�}�A�]���бz���T�w�� MTA 
-    �̦s�b�۳o�T�ӱb���C�b�T�w�F�b���s�b����A���۴N�^�� outlook ���s�W�l��a�}�C<br>
+    MUA 的設定及測試</font></font></strong><br>
+    　<br>
+    　等一下我們打算在 Windows 的 outlook 中，新增三個使用者 barry、mary 及 tina 的郵件地址，因此請您先確定於 MTA 
+    裡存在著這三個帳號。在確定了帳號存在之後，接著就回到 outlook 中新增郵件地址。<br>
     <br>
-    �@�����I�� [�u��] �� [�b��] �� [�s�W] �� [�l��]�A�M���J�z����ܦW�١G</font></p>
+    　首先點選 [工具] → [帳戶] → [新增] → [郵件]，然後輸入您的顯示名稱：</font></p>
 </div>
 <p align="center"><font color="#000000"> <img src="mail4.png" tppabs="http://www.suse.url.tw/picture/mail4.png" width="501" height="381"><br>
-  <font size="2">�Ϥ@�G�]�w��ܦW�ٵe�� </font></font></p>
-<p><font color="#000000"> �@�]�w�q�l�l��a�}�G</font></p>
+  <font size="2">圖一：設定顯示名稱畫面 </font></font></p>
+<p><font color="#000000"> 　設定電子郵件地址：</font></p>
 <p align="center"><font color="#000000"> <img src="mail5.png" tppabs="http://www.suse.url.tw/picture/mail5.png" width="501" height="381"><br>
-  <font size="2">�ϤG�G�]�w�l��a�}�e��</font> </font></p>
-<p><font color="#000000"> �@�]�w SMTP �� POP3 ���A�� (�p�z���W�ٸѪR�W�����D�A���N��J IP ��}�Y�i)�G</font></p>
+  <font size="2">圖二：設定郵件地址畫面</font> </font></p>
+<p><font color="#000000"> 　設定 SMTP 及 POP3 伺服器 (如您有名稱解析上的問題，那就輸入 IP 位址即可)：</font></p>
 <p align="center"><font color="#000000"> <img src="mail6.png" tppabs="http://www.suse.url.tw/picture/mail6.png" width="501" height="381"><br>
-  <font size="2">�ϤT�G�]�w�����Υ~�H�l����A���e��</font></font></p>
-<p><font color="#000000"> �@�]�w�b���K�X�G</font></p>
+  <font size="2">圖三：設定內收及外寄郵件伺服器畫面</font></font></p>
+<p><font color="#000000"> 　設定帳號密碼：</font></p>
 <p align="center"><font color="#000000"> <img src="mail7.png" tppabs="http://www.suse.url.tw/picture/mail7.png" width="501" height="381"><br>
-  <font size="2">�ϥ|�G�]�w�b���K�X�e��</font></font></p>
-<p><font color="#000000"> �@���U [����] �N�����F�G</font></p>
+  <font size="2">圖四：設定帳號密碼畫面</font></font></p>
+<p><font color="#000000"> 　按下 [完成] 就結束了：</font></p>
 <p align="center"><font color="#000000"> <img src="mail8.png" tppabs="http://www.suse.url.tw/picture/mail8.png" width="501" height="381"><br>
-  <font size="2">�Ϥ��G�]�w�����e�� </font></font></p>
-<p><font color="#000000"> �@�t�~ mary �� tina ���l��a�}�A�]�ШϥάۦP���覡�إ߰_�ӡC</font> </p>
-<p><font color="#000000">�@�̫�N�i�H�}�l�i����դF�C�z�i�H�b���줺�����H�ݬݡA��p 
-  mary �H�� barry�A�M��A�� barry ��_���Q���U�H��C���� ok ���ܡA�A�ӴN�i�H���ձH�@�ʵ��~�����쪺�H��C<br>
+  <font size="2">圖五：設定完成畫面 </font></font></p>
+<p><font color="#000000"> 　另外 mary 及 tina 的郵件地址，也請使用相同的方式建立起來。</font> </p>
+<p><font color="#000000">　最後就可以開始進行測試了。您可以在網域內先互寄看看，比如 
+  mary 寄給 barry，然後再看 barry 能否順利收下信件。假使 ok 的話，再來就可以嘗試寄一封給外部網域的信件。<br>
   <br>
-  �@�p�G�z���@�ӦX�k domain name ���ܡA�٥i�H�ۤv�A�[�]�@�x DNS�A���� Internet ��ѪR�o�X�z�l��D���b���A�o�˴N�i�H�����~���ұH�Ӫ��H�F�C���L�o�ӷN��ëD�N���۬[�] 
-  Mail Server �N�@�w�n�ۤv�A�[�]�@�x</font><font color="#000000"> DNS�A�]���z�L����N�ޤ]�O�i�檺�A��p�z�i�H�����ӽ� 
-  domain �������h�n�O FQDN �ҹ����� IP �����A�o�˴N�i�H�z�L�W�� DNS �Ӭd�ߥX�z�D������m�A�۵M�]�N�බ�Q�N�H��e�F�F�C<br>
+  　如果您有一個合法 domain name 的話，還可以自己再架設一台 DNS，來讓 Internet 能解析得出您郵件主機在哪，這樣就可以接收外部所寄來的信了。不過這個意思並非意味著架設 
+  Mail Server 就一定要自己再架設一台</font><font color="#000000"> DNS，因為透過網域代管也是可行的，比如您可以到當初申請 
+  domain 的網站去登記 FQDN 所對應的 IP 紀錄，這樣就可以透過上游 DNS 來查詢出您主機的位置，自然也就能順利將信件送達了。<br>
   <br>
-  <font size="+1"><strong><a name="13"></a><font size="5">17.3.4 Postfix �������ɮ�</font></strong></font><br>
+  <font size="+1"><strong><a name="13"></a><font size="5">17.3.4 Postfix 的相關檔案</font></strong></font><br>
   <br>
-  �@�n�F�A�Ǩ�o�̡A�۫H�j�a��򥻪��l����A���[�]���ӳ��Sԣ���D�A���L�o���٤����A�]�����ۤU�ӱz�ٻݤF�� postfix �����ɮת��\�ΡA�o��N�Ӧb���@�z�l��t�ήɫܦ����U�C</font> 
+  　好了，學到這裡，相信大家對基本的郵件伺服器架設應該都沒啥問題，不過這樣還不夠，因為接著下來您還需了解 postfix 相關檔案的功用，這對將來在維護您郵件系統時很有幫助。</font> 
 </p>
 <table width="100%" border="0">
   <tr> 
@@ -1058,8 +1058,8 @@ a {
   <tr> 
     <td>&nbsp;</td>
     <td align="center" valign="middle">&nbsp;</td>
-    <td><font color="#000000">�ϥΪ̫H��Ȧs�B�C��p barry �� mailbox �N�b /var/spool/mail/barry�Atina 
-      �N�b /var/spool/mail/tina�C</font></td>
+    <td><font color="#000000">使用者信件暫存處。比如 barry 的 mailbox 就在 /var/spool/mail/barry，tina 
+      就在 /var/spool/mail/tina。</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -1074,53 +1074,53 @@ a {
   <tr> 
     <td>&nbsp;</td>
     <td align="center" valign="middle">&nbsp;</td>
-    <td><p>��d�H��Ȧs�B�C�� MTA �L�k�B�z���H��A���|�Ȯɦs��b���ؿ��U�������l�ؿ����C</p>
-      <p>�ܩ�n�Q�ֳt�d�ݦ��L��d�H��s�b�A�i�Q��<strong> </strong>mailq<strong> </strong>���O�G </p>
+    <td><p>佇留信件暫存處。當 MTA 無法處理的信件，都會暫時存放在此目錄下的相關子目錄內。</p>
+      <p>至於要想快速查看有無佇留信件存在，可利用<strong> </strong>mailq<strong> </strong>指令： </p>
       <table width="100%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">mailq</font></strong><br>
             Mail queue is empty </font></td>
         </tr>
       </table>
-      <br> <font color="#000000">�H�W������ mailq �����G�Ө��A�N���۵L�����d�H�󪺦s�b�A�o���ܻ� MTA �w���Q�N�H��뻼�� 
-      mailbox ����H�X�h�F�C<br>
+      <br> <font color="#000000">以上面執行 mailq 的結果而言，代表著無任何佇留信件的存在，這表示說 MTA 已順利將信件投遞至 
+      mailbox 或轉寄出去了。<br>
       <br>
-      Postfix ���L�k���Q�B�z���H��A�|�Ȯɦs��b deferred queue �̡A�ӳy���H�����m����]���ܦh�A��p�� DNS �����D�B�t�@�� 
-      MTA ���u�B�H�c�e�q�w�������C���o�Ǧ�d���H��APostfix �|�����@�Ӯɶ��W�O�A�o�ˤ~��o�U���n�A���է뻼���ɶ��O����ɭԡC<br>
+      Postfix 對於無法順利處理的信件，會暫時存放在 deferred queue 裡，而造成信件擱置的原因有很多，比如像 DNS 的問題、另一端 
+      MTA 離線、信箱容量已滿等等。對於這些佇留的信件，Postfix 會給予一個時間戳記，這樣才曉得下次要再嘗試投遞的時間是什麼時候。<br>
       <br>
-      �H�U�|�X�ӻP��d�H��������ѼơG<br>
+      以下舉幾個與佇留信件相關的參數：<br>
       <br>
       </font> <table width="100%" border="0">
         <tr> 
           <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>postconf 
             -d maximal_queue_lifetime</strong></font><br>
             maximal_queue_lifetime = 5d<br>
-            <font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">�o�O���H��b��C�̩үఱ�d���̪��ɶ������ѡC<br>
-            </font><font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">���W�L�o�Ӯɶ��ɡA�N�|�h�H���H��̡C</font><font color="#FFFFFF"><br>
+            <font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">這是說信件在佇列裡所能停留的最長時間為五天。<br>
+            </font><font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">當超過這個時間時，就會退信給寄件者。</font><font color="#FFFFFF"><br>
             <br>
             suse:~ # <font color="#FFFF00"><strong>postconf -d queue_run_delay<br>
             </strong></font> queue_run_delay = 1000s<br>
-            <font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">�w�]�C�j 
-            1000 ���N�|���y deferred queue �@���A���ˬd�C�@�ʫH���ɶ��W�O�A<br>
-            </font><font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">�ݬݦ��S���ݭn�A�����է뻼���H��C</font><font color="#FFFFFF"><br>
+            <font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">預設每隔 
+            1000 秒就會掃描 deferred queue 一次，並檢查每一封信的時間戳記，<br>
+            </font><font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">看看有沒有需要再次嘗試投遞的信件。</font><font color="#FFFFFF"><br>
             </font> <font color="#FFFFFF"><br>
             suse:~ #<font color="#FFFF00"><strong> postconf -d | grep backoff<font color="#FFFFFF"><br>
             </font></strong><font color="#FFFFFF">minimal_backoff_time = 1000s<strong><br>
             </strong><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFF00"><font color="#FFFFFF"><font color="#00FFFF">#</font> 
-            </font></font> </font></font></font><font color="#00FFFF" size="2">�d�b 
-            deffered queue ���H��A�̤֭n�b��C�̰��d�@�d���A�~�i�A���է뻼�C</font><font color="#FFFFFF"><strong><br>
+            </font></font> </font></font></font><font color="#00FFFF" size="2">留在 
+            deffered queue 的信件，最少要在佇列裡停留一千秒，才可再嘗試投遞。</font><font color="#FFFFFF"><strong><br>
             <br>
             </strong>maximal_backoff_time = 4000s<strong><br>
             </strong><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#00FFFF">#</font> 
-            </font></font></font></font></font><font color="#00FFFF" size="2">�C�����է뻼���ѫ�A���|�[�j�U���A���է뻼���ɶ����j�A<br>
+            </font></font></font></font></font><font color="#00FFFF" size="2">每當嘗試投遞失敗後，都會加大下次再嘗試投遞的時間間隔，<br>
             </font><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#00FFFF">#</font> 
-            </font></font></font></font></font><font color="#00FFFF" size="2">���̪��ɶ����j����W�L 
-            4000 ���C</font></font></font></td>
+            </font></font></font></font></font><font color="#00FFFF" size="2">但最長時間間隔不能超過 
+            4000 秒。</font></font></font></td>
         </tr>
       </table>
       <font color="#000000"> <br>
-      ���ɭԤӦh����d�H��A�|�y���l��D�����B�~�t��A�ҥH�е��z����ڪ��p�A�ӽվ�o�Ǧ�C�������ѼơC�t�~�p�G�z�Q�n�R���Ҧ���d�H�󪺸ܡA�i�ϥ�<strong> 
-      </strong>postsuper ���O�G<br>
+      有時候太多的佇留信件，會造成郵件主機的額外負擔，所以請視您的實際狀況，來調整這些佇列的相關參數。另外如果您想要刪除所有佇留信件的話，可使用<strong> 
+      </strong>postsuper 指令：<br>
       <br>
       </font> <table width="100%" border="0" bgcolor="#000000">
         <tr> 
@@ -1142,15 +1142,15 @@ a {
   <tr> 
     <td>&nbsp;</td>
     <td align="center" valign="middle">&nbsp;</td>
-    <td><font color="#000000">�o�O�l�󪺬����ɡA�䰣�F�O���ǲΪ��l�󦬵o�����~�A�]�|�O���l��t�Ϊ��@�ǿ��~�T���A��p�n�O���ѱz�oı 
-      Mail Server �L�k���`�B�@�ɡA����H���ব�ίব����H���A����N�i�H�ǥѳo���ɮר��ˬd�@�Ǭ�����T�A�H��K�@���z�������̾ڡC</font></td>
+    <td><font color="#000000">這是郵件的紀錄檔，其除了記載傳統的郵件收發紀錄外，也會記錄郵件系統的一些錯誤訊息，比如要是哪天您發覺 
+      Mail Server 無法正常運作時，像能寄不能收或能收不能寄等，那麼就可以藉由這個檔案來檢查一些相關資訊，以方便作為您除錯的依據。</font></td>
   </tr>
 </table>
 <p><font color="#000000"></font><font color="#000000"><br>
-  <strong><font size="+1"><a name="30"></a><font size="5">17.3.5 �ϥ� nail ���O�Ӧ��o�H��</font></font></strong><br>
+  <strong><font size="+1"><a name="30"></a><font size="5">17.3.5 使用 nail 指令來收發信件</font></font></strong><br>
   <br>
-  �@�o�@�p�`�O�n�Фj�a�p��b linux ��r�����U�h���o�H��A�өҭn���Ъ��@�ӫ��O�N�O nail�C�t�~�z�n�O�H mail �� mailx �Ӵ��N nail 
-  ������]��A�]�� mail �M mailx ���O�s���� nail ���Ÿ��s���ɡG</font> </p>
+  　這一小節是要教大家如何在 linux 文字介面下去收發信件，而所要介紹的一個指令就是 nail。另外您要是以 mail 或 mailx 來替代 nail 
+  的執行也行，因為 mail 和 mailx 都是連結至 nail 的符號連結檔：</font> </p>
 <table width="100%" border="0">
   <tr> 
     <td height="58" bgcolor="#000000"><font color="#FFFFFF">suse:/usr/bin # <font color="#FFFF00"><strong>ls 
@@ -1162,120 +1162,120 @@ a {
   </tr>
 </table>
 <font color="#000000"><br>
-�@���۴N�Ӥ��гo�ӫ��O���y�k�G<br>
+　接著就來介紹這個指令的語法：<br>
 <br>
 </font>
 <table width="100%" border="0">
   <tr>
-    <td bgcolor="#CCCCCC"><font color="#000000" face="�ө���"><strong>nail [-s subject] 
+    <td bgcolor="#CCCCCC"><font color="#000000" face="細明體"><strong>nail [-s subject] 
       [-a attachment] [-c cc-addr] [-b bcc-addr] <br>
-      �@ �@[-r from-addr] to-addr . . .<br>
+      　 　[-r from-addr] to-addr . . .<br>
       nail [-u user]<br>
       nail -f [name]</strong></font></td>
   </tr>
 </table>
 <font color="#000000"><br>
-<strong> �@</strong>��ª����� nail ���O�A���[����ѼơA�N�O�d�ݦۤv���H�c�C<strong><br>
+<strong> 　</strong>單純的執行 nail 指令，未加任何參數，就是查看自己的信箱。<strong><br>
 <br>
-�Ѽƻ����G<br>
+參數說明：<br>
 </strong></font> 
 <table width="100%" border="1">
   <tr> 
     <td width="7%" align="center" nowrap><strong><font color="#000099">-s</font></strong></td>
-    <td width="91%" nowrap><font color="#000099">�]�w�o�ʫH���D���A���D�����e�d���ťզr���ɡA�ݱN��Τ޸��]���C<br>
-      �� �G-s &quot;test mail&quot;</font></td>
+    <td width="91%" nowrap><font color="#000099">設定這封信的主旨，當主旨內容留有空白字元時，需將其用引號包住。<br>
+      例 ：-s &quot;test mail&quot;</font></td>
   </tr>
   <tr> 
     <td align="center" nowrap><strong><font color="#000099">-a</font></strong></td>
-    <td nowrap><font color="#000099">�Q�b�H�󤤧��a���[�ɮסA�γo�ӰѼƴN��F�C<br>
-      �� �G-a ~/testfile</font></td>
+    <td nowrap><font color="#000099">想在信件中夾帶附加檔案，用這個參數就對了。<br>
+      例 ：-a ~/testfile</font></td>
   </tr>
   <tr> 
     <td align="center" nowrap><strong><font color="#000099">-c</font></strong></td>
-    <td nowrap><font color="#000099">���w�H�󪺰ƥ��C<br>
-      �� �G-c barry,vivian</font></td>
+    <td nowrap><font color="#000099">指定信件的副本。<br>
+      例 ：-c barry,vivian</font></td>
   </tr>
   <tr> 
     <td align="center" nowrap><strong><font color="#000099">-b</font></strong></td>
-    <td nowrap><font color="#000099">���w�H�󪺱K��ƥ� ( �N����̪��l��a�}���� )�C<br>
-      �� �G-b mary,tina@msa.hinet.net</font></td>
+    <td nowrap><font color="#000099">指定信件的密件副本 ( 將收件者的郵件地址隱藏 )。<br>
+      例 ：-b mary,tina@msa.hinet.net</font></td>
   </tr>
   <tr> 
     <td align="center" nowrap><strong><font color="#000099">-q</font></strong></td>
-    <td nowrap><font color="#000099">�H���w���ɮװ����H�󪺰_�l���e�C<br>
-      �ҡG -q ~/mailfile</font></td>
+    <td nowrap><font color="#000099">以指定的檔案做為信件的起始內容。<br>
+      例： -q ~/mailfile</font></td>
   </tr>
   <tr> 
     <td align="center" nowrap><strong><font color="#000099">-r</font></strong></td>
-    <td nowrap><font color="#000099">�]�w mail from ���l��a�}�C<br>
-      �ҡG-r admin@paching.idv.tw</font></td>
+    <td nowrap><font color="#000099">設定 mail from 的郵件地址。<br>
+      例：-r admin@paching.idv.tw</font></td>
   </tr>
   <tr> 
     <td align="center" nowrap><strong><font color="#000099">-u</font></strong></td>
-    <td nowrap><font color="#000099">Ū���ϥΪ̪� mailbox�C<br>
-      �� �G-u barry</font></td>
+    <td nowrap><font color="#000099">讀取使用者的 mailbox。<br>
+      例 ：-u barry</font></td>
   </tr>
   <tr> 
     <td align="center" nowrap><strong><font color="#000099">-f</font></strong></td>
-    <td nowrap><font color="#000099">Ū���ϥΪ̪� mailbox�C<br>
-      �� �G-f /var/spool/mail/barry</font></td>
+    <td nowrap><font color="#000099">讀取使用者的 mailbox。<br>
+      例 ：-f /var/spool/mail/barry</font></td>
   </tr>
 </table>
 <font color="#000000"><strong><br>
-�d�һ���</strong>�G<br>
+範例說明</strong>：<br>
 </font> 
 <table width="100%" border="0">
   <tr> 
-    <td bgcolor="#000000"><font color="#CCCCCC">1.�s���H�󳡤��G</font><font color="#FFFFFF"><br>
+    <td bgcolor="#000000"><font color="#CCCCCC">1.瀏覽信件部分：</font><font color="#FFFFFF"><br>
       <br>
       barry@suse:~&gt; <strong><font color="#FFFF00">mail </font></strong><br>
       mailx version nail 11.25 7/29/05. Type ? for help.<br>
       &quot;/var/spool/mail/barry&quot;: 2 messages 2 new<br>
-      <font face="�ө���"> &gt; N 1 root@paching.idv.tw Wed Oct 11 11:17 18/571 test1<br>
-      �@N 2 tina@paching.idv.tw Wed Oct 11 11:17 18/566 test2<br>
-      �@N 3 mary@msa.hinet.net�@Wed Oct 11 11:41 18/555 test3</font><br>
+      <font face="細明體"> &gt; N 1 root@paching.idv.tw Wed Oct 11 11:17 18/571 test1<br>
+      　N 2 tina@paching.idv.tw Wed Oct 11 11:17 18/566 test2<br>
+      　N 3 mary@msa.hinet.net　Wed Oct 11 11:41 18/555 test3</font><br>
       <br>
-      ?<strong><font color="#FFFF00"> 1</font></strong> <font color="#00FF00" size="2">�� 
-      �d�ݲĤ@�ʫH�����e�C</font><br>
+      ?<strong><font color="#FFFF00"> 1</font></strong> <font color="#00FF00" size="2">← 
+      查看第一封信的內容。</font><br>
       <br>
-      ?<font color="#FFFF00"><strong> n</strong></font> <font color="#00FF00" size="2">�� 
-      �d�ݤU�@�ʫH�����e�C</font> 
-      <p>? <strong><font color="#FFFF00">$ </font></strong><font color="#FFFFFF"><font color="#00FF00" size="2">�� 
-        �d�ݳ̫�@�ʫH�����e�C</font><strong> </strong></font></p>
-      <p>? <font color="#FFFF00"><strong>d 2</strong></font> <font color="#FFFFFF"><font color="#00FF00" size="2">�� 
-        �R���ĤG�ʫH�C</font></font> </p>
+      ?<font color="#FFFF00"><strong> n</strong></font> <font color="#00FF00" size="2">← 
+      查看下一封信的內容。</font> 
+      <p>? <strong><font color="#FFFF00">$ </font></strong><font color="#FFFFFF"><font color="#00FF00" size="2">← 
+        查看最後一封信的內容。</font><strong> </strong></font></p>
+      <p>? <font color="#FFFF00"><strong>d 2</strong></font> <font color="#FFFFFF"><font color="#00FF00" size="2">← 
+        刪除第二封信。</font></font> </p>
       </font> <p><font color="#FFFFFF"> ? <strong><font color="#FFFF00">q</font></strong></font> 
-        <font color="#FFFFFF"><font color="#00FF00" size="2">�� ���}�C</font><font size="2"><br>
+        <font color="#FFFFFF"><font color="#00FF00" size="2">← 離開。</font><font size="2"><br>
         <br>
         </font><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>mail 
         -u barry</strong></font><br>
         suse:~ #<strong><font color="#FFFF00"> mail -f /var/spool/mail/barry</font></strong><br>
-        <font color="#00FF00"># <font size="2">�H�W��ؤ覡�A���i�H�ΨӬd�ݨϥΪ� barry �� mailbox�C</font></font></font><font size="2"> 
+        <font color="#00FF00"># <font size="2">以上兩種方式，都可以用來查看使用者 barry 的 mailbox。</font></font></font><font size="2"> 
         <br>
         <br>
-        </font><font color="#CCCCCC">2. �H�H�����G</font><font size="2"><br>
+        </font><font color="#CCCCCC">2. 寄信部分：</font><font size="2"><br>
         <br>
         </font>barry@suse:~&gt; <font color="#FFFF00"><strong>mail tina,mary@msa.hinet.net</strong></font><font size="2"><br>
         </font> Subject : <font color="#FFFF00"><strong>hello</strong></font> 
-        <font color="#FFFFFF"><font color="#00FF00" size="2">�� ��J�H�󪺥D���C</font></font> 
+        <font color="#FFFFFF"><font color="#00FF00" size="2">← 輸入信件的主旨。</font></font> 
         <br>
-        <font color="#FFFF00"><strong>hello,everybody. </strong></font> <font color="#FFFFFF"><font color="#00FF00" size="2">�� 
-        ��J�H�󪺤��e�C</font></font><br>
+        <font color="#FFFF00"><strong>hello,everybody. </strong></font> <font color="#FFFFFF"><font color="#00FF00" size="2">← 
+        輸入信件的內容。</font></font><br>
         <font color="#FFFF00"><strong>i am barry.</strong></font><br>
-        <font color="#FFFF00"><strong>.</strong></font> <font color="#FFFFFF"><font color="#00FF00" size="2">��</font></font> 
-        <font color="#00FF00" size="2">���ܫH�󤺮e�w���g�����C���� mta �N�}�l���z�B�z�o�ʫH�F�C </font><br>
+        <font color="#FFFF00"><strong>.</strong></font> <font color="#FFFFFF"><font color="#00FF00" size="2">←</font></font> 
+        <font color="#00FF00" size="2">表示信件內容已撰寫完畢。此時 mta 就開始幫您處理這封信了。 </font><br>
         EOT <font color="#00FF00"><font size="2"><br>
         </font></font><br>
         barry@suse:~&gt; <font color="#FFFF00"><strong>mail -s &quot;test mail&quot; 
         -a ~/testfile -b mary,tina vivian </strong></font><br>
-        <font color="#FFFF00" size="2"><strong> �Ьd�ݪ��[�ɮסA���¡C</strong></font><font color="#00FF00" size="2">�� 
-        �H�󤺮e�C </font><br>
+        <font color="#FFFF00" size="2"><strong> 請查看附加檔案，謝謝。</strong></font><font color="#00FF00" size="2">← 
+        信件內容。 </font><br>
         <font color="#FFFF00"><strong>.<br>
         </strong><font color="#FFFFFF">EOT</font></font><br>
-        <font color="#00FF00"># </font><font color="#00FF00" size="2">�H�@�ʥD���� &quot;test 
-        mail&quot; �Υ]�t���[�ɮ� testfile ���H�� mary�Btina �� vivian�A<br>
-        </font><font color="#FFFFFF"><font color="#00FF00"># </font></font><font color="#00FF00" size="2">�䤤 
-        mary �� tina �O�ĥαK��ƥ�</font><font color="#00FF00">�C</font><br>
+        <font color="#00FF00"># </font><font color="#00FF00" size="2">寄一封主旨為 &quot;test 
+        mail&quot; 及包含附加檔案 testfile 的信給 mary、tina 及 vivian，<br>
+        </font><font color="#FFFFFF"><font color="#00FF00"># </font></font><font color="#00FF00" size="2">其中 
+        mary 及 tina 是採用密件副本</font><font color="#00FF00">。</font><br>
         <br>
         barry@suse:~&gt; <font color="#FFFF00"><strong>vi myfile</strong></font><br>
         Happy New Year !<br>
@@ -1286,96 +1286,96 @@ a {
         </font>Happy New Year !<br>
         Happy birthday !<font size="2"><br>
         </font> <font color="#FFFF00"><strong>Congratulation !</strong></font><font size="2"> 
-        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00" size="2">��</font></font> 
-        </font><font color="#00FF00" size="2">��_�l���e����Ұ�����J�C</font><font size="2"><br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00" size="2">←</font></font> 
+        </font><font color="#00FF00" size="2">於起始內容之後所做的輸入。</font><font size="2"><br>
         </font><strong><font color="#FFFF00">.</font></strong><font size="2"><br>
         </font>EOT <font size="2"><br>
-        </font><font color="#FFFFFF"><font color="#00FF00"># </font></font><font color="#00FF00" size="2">�o�̬O�ƥ��N�H�󪺰_�l���e�g�b 
-        myfile �̡A�ë��w mail from �l��a�}<br>
+        </font><font color="#FFFFFF"><font color="#00FF00"># </font></font><font color="#00FF00" size="2">這裡是事先將信件的起始內容寫在 
+        myfile 裡，並指定 mail from 郵件地址<br>
         </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00"># 
-        </font></font><font color="#00FF00" size="2"></font></font><font color="#00FF00" size="2">�� 
-        barry@paching.org�C</font><font size="2"><br>
+        </font></font><font color="#00FF00" size="2"></font></font><font color="#00FF00" size="2">為 
+        barry@paching.org。</font><font size="2"><br>
         </font></font></p>
       </td>
   </tr>
 </table>
 <font color="#000000"><br>
 </font><font color="#000000"><br>
-<font color="#0000FF" size="+1"><strong><a name="17"></a><font size="6">17.4 �l��ǻ��W��</font><font size="+2"> 
+<font color="#0000FF" size="+1"><strong><a name="17"></a><font size="6">17.4 郵件傳遞名單</font><font size="+2"> 
 </font><br>
 </strong></font><br>
-�@���ϥΪ̦b�H�H�ɡA���M�u��J�@�Ӧ���a�}�A���o�����ܦh�H�P�ɦ���o�ʫH�A�o�N�O Mailing List �Ҵ��Ѫ��򥻥\��C�޲z�̥u�n�b�l��D���W�]�w�n�@�Ӷl��O�W�b�� 
-(���ݦs�b��t�ΤW)�A�ë��w�o�ӧO�W�ҥN��������̶l��a�}�N��F�C<br>
+　當使用者在寄信時，雖然只輸入一個收件地址，但卻能讓很多人同時收到這封信，這就是 Mailing List 所提供的基本功能。管理者只要在郵件主機上設定好一個郵件別名帳號 
+(不需存在於系統上)，並指定這個別名所代表的收件者郵件地址就行了。<br>
 <br>
-�@���L��责�쪺���ذ��k�A�u���޲z�̥i�H�]�w�A�ܩ�ϥΪ̭ӤH�h�i�H�b�a�ؿ��U�h�s�� .forward �ɮסA�o�˷��O�H�H�H���z�ɡA�b�z .forward �̩ҫ��w���ϥΪ̳��ব��o�ʫH�C<br>
+　不過剛剛提到的那種做法，只有管理者可以設定，至於使用者個人則可以在家目錄下去編輯 .forward 檔案，這樣當別人寄信給您時，在您 .forward 裡所指定的使用者都能收到這封信。<br>
 <br>
-�@�ܩ�ԲӰ��k�аѦҥH�U��p�`�������C<br>
+　至於詳細做法請參考以下兩小節的說明。<br>
 <br>
-<font size="+1"><strong><a name="18"></a><font size="5">17.4.1 �]�w aliases �ɮ�</font></strong></font><br>
+<font size="+1"><strong><a name="18"></a><font size="5">17.4.1 設定 aliases 檔案</font></strong></font><br>
 <br>
-�@�����Х��T�w�@�U Postfix �w�]���l��O�W��Ʈw�G</font> <br>
+　首先請先確定一下 Postfix 預設的郵件別名資料庫：</font> <br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">postconf 
       -d alias_maps</font></strong><br>
-      alias_maps = hash:/etc/aliases, nis:mail.aliases<strong>�@</strong><font color="#00FFFF" size="2"><br>
+      alias_maps = hash:/etc/aliases, nis:mail.aliases<strong>　</strong><font color="#00FFFF" size="2"><br>
       </font><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#00FFFF">#</font> 
-      </font></font> </font></font></font></font></font><font color="#00FFFF" size="2">���w 
-      Local MDA �ҨϥΪ��l��O�W�ɮסC</font><strong><br>
+      </font></font> </font></font></font></font></font><font color="#00FFFF" size="2">指定 
+      Local MDA 所使用的郵件別名檔案。</font><strong><br>
       <br>
       </strong>suse:~ # <strong><font color="#FFFF00">postconf -d alias_database</font></strong><br>
-      alias_database = hash:/etc/aliases�@<font color="#00FFFF" size="2"><br>
+      alias_database = hash:/etc/aliases　<font color="#00FFFF" size="2"><br>
       </font><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#00FFFF">#</font> 
       </font></font> </font></font></font></font></font><font color="#00FFFF" size="2"> 
-      ���� newaliases ���O�ӭ��اO�W��Ʈw�ɡA�Ҩ̾ڪ��ӷ��ɮסC</font></font></td>
+      執行 newaliases 指令來重建別名資料庫時，所依據的來源檔案。</font></font></td>
   </tr>
 </table>
 <font color="#000000"> <br>
-�@���ۨӬ� aliases �ɮת��]�w�榡�G<br>
+　接著來看 aliases 檔案的設定格式：<br>
 <br>
 </font> 
 <table width="100%" border="0" bgcolor="#000000">
   <tr>
     <td><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> vi /etc/aliases</strong></font><br>
-      <font color="#00FFFF"># <font size="2">�]�w�榡�p�U�G</font><br>
-      # <font size="2">�l��O�W�G����̶l��a�} 1 , ����̶l��a�} 2 , &#8230;</font></font><br>
-      <font color="#00FFFF"># <font size="2">�t�~�b����̶l��a�}���A�p�G�u�����w�b���A�����ܬO�P�@�Ӻ��쪺�ϥΪ̡C</font></font> 
+      <font color="#00FFFF"># <font size="2">設定格式如下：</font><br>
+      # <font size="2">郵件別名：收件者郵件地址 1 , 收件者郵件地址 2 , &#8230;</font></font><br>
+      <font color="#00FFFF"># <font size="2">另外在收件者郵件地址中，如果只有指定帳號，那表示是同一個網域的使用者。</font></font> 
       <br>
-      <font face="�ө���">test:barry,mary,tina,michael@pchome.com.tw </font><br>
+      <font face="細明體">test:barry,mary,tina,michael@pchome.com.tw </font><br>
       <font size="2"><br>
       </font>suse:~ # <font color="#FFFF00"><strong>newaliases </strong></font><br>
       <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">newaliases 
-      ���O�|�ھ� alias_database �ѼƩҫ��w���ɮסA�ӫإߩΧ�s�O�W��Ʈw�C</font><font color="#FFFFFF"><br>
-      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�t�~�C���ק�F�O�W�]�w�ɫ�A�аO�o�@�w�n��s�O�W��Ʈw�C���M�������~�A��</font><font color="#00FFFF"><br>
-      # <font size="2">���� postaliase ���O�]��ӥ��o�Ӥu�@�G</font></font><font color="#FFFFFF"><br>
+      指令會根據 alias_database 參數所指定的檔案，來建立或更新別名資料庫。</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">另外每次修改了別名設定檔後，請記得一定要更新別名資料庫。當然除此之外，還</font><font color="#00FFFF"><br>
+      # <font size="2">有個 postaliase 指令也能勝任這個工作：</font></font><font color="#FFFFFF"><br>
       </font> <font color="#FFFFFF"> suse:~ # <font color="#FFFF00"><strong>postalias 
       /etc/aliases</strong></font></font></td>
   </tr>
 </table>
 <font color="#000000"><br>
-�@�p�G�z�Q�N�l��O�W��Ʈw�w�m�b /etc/postfix �ؿ��U�A�i���p�U�ק�G</font> <br>
+　如果您想將郵件別名資料庫安置在 /etc/postfix 目錄下，可做如下修改：</font> <br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>vi 
       /etc/postfix/main.cf</strong></font><br>
-      <font face="�ө���">alias_maps = hash:<font color="#FF0000">/etc/postfix/aliases</font><br>
+      <font face="細明體">alias_maps = hash:<font color="#FF0000">/etc/postfix/aliases</font><br>
       alias_database = hash:<font color="#FF0000">/etc/postfix/aliases</font></font><br>
       <br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�ק粒����N reload 
-      �a�G </font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">修改完成後就 reload 
+      吧： </font><br>
       suse:~ # <font color="#FFFF00"><strong>postfix reload</strong></font><br>
       postfix/postfix-script: refreshing the Postfix mail system<br>
       <br>
-      <font color="#00FFFF"># <font size="2"></font></font><font color="#00FFFF" size="2">�N�ӭn��s�O�W��Ʈw�ɡA�@�˥i�ĥΤU�C��ؤ覡���@�G</font><br>
+      <font color="#00FFFF"># <font size="2"></font></font><font color="#00FFFF" size="2">將來要更新別名資料庫時，一樣可採用下列兩種方式之一：</font><br>
       suse:~ # <font color="#FFFF00"><strong>newaliases</strong></font><br>
       suse:~ # <font color="#FFFF00"><strong>postalias /etc/postfix/aliases </strong></font></font></td>
   </tr>
 </table>
 <font color="#000000"> <br>
-�@�b aliases �ɮפ��A�٦��t�@�س]�w�榡�A�N�O�ϥ�<strong> </strong><font color="#0000FF">include</font> 
-�ӱN�ҫ��w���ɮפޤJ�C��p�z�i�H�ƥ��N����̦W��g�J�@���ɮפ��G<br>
+　在 aliases 檔案中，還有另一種設定格式，就是使用<strong> </strong><font color="#0000FF">include</font> 
+來將所指定的檔案引入。比如您可以事先將收件者名單寫入一個檔案內：<br>
 <br>
 </font> 
 <table width="100%" border="0">
@@ -1386,37 +1386,37 @@ a {
   </tr>
 </table>
 <font color="#000000"><br>
-�@�M��A�]�w aliases �ɮרӧ� maillist �ޤJ�G<br>
+　然後再設定 aliases 檔案來把 maillist 引入：<br>
 <br>
 </font> 
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
       vi /etc/postfix/aliases<br>
-      </strong></font><font face="�ө���">test::include:/etc/maillist</font><br>
+      </strong></font><font face="細明體">test::include:/etc/maillist</font><br>
       <br>
       suse:~ # <font color="#FFFF00"><strong>postalias /etc/postfix/aliases </strong></font></font></td>
   </tr>
 </table>
 <font color="#000000"><strong><font size="+1"><br>
-</font></strong>�@aliases �ɮת��]�w�A�N���Ш�o�̤F�C<font size="+1"><strong><br>
+</font></strong>　aliases 檔案的設定，就介紹到這裡了。<font size="+1"><strong><br>
 <br>
-<a name="19"></a><font size="5">17.4.2 �ϥΪ̦ۭq����e�W��</font></strong></font> <font size="5"><strong>(.forward) 
+<a name="19"></a><font size="5">17.4.2 使用者自訂的轉送名單</font></strong></font> <font size="5"><strong>(.forward) 
 </strong></font><br>
 <br>
-�@�o�ӳ��������|�ӨҤl�ӻ�������֡C��p�ϥΪ� barry �Ʊ�O�H�H�H���L�ɡA�঳�t�~�@�ǨϥΪ̤]��P�ɦ���o�ʫH�A�o�ɭ� barry �i�H�b�ۤv�a�ؿ��U�إߤ@�� 
-.forward ���ɮסA�ñN�o����e�W��]�w�i�h�N��F�G</font> <br>
+　這個部分直接舉個例子來說明比較快。比如使用者 barry 希望別人寄信給他時，能有另外一些使用者也能同時收到這封信，這時候 barry 可以在自己家目錄下建立一個 
+.forward 的檔案，並將這些轉送名單設定進去就行了：</font> <br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td height="57" bgcolor="#000000"><font color="#FFFFFF">barry@suse:~&gt;<strong><font color="#FFFF00"> 
       vi .forward</font></strong><br>
-      <font face="�ө���">barry,tina,tom@sina.com.tw,david@yahoo.com.tw</font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�z�]�i�H�@�ӱb���]�w�@��C�]�w�����s�����}��N�Y��ͮġC</font></font></td>
+      <font face="細明體">barry,tina,tom@sina.com.tw,david@yahoo.com.tw</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">您也可以一個帳號設定一行。設定完畢存檔離開後就即刻生效。</font></font></td>
   </tr>
 </table>
 <font color="#000000"> <br>
-�@�ӳo���ɮת����|�A�O��<strong> </strong>forward_path �ѼƦb����A�i�H���� postconf �ӬݬݡG<br>
+　而這個檔案的路徑，是由<strong> </strong>forward_path 參數在控制的，可以執行 postconf 來看看：<br>
 <br>
 </font> 
 <table width="100%" border="0">
@@ -1427,77 +1427,77 @@ a {
   </tr>
 </table>
 <font color="#000000"><br>
-�@���M�z�n���ܨ�w�]���|���ɦW�]��G</font> <br>
+　當然您要改變其預設路徑及檔名也行：</font> <br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>postconf 
       -e 'forward_path = $home/forward_list'</strong></font><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">�Яd�N�o�Ӧa�褣��ϥ����޸��A�����γ�޸��C���M�p�G�z���ߺD�b�R�O�C�W<br>
-      </font><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">�s��</font></font><font color="#00FFFF" size="2">���ܡA���N�����ק� 
-      main.cf �o !</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">請留意這個地方不能使用雙引號，必須用單引號。當然如果您不習慣在命令列上<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">編輯</font></font><font color="#00FFFF" size="2">的話，那就直接修改 
+      main.cf 囉 !</font><br>
       <br>
       suse:~ # <font color="#FFFF00"><strong>postfix reload<br>
       </strong><font color="#FFFFFF">postfix/postfix-script: refreshing the Postfix 
       mail system </font></font></font></td>
   </tr>
 </table>
-<p><font color="#000000"> �@�ק粒����A�ϥΪ̴N�i�H�b�ۤv�a�ؿ��U�� forward_list �ɮפ����]�w�F�C<br>
+<p><font color="#000000"> 　修改完成後，使用者就可以在自己家目錄下的 forward_list 檔案內做設定了。<br>
   <br>
   <font color="#0000FF" size="+1"><strong><a name="20"></a><font size="6">17.5 
-  �]�w Postfix �{�ҥ\��</font></strong></font><br>
+  設定 Postfix 認證功能</font></strong></font><br>
   <br>
-  �@�H�ثe�ҾǡA�z���Ӫ��D�n�p��]�w�~�����ϥΪ� Relay �L�̩ұH�L�Ӫ��H��A�]�N�O�ϥ� mynetworks �� mynetworks_style 
-  �ӫ��w�ҫH�����ӷ��ݡC<br>
+  　以目前所學，您應該知道要如何設定才能幫使用者 Relay 他們所寄過來的信件，也就是使用 mynetworks 或 mynetworks_style 
+  來指定所信任的來源端。<br>
   <br>
-  �@���`�p�G�z�� Relay ����]�w���Y�ԨǡA�N�i�H�קK�o�x MTA �_�� Open Relay�A���L�����p���A�٬O���Ǥ���K�B�A��p���q���������u���`�i�z�L 
-  Mail Server �N�H��ǰe�� Internet �W�A���n�O���ѭ��u�a�F�x notebook ��~�a�X�t�A���ǳƭn�z�L���q���l��t�ΨӱH�H���Ȥ�ɡA�N�|�o�Ͱ��D�A�]���o�x 
-  notebook �� IP ��}�ä��b�z Relay ���]�w�d�򤺡C�n�ѨM�o�Ӱ��D���覡�A�N�O�⦹��}�]�w�b mynetworks �̴N��F�C�o�����ȮɳB�z�F�o�����D�A�����ѭn�O���n�X�ӭ��u�P�ɭn�D�b�~�a����ϥΤ��q�� 
-  Mail Server �ɡA�z�i�N���o���F�C�Ӭ��F�n�����ѨM�o�Ӱ��D���̨Τ覡�A�N�O�]�w SMTP ���{�ҥ\��C<br>
+  　平常如果您的 Relay 條件設定的嚴謹些，將可以避免這台 MTA 淪為 Open Relay，不過話雖如此，還是有些不方便處，比如公司內部的員工平常可透過 
+  Mail Server 將信件傳送至 Internet 上，但要是哪天員工帶了台 notebook 到外地出差，正準備要透過公司的郵件系統來寄信給客戶時，就會發生問題，因為這台 
+  notebook 的 IP 位址並不在您 Relay 的設定範圍內。要解決這個問題的方式，就是把此位址設定在 mynetworks 裡就行了。這樣雖暫時處理了這個難題，但哪天要是有好幾個員工同時要求在外地能夠使用公司的 
+  Mail Server 時，您可就有得忙了。而為了要徹底解決這個問題的最佳方式，就是設定 SMTP 的認證功能。<br>
   <br>
-  �@SMTP ���{�ҥ\��A�D�n�O�ѧO�H��̪��l��b���αK�X�A�O�_�P�l��D���W���۲šA�@���H��̪������g MTA �{�ҳq�L��A�N���\ Relay ��ұH�Ӫ��H��A���ɷ��M�N���|����O���O�H���ӷ��ݪ�����F�C�ݨ�o�̡A�O���O�� 
-  SMTP ���{�ҥ\��ܷP����O�C</font></p>
+  　SMTP 的認證功能，主要是識別寄件者的郵件帳號及密碼，是否與郵件主機上的相符，一旦寄件者的身分經 MTA 認證通過後，就允許 Relay 其所寄來的信件，此時當然就不會受到是不是信任來源端的限制了。看到這裡，是不是對 
+  SMTP 的認證功能很感興趣呢。</font></p>
 <blockquote> 
-  <p><font color="#000099"><strong>Tips�G</strong></font><font color="#000099" size="2">�� 
-    Relay ����]�w�L��e�P�ɡA���i��|�Q�~�H�ҧQ�ΡA��z�o�x�l��D�������U���H�󪺵o�H���A�o�N�Φ��ҿת� Open Relay �F�C�@���l��D���ܦ� 
-    Open Relay ��A�o�x�D�����i��|�Q Internet ���㦳���H�O�����c�C���¦W��A�ӾɭP��L MTA �ڦ��z�� Relay �����`�H��C</font></p>
+  <p><font color="#000099"><strong>Tips：</strong></font><font color="#000099" size="2">當 
+    Relay 條件設定過於寬鬆時，有可能會被外人所利用，把您這台郵件主機當成垃圾信件的發信站，這就形成所謂的 Open Relay 了。一旦郵件主機變成 
+    Open Relay 後，這台主機有可能會被 Internet 較具有公信力的機構列為黑名單，而導致其他 MTA 拒收您所 Relay 的正常信件。</font></p>
 </blockquote>
-<p><strong><font size="+1"><a name="21"></a><font size="5">17.5.1 �]�w SMTP �{��</font></font></strong><br>
+<p><strong><font size="+1"><a name="21"></a><font size="5">17.5.1 設定 SMTP 認證</font></font></strong><br>
   <br>
-  �@�o�̪� SMTP �{�Ҥ覡�A�O�Ĩ� SASL (<strong>S</strong>imple <strong>A</strong>uthentication 
-  and <strong>S</strong>ecurity<strong> L</strong>ayer) �����ҥΤ�� (�H���) �������A�ҥH�z�t�ΤW�����w�� 
-  cyrus-sasl �������M��C<br>
+  　這裡的 SMTP 認證方式，是採取 SASL (<strong>S</strong>imple <strong>A</strong>uthentication 
+  and <strong>S</strong>ecurity<strong> L</strong>ayer) 來驗證用戶端 (寄件者) 的身分，所以您系統上須先安裝 
+  cyrus-sasl 的相關套件。<br>
   <br>
-  �@Cyrus SASL �O�����Ѥ@�ǵ{���ӨϥΪ��{�Ҩ禡�w<font color="#000000">�A�]�� Postfix �p�n�ϥ� SASL �������{�ҥ\�઺�ܡA�N�����䴩 
-  SASL�A �]�N�O���A���檺�D�{������b�sĶ�ɡA�N�n�� SASL �禡�w�s���i�h�C���L����o�譱���ΤӾ�߰աA�]�� SuSE �ҨϥΪ��o�� Postfix 
-  �����O���䴩���C </font></p>
-<font color="#000000">�@</font><font color="#000000">SASL �i�H�䴩�n�X�ت��{�Ҿ���A�]�� Postfix 
-�ݫ��X�n�Ĩ���ػ{�Ҥ覡�A���L�q�`���O�ĥΨt�Ϊ��K�X�����ҩ~�h�A��p /etc/shadow �� PAM �C<br>
+  　Cyrus SASL 是指提供一些程式來使用的認證函式庫<font color="#000000">，因此 Postfix 如要使用 SASL 的身分認證功能的話，就必須支援 
+  SASL， 也就是說，執行的主程式當初在編譯時，就要把 SASL 函式庫連結進去。不過關於這方面不用太擔心啦，因為 SuSE 所使用的這個 Postfix 
+  版本是有支援的。 </font></p>
+<font color="#000000">　</font><font color="#000000">SASL 可以支援好幾種的認證機制，因此 Postfix 
+需指出要採取何種認證方式，不過通常都是採用系統的密碼來驗證居多，比如 /etc/shadow 及 PAM 。<br>
 <br>
-�@�t�~�٦��@��s��<strong> </strong>saslauthd �� daemon �n�`�N�A���D�n�N�O�� Postfix �Ө��o�t�αK�X����T�A�ҥH���z�M�w�ĥ� 
-SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
+　另外還有一支叫做<strong> </strong>saslauthd 的 daemon 要注意，它主要就是幫 Postfix 來取得系統密碼的資訊，所以當您決定採用 
+SMTP 認證的同時，一定要確定 saslauthd 有在執行。<br>
 <br>
-�@�z�i�H�ݬݥH�U�o���ɮת����e�G<br>
+　您可以看看以下這個檔案的內容：<br>
 <br>
 </font> 
 <table width="100%" border="0">
   <tr> 
     <td height="55" bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
       vi /usr/lib/sasl2/smtpd.conf</strong></font><br>
-      <font face="�ө���">pwcheck_method: saslauthd<br>
+      <font face="細明體">pwcheck_method: saslauthd<br>
       mech_list: plain login </font></font></td>
   </tr>
 </table>
 <font color="#000000"><br>
-�@�upwcheck_method : saslauthd�v�O���ܷ|�z�L saslauthd �o��{���Ӱ���{�Ҥu�@�C�ܩ� saslauthd �u���b����ɡA�N�ݭn���w�ұĨ����{�Ҿ����A��p�usaslauthd 
--a pam�v�B�usaslauthd -a shadow�v�C<br>
+　「pwcheck_method : saslauthd」是表示會透過 saslauthd 這支程式來執行認證工作。至於 saslauthd 真正在執行時，就需要指定所採取的認證機制為何，比如「saslauthd 
+-a pam」、「saslauthd -a shadow」。<br>
 <br>
-�@SASL ���[���N���Ш�o�̡C���U�Y�}�l�]�w�{�ҳ����C<br>
+　SASL 的觀念就介紹到這裡。底下即開始設定認證部分。<br>
 <br>
 <strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
-�]�w main.cf</font></strong></font><br>
+設定 main.cf</font></strong></font><br>
 <br>
-�@�ݷ|��� main.cf �̡A�N�u�w��{�ҳ������]�w�A�䥦�N���L�F���C<br>
+　待會兒於 main.cf 裡，就只針對認證部分做設定，其它就略過了噢。<br>
 <br>
 <table width="100%" border="0">
   <tr> 
@@ -1506,26 +1506,26 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
         #<font color="#FFFF00"><strong> vi /etc/postfix/main.cf</strong></font><br>
         <br>
         smtpd_sasl_auth_enable = yes<br>
-        <font color="#00FFFF"># <font size="2">�ҥ� Postfix �� SASL �{�ҥ\��C<br>
+        <font color="#00FFFF"># <font size="2">啟用 Postfix 的 SASL 認證功能。<br>
         </font></font><br>
-        <font color="#00FFFF"># <font size="2">�H�U�o�ӰѼƬO�Ψӳ]�w Postfix �����H�󪺱��󭭨�G</font></font><br>
+        <font color="#00FFFF"># <font size="2">以下這個參數是用來設定 Postfix 接收信件的條件限制：</font></font><br>
         smtpd_recipient_restrictions = permit_mynetworks <br>
-        <strong>�@�@�@�@�@�@�@�@�@�@�@</strong> permit_sasl_authenticated<strong><br>
-        �@�@�@�@�@�@�@�@�@�@�@ </strong></font><font color="#FFFFFF"> reject_unauth_destination 
+        <strong>　　　　　　　　　　　</strong> permit_sasl_authenticated<strong><br>
+        　　　　　　　　　　　 </strong></font><font color="#FFFFFF"> reject_unauth_destination 
         <br>
-        <font color="#00FFFF"># <font size="2">�����G</font></font><br>
+        <font color="#00FFFF"># <font size="2">說明：</font></font><br>
         <font color="#00FFFF">#<font size="2"> permit_mynetworks<strong> </strong>: 
-        �p�G�ӷ��ݦb mynetworks �� mynetworks_style �����w�q�A<br>
-        </font><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"> </font></font></font><font size="2">�h���\ 
-        Relay�C</font><br>
-        #<font size="2"> reject_unauth_destination : �p�G����̪�����W�� (@ ����) �b mydestination�B<br>
+        如果來源端在 mynetworks 或 mynetworks_style 中有定義，<br>
+        </font><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"> </font></font></font><font size="2">則允許 
+        Relay。</font><br>
+        #<font size="2"> reject_unauth_destination : 如果收件者的網域名稱 (@ 之後) 在 mydestination、<br>
         </font>#<font color="#FFFFFF"><font color="#00FFFF"><font size="2"> </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font size="2">relay_domains 
-        <font color="#FFFFFF"><font color="#00FFFF"> ��</font></font> virtual_alias_maps 
-        <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF">���S��</font></font></font></font></font></font></font></font></font><font size="2">�w�q�A</font></font></font><font size="2">�h�|�ڵ��������H�C</font></font></font><font size="2"> 
+        <font color="#FFFFFF"><font color="#00FFFF"> 或</font></font> virtual_alias_maps 
+        <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF">中沒有</font></font></font></font></font></font></font></font></font><font size="2">定義，</font></font></font><font size="2">則會拒絕接收此信。</font></font></font><font size="2"> 
         </font><br>
-        # <font size="2">permit_sasl_authenticated : ���q�L SASL �{�Ҫ��ϥΪ̡A���\ Relay 
-        ��ұH�Ӫ��H��C<br>
-        </font> #<font size="2"> ���F permit_sasl_authenticated �~�A��l�ⶵ�]�w�O�w�]���W�h�C</font><font size="2"><br>
+        # <font size="2">permit_sasl_authenticated : 對於通過 SASL 認證的使用者，允許 Relay 
+        其所寄來的信件。<br>
+        </font> #<font size="2"> 除了 permit_sasl_authenticated 外，其餘兩項設定是預設的規則。</font><font size="2"><br>
         <br>
         </font><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> postfix 
         reload</strong></font></font><font size="2"><br>
@@ -1535,7 +1535,7 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
   </tr>
 </table>
 <br>
-<font color="#000000">�@</font><font color="#000000">�ݤF�H�W���{�ҳ]�w�A����ı�o��²��a�C�o�̶��K���@�U��L���������󭭨�W�h�G<br>
+<font color="#000000">　</font><font color="#000000">看了以上的認證設定，應該覺得很簡單吧。這裡順便提一下其他有關的條件限制規則：<br>
 <br>
 </font>
 <table width="100%" border="0">
@@ -1547,9 +1547,9 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><font color="#000000">�� Postfix �q DNS �̬d���X��� IP ��}�ҹ������D���W�ٮɡA�N�|�ڵ���s���A�� 
-      �Q�t�~�p�G�d�o�X IP �ҹ������D���W�ٮɡA Postfix �ٷ|�A�ھڳo�ӦW�٨ӦV DNS �d�ߨ�ҹ����� IP ��}�A�p�G�o�{�Ҭd�o�� IP 
-      �P����s�u�� IP ���ŮɡA�]�|�ڵ� �s���A�ȡC</font></td>
+    <td><font color="#000000">當 Postfix 從 DNS 裡查不出對方 IP 位址所對應的主機名稱時，就會拒絕其存取服務 
+      ﹔另外如果查得出 IP 所對應的主機名稱時， Postfix 還會再根據這個名稱來向 DNS 查詢其所對應的 IP 位址，如果發現所查得的 IP 
+      與當初連線的 IP 不符時，也會拒絕 存取服務。</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -1564,8 +1564,8 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><font color="#000000">���H��̶l��a�}������W�ٳ����A�p�G�ѪR���X�� MX ������ A �����A�h�|�ڦ����H�C���ܦh�U���H�󪺱H��̶l��a�}(mail 
-      from)���O���y���A�N�Y�ϥΤ@�ǵL�Ī� domain name�A�ӥu�n�z�]�F�o�ӭ���W�h��A�N�i�H�קK����o�@�����H��C</font></td>
+    <td><font color="#000000">當寄件者郵件地址的網域名稱部分，如果解析不出其 MX 紀錄或 A 紀錄，則會拒收此信。有很多垃圾信件的寄件者郵件地址(mail 
+      from)都是偽造的，意即使用一些無效的 domain name，而只要您設了這個限制規則後，將可以避免收到這一類的信件。</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -1580,7 +1580,7 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td>�Y����H�l��a�}�����쳡��<font color="#000000">�A�d�ߤ��X�� MX ������ A �����A�h�|�ڵ���s���A�ȡC</font></td>
+    <td>若收件人郵件地址的網域部分<font color="#000000">，查詢不出其 MX 紀錄或 A 紀錄，則會拒絕其存取服務。</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -1595,30 +1595,30 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td>RBL (Real-time BlackList) �O�ҿת��Y�ɶ¦W��C�����W���@�ǲ�´���c�|�������ǱM���b�o�e�s�i�H�󪺶l��D����}�A�ӱz�i�H�z�L 
-      reject_rbl_client �ӫ��w���� RBL �A�Ȫ���´�A�o�˴N��ڦ��C�b���̶¦W�椺���l��D���ҵo�e���H��C</td>
+    <td>RBL (Real-time BlackList) 是所謂的即時黑名單。網路上有一些組織機構會收集那些專門在發送廣告信件的郵件主機位址，而您可以透過 
+      reject_rbl_client 來指定提供 RBL 服務的組織，這樣就能拒收列在它們黑名單內的郵件主機所發送的信件。</td>
   </tr>
 </table>
 <br>
 <font color="#000000"> </font> <font color="#000000"> <strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-<font size="+1">�Ұ� saslauthd �A��</font></strong><br>
+<font size="+1">啟動 saslauthd 服務</font></strong><br>
 <br>
 </font>
 <table width="100%" border="0">
   <tr> 
     <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">rcsaslauthd 
       start</font></strong><br>
-      Starting service saslauthd �@�@�@�@�@�@�@<font color="#00FF00"><strong>done</strong></font><br>
+      Starting service saslauthd 　　　　　　　<font color="#00FF00"><strong>done</strong></font><br>
       <br>
       suse:~ # <font color="#FFFF00"><strong>chkconfig saslauthd 35<br>
       </strong></font><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"><strong> 
-      </strong></font></font></font><font color="#00FFFF" size="2">���U���}���ɡA�Ұ� saslauthd 
-      �A�ȡC</font></font></td>
+      </strong></font></font></font><font color="#00FFFF" size="2">讓下次開機時，啟動 saslauthd 
+      服務。</font></font></td>
   </tr>
 </table>
 <font color="#000000"> </font><font color="#000000"><br>
 <strong><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
-<font size="+1">�ϥ� telnet ���� SASL</font></strong><br>
+<font size="+1">使用 telnet 測試 SASL</font></strong><br>
 <br>
 </font>
 <table width="100%" border="0">
@@ -1629,131 +1629,131 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
       Connected to localhost.<br>
       Escape character is '^]'.<br>
       220 mta.paching.idv.tw ESMTP Postfix<br>
-      <font color="#FFFF00"><strong>ehlo localhost</strong></font>�@<font color="#00FFFF" size="2">�� 
-      ���� Postfix �����A�C</font><br>
+      <font color="#FFFF00"><strong>ehlo localhost</strong></font>　<font color="#00FFFF" size="2">← 
+      測試 Postfix 的狀態。</font><br>
       250 - mta.paching.idv.tw<br>
       250 - PIPELINING<br>
       250 - SIZE 10240000<br>
       250 - VRFY<br>
       250 - ETRN<br>
-      <strong>250- AUTH LOGIN </strong><font color="#00FFFF" size="2">�� ����ܳo��T���N��F�C</font><br>
+      <strong>250- AUTH LOGIN </strong><font color="#00FFFF" size="2">← 有顯示這行訊息就對了。</font><br>
       250 8BITMIME<br>
-      <font color="#FFFF00"><strong>quit</strong></font> <font color="#00FFFF" size="2">�� 
-      �����h�X�o�C </font><br>
+      <font color="#FFFF00"><strong>quit</strong></font> <font color="#00FFFF" size="2">← 
+      直接退出囉。 </font><br>
       221 Bye<br>
       Connection closed by foreign host.</font></td>
   </tr>
 </table>
 <p><font color="#000000"> </font> <font color="#000000"><br>
-  <font size="+1"><strong><a name="22"></a><font size="5">17.5.2 Client �ݪ�����</font></strong></font><br>
+  <font size="+1"><strong><a name="22"></a><font size="5">17.5.2 Client 端的測試</font></strong></font><br>
   <br>
-  �@Windows �� Client �ݭY�n�Ĩ��{�Ҫ��覡�H�H�A�бN [�ڪ����A���ݭn����] ���Ӧa�襴�ĴN�i�H�F�G</font></p>
+  　Windows 的 Client 端若要採取認證的方式寄信，請將 [我的伺服器需要驗證] 那個地方打勾就可以了：</font></p>
 <p align="center"><font color="#000000"> <img src="mail9.png" tppabs="http://www.suse.url.tw/picture/mail9.png" width="386" height="412"></font></p>
-<p><font color="#000000"> �@���۴N�i�H���լݬ��o�C�b�z�z�L�{�Ҥ覡�Ӧ��\�H�X�@�ʫH�H��A�i�H���K�ˬd�@�U MTA �W�Y�������ɡA�ӽT�w�z�T��O�Ĩ��{�ҨӱH�H���C</font></p>
+<p><font color="#000000"> 　接著就可以測試看看囉。在您透過認證方式而成功寄出一封信以後，可以順便檢查一下 MTA 上頭的紀錄檔，來確定您確實是採取認證來寄信的。</font></p>
 <p><font color="#000000"> <font color="#0000FF" size="+1"><strong><a name="23"></a><font size="6">17.6 
-  �[�] Mail Gateway</font></strong></font><br>
+  架設 Mail Gateway</font></strong></font><br>
   <br>
-  �@Mail GW (�l��h�D��) ²�檺���A�N�O�N�Ҧ��U���H��A�A�໼����L�z�ҫ��w���l��D���C�p�G�̨�\��ӰϤ����ܡA�|���ҿת����H Mail GW 
-  �� �H�H Mail GW�A�H�U��p�`�N�O�w��o�ⳡ���ӻ����C<br>
+  　Mail GW (郵件閘道器) 簡單的說，就是將所收下的信件，再轉遞給其他您所指定的郵件主機。如果依其功能來區分的話，會有所謂的收信 Mail GW 
+  及 寄信 Mail GW，以下兩小節就是針對這兩部分來說明。<br>
   <br>
-  <font size="+1"><strong><a name="24"></a><font size="5">17.6.1 ���H Mail Gateway</font></strong></font><br>
+  <font size="+1"><strong><a name="24"></a><font size="5">17.6.1 收信 Mail Gateway</font></strong></font><br>
   <br>
-  �@�b�@�Ǥ���j�������q�A�����|�z�L�@�x�D���Ӿ���l��ǻ������~�� (Mail GW)�A�]�N�O�����H��i�Ӯɷ|���g�L�o�x�D���A�M��A��H���൹�u�����ѪA�Ȫ��l��D���C�p�G�z���q�����s�b�h�Ӥl����A�B�C�Ӥl���쳣����M�Ϊ��l����A���ɡA�Y�i�z�L 
-  Mail GW�A�ӭt�d���o���q���Ҧ��H�󵹦U�l���쪺�l��D���ӳB�z�C<br>
+  　在一些比較大型的公司，往往會透過一台主機來擔任郵件傳遞的中繼站 (Mail GW)，也就是說當信件進來時會先經過這台主機，然後再把信件轉給真正提供服務的郵件主機。如果您公司內部存在多個子網域，且每個子網域都有其專用的郵件伺服器時，即可透過 
+  Mail GW，來負責分發公司的所有信件給各子網域的郵件主機來處理。<br>
   <br>
-  �@�ѥH�W�׭z�i�H�F�ѡAMail GW �ä��O�u�����ѵ� Client �Ӧ��o mail ���D���A�]�����M�N�i�H���ݭn���l��b������T�C�t�~�٦��ܭ��n���@�I�A���H 
-  Postfix �Ӭ[�] Mail GW �ɡA�b main.cf �̪� mydestination �ѼơA���藍��]�t������̪�����W�١C�|�ӨҤl�A���ϱz 
-  Client �� mail �a�}�� user@paching.idv.tw�A���� Mail GW �D���̪� mydestination �N����t�� paching.idv.tw�A���M 
-  Mail GW �|�H���o�ʫH���ت��a�N�O�o�̡C<br>
+  　由以上論述可以了解，Mail GW 並不是真正提供給 Client 來收發 mail 的主機，因此當然就可以不需要有郵件帳號的資訊。另外還有很重要的一點，當以 
+  Postfix 來架設 Mail GW 時，在 main.cf 裡的 mydestination 參數，絕對不能包含有收件者的網域名稱。舉個例子，假使您 
+  Client 的 mail 地址為 user@paching.idv.tw，那麼 Mail GW 主機裡的 mydestination 就不能含有 paching.idv.tw，不然 
+  Mail GW 會以為這封信的目的地就是這裡。<br>
   <br>
-  �@�������~���F�����U���H��ίf�r���Iŧ�A�ٷ|�b Mail GW �W�A�B�~�w�ˤ@�ǹL�o�U���H�� (anti-spam) �ίf�r (anti-viurs) 
-  ���n��A���H��q�L�F�o������H��A�~���o�X�h�C<br>
+  　往往企業為了杜絕垃圾信件及病毒的侵襲，還會在 Mail GW 上，額外安裝一些過濾垃圾信件 (anti-spam) 及病毒 (anti-viurs) 
+  的軟體，等信件通過了這些檢驗以後，才分發出去。<br>
   <br>
-  �@���ۥH���U�o�Ӭ[�c�Ϩӻ�����ڪ����k�G</font></p>
+  　接著以底下這個架構圖來說明實際的做法：</font></p>
 <p align="center"><font color="#000000"> <img src="mail10.png" tppabs="http://www.suse.url.tw/picture/mail10.png" width="556" height="270"></font></p>
-<p><font color="#000000"> �@���� mailgw.paching.idv.tw �O��� Mail GW ������A�P�ɤ]�O�@�x DNS 
-  (�p�G�z�D���ư��h���ܡA�i�H���}�[�])�C�ӷ� Mail GW �Ҧ��쪺�H��p�G�O xxx@paching.idv.tw�A�N�൹ mta.paching.idv.tw 
-  �o�x�D���A�p�G�O xxx@mail1.paching.idv.tw �� xxx@mail2.paching.idv.tw�A�h���O�൹ mail1.paching.idv.tw 
-  �� mail2.paching.idv.tw�C�A�ӴN�}�l�@�]�w�o�C<br>
+<p><font color="#000000"> 　首先 mailgw.paching.idv.tw 是擔任 Mail GW 的角色，同時也是一台 DNS 
+  (如果您主機數夠多的話，可以分開架設)。而當 Mail GW 所收到的信件如果是 xxx@paching.idv.tw，就轉給 mta.paching.idv.tw 
+  這台主機，如果是 xxx@mail1.paching.idv.tw 及 xxx@mail2.paching.idv.tw，則分別轉給 mail1.paching.idv.tw 
+  及 mail2.paching.idv.tw。再來就開始作設定囉。<br>
   <br>
   <strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
-  mailgw.paching.idv.tw �D���W���]�w</font></strong></font></p>
+  mailgw.paching.idv.tw 主機上的設定</font></strong></font></p>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
     <td width="3%" align="center" valign="middle"><font color="#000000"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
-    <td width="95%"><strong><font color="#000099">�]�w DNS<font color="#000000">�G</font></font></strong></td>
+    <td width="95%"><strong><font color="#000099">設定 DNS<font color="#000000">：</font></font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center" valign="middle">&nbsp;</td>
     <td><table width="100%" border="0">
         <tr> 
-          <td nowrap bgcolor="#000000"><font color="#CCCCCC">1. �]�w named.conf�G</font><font color="#FFFFFF"><br>
+          <td nowrap bgcolor="#000000"><font color="#CCCCCC">1. 設定 named.conf：</font><font color="#FFFFFF"><br>
             <br>
             mailgw:~ #<font color="#FFFF00"><strong> vi /etc/named.conf</strong></font><br>
-            <font color="#00FFFF" size="2">// �ϥ� bind view ���\��A�Ӥ��O���Ѥ��~�����W�٬d�ߡC</font><br>
+            <font color="#00FFFF" size="2">// 使用 bind view 的功能，來分別提供內外部的名稱查詢。</font><br>
             options { <br>
-            �@�@�@directory &quot;/var/lib/named&quot;; <br>
+            　　　directory &quot;/var/lib/named&quot;; <br>
             }; <br>
             <br>
             view &quot;internal&quot; {<br>
-            �@�@�@match-clients { 192.168.1.0/24;127.0.0.1; };<br>
-            �@�@�@recursion yes;<br>
+            　　　match-clients { 192.168.1.0/24;127.0.0.1; };<br>
+            　　　recursion yes;<br>
             <br>
-            �@�@�@zone &quot;.&quot; in {<br>
-            �@�@�@�@�@type hint;<br>
-            �@�@�@�@�@file &quot;root.hint&quot;;<br>
-            �@�@�@};<br>
+            　　　zone &quot;.&quot; in {<br>
+            　　　　　type hint;<br>
+            　　　　　file &quot;root.hint&quot;;<br>
+            　　　};<br>
             <br>
-            �@�@�@zone &quot;paching.idv.tw&quot; in {<br>
-            �@�@�@�@�@type master;<br>
-            �@�@�@�@�@file &quot;master/paching.in.db&quot;;<br>
-            �@�@�@};<br>
+            　　　zone &quot;paching.idv.tw&quot; in {<br>
+            　　　　　type master;<br>
+            　　　　　file &quot;master/paching.in.db&quot;;<br>
+            　　　};<br>
             <br>
             }; <br>
             <br>
             view &quot;external&quot; {<br>
-            �@�@�@match-clients { any; };<br>
-            �@�@�@recursion no;<br>
+            　　　match-clients { any; };<br>
+            　　　recursion no;<br>
             <br>
-            �@�@�@zone &quot;.&quot; in {<br>
-            �@�@�@�@�@type hint;<br>
-            �@�@�@�@�@file &quot;root.hint&quot;;<br>
-            �@�@�@};<br>
+            　　　zone &quot;.&quot; in {<br>
+            　　　　　type hint;<br>
+            　　　　　file &quot;root.hint&quot;;<br>
+            　　　};<br>
             <br>
-            �@�@�@zone &quot;paching.idv.tw&quot; in {<br>
-            �@�@�@�@�@type master;<br>
-            �@�@�@�@�@file &quot;master/paching.out.db&quot;;<br>
-            �@�@�@};<br>
+            　　　zone &quot;paching.idv.tw&quot; in {<br>
+            　　　　　type master;<br>
+            　　　　　file &quot;master/paching.out.db&quot;;<br>
+            　　　};<br>
             };<br>
             <br>
-            <font color="#CCCCCC">2. �]�w���Ѥ��~���d�ߪ� zone file�G</font><br>
+            <font color="#CCCCCC">2. 設定提供內外部查詢的 zone file：</font><br>
             <br>
             mailgw:~ # <font color="#FFFF00"><strong>vi /var/lib/named/master/paching.in.db</strong></font><br>
             <br>
-            <font face="�ө���">$TTL 600<br>
-            $ORIGIN paching.idv.tw.</font></font> <font face="�ө���"><br>
-            </font><font color="#FFFFFF" face="�ө���">@�@�@�@IN�@�@SOA�@dns.paching.idv.tw.�@root.paching.idv.tw.�@(<br>
-            �@�@�@�@ 2007021501�@21600�@5400�@864000�@1200�@)<br>
-            �@�@�@ IN�@�@NS�@ dns.paching.idv.tw.<br>
-            dns�@�@IN�@�@A�@�@192.168.1.111<br>
-            mta�@�@IN�@�@A �@ 192.168.1.120<br>
-            mail1�@IN�@�@A�@�@192.168.1.130<br>
-            mail2�@IN�@�@A�@�@192.168.1.140</font><br>
+            <font face="細明體">$TTL 600<br>
+            $ORIGIN paching.idv.tw.</font></font> <font face="細明體"><br>
+            </font><font color="#FFFFFF" face="細明體">@　　　IN　　SOA　dns.paching.idv.tw.　root.paching.idv.tw.　(<br>
+            　　　　 2007021501　21600　5400　864000　1200　)<br>
+            　　　 IN　　NS　 dns.paching.idv.tw.<br>
+            dns　　IN　　A　　192.168.1.111<br>
+            mta　　IN　　A 　 192.168.1.120<br>
+            mail1　IN　　A　　192.168.1.130<br>
+            mail2　IN　　A　　192.168.1.140</font><br>
             <font color="#FFFFFF"> 
             <p> mailgw:~ # <strong><font color="#FFFF00">vi /var/lib/named/master/paching.out.db</font></strong></p>
-            <font face="�ө���">$TTL 600<br>
-            $ORIGIN paching.idv.tw.</font></font> <font face="�ө���"><br>
-            </font><font color="#FFFFFF" face="�ө���">@�@�@�@IN�@�@SOA�@ dns.paching.idv.tw.�@root.paching.idv.tw.�@(<br>
-            �@�@�@�@ 2007021501�@21600�@5400�@864000�@1200�@)<br>
-            �@�@�@ IN�@�@NS�@�@dns.paching.idv.tw.</font><font color="#FFFFFF"><br>
-            <font face="�ө���">�@�@�@ IN�@�@MX 10 mailgw.paching.idv.tw. </font><br>
-            </font><font color="#FFFFFF" face="�ө���">dns�@�@IN�@�@A�@�@ 220.132.78.75<br>
-            mailgw IN�@�@A �@�@220.132.78.75<br>
-            mail1�@IN�@�@A�@�@ 220.132.78.75 </font><font color="#FFFFFF"><font color="#00FFFF" size="2">; 
-            �����ΤU�@���]�w�A�Ũϥ� CNAME �����C</font></font><font color="#FFFFFF" face="�ө���"><br>
-            mail2�@IN�@�@A�@�@ 220.132.78.75</font><font color="#FFFFFF"> <br>
+            <font face="細明體">$TTL 600<br>
+            $ORIGIN paching.idv.tw.</font></font> <font face="細明體"><br>
+            </font><font color="#FFFFFF" face="細明體">@　　　IN　　SOA　 dns.paching.idv.tw.　root.paching.idv.tw.　(<br>
+            　　　　 2007021501　21600　5400　864000　1200　)<br>
+            　　　 IN　　NS　　dns.paching.idv.tw.</font><font color="#FFFFFF"><br>
+            <font face="細明體">　　　 IN　　MX 10 mailgw.paching.idv.tw. </font><br>
+            </font><font color="#FFFFFF" face="細明體">dns　　IN　　A　　 220.132.78.75<br>
+            mailgw IN　　A 　　220.132.78.75<br>
+            mail1　IN　　A　　 220.132.78.75 </font><font color="#FFFFFF"><font color="#00FFFF" size="2">; 
+            此筆及下一筆設定，勿使用 CNAME 紀錄。</font></font><font color="#FFFFFF" face="細明體"><br>
+            mail2　IN　　A　　 220.132.78.75</font><font color="#FFFFFF"> <br>
             <br>
             mailgw:~ #<font color="#FFFF00"><strong> rcnamed restart </strong></font></font></td>
         </tr>
@@ -1767,7 +1767,7 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
   <tr> 
     <td>&nbsp;</td>
     <td align="center" valign="middle"><font color="#000000"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
-    <td><strong><font color="#000099">�]�w Mail GW�G</font></strong></td>
+    <td><strong><font color="#000099">設定 Mail GW：</font></strong></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -1777,55 +1777,55 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
           <td nowrap bgcolor="#000000"><font color="#FFFFFF">mailgw:~ # <font color="#FFFF00"><strong>vi 
             /etc/postfix/main.cf</strong></font><br>
             <font color="#00FFFF" size="2"><br>
-            </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�o�̥u�C�X�@�ǭ��n���ѼơC</font><br>
+            </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">這裡只列出一些重要的參數。</font><br>
             myhostname = mailgw.paching.idv.tw<br>
             mydomain = paching.idv.tw<br>
             myorigin = $mydomain<br>
             inet_interfaces = all<br>
             mydestination = $myhostname<br>
-            <font color="#00FFFF">#</font><font color="#00FFFF" size="2"> �o�ӰѼƳ]�w�n�`�N�A�u�n�]�w���]�t����̶l��a�}�����쳡������A<font color="#FFFFFF"><br>
+            <font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 這個參數設定要注意，只要設定不包含收件者郵件地址的網域部分都行，<font color="#FFFFFF"><br>
             </font></font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
-            </font><font color="#FFFFFF"><font color="#00FFFF" size="2">�_�h�o�x GW 
-            �D��<font color="#FFFFFF"></font></font></font><font color="#00FFFF" size="2">�i�O�|�⥦�������a�ݪ��H��ӳB�z�C</font><br>
+            </font><font color="#FFFFFF"><font color="#00FFFF" size="2">否則這台 GW 
+            主機<font color="#FFFFFF"></font></font></font><font color="#00FFFF" size="2">可是會把它當成本地端的信件來處理。</font><br>
             <br>
             mynetworks = 192.168.1.0/24,127.0.0.0/8<font color="#00FFFF" size="2"><br>
             </font> relay_domains = $mydomain,mail1.paching.idv.tw,mail2.paching.idv.tw<strong><br>
-            </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">���ӽͤ@�U 
-            relay_domains ���ϥήɾ��C�� MTA �Ҧ��쪺�H��A�p�G����̶l��a�}<br>
-            </font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">�����쳡���]�t</font></font><font color="#00FFFF" size="2">�b 
-            $relay_domains �����A�Ϊ̸Ӻ���O�ݩ� $relay_domains �̪��䤤<br>
-            </font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">�@�� 
-            </font></font><font color="#00FFFF" size="2">domain �� subdomain �ɡA�h���\ 
-            Relay</font></font><font color="#00FFFF" size="2">�C��p &quot; relay_domains 
-            = domain.com &quot; �ɡA<br>
-            </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�h�� 
-            user@domain.com �� user@test.domain.com �o�@�����H��O�|�Q���\ relay ���C<br>
+            </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">先來談一下 
+            relay_domains 的使用時機。當 MTA 所收到的信件，如果收件者郵件地址<br>
+            </font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">的網域部分包含</font></font><font color="#00FFFF" size="2">在 
+            $relay_domains 之中，或者該網域是屬於 $relay_domains 裡的其中<br>
+            </font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">一個 
+            </font></font><font color="#00FFFF" size="2">domain 的 subdomain 時，則允許 
+            Relay</font></font><font color="#00FFFF" size="2">。比如 &quot; relay_domains 
+            = domain.com &quot; 時，<br>
+            </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">則像 
+            user@domain.com 或 user@test.domain.com 這一類的信件是會被允許 relay 的。<br>
             </font><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
-            </font></font><font color="#00FFFF" size="2">���׬O�~���� MTA �Ϊ̬O�z Client 
-            �ݩұH�L�Ӫ��H�A���O�o�˰��P�_���C<br>
+            </font></font><font color="#00FFFF" size="2">不論是外部的 MTA 或者是您 Client 
+            端所寄過來的信，都是這樣做判斷的。<br>
             </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
-            �F�ѤF�o���[����A�z���ӲM���ڭ̳o�� relay_domains �ҳ]�w���̫��ӰѼƭȬO<br>
+            了解了這個觀念後，您應該清楚我們這裡 relay_domains 所設定的最後兩個參數值是<br>
             </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
-            �i�H�ٲ����A�]�����̬O�ݩ� $mydomain �� subdomain�C<br>
+            可以省略的，因為它們是屬於 $mydomain 的 subdomain。<br>
             </font><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
-            </font></font><font color="#00FFFF" size="2">relay_domains ���w�]�Ȭ� $mydestination�C<br>
+            </font></font><font color="#00FFFF" size="2">relay_domains 的預設值為 $mydestination。<br>
             </font><font color="#FFFF00"><strong><br>
             </strong></font><font color="#FFFFFF">transport_maps = hash:/etc/postfix/transport<strong> 
             </strong><br>
             <font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
-            </font></font><font color="#00FFFF" size="2">���w transport table (�H���໼��) 
-            �n�]�w�b�����ɮסC���U�ӴN�O�n�]�w�o���ɮסC</font></font><font color="#FFFF00"><strong><br>
+            </font></font><font color="#00FFFF" size="2">指定 transport table (信件轉遞表) 
+            要設定在哪個檔案。接下來就是要設定這個檔案。</font></font><font color="#FFFF00"><strong><br>
             <br>
             </strong></font> mailgw:~ # <font color="#FFFF00"><strong>vi /etc/postfix/transport 
             </strong></font><br>
-            <font color="#00FFFF"># </font><font color="#00FFFF" size="2">���� 
-            relay_domains �ҫ��w�����Ǻ���A�ӧO���V��ҭt�d���l��D���C</font><br>
-            paching.idv.tw�@smtp : [192.168.1.120]<br>
-            mail1.paching.idv.tw�@smtp : [192.168.1.130]<br>
-            mail2.paching.idv.tw�@smtp : [192.168.1.140] <strong><br>
+            <font color="#00FFFF"># </font><font color="#00FFFF" size="2">把剛剛 
+            relay_domains 所指定的那些網域，個別指向其所負責的郵件主機。</font><br>
+            paching.idv.tw　smtp : [192.168.1.120]<br>
+            mail1.paching.idv.tw　smtp : [192.168.1.130]<br>
+            mail2.paching.idv.tw　smtp : [192.168.1.140] <strong><br>
             </strong><br>
-            mailgw:~ # <font color="#FFFF00"><strong>postmap /etc/postfix/transport</strong></font>�@<font color="#00FFFF" size="2">�� 
-            ��s transport.db ��Ʈw�C</font> <br>
+            mailgw:~ # <font color="#FFFF00"><strong>postmap /etc/postfix/transport</strong></font>　<font color="#00FFFF" size="2">← 
+            更新 transport.db 資料庫。</font> <br>
             mailgw:~ # <font color="#FFFFFF"><font color="#FFFF00"><strong>rcpostfix 
             restart</strong></font> </font></font></td>
         </tr>
@@ -1835,7 +1835,7 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
 <p><font color="#000000"><strong><font size="+1"> </font></strong></font><font color="#000000"> 
   <font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font><font size="+1"> 
   </font></font><font size="+1"><strong><font color="#000000">mta.paching.idv.tw 
-  �D���W���]�w</font></strong></font></p>
+  主機上的設定</font></strong></font></p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">mta:~ # <strong><font color="#FFFF00">vi 
@@ -1845,7 +1845,7 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
       mydomain = paching.idv.tw<br>
       myorigin = $mydomain<br>
       inet_interfaces = all<br>
-      <strong>mydestination = $mydomain</strong>�@<br>
+      <strong>mydestination = $mydomain</strong>　<br>
       mynetworks = 192.168.1.0/24, 127.0.0.0/8<br>
       <br>
       mta:~ # <font color="#FFFFFF"><font color="#FFFF00"><strong>rcpostfix restart</strong></font> 
@@ -1854,7 +1854,7 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
 </table>
 <p><font color="#000000"> <font color="#000000"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font><font size="+1"> 
   </font></font><font size="+1"><strong><font color="#000000">mail1.paching.idv.tw 
-  �D���W���]�w</font></strong></font></p>
+  主機上的設定</font></strong></font></p>
 <table width="99%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">mail1:~ #<font color="#FFFF00"> 
@@ -1871,31 +1871,31 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
       restart</strong></font> </font><font color="#FFFF00"></font></font></td>
   </tr>
 </table>
-<p><font color="#000000"> �@�t�~ mail2.paching.idv.tw �D�����]�w�A�P mail1 �t���h�A�o�̴N���A�حz�C</font><font color="#000000">�̫�N�O�T�w 
-  mta�Bmail1 �� mail2 �o�T�x�D�������� POP3 ���A�ȡA���Ӫ��D��򰵧a�C</font></p>
+<p><font color="#000000"> 　另外 mail2.paching.idv.tw 主機的設定，與 mail1 差不多，這裡就不再贅述。</font><font color="#000000">最後就是確定 
+  mta、mail1 及 mail2 這三台主機有提供 POP3 的服務，應該知道怎麼做吧。</font></p>
 <p><font color="#000000"> <font color="#000000"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font><strong> 
-  <font size="4">�}�l�i�����</font></strong><br>
+  <font size="4">開始進行測試</font></strong><br>
   <br>
-  �@�H���H���쬰 mail1.paching.idv.tw �Ӱ�����C�����бz�b mail1 �D���W�s�W�@�ӥs vivian ���b���A���ۦb mail1 
-  �� Client �ݳ]�w��l��a�}�G</font></p>
+  　以收信網域為 mail1.paching.idv.tw 來做實驗。首先請您在 mail1 主機上新增一個叫 vivian 的帳號，接著在 mail1 
+  的 Client 端設定其郵件地址：</font></p>
 <p align="center"><font color="#000000"> <img src="mail11.png" tppabs="http://www.suse.url.tw/picture/mail11.png" width="501" height="381"></font></p>
-<p><font color="#000000"> �@�A�ӫ��w�ҨϥΪ� SMTP �� POP3 Server�G</font></p>
+<p><font color="#000000"> 　再來指定所使用的 SMTP 及 POP3 Server：</font></p>
 <p align="center"><font color="#000000"> <img src="mail12.png" tppabs="http://www.suse.url.tw/picture/mail12.png" width="501" height="381"></font></p>
-<p><font color="#000000"> �@�ѤU���B�J���ӳ��S���D�A�o�̴N�ٲ��F�C<br>
+<p><font color="#000000"> 　剩下的步驟應該都沒問題，這裡就省略了。<br>
   <br>
-  �@���۱z�i�q�~���H�@�� vivian@mail1.paching.idv.tw ���H��Ӱ����աA�M�� vivian �A���ձ����o�ʫH��ݬݡC�p�G�L�{�����Q�A�i�H�ˬd�@�U 
-  mailgw �� mail1 �D���W�Y�� /var/log/mail �����ɥX�{������~�T���A�îھڳo�Ǹ�T�Ӱl�ܬO�b�������`�X���D�C<br>
+  　接著您可從外部寄一封 vivian@mail1.paching.idv.tw 的信件來做測試，然後 vivian 再嘗試接收這封信件看看。如果過程不順利，可以檢查一下 
+  mailgw 及 mail1 主機上頭的 /var/log/mail 紀錄檔出現什麼錯誤訊息，並根據這些資訊來追蹤是在哪個環節出問題。<br>
   <br>
-  �@�@�����`�I�쪺�O�W�ٸѪR�X���p�A�]���z�����T�w DNS �����`�B�@�A�i�ϥ� nslookup �� dig ���O�����˴��@�U�C<br>
+  　一般比較常碰到的是名稱解析出狀況，因此您必須確定 DNS 有正常運作，可使用 nslookup 或 dig 指令先行檢測一下。<br>
   <br>
-  <font size="+1"><strong><a name="25"></a><font size="5">17.6.2 �H�H Mail Gateway</font></strong></font><br>
+  <font size="+1"><strong><a name="25"></a><font size="5">17.6.2 寄信 Mail Gateway</font></strong></font><br>
   <br>
-  �@���W�@�p�`�O�w�怜�H�����A�{�b�O�w�� Client �ݪ��H�H�����A�]����Ӭ[�c�Ϫ��H�󨫦V�u�O�A�˹L�ӦӤw�G</font></p>
+  　剛剛上一小節是針對收信部分，現在是針對 Client 端的寄信部分，因此整個架構圖的信件走向只是顛倒過來而已：</font></p>
 <p align="center"><font color="#000000"> <img src="mail13.png" tppabs="http://www.suse.url.tw/picture/mail13.png" width="556" height="270"></font></p>
-<p><font color="#000000"> �@���ϲ{�b vivian �n�H�@�ʫH���� Internet ���B�͡A�ѩ�b��� outlook �̳]�w 
-  vivian �� mail �a�}�ɡA���w SMTP Server �� mail1.paching.idv.tw�A�]�����H��H�X�ɷ|���浹�o�x�D���B�z�A�p�G 
-  mail1 �D��������s�W Internet ���ܡA�����H�H�L�{���ӬO���Q���A���U�@ mail1 �L�k�s�W Internet �ɫ���O ? �o�ɭԥi�H�b 
-  mail1 �D���� main.cf ���]�w relayhost �ѼơA�ӱN�~�H�l��]�浹 Mail GW �N���ǰe�G</font> </p>
+<p><font color="#000000"> 　假使現在 vivian 要寄一封信給其 Internet 的朋友，由於在剛剛 outlook 裡設定 
+  vivian 的 mail 地址時，指定 SMTP Server 為 mail1.paching.idv.tw，因此當信件寄出時會先交給這台主機處理，如果 
+  mail1 主機本身能連上 Internet 的話，那此寄信過程應該是順利的，但萬一 mail1 無法連上 Internet 時怎麼辦呢 ? 這時候可以在 
+  mail1 主機的 main.cf 中設定 relayhost 參數，來將外寄郵件也交給 Mail GW 代為傳送：</font> </p>
 <table width="100%" border="0">
   <tr>
     <td nowrap bgcolor="#000000"><font color="#FFFFFF">mail1:~ #<font color="#FFFF00"> 
@@ -1907,82 +1907,82 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
       inet_interfaces = all<br>
       mydestination = $myhostname<br>
       <strong>mynetworks = 192.168.1.0/24, 127.0.0.0/8</strong><br>
-      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">���\ Relay �H�����ӷ��ݩұH�L�Ӫ�����H��C<br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">允許 Relay 信任之來源端所寄過來的任何信件。<br>
       <br>
-      </font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">�� 
-      Client �ݬ��D�H���ӷ��ݡA�Φ���� mail �a�}�����쳡��</font></font><font color="#00FFFF" size="2">���b 
-      relay_domains �����A�ƦܱĨ� <br>
+      </font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">當 
+      Client 端為非信任來源端，或收件者 mail 地址的網域部分</font></font><font color="#00FFFF" size="2">不在 
+      relay_domains 之中，甚至採取 <br>
       </font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">SMTP 
-      �{��</font></font><font color="#00FFFF" size="2">�ɤ]���ѡA</font></font><font color="#00FFFF" size="2">�h�H�U 
-      relayhost �Ѽƪ��]�w�O�_���F�@�Ϊ��C�ϹL�ӻ��A�p�G�H�W�T��<br>
-      </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> </font><font color="#FFFFFF"><font color="#00FFFF" size="2">����������@������</font></font><font color="#00FFFF" size="2">�߮ɡA�]�N�O�b���\ 
-      Relay ���e���U�A relayhost �ѼƤ~��o�������ĥΡC<br>
+      認證</font></font><font color="#00FFFF" size="2">時也失敗，</font></font><font color="#00FFFF" size="2">則以下 
+      relayhost 參數的設定是起不了作用的。反過來說，如果以上三者<br>
+      </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> </font><font color="#FFFFFF"><font color="#00FFFF" size="2">之中的任何一項有成</font></font><font color="#00FFFF" size="2">立時，也就是在允許 
+      Relay 的前提下， relayhost 參數才能發揮它的效用。<br>
       </font><font size="2"><br>
       </font><strong>relayhost = [192.168.1.111] <br>
-      </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�b���\ 
-      Relay ���e���U�A���w�n��H���൹���@�x�l��D���B�z�C<br>
+      </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">在允許 
+      Relay 的前提下，指定要把信件轉給哪一台郵件主機處理。<br>
       <br>
       </font><font color="#FFFFFF">mail1:~ #<font color="#FFFF00"> <strong>rcpostfix 
       restart </strong></font></font></font></td>
   </tr>
 </table>
 <font color="#000000"><br>
-�@�H�W�O������ mail1 �D���W���]�w�A�ܩ� mta �� mail2 �]�Цp�k���s�@�f�C<br>
+　以上是有關於 mail1 主機上的設定，至於 mta 及 mail2 也請如法炮製一番。<br>
 <br>
-�@�̫�N�O Mail GW �D���F�A�z�u�n�T�w Mail GW �౵���N��A�Ȫ��ШD�Y�i�C<br>
+　最後就是 Mail GW 主機了，您只要確定 Mail GW 能接受代轉服務的請求即可。<br>
 <br>
-�@�ݧ��F�H�W��p�` Mail GW ���m�ߡA�i��z�ߤ����ӺðݡA�U�@ transport �� relayhost ���P�ɳ]�w�ɡA�쩳�H�֬��D�A���׬O transport 
-�u���� relayhost�A�ۤv���Ū��ܹ갵�ݬݴN���D�F�C<br>
+　看完了以上兩小節 Mail GW 的練習，可能您心中有個疑問，萬一 transport 及 relayhost 都同時設定時，到底以誰為主，答案是 transport 
+優先於 relayhost，自己有空的話實做看看就知道了。<br>
 <br>
 </font> 
 <table width="100%" border="0">
   <tr>
     <td width="1%" valign="top" nowrap>&nbsp;</td>
     <td width="5%" valign="top" nowrap><img src="suse.gif" tppabs="http://www.suse.url.tw/suse.gif" width="39" height="20"></td>
-    <td width="94%"><font color="#000099" size="2">��X�H�W�ҾǡA�ڭ��k�Ǥ@�U MTA ���\ Relay ���ɾ��G</font><br> 
+    <td width="94%"><font color="#000099" size="2">綜合以上所學，我們歸納一下 MTA 允許 Relay 的時機：</font><br> 
       <table width="100%" border="0">
         <tr> 
           <td width="3%" align="center" valign="top" nowrap><font color="#000099" size="2">1.</font></td>
-          <td width="97%"><font color="#000099" size="2">���H�����ӷ��� ( $mynetworks�B$mynetworks_style) 
-            �ұH�X�ܥ���a�誺�H��C</font></td>
+          <td width="97%"><font color="#000099" size="2">對於信任的來源端 ( $mynetworks、$mynetworks_style) 
+            所寄出至任何地方的信件。</font></td>
         </tr>
         <tr> 
           <td align="center" valign="top" nowrap><font color="#000099" size="2">2.</font></td>
-          <td><font color="#000099" size="2">��󤣫H�����ӷ��ݩұH�X���H��A�u�n����a�}�����쳡���ŦX $relay_domains 
-            �Ϊ��ݩ� $relay_domains �����l����ɡA�h���\ Relay�C</font></td>
+          <td><font color="#000099" size="2">對於不信任的來源端所寄出的信件，只要收件地址的網域部分符合 $relay_domains 
+            或者屬於 $relay_domains 中的子網域時，則允許 Relay。</font></td>
         </tr>
         <tr> 
           <td align="center" valign="top" nowrap><font color="#000099" size="2">3.</font></td>
-          <td><font color="#000099" size="2">�Ĩ� SMTP �{�ҮɡA�u�n Client �ݻ{�ҳq�L�A�h���\ Relay 
-            ��ұH�Ӫ��H��C</font></td>
+          <td><font color="#000099" size="2">採取 SMTP 認證時，只要 Client 端認證通過，則允許 Relay 
+            其所寄來的信件。</font></td>
         </tr>
       </table></td>
   </tr>
 </table>
 <p><font color="#000000"><br>
   <font size="+1"><strong><a name="26"></a><font color="#0000FF" size="6">17.7 
-  �l��ƴ��d��</font></strong></font><br>
+  郵件備援範例</font></strong></font><br>
   <br>
-  �@�b 17.2.2 �p�` [<a href="#6">MTA �P DNS �����Y</a>] ���A����L�l��ƴ��������A�]�N�O���b�ڭ� DNS �̦s�b�ۤ@���H�W�� 
-  MX �����A�ä��O�֦����P�� preference�A�ӷ���� MTA �n��H�H��L�ӮɡA�|�����է�o�ʫH�浹 preference �ƭȳ̧C�����x�D�n 
-  MX �D���A�p�G�L�k�s�W�o�x�D���A�N��H��浹 preference ���C�� MX �D���A�l�̦������C�o�@�`�N�|�w��o�����ӹ갵�@�U�A�аѦҥH�U���[�c�ϡG</font></p>
+  　在 17.2.2 小節 [<a href="#6">MTA 與 DNS 的關係</a>] 中，提到過郵件備援的概念，也就是說在我們 DNS 裡存在著一筆以上的 
+  MX 紀錄，並分別擁有不同的 preference，而當對方 MTA 要轉寄信件過來時，會先嘗試把這封信交給 preference 數值最低的那台主要 
+  MX 主機，如果無法連上這台主機，就把信件交給 preference 次低的 MX 主機，餘依此類推。這一節將會針對這部分來實做一下，請參考以下的架構圖：</font></p>
 <p align="center"><font color="#000000"> <img src="mail14.png" tppabs="http://www.suse.url.tw/picture/mail14.png" width="525" height="178"></font></p>
-<p><font color="#000000"> �@�ھڦ��[�c�ϡA�ݷ|��ݦb DNS �̳]�w�ⵧ MX �����A�䤤 mail1.paching.idv.tw 
-  �O�D�n�� MX �D���Amail2 ���ƴ��D���A�� yahoo.com.tw �� MTA �L�k�P mail1 ���o�s�u�ɡA�|��ӱN�l��ǵ� mail2�A�� 
-  mail1 ��_���`�s�u��Amail2 �|�b��F���s�뻼���ɶ��ɡA��H����ٵ� mail1�C���۴N�Ӱ��������]�w�F�C<br>
+<p><font color="#000000"> 　根據此架構圖，待會兒需在 DNS 裡設定兩筆 MX 紀錄，其中 mail1.paching.idv.tw 
+  是主要的 MX 主機，mail2 為備援主機，當 yahoo.com.tw 的 MTA 無法與 mail1 取得連線時，會轉而將郵件傳給 mail2，等 
+  mail1 恢復正常連線後，mail2 會在到達重新投遞的時間時，把信件交還給 mail1。接著就來做相關的設定了。<br>
   <br>
-  �@���� DNS �� zone file �̦s�b�ۥH�U�����G</font> </p>
+  　首先 DNS 的 zone file 裡存在著以下紀錄：</font> </p>
 <table width="100%" border="0">
   <tr> 
-    <td bgcolor="#000000"><font color="#FFFFFF" face="�ө���">$ORIGIN paching.idv.tw.<br>
-      @�@�@�@�@IN�@�@MX 10 mail1.paching.idv.tw.<br>
-      �@�@�@�@ IN�@�@MX 20 mail2.paching.idv.tw.<br>
-      mail1�@�@IN�@�@A�@�@ 220.132.78.75<br>
-      mail2�@�@IN�@�@A�@�@ 61.231.118.9</font><font color="#FFFFFF">&nbsp; </font></td>
+    <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">$ORIGIN paching.idv.tw.<br>
+      @　　　　IN　　MX 10 mail1.paching.idv.tw.<br>
+      　　　　 IN　　MX 20 mail2.paching.idv.tw.<br>
+      mail1　　IN　　A　　 220.132.78.75<br>
+      mail2　　IN　　A　　 61.231.118.9</font><font color="#FFFFFF">&nbsp; </font></td>
   </tr>
 </table>
 <font color="#000000"><br>
-�@�A�ӬO mail1 �D���W main.cf ���]�w�G<br>
+　再來是 mail1 主機上 main.cf 的設定：<br>
 <br>
 </font> 
 <table width="100%" border="0">
@@ -1994,7 +1994,7 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
   </tr>
 </table>
 <font color="#000000"><br>
-�@�̫�O mail2 ���]�w�G<br>
+　最後是 mail2 的設定：<br>
 <br>
 </font> 
 <table width="100%" border="0">
@@ -2003,31 +2003,31 @@ SMTP �{�Ҫ��P�ɡA�@�w�n�T�w saslauthd ���b����C<br>
       mydomain = paching.idv.tw<br>
       inet_interfaces = all<br>
       <strong>mydestination = $myhostname</strong><br>
-      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">�o�̤���]�w�� $mydomain�A�_�h 
-      mail2 �|�⥦�������a�ݪ��H��ӳB�z�C<br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">這裡不能設定成 $mydomain，否則 
+      mail2 會把它當成本地端的信件來處理。<br>
       </font> <strong>relay_domains = paching.idv.tw <br>
-      </strong><font color="#00FFFF">#</font><strong> </strong><font color="#00FFFF" size="2">�] 
-      mail2 �O paching.idv.tw ���ƴ��D���A�ҥH�����]�w���\�B�z�o�Ӻ��쪺�H��C</font></font></td>
+      </strong><font color="#00FFFF">#</font><strong> </strong><font color="#00FFFF" size="2">因 
+      mail2 是 paching.idv.tw 的備援主機，所以必須設定允許處理這個網域的信件。</font></font></td>
   </tr>
 </table>
 <font color="#000000"><br>
-�@���n�H�W�o�Ǭ����]�w�Y�i�A�O���Oı�o��²��O ? ���L�γ\�z�|�Q���D�A����p�����k�i�H�F��l��ƴ����ت��A�o�̴N�y�L�����@�U�C</font><font color="#000000">���H��ǰe�L�ӮɡA�p�G 
-mail1 ���ɬO���u���A�h�H��|���նǰe�� mail2�A�� mail2 �]�����]�w�urelay_domains<strong> = </strong>paching.idv.tw�v�A�ҥH�|��o�Ӻ��쪺�H�󦬤U�ӳB�z�A���� 
-mail2 �|�V DNS ���o paching.idv.tw ���Ҧ� MX �����A�M��A���զV preference �ƭȤ�ۤv�C (�����u���v) �� MX 
-�D�����s�u�A���N�O mail1 �o�A���]�� mail1 �٬O�B�����u���A�A�ҥH mail2 �u�n�ĨĪ���H��d�b�ۤv��C�̡C�@�� mail1 ��_�s�u�A�h 
-mail2 ����F�A���է뻼���ɶ��ɡA�N�බ�Q��H��ǰe�^�h�� mail1 �F�C<br>
+　做好以上這些相關設定即可，是不是覺得很簡單呢 ? 不過或許您會想知道，為何如此做法可以達到郵件備援的目的，這裡就稍微解釋一下。</font><font color="#000000">當信件傳送過來時，如果 
+mail1 當時是離線的，則信件會嘗試傳送給 mail2，而 mail2 因為有設定「relay_domains<strong> = </strong>paching.idv.tw」，所以會把這個網域的信件收下來處理，接著 
+mail2 會向 DNS 取得 paching.idv.tw 的所有 MX 紀錄，然後再嘗試向 preference 數值比自己低 (較高優先權) 的 MX 
+主機做連線，那就是 mail1 囉，但因為 mail1 還是處於離線狀態，所以 mail2 只好乖乖的把信件留在自己佇列裡。一旦 mail1 恢復連線，則 
+mail2 等到了再嘗試投遞的時間時，就能順利把信件傳送回去給 mail1 了。<br>
 <br>
 </font> <font color="#000000"><font color="#000000"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font> 
-<font size="4"><strong>���դ覡</strong></font><br>
+<font size="4"><strong>測試方式</strong></font><br>
 <br>
-�@�����n�T�w mail1 �쥻�N�ॿ�`���ѪA�ȡA���T�{�F����A���۴N���� mail1 �� Postfix �A�ȡA�M��q�~���H�@�ʫH�� barry@paching.idv.tw�A�b���Q�H�X��A�z�i�H�^�� 
-mail2 �D���ð��� mailq ���O�A�o�ɭ����ӷ|�ݨ�@�ʦ�d�H��C<br>
+　首先要確定 mail1 原本就能正常提供服務，等確認了之後，接著就停止 mail1 的 Postfix 服務，然後從外部寄一封信給 barry@paching.idv.tw，在順利寄出後，您可以回到 
+mail2 主機並執行 mailq 指令，這時候應該會看到一封佇留信件。<br>
 <br>
-�@�A�ӽЫ�_ mail1 �D���� Postfix �A�ȡA�é� mail2 �D���W����upostfix flush�v�A���ۦA�װ��� mailq ���O�ɡA�N�|�o�{��d�H��w�g�����F�A�]�h�� 
-? ���M�O�Ǧ^�h�� mail1 �o�A�ۤv�ոլݧa�C<br>
+　再來請恢復 mail1 主機的 Postfix 服務，並於 mail2 主機上執行「postfix flush」，接著再度執行 mailq 指令時，就會發現佇留信件已經不見了，跑去哪 
+? 當然是傳回去給 mail1 囉，自己試試看吧。<br>
 </font> 
 <p align="center">&nbsp;</p>
-<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( �f�C�� 
+<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( 柏青哥 
   )</em> <br>
   </font> </p>
 </body>

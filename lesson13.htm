@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>�f�C���� SuSE Linux -- �[�] DHCP Server</title>
+<title>柏青哥的 SuSE Linux -- 架設 DHCP Server</title>
 <style type="text/css">
 <!--
 a {
@@ -15,115 +15,115 @@ a {
 
 <body background="sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
 <div align="left"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
-  <font color="#000000">�@</font> <font color="#000000">�@�@�̡G���f��</font><font color="#000000" size="+1">�@</font>E-mail�Gpachingko@ms96.url.com.tw 
+  <font color="#000000">　</font> <font color="#000000">　作者：陳柏菁</font><font color="#000000" size="+1">　</font>E-mail：pachingko@ms96.url.com.tw 
   <br>
   <table width="100%" border="0">
     <tr> 
       <td nowrap> <div align="left"></div>
-        <div align="center"><font size="+1"><font color="#000000"><strong><font color="#000000" size="7"><strong>�ĤQ�T���@�[ 
-          �] DHCP Server</strong></font></strong></font></font></div>
+        <div align="center"><font size="+1"><font color="#000000"><strong><font color="#000000" size="7"><strong>第十三章　架 
+          設 DHCP Server</strong></font></strong></font></font></div>
         <div align="center"></div></td>
     </tr>
   </table>
   <font size="+1"><strong><font color="#000099"><br>
-  ���ޡG</font></strong></font><br>
+  索引：</font></strong></font><br>
   <table width="100%" border="0">
     <tr> 
-      <td colspan="3"><font color="#000099"><strong>13.1 <a href="#1">DHCP ���z</a></strong></font></td>
+      <td colspan="3"><font color="#000099"><strong>13.1 <a href="#1">DHCP 概述</a></strong></font></td>
     </tr>
     <tr> 
       <td width="4%"><font color="#000099">&nbsp;</font></td>
       <td width="6%" align="center" valign="top" nowrap><font color="#000099">13.1.1</font></td>
-      <td width="90%"><a href="#2">��� DHCP</a></td>
+      <td width="90%"><a href="#2">何謂 DHCP</a></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">13.1.2</font></td>
-      <td><a href="#3">DHCP ���t IP ��}���覡</a></td>
+      <td><a href="#3">DHCP 分配 IP 位址的方式</a></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">13.1.3</font></td>
-      <td><font color="#000099"><a href="#4">DHCP ���B�@�y�{</a> --- <a href="#5">�����������Q</a></font></td>
+      <td><font color="#000099"><a href="#4">DHCP 的運作流程</a> --- <a href="#5">租約期的探討</a></font></td>
     </tr>
     <tr> 
-      <td colspan="3"><font color="#000099"><strong>13.2 <a href="#6">�]�w DHCP 
+      <td colspan="3"><font color="#000099"><strong>13.2 <a href="#6">設定 DHCP 
         Server</a></strong></font></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">13.2.1</font></td>
-      <td><a href="#7">�ݦw�ˮM��ήM��M��</a></td>
+      <td><a href="#7">需安裝套件及套件清單</a></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">13.2.2</font></td>
-      <td><font color="#000099"><a href="#8">�]�w DHCP Server</a> --- <a href="#9">�]�w 
-        /etc/dhcpd.conf</a>�B<a href="#10">�ק� /etc/sysconfig/dhcpd</a></font></td>
+      <td><font color="#000099"><a href="#8">設定 DHCP Server</a> --- <a href="#9">設定 
+        /etc/dhcpd.conf</a>、<a href="#10">修改 /etc/sysconfig/dhcpd</a></font></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">13.2.3</font></td>
-      <td><a href="#11">�˵� /var/lib/dhcp/db/dhcpd.leases</a></td>
+      <td><a href="#11">檢視 /var/lib/dhcp/db/dhcpd.leases</a></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">13.2.4</font></td>
-      <td><a href="#12">��X�d��</a></td>
+      <td><a href="#12">綜合範例</a></td>
     </tr>
     <tr> 
-      <td colspan="3"><font color="#000099"><strong>13.3 <a href="#13">�]�w DHCP 
+      <td colspan="3"><font color="#000099"><strong>13.3 <a href="#13">設定 DHCP 
         Client</a></strong></font></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">13.3.1</font></td>
-      <td><a href="#14">�]�w Linux Client</a></td>
+      <td><a href="#14">設定 Linux Client</a></td>
     </tr>
     <tr> 
       <td><font color="#000099">&nbsp;</font></td>
       <td align="center" valign="top" nowrap><font color="#000099">13.3.2</font></td>
-      <td><a href="#15">�]�w Windows Client</a></td>
+      <td><a href="#15">設定 Windows Client</a></td>
     </tr>
   </table>
   <br>
   <hr>
   <br>
   <font size="+1"><strong><font color="#0000FF"><a name="1"></a><font size="6">13.1 
-  DHCP ���z</font></font></strong><br>
+  DHCP 概述</font></font></strong><br>
   <br>
-  <font color="#000000"><strong><a name="2"></a><font size="5">13.1.1 ��� DHCP</font></strong></font><br>
+  <font color="#000000"><strong><a name="2"></a><font size="5">13.1.1 何謂 DHCP</font></strong></font><br>
   <br>
-  </font>�@DHCP �O Dynamic Host Configuration Protocol ��²�١A�]�N�O�ʺA�D���]�w��w���N�C�Ӥ��ѧڭ̩ҭn�ǲ߬[�]�� 
-  DHCP Server�A��D�n�\�δN�O���� IP ��}�ά����Ѽƨӵ����� Client �ݨϥΡC<br>
+  </font>　DHCP 是 Dynamic Host Configuration Protocol 的簡稱，也就是動態主機設定協定之意。而今天我們所要學習架設的 
+  DHCP Server，其主要功用就是分派 IP 位址及相關參數來給它的 Client 端使用。<br>
   <br>
-  �@�O���O�o�b�ĤQ�@�����к����պA�]�w�ɡA���йL�j�a�p��b�ۤv�D���W�]�w�T�w IP �ӤW���A�p�G�O�o���ܡA���շQ�@�U�A���ϱz�O���q�����ޡA�޲z�ۤW�ʥx���q���A�ӷ��z�Q���o�ǹq������s�W 
-  Internet �ɡA���D�|�n�D���q�P�����ۤv�]�w�R�A��}�� ? �٬O�ѱz�X�����L�̤@�x�@�x�d�w ? �ڷQ�o�����A���Ӥ��|�Q�n�o�򰵧a�C�ҥH�ѨM�o�Ӱ��D���̦n�覡�N�O�[�]�@�x 
-  DHCP ���A���o�A�o�˷� client �}���ɡA�N�i�H�z�L DHCP �ӭn�� IP ��}�C<br>
+  　記不記得在第十一章介紹網路組態設定時，有教過大家如何在自己主機上設定固定 IP 來上網，如果記得的話，那試想一下，假使您是公司的網管，管理著上百台的電腦，而當您想讓這些電腦都能連上 
+  Internet 時，難道會要求公司同仁都自己設定靜態位址嗎 ? 還是由您出面幫他們一台一台搞定 ? 我想聰明的你應該不會想要這麼做吧。所以解決這個問題的最好方式就是架設一台 
+  DHCP 伺服器囉，這樣當 client 開機時，就可以透過 DHCP 來要到 IP 位址。<br>
   <br>
-  <font color="#000000"><strong><a name="3"></a><font size="5">13.1.2 DHCP ���t 
-  IP ��}���覡</font></strong></font><br>
+  <font color="#000000"><strong><a name="3"></a><font size="5">13.1.2 DHCP 分配 
+  IP 位址的方式</font></strong></font><br>
   <br>
-  �@�@��H�`�H�� DHCP Server �Ҵ��ѵ� Client �ݪ� IP ��}���O���T�w���A��ꤣ�M�A�]�� DHCP �]�i���t�T�w��}�� Client 
-  �ݨϥΡA�N�ݺ޲z�̦p��]�w�o�x DHCP ���A���o�C�H�U�Y�O���� DHCP ���� IP �� Client �ݪ���ؤ覡�G<br>
+  　一般人總以為 DHCP Server 所提供給 Client 端的 IP 位址都是不固定的，其實不然，因為 DHCP 也可分配固定位址給 Client 
+  端使用，就看管理者如何設定這台 DHCP 伺服器囉。以下即是說明 DHCP 分派 IP 給 Client 端的兩種方式：<br>
   <br>
   <table width="100%" border="0">
     <tr> 
       <td width="2%">&nbsp;</td>
       <td width="3%" align="center" valign="middle"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
       <td width="95%"><font color="#000000"><strong><font color="#000099" size="4"> 
-        �ʺA���t (Dynamic Allocation)</font></strong></font><font color="#000099" size="4">&nbsp; 
+        動態分配 (Dynamic Allocation)</font></strong></font><font color="#000099" size="4">&nbsp; 
         </font></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
       <td align="center" valign="middle">&nbsp;</td>
-      <td>DHCP Client �V DHCP Server ���o IP ��}��A�ä��O�ä[���ϥθӦ�}�A�ӥu�O�௲�Τ@�q�ɶ��Ӥw�A�o�q�ɶ��N�O�ҿת��������A�u�n 
-        Client ���������@��A�N�������� (release) ����}�A�o�� DHCP �~����覬�^����}�A���ѵ��䥦���Τ�ݨϥΡC<br> 
+      <td>DHCP Client 向 DHCP Server 取得 IP 位址後，並不是永久的使用該位址，而只是能租用一段時間而已，這段時間就是所謂的租約期，只要 
+        Client 的租約期一到，就必須釋放 (release) 此位址，這樣 DHCP 才能把剛剛收回的位址再提供給其它的用戶端使用。<br> 
         <br>
-        �@��ϥΰʺA���t���ɾ��A�O���F�ѨM IP ��}�������A���{�b�ܦh�� ISP ���O�z�L�o�ذʺA���t���覡�C�|�ӨҤl�A���] ISP ������ 1000 
-        �� IP ��}�i�����A���Ȥ�ƥi�ण�u 1000 �H�A���L�ѩ�Ҧ��Ȥ�b�P�@�ɶ��W�������v�����A�ҥH ISP �N�i�H���y���ε��Ȥ�ݨӨϥΡC���M 
-        ISP ���@�w�ĥ� DHCP ���覡�A����ʺA���t����z�O�ۦP���C</td>
+        一般使用動態分配的時機，是為了解決 IP 位址的不足，像現在很多的 ISP 都是透過這種動態分配的方式。舉個例子，假設 ISP 本身有 1000 
+        個 IP 位址可供應，但客戶數可能不只 1000 人，不過由於所有客戶在同一時間上網的機率不高，所以 ISP 就可以輪流租用給客戶端來使用。雖然 
+        ISP 不一定採用 DHCP 的方式，但其動態分配的原理是相同的。</td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
@@ -133,91 +133,91 @@ a {
     <tr> 
       <td>&nbsp;</td>
       <td align="center" valign="middle"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-      <td><font color="#000099" size="4"><strong>�۰ʤ��t (Automatic Allocation)</strong></font></td>
+      <td><font color="#000099" size="4"><strong>自動分配 (Automatic Allocation)</strong></font></td>
     </tr>
     <tr> 
       <td>&nbsp;</td>
       <td align="center" valign="middle">&nbsp;</td>
-      <td>DHCP Client �C���}���ɩҤ��t�쪺 IP ��}���O�T�w���ɭԡA�٤����۰ʤ��t�C�z�n�O���@�Ǥ���S�����D���A���u�@���Φ��A�����Ť������A�N�i�ĥΦ۰ʤ��t���覡�ӵ����o�ǥD���T�w�� 
-        IP�C�ܩ�۰ʤ��t����z�A�O�ھ� Client �D���� MAC ��}�A�ӫ����@�ӥä[�� IP ��}�����A�]���o�Ӧ�}�N�S���ҿת��������F�C</td>
+      <td>DHCP Client 每次開機時所分配到的 IP 位址都是固定的時候，稱之為自動分配。您要是有一些比較特殊的主機，像工作站或伺服器等級之類的，就可採用自動分配的方式來給予這些主機固定的 
+        IP。至於自動分配的原理，是根據 Client 主機的 MAC 位址，來指派一個永久的 IP 位址給它，因此這個位址就沒有所謂的租約期了。</td>
     </tr>
   </table>
   <p> <strong><font color="#000000" size="+1"><a name="4"></a><font size="5">13.1.3 
-    </font></font></strong><font color="#000000" size="5"><strong>DHCP ���B�@�y�{</strong></font><font color="#000000"><strong><font size="+1"><br>
+    </font></font></strong><font color="#000000" size="5"><strong>DHCP 的運作流程</strong></font><font color="#000000"><strong><font size="+1"><br>
     <br>
-    </font></strong></font>�@�� DHCP Client �}���ɡA�|���զV DHCP Server ���� IP ��}�A�Ӥ@�� DHCP 
-    �ä��O�u��ª����Ѧ�}�Ӥw�A�䤤�٥]�A��&nbsp; Client �ݫ��w��ҨϥΪ� Default Gateway�BDefault Name Server 
-    �ί�����������T�A���M�o�Ǹ�T�N�ݱz�b Server �W�p�󰵳]�w�F�C<br>
+    </font></strong></font>　當 DHCP Client 開機時，會嘗試向 DHCP Server 索取 IP 位址，而一般 DHCP 
+    並不是只單純的提供位址而已，其中還包括幫&nbsp; Client 端指定其所使用的 Default Gateway、Default Name Server 
+    及租約期等等資訊，當然這些資訊就看您在 Server 上如何做設定了。<br>
     <br>
-    �@�H�U�O DHCP Client �b�V DHCP Server ���� IP ���@�Ӭy�{�ϡG</p>
+    　以下是 DHCP Client 在向 DHCP Server 索取 IP 的一個流程圖：</p>
   <p align="center"> <img src="dhcp1.gif" tppabs="http://www.suse.url.tw/picture/dhcp1.gif" width="557" height="182" border="2"> 
     <br>
-    <font size="2">�Ϥ@�GDHCP �Τ�ݻP���A���������q�y�{��</font></p>
-  <p>�@�w��o�Ӭy�{�y�L���Ӹ����G</p>
+    <font size="2">圖一：DHCP 用戶端與伺服器之間溝通流程圖</font></p>
+  <p>　針對這個流程稍微做個解釋：</p>
 </div>
 <ol>
   <li> 
-    <div align="left"><strong><font size="4">DHCPDISCOVER</font></strong>�G���Τ�ݭ����H 
-      DHCP Client �ݪ������n�J�����ɡA�|���o�X�@�� <font color="#000000">DHCPDISCOVER</font> ���s���ʥ]�A���t�ӷ���} 
-      0.0.0.0�B�ت���} 255.255.255.255 ���T���C�Ӱe�X�o�Ӽs���ʥ]���ت��A�N�O�b��M�@�x�ണ�� IP ��}�� DHCP Server�C<br>
+    <div align="left"><strong><font size="4">DHCPDISCOVER</font></strong>：當用戶端首次以 
+      DHCP Client 端的身分登入網路時，會先發出一個 <font color="#000000">DHCPDISCOVER</font> 的廣播封包，內含來源位址 
+      0.0.0.0、目的位址 255.255.255.255 等訊息。而送出這個廣播封包的目的，就是在找尋一台能提供 IP 位址的 DHCP Server。<br>
       <br>
     </div>
   </li>
   <li> 
-    <div align="left"><strong><font size="4">DHCPOFFER</font></strong>�GDHCP Server 
-      �b����o�� DHCPDISCOVER �s���ʥ]��A�|�q�ثe�|���X���X�h�� IP ��}���D�@�ӡA�M��A�Q�μs���覡�^���� Client �@�� <font color="#000000">DHCPOFFER</font> 
-      �ʥ]�A���ʥ]�٥]�t�����������T���C�t�~�Y���������h�x DHCP �D���s�b�A�h Client �|�H���쪺�Ĥ@�� DHCPOFFER �T�����D�C<br>
+    <div align="left"><strong><font size="4">DHCPOFFER</font></strong>：DHCP Server 
+      在收到這個 DHCPDISCOVER 廣播封包後，會從目前尚未出租出去的 IP 位址中挑一個，然後再利用廣播方式回應給 Client 一個 <font color="#000000">DHCPOFFER</font> 
+      封包，此封包還包含租約期限的訊息。另外若網路中有多台 DHCP 主機存在，則 Client 會以收到的第一個 DHCPOFFER 訊息為主。<br>
       <br>
     </div>
   </li>
   <li> 
-    <div align="left"><font color="#000000" size="4"><strong>DHCPREQUEST</strong></font>�GClient 
-      �ݦb���� DHCPOFFER �ʥ]��A���۷|�e�X�@�� ARP Request ���s���ʥ]�A�ӽT�w���Ҵ��Ѫ� IP ��}�S���Q��L���D���ϥΡA���U�@�o�{�o�Ӧ�}�w�Q�α����ܡAClient 
-      �ݴN�|�e�X�@�� DHCPDECLINE ���ڵ��T���� Server�A�M��A�e�X�@�� DHCPDISCOVER ���s���ʥ]�A�ӭ��s�����t�@�ӷs�� 
-      IP ��}�C<br>
+    <div align="left"><font color="#000000" size="4"><strong>DHCPREQUEST</strong></font>：Client 
+      端在收到 DHCPOFFER 封包後，接著會送出一個 ARP Request 的廣播封包，來確定對方所提供的 IP 位址沒有被其他的主機使用，那萬一發現這個位址已被用掉的話，Client 
+      端就會送出一個 DHCPDECLINE 的拒絕訊息給 Server，然後再送出一個 DHCPDISCOVER 的廣播封包，來重新索取另一個新的 
+      IP 位址。<br>
       <br>
-      �n�F�A���� Client �w�T�w����}�|���Q�ϥΡA���򱵵۴N�|�e�X�@�� DHCPREQUEST ���s���ʥ]�Ӧ^���� DHCP Server�C���ҥH�٬O�e�X�s���ʥ]���ηN�A�O���F�i����L���Q��W�� 
-      DHCP Server�A�o�˳o�� Server �~�i�N�쥻����O�d�� Client �� IP ��}����X�ӵ���L Client �ϥΡC<br>
+      好了，假使 Client 已確定此位址尚未被使用，那麼接著就會送出一個 DHCPREQUEST 的廣播封包來回應給 DHCP Server。之所以還是送出廣播封包的用意，是為了告知其他未被選上的 
+      DHCP Server，這樣這些 Server 才可將原本打算保留給 Client 的 IP 位址釋放出來給其他 Client 使用。<br>
       <br>
-      <strong><font color="#000099">Tips�G</font></strong> <font color="#000099" size="2">ARP 
-      ���W�� Address Resolution Protocol�CARP ����D�n�@�ΡA�O��� IP ��}�ҹ����� MAC ��}�A�H���Q�P���D�����o�pô�A�P�ɤ]�|�⦹�������s��b 
-      cache ���A����u�n�b���Įɶ����S��P�@�x�ت��D�����q�T�ɡA�N�i�H�ھ� cache �̪� ARP table�A�Ӫ�����ʥ]�e�F�ت��a�C�ڭ̦A�ΥH�U�o��²�Ϩӧ@�����G</font> 
+      <strong><font color="#000099">Tips：</font></strong> <font color="#000099" size="2">ARP 
+      全名為 Address Resolution Protocol。ARP 機制的主要作用，是找到 IP 位址所對應的 MAC 位址，以順利與對方主機取得聯繫，同時也會把此筆紀錄存放在 
+      cache 內，爾後只要在有效時間內又跟同一台目的主機做通訊時，就可以根據 cache 裡的 ARP table，而直接把封包送達目的地。我們再用以下這個簡圖來作說明：</font> 
       <p align="center"> <img src="dhcp5.png" tppabs="http://www.suse.url.tw/picture/dhcp5.png" width="424" height="200"><br>
-        <font color="#000000" size="2">�ϤG�G�ӷ��ݻP�ت��ݳq�T�d�ҹ�</font> </p>
-      <p align="left"><font color="#000099" size="2">���ӷ��ݥD�� 192.168.1.1 �n�P�ت��ݥD�� 
-        192.168.1.5 �إ߳q�T�ɡA�|���� cache ���ݬ� ARP table �̡A���S�� 192.168.1.5 �ҹ����� MAC ��}�����A�p�G�䤣�쪺�ܡA�ӷ��ݥD���N�|�e�X�@�� 
-        ARP Request ���s���ʥ]���Ҧ��D���A�ҥH�C�@�x�D�����|����o�ӫʥ]�A���u�� 192.168.1.5 �o�x�D���|�@�^���A�����^���N�s�� 
-        ARP Reply�A�Ӧ��^���ʥ]���Y�N�]�t�F�^���D�� 192.168.1.5 �� MAC ��}�A�ҥH�ӷ��ݥD���N������D�ت��D���� MAC 
-        ��}�A�۵M�]�N�බ�Q�P��q�T�F�C�P�ɨӷ��ݥD���|���K�N����T��b�ۤv cache �� ARP table ����A�Y�b�������R���e�A�S�V 192.168.1.5 
-        �D���i��q�T�ɡA�N���ݦA�e�X ARP Request ���s���ʥ]�F�C </font></p>
+        <font color="#000000" size="2">圖二：來源端與目的端通訊範例圖</font> </p>
+      <p align="left"><font color="#000099" size="2">當來源端主機 192.168.1.1 要與目的端主機 
+        192.168.1.5 建立通訊時，會先到 cache 內看看 ARP table 裡，有沒有 192.168.1.5 所對應的 MAC 位址紀錄，如果找不到的話，來源端主機就會送出一個 
+        ARP Request 的廣播封包給所有主機，所以每一台主機都會收到這個封包，但只有 192.168.1.5 這台主機會作回應，此項回應就叫做 
+        ARP Reply，而此回應封包裡頭就包含了回應主機 192.168.1.5 的 MAC 位址，所以來源端主機就能夠知道目的主機的 MAC 
+        位址，自然也就能順利與其通訊了。同時來源端主機會順便將此資訊放在自己 cache 的 ARP table 裡邊，若在紀錄未刪除前，又向 192.168.1.5 
+        主機進行通訊時，就不需再送出 ARP Request 的廣播封包了。 </font></p>
       
     </div>
   </li>
   <li> 
-    <div align="left"><font color="#000000" size="4"><strong>DHCPACK</strong></font>�GDHCP 
-      Server ���� DHCPREQUEST ���T����A�|�^���@�� <font color="#000000">DHCPACK</font> ���T�{�T���� 
-      Client ( �����٬O�z�L�s���覡�A�] Client �|���������o IP ��} )�A���T���̥]�t�F������ Client �ݨϥΪ� IP ��}�B�����B�n�B�w�]�h�D���BDNS 
-      Server �����A�Ӧb client ����o�ǰT����A�K�����F��ӯ��� IP ��}���ʧ@�C</div>
+    <div align="left"><font color="#000000" size="4"><strong>DHCPACK</strong></font>：DHCP 
+      Server 收到 DHCPREQUEST 的訊息後，會回應一個 <font color="#000000">DHCPACK</font> 的確認訊息給 
+      Client ( 此時還是透過廣播方式，因 Client 尚未正式取得 IP 位址 )，此訊息裡包含了指派給 Client 端使用的 IP 位址、網路遮罩、預設閘道器、DNS 
+      Server 等等，而在 client 收到這些訊息後，便完成了整個索取 IP 位址的動作。</div>
   </li>
 </ol>
-<p><font color="#000000">�@�H�W���o�ӯ��� IP ���y�{�A�D�n�O�w�ﭺ���ϥ� DHCP Client �����ӵn�J�������ɡC�t�~�p�G 
-  DHCP Client �ۦ�����X�쥻�ҭn�쪺��}�A�ӭ��s�����@�ӷs�� IP �ɡA�]�O�ĥγo�Ӭy�{�C�w���̡A�ڭ̥i�H�b Windows �� Client 
-  �ݰ��ӹ��� ( ���]�z�����̦s�b DHCP Server )�A�H Windows �ӻ��A�бz�b�R�O���ܦr��������G</font> </p>
+<p><font color="#000000">　以上的這個索取 IP 的流程，主要是針對首次使用 DHCP Client 身分來登入網路之時。另外如果 
+  DHCP Client 自行釋放出原本所要到的位址，而重新索取一個新的 IP 時，也是採用這個流程。針對後者，我們可以在 Windows 的 Client 
+  端做個實驗 ( 假設您網路裡存在 DHCP Server )，以 Windows 來說，請您在命令提示字元中執行：</font> </p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">C : \&gt;<strong><font color="#FFFF00"> 
-      ipconfig/release</font></strong>�@<font color="#00FFFF" size="2">�� ���� IP 
-      ��}�C</font><br>
+      ipconfig/release</font></strong>　<font color="#00FFFF" size="2">← 釋放 IP 
+      位址。</font><br>
       <br>
-      C : \&gt;<strong><font color="#FFFF00"> ipconfig/renew�@</font></strong><font color="#00FFFF" size="2">�� 
-      ���s�����@�ӷs�� IP ��}�C<br>
+      C : \&gt;<strong><font color="#FFFF00"> ipconfig/renew　</font></strong><font color="#00FFFF" size="2">← 
+      重新索取一個新的 IP 位址。<br>
       <br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�p�G������ 
-      release�A�Ӫ������� renew ���ܡA�N�u�O�b��s�������Ӥw�C</font></font></td>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">如果未執行 
+      release，而直接執行 renew 的話，就只是在更新租約期而已。</font></font></td>
   </tr>
 </table>
 <font color="#000000"><br>
-�@�M��^�� DHCP Server �ˬd�����ɰT���G<br>
+　然後回到 DHCP Server 檢查紀錄檔訊息：<br>
 <br>
 </font> 
 <table width="100%" border="0">
@@ -238,28 +238,28 @@ a {
   </tr>
 </table>
 <font color="#000000"> <br>
-�@�ܩ��㪺�i�H�ݥX�� release ��A renew �ɡA�|�A����Ϥ@�������|�ӨB�J�C<br>
+　很明顯的可以看出於 release 後再 renew 時，會再執行圖一中的那四個步驟。<br>
 <br>
 <strong><a name="5"></a><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
-������</font><font size="4">�����Q</font></strong><br>
+租約期</font><font size="4">的探討</font></strong><br>
 <br>
-�@���� DHCP Client ���F���򩵥Φ� IP ��}�A�ӷ|�V DHCP Server �n�D��s�������A�@����s���\�A�h Client �� IP ���������N�|�q�Y�}�l�p��_�C<br>
+　往往 DHCP Client 為了持續延用此 IP 位址，而會向 DHCP Server 要求更新租約期，一旦更新成功，則 Client 的 IP 租約期限就會從頭開始計算起。<br>
 <br>
-�@�b Client ��s���������ɭԡA�|�V Server �e�X�@�� DHCPREQUEST ���T���C���ۥH�U�N�|��� Client �e�X DHCPREQUEST 
-�� Server ���ɾ��G<br>
+　在 Client 更新租約期的時候，會向 Server 送出一個 DHCPREQUEST 的訊息。接著以下就舉兩種 Client 送出 DHCPREQUEST 
+給 Server 的時機：<br>
 <br>
 </font>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
     <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td width="95%"><strong><font color="#000099">DHCP Client ���s�}����</font></strong>�G</td>
+    <td width="95%"><strong><font color="#000099">DHCP Client 重新開機時</font></strong>：</td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td>�� DHCP ���Τ�ݹq�����s�ҰʮɡA�|�e�X DHCPREQUEST �� DHCP Server�A�ӭn�D���έ�Ӫ� IP ��}�A�խY����}�ثe�|�����ε��䥦�� 
-      Client�A�h�Τ�ݴN�i�H���o�P�W���ҨϥΪ� IP �ۦP�C</td>
+    <td>當 DHCP 的用戶端電腦重新啟動時，會送出 DHCPREQUEST 給 DHCP Server，來要求延用原來的 IP 位址，倘若此位址目前尚未租用給其它的 
+      Client，則用戶端就可以取得與上次所使用的 IP 相同。</td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -269,81 +269,81 @@ a {
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">�F 1/2 ��������</font></strong><font color="#000099">�G</font></td>
+    <td><strong><font color="#000099">達 1/2 租約期時</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td>DHCP Client �|�b IP ��������F�@�b�ɡA�D�ʰe�X�@�� DHCPREQUEST �� DHCP Server�A�� Client �p�G�]���Q������Ҧ^���� 
-      DHCPACK �T���A�N���ܤw���\��s�������C�U�@��s���ѡAClient �٬O�i�H�~��ϥΦ���}�A�]���������٨S��C�Ӧb��s���Ѫ����p�U�AClient 
-      �|�b��������F�K�����C�ɡA�Q�μs���覡�e�X DHCPREQUEST ��s�T���ӴM�����@�x�i�Ϊ� DHCP Server�A�ݬݯ�_��s�����A�p�G�٬O�L�k��s���\�A�h 
-      Client �|���ثe�ҨϥΪ� IP�A�í��s�e�X DHCPDISCOVER �ӦV Server �����@�ӷs����}�C </td>
+    <td>DHCP Client 會在 IP 租約期到達一半時，主動送出一個 DHCPREQUEST 給 DHCP Server，而 Client 如果也順利收到對方所回應的 
+      DHCPACK 訊息，就表示已成功更新租約期。萬一更新失敗，Client 還是可以繼續使用此位址，因為租約期還沒到。而在更新失敗的情況下，Client 
+      會在租約期到了八分之七時，利用廣播方式送出 DHCPREQUEST 更新訊息來尋找任何一台可用的 DHCP Server，看看能否更新租約，如果還是無法更新成功，則 
+      Client 會放棄目前所使用的 IP，並重新送出 DHCPDISCOVER 來向 Server 索取一個新的位址。 </td>
   </tr>
 </table>
 <font color="#000000"><br>
 <br>
 </font> <font color="#000000"> </font><font color="#0000FF"><strong> <font color="#0000FF"><strong><font size="+1"><a name="6"></a></font></strong></font><font size="6">13.2 
-�]�w DHCP Server</font></strong></font><br>
+設定 DHCP Server</font></strong></font><br>
 <br>
-<font size="+1"><strong><a name="7"></a><font size="5">13.2.1 �ݦw�ˮM��ήM��M��</font></strong></font><br>
+<font size="+1"><strong><a name="7"></a><font size="5">13.2.1 需安裝套件及套件清單</font></strong></font><br>
 <br>
 <strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="4">DHCP 
-�����M��</font></strong><br>
+相關套件</font></strong><br>
 <br>
 <table width="61%" border="1">
   <tr bgcolor="#CCCCCC"> 
-    <td nowrap> <div align="center"><strong><font color="#000099">�M��W��</font></strong></div></td>
-    <td nowrap> <div align="center"><strong><font color="#000099">²�@��@�y�@�z</font></strong></div></td>
+    <td nowrap> <div align="center"><strong><font color="#000099">套件名稱</font></strong></div></td>
+    <td nowrap> <div align="center"><strong><font color="#000099">簡　單　描　述</font></strong></div></td>
   </tr>
   <tr> 
     <td width="15%" nowrap> 
       <div align="center"><font color="#000099">dhcp</font></div></td>
-    <td width="85%" nowrap><font color="#000099">���D���n�M��A���Y�]�t�F /var/lib/dhcp �o�ӭ��n�ؿ��C</font></td>
+    <td width="85%" nowrap><font color="#000099">此乃必要套件，裡頭包含了 /var/lib/dhcp 這個重要目錄。</font></td>
   </tr>
   <tr> 
     <td nowrap> <div align="center"><font color="#000099">dhcp-server</font></div></td>
-    <td nowrap><font color="#FFFFFF"><font color="#000099">DHCP Server ���D�n�M��C</font></font></td>
+    <td nowrap><font color="#FFFFFF"><font color="#000099">DHCP Server 的主要套件。</font></font></td>
   </tr>
 </table>
 <br>
-<strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="4">�˵��M�󤺮e</font></strong><br>
+<strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="4">檢視套件內容</font></strong><br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
       rpm -ql dhcp-server</strong></font><br>
-      /etc/init.d/dhcpd<font color="#00FFFF" size="2">�@�@</font></font><font color="#00FFFF" size="2"><br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�޲z 
-      DHCP �A�Ȫ� script�C<br>
+      /etc/init.d/dhcpd<font color="#00FFFF" size="2">　　</font></font><font color="#00FFFF" size="2"><br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">管理 
+      DHCP 服務的 script。<br>
       <br>
-      </font><font color="#FFFFFF">/usr/sbin/dhcpd</font><font color="#00FFFF" size="2">�@�@�@<br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">���� 
-      DHCP �A�Ȫ� daemon�C<br>
+      </font><font color="#FFFFFF">/usr/sbin/dhcpd</font><font color="#00FFFF" size="2">　　　<br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">提供 
+      DHCP 服務的 daemon。<br>
       <br>
-      </font><font color="#FFFFFF">/usr/sbin/rcdhcpd</font><font color="#00FFFF" size="2">�@�@<br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�s���� 
-      /etc/init.d/dhcpd ���Ÿ��s���ɡC<br>
+      </font><font color="#FFFFFF">/usr/sbin/rcdhcpd</font><font color="#00FFFF" size="2">　　<br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">連結至 
+      /etc/init.d/dhcpd 的符號連結檔。<br>
       <br>
-      </font><font color="#FFFFFF">/var/lib/dhcp/db</font><font color="#00FFFF" size="2">�@�@ 
+      </font><font color="#FFFFFF">/var/lib/dhcp/db</font><font color="#00FFFF" size="2">　　 
       <br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�� dhcpd 
-      �Ұʫ�A�|�b���ؿ��U����<strong> dhcpd.leases</strong> �ɮסA���O�ΨӰO��<br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">�w�t�o�X�h���ʺA 
-      IP ��}�Ψ䯲�����C</font><font color="#FFFFFF"><br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">當 dhcpd 
+      啟動後，會在此目錄下產生<strong> dhcpd.leases</strong> 檔案，它是用來記錄<br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">已配發出去的動態 
+      IP 位址及其租約期。</font><font color="#FFFFFF"><br>
       <br>
-      /var/lib/dhcp/etc</font><font color="#00FFFF" size="2">�@�@<br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">���ҥ� 
-      chroot ����ɡAdaemon �ҭnŪ�����]�w�ɴN��b�o�ӥؿ��U�C</font><font color="#FFFFFF">&nbsp; <br>
+      /var/lib/dhcp/etc</font><font color="#00FFFF" size="2">　　<br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">當啟用 
+      chroot 機制時，daemon 所要讀取的設定檔就位在這個目錄下。</font><font color="#FFFFFF">&nbsp; <br>
       <br>
       suse:~ #<font color="#FFFF00"><strong> rpm -ql dhcp</strong></font><br>
-      /var/lib/dhcp</font><font color="#00FFFF" size="2">�@�@�@�@�@�@ <br>
-      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2"> �o�ӥؿ��O 
-      dhcp �M��Ҵ��Ѫ��A�ܩ󦹥ؿ��U����L�l�ؿ��h�O�ݩ� dhcp-server �M��C</font><font color="#FFFFFF">&nbsp; 
+      /var/lib/dhcp</font><font color="#00FFFF" size="2">　　　　　　 <br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2"> 這個目錄是 
+      dhcp 套件所提供的，至於此目錄下的其他子目錄則是屬於 dhcp-server 套件。</font><font color="#FFFFFF">&nbsp; 
       </font></td>
   </tr>
 </table>
 <br>
-�@�q�M�󤺮e���n���S�ݨ� DHCP ���D�n�]�w�ɡA�S���Y�A�h�˵��@�U /etc/init.d/dhcpd �o�� script �����e�A�N�i�����@�G�G <br>
+　從套件內容中好像沒看到 DHCP 的主要設定檔，沒關係，去檢視一下 /etc/init.d/dhcpd 這支 script 的內容，就可略知一二： <br>
 <br>
 <table width="100%" border="0">
   <tr> 
@@ -354,13 +354,13 @@ a {
       DAEMON=&quot;DHCP server&quot;<br>
       [ &quot;$DHCPD_BINARY&quot; = /usr/sbin/dhcpd.lpf ] &amp;&amp; DHCPD_BINARY=/usr/sbin/dhcpd<br>
       DAEMON_BIN=${DHCPD_BINARY:=/usr/sbin/dhcpd}<br>
-      <font color="#FFFF00">DAEMON_CONF = /etc/dhcpd.conf </font><font color="#00FFFF" size="2">�� 
-      �`�N�o�@��</font><br>
-      �@�@�@�@�@�@<font color="#00FFFF" size="2">�G�� </font></font></td>
+      <font color="#FFFF00">DAEMON_CONF = /etc/dhcpd.conf </font><font color="#00FFFF" size="2">← 
+      注意這一行</font><br>
+      　　　　　　<font color="#00FFFF" size="2">：略 </font></font></td>
   </tr>
 </table>
 <br>
-�@�o�ˤj���N�i�H���D DHCP ���]�w�ɬ� /etc/dhcpd.conf�C���L SuSE �� DHCP �]�O�� DNS �@�ˡA�ĥιw�]�� chroot ����G 
+　這樣大概就可以知道 DHCP 的設定檔為 /etc/dhcpd.conf。不過 SuSE 的 DHCP 也是跟 DNS 一樣，採用預設的 chroot 機制： 
 <br>
 <br>
 <table width="100%" border="0">
@@ -370,23 +370,23 @@ a {
       <br>
       <font color="#0099FF"># Shall the DHCP server dhcpd run in a chroot jail 
       (<strong>/var/lib/dhcp</strong>)?</font><br>
-      <font color="#0099FF"><strong>#</strong> </font><font color="#00FFFF" size="2">�ҥ� 
-      chroot �����A��w�]���ڥؿ��� /var/lib/dhcp�C</font><br>
+      <font color="#0099FF"><strong>#</strong> </font><font color="#00FFFF" size="2">啟用 
+      chroot 機制後，其預設的根目錄為 /var/lib/dhcp。</font><br>
       <font color="#0099FF"># Each time you start dhcpd with the init script, 
       /etc/dhcpd.conf will<br>
       # be copied to /var/lib/dhcp/etc/.</font><br>
-      <font color="#0099FF"><strong>#</strong> </font><font color="#00FFFF" size="2">�� 
-      init script �ӱҰ� dhcpd �A�ȮɡA�|�N /etc/dhcpd.conf �ƻs�� /var/lib/dhcp/etc �����C</font><font color="#00FFFF"><br>
+      <font color="#0099FF"><strong>#</strong> </font><font color="#00FFFF" size="2">由 
+      init script 來啟動 dhcpd 服務時，會將 /etc/dhcpd.conf 複製到 /var/lib/dhcp/etc 之中。</font><font color="#00FFFF"><br>
       </font><br>
       DHCPD_RUN_CHROOTED=&quot;yes&quot; </font></td>
   </tr>
 </table>
 <font color="#000000"><br>
-</font><font color="#FFFFFF"><font color="#000000">�@�q�W�������ɮ׸̪����ѻ����i�H���D�A�N��ҥ� chroot 
-����A�٬O�u�ݰw�� /etc/dhcpd.conf �Ӱ��]�w�Y�i�C</font><font color="#00FFFF"><br>
+</font><font color="#FFFFFF"><font color="#000000">　從上面那個檔案裡的註解說明可以知道，就算啟用 chroot 
+機制，還是只需針對 /etc/dhcpd.conf 來做設定即可。</font><font color="#00FFFF"><br>
 </font></font><font color="#000000"> <br>
-<strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> <strong><font size="4">�]�w�}���ɱҰ� 
-dhcpd �A��</font></strong></font><br>
+<strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> <strong><font size="4">設定開機時啟動 
+dhcpd 服務</font></strong></font><br>
 <br>
 <table width="100%" border="0" bgcolor="#000000">
   <tr>
@@ -396,138 +396,138 @@ dhcpd �A��</font></strong></font><br>
 </table>
 <br>
 <p><font color="#000000" size="+1"><strong> <a name="8"></a><font size="5">13.2.2 
-  </font></strong></font> <font color="#000000" size="5"><strong>�]�w DHCP Server</strong></font><br>
+  </font></strong></font> <font color="#000000" size="5"><strong>設定 DHCP Server</strong></font><br>
   <br>
-  �@�b�]�w���A�����e�A���ӤF�Ѥ@�U�j�P�W���W���CDHCP Server �D���W��������d�Aeth0 ��~�Beth1 �鷺 ( IP ��}�� 192.168.1.254 
-  )�A�P�ɳo���D����㦳 NAT �\�� ( �аѦҨ����𨺤@�����]�w )�A�o�ˤ~�i�� Client �s�W Internet�C�ܩ�ԲӪ��[�c�p�U�ϩҥܡG</p>
+  　在設定伺服器之前，先來了解一下大致上的規劃。DHCP Server 主機上有兩片網卡，eth0 對外、eth1 對內 ( IP 位址為 192.168.1.254 
+  )，同時這部主機亦具有 NAT 功能 ( 請參考防火牆那一章的設定 )，這樣才可讓 Client 連上 Internet。至於詳細的架構如下圖所示：</p>
 <p align="center"> <img src="dhcp1.png" tppabs="http://www.suse.url.tw/picture/dhcp1.png" width="538" height="175"><br>
-  <font size="2">�ϤT�GDHCP ²�����Ҭ[�c��</font></p>
-<p> �@�������F�n�]�w dhcpd.conf �~�A�٭n�� /etc/sysconfig/dhcpd �ɮ׸̡A�h���w daemon �Һ�ť�������A���o��ӨB�J��������A�~�i�Ұ� 
-  DHCP�C���۴N�ӹ� DHCP ���Ӱ򥻪��]�w�G <br>
+  <font size="2">圖三：DHCP 簡易環境架構圖</font></p>
+<p> 　等等除了要設定 dhcpd.conf 外，還要到 /etc/sysconfig/dhcpd 檔案裡，去指定 daemon 所監聽的介面，等這兩個步驟都完成後，才可啟動 
+  DHCP。接著就來對 DHCP 做個基本的設定： <br>
   <br>
   <font color="#000000"><strong><a name="9"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
-  <strong><font size="4"> �]�w /etc/dhcpd.conf</font></strong> <br>
+  <strong><font size="4"> 設定 /etc/dhcpd.conf</font></strong> <br>
   <br>
-  �@�аѦҥH�U���]�w�d�ҡG </p>
+  　請參考以下的設定範例： </p>
 <table width="100%" border="0">
   <tr> 
     <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
       <strong>vi /etc/dhcpd.conf</strong></font><br>
       <br>
-      ddns-update-style none�Q<br>
+      ddns-update-style none﹔<br>
       <br>
       subnet 192.168.1.0 netmask 255.255.255.0 { <br>
-      �@�@�@default-lease-time 43200�Q<br>
-      �@�@�@max-lease-time 86400�Q<br>
-      �@�@�@option domain-name &quot;paching.idv.tw&quot;�Q<br>
-      �@�@�@option domain-name-servers 203.79.224.30,168.95.1.1�Q<br>
-      �@�@�@option broadcast-address 192.168.1.255�Q<br>
-      �@�@�@option routers 192.168.1.254�Q<br>
-      �@�@�@range 192.168.1.223 192.168.1.253�Q }</font></td>
+      　　　default-lease-time 43200﹔<br>
+      　　　max-lease-time 86400﹔<br>
+      　　　option domain-name &quot;paching.idv.tw&quot;﹔<br>
+      　　　option domain-name-servers 203.79.224.30,168.95.1.1﹔<br>
+      　　　option broadcast-address 192.168.1.255﹔<br>
+      　　　option routers 192.168.1.254﹔<br>
+      　　　range 192.168.1.223 192.168.1.253﹔ }</font></td>
   </tr>
 </table>
-<p> �@�]�w�ɤ��e�D�n�O�� global�Bsubnet �� host ���o�� section �Ҳզ��Aglobal �O�ݩ���骺�]�w���ءA�� subnet 
-  �� host section ���]�w�쪺�����A�N�|�M�� global ���]�w�C�t�~�C�@���]�w�������ݥ[�W�u;�v�Ӱ������C�ܩ��ɮפ������ѲŸ����u#�v�C<br>
+<p> 　設定檔內容主要是由 global、subnet 及 host 等這些 section 所組成，global 是屬於整體的設定項目，當 subnet 
+  及 host section 未設定到的部分，就會套用 global 的設定。另外每一項設定的結尾需加上「;」來做結束。至於檔案中的註解符號為「#」。<br>
   <br>
-  �@���۴N�}�l�w��]�w�Ѽư��ӻ����C<br>
+  　接著就開始針對設定參數做個說明。<br>
   <br>
   <font color="#000000"><strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="13" height="13"> 
-  <font color="#000099" size="4">ddns-update-style none</font></strong><font color="#000099" size="4">�Q<br>
+  <font color="#000099" size="4">ddns-update-style none</font></strong><font color="#000099" size="4">﹔<br>
   <br>
-  </font><font color="#000099"> <font color="#000000">�@�o�ӰѼƬO�Ψӫ��w�ʺA DNS ����s�����A���L�u�� 
-  dhcp 3.x ���~�䴩�A�b 2.x ���O���ݳ]�w���C���ѼƥD�n�O�� DHCP ���� Client ��s���̦b DNS ���Y�������A�ҥH�ݭn�f�t DNS 
-  �ӹB�@�~��C�p�G�z���Q�n�o�ӥ\�઺�ܡA�]�w�� none �Y�i�C</font></font><font color="#000099" size="4"> 
+  </font><font color="#000099"> <font color="#000000">　這個參數是用來指定動態 DNS 的更新類型，不過只有 
+  dhcp 3.x 版才支援，在 2.x 版是不需設定的。此參數主要是讓 DHCP 來幫 Client 更新它們在 DNS 裡頭的紀錄，所以需要搭配 DNS 
+  來運作才行。如果您不想要這個功能的話，設定成 none 即可。</font></font><font color="#000099" size="4"> 
   </font></font></p>
 <p><strong> <font color="#000000"><strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="13" height="13"></strong> 
   <font color="#000099" size="4">subnet 192.168.1.0 netmask 255.255.255.0 {}<br>
   <br>
-  </font></font></strong><font color="#000000">�@<font color="#000000">���ϥ� subnet 
-  �� netmask �ӫŧi�n����Ӥl�������ѪA�ȡA�ܩ����� subnet �ҫ��w���ѼƴN�w�m�b { } �����C���U���۴N�O�n���гo�ǰѼơG</font><strong><font color="#000099" size="4"> 
+  </font></font></strong><font color="#000000">　<font color="#000000">先使用 subnet 
+  及 netmask 來宣告要對哪個子網路提供服務，至於幫此 subnet 所指定的參數就安置在 { } 之中。底下接著就是要介紹這些參數：</font><strong><font color="#000099" size="4"> 
   </font></strong></font></p>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
     <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td width="95%"><font color="#000099"><strong>default-lease-time 43200�Q</strong></font></td>
+    <td width="95%"><font color="#000099"><strong>default-lease-time 43200﹔</strong></font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><font color="#000000">���Ҥ��t�X�h�� IP ��}�A���w��w�]���������� 43200 ���C</font></td>
+    <td><font color="#000000">對於所分配出去的 IP 位址，指定其預設的租約期為 43200 秒。</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">max-lease-time 86400�Q</font></strong></td>
+    <td><strong><font color="#000099">max-lease-time 86400﹔</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><font color="#000000">���Ҥ��t�X�h�� IP ��}�A���w��̤j���������C���Τ�ݴ��X���������n�D�ɡA�u�n���W�L�o�̪�����i�H�����A���U�@�W�L�A���̦h�]�u��֦� 
-      86400 �������������C</font></td>
+    <td><font color="#000000">對於所分配出去的 IP 位址，指定其最大的租約期。當用戶端提出租約期的要求時，只要不超過這裡的限制都可以接受，但萬一超過，那最多也只能擁有 
+      86400 秒的租約期限。</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000000"><strong><font color="#000099">option domain-name 
-      &quot;paching.idv.tw&quot;�Q</font></strong></font></td>
+      &quot;paching.idv.tw&quot;﹔</font></strong></font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><font color="#000000"><font color="#000000">�b�]�w�ɤ��A���ǰѼƻݨϥ� option �h���ŧi�A�� 
-      domain-name �u�O�b�ŧi�D�����ݪ�����W�١C�p�G Client �ݬO Linux ���ܡA���b /etc/resolv.conf ���Ҭݨ� 
-      search �Ѽƫ᪺ domain name�A�N�O�o�̫������C</font></font></td>
+    <td><font color="#000000"><font color="#000000">在設定檔內，有些參數需使用 option 去做宣告，而 
+      domain-name 只是在宣告主機所屬的網域名稱。如果 Client 端是 Linux 的話，那在 /etc/resolv.conf 中所看到 
+      search 參數後的 domain name，就是這裡指派的。</font></font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">option domain-name-servers 203.79.224.30,168.95.1.1�Q</font></strong></td>
+    <td><strong><font color="#000099">option domain-name-servers 203.79.224.30,168.95.1.1﹔</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><font color="#FFFFFF"><font color="#000000">���w Client �ݹw�]�n�ϥΪ��W�٦��A����}�C�b 
-      Linux Client �� /etc/resolv.conf ���Ҭݨ� nameserver ��}�A�N�O�a�o�ӰѼƥh�������C </font></font></td>
+    <td><font color="#FFFFFF"><font color="#000000">指定 Client 端預設要使用的名稱伺服器位址。在 
+      Linux Client 的 /etc/resolv.conf 中所看到 nameserver 位址，就是靠這個參數去指派的。 </font></font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">option broadcast-address 192.168.1.255�Q</font></strong></td>
+    <td><strong><font color="#000099">option broadcast-address 192.168.1.255﹔</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><font color="#000000">�N�O�s����}�o�C</font></td>
+    <td><font color="#000000">就是廣播位址囉。</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000000"><strong><font color="#000099">option routers</font></strong></font><font color="#000099"><strong> 
-      192.168.1.254�Q</strong></font></td>
+      192.168.1.254﹔</strong></font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><font color="#000000">routers �O�� Default Gateway�A�]�N�O�� Client �ݫ��w��w�]�h�D���� 
-      192.168.1.254 �o�x�D���C�b Linux Client �ݰ��� route ���O�ɡA���ӯ�ݨ� routing table �̫�@���� 
-      default route �� 192.168.1.254�C</font></td>
+    <td><font color="#000000">routers 是指 Default Gateway，也就是幫 Client 端指定其預設閘道器為 
+      192.168.1.254 這台主機。在 Linux Client 端執行 route 指令時，應該能看到 routing table 最後一筆的 
+      default route 為 192.168.1.254。</font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
-    <td><strong><font color="#000099">range 192.168.1.223 192.168.1.253�Q</font></strong></td>
+    <td><strong><font color="#000099">range 192.168.1.223 192.168.1.253﹔</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><font color="#000000">������t�� client �ݪ� IP ��}�d��C���}�����Ϊťզr���j�}�Y�i�C<strong> 
+    <td><font color="#000000">打算分配給 client 端的 IP 位址範圍。兩位址之間用空白字元隔開即可。<strong> 
       </strong></font></td>
   </tr>
 </table>
 <br>
 <font color="#000000"><strong><a name="10"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
-<strong><font size="4">�ק� /etc/sysconfig/dhcpd</font></strong> <br>
+<strong><font size="4">修改 /etc/sysconfig/dhcpd</font></strong> <br>
 <br>
 <table width="100%" border="0">
   <tr> 
@@ -535,111 +535,111 @@ dhcpd �A��</font></strong></font><br>
       /etc/sysconfig/dhcpd</font></strong><br>
       <br>
       DHCPD_INTERFACE=&quot;eth1&quot; <strong><br>
-      </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">���w 
-      daemon �Ҳ�ť�������A�H�o�̪��[�c�Ϩӻ��A�N�O�� eth1�C</font></font></td>
+      </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">指定 
+      daemon 所聆聽的介面，以這裡的架構圖來說，就是指 eth1。</font></font></td>
   </tr>
 </table>
 <br>
-�@�H�W����ɮ׳]�w������A�бҰ� dhcpd �A�ȡG <br>
+　以上兩個檔案設定完成後，請啟動 dhcpd 服務： <br>
 <br>
 <table width="100%" border="0" bgcolor="#CCCCCC">
   <tr> 
     <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">rcdhcpd 
       start</font></strong><br>
-      Starting DHCP server [chroot] �@�@�@�@�@<font color="#00FF00">�@�@done</font></font></td>
+      Starting DHCP server [chroot] 　　　　　<font color="#00FF00">　　done</font></font></td>
   </tr>
 </table>
-<p>�@�p�z�ɮפ��e�]�w���~�A�h�b�Ұ� dhcpd ���L�{�A�|�����~�T����ܦb�ù��W�A�ӵۨt�δ��Ѫ��T���Ӱ����Y�i�A��²�檺�C <strong> </strong></p>
-<p><strong><font size="+1"><a name="11"></a><font size="5">13.2.3 �˵� /var/lib/dhcp/db/dhcpd.leases</font></font></strong></p>
-�@���z�Ĥ@���Ұ� dhcpd �ɡA�|�b /var/lib/dhcp/db �ؿ��U���ͤ@�� dhcpd.leases �ɮסA�ӳo���ɮץD�n�O�ΨӬ����w�t�o�X�h�� 
-IP ��}�ί�����������T�C<br>
+<p>　如您檔案內容設定有誤，則在啟動 dhcpd 的過程，會有錯誤訊息顯示在螢幕上，照著系統提供的訊息來除錯即可，很簡單的。 <strong> </strong></p>
+<p><strong><font size="+1"><a name="11"></a><font size="5">13.2.3 檢視 /var/lib/dhcp/db/dhcpd.leases</font></font></strong></p>
+　當您第一次啟動 dhcpd 時，會在 /var/lib/dhcp/db 目錄下產生一個 dhcpd.leases 檔案，而這個檔案主要是用來紀錄已配發出去的 
+IP 位址及租約期等等資訊。<br>
 <br>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>cat 
       /var/lib/dhcp/db/dhcpd.leases</strong></font><br>
       <br>
-      <font face="�ө���"># All times in this file are in UTC (GMT), not your local 
+      <font face="細明體"># All times in this file are in UTC (GMT), not your local 
       timezone. This is<br>
       # not a bug, so please don't ask about it. There is no portable way to<br>
       # store leases in the local timezone, so please don't request this as a<br>
       # feature. If this is inconvenient or confusing to you, we sincerely<br>
       # apologize. Seriously, though - don't ask.<br>
       # The format of this file is documented in the dhcpd.leases(5) manual page.<br>
-      # This lease file was written by isc-dhcp-V3.0.3</font></font> <p><font color="#FFFFFF" face="�ө���">lease 
+      # This lease file was written by isc-dhcp-V3.0.3</font></font> <p><font color="#FFFFFF" face="細明體">lease 
         192.168.1.223 {<br>
-        �@starts 6 2007/01/20 05:34:21;<br>
-        �@ends 6 2007/01/20 17:34:21;<br>
-        �@binding state active;<br>
-        �@next binding state free;<br>
-        �@hardware ethernet 00:0f:ea:5a:ca:53;<br>
-        �@uid &quot;\001\000\017\352Z\312S&quot;;<br>
-        �@client-hostname &quot;superpc&quot;;<br>
+        　starts 6 2007/01/20 05:34:21;<br>
+        　ends 6 2007/01/20 17:34:21;<br>
+        　binding state active;<br>
+        　next binding state free;<br>
+        　hardware ethernet 00:0f:ea:5a:ca:53;<br>
+        　uid &quot;\001\000\017\352Z\312S&quot;;<br>
+        　client-hostname &quot;superpc&quot;;<br>
         }<br>
         <br>
         lease 192.168.1.224 {<br>
-        �@starts 6 2007/01/20 05:34:25;<br>
-        �@ends 6 2007/01/20 17:34:25;<br>
-        �@binding state active�Q<br>
-        �@next binding state free�Q<br>
-        �@hardware ethernet 00:04:e2:19:02:0c�Q<br>
-        �@uid &quot;\001\000\004\342\031\002\014&quot;�Q<br>
-        �@client-hostname &quot;newwins&quot;�Q<br>
+        　starts 6 2007/01/20 05:34:25;<br>
+        　ends 6 2007/01/20 17:34:25;<br>
+        　binding state active﹔<br>
+        　next binding state free﹔<br>
+        　hardware ethernet 00:04:e2:19:02:0c﹔<br>
+        　uid &quot;\001\000\004\342\031\002\014&quot;﹔<br>
+        　client-hostname &quot;newwins&quot;﹔<br>
         }</font></p>
       </td>
   </tr>
 </table>
-<p>�@�p�G�z���y�@�I���ܡA���ӷ|�d�N�쯲�������ɶ��n���򥻦a�ݪ��ɶ����ӧk�X�A�o�i�O���`���աA�]�������ɤ�����ܪ��O UTC (GMT) �ɶ��ӫD���a�ɶ��C<br>
+<p>　如果您眼尖一點的話，應該會留意到租約期的時間好像跟本地端的時間不太吻合，這可是正常的啦，因為紀錄檔中所顯示的是 UTC (GMT) 時間而非本地時間。<br>
   <br>
-  <font size="+1"><strong><a name="12"></a><font size="5">13.2.4 ��X�d��</font> </strong></font><br>
+  <font size="+1"><strong><a name="12"></a><font size="5">13.2.4 綜合範例</font> </strong></font><br>
   <br>
-  �@���� DHCP �W�Y���T�����d�Aeth0 ��~�Aeth1 �� eth2 ���O�s�� 192.168.1.0/24 �� 192.168.2.0/24 �o��Ӻ����q�A�]�N�O 
-  DHCP ����n���Ѩ�����q�����D����}�A�t�~�ä����@�ӥä[����} 192.168.2.180 �� host1 �o�x�D���A��[�c�Ϧp�U�G</p>
+  　假使 DHCP 上頭有三片網卡，eth0 對外，eth1 及 eth2 分別連接 192.168.1.0/24 及 192.168.2.0/24 這兩個網路段，也就是 
+  DHCP 打算要提供兩網路段內的主機位址，另外並分派一個永久的位址 192.168.2.180 給 host1 這台主機，其架構圖如下：</p>
 <p align="center"> <img src="dhcp2.png" tppabs="http://www.suse.url.tw/picture/dhcp2.png" width="519" height="225"><br>
-  <font size="2">�ϥ|�GDHCP �d�Ҭ[�c��</font></p>
+  <font size="2">圖四：DHCP 範例架構圖</font></p>
 <p><br>
-  �@���۽аѦҵ��̪��]�w�d�ҡG</p>
-<p><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="4">�]�w 
+  　接著請參考筆者的設定範例：</p>
+<p><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="4">設定 
   /etc/dhcpd.conf</font></strong></p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
       <strong>vi /etc/dhcpd.conf<br>
       </strong></font><br>
-      <font color="#0099FF"><strong># global section �]�w</strong></font><br>
-      ddns-update-style none�Q<br>
-      default-lease-time 43200�Q<br>
-      max-lease-time 86400�Q<br>
-      option domain-name-servers 203.79.224.30,168.95.1.1�Q<br>
+      <font color="#0099FF"><strong># global section 設定</strong></font><br>
+      ddns-update-style none﹔<br>
+      default-lease-time 43200﹔<br>
+      max-lease-time 86400﹔<br>
+      option domain-name-servers 203.79.224.30,168.95.1.1﹔<br>
       <br>
-      <font color="#0099FF"><strong># subnet section�]�w</strong></font><br>
+      <font color="#0099FF"><strong># subnet section設定</strong></font><br>
       subnet 192.168.1.0 netmask 255.255.255.0 {<br>
-      �@�@option routers 192.168.1.254�Q<br>
-      �@�@option broadcast-address 192.168.1.255�Q<br>
-      �@�@range 192.168.1.100 192.168.1.200�Q } <br>
-      �@�@<br>
+      　　option routers 192.168.1.254﹔<br>
+      　　option broadcast-address 192.168.1.255﹔<br>
+      　　range 192.168.1.100 192.168.1.200﹔ } <br>
+      　　<br>
       subnet 192.168.2.0 netmask 255.255.255.0 { <br>
-      �@�@option routers 192.168.2.254�Q<br>
-      �@�@option broadcast-address 192.168.2.255�Q<br>
-      �@�@range 192.168.2.10 192.168.2.150�Q<br>
-      �@�@range 192.168.2.200 192.168.2.240�Q}<br>
+      　　option routers 192.168.2.254﹔<br>
+      　　option broadcast-address 192.168.2.255﹔<br>
+      　　range 192.168.2.10 192.168.2.150﹔<br>
+      　　range 192.168.2.200 192.168.2.240﹔}<br>
       <br>
-      <font color="#0099FF"><strong># host section�]�w</strong></font> <br>
+      <font color="#0099FF"><strong># host section設定</strong></font> <br>
       host host1 { <br>
-      �@�@hardware ethernet 00:a0:cc:c0:2a:4b�Q<br>
-      �@�@fixed-address 192.168.2.180�Q<br>
-      �@�@option routers 192.168.2.254�Q} </font></td>
+      　　hardware ethernet 00:a0:cc:c0:2a:4b﹔<br>
+      　　fixed-address 192.168.2.180﹔<br>
+      　　option routers 192.168.2.254﹔} </font></td>
   </tr>
 </table>
 <br>
-�@�e��ӳ]�w�Ϭq���ӨSԣ���D�a�A�o��N�u�w��̫�@�� host section �Ӱ������o�C<br>
+　前兩個設定區段應該沒啥問題吧，這邊就只針對最後一個 host section 來做說明囉。<br>
 <br>
-�@���z�n��@�ǥD��������S�w���ѼƮɡA�i�H�ϥ�<strong> </strong>host<strong> </strong>�Ӱ��ŧi�A�@��̱`���쪺�O�R�A��}�������Chost 
-����ұ����O�o�x�D�����W�١A������W�ٳ��S���Y�A�u�n��K�޲z���ѧO�Y�i�Chardware ethernet �O�]�w host1 �D���� MAC ��}�C�t�~�ϥ� 
-fixed-address<strong> </strong>�h���w�@�ӥä[����}���o�x�D���C�ҥH�o�̪��]�w�A�N�O���� 192.168.2.180 ���T�w��}�� 
-00:a0:cc:c0:2a:4b �o�� MAC ��}�աC<br>
+　當您要對一些主機指派其特定的參數時，可以使用<strong> </strong>host<strong> </strong>來做宣告，一般最常見到的是靜態位址的指派。host 
+之後所接的是這台主機的名稱，取什麼名稱都沒關係，只要方便管理者識別即可。hardware ethernet 是設定 host1 主機的 MAC 位址。另外使用 
+fixed-address<strong> </strong>去指定一個永久的位址給這台主機。所以這裡的設定，就是指派 192.168.2.180 的固定位址給 
+00:a0:cc:c0:2a:4b 這個 MAC 位址啦。<br>
 <br>
-<strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="4">�ק� 
+<strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="4">修改 
 /etc/sysconfig/dhcpd</font></strong><br>
 <br>
 <table width="100%" border="0">
@@ -650,9 +650,9 @@ fixed-address<strong> </strong>�h���w�@�ӥä[����}���o�x�D���C�ҥH�o�̪��]�w�A�
       DHCPD_INTERFACE=&quot;eth1 eth2&quot;</font></td>
   </tr>
 </table>
-<p> �@�ѩ�o�̪��W���A�O����q eth1 �� eth2 �o��Ӥ������� IP ����Ӻ��q�A�ҥH�n�]�w�� daemon �h��ť�o��Ӥ����A�o�ˤ~�౵�� Client 
-  �ݪ��ݨD�C</p>
-<p>�@������A���s�Ұ� dhcpd �Y�i�C</p>
+<p> 　由於這裡的規劃，是打算從 eth1 及 eth2 這兩個介面分派 IP 給兩個網段，所以要設定讓 daemon 去監聽這兩個介面，這樣才能接受 Client 
+  端的需求。</p>
+<p>　完成後再重新啟動 dhcpd 即可。</p>
 <table width="100%" border="0">
   <tr> 
     <td height="29" bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
@@ -661,20 +661,20 @@ fixed-address<strong> </strong>�h���w�@�ӥä[����}���o�x�D���C�ҥH�o�̪��]�w�A�
 </table>
 <p> <br>
   <font color="#0000FF" size="+1"><strong><a name="13"></a><font size="6">13.3 
-  �]�w DHCP Client</font></strong></font><br>
+  設定 DHCP Client</font></strong></font><br>
   <br>
-  �@DHCP Client �ݪ��]�w��²��A�γ\�z���w�g�|�F�A���L�٬O���@�U�C<br>
+  　DHCP Client 端的設定很簡單，或許您都已經會了，不過還是提一下。<br>
   <br>
-  <strong><font size="+1"><a name="14"></a><font size="5">13.3.1 �]�w Linux Client</font></font></strong><br>
+  <strong><font size="+1"><a name="14"></a><font size="5">13.3.1 設定 Linux Client</font></font></strong><br>
   <br>
   <strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong><font size="1"> 
-  </font><strong><font size="+1">�һݮM��</font></strong>�G<strong><font size="4">dhcpcd</font></strong></p>
-<p> �@���M�󤺥]�t�F <font color="#FFFFFF"><font color="#000000">DHCP Client �ݥD�n���檺�@�� 
-  daemon</font></font> -- /sbin/dhcpcd�A<font color="#FFFFFF"><font color="#000000">�ǥѳo�� 
-  daemon�A�~�����z�q DHCP Server ���̡A��o IP address�Bnetmask�Bbroadcast �BDefault GW�Bname 
-  server ��������T�A�åB�|���z�]�w�n���������C�������~�Adhcpcd �]�i�Ψӧ�s�������C</font></font></p>
+  </font><strong><font size="+1">所需套件</font></strong>：<strong><font size="4">dhcpcd</font></strong></p>
+<p> 　此套件內包含了 <font color="#FFFFFF"><font color="#000000">DHCP Client 端主要執行的一支 
+  daemon</font></font> -- /sbin/dhcpcd，<font color="#FFFFFF"><font color="#000000">藉由這支 
+  daemon，才能讓您從 DHCP Server 那裡，獲得 IP address、netmask、broadcast 、Default GW、name 
+  server 等相關資訊，並且會幫您設定好網路介面。除此之外，dhcpcd 也可用來更新租約期。</font></font></p>
 <strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong><font size="1"> 
-</font><strong><font color="#000000" size="+1"> �ק���������]�w��</font></strong><br>
+</font><strong><font color="#000000" size="+1"> 修改網路介面設定檔</font></strong><br>
 <br>
 <table width="100%" border="0">
   <tr> 
@@ -682,27 +682,27 @@ fixed-address<strong> </strong>�h���w�@�ӥä[����}���o�x�D���C�ҥH�o�̪��]�w�A�
       /etc/sysconfig/network</strong></font><br>
       dhcpclient:/etc/sysconfig/network #<font color="#FFFF00"><strong> vi ifcfg-eth-id-00:05:5d:69:dd:b3</strong></font><br>
       <br>
-      BOOTPROTO='dhcp'<strong>�@</strong><font color="#00FFFF" size="2">�� BOOTPROTO 
-      �]�w�� dhcp �N��F�C</font><br>
+      BOOTPROTO='dhcp'<strong>　</strong><font color="#00FFFF" size="2">← BOOTPROTO 
+      設定成 dhcp 就對了。</font><br>
       IPADDR='192.168.1.111'<br>
       NETMASK='255.255.255.0'<br>
-      �@�@�@�@�@<font color="#00FFFF" size="2">�G��</font></font></td>
+      　　　　　<font color="#00FFFF" size="2">：略</font></font></td>
   </tr>
 </table>
-<p><font color="#FFFFFF"><font color="#000000">�@�ק粒����A�Э��s�Ұʺ����A�ݬݯ�_������ IP ��}�G</font></font></p>
+<p><font color="#FFFFFF"><font color="#000000">　修改完成後，請重新啟動網路，看看能否索取到 IP 位址：</font></font></p>
 <table width="100%" border="0" bgcolor="#000000">
   <tr>
     <td height="24"><font color="#FFFFFF"><font color="#FFFFFF">dhcpclient:~ #</font> 
-      <font color="#FFFF00"><strong>rcnetwork restart�@</strong></font></font></td>
+      <font color="#FFFF00"><strong>rcnetwork restart　</strong></font></font></td>
   </tr>
 </table>
-<p><font color="#000000"></font>�@ ���z���s�Ұʺ�������A�i�H���� ifconfig �� route ���O�A�ӽT�{�@�U IP 
-  ��}�� Default Gateway �O�_�P�b DHCP Server �W�ҳ]�w���ѼƤ@�ˡA�A�ӴN�O�ˬd /etc/resolv.conf ���� nameserver 
-  �� DHCP �ҫ��w���O�_�ۦP�A���֥h���ӽT�{�a�C<br>
+<p><font color="#000000"></font>　 當您重新啟動網路之後，可以執行 ifconfig 及 route 指令，來確認一下 IP 
+  位址及 Default Gateway 是否與在 DHCP Server 上所設定的參數一樣，再來就是檢查 /etc/resolv.conf 中的 nameserver 
+  跟 DHCP 所指定的是否相同，趕快去做個確認吧。<br>
   <br>
-  <strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> <font size="+1"><strong>�ۦ���w�Ѽ�</strong></font></p>
-<p> �@���M DHCP Client �i�H�������o DHCP Server �Ҵ��Ѫ������ѼơA�����Ǯɭԥi�঳�����ѼƱz���Ʊ�z�L Server �������A�ӬO�Q�ۤv�h���]�w�A���n��򰵩O 
-  ? �Ъ����Ѧҽd�ҡG</p>
+  <strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> <font size="+1"><strong>自行指定參數</strong></font></p>
+<p> 　雖然 DHCP Client 可以直接取得 DHCP Server 所提供的網路參數，但有些時候可能有部分參數您不希望透過 Server 的指派，而是想自己去做設定，那要怎麼做呢 
+  ? 請直接參考範例：</p>
 <table width="100%" border="0">
   <tr> 
     <td bgcolor="#000000"><font color="#FFFFFF">dhcpclient:~ #<strong><font color="#FFFF00"> 
@@ -717,13 +717,13 @@ fixed-address<strong> </strong>�h���w�@�ӥä[����}���o�x�D���C�ҥH�o�̪��]�w�A�
       #</font><br>
       <font color="#FFFF00">DHCLIENT_MODIFY_RESOLV_CONF=&quot;no&quot;</font> 
       <strong><br>
-      </strong><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�令 
-      no �H��Adhcpcd �N���|�h�ק� /etc/resolv.conf�A�o�ɭԷ��M�N�i�H�O�d�z���</font><font color="#00FFFF"><font color="#00FFFF" size="2">��</font><strong><br>
-      </strong>#<font size="2"> </font><font color="#00FFFF" size="2">�]�w���o�C</font><br>
-      <font color="#00FFFF">#<font size="2"> </font></font><font size="2">�٦��t�@�ؤ覡�A�N�O��<strong> 
-      </strong>/etc/sysconfig/network/config �h�� </font><strong><br>
+      </strong><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">改成 
+      no 以後，dhcpcd 就不會去修改 /etc/resolv.conf，這時候當然就可以保留您原來</font><font color="#00FFFF"><font color="#00FFFF" size="2">的</font><strong><br>
+      </strong>#<font size="2"> </font><font color="#00FFFF" size="2">設定值囉。</font><br>
+      <font color="#00FFFF">#<font size="2"> </font></font><font size="2">還有另一種方式，就是到<strong> 
+      </strong>/etc/sysconfig/network/config 去把 </font><strong><br>
       </strong>#</font><font color="#00FFFF" size="2">&nbsp;</font><font color="#00FFFF"><font size="2">MODIFY_RESOLV_CONF_DYNAMICALLY</font></font><font color="#00FFFF" size="2"> 
-      �Ѽƭק令 no �Y�i�C</font><font color="#FFFFFF"><strong><br>
+      參數修改成 no 即可。</font><font color="#FFFFFF"><strong><br>
       <br>
       </strong><font color="#0099FF"># Should the DHCP client set a default route 
       (default Gateway) (yes|no)<br>
@@ -733,8 +733,8 @@ fixed-address<strong> </strong>�h���w�@�ӥä[����}���o�x�D���C�ҥH�o�̪��]�w�A�
       #</font><strong><font color="#FFFF00"><br>
       </font></strong><font color="#FFFF00">DHCLIENT_SET_DEFAULT_ROUTE=&quot;no&quot;</font> 
       <strong><br>
-      </strong><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">�]�w�� 
-      no�A���� Client ���ϥ� Server �Ҵ��Ѫ� Default GW�C<br>
+      </strong><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">設定成 
+      no，表示 Client 不使用 Server 所提供的 Default GW。<br>
       <br>
       </font><font color="#00FFFF"> <font color="#0099FF"># Lease time to request 
       ( -l option)<br>
@@ -744,34 +744,34 @@ fixed-address<strong> </strong>�h���w�@�ӥä[����}���o�x�D���C�ҥH�o�̪��]�w�A�
       # set this to a lower value.<br>
       #</font><font color="#FFFFFF"><br>
       <font color="#FFFF00">DHCLIENT_LEASE_TIME=&quot;86400&quot;<strong> </strong></font><strong><br>
-      </strong></font><font color="#00FFFF">#</font> <font size="2">�o�O Client 
-      �V Server �ҭn�D���������]�w�C<br>
+      </strong></font><font color="#00FFFF">#</font> <font size="2">這是 Client 
+      向 Server 所要求的租約期設定。<br>
       </font><font color="#00FFFF"><font color="#00FFFF">#</font></font><font size="2"> 
-      �p�G�z�ҭn�D���ɶ��� <font color="#00FFFF">default-lease-time</font></font> <font size="2">�� 
-      max-lease-time �٤p�AServer ���|�����A</font><br>
-      <font color="#00FFFF"><font color="#00FFFF">#</font></font> <font color="#00FFFF"><font size="2">���p�G�� 
-      <font color="#00FFFF"> max-lease-time</font></font></font> <font size="2">�٤j�A�h�|�H 
+      如果您所要求的時間比 <font color="#00FFFF">default-lease-time</font></font> <font size="2">或 
+      max-lease-time 還小，Server 都會接受，</font><br>
+      <font color="#00FFFF"><font color="#00FFFF">#</font></font> <font color="#00FFFF"><font size="2">但如果比 
+      <font color="#00FFFF"> max-lease-time</font></font></font> <font size="2">還大，則會以 
       <font color="#00FFFF"><font color="#00FFFF">max-lease-time</font></font></font> 
-      <font size="2">�@�� Client ���������C</font></font></td>
+      <font size="2">作為 Client 的租約期。</font></font></td>
   </tr>
 </table>
 <div align="left">
   <p><br>
-    <font size="+1"><strong><a name="15"></a><font size="5">13.3.2 �]�w Windows 
+    <font size="+1"><strong><a name="15"></a><font size="5">13.3.2 設定 Windows 
     Client</font></strong></font><br>
     <br>
-    �@Windows ���ӬO�S������D�A�H Windows 2000���ҡA�бq [ �����ھF ] ���k�� �� ���e �� [ �ϰ�s�u ] ���k�� �� ���e�A���۴N�ݨ�H�U�e���G</p>
+    　Windows 應該是沒什麼問題，以 Windows 2000為例，請從 [ 網路芳鄰 ] 按右鍵 → 內容 → [ 區域連線 ] 按右鍵 → 內容，接著就看到以下畫面：</p>
   <p align="center"> <img src="dhcp3.png" tppabs="http://www.suse.url.tw/picture/dhcp3.png" width="367" height="412"><br>
-    <font size="2">�Ϥ��G�ϰ�s�u���e�D�e�� </font></p>
-  <p> �@�b����F TCP/IP �ë��U [���e] ��A�N�|�ݨ� IP ���]�w�e���G</p>
+    <font size="2">圖五：區域連線內容主畫面 </font></p>
+  <p> 　在選取了 TCP/IP 並按下 [內容] 後，就會看到 IP 的設定畫面：</p>
   <p align="center"> <img src="dhcp4.png" tppabs="http://www.suse.url.tw/picture/dhcp4.png" width="404" height="416"><br>
-    <font size="2">�Ϥ��G IP ���]�w�e��</font></p>
-  <p> �@��Ϥ������ [�۰ʨ��o IP ��}] �� [�۰ʨ��o DNS ���A����}] ����U [�T�w]�A���۴N�|�^��W�@�ӵe���A�A���U [�T�w] �N��F�C<br>
+    <font size="2">圖六： IP 之設定畫面</font></p>
+  <p> 　於圖六中選擇 [自動取得 IP 位址] 及 [自動取得 DNS 伺服器位址] 後按下 [確定]，接著就會回到上一個畫面，再按下 [確定] 就行了。<br>
     <br>
-    �@Windows Client ���]�w�N�p���Ӥw�C���L�̫��٬O�n�T�w�@�U�O�_���n�� IP ���A�i�H�b�R�O���ܦr������J�uipconfig/all�v�h�[��ݬݡC<br>
+    　Windows Client 的設定就如此而已。不過最後還是要確定一下是否有要到 IP 噢，可以在命令提示字元中輸入「ipconfig/all」去觀察看看。<br>
   </p>
 </div>
 <p align="center"><font color="#000000"><em><br>
-  copyright &copy; 2006 by barry ( �f�C�� )</em></font> </p>
+  copyright &copy; 2006 by barry ( 柏青哥 )</em></font> </p>
 </body>
 </html>
