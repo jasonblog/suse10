@@ -1,0 +1,2370 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>柏青哥的 SuSE Linux -- 網路組態設定與服務</title>
+<style type="text/css">
+<!--
+a {
+	color: #000099;
+	text-decoration: none;
+}
+-->
+</style>
+</head>
+
+<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
+<font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a>　　</font>作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw 
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap> <div align="left"></div>
+      <div align="center"> 
+        <div align="center"><font size="+1"></font><font size="+2"><strong></strong></font><font color="#000000" size="+1"></font></div>
+        <font color="#000000" size="7"><strong>第十一章　網路組態設定與服務</strong></font></div>
+      <div align="center"></div></td>
+  </tr>
+</table>
+<font color="#660066"><br>
+<font color="#000099" size="+1"><strong>索引：</strong></font><br>
+</font> 
+<table width="100%" border="0">
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>11.1 <a href="#1">IP 簡介</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td width="4%"><font color="#000099">&nbsp;</font></td>
+    <td width="6%" align="center" valign="top"><font color="#000099">11.1.1</font></td>
+    <td width="90%"><a href="#2">IP 位址的類型</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.1.2</font></td>
+    <td><a href="#3">網路遮罩</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.1.3</font></td>
+    <td><font color="#000099"><a href="#4">CIDR (不分級的網路尋徑)</a> --- <a href="#5">子網路規劃</a>、<a href="#6">網路段整合</a></font></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>11.2 <a href="#7">設定網路連線</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.2.1</font></td>
+    <td><font color="#000099"><a href="#8">設定固定 IP 上網</a> ---<br>
+      <a href="#9">設定網路介面：/etc/sysconfig/network/ifcfg-eth-id-xxxx</a> <br>
+      <a href="#10">設定 Default Gateway：/etc/sysconfig/network/routes</a> <br>
+      <a href="#11">指令 DNS 位址：/etc/resolv.conf</a> </font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.2.2</font></td>
+    <td><a href="#12">ADSL 撥接上網 </a>---<br> <font color="#000099"><a href="#41">使用 
+      YaST 設定 ADSL</a><br>
+      <a href="#42">使用 adsl-setup 指令做設定</a> </font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.2.3</font></td>
+    <td><a href="#13">透過 DHCP 來上網</a></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>11.3 <a href="#15">常用的網路相關指令</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.3.1</font></td>
+    <td><font color="#000099"><a href="#16">網路偵測指令</a> --- <a href="#17">ping</a>、<a href="#18">traceroute</a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.3.2</font></td>
+    <td><font color="#000099"><a href="#19">網路設定指令</a> --- <a href="#20">ifconfig 
+      </a>(<a href="#21">IP Alias</a>)、<a href="#22">route</a>、<a href="#40">綜合範例練習</a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.3.3</font></td>
+    <td><font color="#000099"><a href="#23">遠端連線指令</a> --- <a href="#24">telnet 
+      與 ssh</a>、<a href="#25">ftp 與 ncftp</a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.3.4</font></td>
+    <td><font color="#000099"><a href="#26">檢視網路指令</a> --- <a href="#27">netstat</a></font></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>11.4 </strong><a href="#28"><strong>認識服務 
+      (Services) 與 daemon </strong></a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.4.1</font></td>
+    <td><font color="#000099"><a href="#29">服務與 daemon 概述</a> --- /etc/services</font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.4.2</font></td>
+    <td><a href="#30">Super daemon --- xinetd</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.4.3</font></td>
+    <td><font color="#000099"><a href="#31">xinetd 相關檔案</a> --- <a href="#32">/etc/xinetd.conf</a>、<a href="#33">/etc/xinetd.d/*</a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top"><font color="#000099">11.4.4</font></td>
+    <td><a href="#34">TCP_Wrapper</a> <font color="#000099">--- /etc/hosts.allow、/etc/hosts.deny</font></td>
+  </tr>
+</table>
+<br>
+<hr>
+<font color="#660066"><br>
+</font>　這一章放在架設伺服器之前，就是為了讓大家對網路及其相關組態先有個基本的認識，至於要講述的內容包括 IP 的介紹、網路連線的設定、網路相關指令的運用及服務的概念等，而這些您都清楚了之後，將來在伺服器架設過程遭遇網路問題時，才知道要如何做處理。<br>
+<br>
+<font color="#0000FF" size="+1"><font color="#000000"><strong><font color="#0000FF"><a name="1"></a><font size="6">11.1 
+IP (Internet Protocol) 簡介</font></font></strong><br>
+<br>
+</font></font><font color="#0000FF"><font color="#000000">　IP 位址就是用來讓大家在平時能連線上網際網路的一串數字碼，透過這串數字碼，才可以讓電腦在 
+internet 中能彼此辨識，以達訊息資料傳送的目的。您可以將其想像成家裡的門牌號碼一樣，有了這個位址，封包才曉得要往哪裡送，而不至於迷失方向。<br>
+<br>
+　目前 IP 位址有幾個不同的版本，現在大家所使用的大都為第四版的 IP 位址，即所謂的 IPv4，這就是今天要討論的重點了。<br>
+<br>
+　IPv4 位址由 32 bits 所組成，每一個 bit 可以是 0 與 1，而 32 bits 中又將其分成四組，每組八個 bits，以十進位來表示而形成如 
+61.219.18.224 這類的表示法，若將其用二進位展開，就得到如 00111101.11011011.00010010.11100000 這一長串的數字串，此二進位數字即是網路上實際傳輸的數字串。<br>
+<br>
+<font size="+1"><strong><a name="2"></a><font size="5">11.1.1 IP 位址的類型</font></strong></font></font></font><font color="#0000FF" size="+1"><font color="#000000"><br>
+<br>
+</font></font><font color="#0000FF"><font color="#000000">　IPv4 將 IP 位址區分成兩部分，即<font color="#0000FF">網路位元</font> 
+(Network bits) 和<font color="#0000FF">主機位元</font> (Host bits)，網路位元是用來對網路區段進行識別，而主機位元則是用來對該網路區段內的主機進行識別。<br>
+<br>
+　另外 IPv4 將 IP 位址分為 A、B、C、D、E 等五個類型，即 class A ~ class E，至於各類型的區別方式，則是藉由最左邊所規定的幾個位元來進行判定，等等再說明。<br>
+<br>
+　目前我們所使用的 IP 位址大都為 class A、class B 及 class C，而 class D 是用來做多點群播 (以一對多的方式進行資料傳送)，class 
+E 則是保留給實驗網路來使用，所以這裡將只探討 class A ~ class C。緊接著就來看看如何定義這些類型。<br>
+<br>
+</font></font> 
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099" size="4">Class A</font></strong>：最左邊第一個位元固定為<strong> 
+      0</strong>。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><table width="57%" border="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td nowrap><strong><font color="#0000FF">0</font> </strong>N N N N N 
+            N N . H H H H H H H H . H H H H H H H H . H H H H H H H H<br> <font color="#000000">|----- 
+            <strong>Net Bits</strong>----|　|-----------------------------<strong>Host 
+            Bits</strong>------------------------------| </font>　</td>
+        </tr>
+      </table>
+      <br>
+      N 代表網路位元，H 代表主機位元。剛剛提到網路位元是用來對網路區段進行識別，假使現在有兩個 class A 的 IP 位址，其 Network 
+      bits 完全相同，這就表示此兩個 IP 位址是位於同一個網路區段內，也就是說只要有一個 Network bit 不同，就分別屬於不同的網路區段。<br> 
+      <br>
+      所以由這裡可以得知 class A 扣除最左邊的一個位元外，還有 7 個 Network bits 可以做不同的排列組合，有幾種排列組合就代表可以有幾個網路區段，以這裡來說就是 
+      2 的七次方 = 128 個網路段。<br> <br>
+      現在如果把前面 8 個 bit 換算成十進位，則其範圍是從<strong> </strong>0~127，因為以二進位來說，其最小到最大的範圍是從 
+      (00000000)~(01111111)，那換算成十進位就是 0~127 囉，不過您需要把 0 (給 default route 用) 及 127 
+      (給 loopback address 用)<strong> </strong>給扣除，所以真正可用者為 1 ~ 126。<br> <br>
+      再來看看主機位元的部分。在同一個網路區段內，若主機位元不同，那當然所形成的 IP 位址也會不一樣，也就是說只要算出這些主機位元總共有幾種排列組合，就表示這個網路段內可以擁有多少個 
+      IP 位址，以這裡來說就是 2 的 24 次方個 IP，但是 Host bits 全為 0 及 1 時須扣除。Host bits 全部為 0 時所得到的是網路位址，代表的是這個網路區段的位址 
+      ﹔Host bits 全部為 1 時所得到的是廣播位址，代表的是對同一個網路區段內的主機進行廣播的位址。所以每個 class A 的網段裡，真正可分派給主機使用的 
+      IP 為 2 的 24 次方減 2 個。 </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099" size="4">Class B</font></strong><font color="#000099" size="4">：</font><font color="#000000">最左邊兩個位元固定為<strong> 
+      10</strong>。</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><table width="57%" border="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td nowrap><strong><font color="#0000FF">1 0</font></strong> N N N N 
+            N N . N N N N N N N N . H H H H H H H H . H H H H H H H H<br> <font color="#000000">|----------------- 
+            <strong>Net Bits</strong>-----------------|　|-----------------<strong>Host 
+            Bits</strong>-----------------|</font><font color="#FF0000">&nbsp; 
+            </font>　</td>
+        </tr>
+      </table>
+      <br>
+      class B 扣除最左邊的兩個位元外，還有 14 個 Network bits 可以做不同的排列組合，因此可提供 2 的 14 次方個網路區段，如把前面 
+      8 個 bit 換算成十進位，其範圍是從 128 ~ 191。至於每個 class B 的網段裡，真正可分派給主機使用的 IP 為 2 的 16 
+      次方減 2 個。 </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099" size="4">Class C</font></strong><font color="#000099" size="4">：</font><font color="#000000">最左邊三個位元固定為<strong> 
+      110</strong>。</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><table width="57%" border="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td nowrap><strong><font color="#0000FF">1 1 0</font></strong> N N N 
+            N N . N N N N N N N N . N N N N N N N N . H H H H H H H H<br> <font color="#000000">|------------------------------- 
+            <strong>Net Bits</strong>-----------------------------|　|----<strong>Host 
+            Bits</strong>----| </font>　</td>
+        </tr>
+      </table>
+      <br>
+      class C 扣除最左邊的三個位元外，還有 21 個 Network bits 可以做不同的排列組合，因此可提供 2 的 21 次方個網路區段，如把前面 
+      8 個 bit 換算成十進位，其範圍是從 192 ~ 223。至於每個 class C 的網路裡，真正可分派給主機使用的 IP 為 2 的 8 
+      次方減 2 個。</td>
+  </tr>
+</table>
+<font color="#0000FF"><font color="#000000"><br>
+　</font></font>平常在家裡的電腦要想能夠上網時，都必須向 ISP 申請 IP 位址，而這個經由合法程序申請回來的 IP 稱為 Public IP，但是若您不想連接 
+Internet，只想讓內部電腦間彼此能夠通訊的話，就不須向 ISP 申請合法的 IP，此時只須使用 Private IP 即可。以下列出的，即是可使用的 
+Private IP<strong> </strong>範圍： <br>
+<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td><font face="細明體">10.0.0.0 ~ 10.255.255.255<br>
+      172.16.0.0 ~ 172.31.255.255<br>
+      192.168.0.0 ~ 192.168.255.255</font></td>
+  </tr>
+</table>
+<p>　這些 Private IP，是提供做企業內部網路架構的設定範圍，可不與外界連線，亦可透過具 NAT 功能的 Router 或主機來與 internet 
+  連線溝通。另外若是將來您學會了架設 Proxy 之後，亦可讓其來幫您做代理連線的工作。</p>
+<p><strong><font size="+1"><a name="3"></a><font size="5">11.1.2 網路遮罩 (Network 
+  Mask)</font></font></strong><br>
+  <br>
+  　同一個網路區段內的主機，其網路位元必定相同，主機位元必定不同，那要分辨這些主機到底是不是屬於同一個網段，就須靠網路遮罩了。當我們將網路位元設為 1，主機位元設為 
+  0，所得到的結果就是網路遮罩，比方說 class A 的網路遮罩為：<br>
+  <font face="細明體">11111111.00000000.00000000.00000000</font><strong><br>
+  </strong>換算成十進位就是<strong> </strong>255.0.0.0，同理<strong> </strong>class B 為 255.255.0.0，class 
+  C 為 255.255.255.0。<br>
+  <br>
+  　在設定靜態 IP 位址時，必須要同時指定其網路遮罩為何。比如主機的 IP 為 192.168.1.100，Netmask 為 255.255.255.0，則由 
+  Netmask 得知有 24 個 Network bits 及 8 個 Host bits，而將 Host bits 全設為 0，可以得到網路位址 192.168.1.0，一樣的道理，將 
+  Host bits 全設為 1，可以得到廣播位址 192.168.1.255，所以只要位於 192.168.1.0/24 (24 是表示有 24 個 network 
+  bits) 這個網路段內的主機，就可以彼此直接進行溝通，而不需要依賴一些路由設備。藉由這種方式可以很快的知道網路位址及廣播位址為何，但實際上網路位址是將二進位的 
+  IP 位址及 Network Mask 經由 and 邏輯運算而來，以剛剛的 192.168.1.100 做例子：</p>
+<table width="45%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td nowrap>1 1 0 0 0 0 0 0 . 1 0 1 0 1 0 0 0 . 0 0 0 0 0 0 0 1 . 0 1 1 0 0 
+      1 0 0<br>
+      　　　　　　　　　　　　<strong><font color="#000000">and</font></strong><br>
+      1 1 1 1 1 1 1 1 . 1 1 1 1 1 1 1 1 . 1 1 1 1 1 1 1 1 . 0 0 0 0 0 0 0 0<br>
+      　　　　　　　　　　　　<font color="#000000" size="2"><strong>結果</strong></font><br>
+      1 1 0 0 0 0 0 0 . 1 0 1 0 1 0 0 0 . 0 0 0 0 0 0 0 1 . 0 0 0 0 0 0 0 0</td>
+  </tr>
+</table>
+<p>　由以上運算結果即得到網路位址為 192.168.1.0。</p>
+<p>　至於廣播位址是先將 Network Mask 做 not 運算，再與 IP 做 or 運算：</p>
+<table width="45%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td nowrap>1 1 1 1 1 1 1 1 . 1 1 1 1 1 1 1 1 . 1 1 1 1 1 1 1 1 . 0 0 0 0 0 
+      0 0 0<br> <strong>　　　　　　　　　　　<font color="#000000">not </font></strong><br>
+      0 0 0 0 0 0 0 0 . 0 0 0 0 0 0 0 0 . 0 0 0 0 0 0 0 0 . 1 1 1 1 1 1 1 1<br> 
+      <strong>　　　　　　　　　　　<font color="#000000"> or </font></strong><br>
+      1 1 0 0 0 0 0 0 . 1 0 1 0 1 0 0 0 . 0 0 0 0 0 0 0 1 . 0 1 1 0 0 1 0 0<br> 
+      <font size="2"><strong>　　　　　　　　　　　　　<font color="#000000"> 結果</font></strong></font><br>
+      1 1 0 0 0 0 0 0 . 1 0 1 0 1 0 0 0 . 0 0 0 0 0 0 0 1 . 1 1 1 1 1 1 1 1</td>
+  </tr>
+</table>
+<p> 　所以得到廣播位址為 192.168.1.255。<br>
+  <br>
+  <font size="+1"><strong><a name="4"></a><font size="5">11.1.3 CIDR：不分級的網域尋徑</font></strong></font><br>
+  <br>
+  　一般傳統的 class A 可以使用的 IP 位址數非常的多，在這種情形下，如果沒有好好的規劃，便容易形成位址浪費與傳輸效率不彰等現象。而 class 
+  C 可以使用的 IP 位址數又過少，有時候為了解決位址數的不足，必須再申請幾個 class C 的網路段，因此需要額外添購一些昂貴的路由設備，且存在過多的網路段，會導致 
+  Routing table 內的路由資訊過於龐大，以致影響 Router 的執行效率。<br>
+  <br>
+  　為了解決以上種種的問題，由 IETF (Internet Engineering Task Force) 提出了 CIDR (Classless Inter-Domain 
+  Routing) 的架構，也就是網路位元不再受限於 8、16、24 位元，而是根據網路遮罩來定義，這使得位址的分配更具彈性，也比較符合實際需求。<br>
+  <br>
+  <strong><a name="5"></a><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  子網路 (Subnet) 規劃<br>
+  <br>
+  </font></strong>　將一個網路區段再切割成幾個子網段 (subnet) 的規劃，就是我們要探討的主題。以 class B 來說，一個 class 
+  B 的網路區段原本有 16 個 Host bits，此時藉由向主機位元借位元的方式，而讓 IP 位址區分成網路位元、子網路位元及主機位元三部份，其中網路位元由 
+  NIC 分配，子網路位元及主機位元則由該網段的擁有者逕行分配。當我們向 Host bits 借的位元數愈多，所能區分的子網段也愈多。<br>
+  <br>
+  　以下使用 172.85.0.0/16 這個網路段做範例來跟各位說明，看看如何透過向主機位元借位的方式而能再切割子網段出來。<br>
+  <br>
+  　假使現在要跟主機位元借三個 bits，就形成如下的狀況：</p>
+<table width="45%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td nowrap><p>1 0 1 0 1 1 0 0 . 0 1 0 1 0 1 0 1 . <u>N N N</u> H H H H H . 
+        H H H H H H H H<br>
+        |----------<strong><font color="#000000">Network Bits</font></strong>---------|<font color="#000000"> 
+        　 <strong>↓</strong></font>　|--------------<strong><font color="#000000">Host 
+        Bits</font></strong>------------|<br>
+        　　　　　　　　　　　<strong>　<font color="#000000">Subnet bits</font></strong><br>
+      </p></td>
+  </tr>
+</table>
+<p> 　網路位元向主機位元借位後，就形成了三個子網位元，所以可切割成 2 的三次方等於 8 個子網段，每個子網段可提供給主機來使用的 IP 位址為 2 的 
+  13 次方減 2 個。而將網路位元設為 1 (包括子網位元)，主機位元設為 0，可得到子網遮罩 (Subnet Mask) 為 255.255.224.0。</p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099">第一個子網段</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><table width="45%" border="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td nowrap><p>1 0 1 0 1 1 0 0 . 0 1 0 1 0 1 0 1 .<strong> <font color="#0000FF">0 
+              0 0</font></strong> H H H H H . H H H H H H H H<br>
+            </p></td>
+        </tr>
+      </table>
+      <p>子網位址：將主機位元設為 0 而得到 172.85.0.0。<br>
+        廣播位址：將主機位元設為 1 而得到 172.85.31.255。<br>
+        <br>
+        172.85.0.0/19 子網路段可分配給主機的 IP 位址範圍：</p>
+      <table width="43%" border="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td nowrap><p>1 0 1 0 1 1 0 0 . 0 1 0 1 0 1 0 1 . <strong><font color="#0000FF">0 
+              0 0</font></strong> 0 0 0 0 0 . 0 0 0 0 0 0 0 1<br>
+              　　　　　　　：　　　　　　　　：<br>
+              1 0 1 0 1 1 0 0 . 0 1 0 1 0 1 0 1 . <strong><font color="#0000FF">0 
+              0 0</font></strong> 1 1 1 1 1 . 1 1 1 1 1 1 1 0<br>
+            </p></td>
+        </tr>
+      </table>
+      <p> 換算成十進位就是 172.85.0.1 ~ 172.85.31.254。 </p></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">第二個子網段</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><table width="45%" border="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td nowrap><p>1 0 1 0 1 1 0 0 . 0 1 0 1 0 1 0 1 . <font color="#0000FF"><strong>0 
+              0 1</strong></font> H H H H H . H H H H H H H H<br>
+            </p></td>
+        </tr>
+      </table>
+      <br>
+      子網位址：將主機位元設為 0 而得到 172.85.32.0。<br>
+      廣播位址：將主機位元設為 1 而得到 172.85.63.255。<br> <br>
+      172.85.32.0/19 子網路段可分配給主機的 IP 位址範圍：<br> <br> <table width="43%" border="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td nowrap><p>1 0 1 0 1 1 0 0 . 0 1 0 1 0 1 0 1 . <strong><font color="#0000FF">0 
+              0 1</font></strong><font color="#0000FF"> </font>0 0 0 0 0 . 0 0 
+              0 0 0 0 0 1<br>
+              　　　　　　　：　　　　　　　　：<br>
+              1 0 1 0 1 1 0 0 . 0 1 0 1 0 1 0 1 .<font color="#0000FF"> <strong>0 
+              0 1</strong></font> 1 1 1 1 1 . 1 1 1 1 1 1 1 0<br>
+            </p></td>
+        </tr>
+      </table>
+      <p> 換算成十進位就是 172.85.32.1 ~ 172.85.63.254。</p></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">第三個子網段</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><table width="45%" border="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td nowrap><p>1 0 1 0 1 1 0 0 . 0 1 0 1 0 1 0 1 .<strong> <font color="#0000FF">0 
+              1 0</font></strong> H H H H H . H H H H H H H H<br>
+            </p></td>
+        </tr>
+      </table>
+      <br>
+      子網位址：將主機位元設為 0 而得到 172.85.64.0。<br>
+      廣播位址：將主機位元設為 1 而得到 172.85.95.255。<br> <br>
+      172.85.64.0/19 子網路段可分配給主機的 IP 位址範圍： 
+      <table width="43%" border="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td nowrap><p>1 0 1 0 1 1 0 0 . 0 1 0 1 0 1 0 1 . <strong><font color="#0000FF">0 
+              1 0</font></strong><font color="#0000FF"> </font>0 0 0 0 0 . 0 0 
+              0 0 0 0 0 1<br>
+              　　　　　　　：　　　　　　　　：<br>
+              1 0 1 0 1 1 0 0 . 0 1 0 1 0 1 0 1 .<font color="#0000FF"> <strong>0 
+              <font color="#0000FF">1 0</font></strong><font color="#0000FF"></font></font> 
+              1 1 1 1 1 . 1 1 1 1 1 1 1 0<br>
+            </p></td>
+        </tr>
+      </table>
+      <p> 換算成十進位就是 172.85.64.1 ~ 172.85.95.254。 </p></td>
+  </tr>
+</table>
+<p> 　做到這裡，或許各位已經發覺有個規律性，就是每個網段都是以等差級數來增加，所以您可以很快的把剩下的子網段都推算出來，這就交給各位去練習了。</p>
+<p><strong><a name="6"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
+  網路段整合</font></strong> <font size="+1"><strong>(Supernet)<br>
+  <br>
+  </strong></font>　當您申請了數個 class C 的網路區段後，可以透過整合的方式來將其合併成一個網段，比如您目前申請了 210.10.36.0、210.10.37.0、210.10.38.0、210.10.39.0 
+  等四個標準的 class C 網段，接著先將其網路位址用二進位表示如下：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#CCCCCC"><font face="細明體">210.10.36.0 → </font><font color="#0000FF" face="細明體">11010010.00001010.001001</font><font face="細明體">00.00000000<br>
+      210.10.37.0 → </font><font color="#0000FF" face="細明體">11010010.00001010.001001</font><font face="細明體">01.00000000<br>
+      210.10.38.0 → </font><font color="#0000FF" face="細明體">11010010.00001010.001001</font><font face="細明體">10.00000000<br>
+      210.10.39.0 → </font><font color="#0000FF" face="細明體">11010010.00001010.001001</font><font face="細明體">11.00000000</font></td>
+  </tr>
+</table>
+<p>　這時候您可以把這四個網段中二進位相同的部分整合在一起，並將其視為 Network bits (22 bits)，那剩下的 10 個變動位元當然就是 
+  Host bits，所以整合後其 Network Mask 為 255.255.252.0，Network Address 為 210.10.36.0，Broadcast 
+  Address 為 210.10.39.255。 </p>
+<p><font color="#0000FF" size="+1"><font color="#000000"> <font color="#0000FF"><strong><a name="7"></a><font size="6">11.2 
+  設定網路連線</font><br>
+  </strong></font></font><strong><br>
+  </strong></font><font color="#000000">　</font><font color="#000000">本節將教大家如何讓您的 
+  Linux 連上 internet，不過自己要先清楚目前主機的連線方式為何，是使用 ADSL 撥接、Cable Modem、還是已經有固定 IP 位址。以下會分別針對這三種常見的連線方式做說明。<br>
+  <br>
+  <font size="+1"><strong><a name="8"></a><font size="5">11.2.1 設定固定 IP 上網</font></strong></font><br>
+  <br>
+  　假使您目前可以使用的固定 IP 位址是 220.132.78.75，Default Gateway 為 220.132.78.254，DNS 為 168.95.1.1 
+  及 168.95.192.1，則請參考以下步驟做設定：</font> </p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099" size="4"><a name="9"></a>設定網路介面</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>請至 /etc/sysconfig/network 目錄中找到 ifcfg-eth-id-[<font size="2">MAC 位址</font>] 
+      這個檔案，然後進去做編輯：<br> <br> <table width="100%" border="0">
+        <tr> 
+          <td height="183" bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">cd 
+            /etc/sysconfig/network</font></strong><br>
+            suse:/etc/sysconfig/network # <strong><font color="#FFFF00">vi ifcfg-eth-id-00:05:5d:69:dd:b3</font></strong><br>
+            </font> <table width="100%" border="0">
+              <tr> 
+                <td width="28%" valign="top" nowrap><font color="#FFFFFF">STARTMODE='auto'</font></td>
+                <td width="72%"><font color="#00FFFF" size="2">開機時自動啟動該網路介面。</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" nowrap><font color="#FFFFFF">BOOTPROTO='static'</font></td>
+                <td><font color="#00FFFF" size="2">static 表示要為此介面設定靜態位址。</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" nowrap><font color="#FFFFFF">IPADDR=220.132.78.75</font></td>
+                <td><font color="#00FFFF" size="2">設定靜態 IP 位址。</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" nowrap><font color="#FFFFFF">NETMASK=255.255.255.0</font></td>
+                <td><font color="#00FFFF" size="2">設定網路遮罩。</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" nowrap><font color="#FFFFFF">NETWORK=220.132.78.0 
+                  </font></td>
+                <td><font color="#00FFFF" size="2">設定網路位址。</font></td>
+              </tr>
+              <tr> 
+                <td height="19" valign="top" nowrap><font color="#FFFFFF">BROADCAST=220.132.78.255 
+                  </font></td>
+                <td><font color="#00FFFF" size="2">設定廣播位址。</font></td>
+              </tr>
+              <tr> 
+                <td height="18" valign="top" nowrap><font color="#FFFFFF">PERSISTENT_NAME=eth0</font></td>
+                <td><font color="#00FFFF" size="2">指定該介面名稱為 eth0。</font></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table>
+      <br> <font color="#000000">談談 PERSISTENT_NAME 參數。當您主機上存在兩片相同型號的網卡時，可利用這個參數來個別指定介面名稱，這樣就不容易搞混，當然您要是區分得出來，不設定也無所謂啦。</font> 
+    </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099" size="4"><a name="10"></a>設定 Default Gateway</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>設定檔一樣是存在於 /etc/sysconfig/network 目錄裡。如果之前您從未使用 YaST 去設定 Default GW，那麼請自行在此目錄中去建立 
+      routes 檔案：<br> <br> <table width="100%" border="0">
+        <tr> 
+          <td bgcolor="#000000"><font color="#FFFFFF">suse:/etc/sysconfig/network 
+            #<strong> <font color="#FFFF00">vi routes</font><br>
+            </strong><font face="細明體">default　　220.132.78.254　　0.0.0.0　　 eth0<strong> 
+            <br>
+            </strong></font></font><font color="#00FFFF" size="2" face="細明體">　　　　　　　　預設閘道器　　　 
+            網路遮罩　　介面名稱</font></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099" size="4"><a name="11"></a>設定 DNS 位址</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><p>指定預設的名稱伺服器位址：</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">vi 
+            /etc/resolv.conf<br>
+            </font></strong> <font face="細明體">nameserver 168.95.1.1<br>
+            nameserver 168.95.192.1</font></font></td>
+        </tr>
+      </table>
+      <br>
+      DNS 的相關說明，在下一章會有詳細的解說。 </td>
+  </tr>
+</table>
+<font color="#000000"><br>
+　以上三個步驟設定完成後，請重新啟動網路服務：<br>
+<br>
+</font> 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>/etc/init.d/network 
+      restart</strong></font><br>
+      <br>
+      <font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 或者執行<strong> 
+      </strong>rcnetwork 也行：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>rcnetwork restart </strong></font></font></td>
+  </tr>
+</table>
+<br>
+　另一種重新啟動網路服務的方式，是利用 ifdown 及 ifup 這兩支 script：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      ifdown eth0</strong></font><br>
+      suse:~ #<font color="#FFFF00"><strong> ifup eth0</strong></font></font></td>
+  </tr>
+</table>
+<p> <font color="#FFFFFF"><font color="#000000">　要使用 ifdown 及 ifup 時，於 /etc/sysconfig/network 
+  目錄下，需存在相關網路介面設定檔才行。</font></font><br>
+  <br>
+  <font color="#000000"> <font size="+1"><strong><a name="12"></a><font size="5">11.2.2 
+  ADSL 撥接上網</font></strong></font><br>
+  <br>
+  　關於 ADSL 的設定，這裡會提供兩種方式給大家做參考。<br>
+  <br>
+  <strong><a name="41"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> 
+  <font size="4"><strong>使用 YaST 設定 ADSL</strong></font></font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><font color="#000000"><font color="#000099"><strong>請執行 &quot;yast 
+      dsl&quot; 進入設定畫面並選取 [新增]：</strong></font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><div align="center"><img src="../picture/dsl1.png" tppabs="http://www.suse.url.tw/picture/dsl1.png" width="749" height="470"></div></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">設定 ADSL 組態：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><p align="center"><img src="../picture/dsl2.png" tppabs="http://www.suse.url.tw/picture/dsl2.png" width="754" height="473"></p>
+      <p>[裝置啟用] 部分，看您要使用 [手動] 方式來啟動 ADSL，還是希望 [開機時] 自動啟動 ADSL。<br>
+        [使用者控制] 是說要不要允許一般使用者可以啟動或停止 ADSL。<br>
+      </p></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">選擇 internet 服務提供者：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><div align="center"><img src="../picture/dsl3.png" tppabs="http://www.suse.url.tw/picture/dsl3.png" width="751" height="468"></div></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">輸入 ISP 所提供給您的帳號及密碼：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><div align="center"><img src="../picture/dsl4.png" tppabs="http://www.suse.url.tw/picture/dsl4.png" width="760" height="473"></div></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">設定網路連線的相關參數：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><p align="center"><img src="../picture/dsl5.png" tppabs="http://www.suse.url.tw/picture/dsl5.png" width="761" height="478"></p>
+      <p>[閒置逾時] 預設 300 秒，也就是說您閒置了五分鐘後會自動斷線。如想一直保持連線狀態，把它改為 0 秒就行了。<br>
+      </p></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">回主畫面後選取 [完成]：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><div align="center"><img src="../picture/dsl6.png" tppabs="http://www.suse.url.tw/picture/dsl6.png" width="760" height="476"></div></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">儲存 ADSL 組態：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><p align="center"><img src="../picture/dsl7.png" tppabs="http://www.suse.url.tw/picture/dsl7.png" width="747" height="469"></p>
+      <p>要不要繼續設定郵件，就看您自己囉。<br>
+      </p></td>
+  </tr>
+</table>
+<p><font color="#000000"> 　完後設定後，您可至 /etc/sysconfig/network 目錄中找到 ifcfg-dsl0 檔案，另外在 
+  /etc/sysconfig/network/providers 目錄下也會產生一個 provider0 的檔案，而剛剛您所設定的那些參數就是放在這兩個檔案內，所以將來要做調整時，可以直接到檔案內做修改就行了。 
+  </font></p>
+<p><font color="#000000">　如果剛剛您是選擇用手動的方式來啟動 ADSL，現在想馬上啟動 ADSL時，可以執行 &quot;<font color="#0000FF">ifup 
+  dsl0</font>&quot;，要結束連線時就執行 &quot;<font color="#0000FF">ifdown dsl0</font>&quot;。<br>
+  <br>
+  </font><font color="#000000"><strong><a name="42"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="4"> 
+  使用 adsl-setup 指令做設定</font></strong><br>
+  <br>
+  　這部分請先確定 rp-pppoe 套件有安裝，不過 SLES10 光碟裡並沒有提供這個套件，所以請先至以下 FTP 站台下載此套件：<br>
+  <br>
+  <a href="javascript:if(confirm(%27ftp://ftp.isu.edu.tw/Linux/SuSE/i386/9.3/suse/i586/rp-pppoe-3.5-337.i586.rpm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27ftp://ftp.isu.edu.tw/Linux/SuSE/i386/9.3/suse/i586/rp-pppoe-3.5-337.i586.rpm%27" tppabs="ftp://ftp.isu.edu.tw/Linux/SuSE/i386/9.3/suse/i586/rp-pppoe-3.5-337.i586.rpm">　ftp://ftp.isu.edu.tw/Linux/SuSE/i386/9.3/suse/i586/rp-pppoe-3.5-337.i586.rpm</a></font> 
+  <br>
+  <br>
+  　再來是檢查 rp-pppoe 的相依套件 devs 是否已安裝，還沒裝的話，直接從光碟安裝即可。搞定了 devs 套件後，應該就可以成功把 rp-pppoe 
+  安裝上去了。</p>
+<font color="#000000">　接著請參考以下的連線設定：<br>
+<br>
+</font> 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      adsl-setup</strong></font>　<br>
+      <font face="細明體">Welcome to the Roaring Penguin ADSL client setup. First, 
+      I will run<br>
+      some checks on your system to make sure the PPPoE client is installed<br>
+      properly... <br>
+      <br>
+      Looks good! Now, please enter some information:</font> 
+      <p><strong>USER NAME<br>
+        <br>
+        </strong><font face="細明體">&gt;&gt;&gt; Enter your PPPoE user name (bxxxnxnx@sympatico.ca):</font> 
+        <font color="#FFFF00"> <strong>85576628@hinet.net<br>
+        <font color="#FFFFFF">　　　　　　　　　　　　　　　　　　　　　　　　　　　　</font></strong><font color="#00FFFF">↑</font><strong> 
+        <br>
+        </strong></font><strong>INTERFACE</strong>　　　　　　　　　　　　　　　　　　　　<font color="#00FFFF" size="2">　輸入 
+        ISP 所提供的帳號</font>　　　　　　　　　　　　　　　　　　　<br>
+        <br>
+        <font face="細明體">&gt;&gt;&gt; Enter the Ethernet interface connected to 
+        the ADSL modem<br>
+        For Solaris, this is likely to be something like /dev/hme0.<br>
+        For Linux, it will be ethn, where 'n' is a number.<br>
+        (default eth0):</font>　<font color="#00FFFF" size="2">← 指定連接至 modem 的介面。如要採用預設的 
+        eth0，請直接按下 Enter 鍵。<br>
+        </font><br>
+        <strong>MODEM TYPE </strong> <br>
+        <br>
+        <font face="細明體">We will try to detect if your modem is compliant with 
+        RFC 2516<br>
+        or not. 3COM's 3CP4130 is *NOT* compliant, for instance.<br>
+        <br>
+        </font><font face="細明體">Searching for a modem at interface eth0...<br>
+        Found a RFC 2516 compliant modem, congratulations! :)<br>
+        <br>
+        </font><font face="細明體">Do you want the link to come up on demand, or 
+        stay up continuously?<br>
+        If you want it to come up on demand, enter the idle time in seconds<br>
+        after which the link should be dropped. If you want the link to<br>
+        stay up permanently, enter 'no' (two letters, lower-case.)<br>
+        NOTE: Demand-activated links do not interact well with dynamic IP<br>
+        addresses. You may have some problems with demand-activated links.<br>
+        &gt;&gt;&gt; Enter the demand value (default no):</font>　<font color="#00FFFF" size="2">← 
+        敲下Enter 鍵來採用預設值，<br>
+        </font>　　　　　　　　　　　　　　　　　　　　　　<font color="#00FFFF" size="2">表示持續保持連線。</font> 
+        <br>
+        <br>
+        <strong>DNS </strong></p>
+      </font> <p><font color="#FFFFFF" face="細明體">Please enter the IP address 
+        of your ISP's primary DNS server.<br>
+        If your ISP claims that 'the server will provide DNS addresses',<br>
+        enter 'server' (all lower-case) here.<br>
+        If you just press enter, I will assume you know what you are<br>
+        doing and not modify your DNS setup.<br>
+        &gt;&gt;&gt; Enter the DNS information here:</font><font color="#FFFFFF">　<font color="#FFFF00"><strong>168.95.1.1</strong></font><strong>　</strong><font color="#00FFFF" size="2">← 
+        設定 DNS 的位址。</font></font><font color="#FFFFFF" size="2"><br>
+        </font><font color="#FFFFFF" face="細明體">&gt;&gt;&gt; Enter the secondary 
+        DNS server address here:</font><font color="#FFFFFF">　<strong><font color="#FFFF00">168.95.192.1<font size="2">　</font></font></strong><br>
+        　　　　　　　　　　　　　　　　　　　　　　　　　　　　<font color="#00FFFF" size="2">↑</font><br>
+        <strong>PASSWORD 　　　　　　　　　　　　　　　　　　</strong><font color="#00FFFF" size="2">設定第二台 
+        DNS 位址。</font><strong><br>
+        <br>
+        </strong></font><font color="#FFFFFF"><font face="細明體">&gt;&gt;&gt; Please 
+        enter your PPPoE password:</font>　<font color="#00FFFF" size="2">← 輸入 
+        ISP 所提供的密碼。</font><br>
+        <font face="細明體">&gt;&gt;&gt; Please re-enter your PPPoE password:</font>　<font color="#00FFFF" size="2">← 
+        再次輸入密碼做確認。</font> <br>
+        <br>
+        <strong>FIREWALLING<br>
+        <br>
+        </strong><font face="細明體">The firewall choices are:<br>
+        0 - NONE: This script will not set any firewall rules. You are responsible<br>
+        　　　　　for ensuring the security of your machine. You are STRONGLY<br>
+        recommended to use some kind of firewall rules.<br>
+        1 - STANDALONE: Appropriate for a basic stand-alone web-surfing workstation<br>
+        2 - MASQUERADE: Appropriate for a machine acting as an Internet gateway<br>
+        　　　　　　　　for a LAN<br>
+        &gt;&gt;&gt; Choose a type of firewall (0-2):</font><font color="#FFFF00"><strong> 
+        0<font color="#FFFFFF">　</font></strong></font><font color="#00FFFF" size="2">← 
+        設定 0 表示不設防火牆。</font><br>
+        <br>
+        <strong>** Summary of what you entered **　</strong><font color="#FFFFFF"><font color="#00FFFF" size="2">← 
+        以下列出的是您剛剛所做的設定，檢查一下有沒有問題。</font></font> <br>
+        <br>
+        <font face="細明體">Ethernet Interface: eth0<br>
+        User name: 　　　　 85576628@hinet.net<br>
+        Activate-on-demand: No<br>
+        Primary DNS: 　　　 168.95.1.1<br>
+        Secondary DNS: 　　 168.95.192.1<br>
+        Firewalling: 　　　 NONE</font> <br>
+        <br>
+        <font color="#FFFFFF"><font face="細明體">&gt;&gt;&gt; Accept these settings 
+        and adjust configuration files (y/n)? </font><font color="#FFFF00"><strong>y<font color="#FFFFFF">　</font></strong><font color="#00FFFF" size="2"><br>
+        → 沒問題的話請輸入 y，接著就會幫您自動寫入相關的檔案。<br>
+        </font></font><br>
+        <font face="細明體"> Adjusting /etc/ppp/pppoe.conf<br>
+        Adjusting /etc/resolv.conf <br>
+        　(But first backing it up to /etc/resolv.conf-bak) <br>
+        Adjusting /etc/ppp/pap-secrets and /etc/ppp/chap-secrets<br>
+        　(But first backing it up to /etc/ppp/pap-secrets-bak)<br>
+        　(But first backing it up to /etc/ppp/chap-secrets-bak)</font></font> 
+        </font> <br>
+        <br>
+        <font color="#FFFFFF" face="細明體">Congratulations, it should be all set 
+        up!<br>
+        <br>
+        </font><font color="#FFFFFF" face="細明體">Type 'adsl-start' to bring up 
+        your ADSL link and 'adsl-stop' to bring<br>
+        it down. Type 'adsl-status' to see the link status.<br>
+        </font></p></td>
+  </tr>
+</table>
+<p><font color="#FFFFFF"><font color="#000000">　</font><font color="#000000">這樣就設定完成了。接著可執行 
+  &quot;<strong>adsl-start</strong>&quot; 來啟動 ADSL 連線，再來執行 &quot;<strong>adsl-status</strong>&quot; 
+  來檢查連線狀態，最後執行 &quot;<strong>adsl-stop</strong>&quot; 來中斷連線，自行練習看看囉 !<br>
+  <br>
+  　透過此方式設定 ADSL 時，其預設連線成功後的閒置時間為十分鐘，如果十分鐘內沒做任何的動作，那麼 pppd 就會斷開連線，然後再重新索取一個新的 IP。當然您可以透過閒置時間的修改，來解決這方面的問題：</font></font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>vi 
+      /etc/ppp/options</strong></font><br>
+      <font color="#0066FF"># Specifies that pppd should disconnect if the link 
+      is idle for n seconds.</font><br>
+      <strong>idle 0</strong><br>
+      <font color="#00FFFF"># <font size="2">將 idle 參數由預設的 600 秒改成 0 秒即可。這樣您所取得的 
+      IP 就可一直持續使用。</font></font></font></td>
+  </tr>
+</table>
+<p><font color="#FFFFFF"><font color="#000000"> <strong>　</strong>另外想設定下次開機時自動啟動 
+  ADSL 連線，可這麼做：</font></font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td height="26" bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
+      <strong>chkconfig --level 35 adsl on</strong></font></font></td>
+  </tr>
+</table>
+<blockquote> 
+  <p><strong><font color="#000099">Tips：</font></strong><font color="#000099" size="2">使用 
+    YaST 設定 ADSL 時，撥接成功之後所產生的對外連接介面為 dsl0，而透過 adsl-setup 去做設定時則為 ppp0。 </font></p>
+</blockquote>
+<p><strong><font size="+1"><a name="13"></a><font size="5">11.2.3 透過 DHCP 來上網</font></font></strong><br>
+  <br>
+  　如果網路連線方式是使用 Cable Modem，或者您有 IP 分享器 (兼具 DHCP 功能 ) 的話，要設定上網就非常簡單了：</p>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr> 
+    <td><font color="#FFFFFF">suse:/etc/sysconfig/network # <strong><font color="#FFFF00">vi 
+      ifcfg-eth-id-00:05:5d:69:dd:b3</font></strong><br>
+      STARTMODE='onboot' <br>
+      BOOTPROTO='<font color="#FFFF00">dhcp</font>'　<font color="#00FFFF" size="2">← 
+      此處設定成 dhcp 就對了。</font><br>
+      　　　：<font size="2">略</font> <br>
+      <br>
+      suse:~ #<font color="#FFFF00"><strong> rcnetwork restart </strong></font></font></td>
+  </tr>
+</table>
+<p>　一般透過 DHCP 協定來取得 IP 位址時，會自動幫您指定其他的參數，比如 Default Gateway 及 DNS 等等，因此您不需額外去做設定。<br>
+  <br>
+  　另外如果是使用 ADSL 撥接時，在這個網路介面設定檔裡，最好指派靜態位址給這個介面 (比如 eth0)，尤其當您這台主機要與內部電腦取得通訊時，就非得指定靜態 
+  IP 不可。另一方面，當 BOOTPROTO 設定成 dhcp 後，在開機過程會因為 eth0 介面索取不到 IP 而耽誤一些開機時間，因為一般像 hinet 
+  的 ADSL 並非使用 dhcp 協定，且撥接成功後所取得的 Public IP 是要分配給 dsl0 (ppp0) 介面而非 eth0 介面。</p>
+<blockquote> 
+  <p><strong><font color="#000099">Tips：</font></strong><font color="#000099" size="2">這裡順便提一下主機名稱的指派，您可至 
+    /etc/HOSTNAME 檔案內做設定，也可在命令列上使用 hostname 指令做修改。不過使用指令方式所設定的主機名稱，只限當前有效，因 reboot 
+    後是會根據 /etc/HOSTNAME 來指派主機名稱的。</font></p>
+  <table width="60%" border="0">
+    <tr> 
+      <td bgcolor="#000000"><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">將主機名稱設定在檔案內：</font><br>
+        suse:~ # <font color="#FFFF00"><strong>vi /etc/HOSTNAME</strong></font><br>
+        suse.paching.idv.tw<strong> <br>
+        <br>
+        </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">使用 
+        hostname 來設定主機名稱：</font><br>
+        suse:~ # <strong><font color="#FFFF00">hostname linux.paching.com.tw</font></strong> 
+        <br>
+        <br>
+        suse:~ # <strong><font color="#FFFF00">hostname</font></strong><br>
+        linux.paching.com.tw <br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">單純執行這個指令，會顯示目前的主機名稱。</font></font></td>
+    </tr>
+  </table>
+</blockquote>
+<p><strong><font color="#0000FF" size="+1"><a name="15"></a><font size="6">11.3</font></font></strong><font color="#0000FF" size="6"><strong>常用的網路相關指令</strong></font><br>
+  <br>
+  <font size="+1"><strong><a name="16"></a><font size="5">11.3.1 網路偵測指令</font></strong></font><br>
+  <br>
+  　網管人員常常會碰到員工反應一些問題，諸如：電腦不能上網、無法存取某某台電腦的資料夾、無法寄信、…，而當您碰到這類問題時所想到的第一件事，就是檢查網路連線狀況，因此基本的網路偵測指令您一定要學習。<br>
+  <br>
+  <font size="+1"><strong><a name="17"></a></strong></font><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font><font size="+1"><strong> 
+  指令 ping</strong></font><br>
+  <br>
+  　這算是最簡單的網路偵測指令，可用來對兩主機之間的連線狀況進行測試報告。<br>
+  <br>
+  　當傳送端下 ping 指令 ping 對方 IP 位址或主機名稱時，實際上就是送出一個 ICMP 的 Echo Request 回應請求訊息給目的端，而在目的端收到訊息後，會送出 
+  Echo Reply 的回應回覆訊息給傳送端，如果傳送端沒有收到對方主機的正常回應訊息 (排除防火牆等因素)，表示兩主機之間的連線出了問題。由以上可知，ping 
+  就是藉由 ICMP 封包來執行網路的測試報告。<br>
+  <br>
+  　IP 協定的主要功能是將封包儘可能的送達目的端，但在傳送過程中或許順利，或許會因對方主機的問題或網路的問題，而造成封包無法順利送達目的端，此時傳送端就會接收到一些不同狀況的訊息，而這些問題，IP 
+  協定並無能力解決，其主要是靠<strong> </strong>ICMP 來處理的。</p>
+<blockquote> 
+  <p> <font color="#000099"><strong>Tips：</strong></font><font color="#000099" size="2">ICMP 
+    (Internet Control Message Protocol) 總共有 13 種訊息類別，像 Echo Request (Type 8) 及 
+    Echo Reply (Type 0) 就是屬於 ICMP 的其中兩種有關查詢的訊息類別。其他像 Destination Unreachable (Type 
+    3)、Time Exceeded (Type 11) 等，則是屬於 ICMP 的錯誤訊息類別，用以通知傳送端無法連線的原因所在。</font></p>
+</blockquote>
+<strong>指令語法：</strong> 
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td><strong><font face="細明體">ping [-c count] [-i interval] [-s packetsize] 
+      [-b] d</font></strong><font face="細明體"><strong>estination</strong></font></td>
+  </tr>
+</table>
+<strong> <br>
+參數說明：</strong> 
+<table width="100%" border="1">
+  <tr> 
+    <td width="6%" align="center"><font color="#000099">-b</font></td>
+    <td width="94%"><font color="#000099">可用來 ping 一個廣播位址。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099">-c</font></td>
+    <td><font color="#000099">指定在送出幾個 echo request 封包後就停止，也就是 ping 幾次的意思。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099">-i</font></td>
+    <td><font color="#000099">在送出每個 ICMP 封包之間要間隔幾秒。預設為一秒。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099">-s</font></td>
+    <td><font color="#000099">指定所送出的 ICMP 封包大小為多少 bytes。預設是 56bytes，不過還要再加上 ICMP 
+      8bytes 的 header 資料，才是真正所送出的封包大小。</font></td>
+  </tr>
+</table>
+<strong> </strong><strong> <br>
+範例說明</strong>： 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">ping 
+      -c 3 168.95.1.1</font></strong><br>
+      <font face="細明體">PING 168.95.1.1 (168.95.1.1) 56(84) bytes of data.<br>
+      64 bytes from 168.95.1.1: icmp_seq=1 ttl=247 time=41.9 ms<br>
+      64 bytes from 168.95.1.1: icmp_seq=2 ttl=247 time=41.0 ms<br>
+      64 bytes from 168.95.1.1: icmp_seq=3 ttl=247 time=42.0 ms</font></font> 
+      <br> <br> <font color="#FFFFFF" face="細明體">--- 168.95.1.1 ping statistics 
+      ---<br>
+      3 packets transmitted, 3 received, 0% packet loss, time 2000ms<br>
+      rtt min/avg/max/mdev = 41.019/41.667/42.000/0.487 ms</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">送出三個 echo 
+      request 封包，意即 ping 三次囉。接著針對 ping 的訊息做個說明。</font><br>
+      <font color="#00FFFF">#<font color="#FFFF00"> </font></font><font color="#FFFF00" size="2">64 
+      bytes</font><font color="#00FFFF" size="2">：表示送出 ICMP 封包大小為 64bytes。</font><br>
+      <font color="#00FFFF">#<font color="#FFFF00"> </font></font> <font color="#FFFF00" size="2">icmp_seq</font><font color="#00FFFF" size="2">：表示 
+      ping 第幾次。</font><br>
+      <font color="#00FFFF">#<font color="#FFFF00"> </font></font><font color="#FFFF00" size="2">ttl</font><font color="#00FFFF" size="2">：<font color="#FFFFFF"><font color="#00FFFF">用預設 
+      ttl 的 255 去扣除</font></font>封包經過所有 mac 節點的總數，即是這裡所呈現的數字。</font><br>
+      <font color="#00FFFF">#<font color="#FFFF00"> </font></font><font color="#FFFF00" size="2">time</font><font color="#00FFFF" size="2">：<font color="#FFFFFF"><font color="#00FFFF">封包的回應時間，單位是毫秒 
+      (ms)。利用此數據可用來檢視連線品質。</font></font></font><font color="#00FFFF"><font size="2"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font size="2">另外一毫秒等於千分之一秒。</font></font><font color="#00FFFF" size="2"> 
+      </font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">在以上的範例裡，若未使用 
+      -c 參數，則會持續送出 echo-request 封包給目的端，</font><font size="2"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font><font color="#00FFFF" size="2">直到按下<strong> 
+      </strong>Ctrl-C 為止。 </font><br>
+      <br>
+      </font><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>ping 
+      -s 1000 -i 0.1 -c 2 168.95.1.2</strong></font><br>
+      <font face="細明體">PING 168.95.1.2 (168.95.1.2) 1000(1028) bytes of data.<br>
+      1008 bytes from 168.95.1.2: icmp_seq=1 ttl=247 time=79.5 ms<br>
+      1008 bytes from 168.95.1.2: icmp_seq=2 ttl=247 time=79.8 ms</font></font> 
+      <br> <br> <font color="#FFFFFF" face="細明體">--- 168.95.1.2 ping statistics 
+      ---<br>
+      2 packets transmitted, 2 received, 0% packet loss, time 1002ms<br>
+      rtt min/avg/max/mdev = 79.578/79.701/79.824/0.123 ms</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">指定所送出的 
+      ICMP 封包大小為 1000bytes，不過因為還要加上 8bytes 的 ICMP header </font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">資料，</font></font><font color="#00FFFF" size="2">所以在螢幕上顯示的是 
+      1008bytes。另外使用 -i 參數來指定送出每個 ICMP 封包之間</font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">的時間間隔為 
+      0.1 秒 (只有 root 可以設定低於 0.2 秒的時間間隔)。</font><font color="#00FFFF" size="2"> 
+      </font></font></td>
+  </tr>
+</table>
+<blockquote> 
+  <p><font color="#000099"><strong>Tips：</strong><font size="2">ping 一台主機不會通，有可能是 
+    echo request 封包被對方的防火牆所阻擋，或者對方主機 /proc/sys/net/ipv4/icmp_echo_ignore_all 之值設定為 
+    1。雖然 ping 不成功，但對方所提供的服務還是可以正常存取，比如這台主機是 web server 的話，那您還是可以瀏覽網頁的。</font></font></p>
+</blockquote>
+<font size="+1"><strong><a name="18"></a></strong></font><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font><font size="+1"><strong> 
+指令 traceroute</strong></font><br>
+<br>
+　此指令是用來追蹤封包從來源端到目的端的路由過程所經過的節點。當您管理的網路環境較大，且存在著好幾個路由的節點，則在網路出現狀況並懷疑是某個節點出問題時，即可使用這種方式來查出那台有問題的 
+Gateway 主機。<strong><br>
+<br>
+指令語法：</strong> 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#CCCCCC"><font color="#000000" face="細明體"><strong>traceroute 
+      [-n] [-w timeout] destination</strong></font></td>
+  </tr>
+</table>
+<strong> <br>
+參數說明：</strong> 
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" align="center"><font color="#000099">-n</font></td>
+    <td width="93%"><font color="#000099">不必解析 IP 位址所對應的主機名稱，這樣可加快查詢速度。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099">-w</font></td>
+    <td><font color="#000099">在幾秒內得不到主機的回應，就直接進行下一個節點的測試。預設是五秒。</font></td>
+  </tr>
+</table>
+<strong> <br>
+範例說明</strong>： 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>traceroute 
+      -n 168.95.1.1</strong></font><br>
+      <font face="細明體">traceroute to 168.95.1.1 (168.95.1.1), 30 hops max, 40 
+      byte packets</font><br>
+      <font face="細明體"> 1　61.231.96.254　44.298 ms　49.598 ms　48.612 ms<br>
+      2　168.95.95.90　51.045 ms　52.603 ms　55.544 ms<br>
+      3　211.22.39.54　106.051 ms　104.235 ms　102.285 ms<br>
+      4　220.128.8.122　68.291 ms　70.590 ms　73.611 ms<br>
+      5　220.128.1.30　78.609 ms　81.575 ms　84.603 ms<br>
+      6　220.128.1.113　88.678 ms　89.609 ms　92.629 ms<br>
+      7　211.22.35.185　79.792 ms　84.085 ms　87.674 ms<br>
+      8　168.95.1.61　87.706 ms　92.594 ms　95.001 ms </font></font></td>
+  </tr>
+</table>
+<br>
+　從上面的內容可以看出，每個節點都會經過三次的追蹤測試，所以會顯示三個回應時間。再來如果追蹤到某個節點時，在預設的五秒內得不到這台主機的回應，這時候螢幕上就會出現 
+&quot;*&quot; 的符號出來。<br>
+<br>
+<font size="+1"><strong><a name="19"></a><font size="5">11.3.2 網路設定指令</font></strong></font><br>
+<br>
+　本小節主要是介紹有關網路介面及路由表的指令。在這裡，您將會學習到如何觀察網路介面及路由表的資訊，當然關於網路介面的設定以及路由表的修改，也是一定要會的啦。<br>
+<br>
+<strong><font size="+1"><a name="20"></a></font><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font><font size="+1"> 
+指令 ifconfig</font></strong><br>
+<br>
+　這是用來設定網路介面的指令。如單純的執行<strong>&nbsp;</strong>ifconfig，其後未接任何的引數，則可以用來顯示目前已啟動的網路介面相關資訊。<br>
+<br>
+<strong>指令語法</strong>： 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#CCCCCC"><strong><font face="細明體">ifconfig [interface]<br>
+      ifconfig interface [address] options</font></strong></td>
+  </tr>
+</table>
+<br>
+　interface 是指網卡介面名稱，如 eth0、eth1 等。而 address 就是設定這個介面的 ip 位址。至於 options 請參看以下表格。<br>
+<br>
+<strong>常用 options 說明</strong>：<br>
+<table width="40%" border="1">
+  <tr> 
+    <td width="22%" align="center" valign="middle" nowrap><font color="#000099">netmask</font></td>
+    <td width="78%"><font color="#000099">設定網路遮罩。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">broadcast</font></td>
+    <td><font color="#000099">設定廣播位址。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">up</font></td>
+    <td><font color="#000099">啟動網路介面。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">down</font></td>
+    <td><font color="#000099">關閉網路介面。</font></td>
+  </tr>
+</table>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      ifconfig</strong></font><br>
+      <font face="細明體">eth0 　　Link encap:Ethernet HWaddr 00:17:9A:78:E1:5B<br>
+      　　　　 inet addr:192.168.1.111 Bcast:192.168.1.255 Mask:255.255.255.0<br>
+      　　　　 inet6 addr: fe80::217:9aff:fe78:e15b/64 Scope:Link<br>
+      　　　　 UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1<br>
+      　　　　 RX packets:12919 errors:0 dropped:0 overruns:0 frame:0<br>
+      　　　　 TX packets:7368 errors:0 dropped:0 overruns:0 carrier:0<br>
+      　　　　 collisions:0 txqueuelen:1000<br>
+      　　　　 RX bytes:1077362 (1.0 Mb) TX bytes:871338 (850.9 Kb)<br>
+      　　　　 Interrupt:217 Base address:0xa000</font></font> <p><font color="#FFFFFF" face="細明體">lo 
+        　　　Link encap:Local Loopback<br>
+        　　　　 inet addr:127.0.0.1 Mask:255.0.0.0<br>
+        　　　　 inet6 addr: ::1/128 Scope:Host<br>
+        　　　　 UP LOOPBACK RUNNING MTU:16436 Metric:1<br>
+        　　　　 RX packets:18 errors:0 dropped:0 overruns:0 frame:0<br>
+        　　　　 TX packets:18 errors:0 dropped:0 overruns:0 carrier:0<br>
+        　　　　 collisions:0 txqueuelen:0<br>
+        　　　　 RX bytes:1548 (1.5 Kb) TX bytes:1548 (1.5 Kb)<br>
+        </font><font color="#00FFFF"># </font><font color="#FFFFFF" size="2"><font color="#00FFFF">顯示已啟動介面的相關訊息。如果要顯示所有介面的資訊，請加上 
+        &quot;-a&quot; 參數即可。</font><br>
+        </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">另外只想列出某特定介面 
+        (如 eth0) 的資訊，可執行 &quot;ifconfig eth0&quot;。</font><font color="#FFFFFF"><font size="2"><br>
+        </font></font></p></td>
+  </tr>
+</table>
+<p> 　對於以上兩個介面所顯示的資訊，做個概略的補充：<br>
+  <br>
+  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099"><strong>HWaddr</strong>：網卡的實體位址，即所謂的 
+  MAC 位址。 </font></p>
+<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <strong>inet addr</strong>：此介面的 IP 位址。其後的 Bcast 是廣播位址，Mask 是網路遮罩。</font></p>
+<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"><strong> 
+  UP</strong>：表示該介面已啟動。</font></p>
+<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <strong>RUNNING</strong>：此介面是處於執行狀態。</font></p>
+<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <strong>MTU</strong>：此介面所允許的封包最大傳輸單元 (Maximum Transmission Unit) 是幾 bytes。</font></p>
+<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <strong>Metric</strong>：路由的權值。<br>
+  <br>
+  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <strong>RX </strong>：該介面對於封包的接收狀況。<br>
+  　 　 　 　　packets 表封包數，errors 表錯誤封包數，dropped 表丟棄封包數。</font></p>
+<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <strong>TX</strong>：該介面對於封包的傳送狀況。</font></p>
+<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <strong>collisions</strong>：封包碰撞次數。</font></p>
+<p><font color="#FFFFFF"><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> 
+  <font color="#000099" face="細明體"><strong>txqueuelen</strong>：代表傳輸資料的緩衝區儲存長度大小。</font></font></p>
+<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <strong>RX bytes</strong>：封包總接收量為多少 bytes。</font></p>
+<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <strong>TX bytes</strong>：封包總傳送量為多少 bytes。</font></p>
+<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"><strong> 
+  Interrupt</strong>：網卡的 IRQ 中斷位址。</font></p>
+<blockquote> 
+  <p><font color="#000099"><strong>Tips：</strong></font><font color="#000099" size="2">之前我們所介紹的 
+    IP 位址，只能說是主機之間用以通訊的邏輯位址 ( logical address )，至於真正在兩節點間執行通訊傳輸的位址則是實體位址 ( physical 
+    address )，而在 Ethernet 架構下，此實體位址即是所謂的 MAC (Medium Access Control) 位址。MAC 位址是由 
+    6 組16 進位數字所組成，前 3 組是供應商代號，後 3 組是網卡生產序號，因此可以說每一片網卡的 MAC 位址是獨一無二的。</font></p>
+</blockquote>
+<p><font color="#000099">　<font color="#000000">看懂了網路介面訊息後，再看看其它的範例：</font></font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      ifconfig eth0<font size="2"> </font>down</strong></font><font size="2">　<font color="#00FFFF"><br>
+      </font></font><font color="#00FFFF"># </font><font size="2"><font color="#00FFFF">關閉網路介面 
+      </font><br>
+      <br>
+      </font>suse:~ #<font color="#FFFF00"><strong> ifconfig eth0 up</strong></font><font size="2">　<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font><font size="2"><font color="#00FFFF"></font></font></font><font color="#FFFFFF"><font size="2"><font color="#00FFFF">啟動網路介面。</font></font></font><font size="2"><br>
+      <br>
+      </font>suse:~ # <font color="#FFFF00"><strong>ifconfig eth0 192.168.2.15 
+      netmask 255.255.255.224 \<br>
+      </strong> <font color="#FFFFFF">&gt; </font><strong>broadcast 192.168.2.31</strong></font><font size="2"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font size="2"><font color="#00FFFF">設定網路介面，這應該沒問題。完成後順便執行 
+      ifconfig 做個確認：<br>
+      <br>
+      </font></font><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>ifconfig 
+      eth0</strong></font></font><font color="#00FFFF"> <br>
+      </font><font face="細明體">eth0　　<font color="#FFFFFF">Link encap:Ethernet 
+      HWaddr 00:05:5D:69:DD:B3<br>
+      </font>　　　　</font><font color="#FFFF00" face="細明體">inet addr:192.168.2.15 
+      Bcast:192.168.2.31 Mask:255.255.255.224</font><font color="#FFFFFF" face="細明體"><br>
+      　　　　inet6 addr: fe80::205:5dff:fe69:ddb3/64 Scope:Link<br>
+      　　　　UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1<br>
+      　　　　RX packets:1634 errors:0 dropped:0 overruns:0 frame:0<br>
+      　　　　TX packets:951 errors:0 dropped:0 overruns:0 carrier:0<br>
+      　　　　collisions:0 txqueuelen:1000<br>
+      　　　　RX bytes:136692 (133.4 Kb) TX bytes:189633 (185.1 Kb)<br>
+      　　　　Interrupt:11 Base address:0xe000</font><font color="#00FFFF" face="細明體"> 
+      </font></font></td>
+  </tr>
+</table>
+<p><font color="#000099"><font color="#000000">　<a name="21"></a>最後談談<font color="#0000FF"> 
+  IP Alias</font>。一般來說，一個網路介面是配一個 IP 位址，但如果想讓一個介面能同時擁有多個 IP 的話，就可以使用 IP Alias 
+  的方式，也就是一張網卡綁多個 IP 囉。比如說原來介面為 eth0，您可以為這個介面增設別名，像 eth0:0、eth0:1 之類的，並且指派 IP 給這些介面使用。接著請參考以下的範例：</font></font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>ifconfig 
+      eth0:0 192.168.5.5 netmask 255.255.255.0</strong></font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">這是為 
+      eth0 增設別名 eth0:0，並指派給此介面的 IP 位址及網路遮罩。</font><br>
+      <br>
+      suse:~ #<font color="#FFFF00"><strong> ifconfig | grep eth0</strong></font><br>
+      <font face="細明體">eth0　　　Link encap:Ethernet <font color="#FFFF00">HWaddr 
+      00:05:5D:69:DD:B3</font><br>
+      eth0:0　　Link encap:Ethernet <font color="#FFFF00">HWaddr 00:05:5D:69:DD:B3</font></font><br>
+      </font> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font><font color="#00FFFF" size="2">注意到沒，eth0 及 eth0:0 的實體位址是相同的，表示說這兩個 
+      IP 是屬於同一個介面的。</font></font></td>
+  </tr>
+</table>
+<font color="#000099"><font color="#000000"> </font></font><br>
+<font size="+1"><strong><a name="22"></a><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
+指令 route</strong></font><br>
+<br>
+　此指令可以用來顯示及修改 routing table。單純的執行<strong> </strong>route 指令，即可顯示目前 routing table 
+裡的路由資訊。<br>
+<br>
+<strong>指令語法</strong>： 
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td><strong><font face="細明體">route [add|del] [-net|-host] target [netmask] 
+      [gw] [dev]</font></strong> </td>
+  </tr>
+</table>
+<br>
+　當您使用 &quot;-net&quot; 時，target 就必須指定網路段的位址，而使用 &quot;-host&quot; 時，則 target 必須為主機位址。其它參數請參考以下表格。<br>
+<br>
+<strong>參數說明</strong>：<br>
+<table width="100%" border="1">
+  <tr> 
+    <td width="10%" align="center" valign="middle" nowrap><strong><font color="#000099">add</font></strong></td>
+    <td width="90%"><font color="#000099">增加一筆路由資訊。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">del</font></strong></td>
+    <td><font color="#000099">刪除一筆路由資訊。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">-net</font></strong></td>
+    <td><font color="#000099">增加或刪除一筆網路段的路由資訊。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">-host</font></strong></td>
+    <td><font color="#000099">增加或刪除一筆主機的路由資訊。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">netmask</font></strong></td>
+    <td nowrap><font color="#000099">當增加一筆網路段的路由資訊時，需指定該網路段的網路遮罩。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">gw</font></strong></td>
+    <td><font color="#000099">指定 Gateway 的位址。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">dev</font></strong></td>
+    <td><font color="#000099">指定封包從哪個網路介面傳遞出去，比如 &quot;dev eth0&quot;。</font></td>
+  </tr>
+</table>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      route</strong></font><br>
+      <font face="細明體">Kernel IP routing table<br>
+      </font> <font color="#FFFF00" face="細明體">Destination 　　Gateway 　　　 Genmask 
+      　　　　Flags Metric Ref Use 　Iface</font><font face="細明體"><br>
+      192.168.1.0 　　* 　　　　　　 255.255.255.0 　U 　　0 　　 0 　　0 　eth0<br>
+      link-local 　　 * 　　　　　　 255.255.0.0 　　U 　　0 　　 0 　　0 　eth0<br>
+      loopback 　　　 * 　　　　　　 255.0.0.0 　　　U 　　0 　　 0 　　0 　lo<br>
+      default　　　　 192.168.1.254　0.0.0.0　　　　 UG　　0　　　0　 　0　 eth0</font><br>
+      </font> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font><font color="#00FFFF" size="2">執行 route 指令時，預設會解析 IP 所對應的主機名稱，而當解析過程不順利時，會</font></font><font color="#00FFFF" size="2">延遲<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2">一些時間才顯示結果。當加上了 -n 參數後，即可略過這方面的解析，如此便可快速將結果<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2">&nbsp;</font><font color="#00FFFF" size="2">呈現在您面前： 
+      </font><br> <br> <font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      route</strong></font></font> <font color="#FFFF00"><strong>-n</strong></font><br> 
+      <font color="#FFFFFF"><font face="細明體">Kernel IP routing table<br>
+      </font> <font color="#FFFF00" face="細明體">Destination 　　Gateway 　　　 Genmask 
+      　　　　Flags Metric Ref Use 　Iface</font><font face="細明體"><br>
+      192.168.1.0 　　0.0.0.0　　　　255.255.255.0 　U 　　0 　　 0 　　0 　eth0<br>
+      169.254.0.0 　　</font><font color="#FFFFFF"><font face="細明體">0.0.0.0</font></font><font face="細明體">　　　　255.255.0.0 
+      　　U 　　0 　　 0 　　0 　eth0<br>
+      127.0.0.0 　　　</font><font color="#FFFFFF"><font face="細明體">0.0.0.0</font></font><font face="細明體">　　　　255.0.0.0 
+      　　　U 　　0 　　 0 　　0 　lo<br>
+      </font><font color="#FFFFFF"><font face="細明體">0.0.0.0</font></font><font face="細明體">　　　　 
+      192.168.1.254　0.0.0.0　　　　 UG　　0　　　0　 　0　 eth0</font></font> </td>
+  </tr>
+</table>
+<br>
+　對於以上 routing table 所顯示的資訊做個解說：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center" valign="middle"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="95%"><strong><font color="#000099">Destination</font></strong>：</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle">&nbsp;</td>
+    <td>表示封包要抵達的目的地位址，可以是一台主機的 IP 位址或者是網路段位址。另外還有一個 default ( 0.0.0.0)，其代表的是 Default 
+      Route (預設路由)，當封包要抵達的目的地在路由表上找不到可利用的路由資訊時，就會將封包傳給預設路由所指定的 Default Gateway 
+      主機來傳送。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">Gateway：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle">&nbsp;</td>
+    <td>封包是要透過哪台 gateway 主機來傳送<font color="#000000">。當這個欄位出現「*」或「0.0.0.0」時，表示封包傳送過程不需使用到 
+      gateway。在<font color="#000099"><font color="#000000">來源端與目的端主機位於同一個網路段時，就用不到 
+      gateway 了。</font></font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">Genmask：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle">&nbsp;</td>
+    <td>目的地的網路遮罩<font color="#000000">。如果目的地是一台主機就是 255.255.255.255，如果是 Default 
+      Route 就是 0.0.0.0。</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">Flags：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle">&nbsp;</td>
+    <td>旗標的意思<font color="#000000">。「U」表示路由已啟用，「G」代表封包傳送過程需透過 gateway，「H」則表示目的地是一台主機。</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">Iface：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="middle">&nbsp;</td>
+    <td>表示封包是透過哪個介面來傳遞出去。</td>
+  </tr>
+</table>
+<p> 　假使現在有一個從本機 eth0 介面出去的封包，其抵達的目的地是 192.168.1.0/24 網路段內的主機時，就會根據 Destination 
+  為 192.168.1.0 那一筆的路由資訊來傳送封包。又如果封包的目的為 202.43.195.52 時，由於所抵達的目的地在 routing table 
+  裡找不到可套用的路由資訊，因此會把封包交由 Default Gateway 主機 192.168.1.254 來傳送。<br>
+  <br>
+  　另外封包在經過 routing table 做路由判斷時，是按照路由表上所列的訊息依序做比對判斷，所以萬一有幾條路由資訊起衝突時，則是會以最前面那一條為主。<br>
+  <br>
+  　再來舉幾個簡單的靜態路由設定範例：</p>
+<ol>
+  <li><font color="#0000FF">新增一筆網路段 192.168.3.0/24 的路由資訊，並指定所使用的 gateway 為 192.168.1.253：</font><br>
+    <br>
+    <table width="96%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">route 
+          add -net 192.168.3.0 netmask 255.255.255.0 \</font></strong><br>
+          &gt; <strong><font color="#FFFF00">gw 192.168.1.253 dev eth0</font></strong></font></td>
+      </tr>
+    </table>
+    <br>
+    完成後，執行 route 指令去看看 routing table 有沒有多增加一筆路由資訊出來。<br>
+    <br>
+  </li>
+  <li><font color="#0000FF">新增一筆主機的路由資訊 (假設目的主機與本機位於同網段)：</font><br>
+    <br>
+    <table width="96%" border="0">
+      <tr> 
+        <td height="26" bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong><font color="#FFFF00"> 
+          route add -host 192.168.1.222 dev eth0</font></strong></font></td>
+      </tr>
+    </table>
+    <br>
+    這裡不需指定 netmask。另外如果目的主機與本機分屬不同網段，則可使用 gw 來指定 gateway。<br>
+    <br>
+  </li>
+  <li><font color="#0000FF">設定 Default Gateway：</font><br>
+    <br>
+    <table width="96%" border="0">
+      <tr> 
+        <td height="25" bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong> 
+          <font color="#FFFF00">route add default gw 192.168.1.254 dev eth0</font></strong></font></td>
+      </tr>
+    </table>
+    <br>
+    通常預設路由只能有一筆噢，千萬要注意。<br>
+    <br>
+  </li>
+  <li><font color="#0000FF">刪除一筆網路段或 Default Gateway 的路由資訊：</font><br>
+    <br>
+    <table width="96%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">route 
+          del -net 192.168.3.0 netmask 255.255.255.0</font></strong></font><br> 
+          <font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">route del 
+          default gw 192.168.1.254</font></strong></font> </td>
+      </tr>
+    </table>
+  </li>
+</ol>
+<p> <strong><font size="+1"><br>
+  <strong><font color="#000000"><strong><a name="40"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong> 
+  綜合範例</font><font size="4">練習</font></strong><br>
+  <br>
+  　以下會以一台 Linux 主機做 Router，來連接 192.168.5.0/24 (以 192.168.5.5 主機做代表) 及 192.168.10.0/24 
+  (以 192.168.10.10 主機做代表) 這兩個網路段，其架構圖如下：</p>
+<p align="center"> <img src="../picture/router.gif" tppabs="http://www.suse.url.tw/picture/router.gif" width="514" height="122"></p>
+<p> 　接著就來介紹如何使兩個不同網段的主機能夠彼此通訊：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="95%"><strong><font color="#000099">Router 的設定</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>正常來說，擔任 Router 的主機需有兩個介面 (兩個位址)，但如果您 Linux 主機只有一片網卡，那只好使用 IP Alias 的方式來解決囉：<br> 
+      <br> <table width="100%" border="0" bgcolor="#000000">
+        <tr> 
+          <td><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">ifconfig 
+            eth0 192.168.5.254 netmask 255.255.255.0</font></strong><br>
+            suse:~ # <strong><font color="#FFFF00">ifconfig eth0:0 192.168.10.254 
+            netmask 255.255.255.0 </font> </strong></font></td>
+        </tr>
+      </table>
+      <br>
+      再來由於這台 Linux 要擔任 Router，所以接著必須啟動其路由功能：<br> <br> <table width="100%" border="0" bgcolor="#000000">
+        <tr> 
+          <td height="25"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">echo 
+            &quot;1&quot; &gt; /proc/sys/net/ipv4/ip_forward</font></strong></font></td>
+        </tr>
+      </table>
+      <br>
+      Router 部分就這麼設定即可。不過這裡額外補充另一種啟動路由的方式：<br> <br> <table width="100%" border="0" bgcolor="#000000">
+        <tr> 
+          <td><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">vi 
+            /etc/sysconfig/sysctl</font><br>
+            </strong>IP_FORWARD=&quot;yes&quot;<strong>　</strong><font color="#00FFFF" size="2">← 
+            由 no 改成 yes 即可。</font><strong><br>
+            <br>
+            </strong>suse:~ #<strong> <font color="#FFFF00">/etc/init.d/boot.ipconfig 
+            start</font><br>
+            </strong><font face="細明體">Enabling syn flood protection 　　　　done<br>
+            </font> <font color="#FFFF00" face="細明體">Enabling IP forwarding 　　　　　　　 
+            done</font><strong><br>
+            </strong><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">這樣就啟動路由功能了，且下次開機時也能自動啟動路由噢。 
+            </font></font><font color="#FFFFFF">&nbsp;</font></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">設定 A 主機</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><table width="100%" border="0" bgcolor="#000000">
+        <tr> 
+          <td><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> <strong>ifconfig 
+            eth0 192.168.5.5 netmask 255.255.255.0</strong></font><br>
+            suse:~ #<strong> <font color="#FFFF00">route add -net 192.168.10.0 
+            netmask 255.255.255.0 \</font></strong><br>
+            &gt; <strong><font color="#FFFF00">gw 192.168.5.254 dev eth0</font></strong></font></td>
+        </tr>
+      </table>
+      <p><font color="#000000">就 A 主機而言，其必須在 routing table 裡新增一筆 192.168.10.0/24 
+        網路段的路由資訊，且須指定封包是經由 192.168.5.254 這台 Gateway 主機來傳送。</font></p></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">設定 B 主機</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><table width="100%" border="0" bgcolor="#000000">
+        <tr> 
+          <td><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> <strong>ifconfig 
+            eth0 192.168.10.10 netmask 255.255.255.0</strong></font><br>
+            suse:~ # <strong><font color="#FFFF00">route add -net 192.168.5.0 
+            netmask 255.255.255.0 \</font></strong><br>
+            &gt; <strong><font color="#FFFF00">gw 192.168.10.254 dev eth0</font></strong></font></td>
+        </tr>
+      </table>
+      <font color="#FFFFFF"><font size="2">這樣就啟動路由功能了，且下次開機時也能自動啟動路由噢。 </font></font><br> 
+      <font color="#000000">就 B 主機而言，其必須在 routing table 裡新增一筆 192.168.5.0/24 網路段的路由資訊，且須指定封包是經由 
+      192.168.10.254 這台 Gateway 主機來傳送。</font> </td>
+  </tr>
+</table>
+<br>
+　完成後，兩台主機可以互 ping 看看會不會通，要是測試有問題的話，再去檢查一下您的 routing table 有哪裡不對勁。另外若您預設防火牆有啟動的話，也請先關閉：<br>
+<br>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr> 
+    <td><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>rcSuSEfirewall2 
+      stop</strong></font></font> </td>
+  </tr>
+</table>
+<br>
+<br>
+<strong><font size="+1"><a name="23"></a><font size="5">11.3.3 遠端連線指令</font></font><br>
+<br>
+</strong>　所謂的遠端連線，就是對遠端主機進行登入的動作。平常大家都喜歡用 telnet 連上 BBS 來參與討論，或者使用 ftp 軟體至各大 FTP 
+站台抓取資料，所以說每個人可都是經常在做遠端連線呢。以下會介紹幾個在 Linux 下的遠端連線工具給大家認識。<strong><br>
+<br>
+<a name="24"></a><font size="+1"><strong><font size="+1"><strong><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong> 
+telnet</font> 與 <font size="+1">ssh</font><br>
+<br>
+</strong>　這兩個指令，可以讓您對遠端的主機進行連線操控，好用的很。如果您是一個大公司的系統管理者，可能所管理的主機分散在各地，這時候想要對這些主機進行控管及設定時，就可以使用這些連線軟體來幫您搞定。<br>
+<br>
+　以 telnet 及 ssh 來說，比較建議各位使用 ssh 來做遠端連線，因為它是以加密的方式來做資料的傳送。而 telnet 呢 ? 由於它是以明碼的方式來傳輸資料，當然會顯得較不安全啊。<br>
+<strong><br>
+<strong>範例說明</strong>：<br>
+</strong> 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#CCCCCC">1. ssh 範例：</font><font color="#FFFFFF"><br>
+      <br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">client 
+      端的 tina 第一次以 server 端 tina 的帳號做遠端連線：</font><font color="#FFFFFF"><br>
+      tina@client:~&gt; <strong><font color="#FFFF00">ssh 192.168.1.111</font></strong><br>
+      The authenticity of host '192.168.1.111 (192.168.1.111)' can't be established.<br>
+      RSA key fingerprint is 2b:dd:8e:3f:2b:4e:1e:ce:b8:20:3f:d0:c4:63:f9:fa.<br>
+      Are you sure you want to continue connecting (yes/no)? <font color="#FFFF00"><strong>yes 
+      <font color="#FFFFFF">　</font></strong><font color="#00FFFF" size="2"><strong>← 
+      請輸入 yes 來繼續。</strong></font> </font><br>
+      Warning: Permanently added '192.168.1.111' (RSA) to the list of known hosts. 
+      <br>
+      Password: 　<font color="#00FFFF" size="2">← 輸入遠端主機上 tina 的密碼。</font><br>
+      tina@suse:~&gt; <br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">由於 
+      client 端的 tina </font><font color="#00FFFF" size="2">尚未取得 server 上的RSA public 
+      key，所以會出現這個詢問的訊息，</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">而當您輸入 
+      yes 後，</font><font color="#00FFFF" size="2">就等於是接受 server 所傳來的 public key。</font><br> 
+      <font color="#FFFFFF">tina@suse:~&gt;</font><font color="#FFFF00"><strong> 
+      exit</strong></font><br> <font color="#FFFFFF"> <font color="#00FFFF"># 
+      </font></font> <font color="#00FFFF" size="2">退出連線。</font><br> <br> <font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font><font color="#00FFFF" size="2">client 端的 root 以 server 端的 
+      barry 帳號做 ssh：</font><br> <font color="#FFFFFF">client:~ #<font color="#FFFF00"><strong> 
+      ssh -l barry 192.168.1.111</strong></font><br>
+      Password:　<font color="#00FFFF" size="2">← 輸入遠端主機上 barry 的密碼。</font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">這裡是加上 -l 參數去指定使用 
+      barry 這個帳號來登入遠端主機。也可這樣使用：<br>
+      </font><font color="#FFFFFF">client:~ #<font color="#FFFF00"><strong> ssh 
+      barry@192.168.1.111</strong></font></font><font color="#00FFFF" size="2"> 
+      <font color="#FFFFFF"><font color="#00FFFF"><br>
+      <br>
+      </font></font></font><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font><font color="#00FFFF" size="2">以指定 port 的方式做遠端連線：<br>
+      </font><font color="#FFFFFF">client:~ #<font color="#FFFF00"><strong> ssh</strong></font></font> 
+      <font color="#FFFF00"><strong>-p 8866 192.168.1.111</strong></font><font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font><font color="#00FFFF" size="2"> 如果 ssh server 所啟用的 port 為 
+      8866，那就要使用這種方式囉。 </font></font></font></font><font color="#00FFFF" size="2"><br>
+      <br>
+      </font><font color="#00FFFF"> <font color="#CCCCCC">2. telnet 範例：</font></font><font color="#00FFFF" size="2"><br>
+      <br>
+      </font><font color="#00FFFF"> <font color="#FFFFFF">client:~ #<font color="#FFFF00"><strong> 
+      telnet 192.168.1.111</strong></font><br>
+      Trying 192.168.1.111...<br>
+      Connected to 192.168.1.111.<br>
+      Escape character is ' ^ ] '.　<br>
+      Welcome to SuSE Linux Linux Enterprise Server 10 (i586) - Kernel 2.6.16.21-0.8-smp-default 
+      (0).</font></font></font></font></font> <br> <br> <font color="#FFFFFF">suse 
+      login: <strong><font color="#FFFF00">barry</font></strong>　<font color="#00FFFF" size="2">← 
+      telnet 預設不能以 root 登入。</font><br>
+      Password:<strong><font color="#00FFFF" size="2">　</font></strong><font color="#00FFFF" size="2">← 
+      輸入遠端主機上 barry 的密碼。</font><br>
+      Last login: Thu Oct 20 11:25:38 on tty2<br>
+      Have a lot of fun...<br>
+      barry@suse:~&gt;<br>
+      <br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font><font color="#00FFFF" size="2">以指定 port 的方式來 telnet：</font></font></font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF">client:~ 
+      #<font color="#FFFF00"><strong> telnet 192.168.1.150 2211</strong></font></font></font></font></font></font> 
+    </td>
+  </tr>
+</table>
+<strong><br>
+</strong> <font size="+1"><strong><a name="25"></a><font size="+1"><strong><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font> 
+ftp 與 ncftp</strong></font><br>
+<br>
+　要連上 FTP 站台去下載或上傳資料時，即可利用這兩個指令，不過使用 ncftp 時，可要先確定 ncftp 套件有裝噢。<br>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"><font color="#CCCCCC">1.使用 ncftp 
+      連線：</font><br>
+      <br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font><font color="#00FFFF" size="2">以匿名身分登入 FTP：</font></font></font><br>
+      suse:~ #<font color="#FFFF00"><strong> ncftp ftp.isu.edu.tw</strong></font>　<br>
+      NcFTP 3.1.9 (Mar 24, 2005) by Mike Gleason (http://www.NcFTP.com/contact/).<br>
+      Connecting to 140.127.177.17...<br>
+      歡迎光臨義守大學檔案伺服器 <br>
+      <br>
+      本站提供以下軟體可供下載：<br>
+      <font face="細明體">******************************************************************************* 
+      <br>
+      /pub/BeOS/ </font></font><font color="#FFFFFF" face="細明體">　　　　　　 BeOS 作業系統<br>
+      /pub/CPAN/　　　　　　　Perl 程式語言 (Comprehensive Perl Archive Network)<br>
+      /pub/CPatch/　　　　　　中文化軟體 (收集大量的 Windows 共享軟體與中文化程式)<br>
+      /pub/Documents/ 　　　　各類文件收集<br>
+      /pub/FreeBSD/　　　　　 FreeBSD 作業系統<br>
+      /pub/Game/　　　　　　　免費遊戲軟體<br>
+      /pub/Hardware/　　　　　硬體驅動程式<br>
+      /pub/Linux/ 　　　　　　Linux 作業系統<br>
+      /pub/MsDownload/　　　　微軟相關軟體更新 (例如 Service Pack 等)<br>
+      /pub/RFC/　　　　　　　 Request for Comments (RFC 文件)<br>
+      /pub/Solaris/　　　　　 Solaris 作業系統<br>
+      /pub/Yesterday/　　　　 昨日小築完整 mirror (收集大量 Windows 相關軟體) </font> <font face="細明體"><br>
+      <font color="#FFFFFF">*******************************************************************************</font></font><font color="#FFFFFF"> 
+      <br>
+      <br>
+      另外，歡迎使用者多多利用 HTTP 的方式登入，一來有較佳的<br>
+      傳輸效能，介面功能也較為完善，您還可以利用檔案搜尋引擎<br>
+      快速找到您所需求的檔案，網址如下： <br>
+      <br>
+      http://ftp.isu.edu.tw</font> <br> <br> <font color="#FFFFFF">Logging in...<br>
+      Login successful.<br>
+      Logged in to ftp.isu.edu.tw.<br>
+      <strong>ncftp / &gt;</strong><font size="2">　<font color="#00FFFF">← 看到這個提示號 
+      (包括那個 &quot; / &quot; )，表示已經連線成功了。接著可輸入<br>
+      　　　　　　 　&quot;?&quot; 或 &quot;help&quot; 來看有哪些指令可使用。</font><br>
+      <br>
+      </font><strong>ncftp / &gt;</strong></font> <font color="#FFFF00"><strong>help</strong></font><font color="#00FFFF">　<font color="#FFFFFF"><font color="#00FFFF" size="2">←</font></font></font> 
+      <font color="#FFFFFF"><font color="#00FFFF" size="2">如要顯示所有指令，請輸入 &quot;help 
+      showall&quot;。</font><strong><br>
+      </strong>Commands may be abbreviated. 'help showall' shows hidden and unsupported<br>
+      commands. 'help &lt;command&gt;' gives a brief description of &lt;command&gt;.</font> 
+      <br> <font color="#FFFFFF" face="細明體">ascii 　　close　　lchmod 　 lrm　　　passive　 
+      quit<br>
+      binary　　dir　　　lls　　　 lrmdir　 pdir 　　 rename<br>
+      cat　　　 get　　　lmkdir 　 ls　　　 pls　　　 rm<br>
+      cd　　　　help　　 lpwd　　　mkdir　　put　　　 rmdir<br>
+      chmod　　 lcd　　　lrename　 open　　 pwd</font> <br> <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2">若不清楚這些指令的用法，</font><font color="#00FFFF"><font size="2">可執行 
+      &quot;? command&quot; 或 &quot;help command&quot; 來查看：</font></font><font color="#FFFFFF"><br>
+      ncftp / &gt; <font color="#FFFF00"><strong>help lcd</strong></font><br>
+      lcd: changes local working directory.<br>
+      Usage: lcd &lt;directory&gt;<font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">針對這些指令稍微做個說明：</font></font><br> 
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#FFFFFF" face="細明體"><font color="#00FFFF" size="2">cat、cd、chmod、ls、mkdir、rm、rmdir、pwd 
+      等指令，與平常我們所操作的指令相同，</font></font><br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#FFFFFF"><font color="#00FFFF" size="2">另外<strong> </strong>dir 
+      則是以長格式來顯示目錄內容</font><font color="#00FFFF">。</font></font>　　<br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">lcd、lchmod、lls、lmkdir、lpwd、lrm、lrmdir</font> 
+      <font color="#00FFFF" size="2">等指令，是針對本地端 (local) 主機在</font></font><br> 
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">操作的，</font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">比如 
+      &quot;lcd /tmp&quot; 是切換本地端目錄為 /tmp，</font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">&quot;lpwd&quot; 
+      為顯示目前本地端的</font></font><br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">工作目錄</font></font><font color="#00FFFF" size="2">位置。</font></font><br> 
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">get<strong> 
+      </strong>是用來下載檔案，put 則是上傳檔案。若加上 &quot;-R&quot; 參數，則可下載及上傳目錄，比如</font></font><br> 
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">&quot;get 
+      file1 file2&quot; 表示下載這兩個檔案，&quot;get -R dir&quot; 表示下載 dir 目錄至本地端。</font></font><br> 
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">close 
+      是用來結束遠端連線，open 則是與遠端主機建立連線。</font></font><br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2">passive 是用來開啟或關閉被動模式。</font><br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2">pls<strong> </strong>及<strong> </strong>pdir 
+      可讓您翻頁瀏覽目錄內容。</font><br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2">&nbsp;</font><font color="#00FFFF" size="2">&quot;!&quot; 
+      可切換至本地端，要再回到 ftp 站台則執行 &quot;exit&quot; 或者按下 Ctrl - D 的組合鍵即可。</font><br> 
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2">ascii<strong> </strong>及 binary 是看您要採取哪一種模式來傳輸資料。</font><br> 
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2">退出 ftp 站台可執行<strong> </strong>exit、quit、bye、by 
+      等指令，或按下 Ctrl - D。</font><br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#FFFFFF" size="2"><font color="#00FFFF">另外在指令的操作過程，可以使用 Tab 
+      鍵來補字，或者使用 &quot;*&quot;、&quot;?&quot; 這一類的萬用字元。</font></font><br> <br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2">以</font><font color="#FFFFFF" size="2"><font color="#00FFFF">認證方式登入 
+      FTP<font size="2">：</font></font></font> <br> <font color="#FFFFFF"> suse:~ 
+      # <font color="#FFFF00"><strong>ncftp -u barry -p mypasswd 192.168.1.122</strong></font></font><font color="#FFFFFF" size="2"><br>
+      <br>
+      </font><font color="#FFFFFF"> <font color="#CCCCCC">2. 使用 ftp 連線：</font></font><font color="#CCCCCC" size="2">&nbsp;</font><font color="#FFFFFF" size="2"><br>
+      <br>
+      </font><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> ftp 
+      ftp.kernel.org</strong></font><br>
+      Trying 204.152.191.5...<br>
+      Connected to zeus-pub.kernel.org.<br>
+      220 Welcome to ftp.kernel.org.<br>
+      Name (ftp.kernel.org:root):<font color="#FFFF00"><strong> ftp</strong></font>　<font color="#00FFFF" size="2">← 
+      匿名登入時，可輸入<strong> </strong>ftp 或<strong> </strong>anonymous 帳號。</font><br>
+      331 Please specify the password.<br>
+      Password: </font><font color="#FFFFFF" size="2">　<font color="#00FFFF">← 
+      這裡不需做任何的輸入，直接按下 [Enter] 鍵就行了。 </font><br>
+      </font><font color="#FFFFFF">ftp&gt; </font><font color="#FFFFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#FFFFFF" size="2"><font color="#00FFFF">成功登入後，一樣可以先輸入 &quot;<strong>?</strong>&quot; 
+      來尋求幫忙， 這裡就自己練習囉 !</font></font></td>
+  </tr>
+</table>
+<br>
+<br>
+<strong> <a name="26"></a><font size="5">11.3.4 檢視網路指令</font><br>
+<br>
+</strong>　系統管理者往往需要去了解所管理的主機到底啟用了哪些網路服務，以及這些服務目前的網路連線狀態是如何等等，而<strong> </strong>netstat 
+指令就可以幫您檢視這方面的訊息。<br>
+<strong><br>
+<font size="+1"><a name="27"></a><strong><font size="+1"><strong><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong> 
+指令 netstat</font></strong><br>
+<br>
+　這個指令非常的好用，可以用來檢查網路狀態、路由資訊、介面訊息等。<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td><strong><font face="細明體">netstat [options]</font></strong></td>
+  </tr>
+</table>
+<br>
+<strong>常用參數</strong>： 
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" align="center" nowrap><font color="#000099">-a</font></td>
+    <td width="93%" nowrap><font color="#000099">顯示所有網路狀態，而不論 socket 是否有在做監聽 (listen)。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" nowrap><font color="#000099">-n</font></td>
+    <td nowrap><font color="#000099">將主機名稱及服務名稱用數字來顯示，如此可避免對 IP 做反查。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" nowrap><font color="#000099">-r</font></td>
+    <td><font color="#000099">顯示 routing table。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" nowrap><font color="#000099">-i</font></td>
+    <td><font color="#000099">顯示網路界面的相關訊息。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" nowrap><font color="#000099">-l</font></td>
+    <td nowrap><font color="#000099">只顯示目前有在做監聽的 socket。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" nowrap><font color="#000099">-p</font></td>
+    <td nowrap><font color="#000099">顯示每一個 socket 所屬的程式名稱及 PID。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" nowrap><font color="#000099">-t</font></td>
+    <td><font color="#000099">只顯示 TCP 封包的連線訊息。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" nowrap><font color="#000099">-u</font></td>
+    <td><font color="#000099">只顯示 UDP 封包的連線訊息。</font></td>
+  </tr>
+</table>
+<blockquote> 
+  <p><strong><font color="#000099">Tips：</font></strong><font color="#000099" size="2">一個 
+    IP 位址加上一個 port ，就構成了一個 socket。</font></p>
+</blockquote>
+<strong> 範例說明</strong>： 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong><font color="#FFFF00"> 
+      netstat -ntl</font></strong><br>
+      <font face="細明體">Active Internet connections (only servers)<br>
+      Proto Recv-Q Send-Q Local Address 　　　　Foreign Address 　　　State<br>
+      tcp 　　　 0　　　0 192.168.1.111:427 　　0.0.0.0:* 　　　　　　LISTEN<br>
+      tcp　　　　0　　　0 127.0.0.1:427 　　　　0.0.0.0:* 　　　　　　LISTEN<br>
+      tcp　　　　0　　　0 0.0.0.0:111 　　　　　0.0.0.0:* 　　　　　　LISTEN<br>
+      tcp　　　　0　　　0 0.0.0.0:23 　　　　 　0.0.0.0:* 　　　　　　LISTEN<br>
+      tcp　　　　0　　　0 127.0.0.1:25 　　　 　0.0.0.0:* 　　　　　　LISTEN<br>
+      tcp　　　　0　　　0 :::22 　　　　　　　　:::* 　　　　　　　　 LISTEN<br>
+      tcp　　　　0　　　0 ::1:25</font>　　　　　　　<font face="細明體">　:::* 　　　　　　　　 LISTEN</font><br>
+      </font><font color="#FFFFFF"> <font color="#00FFFF" size="2">說明：</font></font> 
+      <br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2" face="細明體"><strong>Proto</strong>：被 socket 
+      所使用的協定，常見的是 tcp 及 udp。</font> <br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font> <font color="#00FFFF" size="2" face="細明體"><strong>Recv-Q</strong>：不是被使用者程式連至此 
+      socket 所複製的 bytes 總數。</font> <br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font> <font color="#00FFFF" size="2" face="細明體"><strong>Send-Q</strong>：遠端主機傳送過來的 
+      bytes 總數，但排除 ACK 位元值為 1 的封包。</font> <br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2" face="細明體"><strong>Local Address</strong>：顯示的是本地端主機的 
+      IP 位址及 port number。</font><br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2" face="細明體"><strong>Foreign Address</strong>：遠端主機的 
+      IP 位址及 port number。</font><br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2" face="細明體"><strong>State</strong>：顯示 socket 
+      的狀態。常見的有：</font><br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font></font><font color="#00FFFF" face="細明體"> 
+      ˙</font><font color="#00FFFF" size="2" face="細明體">ESTABLISHED：表示 socket 
+      連線已建立。</font><br> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font></font><font color="#00FFFF" face="細明體"> 
+      ˙</font><font color="#00FFFF" size="2" face="細明體">TIME_WAIT：連線終止後，socket 
+      仍在網路上等待結束。</font><font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font></font><font color="#00FFFF" face="細明體"> 
+      ˙</font><font color="#00FFFF" size="2" face="細明體">LISTEN：socket 目前處於監聽狀態。</font> 
+      <br> <p><font color="#FFFFFF"> suse:~ # <font color="#FFFF00"><strong>netstat 
+        -tl<br>
+        </strong> <font color="#FFFFFF" face="細明體">Active Internet connections 
+        (only servers)<br>
+        Proto Recv-Q Send-Q Local Address 　　　　　Foreign Address 　　State<br>
+        tcp 　　　 0 　　 0 suse.paching.org:svrloc *:* 　　　　　　　　LISTEN<br>
+        tcp　　　　0　　　0 localhost:svrloc 　　　 *:* 　　　　　　　　LISTEN<br>
+        tcp　　　　0　　　0 *:sunrpc 　　　　　　　 *:* 　　　　　　　　LISTEN<br>
+        tcp　　　　0　　　0 *:telnet 　　　　　　　 *:* 　　　　　　　　LISTEN<br>
+        tcp　　　　0　　　0 localhost:smtp 　　　　 *:* 　　　　　　　　LISTEN<br>
+        tcp　　　　0　　　0 *:ssh 　　　　　　　　　*:* 　　　　　　　　LISTEN<br>
+        tcp　　　　0　　　0 localhost:smtp 　　　　 *:* 　　　　　　　　LISTEN <br>
+        </font><font color="#FFFFFF"> <font color="#00FFFF">#<font size="2"> </font><font color="#00FFFF" size="2">這個範例未使用 
+        -n 參數，因此會嘗試顯示主機名稱及服務名稱。</font><font size="2"><br>
+        </font><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#00FFFF">#<font size="2"> 
+        </font></font></font></font></font></font><font color="#00FFFF" size="2">如果在<strong> 
+        </strong>/etc/services 檔案裡能找到 port number 所對應的服務名稱，那自然就可以</font><font color="#00FFFF"><br>
+        <font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF">#<font size="2"> 
+        </font></font></font></font></font></font><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#00FFFF" size="2">正確</font></font></font></font><font color="#00FFFF" size="2">顯示此服務名稱出來，但萬一找不到，就只好顯示 
+        port number 囉 !</font><font color="#FFFFFF"><br>
+        <br>
+        </font></font></font><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>netstat 
+        -anp | less　</strong><font color="#00FFFF" size="2"><br>
+        </font><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF">#<font size="2"> 
+        </font></font></font></font></font><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF" size="2">加上 
+        -p 參數，就可額外顯示 socket 所屬的程式名稱及 PID。</font></font></font></font></font></font></font></font><font color="#00FFFF" size="2"> 
+        </font></font></font></p></td>
+  </tr>
+</table>
+<strong><br>
+</strong> 
+<p><strong><font color="#0000FF" size="+1"><a name="28"></a><font size="6">11.4 
+  認識服務 (services) 與 daemon</font></font></strong><br>
+  <br>
+  <font size="+1"><strong><a name="29"></a><font size="5">11.4.1 服務與 daemon 概述</font></strong></font><font size="5"><br>
+  </font><br>
+  　一般在 Linux 上頭所提供的服務，依其功能來區分的話有兩種：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="95%"><strong><font color="#000099">系統服務</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>針對主機本身所提供的服務，稱之為系統服務。比如之前所學過的排程服務及系統紀錄的服務等。 </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">網路服務</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>提供給網路使用者來存取的服務，稱之為網路服務。比如遠端連線服務、 名稱解析服務、郵件服務等等。當然提供這些網路服務的主機，必須安裝相關的伺服器軟體並做好相關設定才行。往後我們所要學習架設的伺服器，如 
+      DNS Server、Mail Server、Web Server 等，就是要提供相關的服務，來給網路的 client 存取使用的。</td>
+  </tr>
+</table>
+<p> 　而主機所提供的這些服務，必須有相對的服務程式來執行相關的工作才行，這個提供特定服務的程式就是所謂的<strong> </strong><font color="#0000FF">daemon</font>。比如負責排程服務的<strong> 
+  </strong>cron (crond)及 atd、負責管理系統紀錄的 syslogd、負責遠端連線服務的 sshd、負責名稱解析服務的<strong> 
+  </strong>named、&#8230; 等等。您會注意到這些程式名稱的結尾幾乎都有個 d，那就是 daemon 的意思啦。<br>
+  <br>
+  　系統在開機過程就會有一些特定服務的 daemon 被載入，且這些 daemon 都是在背景執行的，只要您不將它終止，就一直常駐在記憶體內。當然您也可以在開機作業完成後，以手動的方式來啟動額外的服務 
+  (daemon)。 <br>
+  <br>
+  　接下來所要談論的內容都是以網路服務為主。<br>
+  <br>
+  　在主機上所提供不同的網路服務，都有其所代表的 port number，也就是說您為了要提供某個網路服務，就必須執行負責這個服務的 daemon，而 port 
+  就是由 daemon 所啟用的。<br>
+  <br>
+  　當主機本身不只提供一個網路服務時，那 client 端就可以向這台主機的不同 port 來存取相關的服務，而這些 port 就是靠當初啟用它的 daemon 
+  在做監聽 (listen)。<br>
+  <br>
+  　至於哪些服務 (daemon) 會啟動哪些 port，可從 /etc/services 檔案窺知一二：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      cat /etc/services</strong></font><br>
+      <font color="#00FF00"># service-name　　　　port/protocol　　Description</font><font face="細明體"><br>
+      ftp-data 　　　　　 20/tcp 　　　 # File Transfer [Default Data]<br>
+      ftp-data　　　　　　20/udp　　　　# File Transfer [Default Data]<br>
+      ftp 　　　　　　　　21/tcp　　　　# File Transfer [Control]<br>
+      fsp 　　　　　　　　21/udp　　　　# File Transfer [Control]<br>
+      ssh 　　　　　　　　22/tcp　　　　# SSH Remote Login Protocol<br>
+      ssh 　　　　　　　　22/udp　　　　# SSH Remote Login Protocol<br>
+      telnet 　　　　　　 23/tcp　　　　# Telnet<br>
+      telnet　　　　　　　23/udp　　　　# Telnet<br>
+      smtp 　　　　　　　 25/tcp　　　　mail # Simple Mail Transfer<br>
+      smtp　　　　　　　　25/udp　　　　mail # Simple Mail Transfer<br>
+      domain 　　　　　　 53/tcp　　　　# Domain Name Server<br>
+      domain　　　　　　　53/udp　　　　# Domain Name Server<br>
+      bootps　　　　　　　67/tcp　　　　# Bootstrap Protocol Server<br>
+      bootps　　　　　　　67/udp　　　　# Bootstrap Protocol Server<br>
+      http　　　　　　　　80/tcp　　　　# World Wide Web HTTP<br>
+      http　　　　　　　　80/udp　　　　# World Wide Web HTTP <br>
+      pop3　　　　　　　　110/tcp　　　 # Post Office Protocol - Version 3<br>
+      pop3　　　　　　　　110/udp　　　 # Post Office Protocol - Version 3<br>
+      sunrpc　　　　　　　111/tcp　　　 rpcbind # SUN Remote Procedure Call<br>
+      sunrpc　　　　　　　111/udp 　　　rpcbind # SUN Remote Procedure Call<br>
+      ntp　　　　　　　　 123/tcp 　　　# Network Time Protocol<br>
+      ntp 　　　　　　　　123/udp 　　　# Network Time Protocol<br>
+      netbios-ns 　　　　 137/tcp 　　　# NETBIOS Name Service<br>
+      netbios-ns　　　　　137/udp 　　　# NETBIOS Name Service<br>
+      netbios-dgm　　　　 138/tcp 　　　# NETBIOS Datagram Service<br>
+      netbios-dgm 　　　　138/udp 　　　# NETBIOS Datagram Service<br>
+      netbios-ssn 　　　　139/tcp 　　　# NETBIOS Session Service<br>
+      netbios-ssn 　　　　139/udp 　　　# NETBIOS Session Service<br>
+      imap 　　　　　　　 143/tcp 　　　imap2 # Internet Message Access Protocol<br>
+      imap　　　　　　　　143/udp 　　　imap2 # Internet Message Access Protocol<br>
+      ldap　　　　　　　　389/tcp 　　　# Lightweight Directory Access Protocol<br>
+      ldap　　　　　　　　389/udp 　　　# Lightweight Directory Access Protocol<br>
+      microsoft-ds　　　　445/tcp 　　　# Microsoft-DS<br>
+      microsoft-ds　　　　445/udp 　　　# Microsoft-DS </font></font></td>
+  </tr>
+</table>
+<br>
+　當 client 端在存取各種網路服務時，會透過不同的通訊協定來與 Server 做聯繫，而這些協定都有其固定要使用的 port，比如 smtp 所使用的 
+25 port，pop3 的 110 port，ssh 的 22 port，http 的 80 port 等等，這些 port number 就是所謂的 well-known 
+port。在上面的 /etc/services 裡所列出的 port 就是 well-known port ( 範圍是從 0 ~ 1023 port )，當然這些 
+port 是可以被修改的，不過一旦您修改過後，internet 上的使用者可能就無法存取您主機所提供的該項服務，除非使用者知道修改過後的 port 為何。因此如果想讓 
+internet 的使用者都能正常存取您所開放的服務，那麼可千萬不要任意去修改 well-known port 啊。<br>
+<br>
+<font size="+1"><strong><a name="30"></a><font size="5">11.4.2 Super daemon --- 
+xinetd </font></strong></font><font size="5"><br>
+</font><br>
+　系統提供網路服務時，是讓某個 daemon 常駐在記憶體內來監聽某個 port，一旦聆聽到有須求進來時，才可馬上提供相關服務。現在思考個問題，若是每個提供網路服務的 
+daemon，都是這樣常駐系統的話，那鐵定會用掉很多系統資源而增加系統負載，因此在 Linux 中有一支叫做 xinetd 的 Super daemon 就應運而生了 
+(因為 xinetd 可以代管很多服務，所以稱其為 Super daemon)。xinetd 也是一支 daemon，平常可代為監聽一些服務的需求，並將此需求再轉給真正的服務程式來執行，也就是說這些服務程式不用親自去監聽請求，那當然在平時無需求進來時就不會佔用系統資源囉 
+! <br>
+<br>
+　由以上說明不難發現，一般系統啟動網路服務的方式區分成兩種，也就是我們常聽到的 standalone 及 xinetd，請繼續看以下的整理說明： <br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="95%"><strong><font color="#000099">standalone</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>以 standalone 方式來獨立啟動服務時，負責該服務的 daemon 就一直常駐在記憶體，並監聽著自己所負責的 port。使用這種方式的好處是，當需求進來時可以在第一時間做回應，所以運作起來會比較有效率 
+      ﹔而其缺點是會一直佔用系統的資源。<br>
+      standalone 比較適合於一些需求量較大的服務，如 Web Server、Smtp Server、DNS 等。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">xinetd：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>xinetd 是負責幫那些平常使用量不高的服務，代為監聽這些服務程式的相關 port。靠 xinetd 來啟動的服務，於平時無需求進來時，這些服務程式並不會佔用系統資源，只在有服務要求時，才靠 
+      xinetd 適時的去呼叫它們，而當連線終止之後，該服務程式也隨之結束，並釋放出其原本所佔用的系統資源。所以使用 xinetd 來啟動服務的好處是可節省系統資源，至於缺點則是沒有辦法如 
+      standalone 般擁有那麼高的執行效能。<br>
+      像 telnet、ftp、pop3 等服務，是最常見到靠 xinetd 來啟動的服務。</td>
+  </tr>
+</table>
+<p> <font size="+1"><strong><a name="31"></a><font size="5">11.4.3 xinetd 相關檔案</font></strong></font><br>
+  <br>
+  　與 xinetd 有關的組態檔分別是 /etc/xinetd.conf 及位於 /etc/xinetd.d/ 目錄下的那些檔案。當您所提供的網路服務是靠 
+  xinetd 啟動時，那對這些檔案就要有所認識。<br>
+  <br>
+  <strong><font size="+1"><a name="32"></a><strong><font size="+1"><strong><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong> 
+  檔案 /etc/xinetd.conf</font></strong><br>
+  <br>
+  　這是 xinetd 的主要設定檔，來看看這個檔案的內容：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>vi 
+      /etc/xinetd.conf</strong></font><br>
+      <font face="細明體">defaults<br>
+      {<br>
+      　　　　log_type 　　　= FILE /var/log/xinetd.log<br>
+      　　　　log_on_success = HOST EXIT DURATION<br>
+      　　　　log_on_failure = HOST ATTEMPT<br>
+      　　　　instances 　　 = 30<br>
+      　　　　cps 　　　　　 = 50 10<br>
+      </font></font><font color="#FFFFFF"> } 
+      <p><font face="細明體">includedir /etc/xinetd.d</font></p>
+      </font></td>
+  </tr>
+</table>
+<br>
+　首先看到的是 defaults，於其後的 { } 內是設定了一些全域參數，這表示所有靠 xinetd 來啟動的服務，都可以套用這裡的預設值。每個服務本身都能擁有它們自己的設定參數，且是凌駕在 
+defaults 之上，那如果沒有設定到的，就會套用 defaults 裡邊的設定囉。再來說明 defaults 內的參數涵義：<br>
+<br>
+<table width="100%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td align="center" valign="middle" nowrap><font color="#000099"><strong>參　數</strong></font></td>
+    <td> <div align="center"><font color="#000099"><strong>代　表　意　義</strong></font></div></td>
+  </tr>
+  <tr> 
+    <td width="13%" align="center" valign="middle" nowrap><strong><font color="#000099">log_type</font></strong></td>
+    <td width="87%"><font color="#000099">用來決定服務所產生的訊息要紀錄在哪裡。一般該項設定有兩種格式：<br>
+      </font> <table width="100%" border="0">
+        <tr> 
+          <td width="3%" align="center" valign="top"><font color="#000099">˙</font></td>
+          <td><font color="#000099">SYSLOG：根據所指定的服務類型 (facility)，來讓 syslogd 將訊息記載到紀錄檔內。比如：<br>
+            log_type = SYSLOG authpriv</font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#000099">˙</font></td>
+          <td><font color="#000099">FILE：將訊息紀錄到 FILE 所指定的檔案內。如所指定的檔案不存在，會自動幫您建立起來。比如：<br>
+            log_type = FILE /var/log/xinetd.log</font></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">log_on_success</font></strong></td>
+    <td><font color="#000099">設定 client 端連線成功後所要記載的訊息。常見的設定項目有：</font><br> <table width="100%" border="0">
+        <tr> 
+          <td width="3%" align="center" valign="top"><font color="#000099">˙</font></td>
+          <td><font color="#000099">HOST：紀錄來源端主機位址。</font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#000099">˙</font></td>
+          <td><font color="#000099">EXIT：紀錄 Server 結束時的退出狀態。</font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#000099">˙</font></td>
+          <td><font color="#000099">PID：紀錄在 Server 上提供服務的 daemon，其行程 PID 為何。</font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#000099">˙</font></td>
+          <td><font color="#000099">DURATION：記載該服務被存取的時間，也就是使用者使用此服務多久的意思。</font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#000099">˙</font></td>
+          <td><font color="#000099">USERID：紀錄遠端連線者的 USER ID。</font></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">log_on_failure</font></strong></td>
+    <td><font color="#000099">連線失敗後所要記載的訊息。可以設定的項目有：<br>
+      </font> <table width="100%" border="0">
+        <tr> 
+          <td width="3%" align="center" valign="top"><font color="#000099">˙</font></td>
+          <td><font color="#000099">HOST：紀錄來源端主機位址。</font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#000099">˙</font></td>
+          <td><font color="#000099">USERID：紀錄遠端連線者的 USER ID。</font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#000099">˙</font></td>
+          <td><font color="#000099">ATTEMPT：記載連線失敗的使用者，其意圖為何。</font></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">instances</font></strong></td>
+    <td><font color="#000099">設定單一服務在同一時間所能允許的連線數。如設定成 UNLIMITED，則表示無連線數的限制。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">cps</font></strong></td>
+    <td><font color="#000099">這裡設定了兩個數字，第一個數字 50，是表示每秒能掌控的連線數，若超過這裡的限定則中斷連線。第二個數字 
+      10，表示從連線中斷後到重新啟動服務的時間為 10 秒。</font></td>
+  </tr>
+</table>
+<font color="#000000"><br>
+　在檔案的最後頭還有個「includedir /etc/xinetd.d」，這是</font>說其他服務的設定參數可以存放在 /etc/xintd.d 目錄下的相關檔案內。當然您要是想把那些服務都設定在 
+/etc/xinetd.conf 內也是可行的，不過一般習慣是會安置在 /etc/xinetd.d 之中啦，這樣比較方便管理。 <br>
+<br>
+<font size="+1"><strong><a name="33"></a><font size="+1"><strong><font size="+1"><strong><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong></font> 
+檔案 /etc/xinetd.d/*</strong></font><br>
+<br>
+　這裡就是要介紹 /etc/xinetd.d 目錄下的那些檔案的設定內容。接著底下會以 telnet 做範例，不過請先確定 telnet-server 套件已裝上，還沒裝的話，拿出光碟來安裝即可。<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>vi 
+      /etc/xinetd.d/telnet<br>
+      </strong></font><br>
+      <font face="細明體">service telnet　</font><font color="#00FFFF" size="2"><br>
+      </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> service 
+      之後的 telnet 為服務名稱，必須與 /etc/services 中所定義的名稱一致。很重要 !</font><br>
+      { <br>
+      <font face="細明體">　　　only_from　　　 </font></font><font color="#FFFFFF" face="細明體">= 
+      192.168.1.0/24 192.168.2.0<br>
+      　　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">只允許 
+      192.168.1.0/24 及192.168.2.x 的來源端存取 telnet 服務。</font><font color="#FFFFFF" face="細明體"> 
+      <br>
+      　　　no_access　　　 = 192.168.1.{10,100}<br>
+      　　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">拒絕 
+      192.168.1.10 及 192.168.1.100 這兩台主機的連線。</font><font color="#FFFFFF" face="細明體"> 
+      <br>
+      　　　access_times　　= 14:00-17:00<br>
+      　　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">限定開放存取服務的時間為下午兩點到五點。</font><font color="#FFFFFF" face="細明體"> 
+      <br>
+      　　　socket_type　　 = stream<br>
+      　　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">設定服務的連線類型。一般 
+      TCP 封包就設定成 stream，UDP 封包則為 dgram。</font><font color="#FFFFFF" face="細明體"> 
+      <br>
+      　　　protocol　　　　= tcp<br>
+      　　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">設定連線服務所使用的協定，此協定必須在 
+      /etc/protocols 內有定義。</font><font color="#FFFFFF" face="細明體"> <br>
+      　　　wait　　　　　　= no<br>
+      　　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">設定成 
+      no，表示不需等待行程結束即可提供新的連線請求。</font><font color="#FFFFFF" face="細明體"> <br>
+      　　　user　　　　　　= root<br>
+      　　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">啟動該服務的執行身分為 
+      root。</font><font color="#FFFFFF" face="細明體"> <br>
+      　　　server　　　　　= /usr/sbin/in.telnetd<br>
+      　　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">提供該項服務的執行程式 
+      (daemon)。</font><font color="#FFFFFF" face="細明體"> <br>
+      　　　disable　　　　 = no</font><font color="#FFFFFF"><br>
+      　　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">要不要啟動 
+      telnet 服務，設定成 no，表示要啟用。</font><br> <font color="#FFFFFF" face="細明體">} </font><font color="#FFFFFF"><strong><br>
+      </strong></font></td>
+  </tr>
+</table>
+<br>
+　靠 xinetd 來啟動的服務，當這些服務的相關檔案修改過後，請使用 /etc/init.d/xinetd 這支 script，或 rcxinetd 來重新啟動 
+xinetd 服務：<br>
+<br>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr> 
+    <td><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> <strong>/etc/init.d/xinetd 
+      restart</strong></font><br>
+      suse:~ #<strong> <font color="#FFFF00">rcxinetd restart </font></strong></font></td>
+  </tr>
+</table>
+<p><strong><font color="#000099">　</font></strong><font color="#000000">想要提供那些靠 
+  xinetd 所啟動的服務時，除了利用剛剛介紹的修改檔案設定參數 ( disable=no) 外，也可利用 chkconfig 指令，以 telnet 
+  服務來說好了，您可執行：</font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td height="24" bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
+      <strong>chkconfig telnet on</strong></font></font></td>
+  </tr>
+</table>
+<p><strong><font color="#000099">　</font></strong><font color="#000000">然後再重新啟動 
+  xinetd 就行了。</font></p>
+<blockquote> 
+  <p><font color="#000099"><strong>Tips：</strong><font size="2">Suse 預設 xinetd 
+    服務在開機時是不啟動的，所以想在下次開機時能啟動該服務，那就使用以下兩種方式之一：</font></font></p>
+  <table width="40%" border="0" bgcolor="#CCCCCC">
+    <tr> 
+      <td nowrap>suse:~ # <strong>chkconfig --level 35 xinetd on</strong><br>
+        suse:~ #<strong> chkconfig xinetd 35</strong></td>
+    </tr>
+  </table>
+  <br>
+  <font color="#000099" size="2">不然使用 YaST 做設定也行，自己試看看囉。 </font> </blockquote>
+<strong> <font size="+1"><a name="34"></a><font size="5">11.4.4 TCP_Wrapper</font></font></strong><br>
+<br>
+　TCP_Wrapper 主要是針對 TCP 封包來進行過濾，而其所依賴的一支程式就是 /usr/sbin/tcpd， tcpd 會根據 /etc/hosts.allow 
+及 /etc/hosts.deny<strong> </strong>來決定要拒絕或放行此封包。<br>
+<br>
+　一般來說，當來源端要存取的是靠 xinetd 所啟動的服務時，此類封包必會經過 tcp_wrapper 的檢查，也就是依照 /etc/hosts.allow 
+及 /etc/hosts.deny 的設定，來決定是否放行此封包。那靠 standalone 來啟動的服務又如何呢 ? 這就要看這個服務本身有沒有支援這個功能了，比如像 
+sshd 及 sendmail，就是一個支援 tcp_wrapper 的典型例子。<br>
+<br>
+　針對這兩個檔案的設定，一般比較建議的做法，是將那些需要提供的服務設定在 hosts.allow 裡，而在 hosts.deny 中則設定全部拒絕，這樣只要在 
+/etc/hosts.allow 中沒有設定到的服務，就不會對外開放。<br>
+<br>
+　tcpd 讀取這兩個檔案的順序是先 hosts.allow 再 hosts.deny，如 hosts.allow 裡邊對來源封包已有符合的相關設定，就不再往下比對，否則繼續比對 
+hosts.deny。<br>
+<br>
+　以下是這兩個檔案的基本存取控制的設定格式：<br>
+<br>
+<table width="40%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td nowrap> <strong><font face="細明體">daemon_list:client_list:option:option 
+      ...</font></strong></td>
+  </tr>
+</table>
+<br>
+<strong>　</strong>針對此設定格式做個說明。<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="95%"><strong><font color="#000099">daemon_list</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>服務程式 (daemon) 名稱的列表。以 telnet 來說，就是在 /etc/xinetd.d/telnet 檔案中那個 server 
+      參數後所指定的程式名稱。如果有多個服務程式要指定，只需使用空白鍵或「, 」隔開即可。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">client_list</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>限定的來源端列表。可以使用主機名稱或 IP 位址來做設定，比如「.test.com.tw」，表示為 xxx.test.com.tw 的來源主機，「192.168.1.」表示為 
+      192.168.1.x 的來源 IP。另外位址的部分也可以是「192.168.1.0/24」或「192.168.1.0/255.255.255.0」的格式。多個來源端之間，一樣可使用空白鍵或「 
+      , 」做區隔。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">option</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>option 的部分可有可無，視您需求而做設定。這裡舉兩個蠻有趣的 option 給各位參考：<br> <table width="100%" border="0">
+        <tr> 
+          <td width="3%" align="center" valign="top"><font color="#0000FF" size="4">˙</font></td>
+          <td width="97%"><font color="#0000FF">spawn shell_command : </font>使用 
+            spawn 來指定其後要執行的 shell 指令。而在指令敘述中，可以使用 %letter 來取得一些資訊，比如 %a 為 client 
+            端的主機位址，%A 為 Server 本身的位址，%d 為提供服務的 daemon 名稱，%h 為 client 端的 hostname 
+            或 Address，%u 為 client 端執行連線的 username 或 unknown。</td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#0000FF" size="4">˙</font></td>
+          <td><font color="#0000FF">twist shell_command :</font><strong> </strong>使用 
+            twist 之後所指定的 shell 指令來替代 daemon 的執行。當您想對那些被拒絕連線的 client 端，讓其螢幕顯示一些您所指定的訊息時，就可以利用 
+            twist 來搞定。另外請注意，當使用 twist 時，必需放在存取規則的最後方才行。</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<br>
+　至於更詳盡的內容，請 &quot;man 5 hosts_access&quot; 及 &quot;man 5 hosts_options&quot; 自行查閱。<br>
+<br>
+　接著就來看 hosts.allow 及 hosts.deny 的設定範例：<br>
+<br>
+<strong>範例一</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>vi 
+      /etc/hosts.allow</strong></font><br>
+      in.telnetd :　.domain.com.tw　192.168.1.0/24<br>
+      sshd :　ALL EXCEPT 192.168.2.　<br>
+      <br>
+      suse:~ # <font color="#FFFF00"><strong>vi /etc/hosts.deny</strong></font><br>
+      ALL :　ALL</font></td>
+  </tr>
+</table>
+<br>
+　在 hosts.allow 中的設定，是允許 domain.com.tw 內的主機及 192.168.1.0/24 網路段內的主機可以使用 telnet 
+服務，而關於 ssh 服務，則是除了 192.168.2.x 以外的所有來源端都允許存取。在 /etc/hosts.deny 中，則是設定所有來源端 (ALL) 
+拒絕存取所有服務 (ALL)。<br>
+<br>
+　當您對來源端作控管時，除了使用 IP、主機名稱及 ALL 以外，還有一些特有的名稱可以利用：<br>
+<strong><font size="4">　 <font size="3">˙</font></font></strong>LOCAL：表示主機名稱中不包含「.」字元的 
+(本地端主機)。<br>
+<strong><font size="4">　 <font size="3">˙</font></font></strong>UNKNOWN：解析不出的使用者名稱、主機名稱、IP 
+位址。<br>
+<strong><font size="4">　 <font size="3">˙</font></font></strong>KNOWN：解析得出的使用者名稱、主機名稱、IP 
+位址。<br>
+<strong><font size="4">　 <font size="3">˙</font></font></strong>PARANOID：解析出來的主機名稱與 
+IP 位址不一致。 <br>
+　<br>
+　最後提醒一下，TCP_Wrapper 的設定檔在修改過後即刻生效噢。<br>
+<br>
+<strong>範例二</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>vi 
+      /etc/hosts.deny</strong></font><br>
+      <br>
+      in.telnetd,sshd : 192.168.1.　192.168.3.0/24</font></td>
+  </tr>
+</table>
+<br>
+　如只想拒絕少數來源端作存取，則只需設定在 hosts.deny 中就行了。以這個範例來說，是拒絕 192.168.1.x 及 192.168.3.0/24 
+的來源端主機使用 ssh 及 telnet 服務，至於其他來源端則是被允許。不過這樣的設定可能過於寬鬆，因為其他未被設定到的服務，都代表著允許存取的意思，所以不太鼓勵這樣做。<br>
+<br>
+　還有另外一種設定方式可以達到跟上面的設定範例相同的效果： <br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>vi 
+      /etc/hosts.allow</strong></font><br>
+      <br>
+      in.telnetd,sshd : 192.168.1.　192.168.3.0/24 : <font color="#FFFF00">deny</font></font></td>
+  </tr>
+</table>
+<br>
+<strong>範例三</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      vi /etc/hosts.deny</strong></font><br>
+      in.telnetd : 192.168.1. :<strong> </strong>spawn (echo &quot; A user %u 
+      from %a is denied by %d.&quot;) \<br>
+      | mail root : twist (echo &quot;Sorry, connection deny.&quot;) </font></td>
+  </tr>
+</table>
+<br>
+　從 192.168.1.x 連線過來的主機，不允許使用 telnet 服務，並且使用 spawn 來繼續執行其後的 shell command，此時系統會寄一封信通知 
+root，這樣管理者就可以知道有哪些來源端曾試圖要連上這台主機。<br>
+<br>
+　至於最後面是使用 twist 來配合其後 shell command 的執行，這樣 client 端的螢幕就會顯示「Sorry,connection deny」的訊息，並於接收此訊息之後隨即斷線。<br>
+<br>
+<p align="center"><font color="#000000"><em> copyright &copy; 2006 by barry ( 
+  柏青哥 )</em></font> </p>
+</body>
+</html>

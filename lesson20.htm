@@ -1,0 +1,954 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>PAM 認證模組</title>
+<style type="text/css">
+<!--
+a {
+	color: #000099;
+	text-decoration: none;
+}
+-->
+</style>
+</head>
+
+<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#0000FF" vlink="#660066" leftmargin="40">
+<p align="left"><font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a><font size="+2"><strong>　</strong></font></font>作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw</p>
+<p align="center"><font size="7"><strong>第二十章 　PAM 認 證 模 組</strong></font></p>
+<font color="#000000" size="+1"><strong><font color="#000099" size="+1"><strong>索引：</strong></font><br>
+</strong></font>
+<table width="100%" border="0">
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>20.1 <a href="#1">認識 PAM</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td width="4%"><font color="#000099">&nbsp;</font></td>
+    <td width="6%" align="center" valign="top" nowrap><font color="#000099">20.1.1</font></td>
+    <td width="90%"><a href="#2">PAM 的簡介</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">20.1.2</font></td>
+    <td><a href="#3">PAM 的相關檔案</a></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>20.2 <a href="#4">PAM 模組設定檔</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">20.2.1</font></td>
+    <td><a href="#5">PAM 模組設定檔的設定格式</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">20.2.2</font></td>
+    <td><a href="#6">PAM 認證模組的功能</a></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>20.3 <a href="#7">PAM 的設定範例</a></strong></font></td>
+  </tr>
+</table>
+<br>
+<hr>
+<p><font color="#000000" size="+1"><strong><font color="#0000FF" size="+2"> <a name="1"></a><font size="6">20.1 
+  認識 PAM</font></font><br>
+  <br>
+  <a name="2"></a><font size="5">20.1.1 PAM 的簡介</font><br>
+  <br>
+  </strong></font><font color="#000000">　PAM 全名為 <strong>P</strong>luggable<strong> 
+  A</strong>uthentication <strong>M</strong>odule，翻成中文就是所謂的 &quot; 可插入式認證模組 &quot;，可以簡單的將其視為一個應用程式介面 
+  (API)，而在整個認證程序中，PAM 即是用來擔任使用者與應用程式之間的中介角色。<br>
+  <br>
+  　以整個認證體系而言，PAM 算是認證系統的前端，而認證機制 (即真正要採取認證的方式，比如根據 passwd file 或 LDAP 等來做認證) 則是屬於認證系統的後端。 
+  <br>
+  <br>
+  　 在傳統的 UNIX 上頭，PAM 是應用程式經常使用的一種認證方式，不過您可不要以為 PAM 只能提供認證的服務噢，它還能提供帳號管理、使用者於系統活動期間的紀錄管理、控管使用者對服務的存取管理等等。</font></p>
+<p><font color="#000000"> 　這裡舉個 PAM 認證的例子來說好了 ﹔當 client 端的 user 要使用 SSH 做遠端連線時，如果採用的是密碼認證的話，那就需先輸入驗證資料，而 
+  Sever 端在收到這個認證資訊時，sshd 會呼叫 PAM 來處理，並根據 /etc/pam.d/sshd 檔案內的設定，來決定使用哪些認證模組做確認的工作，而在認證模組處理到一個段落後，會適時的回應給 
+  sshd。由以上的例子說明，不難發現 sshd 本身必須支援 PAM 認證才行，也就是說 sshd 程式本身的原始碼裡頭必須包含 PAM 函式。您可以使用 
+  ldd 指令來查閱一下就知道了：</font> </p>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#<strong><font color="#FFFF00" face="細明體"> 
+      </font></strong><font color="#FFFF00" face="細明體"><strong>ldd 
+      /usr/sbin/sshd</strong></font></font><font color="#FFFFFF" face="細明體"><br>
+      　　　　linux-gate.so.1 =&gt; (0xffffe000)<br>
+      　　　　libwrap.so.0 =&gt; /lib/libwrap.so.0 (0x40031000)<br>
+      　　　　</font><font color="#FFFFFF"><font color="#FFFF00" face="細明體">libpam.so.0 =&gt; 
+      /lib/libpam.so.0 (0x40039000)</font></font><font color="#FFFFFF" face="細明體"><br>
+      　　　　libdl.so.2 =&gt; /lib/libdl.so.2 (0x40041000)<br>
+      　　　　libkafs.so.0 =&gt; /usr/lib/libkafs.so.0 (0x40044000)</font></td>
+  </tr>
+</table>
+<font color="#000000"><br>
+　如您還不太清楚 PAM 所扮演的角色，請參考以下這個架構圖再配合上面的說明來看，應該就會有概念了</font><font color="#000000" size="+1">：</font> 
+<p align="center"><img src="../picture/pam.gif" tppabs="http://www.suse.url.tw/picture/pam.gif" width="364" height="225"><br>
+  <font size="2">圖一：PAM 的架構圖</font></p>
+<p>　至於為何要取名為可插入式的認證模組呢 ? 因為它是一組隨時可讓管理員來彈性使用的認證函式庫<font color="#000000">，比如您只希望有少數使用者可以執行 
+  su 指令來切換成其他 user 或 root 的身份，那麼可以在 /etc/pam.d/su 檔案中去引用<strong> </strong>pam_wheel.so 
+  模組，而當您想取消此項功能時，就直接將此模組拿掉即可，如此一來，我們就不必為了達到某個特定目的而去重新編譯 su 程式了。看到這裡，大家是不是覺得使用這個 
+  PAM 真的是非常方便呢 ?</font></p>
+<p><font color="#000000" size="+1"><strong><a name="3"></a><font size="5">20.1.2 
+  </font></strong></font><font color="#000000" size="5"><strong>PAM 的相關檔案</strong></font><font color="#000000" size="+1"><strong><br>
+  <br>
+  </strong></font><font color="#000000">　上一小節的觀念沒問題的話，緊接著就來說明一下與 PAM 有關的幾個相關檔案介紹：</font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099">/lib/libpam*.so：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>支援 PAM 的應用程式，需使用這裡所提供的 PAM 函式，來存取相關的模組設定檔。不過有的 Distribution 則是將 PAM 函式安置在 
+      /usr/lib 目錄中。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">/etc/pam.d/*：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>PAM 認證模組設定檔就是放在這個目錄下。我們需要為支援 PAM 的應用程式安置一個檔案在裡頭，至於檔名則是寫死在程式原始碼裡面。通常這裡的檔名會取一個與程式本身的名稱相關或相同，所以平常您千萬不要隨意去更改檔名，因為萬一找不到 
+      PAM 模組設定檔時，就會套用 /etc/pam.d/other 檔案裡的設定內容。<br> <font color="#000000">另外早期的 
+      PAM 模組設定檔是安置在 /etc/pam.conf 這個檔案中，而目前則大多是安置在 /etc/pam.d 目錄裡。 </font> </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">/lib/security/*：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>PAM 所使用的認證模組就是安置在這裡，比如 pam_unix2.so、pam_time.so、pam_nologin.so 等等。 </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">/etc/security/*</font></strong><font color="#000099"><strong>：</strong></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>此目錄中，存放著大部分 PAM 模組的全域組態檔。至於詳細的情形後面的範例會有說明。</td>
+  </tr>
+</table>
+<p><font color="#000000"> 　</font><font color="#000000">了解了相關檔案的配置之後，我們再以 PAM 
+  認證的詳細流程圖來跟各位說明：</font> </p>
+<div align="left"> 
+  <p align="center"><font color="#000000"> <img src="../picture/pam1.png" tppabs="http://www.suse.url.tw/picture/pam1.png" width="388" height="145"> 
+    <br>
+    <font size="2">圖二：PAM 的認證流程</font></font></p>
+  <p align="left"><font color="#000000"> 　在圖二的流程圖中，是說明應用程式會先去呼叫 PAM 函式，然後再由其去讀取 
+    /etc/pam.d/ 目錄下的 PAM 模組設定檔，並依序載入檔案中所指定的 PAM 模組，而這些模組是以在設定檔中所設定的順序依序被堆疊起來 ﹔接著這些堆疊模組就開始為應用程式執行不同的認證工作，那當然執行結果或許成功，或許失敗，不過不論成功或失敗，都需要將執行結果回應給 
+    PAM 函式。假使說第一個 PAM 模組驗證失敗後，那麼會回應給 PAM 函式知道，至於下一個 PAM 模組會不會接著被 PAM 函式載入，則是要依照剛剛上一個 
+    PAM 模組所設定的控制旗標來決定 (下一節會說明)，而等 PAM 模組都驗證完畢後，PAM 函式才會將失敗結果傳回給應用程式。</font></p>
+</div>
+<blockquote>
+  <div align="left"><font color="#000099"><strong>Tips：</strong></font><font color="#000000"><font color="#000099" size="2">這裡來補充一下模組堆疊的概念。使用 
+    PAM 之時，管理者往往會希望不是只單純的檢查使用者帳號密碼而已，可能還希望能進一步的作各項控管，比如開放某些服務只能在規定的時間內才能存取，或者部分服務只有少數使用者能夠存取等等，此時管理者就可以根據不同的需求來引用 
+    (插入) 不同的模組，那當然不同的模組所執行的檢查工作也就不同囉。比如以同一個模組類型來說，當模組 1 檢查完後，可能換模組 2 接著進行其他的檢查，模組 
+    2 檢查完畢後也可能會由模組 3 再進行檢查，這就是利用模組堆疊 ( statcked modules ) 的概念來驗證用戶的合法性。</font></font></div>
+</blockquote>
+<div align="left"> 
+  <p align="left"><font color="#000000"><strong><font color="#0000FF" size="+2"><a name="4"></a><font size="6">20.2 
+    PAM 模組設定檔</font></font></strong><font size="6"> </font>　</font><font size="+1"><strong><br>
+    </strong></font><font color="#000000" size="+1"><strong><br>
+    <a name="5"></a><font size="5">20.2.1 PAM 模組設定檔的設定格式</font><br>
+    <br>
+    </strong></font><font color="#000000">　這部分主要是探討 /etc/pam.d/ 目錄下的 PAM 模組設定檔的內容：</font></p>
+  <table width="100%" border="0">
+    <tr> 
+      <td nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#</font><font color="#FFFFFF" face="細明體">&nbsp;</font><font color="#FFFFFF"><font color="#FFFF00" face="細明體"><strong>ls 
+        /etc/pam.d</strong></font></font><font color="#FFFFFF" face="細明體"><br>
+        atd　　　　　　 common-password　gnome-passwd　　　 pop3　　　 sshd　　 <br>
+        chage　　　　　 common-session　 gnome-screensaver　ppp　　　　su　　 <br>
+        chfn　　　　　　crond　　　　　　gnomesu-pam　　　　pure-ftpd　sudo　　　 <br>
+        chsh　　　　　　cups　　　　　　 login　　　　　　　samba　　　useradd　 <br>
+        common-account　gdm　　　　　　　other　　　　　　　shadow　　 vsftpd<br>
+        common-auth　　 gdm-autologin　　passwd　　　　　　 smtp　　 　xdm</font></td>
+    </tr>
+  </table>
+  <p align="left"><font color="#000000"> 　先簡單了解一下這些檔案的設定格式：</font> </p>
+  <table width="77%" border="0" bgcolor="#CCCCCC">
+    <tr> 
+      <td width="26%" nowrap><div align="center"><font face="細明體">modules_type</font></div></td>
+      <td width="24%" nowrap> <div align="center"><font face="細明體">control_flags　　</font></div></td>
+      <td width="26%" nowrap> <div align="center"><font face="細明體">modules_path</font></div></td>
+      <td width="24%" nowrap> <div align="center"><font face="細明體">options</font></div></td>
+    </tr>
+    <tr> 
+      <td nowrap><div align="center"><font face="細明體"><font size="2">模組類型　</font></font></div></td>
+      <td nowrap> <div align="center"><font face="細明體"><font size="2">控制旗標　　　</font></font></div></td>
+      <td nowrap> <div align="center"><font face="細明體"><font size="2"> 模組路徑　</font></font></div></td>
+      <td nowrap> <div align="center"><font face="細明體"><font size="2">傳給模組的參數 
+          </font></font></div></td>
+    </tr>
+  </table>
+  <p align="left"><font color="#000000"> 　其中除了 options 欄位外，其餘都是必要設定的欄位。底下分別來對這幾個欄位做相關說明：</font><font color="#000000" size="+1"><strong><br>
+    <br>
+    </strong></font><font size="+1"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+    <font color="#000000"><strong><font size="+1">模組類型</font></strong></font><font color="#000000" size="+1"><strong><br>
+    <br>
+    　</strong></font><font color="#000000">這部分總共區分成四種</font><font color="#000000" size="+1"><strong> 
+    </strong></font><font color="#000000"><font color="#000000">modules_type</font><font color="#000000" size="+1">：</font></font></p>
+  <table width="100%" border="1">
+    <tr bgcolor="#CCCCCC"> 
+      <td align="center" valign="middle" nowrap><font color="#000099"><strong>模組類型</strong></font></td>
+      <td nowrap> <div align="center"><font color="#000099"><strong>主　要　功　用</strong></font></div></td>
+    </tr>
+    <tr> 
+      <td width="10%" align="center" valign="middle" nowrap><font color="#000099"><strong>auth</strong></font></td>
+      <td width="90%"><font color="#000099">對使用者所提供的認證資訊做驗證，比如檢查帳號密碼。</font></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle" nowrap><font color="#000099"><strong>account</strong></font></td>
+      <td><font color="#000099">非認證方面的帳號管理，比如檢查使用者帳號是否已過期、哪些帳號可從哪些來源端來存取服務、及限定存取服務的時間等等。</font></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle" nowrap><font color="#000099"><strong>password</strong></font></td>
+      <td><font color="#000099">與更新認證訊息有關，比如使用者變更密碼時會檢查新密碼是否夠安全。</font></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle" nowrap><font color="#000099"><strong>session</strong></font></td>
+      <td><font color="#000099">這個模組類型裡所使用的模組，是與使用者在存取服務前後需執行的一些工作有關聯。比如紀錄掛載目錄的資訊、使用者做資料交換時的訊息紀錄等等。</font></td>
+    </tr>
+  </table>
+  <p align="left"><font size="+1"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font><font color="#000000" size="+1"><strong> 
+    控制旗標 <br>
+    <br>
+    </strong></font><font color="#000000">　一個認證模組在執行認證檢查時，有可能成功 (success)，也有可能失敗 
+    (failure)，當其傳回 success 或 failure 時，PAM 將會採取什麼動作 ? 是要繼續執行下一個模組認證 (模組堆疊的特性)，還是要結束認證工作不繼續往下，這就要看您是採用什麼 
+    control_flags 了。所以簡單的說， control_flags 是用來告知 PAM 在模組執行成功或失敗後，要不要繼續進行其它堆疊模組的驗證。底下就來說說幾個主要的控制旗標：</font><font color="#000000" size="+1"><strong> 
+    </strong></font></p>
+  <table width="100%" border="1">
+    <tr bgcolor="#CCCCCC"> 
+      <td align="center" valign="middle" nowrap><font color="#000099"><strong>控制旗標</strong></font></td>
+      <td nowrap> <div align="center"><font color="#000099"><strong>影 響 模 組 執 
+          行 時 的 行 為</strong></font></div></td>
+    </tr>
+    <tr> 
+      <td width="11%" align="center" valign="middle" nowrap><font color="#000099"><strong>required</strong></font></td>
+      <td width="89%"><font color="#000099">當使用此旗標的其中一個認證模組傳回 failure 時，還是會繼續往下執行其他堆疊模組的認證 
+        (相同的 module_type)，等全部都執行完畢後，PAM 才傳回 failure。那如果認證模組傳回 success 時，也還是會繼續往下執行其他堆疊模組的驗證。<br>
+        或許您會想說既然已經傳回失敗了，為何還要繼續往下去執行下一個 PAM 模組呢 ? 如此不是多此一舉嗎 ? 其實這樣做的目的是為了安全上的考量，也就是說透過堆疊模組這樣的設計，可以讓用戶端永遠不知道他是如何被拒絕的，因為如果當用戶了解其被拒絕的理由後，可能就會特別針對這方面來做進一步的突破，而這將會造成對系統安全上的一大威脅。</font></td>
+    </tr>
+    <tr> 
+      <td height="35" align="center" valign="middle" nowrap><font color="#000099"><strong>requisite</strong></font></td>
+      <td><font color="#000099">當使用此旗標的認證模組傳回 failure 時，則會終止整個認證程序，而不再往下驗證，PAM 
+        會馬上傳回一個 failure 給應用程式。那如果傳回 success ，則還是會繼續往下執行其他堆疊模組的驗證。<br>
+        一般人往往分不清楚 required 與 requisite 的差異，簡單的說，不論是 required 或 requisite，只要傳回 
+        success，都還是會繼續往下驗證，只有當它們都傳回 success 時，才算是真正的 success。而如果 required 傳回 failure 
+        時，是會繼續執行其他堆疊模組的驗證，但 requisite 傳回 failure 時，則是會終止整個驗證程序。</font></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle" nowrap><font color="#000099"><strong>sufficient</strong></font></td>
+      <td><font color="#000099">以相同的 modules_type 來說，如果之前的 required 都傳回 success 
+        (或者之前根本沒有 required)，而使用此旗標的認證模組也傳回 success 時，則不再繼續往下執行此 modules_type 中的其他堆疊模組，並傳回 
+        success 給　PAM 函式。不過這並不意味著整個認證就是成功的，萬一有其他 modules_type 的認證模組使用 required 
+        旗標並傳回 failure 時，那還是算認證失敗。另外不論當 required 是傳回 success 或 failure 時，sufficient 
+        的 failure 都會被當成 optional 來看待，而被忽略。</font></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle" nowrap><font color="#000099"><strong>optional</strong></font></td>
+      <td><font color="#000099">使用此旗標的認證模組，無論傳回 success 或 failure，都不會影響整體的認證結果，其主要是用來做 
+        log 而已。</font></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle" nowrap><font color="#000099"><strong>include</strong></font></td>
+      <td><font color="#000099">這算是比較特殊的控制旗標，主要是用來引入其後所接的檔案 ( include file )，至於檔案內容就是傳統的那四個欄位囉。另外使用 
+        include 所含括的檔案內容，是會在 include 的那個位置被插入的。</font></td>
+    </tr>
+  </table>
+  <p align="left"><font size="+1"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+    <strong><font color="#000000" size="+1">模組路徑</font></strong><br>
+    <br>
+    <font color="#000000"> 　如果這個欄位只設定模組名稱，未指定其實際路徑，則表示此模組是被安置在預設的 /lib/security 
+    目錄中。至於在 include 旗標後的 include file，則是被放置在 /etc/pam.d 目錄中。</font><font color="#000000" size="+1"><strong> 
+    <br>
+    <br>
+    </strong></font><font size="+1"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+    <strong><font color="#000000" size="+1">模組參數</font></strong> <br>
+    <br>
+    <font color="#000000"> 　這裡舉幾個模組參數給大家參考一下：</font> </p>
+  <table width="100%" border="1">
+    <tr bgcolor="#CCCCCC"> 
+      <td align="center" valign="middle" nowrap><strong><font color="#000099">模組參數</font></strong></td>
+      <td nowrap> <div align="center"><strong><font color="#000099">主　要　作　用</font></strong></div></td>
+    </tr>
+    <tr> 
+      <td width="12%" align="center" valign="middle" nowrap><strong><font color="#000099">use_first_pass</font></strong></td>
+      <td width="88%"><font color="#000099">認證模組不會要求使用者輸入密碼，而是從之前的 auth modules 
+        來取得使用者密碼，若密碼不符合或未輸入密碼，則視為認證失敗。</font></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle" nowrap><strong><font color="#0000FF"><font color="#000099">try_first_pass</font></font></strong></td>
+      <td><font color="#000099">認證模組不會要求使用者輸入密碼，而是從之前的 auth modules 來取得使用者密碼，若密碼不符合或未輸入密碼則要求重新輸入一次。</font></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle" nowrap><strong><font color="#0000FF"><font color="#000099">debug</font></font></strong></td>
+      <td><font color="#0000FF"><font color="#000099">讓 syslogd 將<strong> </strong>level 
+        為 debug 等級的資訊寫入紀錄檔內。</font></font></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle" nowrap><strong><font color="#0000FF"><font color="#000099">nullok</font></font></strong></td>
+      <td><p><font color="#000099">允許無密碼 ( /etc/shadow 的密碼欄位是空的 ) 的使用者可以登入系統。</font></p></td>
+    </tr>
+  </table>
+  <p align="left"> <font color="#000000"><strong><font size="+1"><a name="6"></a><font size="5">20.2.2 
+    PAM 認證模組的功能</font></font></strong><br>
+    　　<br>
+    　PAM 模組是存放在 /lib/security 目錄中：</font> </p>
+</div>
+<div align="left">
+<table width="100%" border="0">
+    <tr> 
+      <td nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#</font><font color="#FFFFFF" face="細明體">&nbsp;</font><font color="#FFFFFF"><font color="#FFFF00" face="細明體"><strong>ls 
+        /lib/security</strong></font></font><font color="#FFFFFF" face="細明體"><br>
+        </font><font color="#FFFFFF"> <font color="#00FF00" face="細明體">pam_access.so 
+        　　pam_lastlog.so　　 pam_permit.so　　　 pam_unix.so<br>
+        pam_chroot.so 　　pam_limits.so 　　 pam_pwcheck.so 　　 pam_unix2.so<br>
+        pam_cracklib.so 　pam_listfile.so 　 pam_resmgr.so 　　　pam_unix_acct.so<br>
+        pam_debug.so 　　 pam_localuser.so 　pam_rhosts_auth.so　pam_unix_auth.so<br>
+        pam_deny.so 　　　pam_mail.so 　　　 pam_rootok.so 　　　pam_unix_passwd.so<br>
+        pam_devperm.so 　 pam_make.so 　　　 pam_rpasswd.so 　　 pam_unix_session.so<br>
+        pam_echo.so 　　　pam_mkhomedir.so 　pam_securetty.so 　 pam_userdb.so<br>
+        pam_env.so 　　　 pam_mktemp.so 　　 pam_shells.so 　　　pam_userpass.so<br>
+        </font><font color="#00FF00"> <font color="#0099FF" face="細明體">pam_filter</font></font><font color="#00FF00" face="細明體"> 
+        　　　 pam_motd.so 　　　 pam_smbpass.so 　　 pam_warn.so<br>
+        pam_filter.so 　　pam_ncp_auth.so 　 pam_stress.so 　　　pam_wheel.so<br>
+        pam_ftp.so 　　　 pam_nologin.so 　　pam_succeed_if.so　 pam_winbind.so<br>
+        pam_group.so 　　 pam_opensc.so 　　 pam_tally.so 　　　 pam_xauth.so<br>
+        pam_homecheck.so　pam_opie.so 　　　 pam_time.so<br>
+        pam_issue.so 　　 pam_passwdqc.so 　 pam_umask.so</font></font></td>
+    </tr>
+  </table>
+  <p align="left">　由於實在是太多了些，因此這裡就挑幾個 PAM 認證模組的功能來說明囉： </p>
+</div>
+<table width="100%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td width="13%" align="center" valign="middle" nowrap> <div align="center"><font color="#000099"><strong>認證模組名稱</strong></font></div></td>
+    <td width="59%"> <div align="center"><font color="#000099"><strong>主　　　要　　　用　　　途</strong></font></div></td>
+    <td width="15%" align="center" valign="middle" nowrap> <div align="center"><font color="#000099"><strong>載 
+        入 檔 案</strong></font></div></td>
+    <td width="13%" align="center" valign="middle" nowrap><font color="#000099"><strong>搭配的模組類型</strong></font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_access.so</font></td>
+    <td><font color="#000099">可限制特定的使用者及群組，從哪個特定的來源端登入。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">access.conf</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">account</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_cracklib.so</font></td>
+    <td><font color="#000099">檢查使用者密碼是否夠安全。此模組可搭配的 options 如 difok、retry、minlen、dcredit、ocredit 
+      等。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">password</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_deny.so</font></td>
+    <td><font color="#000099">拒絕一切存取。當使用這個模組時，第四個欄位的 options 會被忽略。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">皆可</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_env.so</font></td>
+    <td><font color="#000099">用以載入額外的環境變數來使用。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_env.conf</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">auth</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_limits.so</font></td>
+    <td><font color="#000099">限制使用者所能使用的資源，如 CPU 使用時間、user 能重複登入的次數、user 能開啟的檔案數等等。 
+      </font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">limits.conf</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">session</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_listfile.so</font></td>
+    <td><font color="#000099">此模組會依您所做的設定及所指定的檔案，來決定允許或拒絕使用者存取該服務。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">auth</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_mail.so</font></td>
+    <td><font color="#000099">當使用者有新的信件進來時，會在該使用者登入時告知這個訊息。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">/var/spool/mail/*</font></td>
+    <td align="center" valign="middle" nowrap><p><font color="#000099">auth<br>
+        session</font></p></td>
+  </tr>
+  <tr> 
+    <td height="23" align="center" valign="middle" nowrap><font color="#000099">pam_nologin.so</font></td>
+    <td><font color="#000099">此模組會檢查 /etc/nologin 是否存在，如果存在的話，則會拒絕所有一般使用者登入 (包含遠端登入)，並顯示 
+      /etc/nologin 檔案中的訊息內容。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">/etc/nologin</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">auth、account</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_permit.so</font></td>
+    <td><font color="#000099">允許一切存取。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">皆可</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_pwcheck.so</font></td>
+    <td><font color="#000099">當使用者變更密碼時，此模組會執行額外的檢查工作。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_pwcheck.conf</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">password</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_rootok.so</font></td>
+    <td><font color="#000099">此模組如設定在 /etc/pam.d/su 檔案中，是表示允許 root 在執行 su 指令來切換成其他 
+      user 的身分時，可以不需輸入密碼。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">auth</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_securetty.so</font></td>
+    <td><font color="#000099">限定 root 可從哪幾個安全的終端機登入。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">/etc/securetty</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">auth</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_time.so</font></td>
+    <td><font color="#000099">依照 /etc/security/time.conf 的設定，來限制使用者可以在什麼時間登入哪幾個終端機。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">time.conf</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">account</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_unix2.so</font></td>
+    <td><font color="#000099">此模組可用來檢查使用者所提供的帳號密碼是否正確或過期等，端看我們所設定的模組類型為何，而有不同的功用。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">皆可</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">pam_wheel.so</font></td>
+    <td><font color="#000099">此模組設定在 /etc/pam.d/su 檔案中時，表示只允許 wheel 群組的成員，可以執行 
+      su 指令來變換成其他 user 的身份。</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="middle" nowrap><font color="#000099">auth</font></td>
+  </tr>
+</table>
+<blockquote> 
+  <p><strong><font color="#000099">Tips：</font></strong><font color="#0000FF"><font color="#000099" size="2">上面表格中的 
+    [載入檔案] 欄位，如未指出路徑，即是存在於 /etc/security 目錄中。另外如您想找更多的說明文件，請自行查閱 /usr/share/doc/packages/pam/modules。</font></font></p>
+</blockquote>
+<p><font color="#0000FF"><strong><font color="#000000" size="+1"><font color="#0000FF" size="+2"><a name="7"></a><font size="6">20.3 
+  PAM 的設定範例</font></font><br>
+  <br>
+  </font></strong><font color="#000000">　看了前面兩節的介紹後，可能還是有點模模糊糊的，不過沒關係，底下會舉幾個模組設定檔的範例來加以解說，這樣應該就可以對 
+  PAM 認證模組有更進一步的認識。</font></font></p>
+<p><font color="#000000"><strong><font size="+1">範例一</font>：</strong></font><font size="+1"><strong>/etc/pam.d/login</strong></font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#<strong><font color="#FFFF00" face="細明體"> 
+      </font></strong></font><font color="#FFFFFF"><font color="#FFFF00" face="細明體"><strong>cat 
+      /etc/pam.d/login</strong></font></font><font color="#FFFFFF" face="細明體"><br>
+      </font><font color="#0099FF">#%PAM-1.0</font><font color="#FFFFFF" face="細明體"><br>
+      auth　　　required　　pam_securetty.so<br>
+      auth　　　include 　　common-auth<br>
+      auth　　　required 　 pam_nologin.so<br>
+      account　 include 　　common-account<br>
+      password　include 　　common-password<br>
+      session　 include 　　common-session<br>
+      session　 required 　 pam_lastlog.so nowtmp<br>
+      session 　required 　 pam_resmgr.so<br>
+      session 　optional 　 pam_mail.so standard</font></td>
+  </tr>
+</table>
+<p><font color="#000000">　這是 login 程式所使用的模組設定檔</font>。先來說說檔案中的四個 include 敘述。</p>
+<p>　在一般 PAM 模組設定檔裡，可以使用 include 敘述來分別含括四個檔案進來，以個別提供給四個 module type 使用 ﹔比如 module 
+  type 為 auth 時所使用的 common-auth 檔案，account 所使用的 common-account 檔案，password 使用的 
+  common-password 檔案，session 使用的 common-session 檔案，而這些 include file 掌控著各 module 
+  type 的預設組態。</p>
+<p>　至於使用 include 的好處是，管理者只需藉由修改 include file 裡的預設組態，就能自動更新所有的 PAM 模組設定檔，而不必為每個應用程式來一一調整其模組設定檔內容。</p>
+<p>　為了方便解釋，我們把 /etc/pam.d/login 這個檔案裡的 include file 內容取出，並在該位置進行插入，因此檔案內容看起來就像這個樣子：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#</font><font color="#FFFFFF" face="細明體">&nbsp;</font><font color="#FFFFFF"><font color="#FFFF00" face="細明體"><strong>vi 
+      /etc/pam.d/login</strong></font></font><font color="#FFFFFF" face="細明體"><br>
+      </font><font color="#0099FF">#%PAM-1.0</font><font color="#FFFFFF" face="細明體"><br>
+      auth　　　required　　pam_securetty.so<br>
+      auth 　　 required 　 pam_env.so　　　</font><font color="#00FFFF">#<font size="2" face="細明體"> 
+      </font></font><font color="#00FFFF" face="細明體"><font size="2">這是 common-auth 
+      內容</font></font><font color="#FFFFFF" face="細明體"><br>
+      auth 　　 required 　 pam_unix2.so　　</font><font color="#00FFFF">#<font size="2" face="細明體"> 
+      </font></font><font color="#00FFFF" face="細明體"><font size="2">這是 common-auth 
+      內容</font></font><font color="#FFFFFF" face="細明體"><br>
+      auth　　　required 　 pam_nologin.so<br>
+      account 　required 　 pam_unix2.so　　</font><font color="#00FFFF">#<font size="2" face="細明體"> 
+      </font></font><font color="#00FFFF" face="細明體"><font size="2">這是 common-account 
+      內容</font></font><font color="#FFFFFF" face="細明體"><br>
+      password　required 　 pam_pwcheck.so nullok<br>
+      password　required　　pam_unix2.so nullok use_first_pass use_authtok<br>
+      </font><font color="#00FFFF">#<font size="2" face="細明體"> </font></font><font color="#00FFFF" face="細明體"><font size="2">以上兩行是 
+      common-password 內容</font></font><font color="#FFFFFF" face="細明體"><br>
+      session　 required 　 pam_limits.so　 </font><font color="#00FFFF">#<font size="2" face="細明體"> 
+      </font></font><font color="#00FFFF" face="細明體"><font size="2">這是 common-session 
+      內容</font></font><font color="#FFFFFF" face="細明體"><br>
+      session 　required 　 pam_unix2.so　　</font><font color="#00FFFF">#<font size="2" face="細明體"> 
+      </font></font><font color="#00FFFF" face="細明體"><font size="2">這是 common-session 
+      內容</font></font><font color="#FFFFFF" face="細明體"><br>
+      session　 required 　 pam_lastlog.so nowtmp<br>
+      session 　required 　 pam_resmgr.so<br>
+      session 　optional 　 pam_mail.so standard</font></td>
+  </tr>
+</table>
+<p>　首先 auth 這個模組類型皆使用 required 旗標，此乃意味著要等所有 auth 的堆疊模組都成功處理完畢後，login 才會收到 success 
+  的訊息，那萬一有某個模組的處理是失敗的，則還是會繼續呼叫其它的堆疊模組來進行，執行結束後才會通知 login 失敗的結果。</p>
+<p>　假使 auth 的堆疊模組都已成功處理後，接著就會執行 account 類型的模組了，由於 account 只包含一個模組，因此只要此模組也成功處理完，那麼 
+  login 就會收到 success 訊息，並緊接著呼叫 password 類型的模組，餘依此類推囉。</p>
+<p> <font color="#000000"> 　另外在這個檔案裡，您可能注意到四個 modules type 中，都有個叫 pam_unix2.so 
+  的模組，不過此模組運用在不同的 module type 時，所要執行的工作可是不相同的。當 pam_unix2.so 運用在 auth 中時，是用來檢查使用者的登入帳號及密碼是否正確 
+  ﹔運用在 account 中時，是檢查使用者所提供的密碼是否有效，或者需要再建立新的密碼 ﹔運用在 password 中時，是把使用者所修改的密碼進行加密後寫入認證資料庫裡 
+  ﹔運用在 session 中時，則是告知 syslogd 將使用者的登入資訊紀錄下來。</font></p>
+<p><font color="#000000">　了解了 pam_unix2.so 的大致用途後，現在做個修改，把第三筆的控制旗標由 required 改成 
+  sufficient：</font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td height="23" bgcolor="#000000"><font color="#FFFFFF" face="細明體">auth　　　required　　　pam_securetty.so<br>
+      auth 　　 required 　 　pam_env.so　　　<br>
+      </font><font color="#FFFFFF"> <font color="#FFFF00" face="細明體">auth 　　 sufficient 　 
+      pam_unix2.so　</font></font><font color="#FFFFFF" face="細明體">　<br>
+      auth　　　required 　 　pam_nologin.so</font></td>
+  </tr>
+</table>
+<p><font color="#000000"> 　此時登入的使用者，縱使輸入錯誤的密碼，還是可以順利登入，因為使用 sufficient 旗標的認證模組所傳回的 
+  failure 會被忽略掉。</font>因此控制旗標的使用可要小心啊<font color="#000000">，不然可是會一失足成千古恨的。</font></p>
+<p><font color="#000000">　那如果把剛剛那筆設定的 required 改成 requisite 又如何呢 ? 這就表示 pam_unix2.so 
+  模組若是傳回 failure，則不會再往下執行其他的堆疊模組，而是直接宣告失敗。但如果是傳回 success， 則還是會繼續往下執行其他的堆疊模組。 只有當 
+  requisite 及 required 都傳回 success，整個 auth 的處理才算成功。</font></p>
+<p>　<font color="#0000FF"><font color="#000000">再來就分別針對幾個 PAM 模組做個測試練習，藉由實做的演練，能讓您對 
+  PAM 有更進一步的認識：</font></font> </p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><font color="#0000FF"><font color="#000000"><strong><font color="#000099">測試 
+      pam_securetty.so</font></strong> <font color="#000099"><strong>模組</strong></font></font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#0000FF"><font color="#000000">這個模組主要參考的檔案為<strong> </strong>/etc/securetty，是用來決定 
+      root 可以從哪幾個安全的終端機登入。作個實驗吧 ! 首先請您打開 /etc/securetty 檔案，並把 tty6 那一行註解起來：<br>
+      <br>
+      </font></font> <table width="100%">
+        <tr> 
+          <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#</font><font color="#FFFFFF" face="細明體">&nbsp;</font><font color="#FFFFFF"><font color="#FFFF00" face="細明體"><strong>vi 
+            /etc/securetty</strong></font></font><font color="#FFFFFF" face="細明體"><br>
+            tty1<br>
+            tty2<br>
+            tty3<br>
+            tty4<br>
+            tty5<br>
+            <font color="#0099FF"># tty6 </font><font color="#00FFFF" size="2">→ 
+            將該行註解起來。</font></font></td>
+        </tr>
+      </table> <br>
+      <font color="#0000FF"><font color="#000000">存檔離開後，請切換至 tty6，並使用 root 身分登入看看，結果如何呢 
+      ? 應該是會無法登入對吧 ! 因為此終端機已經不是安全的終端機了。如果現在換成以一般 user 的身分登入，則是不會受到這裡的限制。</font></font> 
+    </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><font color="#0000FF"><font color="#000000"><strong><font color="#000099">測試 
+      pam_nologin.so</font> </strong><font color="#000099"><strong>模組</strong></font><strong></strong></font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#0000FF"><font color="#000000">此認證模組只要發覺系統上存在一個 /etc/nologin 
+      檔案，就會拒絕除 root 外的其它一般使用者登入。<br>
+      <strong><br>
+      </strong></font></font> <table width="100%" border="0">
+        <tr> 
+          <td height="27" bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ 
+            </font><font color="#FFFFFF">#<strong><font color="#FFFF00" face="細明體"> 
+            </font></strong></font><font color="#FFFFFF"><font color="#FFFF00" face="細明體"><strong>touch 
+            /etc/nologin </strong></font></font></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><font color="#0000FF"><font color="#000000"><strong><font color="#000099">測試 
+      pam_limits.so <strong>模組</strong></font></strong></font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#0000FF"><font color="#000000">此模組會參照 /etc/security/limits.conf 
+      的設定，來限制 user 的使用資源。請參考以下範例： <br>
+      <br>
+      </font></font> <table width="100%" bgcolor="#000000">
+        <tr> 
+          <td bgcolor="#000000"><p><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#</font><font color="#FFFFFF" face="細明體">&nbsp;</font><font color="#FFFFFF"><strong><font color="#FFFF00" face="細明體">vi 
+              /etc/security/limits.conf</font></strong></font><font color="#FFFFFF" face="細明體"><br>
+              </font><font color="#00FFFF"># domain</font><font color="#00FFFF" face="細明體"> 
+              type　 item 　　value</font><font color="#FFFFFF" face="細明體"><br>
+              @users　　-　maxlogins　　2 <br>
+              <br>
+              </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">簡單介紹一下這四個欄位：</font><br>
+              <font color="#00FFFF"># </font><font color="#00FFFF" size="2">domain：可以是使用者或群組名稱，當設定群組時，請記得在前面加上個 
+              &quot;@&quot; 符號。</font><br>
+              <font color="#00FFFF"># </font><font color="#00FFFF" size="2">type：可設定項目有 
+              soft、hard 及 -，其代表的是 soft limit、hard limit 限制。</font><br>
+              <font color="#00FFFF"># </font><font color="#00FFFF" size="2">item：為限定存取資源的項目，如 
+              core、data、nproc、maxlogins、&#8230; 等等。</font><br>
+              <font color="#00FFFF"># <font size="2">value：針對 item 所設定的值。</font></font> 
+            </p></td>
+        </tr>
+      </table>
+      <font color="#0000FF"><font color="#000000"><br>
+      以這個範例來說，是要限制 users 群組的成員，最多只能同時登入兩次 (含遠端登入)。比如使用者 barry 為 users 群組成員，目前已登入 
+      tty1 及 tty2，則其無法再由其他的終端機登入。 </font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#0000FF"><font color="#000000"><strong><font color="#000099">測試</font></strong></font></font> 
+      <font color="#000099"> pam_time.so <strong>模組</strong></font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>此模組所參考的檔案為 <font color="#FFFFFF"><font color="#000000">/etc/security/time.conf，可用來限定使用者登入 
+      tty 的時間。至於 time.conf 的設定格式如下：<br>
+      </font></font> <table width="30%" border="0">
+        <tr> 
+          <td height="23" nowrap bgcolor="#CCCCCC"><font face="細明體">services;ttys;users;times</font></td>
+        </tr>
+      </table>
+      <br> <font color="#FFFFFF"><font color="#000000">接著分別來說明這幾個欄位的意義：<br>
+      <br>
+      </font></font> <table width="100%" border="1">
+        <tr bgcolor="#CCCCCC"> 
+          <td align="center" valign="middle" nowrap><strong><font color="#000099">欄 
+            位</font></strong></td>
+          <td><strong><font color="#000099">意　義</font></strong></td>
+        </tr>
+        <tr> 
+          <td width="10%" align="center" valign="middle" nowrap><strong><font color="#000099">services</font></strong></td>
+          <td width="90%"><font color="#000099">設定服務名稱。</font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="middle" nowrap><strong><font color="#000099">ttys</font></strong></td>
+          <td><font color="#000099">設定所使用的終端機<font face="細明體">。</font></font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="middle" nowrap><strong><font color="#000099">users</font></strong></td>
+          <td><font color="#000099">所限定的使用者名稱列表<font face="細明體">。</font></font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="middle" nowrap><strong><font color="#000099">times</font></strong></td>
+          <td><font color="#000099">限定存取的時間。至於時間格式的寫法，週一至週日分別為 Mo、Tu、We、Th、Fr、Sa、Su，而 
+            Al 是表示週一至週日的每一天，AlWe 則是除了週三以外的每一天。另外您還需搭配確切的存取時間來使用，比如 &quot;MoWeFr0800-1200&quot;<strong> 
+            </strong>是每週一三五的早上八點至十二點，&quot;!Al0000-2400&quot; 則是表示所有時間都禁止的意思。</font></td>
+        </tr>
+      </table>
+      <font color="#FFFFFF"><font color="#000000"><strong><br>
+      <font color="#000099">　 Tips</font></strong><font color="#000099">：<font size="2">往往您還可以搭配萬用字元 
+      &quot; <strong>*</strong> &quot; 及邏輯運算符<strong> !</strong> (NOT)、<strong>|</strong> 
+      (OR)、<strong>&amp;</strong> (AND) 於其中。</font></font><br>
+      <br>
+      以上如果沒問題的話，馬上舉個例子來練習看看。首先先於 /etc/pam.d/login 檔案中插入 pam_time.so 模組：<br>
+      <br>
+      </font></font> <table width="100%" bgcolor="#FFFFFF">
+        <tr> 
+          <td height="107" bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ 
+            </font><font color="#FFFFFF">#</font><font color="#FFFFFF" face="細明體">&nbsp;</font><font color="#FFFFFF"><strong><font color="#FFFF00" face="細明體">vi 
+            /etc/pam.d/login</font></strong></font><font color="#FFFFFF" face="細明體"><br>
+            &nbsp;</font><font color="#FFFFFF"><font color="#0099FF">#%PAM-1.0</font><br>
+            　　　　　　　 <font size="2">：略</font><br>
+            <font color="#FFFFFF" face="細明體">account　 include 　　common-account</font><font face="細明體"><br>
+            </font><font color="#FFFF00" face="細明體">account　 required　　pam_time.so</font><font face="華康細圓體(P)"> 
+            </font><font color="#00FFFF" size="2">← </font></font><font color="#00FFFF" size="2">引用 
+            pam_time.so 模組。</font><font color="#FFFFFF"><br>
+            　　　　　　　 <font size="2">：略</font></font> </td>
+        </tr>
+      </table>
+      <font color="#FFFFFF"><font color="#000000"><br>
+      再至 /etc/security/time.conf 中做設定：<br>
+      <br>
+      </font></font> <table width="100%">
+        <tr> 
+          <td height="59" nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ 
+            </font><font color="#FFFFFF">#</font><font color="#FFFFFF" face="細明體"><font color="#FFFF00"> 
+            </font></font><font color="#FFFFFF"><font color="#FFFF00" face="細明體"><strong>vi 
+            /etc/security/time.conf</strong></font></font><font color="#FFFFFF" face="細明體"><br>
+            login;tty3|tty4|tty5;tina|david;MoWe0900-2200<br>
+            </font><font color="#00FFFF">#<font size="2" face="細明體"> </font></font><font color="#00FFFF" face="細明體"><font size="2">允許 
+            tina 或 david 在週一及週三的早上九點至晚上十點登入本機的第三、四、五<br>
+            </font></font><font color="#00FFFF">#</font><font color="#00FFFF" face="細明體"> 
+            <font color="#00FFFF" face="細明體"><font size="2">個</font></font><font size="2">終端機，至於其他時間則禁止登入。<br>
+            </font></font><font color="#FFFFFF" face="細明體"><br>
+            login;tty*;user*;!Al0000-2400 <br>
+            </font><font color="#00FFFF">#<font size="2" face="細明體"> </font></font><font color="#00FFFF" size="2" face="細明體">使用者的帳號名稱是以 
+            user 做開始者 (如 user01、user225 等)，<br>
+            </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2" face="細明體"> 
+            則無論什麼時候都禁止登入所有的終端機。 </font></td>
+        </tr>
+      </table>
+      <font color="#FFFFFF">&nbsp;<br>
+      <font color="#000000">最後如果您想禁止所有一般使用者登入本機，可以這麼設定： <br>
+      <br>
+      </font></font> <table width="100%" border="0">
+        <tr> 
+          <td height="35" bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ 
+            </font><font color="#FFFFFF">#</font><font color="#FFFFFF" face="細明體"><font color="#FFFF00"> 
+            </font></font><font color="#FFFFFF"><font color="#FFFF00" face="細明體"><strong>vi 
+            /etc/security/time.conf</strong></font></font><font color="#FFFFFF" face="細明體">&nbsp;</font><br>
+            <font color="#FFFFFF" face="細明體">login;tty*;!root;!Al0000-2400</font> 
+          </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<p><strong><font size="+1">範例二：/etc/pam.d/pop3</font></strong></p>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#</font><font color="#FFFFFF" face="細明體">&nbsp; 
+      </font><font color="#FFFFFF"><font color="#FFFF00" face="細明體"><strong>vi 
+      /etc/pam.d/pop3</strong></font></font><font color="#FFFFFF" face="細明體"><br>
+      </font><font color="#0099FF">#</font><font color="#0099FF" face="細明體">%PAM-1.0</font><font color="#FFFFFF" face="細明體"> 
+      <br>
+      auth　　required　pam_unix2.so<br>
+      </font><font color="#FFFFFF"><font color="#FFFF00" face="細明體">auth 　 required　pam_listfile.so</font></font><font color="#FFFF00" face="細明體">&nbsp; 
+      </font><font color="#FFFF00">onerr=succeed item=user sense=deny file=/etc/poplist</font><font color="#FFFFFF" face="細明體"><br>
+      account required　pam_unix2.so </font></td>
+  </tr>
+</table>
+<p>　<font color="#000000">這是與收信服務相關的模組設定檔。</font>而這裡引用了 pam_listfile.so 模組，它可以用來載入其後所指定的檔案 
+  /etc/poplist，以決定要允許或拒絕使用者存取 pop3 服務。</p>
+<p>　另外 &quot;onerr=succeed&quot; 的意思是說，如果 /etc/poplist 檔案不存在或無法開啟，驗證模組就把它當作是成功的 
+  ﹔反過來說，如果希望 /etc/poplist 檔案不存在時，就當成驗證失敗來處理的話，那設定成 &quot;onerr=fail&quot; 即可。<br>
+  <br>
+  　再來是 &quot;sense=deny&quot;，其表示存在於 /etc/poplist 中的使用者是無法存取 pop3 服務的，至於其他使用者則是會被允許。一樣道理，如設定成 
+  &quot;sense=allow&quot;，則只有 /etc/poplist 中的使用者可以存取 pop3 服務，其他人則會被拒絕。<br>
+  <br>
+  　假使依照目前範例的設定，想要拒絕使用者 barry 及 mary 存取 pop3 服務，那麼就把這兩個 user 寫入 /etc/poplist：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><p><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#</font> 
+        <font color="#FFFF00"><strong><font face="細明體">vi /etc/poplist</font></strong><br>
+        <font color="#FFFFFF" face="細明體">barry<br>
+        mary </font></font></p></td>
+  </tr>
+</table>
+<p>　夠簡單吧 ! 沒問題的話，再來看個類似設定的檔案 /etc/pam.d/vsftpd：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~</font><font color="#FFFFFF"> 
+      # <strong><font color="#FFFF00" face="細明體">vi /etc/pam.d/vsftpd</font></strong><br>
+      <font color="#0099FF">#%PAM-1.0</font> <br>
+      <font color="#FFFF00" face="細明體">auth　　　required　pam_listfile.so</font><font color="#FFFF00"> 
+      </font><font color="#FFFFFF"><font color="#FFFF00">onerr=succeed</font></font> 
+      <font color="#FFFF00">item=user sense=deny file=/etc/ftpusers </font><br>
+      <font face="細明體">auth　　　required　pam_unix2.so<br>
+      auth　　　required　pam_shells.so<br>
+      account 　required　pam_unix2.so<br>
+      password　required　pam_unix2.so<br>
+      session 　required　pam_unix2.so </font></font></td>
+  </tr>
+</table>
+　　<br>
+　第一行的設定應該看得懂了吧 ! 簡單的說，就是設定在 /etc/ftpusers 檔案中的使用者，無法存取 ftp 服務啦。還記得當初在學習 FTP Server 
+有提過，可以把要拒絕登入的使用者帳號設定在這個檔案內，現在應該恍然大悟了吧 ! 
+<p> <font size="+1"><strong>範例三：/etc/pam.d/sshd</strong></font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#<strong><font color="#FFFF00" face="細明體"> 
+      </font></strong></font><font color="#FFFFFF"><strong><font color="#FFFF00" face="細明體">vi 
+      /etc/pam.d/sshd</font></strong></font><font color="#FFFFFF" face="細明體"><br>
+      </font><font color="#FFFFFF"><font color="#0099FF">#%PAM-1.0</font> </font><font color="#FFFFFF" face="細明體"> 
+      <br>
+      auth 　　 include 　common-auth<br>
+      auth 　　 required　pam_nologin.so<br>
+      account 　include 　common-account<br>
+      </font><font color="#FFFFFF"> <font color="#FFFF00" face="細明體">account 　required　pam_access.so</font></font><font color="#FFFFFF" face="細明體">　<font color="#00FFFF" size="2">← 
+      引入 pam_access.so 模組。</font><br>
+      password　include 　common-password<br>
+      session 　include 　common-session</font></td>
+  </tr>
+</table>
+<p><font color="#000000">　這裡主要是針對 pam_access.so 來做說明。此模組預設會載入 /etc/security/access.conf 
+  檔案，來進一步允許或拒絕哪些帳號能從哪些特定的來源端登入。以下接著就介紹 access.conf 這個檔案：</font> </p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~</font><font color="#FFFFFF"> 
+      #<font color="#FFFF00" face="細明體"> <strong>vi /etc/security/access.conf</strong></font><br>
+      <br>
+      <font color="#00FFFF"># <font size="2">檔案設定格式如下：</font><br>
+      # <strong>permission : users : origins</strong><br>
+      # permission <font size="2">可以設定成 &quot; + &quot; (允許存取) 或 &quot; - &quot; 
+      (拒絕存取)。</font><br>
+      # users <font size="2">可以是使用者名稱、群組名稱或所有人 (ALL)。<br>
+      </font>#<font size="2"> </font>origins</font> <font color="#00FFFF" size="2">則為來源端的設定，可以是主機名稱、網域名稱 
+      (.domain.com.tw)、主機<br>
+      </font><font color="#00FFFF">#<font size="2"> 位址、網路位址 (192.168.1.)、所有來源端 
+      (ALL) 及不含 &quot; . &quot; 的主機名稱 (LOCAL)。</font></font><br>
+      <br>
+      <font face="細明體">- : user01 user02 : ALL EXCEPT .paching.com.tw 192.168.1.<br>
+      - : tina david 　 : LOCAL 192.168.2. <br>
+      - : ALL EXCEPT group01 group02 : 192.168.1.222 </font></font></td>
+  </tr>
+</table>
+<font color="#000000"><br>
+　第一行設定是說，user01 及 user02 這兩個使用者，除了從來源端為 xx.paching.com.tw 及 192.168.1.x 以外，拒絕從其他來源端存取 
+SSH 服務。<br>
+<br>
+　第二行設定是說，不允許 tina 及 david 從不含「.」的來源主機名稱或 192.168.2.x 的來源端存取 SSH 服務。<br>
+<br>
+　最後一行的設定是說，除了 group01 及 group02 的群組成員外，禁止其他人從 192.168.1.222 的來源端存取 SSH 服務。<br>
+<br>
+　如果現在您只希望能讓某個特定的使用者來存取 SSH 服務，其他人全部拒絕 (包括 root 在內)，那麼可以這麼設定：<br>
+<br>
+</font> 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~</font><font color="#FFFFFF"> 
+      #<strong><font color="#FFFF00" face="細明體"> </font></strong><font color="#FFFF00" face="細明體"><strong>vi 
+      /etc/security/access.conf</strong></font></font><br>
+      <br>
+      <font color="#FFFFFF" face="細明體">- : ALL EXCEPT barry : ALL</font> </td>
+  </tr>
+</table>
+<font color="#000000"><br>
+　再來參考下個範例：<br>
+<br>
+</font>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~</font><font color="#FFFFFF"> 
+      #<strong><font color="#FFFF00" face="細明體"> </font></strong><font color="#FFFF00" face="細明體"><strong>vi 
+      /etc/security/access.conf</strong></font></font><br> <br>
+      <font color="#FFFFFF" face="細明體">+:root:192.168.1.1<br>
+      +:barry:all<br>
+      -:all:all</font></td>
+  </tr>
+</table>
+<font color="#000000"><br>
+　這個範例的設定是說，只允許管理者從 192.168.1.1 的來源端登入，而使用者 barry 能從所有來源端登入，至於其他人則全部會被拒絕。<br>
+<br>
+　另外利用範例二的 pam_listfile.so 來限制服務的存取，也是不錯的選擇：<br>
+<br>
+</font> 
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#</font><font color="#FFFFFF" face="細明體">&nbsp; 
+      </font><font color="#FFFFFF"><strong><font color="#FFFF00" face="細明體">vi 
+      /etc/pam.d/sshd</font></strong></font><font color="#FFFFFF" face="細明體"><br>
+      </font><font color="#FFFFFF"><font color="#0099FF">#%PAM-1.0</font> </font><font color="#FFFFFF" face="細明體"> 
+      <br>
+      auth 　　 include 　common-auth<br>
+      auth 　　 required　pam_nologin.so<br>
+      </font><font color="#FFFFFF"> <font color="#FFFF00" face="細明體">auth　　　required　pam_listfile.so 
+      onerr=succeed　item=user sense=allow file=/etc/sshallow 
+      </font></font><font color="#FFFFFF" face="細明體"><br>
+      　　　　　　　：<font size="2">略</font>　　　　　　　　　　：<font size="2">略</font></font></td>
+  </tr>
+</table>
+<font color="#000000"><br>
+　這樣就只有 /etc/sshallow 檔案中的使用者，才能存取 SSH 服務。</font><br>
+<br>
+<font size="+1"><strong>範例四：/etc/pam.d/su</strong></font><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF"># 
+      <font color="#FFFF00" face="細明體"><strong>vi /etc/pam.d/su</strong></font></font><br> 
+      <font color="#0066FF">#%PAM-1.0</font><font color="#FFFFFF"><br>
+      <font face="細明體">auth　　　sufficient　pam_rootok.so<br>
+      auth 　　 include 　　common-auth<br>
+      account 　include 　　common-account<br>
+      password　include 　　common-password<br>
+      session 　include 　　common-session<br>
+      session 　optional 　 pam_xauth.so</font></font></td>
+  </tr>
+</table>
+<br>
+　先看看 auth 第一筆的設定，在這裡因為引用了 pam_rootok.so 模組，所以當 root 執行 su 指令來變換成其他 user 的身分時，不需輸入密碼即可轉換成功。<br>
+<br>
+　不過您有沒有注意到第一筆是採用 sufficient 控制旗標，這就表示說當 pam_rootok.so 傳回 success 時，就不再呼叫 auth 
+中其他的堆疊模組。現在如果把 sufficient 改成 required 又如何呢 ? 此時當然是會要求 root 輸入密碼囉，因為使用 required 
+旗標的模組，無論傳回 success 或 failure，都還是要呼叫其它的堆疊模組來繼續處理。<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099">測試 pam_wheel.so 模組</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#000000">當您要限定一般使用者執行 su 的話，就可以引入這個模組，請參考以下的範例：</font><font color="#000000" size="+1"><strong><br>
+      <br>
+      </strong></font> <table width="100%" border="0">
+        <tr> 
+          <td nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ 
+            </font><font color="#FFFFFF"># <font color="#FFFF00" face="細明體"><strong>vi 
+            /etc/pam.d/su</strong></font></font><br> <font color="#0066FF">#%PAM-1.0</font><font color="#FFFFFF"><br>
+            <font face="細明體">auth　　　sufficient　pam_rootok.so<br>
+            auth 　　 include 　　common-auth<br>
+            <font color="#FFFFFF"><font color="#FFFF00" face="細明體">auth　　　required　　pam_wheel.so 
+            　　</font><font color="#FFFF00">group=wheel</font><strong> </strong></font><br>
+            account 　include 　　common-account<br>
+            password　include 　　common-password<br>
+            session 　include 　　common-session<br>
+            session 　optional 　 pam_xauth.so</font></font></td>
+        </tr>
+      </table>
+      <strong><font color="#000000" size="+1"><br>
+      </font></strong><font color="#000000">這裡是引用了 pam_wheel.so 模組，其後是指定可使用 su 
+      指令來轉換身分的群組名稱，預設是 wheel 群組，當然您也可以指定其他的群組，這樣一來，就只有是該群組的成員才可以執行 su 囉。自己測試一下吧。</font></td>
+  </tr>
+</table>
+<br>
+　PAM 認證模組就介紹到這裡了。不過憑良心說，您要是初次接觸 PAM 的話，會覺得好像不是那麼容易入門，但偏偏它對系統安全方面的管理又非常有幫助，因此多花點時間在這上頭學習是有其必要的。<br>
+<div align="left"> 
+  <p align="center"><font color="#000000"><em><br>
+    copyright &copy; 2006 by barry ( 柏青哥 )</em></font><em><font size="+1"> </font></em> 
+  </p>
+</div>
+</body>
+</html>

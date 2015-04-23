@@ -1,0 +1,3136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>柏青哥的 SuSE Linux -- 檔案系統</title>
+<style type="text/css">
+<!--
+a {
+	color: #000099;
+	text-decoration: none;
+}
+-->
+</style>
+</head>
+
+<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#660066" leftmargin="40">
+<p>&nbsp;</p>
+<p><font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a>　　</font>作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw</p>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap> 
+      <div align="center"><strong><font size="7">第五章　檔 案 系 統 </font></strong></div></td>
+  </tr>
+</table>
+<font color="#0000FF"><strong><font color="#000099" size="+1"><br>
+索引：</font></strong></font> 
+<table width="100%" border="0">
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>5.1 <a href="#1">檔案系統介紹</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td width="3%"><font color="#000099">&nbsp;</font></td>
+    <td width="6%" align="center" valign="top" nowrap><font color="#000099">5.1.1</font></td>
+    <td width="91%"><a href="#2">認識 ext2 及日誌式檔案系統</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.1.2</font></td>
+    <td><font color="#000099"><a href="#3">資料存取原理及 inode 觀念</a> ---<br>
+      <a href="#4">ext2 (ext3) 檔案系統</a> (<a href="#14">data block</a>、<a href="#15">inode</a>、<a href="#16">inode 
+      number</a>、<a href="#17">super block</a>、<a href="#66">檔案系統結構</a>)<br>
+      <a href="#5">ReiserFS 檔案系統</a> </font></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>5.2 <a href="#6">磁碟分割、格式化及掛載</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.2.1</font></td>
+    <td><font color="#000099"><a href="#7">建立磁碟分割區</a> ---<a href="#8">fdisk</a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.2.2</font></td>
+    <td><font color="#000099"><a href="#9">建立檔案系統 (格式化)</a> --- <a href="#10">mkfs</a>、<a href="#11">mke2fs</a>、<a href="#12">mkreiserfs</a>、<a href="#13">mkswap</a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.2.3</font></td>
+    <td><font color="#000099"><a href="#18">掛載檔案系統</a> --- <a href="#19">mount</a>、<a href="#20">umount</a> 
+      (lsof、fuser)</font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.2.4</font></td>
+    <td><font color="#000099"><a href="#21">df 及 du 指令</a> ---<a href="#22">df</a>、<a href="#23">du</a></font></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><strong><font color="#000099">5.3 <a href="#24">設定開機自動掛載</a></font></strong></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.3.1</font></td>
+    <td><a href="#25">/etc/fstab 的介紹</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.3.2</font></td>
+    <td><font color="#000099"><a href="#26">/etc/fstab 與 /etc/mtab</a></font></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>5.4 <a href="#28">磁碟檢查</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.4.1</font></td>
+    <td><a href="#29">進入維護模式的方式</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.4.2</font></td>
+    <td><font color="#000099"><a href="#30">執行磁碟檢查</a> --- <a href="#31">fsck</a>、<a href="#32">e2fsck</a>、<a href="#33">reiserfsck</a>、<a href="#34">badblocks</a></font></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>5.5 <a href="#21">df 與 du 指令</a> 
+      --- </strong><a href="#22">df</a>、<a href="#23">du</a></font></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>5.6<a href="#38"> 連結檔</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.6.1</font></td>
+    <td><a href="#39">符號連結檔</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.6.2</font></td>
+    <td><a href="#40">硬式連結檔</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.6.3</font></td>
+    <td><a href="#41">分割區空間不足的解決方式</a></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>5.7<a href="#42"> 磁碟限額管理</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.7.1</font></td>
+    <td><a href="#43">確認 quota 套件的安裝</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">5.7.2</font></td>
+    <td><font color="#000099"><a href="#44">設定 quota</a> ---<br>
+      相關指令：<a href="#45">quotacheck</a>、<a href="#46">quotaon (quotaoff)</a>、<a href="#47">edquota</a>、<a href="#48">repquota</a></font></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>5.8<a href="#49"> 檔案搜尋 </a></strong>--- 
+      <a href="#50">find</a>、<a href="#51">which</a>、<a href="#52">locate (updatedb) 
+      </a></font></td>
+  </tr>
+</table>
+<br>
+<hr>
+<p align="left"><font color="#0000FF"><strong><font size="+1"><a name="1"></a><font size="6">5.1 
+  檔案系統介紹</font><br>
+  <br>
+  </font></strong><font color="#000000"> 　在第二章有提到過檔案系統的概念及目錄樹狀結構，相信各位應該還不健忘吧 ! 
+  </font></font></p>
+<p>　在 Linux 的目錄結構中，於根目錄底下的一些主要目錄，可以個別獨立成一個分割區，比如 /var、/usr、/tmp、/home、/boot、&#8230; 
+  等等，當然每個分割區您都需要給它一個檔案系統。如果您有安裝過 windows 的經驗，應該很清楚的知道在安裝之前，需要先將所指定的分割區做格式化動作，這個行為，就是在製造一個檔案系統給該分割區的意思。<br>
+  <br>
+  　每個分割區會有屬於自己的分割區類型 (partition type)，以 windows 的 partition 來說，如 FAT32、NTFS 等，以 
+  Linux 來說，如 Linux native 及 swap 等。Linux swap 是用來做虛擬記憶體的分割區，其 system id 為 82，至於 
+  system id 為 83 者，則是 Linux native 的分割區，而在 Linux native 分割區上常見到的檔案系統如 ext2、ext3、reiserfs、JFS 
+  等等。<br>
+  <br>
+  <font color="#000000" size="+1"><strong><a name="2"></a><font size="5">5.1.1 
+  認識 ext2 及日誌式 (journaling) 檔案系統</font></strong></font><br>
+  <br>
+  　如果您接觸 Linux 已有一段時間的話，應該曾經使用過 ext2 這個傳統的檔案系統，先來說說它的一些特色：<br>
+  <br>
+  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">支援最長檔名為 
+  255 個字元。<br>
+  <br>
+  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 支援單一檔案的最大容量為 16 GB 
+  ~ 2 TB。<br>
+  <br>
+  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 支援單一分割區的最大容量為 2 TB 
+  ~ 16 TB。<br>
+  <br>
+  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 檔案的存取與管理，是以「inode」來實現。<br>
+  <br>
+  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 可加快系統執行效率。<br>
+  <br>
+  　<font color="#000000">針對最後一個特色稍微做個補充 ﹔ext2 檔案系統，會把我們所更動的資料先暫存至記憶體的緩衝區內，直到緩衝區空間滿了或系統閒置時才回存磁碟。大家都知道記憶體處理資料的效能要比磁碟高上許多，所以採用這種非同步 
+  (async) I/O 的處理方式，的確對其執行效能是加分的。</font> </font></p>
+<p> 　雖然 ext2 的執行效能不錯，不過卻有一個比較大的缺點，就是萬一遇到了非預期的電力中斷或不正常關機時，可能會使得緩衝區裡頭的資料還來不及回存磁碟，因而造成資料的不完整性，所以在下次重新開機時，系統就會幫整個檔案系統做強迫性的磁碟檢查動作，看看是否有損壞或遺失的資料，假使此時您檔案系統裡的資料有好幾十 
+  GB 甚至更多，那這個動作將會耗費您不少時間。<br>
+  <br>
+  　至於日誌式的檔案系統是怎麼一回事呢 ? 所謂的「日誌」就是「紀錄」的意思，也就是會將系統欲做的更動，先行紀錄在日誌區塊裡，紀錄完成後，才開始進行資料的異動。萬一發生了斷電或不正常關機，在 
+  reboot 後，系統會先去檢查日誌區塊裡的相關紀錄，如果發現紀錄裡頭有未完成的行為，那麼就只需針對這部分來進行處理即可，此時可能會繼續執行未完成的動作或者是取消這個動作，因此檔案系統回復的速度很快，而不必像 
+  ext2 還需對整個檔案系統做磁碟檢查。所以使用日誌式的檔案系統，除了讓您在開機的時候節省不少寶貴時間以外，還可大大提高資料的完整性。<br>
+  <br>
+  　以下列舉幾個常聽到的日誌式檔案系統：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><font color="#000099"><strong>ext3</strong>：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#000099"> <font color="#000000">ext3 檔案系統是在原本 ext2 檔案系統的特色下，再加上個日誌式功能，因此可以把它當成 
+      ext2 的改良版，並且可以向下相容於 ext2。所以如果您系統原本是使用 ext2 檔案系統的話，可以很輕易的將其轉換成 ext3。 RedHat 
+      是最早使用 ext3 的 distribution。 </font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><font color="#000099"><strong>reiserfs</strong>：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#000099"> <font color="#000000">除了擁有日誌功能外，對存取大量小檔案的效能，較傳統的 
+      ext2 還要快上許多。SuSE 預設就是使用這種檔案系統。</font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><font color="#000099"><strong>XFS</strong>：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#000099"> <font color="#000000">SGI 公司所研發，對於處理大型檔案有不錯的效果。</font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><font color="#000099"><strong>JFS</strong>：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#000099"> <font color="#000000">由 IBM 公司所研發，與 XFS 的特色差不多。</font></font></td>
+  </tr>
+</table>
+<p><br>
+  <font color="#0000FF" size="+1"><strong><font color="#000000"><a name="3"></a><font size="5">5.1.2</font></font></strong></font> 
+  <font color="#000000" size="5"><strong>資料存取原理及 inode 觀念</strong></font><font color="#336600"><strong><font color="#0000FF" size="+1"><br>
+  <br>
+  </font></strong><font color="#000000">　這裡分別針對 ext2 (ext3) 及 ReiserFS 來跟各位解說。 
+  <br>
+  <br>
+  </font><font color="#336600"><font color="#000000"><a name="4"></a><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
+  ext2 (ext3)</font></strong></font><font size="+1"><strong><font color="#0000FF"> 
+  <font color="#000000">檔案系統<br>
+  <br>
+  </font></font></strong></font><font color="#0000FF"><font color="#000000">　欲了解 
+  ext2 檔案系統的整個結構，需先清楚 block 及 inode 的觀念，而等有了這些基礎知識後，才有辦法對 ext2 檔案系統做進一步的了解。</font></font></font></font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><font color="#000099"><a name="14"></a><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="95%"><font color="#000099"><strong>資料區塊 (data block) 的觀念</strong>：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#000000">在 ext2 (ext3) 檔案系統中，</font> 資料的寫入是以區塊為單位，也就是說資料存放的最小儲存單位為區塊的意思，而其區塊的有效值為 
+      1024、2048、4096 bytes。舉個例來說，假設檔案系統預設的區塊大小 (block size) 為 4096 bytes，當製造一個 
+      100 bytes 的檔案時，將會佔用掉一個區塊，或許您會問，那剩下的空間可不可以提供給其他的檔案來存放呢 ? 答案當然是不行的 ﹔又如果製造了一個 
+      5000 bytes 的檔案，由於一個區塊已不夠用，所以將會使用掉兩個區塊。<br>
+      <br>
+      這裡所稱的區塊，是指用來存放檔案或目錄內容的地方，所以也稱其為資料區塊 (data block)。或許您又會問，系統中存在著那麼多的資料區塊，究竟是如何找到每個檔案目錄的內容是存放在哪個區塊呢 
+      ? 要了解這個問題，就要先認識一下 inode 了。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><a name="15"></a><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><font color="#000099"><strong>inode (index node) 的觀念</strong>：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><p><font color="#000000">index node 顧名思義就是索引節點，那當然就是指引您找尋某些資料的意思囉 ! 一個 
+        inode block 的大小為 128 bytes，其所存放的是該檔案的相關屬性及 pointer。檔案屬性部分如檔案類型、檔案的擁有者與所屬群組 
+        ID、檔案存取權限、檔案大小、連結數及時間相關訊息等，而 pointer 主要是指出檔案內容所實際存放的區塊位置。<br>
+        <br>
+        inode 裡頭存在著 12 個直接指標 (direct pointer)，分別指向 12 個直接區塊 (direct data blocks)。而當您在建立一個很大的檔案時，可能這 
+        12 個直接區塊不夠存放，此時就會使用到間接指標 (indirect pointer) 來尋找另一個可用的區塊，以便能夠指向更多的間接資料區塊 
+        (indirect data blocks)，那如果再不夠用，就會動用到 double indirect pointer 甚至 triple 
+        indirect pointer。<br>
+        <br>
+        inode 結構圖大致以下：</font></p>
+      <p align="center"><font color="#000000"> <img src="../picture/inode.jpg" tppabs="http://www.suse.url.tw/picture/inode.jpg" width="379" height="218"> 
+        <br>
+        <font size="2">圖一：inode 結構圖</font></font></p>
+      <p><font color="#000000"> 從剛剛介紹的 inode 觀念裡，並沒有提到檔案名稱，因其不是存放在 inode 中，而是安置於上一層目錄的資料區塊裡頭。</font></p></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><a name="16"></a><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">inode number</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><p>每個檔案目錄都必須要有其唯一的 inode，若撇開連結檔不講，十個檔案就會用掉十個 inode，一百個檔案就會用掉一百個 inode，而這些 
+        inode 的集合就是所謂的 inode table。<br>
+        <br>
+        當建立起一個檔案時，系統就會分配給它一個專用的 inode，並給予此檔案一個專屬的 inode number，爾後藉由這個 inode number，即可找到 
+        inode table 裡該檔案的 inode 位置，因而能夠找到檔案內容所實際存放的區塊位置。<br>
+        <br>
+        另外您還需了解目錄的資料區塊內容，在目錄的資料區塊裡，所存放的是其下的檔案目錄名稱，及這些檔案目錄的 inode number。以下圖來說，此目錄內存在著 
+        file1 檔案及其 inode number，而藉由 file1 的 inode number，即可以找到 inode table 裡 file1 
+        的 inode。</p>
+      <p align="center"> <img src="../picture/inode1.jpg" tppabs="http://www.suse.url.tw/picture/inode1.jpg" width="323" height="147"> 
+        <br>
+        <font size="2">圖二： 目錄內容及 inode 關聯性圖示</font></p>
+      <p> 當您將分割區格式化成 ext2 的檔案系統時，區塊數 (block count) 及 inode 數 (inode count) 就已經固定下來了，所以每個分割區都有它們固定的 
+        block count 及 inode count。而在同一個 partiton 中的檔案目錄，都有其唯一的 inode number (排除連結檔)，但不同 
+        partition 之間的檔案目錄，其 inode number 就有可能會相同，因為每個 partition 的 inode table 
+        是彼此獨立開來使用的。請參考以下例子：</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td bgcolor="#000000"><font color="#FFFFFF">barry@suse:~&gt;<strong> 
+            <font color="#FFFF00" face="細明體">ls -ldi / /var</font></strong><br>
+            <font color="#FFFF00">2</font>　drwxr-xr-x　25　root　root　584　Aug 20 
+            15:26　<font color="#0066FF">/</font><br>
+            <font color="#FFFF00">2</font>　drwxr-xr-x　16　root　root　392　Aug 13 
+            20:27　<font color="#0066FF">/var</font></font></td>
+        </tr>
+      </table>
+      <br>
+      上面結果顯示根目錄及 /var 目錄的 inode number 同為 2，因為它們是分屬不同分割區的關係<font color="#000000">，所以 
+      inode number 當然有可能是相同的。</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><a name="17"></a><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">超級區塊 (Super Block)</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>分割區最前面的那個區塊稱之為 Super Block，其內記載著檔案系統裡的一些相關重要資訊，比如 inode 大小與區塊大小、inode 
+      數與區塊數、保留的區塊數 (幫 root 所保留的空間，為總區塊數的百分之五 )、已用掉的 inode 數與區塊數、剩下的 inode 數與區塊數、每個區塊群組所分配的區塊數、 
+      &#8230; 等等。<br>
+      <br>
+      當對檔案系統進行存取動作時，一定會先經過 Super Block，那萬一 Super Block 掛了，後果您可想而知，不過也不用太擔心啦，因為系統上是存在著一些備份的 
+      super block 的。<br> 
+      <br>
+      Super Block 裡所存放的訊息，可藉由執行「<font color="#0000FF">tune2fs -l device-name</font>」來取得：<br> <br> <table width="100%" border="0">
+        <tr> 
+          <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">tune2fs 
+            -l /dev/hda8</font></strong><br>
+            <font face="細明體">tune2fs 1.38 (30-Jun-2005)<br>
+            Filesystem volume name:　&lt;none&gt;<br>
+            Last mounted on: 　　　　&lt;not available&gt;<br>
+            Filesystem UUID: 　　　　2eb1771c-ba55-46f6-9fea-b346a8c0f79b<br>
+            Filesystem magic number: 0xEF53<br>
+            Filesystem revision #: 　1 (dynamic)<br>
+            Filesystem features: 　　has_journal filetype needs_recovery sparse_super<br>
+            Default mount options: 　(none)<br>
+            Filesystem state: 　　　 clean<br>
+            Errors behavior: 　　　　Continue<br>
+            Filesystem OS type: 　　 Linux<br>
+            Inode count: 　　　　　　78312<br>
+            Block count: 　　　　　　313236<br>
+            Reserved block count: 　 15661<br>
+            Free blocks: 　　　　　　295105<br>
+            Free inodes: 　　　　　　78301<br>
+            First block: 　　　　　　1<br>
+            Block size: 　　　　　　 1024<br>
+            Fragment size: 　　　　　1024<br>
+            Blocks per group: 　　　 8192<br>
+            Fragments per group: 　　8192<br>
+            Inodes per group: 　　　 2008<br>
+            Inode blocks per group:　251<br>
+            Filesystem created: 　　 Fri Jan 12 17:28:36 2007<br>
+            Last mount time: 　　　　Fri Jan 12 17:28:42 2007<br>
+            Last write time: 　　　　Fri Jan 12 17:28:42 2007<br>
+            Mount count: 　　　　　　1<br>
+            Maximum mount count: 　　21<br>
+            Last checked: 　　　　　 Fri Jan 12 17:28:36 2007<br>
+            Check interval: 　　　　 15552000 (6 months)<br>
+            Next check after: 　　　 Wed Jul 11 17:28:36 2007<br>
+            Reserved blocks uid: 　　0 (user root)<br>
+            Reserved blocks gid: 　　0 (group root)<br>
+            First inode: 　　　　　　11<br>
+            Inode size: 　　　　　　 128<br>
+            Journal inode: 　　　　　8<br>
+            Default directory hash:　tea<br>
+            Directory Hash Seed: 　　358df2dd-aa83-4b3a-ac94-edd371ce5019<br>
+            Journal backup: 　　　　 inode blocks</font></font></td>
+        </tr>
+      </table> </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><a name="66"></a><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">檔案系統的結構</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><p>以上觀念都有了之後，接著就來談 ext2 檔案系統的整個架構。當您對某個 partition 格式化成 ext2 的檔案系統時，除最前面的 
+        512 bytes 為 boot sector 外，其他區域則是由數個區塊群組 (block group) 所構成的。<br>
+        <br>
+        在 partition 裡的第一個 block group (圖三中的 Block Group 0) 中的第一個 block，為 Primary 
+        Super Block，至於存在於其他 block groups 中的 Super Block，則稱為 Backup Super Block，所以萬一主要的超級區塊損壞時，還會有備份的超級區塊來讓您對檔案系統做正常存取噢。<br>
+        <br>
+        接著來探討每個 Block Group 是由哪幾個部分來組成的，請參考下圖：</p>
+      <p align="center"> <img src="../picture/blockgroup.png" tppabs="http://www.suse.url.tw/picture/blockgroup.png" width="362" height="180"> 
+        <br>
+        <font size="2">圖三：檔案系統架構圖 </font><br>
+      </p>
+      <p> 區塊群組結構圖中的超級區塊部分，請參考上一點的說明，這裡只針對其他部分來解說：</p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="5%" align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td width="95%"><font color="#000099"><strong>Group Descriptor</strong>：記載一些資料記錄區所在的位置，比如 
+            Block Bitmap 及 Inode Bitmap 等。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>Block Bitmap</strong>：紀錄資料區塊目前的使用狀況。從這裡可以了解哪些區塊已使用，哪些未使用。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>Inode Bitmap</strong>：紀錄 inode 的使用狀況。從這裡可以了解哪些 
+            inode 已使用，哪些未使用。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>Inode table</strong>：存放檔案屬性及 pointer 
+            等資料。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>Data Blocks</strong>：這是檔案資料真正存放的地方。</font></td>
+        </tr>
+      </table>
+      <p> 要了解區塊群組裡所存放的詳細資訊，可以執行「<font color="#0000FF">dumpe2fs device-name</font>」來觀察：</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>dumpe2fs 
+            /dev/hda8</strong></font><br>
+            　　　　　<font color="#00FFFF">:</font><br>
+            <font color="#00FFFF" size="2">前面部分是 super block 的訊息，與剛剛看到的一樣，所以就省略囉 
+            !</font><br>
+            Group 0: (Blocks 1-8192)<br>
+            　Primary superblock at 1, Group descriptors at 2-3<br>
+            　Block bitmap at 4 (+3), Inode bitmap at 5 (+4)<br>
+            　Inode table at 6-256 (+5)<br>
+            　0 free blocks, 1997 free inodes, 2 directories<br>
+            　Free blocks:<br>
+            　Free inodes: 12-2008<br>
+            Group 1: (Blocks 8193-16384)<br>
+            　Backup superblock at 8193, Group descriptors at 8194-8195<br>
+            　Block bitmap at 8196 (+3), Inode bitmap at 8197 (+4)<br>
+            　Inode table at 8198-8448 (+5)<br>
+            　7633 free blocks, 2008 free inodes, 0 directories<br>
+            　Free blocks: 8752-16384<br>
+            　Free inodes: 2009-4016<br>
+            　　　　　<font color="#00FFFF" size="2"> :　略</font></font></td>
+        </tr>
+      </table>
+      <p>以 上面內容裡的 Group1 來做說明好了：</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="5%" align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td width="95%"><font color="#000000"><strong><font color="#000099">Blocks 
+            8193-16384</font></strong></font><font color="#000099">：</font><font color="#000000"><font color="#000099">Group 
+            1 的範圍是從第 8193 個區塊至第 16384 個區塊。</font></font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000000"><strong><font color="#000099">Backup superblock 
+            at 8193</font></strong></font><font color="#000099">：</font><font color="#000000"><font color="#000099">備份超級區塊在第 
+            8193 個區塊。</font></font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000000"><font color="#000099"><strong>Group descriptors 
+            at 8194-8195</strong>：</font><font color="#000000"><font color="#000099">Group 
+            descriptors 在第 8194 及 8195 這兩個區塊。</font></font></font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000000"><font color="#000099"><strong>Block bitmap 
+            at 8196</strong></font></font><font color="#000099">：第 8196 個區塊處，紀錄著區塊目前的使用狀況。</font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>Inode bitmap at 8197</strong>：第 8197 
+            個區塊處，紀錄著 inode 的使用狀況。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong><font size="+1"></font>Inode table 
+            at 8198-8448</strong>：Inode table 是存放在第 8198 ~ 8448 個區塊中。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>Free blocks: 8752-16384</strong>：還可以使用的區塊範圍，是從第 
+            8752 ~ 16384 個區塊 (共 7633個)。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>Free inodes: 2009-4016</strong>：尚可使用的 
+            inode，其 inode number 是從 2009 ~ 4016 (共 2008 個)。</font><font color="#000000">&nbsp;</font></td>
+        </tr>
+      </table>
+      <p> <font color="#000000"> 一般所謂的 metadata，就是指 Super Block、Block bitmap 及 
+        Inode bitmap 這些紀錄資料，那像 inode table 及 data block 就稱為資料儲存區域。而在談到 ext2 檔案系統時，不是有提到不正常關機後會造成資料的不完整性，這就是因為資料儲存區域與 
+        metadata 的紀錄不相符所造成的。<br>
+        <br>
+        了解了這個觀念後，來補充一下日誌式檔案系統的運作。當您在修改一個檔案時，會先將您要採取的這個動作紀錄在日誌區塊裡，然後才開始正式的寫入檔案，並記錄在 
+        metadata 中，而當以上步驟都整個完成後，會再次的寫入日誌區塊，表示已經完成了檔案的修改動作了。</font> </p></td>
+  </tr>
+</table>
+<p>　介紹完 ext2 檔案系統後，最後以存取 /etc/passwd 做範例<font color="#000000">，看看整個存取流程是如何： </font></p>
+<blockquote> 
+  <ol>
+    <li>先從 superblock 裡找到根目錄的 inode，再依 inode 中的 pointer，找到了根目錄所在的 block 位置。</li>
+    <li>從 / block 取得 etc 的 inode number，因而找到了 etc 的 inode，並依 pointer 找到了 etc 的 
+      block。 </li>
+    <li>從 etc 的 block，得到 passwd 的 inode number，因而找到了 passwd 的 inode。</li>
+    <li>最後就根據 passwd 的 inode，而找到其實際存放的 block，這就是 passwd 的內容了</li>
+  </ol>
+</blockquote>
+<blockquote>
+  <p><strong><font color="#000099">Tips</font></strong>：<font color="#000099" size="2">一般所謂的 
+    block count，約略是將分割區的大小，去除以資料區塊大小所得到的數值。比如分割區大小為 512 MB，一個資料區塊為 2048 Bytes，則用 
+    512 x 1024 x 1024 去除以 2048，而可得到 262144 個 block count。<br>
+    <br>
+    至於 inode count，是將分割區大小，去除以預計給每一個 inode 所指向檔案的儲存空間大小 ( bytes-per-inode ) 所得到的數值。假設分割區還是 
+    512 MB，而系統規劃每一個 inode 所指向的檔案，其儲存空間大小為 4096 Bytes，則 512 x 1024 x 1024 去除以 4096，而可得到 
+    131072 個 inode count。<br>
+    <br>
+    如您了解了以上的觀念後，應該知道 inode count 比 block count 還多是沒啥用處的，舉個例子來說，假使 inode count 
+    為 262144，block count 為 131072，那當我們所建立的每個檔案都小於一個資料區塊大小時，則最多只能建立 131072 個檔案，也就是說最多只會用掉 
+    131072 個 inode，結果您會發現系統還會剩下一半的 inode，但卻無法再製造任何的檔案，所以 inode count 大於 block 
+    count 是不具任何意義的。<br>
+    <br>
+    如果今天我們所製造的每個檔案都很大，有可能會造成磁碟空間都用盡了，但卻還有 inode 可用的現象發生 ﹔反過來說，如果建立了很多的小檔案，那就有可能會造成 
+    inode 用光了，但尚有磁碟空間可使用的狀況。</font></p>
+</blockquote>
+<p><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><a name="5"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font> 
+  <font size="+1">ReiserFS</font></strong> <font size="+1"><strong>檔案系統</strong></font><br>
+  <br>
+  　直接就來說明這個檔案系統的幾個特色： </p>
+<table width="100%" border="0">
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">提高磁碟空間之利用：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>ReiserFS 的檔案系統，其檔案目錄的資料是被存放在一個叫平衡樹系 (balanced binary tree) 的資料結構內，對小檔案而言，可直接儲存在樹葉節點而非其他地方，且是依照檔案實際大小來做儲存。</td>
+  </tr>
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="95%"><font color="#000099"><strong>優異的磁碟儲存效能：</strong></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>ReiserFS 的檔案系統中，小型檔案的資料及 inode 資訊可儲存在一起，因此在對檔案做存取時，只需存取一次便能取得所有的資訊。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">動態分配 inode：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>ReiserFS 其 inode 配置是採取動態分配，而不是像 ext2 檔案系統在建立起來後，就有一定的 inode count。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">可回收使用空間：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>ReiserFS 檔案系統中，目錄的空間配置採動態分配，對於此目錄已佔用的磁碟空間，於日後目錄內容縮減時還可以做回收，而 ext2 的檔案系統就做不到這一點。在 
+      ext2 中，若某個目錄已佔用 8192 bytes 的空間，現在將此目錄內容刪除至 4096 bytes 時，實際上這個目錄還是佔據著 8192 
+      bytes 的空間。</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><font color="#000099"><strong>快速回復資料：</strong></font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>當系統不正常關機後，於下次開機時，可利用日誌功能來追蹤之前的資料變更，因此可快速回復整個檔案系統的資料。</td>
+  </tr>
+</table>
+<br>
+<font color="#0000FF" size="+1"><strong><a name="6"></a><font size="6">5.2 磁碟分割、格式化及掛載</font></strong></font><br>
+<br>
+　當整個作業系統安裝完畢後，或許您還會想要有另外獨立的空間來作為其它的用途，比方說想把將來的備份資料儲存在作業系統外的分割區中，或者針對一些特定目錄來給予其專用的分割區 
+(如 /var/spool/mail) 等。至於要如何實現這樣的規劃呢 ? 不要急，因為這就是現在要介紹的主題。<br>
+<br>
+　以下開始要為大家說明，如何在硬碟上新增一個分割區，並且讓這個分割區至最後能夠被我們來存取使用。要達到這個目的就必須執行以下三個步驟：<br>
+<br>
+<font color="#000099">　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> 
+<font color="#000099">執行磁碟分割來新增分割區。<br>
+　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> <font color="#000099"> 
+將此分割區進行格式化，也就是建立檔案系統<font color="#000000">。</font><br>
+　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> <font color="#000099"> 
+執行分割區掛載，來把這個 partition 掛載至根目錄下的某個點。</font><br>
+<br>
+　接著下來的各小節，就是針對這些步驟做介紹。<br>
+<br>
+<font color="#000000" size="+1"><strong><a name="7"></a><font size="5">5.2.1 建立磁碟分割</font></strong></font><font size="5"><strong>區</strong></font><br>
+<br>
+　這裡會使用<strong> </strong>fdisk 這個指令來建立分割區，fdisk 幾乎可適用在所有的 distribution 上頭。<br>
+<br>
+<font color="#000000"><strong><font size="+1"><a name="8"></a></font><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font><font size="+1"> 
+指令 </font></strong></font> <font size="+1"><strong><font color="#FF0000"><font color="#000000">fdisk</font></font></strong><font color="#FF0000"><font color="#000000"></font></font></font><br>
+<br>
+　管理 partition table 的工具，常用來建立及刪除 partition。<br>
+<br>
+<strong>指令語法</strong>：
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#CCCCCC"><font face="細明體"><strong>fdisk device<br>
+      fdisk -l [device ...]<br>
+      fdisk -s partition ...</strong> </font></td>
+  </tr>
+</table>
+<strong><br>
+參數說明</strong>： 
+<table width="100%" border="1">
+  <tr> 
+    <td width="6%" align="center" valign="middle" nowrap><font color="#000099">-l</font></td>
+    <td width="94%" nowrap><font color="#000099">列出裝置的 partition table，如 /dev/hda、/dev/hdb、/dev/sda 
+      等。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-s</font></td>
+    <td><font color="#000099">列出所指定分割區的大小，如 /dev/hda3、/dev/hdb5、/dev/sda2 等。</font></td>
+  </tr>
+</table>
+<br>
+<strong>基本範例</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>fdisk 
+      -l /dev/hda</strong></font><br>
+      <br>
+      <font face="細明體">Disk /dev/hda: 40.0 GB, 40020664320 bytes<br>
+      255 heads, 63 sectors/track, 4865 cylinders<br>
+      Units = cylinders of 16065 * 512 = 8225280 bytes</font></font> <br>
+      <br>
+      <font color="#FFFFFF" face="細明體">　 </font> <font color="#FFFFFF" face="細明體">Device　Boot 
+      　　Start 　　　End 　　Blocks 　Id 　System<br>
+      /dev/hda1 　　　　　　　1 　　　638 　 5124703+ 　7 　HPFS/NTFS<br>
+      /dev/hda2 　　　　　　639 　　 1913 　10241437+ 　7 　HPFS/NTFS<br>
+      /dev/hda3 　* 　　　 1914　　　1926 　　104422+　83 　Linux<br>
+      /dev/hda4 　　　　　 1927　　　4865 　23607517+　 f 　W95 Ext'd (LBA)<br>
+      /dev/hda5　　　　　　1927　　　2122 　 1574338+　83 　Linux<br>
+      /dev/hda6　　　　　　2123　　　2579 　 3670821 　83 　Linux<br>
+      /dev/hda7　　　　　　2580　　　2710　　1052226 　83 　Linux<br>
+      /dev/hda8　　　　　　2711　　　2749　　 313236 　83 　Linux<br>
+      /dev/hda9　　　　　　2750　　　2788　　 313236 　82 　Linux swap / Solaris<br>
+      </font><font color="#00FFFF">#<font size="2"> </font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">顯示第一顆硬碟的分割表。若未指定 
+      device ，則會引用 /proc/partitions 中的資料。</font></font><font color="#FFFFFF" face="細明體">&nbsp; 
+      </font><font color="#FFFFFF"><br>
+      <br>
+      suse:~ # <font color="#FFFF00"> <strong>fdisk -s /dev/hda3 </strong></font><br>
+      104422<br>
+      </font><font color="#00FFFF">#<font size="2"> </font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">列出第一顆硬碟的第三個分割區大小。</font></font></td>
+  </tr>
+</table>
+<br>
+　接著來看個修改 partition table 的範例。<br>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">進入 
+      fdisk 的修改畫面：</font><font color="#FFFFFF"><br>
+      suse:~ #<font color="#FFFF00"><strong> fdisk</strong></font> <strong><font color="#FFFF00">/dev/hda 
+      </font></strong> 
+      <p><font face="細明體">The number of cylinders for this disk is set to 4865.<br>
+        There is nothing wrong with that, but this is larger than 1024,<br>
+        and could in certain setups cause problems with:<br>
+        1) software that runs at boot time (e.g., old versions of LILO)<br>
+        2) booting and partitioning software from other OSs<br>
+        　(e.g., DOS FDISK, OS/2 FDISK)</font></p>
+      <p><font face="細明體">Command (m for help) :</font></p>
+      </font></td>
+  </tr>
+</table>
+<br>
+　如不曉得接下來要執行什麼指令，可先輸入 <font color="#0000FF">m</font><strong> </strong>來尋求幫忙： <br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">Command (m for help) 
+      :<font color="#00FFFF" size="2"><strong> </strong></font><font color="#00FFFF"><strong><font color="#FFFF00">m</font></strong></font><font color="#00FFFF" size="2"><strong>　 
+      </strong>← 輸入 m 指令。</font><br>
+      Command action<br>
+      　a　toggle a bootable flag<br>
+      　b　edit bsd disklabel<br>
+      　c　toggle the dos compatibility flag<br>
+      　d　delete a partition<br>
+      　l　list known partition types<br>
+      　m　print this menu<br>
+      　n　add a new partition<br>
+      　o　create a new empty DOS partition table<br>
+      　p　print the partition table<br>
+      　q　quit without saving changes<br>
+      　s　create a new empty Sun disklabel<br>
+      　t　change a partition's system id<br>
+      　u　change display/entry units<br>
+      　v　verify the partition table<br>
+      　w　write table to disk and exit<br>
+      　x　extra functionality (experts only)</font> <br>
+      <br>
+      <font color="#FFFFFF" face="細明體">Command (m for help):</font> </td>
+  </tr>
+</table>
+<br>
+　針對以上所列出之指令，舉幾個較常用到的做說明： <br>
+<br>
+<table width="100%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td align="center" valign="middle"><font color="#000099"><strong>指 令</strong></font></td>
+    <td><font color="#000099"><strong>執　行　事　項</strong></font></td>
+  </tr>
+  <tr> 
+    <td width="7%" align="center" valign="middle"><font color="#000099">a</font></td>
+    <td width="93%"><p><font color="#000099">設定啟動旗標。</font></p></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle"><font color="#000099">d</font></td>
+    <td><font color="#000099">刪除分割區</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">l</font></td>
+    <td nowrap><font color="#000099">列出分割區類型與 system id 的對照一覽表。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle"><font color="#000099">n</font></td>
+    <td><font color="#000099">新增一個分割區。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle"><font color="#000099">p</font></td>
+    <td><font color="#000099">列出 partition table。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">q</font></td>
+    <td nowrap><font color="#000099">未儲存所做的改變而離開。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle"><font color="#000099">t</font></td>
+    <td><font color="#000099">改變分割區的 system id。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">w</font></td>
+    <td nowrap><font color="#000099">將所做的修改寫入 partition table 並離開。</font></td>
+  </tr>
+</table>
+<p>　了解大略指令用法後，接著就開始做練習囉。<br>
+  <br>
+  　首先輸入 p 指令，來列出目前的 partition table：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">Command (m for help) :<font color="#FFFF00"> 
+      <strong>p<font color="#00FFFF">　</font></strong></font><font color="#00FFFF" size="2">← 
+      輸入 p 指令。</font> <font face="細明體"><br>
+      <br>
+      Disk /dev/hda: 40.0 GB, 40020664320 bytes<br>
+      255 heads, 63 sectors/track, 4865 cylinders<br>
+      Units = cylinders of 16065 * 512 = 8225280 bytes</font></font> <p><font color="#FFFFFF" face="細明體"> 
+        　 Device　Boot 　　Start 　　　End 　　Blocks 　Id 　System<br>
+        /dev/hda1 　　　　　　　1 　　　638 　 5124703+ 　7 　HPFS/NTFS<br>
+        /dev/hda2 　　　　　　639 　　 1913 　10241437+ 　7 　HPFS/NTFS<br>
+        /dev/hda3 　* 　　　 1914　　　1926 　　104422+　83 　Linux<br>
+        /dev/hda4 　　　　　 1927　　　4865 　23607517+　 f 　W95 Ext'd (LBA)<br>
+        /dev/hda5　　　　　　1927　　　2122 　 1574338+　83 　Linux<br>
+        /dev/hda6　　　　　　2123　　　2579 　 3670821 　83 　Linux<br>
+        /dev/hda7　　　　　　2580　　　2710　　1052226 　83 　Linux<br>
+        /dev/hda8　　　　　　2711　　　2749　　 313236 　83 　Linux<br>
+        /dev/hda9　　　　　　2750　　　2788　　 313236 　82 　Linux swap / Solaris<br>
+        <br>
+        </font><font color="#FFFFFF" face="細明體">Command (m for help) :</font><font color="#FFFFFF"><br>
+        </font></p>
+      </td>
+  </tr>
+</table>
+<p> 　再來輸入 n 指令，以新增分割區：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">Command (m for help) :<strong> 
+      <font color="#FFFF00">n</font></strong></font><font color="#FFFFFF"><strong><font color="#FFFF00" size="+1"><font color="#00FFFF" size="2">　</font></font></strong><font color="#00FFFF" size="2">← 
+      輸入 n 指令。</font><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">如果目前 
+      partition table 裡只有 hda1 及 hda2 時，那在輸入 n 來建立分割區時，</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">您將會看到 
+      e(extended) 及 p(primary partition) 這兩個選項，不過在這裡</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2">因為筆者磁碟裡的primary 
+      partiton 早就用完了，所以不會看到這個詢問畫面噢。</font></font><font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF"> <br>
+      <font face="細明體">First cylinder (2789-4865, default 2789) :</font>　<font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">以上為設定新增分割區的起始磁柱，使用預設值即可，所以直接按下 
+      Enter 鍵。</font><br>
+      <br>
+      <font face="細明體">Using default value 2789<br>
+      Last cylinder or +size or +sizeM or +sizeK (2789-4865, default 4865) :</font> 
+      <font color="#FFFF00"><strong>+500 M</strong></font> <font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2">這是設定結束磁柱大小。由於磁柱換算成 MB 
+      或 GB 不好計算，因此這裡可允許您<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2">以 K、M<font color="#FFFFFF"><font color="#00FFFF">、</font></font>G 
+      等單位來做輸入，</font></font><font color="#00FFFF" size="2">讓系統幫您自動換算出近似的 Last 
+      cylinder。 </font><font color="#00FFFF"><br>
+      <br>
+      <font color="#FFFFFF">Command (m for help) :</font> </font></font></td>
+  </tr>
+</table>
+<p> 　分割區大小設定完成後，可輸入 p 指令來檢查一下：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">Command (m for help) : <strong><font color="#FFFF00">p</font> 
+      </strong></font> <p><font color="#FFFFFF"><font face="細明體">Disk /dev/hda: 
+        40.0 GB, 40020664320 bytes<br>
+        255 heads, 63 sectors/track, 4865 cylinders<br>
+        Units = cylinders of 16065 * 512 = 8225280 bytes</font></font> </p>
+      <p><font color="#FFFFFF" face="細明體"> 　 Device　Boot 　　Start 　　　End 　　Blocks 
+        　Id 　System<br>
+        /dev/hda1 　　　　　　　1 　　　638 　 5124703+ 　7 　HPFS/NTFS<br>
+        /dev/hda2 　　　　　　639 　　 1913 　10241437+ 　7 　HPFS/NTFS<br>
+        /dev/hda3 　* 　　　 1914　　　1926 　　104422+　83 　Linux<br>
+        /dev/hda4 　　　　　 1927　　　4865 　23607517+　 f 　W95 Ext'd (LBA)<br>
+        /dev/hda5　　　　　　1927　　　2122 　 1574338+　83 　Linux<br>
+        /dev/hda6　　　　　　2123　　　2579 　 3670821 　83 　Linux<br>
+        /dev/hda7　　　　　　2580　　　2710　　1052226 　83 　Linux<br>
+        /dev/hda8　　　　　　2711　　　2749　　 313236 　83 　Linux<br>
+        /dev/hda9　　　　　　2750　　　2788　　 313236 　82 　Linux swap / Solaris</font><font color="#FFFFFF"> 
+        <br>
+        <font color="#FFFF00" face="細明體">/dev/hda10 　　　　　2789 　　 2850 　　497983+　83 
+        　Linux</font></font> <font color="#00FFFF" size="2"><strong>← 多了這一行噢<font face="細明體">。<br>
+        <br>
+        </font></strong></font><font color="#FFFFFF" face="細明體">Command (m for 
+        help) :</font><font color="#FFFFFF"><br>
+        </font></p>
+      </td>
+  </tr>
+</table>
+<p> 　如一切 ok 的話，即可輸入 w 指令，來將剛剛修改過後的結果寫入 partition table，並退出 fdisk：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">Command (m for help) 
+      : <font color="#FFFF00"><strong>w<font color="#00FFFF" size="2">　</font></strong></font><font color="#00FFFF" size="2">← 
+      輸入 w 指令。</font><br>
+      The partition table has been altered! </font><font color="#FFFFFF"> <br>
+      <br>
+      <font face="細明體">The kernel still uses the old table.<br>
+      The new table will be used at the next reboot.</font>　<br>
+      <font face="細明體">Syncing disks.<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2">以上訊息是提示您 
+      reboot 後，此 partition table 才會生效。 </font> <br>
+      suse:~ # </font></td>
+  </tr>
+</table>
+<br>
+　其他像輸入<strong> </strong><font color="#0000FF">d</font><strong> </strong>指令可以刪除 
+partition ﹔輸入<font color="#0000FF"> t </font>指令可改變 partition 的 system id ，如不曉得 
+system id 是多少，可以輸入<font color="#0000FF"> l </font>指令來查詢。這些基本操作請自行練習看看。<br>
+<br>
+<br>
+<font size="+1"><strong><a name="9"></a><font size="5">5.2.2 建立檔案系統 (格式化)</font></strong></font><br>
+<br>
+　當成功建立起磁碟分割區後，必須製造一個檔案系統來給它使用，即所謂的分割區格式化。而此處會介紹 <font color="#0000FF">mkfs</font>、<font color="#0000FF">mke2fs</font>、<font color="#0000FF">mkreiserfs</font><strong> 
+</strong>等指令，來幫我們完成這個工作。另外還有個 <font color="#0000FF">mkswap</font> 指令，在稍後也會一併說明。<br>
+<font color="#000000"><br>
+<font size="+1"><strong><a name="10"></a></strong></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
+<font size="+1"><strong>指令 mkfs</strong></font></font> <br>
+<br>
+　建立 Linux 檔案系統的指令。<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><strong><font face="細明體">mkfs [-t fstype] [fs-options] device</font></strong></td>
+  </tr>
+</table>
+<br>
+　<font color="#0000FF">device</font><strong> </strong>為要進行格式化的那個裝置名稱，如 /dev/hda3、/dev/sda5、/dev/fd0 
+等 ﹔而 <font color="#0000FF">-t </font>是用來指定分割區要建立的檔案系統類型 ﹔至於 <font color="#0000FF">fs-options</font> 
+中比較常用的是 <font color="#0000FF">-c</font> ，這個參數主要是讓您在建立檔案系統前，先檢查有無壞軌。<br>
+<br>
+<strong>範例說明</strong>： 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>mkfs 
+      -t msdos /dev/fd0</strong></font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">將磁片格式化成 
+      msdos 的檔案系統。</font><br>
+      <p>suse:~ # <font color="#FFFF00"><strong>mkfs -t ext2 -c /dev/hda10</strong></font><br>
+        suse:~ # <font color="#FFFF00"><strong>mkfs.ext2 -c /dev/hda10</strong></font> 
+        <br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font></font></font></font><font color="#00FFFF" size="2">以上兩個指令都是要將 
+        /dev/hda10 格式化成 ext2 的檔案係統，並在格式化前檢查</font><br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font></font><font color="#00FFFF" size="2">有無壞軌。</font> </font><font color="#00FFFF" size="2">執行 
+        mkfs 時，若未指定檔案系統類型，則預設就是 ext2。</font></font> <br>
+        <br>
+        suse:~ # <font color="#FFFF00"><strong>mkfs -t ext3 /dev/hda10</strong></font> 
+        <br>
+        suse:~ # <font color="#FFFF00"><strong>mkfs.ext3 /dev/hda10</strong></font><br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#FFFFFF"><font color="#00FFFF" size="2">將 
+        /dev/hda10 格式化成 ext3 的檔案系統。 </font><font color="#00FFFF"></font></font> 
+        <font color="#00FFFF"><br>
+        <br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF">suse:~ 
+        #</font></font></font> <font color="#FFFF00"><strong>mkfs -t reiserfs 
+        /dev/hda10</strong></font></font><strong> </strong><font color="#FFFF00"><br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font></font></font></font><font color="#00FFFF"><font color="#FFFF00"><font color="#00FFFF" size="2">格式化成 
+        SuSE 預設的 reiserfs 檔案系統。</font></font></font></font><font color="#FFFF00"><br>
+        <font color="#FFFFFF"></font></font></font></p>
+      </font></td>
+  </tr>
+</table>
+<br>
+<strong><font size="+1"><a name="11"></a></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
+<font size="4">指令</font> <font size="+1">mke2fs</font></strong> <br>
+<br>
+　建立 ext2 或 ext3 檔案系統的指令。<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><font face="細明體"><strong>mke2fs [-b block-size] [-i bytes-per-inode] [-j]<br>
+      　　　 [-N number-of-inodes] device </strong></font></td>
+  </tr>
+</table>
+<br>
+<strong>參數說明</strong>：<br>
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" align="center" valign="middle" nowrap><font color="#000099">-b</font></td>
+    <td width="93%"><font color="#000099">指定資料區塊大小。其有效值為 1024、2048、4096 bytes。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-c</font></td>
+    <td><font color="#000099">建立檔案系統前，先檢查有無壞軌。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-i</font></td>
+    <td><p><font color="#000099">設定每一個 inode 所指向的檔案，其預計所能儲存的空間大小 ( bytes-per-inode 
+        )。</font></p></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-j</font></td>
+    <td><font color="#000099">建立 ext3 日誌式檔案系統。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-N</font></td>
+    <td><font color="#000099">指定 inode count。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-L</font></td>
+    <td><font color="#000099">格式化同時，指定檔案系統標籤 (fs label)。fs label 可以用來替代裝置名稱來使用。</font></td>
+  </tr>
+</table>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>mke2fs 
+      -j /dev/hda10</strong></font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">將 
+      /dev/hda10 格式化成 ext3 的檔案系統。不加這個參數時，就是建立 ext2 檔案系統。<br>
+      </font></font> <br>
+      suse:~ #<strong> <font color="#FFFF00">mke2fs -b 2048 -i 4096 -L test /dev/hda10</font></strong><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#00FFFF" size="2">將 
+      /dev/hda10 格式化成 ext2 的檔案系統，並指定其資料區塊大小為 2048 bytes，然後</font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#00FFFF" size="2">規劃每個 
+      inode 所指向檔案的儲存空間大小為 4096 bytes，最後則是使用 -L 來指定</font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2"> /dev/hda10 的 fs-label 為 test。</font><br>
+      </font> <font color="#FFFFFF"> <br>
+      suse:~ # <font color="#FFFF00"><strong>tune2fs -l /dev/hda10 </strong></font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2">列出 superblock 的資料，藉此檢視一下剛剛對此分割區所設定的相關數據有無符合。</font> 
+      <br>
+      <br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> <font color="#00FFFF" size="2">tune2fs 
+      只能運用在 ext2/ext3 檔案系統上。這裡再介紹兩個 tune2fs 常用參數給大家參考：</font> <br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2" face="細明體">-j：</font><font color="#00FFFF" size="2">把原本的 
+      ext2 檔案系統轉換成 ext3。</font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2" face="細明體">-L：</font><font color="#00FFFF" size="2">用來修改檔案系統標籤，其語法為 
+      &quot;tune2fs -L new-label device&quot;。</font></font></td>
+  </tr>
+</table>
+<br>
+<a name="12"></a><font size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
+指令 mkreiserfs (mkfs.reiserfs)</strong></font><br>
+<br>
+　建立 ReiserFS 檔案系統的指令。<br>
+<br>
+<strong>指令語法：</strong><br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><strong><font face="細明體">mkreiserfs [-b block-size] [-l LABEL] device</font></strong></td>
+  </tr>
+</table>
+<br>
+<strong>參數說明：</strong> 
+<table width="100%" border="1">
+  <tr> 
+    <td width="6%" align="center" valign="middle" nowrap><font color="#000099">-b</font></td>
+    <td width="94%"><font color="#000099">指定資料區塊大小。其有效值為 512、1024、2048、4096、8192 
+      bytes。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-l</font></td>
+    <td><font color="#000099">指定檔案系統標籤 (fs-label)。</font></td>
+  </tr>
+</table>
+<br>
+<strong>範例說明：</strong><br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"><font color="#FFFFFF">suse:~ #</font><font color="#FFFF00"> 
+      <strong>mkreiserfs /dev/hda10</strong></font><font color="#00FFFF">　<font size="2"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2" face="細明體"></font></font><font size="2"> 
+      格式化成 ReiserFS 的檔案系統。</font><br>
+      <br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF">suse:~ #</font><font color="#FFFF00"> 
+      <strong>mkreiserfs -b 1024 -l testlabel /dev/hda10</strong> </font></font><font color="#00FFFF"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font> 
+      <font color="#00FFFF" size="2" face="細明體"></font></font><font color="#00FFFF" size="2">格式化成 
+      ReiserFS 的同時，指定其區塊大小為 1024 bytes，檔案系統標籤為 testlabel。</font><font color="#00FFFF"> 
+      <br>
+      </font></font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"><font color="#FFFFFF">suse:~ #</font><font color="#FFFF00"><strong> 
+      reiserfstune /dev/hda10 </strong><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font><font color="#FFFF00"><font color="#00FFFF" size="2">查看 
+      block size 及 LABEL 是否有符合您所做的設定。</font></font></font></font></td>
+  </tr>
+</table>
+<br>
+<strong><font size="+1"><a name="13"></a></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font><font size="+1"> 
+指令 mkswap</font></strong><br>
+<br>
+　mkswap 指令，可針對分割區或檔案進行格式化的動作，以產生可提供系統使用的 swap 區域。而這個地方主要是針對分割區來做介紹。<br>
+<br>
+　假使您已經使用 fdisk 成功新增了一個新的分割區 /dev/hda11，那以下就針對此分割區來進行 mkswap：<br>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>mkswap 
+      /dev/hda11</strong></font><br>
+      Setting up swapspace version 1, size = 509927 kB<br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font><font color="#00FFFF" size="2">將 
+      /dev/hda11 格式化成 swap 的格式。</font><br>
+      <br>
+      suse:~ # <font color="#FFFF00"><strong>swapon /dev/hda11</strong></font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font><font color="#00FFFF" size="2">在格式化完成後，不要忘了啟用 
+      swap 交換區。啟用之後您可執行<strong> </strong>free<strong> </strong> 指令去做個確認。</font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font><font color="#00FFFF" size="2">若要關掉 
+      swap，執行 &quot;swapoff /dev/hda11&quot; 即可。</font> </font></td>
+  </tr>
+</table>
+<br>
+<br>
+<font color="#000000" size="+1"><strong><a name="18"></a><font size="5">5.2.3 
+掛載檔案系統</font></strong></font><br>
+<font color="#FF0000"><br>
+<font color="#000000">　前面已經學會了如何新增分割區及格式化，目前就只差一個掛載的步驟，等學會了掛載後，就可以開始對這個檔案系統作存取了。您必須要把 
+Linux 所支援的檔案系統，掛載至根目錄下的某個目錄或子目錄中，這樣才能夠開始對其進行存取，這個被掛載的目錄或子目錄就稱為掛載點 (mount point)。所以將檔案系統掛載至掛載點的動作就叫做掛載 
+(mount)<font color="#FF0000"> <font color="#000000">啦。</font><br>
+<br>
+<font color="#000000">　不過這裡要注意的是掛載點的選擇，首先掛載點必須是一個已經存在的目錄，而且最好是一個空目錄 (可自行建立)，但千萬不要選擇根目錄下的一些重要目錄作為掛載點，那要是真的這樣做會發生什麼事呢 
+? 舉個例子，如果剛剛上面所建立的分割區 /dev/hda10，您把它掛載至 /home，那麼您在 /home 目錄中所看到的將會是 /dev/hda10 
+的內容，而原本 /home 裡頭的資料將會暫時的消失，所以想當然爾，使用者此時自然就無家目錄可用了，除非等您執行卸載 (umount) 後，才<font color="#FF0000"><font color="#000000">能</font></font>再讓 
+/home 回復到原來的內容。<br>
+<br>
+　了解這個道理後，您可以想想看，如果我把 /dev/hda10 掛載到 /etc 會產生什麼嚴重的後果 ? <br>
+<br>
+　Li</font></font></font></font>nux 本身能支援很多的檔案系統，如 minix、ext2、ext3、reiserfs、ntfs、vfat、msdos、iso9660 
+(CD-ROM)、udf (DVD-ROM)，以及像 nfs、smbfs 這類的網路檔案系統等等，要存取這些檔案系統就必須將它們掛載進來，而執行掛載任務的就是 
+<font color="#0000FF">mount</font><strong> </strong>這個指令。<br>
+<br>
+<font color="#000000" size="+1"><strong><a name="19"></a><font size="+1"></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
+指令 mount</strong></font><br>
+<br>
+　掛載檔案系統的指令。<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><strong><font face="細明體">mount [-t fs-type] [-n] [-o options] device-name 
+      mount-point<br>
+      mount [-l]<br>
+      mount -a</font></strong></td>
+  </tr>
+</table>
+<br>
+　只單純執行 mount 指令時，會將目前已掛載的檔案系統全部列出來。&nbsp;/etc/mtab (mount table) 是用來動態紀錄檔案系統的掛載訊息。當您掛載檔案系統後，會在 
+/etc/mtab內紀錄這些掛載紀錄，而在卸載檔案系統時，此檔案系統的掛載紀錄即從 /etc/mtab 中被移除。<br>
+<strong><br>
+參數說明</strong>： 
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" align="center" valign="middle" nowrap><font color="#000099">-l</font></td>
+    <td width="93%"><font color="#000099">如您有為檔案系統設立標籤 (label)，那麼執行「mount -l」時，所輸出的 
+      mount table 裡，會顯示檔案系統標籤。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-n</font></td>
+    <td><font color="#000099">執行掛載時，若加上這個參數，將不會把此掛載紀錄寫入 /etc/mtab 之中。如果您的 /etc 
+      目錄是處在一個唯讀的檔案系統中，就需要用到這個參數。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-a</font></td>
+    <td><font color="#000099">將 /etc/fstab 裡的檔案系統全部掛載起來，不過有設定 noauto 選項的檔案系統除外。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-t</font></td>
+    <td><font color="#000099">指定要掛載的檔案系統類型。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-L</font></td>
+    <td><font color="#000099">當檔案系統有設定 fs-label 時，那麼執行掛載時，可以使用「-L Label」來代替裝置名稱。比如 
+      /dev/hda10 的 fs-label 為 test，則可以執行「mount -L test /mnt/hda10」來將此 partition 
+      掛載進來。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-o</font></td>
+    <td><font color="#000099">掛載檔案系統時，可以使用「-o」來額外指定一些選項進去，不過有少部分選項，只有設定在 /etc/fstab 
+      時才能發揮效用。<br>
+      以下大略列出一些選項來提供參考：<br>
+      </font> 
+      <table width="100%" border="0">
+        <tr>
+          <td width="4%" align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td width="96%"><font color="#000099"><strong>exec</strong>：表示存在於檔案系統上的 
+            binary file 能被執行。相反選項為 noexec。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>suid</strong>：檔案系統的 binary file，如具有 
+            SUID 或 SGID 屬性，則能發揮這個屬性的效用。相反選項為<strong> </strong>unsuid。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>user</strong>：允許一般使用者掛載該檔案系統，不過當使用者執行掛載後，只有該使用者及 
+            root 可以執行卸載。如想讓每個使用者都可以執行掛載及卸載，則需改用 users<strong> </strong>選項。相反選項為 
+            nouser。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>sync</strong>：檔案系統 (只限於 ext2、ext3 
+            及 ufs) 所採取的是同步 I/O，也就是將系統所做的更動，讓磁碟與記憶體做同步寫入。相反選項為 async。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>ro、rw</strong>：將檔案系統掛載成唯讀 (ro) 或可讀可寫 
+            (rw)。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>dev</strong>：能於檔案系統上，解析出字元裝置或區塊裝置。相反選項為 
+            nodev。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>remount</strong>：對於已經掛載的檔案系統，執行重新掛載的動作。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>auto</strong>：在 /etc/fstab 裡的檔案系統有設定 
+            auto 選項時，則於開機過程會被自動掛載 ﹔另外在命令列上執行「mount -a」時，也能自動掛載這些檔案系統。相反選項為 noauto。</font></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+          <td><font color="#000099"><strong>defaults</strong>：defaults 就等於以下選項的組合：rw、suid、dev、exec、auto、nouser、async。</font></td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<strong><br>
+範例說明</strong>： 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"> <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font><font color="#00FFFF" size="2">先建立 
+      /dev/hda10 的掛載點 /mnt/hda10：</font><br>
+      suse:~ #<strong> <font color="#FFFF00">mkdir /mnt/hda10</font></strong><br>
+      <br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font><font color="#00FFFF" size="2">執行掛載(</font><font color="#FFFFFF"><font color="#00FFFF" size="2">假設剛剛已把 
+      /dev/hda10 格式化成 reiserfs 的檔案系統</font></font><font color="#00FFFF" size="2">)：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>mount -t reiserfs /dev/hda10 /mnt/hda10</strong></font><font color="#00FFFF" size="2"><br>
+      </font><font color="#00FFFF"><br>
+      <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font><font size="2">完成掛載後，可用 
+      &quot;df&quot; 或 &quot;mount&quot; 指令，檢查看看是否有掛載：</font></font><br>
+      suse:~ #<font color="#FFFF00"><strong> df</strong></font><br>
+      <font face="細明體">Filesystem</font></font> <font color="#FFFFFF" face="細明體">　　　1K-blocks　　　Used 
+      </font> <font color="#FFFFFF" face="細明體">　Available　Use%　Mounted on<br>
+      /dev/hda5</font> <font color="#FFFFFF" face="細明體">　　　　 1261012　　591192　　　669820　 
+      47%　/<br>
+      /dev/hda3</font> <font color="#FFFFFF" face="細明體">　　　　　104376　　 36764</font> 
+      <font color="#FFFFFF" face="細明體">　　　</font> <font color="#FFFFFF" face="細明體">67612　 
+      36%　/boot<br>
+      /dev/hda8</font> <font color="#FFFFFF" face="細明體">　　　　　514028　　 32876　　　481152　　7%　/home<br>
+      /dev/hda6</font> <font color="#FFFFFF" face="細明體">　　　　 2522028　 1775520　　　746508　 
+      71%　/usr<br>
+      /dev/hda7</font> <font color="#FFFFFF" face="細明體">　　　　　514028　　 93596　　　420432　 
+      19%　/var<br>
+      </font><font color="#FFFFFF"><font color="#FFFF00" face="細明體">/dev/hda10</font></font> 
+      <font color="#FFFF00" face="細明體">　　　　 497900　　 32840　　　465060　　7%　/mnt/hda10</font><font color="#FFFFFF" face="細明體">&nbsp; 
+      </font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font><font size="2">df 
+      指令在 5.5 節會說明。</font></font><br>
+      <br>
+      suse:~ # <font color="#FFFF00"><strong>umount /mnt/hda10</strong></font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font><font color="#00FFFF" size="2">執行卸載。umount 
+      指令等一下會說明。</font><br>
+      <br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font><font color="#00FFFF" size="2">將 
+      device 掛載成唯讀的檔案系統：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>mount -o ro /dev/hda10 /mnt/hda10</strong></font><br>
+      <font color="#00FFFF" size="2"><br>
+      </font><font color="#00FFFF"> <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font><font color="#00FFFF" size="2">做個測試看看：</font><font color="#00FFFF"><br>
+      <font color="#FFFFFF">suse:~ #</font> <font color="#FFFF00"><strong>cd /mnt/hda10</strong></font><br>
+      <font color="#FFFFFF">suse:/mnt/hda10 #</font><font color="#FFFF00"> <strong>touch 
+      testfile</strong></font><strong><br>
+      </strong><font color="#FFFFFF">touch: cannot touch `testfile': Read-only 
+      file system </font><font size="2"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font><font size="2"> 
+      因剛剛 /dev/hda10 已被掛載成 read-only，所以無法新增檔案。</font></font><font color="#FFFFFF"><br>
+      </font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font><font color="#00FFFF" size="2">重新掛載成可讀寫的檔案系統：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>mount -o rw,remount /mnt/hda10 </strong></font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font><font color="#00FFFF" size="2">這裡是針對 
+      mount-point 來進行 remount，當然您要針對 device 也是可行的。</font><br>
+      <br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font><font color="#00FFFF" size="2">再來練習掛載 
+      cdrom，先製造個掛載點： </font><br>
+      suse:~ # <font color="#FFFF00"><strong>mkdir /mnt/cdrom</strong></font><font size="2"><br>
+      </font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font><font color="#00FFFF" size="2">執行掛載 
+      (光碟片可不要忘了先放進去噢)：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>mount -t iso9660 /dev/cdrom /mnt/cdrom</strong></font></font></td>
+  </tr>
+</table>
+<p><strong> </strong>　除了以上介紹的範例外，mount 還有<font color="#FFFFFF"><font color="#000000">另外一個比較特殊的用法，就是把某個目錄掛載至另一個目錄，其語法如下：</font></font><br>
+  <br>
+  　<font color="#FFFFFF"><font color="#000099" face="細明體"><strong>　　mount --bind 
+  olddir newdir</strong></font><font color="#000099" size="2" face="細明體"> </font> 
+  </font><br>
+  <br>
+  　這樣一來，您就可以對這兩個目錄存取相同的內容。</p>
+<blockquote> 
+  <p><strong><font color="#000099">Tips</font></strong>：<font color="#000099" size="2">執行 
+    mount 指令時，沒使用 -t 參數來指定檔案系統類型也是可以的，因為系統會根據 /etc/filesystems 去尋找您合用的檔案系統。</font></p>
+</blockquote>
+<font size="+1"><strong><a name="20"></a><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font> 
+指令 umount</strong></font><br>
+<br>
+　卸載檔案系統的指令。<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><strong><font face="細明體">umount [device|mount-point]</font></strong></td>
+  </tr>
+</table>
+<br>
+　umount 可以針對<font color="#0000FF">裝置名稱</font>或<font color="#0000FF">掛載點</font>來進行卸載，不過卸載前，記得要先將目錄切離目前的掛載點，否則無法執行卸載。<br>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:/mnt/hda10 # <font color="#FFFF00"><strong>umount 
+      /mnt/hda10</strong></font><br>
+      umount: /mnt/hda10: device is busy<br>
+      umount: /mnt/hda10: device is busy<br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font><font color="#00FFFF" size="2">看到沒，因為您目前的工作目錄就在掛載點上，所以無法進行卸載。</font><font color="#00FFFF"><br>
+      <br>
+      </font> suse:/mnt/hda10 # <font color="#FFFF00"><strong>cd</strong></font><br>
+      suse:~ # <font color="#FFFF00"><strong>umount /mnt/hda10</strong></font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font><font color="#00FFFF" size="2">切離掛載點後，就可以成功卸載了。</font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">不過有時候您會發現雖然目前的工作目錄不是在掛載點上，但還是無法進行卸載：<br>
+      </font><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>umount 
+      /home</strong></font></font><br>
+      <font color="#FFFFFF">umount: /home: 
+      device is busy</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF">umount: /home: device is busy</font></font><br>
+      <font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font><font color="#00FFFF" size="2">此時可使用<font color="#FF0000"><strong> 
+      </strong><font color="#00FFFF">lsof</font> </font>或 fuser 指令檢查一下：</font></font><br>
+      suse:~ #<strong> <font color="#FFFF00">lsof /home</font></strong><br>
+      <font face="細明體">COMMAND　 PID　USER　FD　TYPE　DEVICE　 SIZE　NODE NAME<br>
+      bash 　　3990 barry cwd 　DIR 　　8,2　　808　　54 /home/barry<br>
+      vi 　　　4354 barry cwd 　DIR 　　8,2　　808　　54 /home/barry<br>
+      vi 　　　4354 barry 　4u　REG 　　8,2　12288　　29 /home/barry/.file.swp</font><br>
+      <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">lsof 
+      即 list open files 之意，可列出程式所開啟的 file，此 file 可以是一般檔案、<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#00FFFF"><font color="#00FFFF"><font color="#00FFFF"><font color="#00FFFF"># 
+      </font></font> </font></font></font></font><font color="#00FFFF" size="2">目錄、裝置等。而從以上的結果可以看出， 
+      bash 及 vi 兩支程式目前正在存取 /home ，</font><font color="#00FFFF">&nbsp;</font><font color="#00FFFF" face="細明體"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#00FFFF"><font color="#00FFFF"><font color="#00FFFF"><font color="#00FFFF"># 
+      </font></font> </font></font></font></font><font color="#00FFFF" size="2">因此才無法對 
+      /home 進行卸載。</font><br>
+      <br>
+      <font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>fuser -vm /home 
+      </strong><br>
+      <br>
+      <font color="#FFFFFF" face="細明體">　　　　 　USER 　　PID 　ACCESS 　COMMAND<br>
+      /home: 　　barry 　3990 　..c.. 　 bash<br>
+      　　　　 　barry 　4498 　F.c.. 　 vi </font><br>
+      </font></font> <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">如此也可輕易看出存取 
+      /home 的相關程式為何。<br>
+      </font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">若想終止所有程式對 
+      /home 的存取，可再加上個 -k 參數即可：</font><font color="#00FFFF"><br>
+      </font><font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">fuser 
+      -vmk /home</font></strong></font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> </font></font></font></font></font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font></font><font color="#00FFFF" size="2">存取 
+      /home 的程式被終止後，應該就能順利卸載了。</font> <br>
+      <font color="#FFFFFF"><font color="#FFFF00"> </font><font color="#FFFFFF"><font color="#FFFFFF">suse:~ 
+      # <font color="#FFFF00"><strong>umount /home</strong></font></font></font></font></td>
+  </tr>
+</table>
+<strong><br>
+</strong><font color="#0000FF"><font size="+1"><strong><br>
+<a name="24"></a><font size="6">5.3 設定開機自動掛載</font></strong></font></font><font color="#000000"><br>
+<br>
+　各位或許會覺得納悶，為何登入系統後，也沒執行 mount 指令，但卻可以正常的存取每個 partition ? 這就是因為 <font color="#0000FF">/etc/fstab</font> 
+這個檔案的關係啦。/etc/fstab 紀錄著檔案系統的相關資訊，其為系統於開機過程中必須去讀取的一個重要檔案。<br>
+<br>
+　/etc/fstab 的內容共分六個欄位，如下所示：</font><font color="#000000"><br>
+<br>
+</font> 
+<table width="53%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td height="18" nowrap><font color="#0000CC">　device　　mount-point　　fs-type　　options　dump　　fsck</font><font color="#000000"><strong><br>
+      </strong><font size="2">　　裝置　　　　 掛載點　　 檔案系統類型　　 選項　　 備份　　磁碟檢查</font></font></td>
+  </tr>
+</table>
+<font color="#000000"><br>
+</font><font color="#000000"> 　看了這個內容後，有沒有感覺跟我們在命令列上執行 mount 指令時很像，沒錯，其實系統在開機過程中，就是根據這裡的設定，來將 
+device 掛載至 mount-point 上頭，所以在開機完成後，便可很輕鬆的存取每個 partition。<br>
+<br>
+　了解了 /etc/fstab 的重要性後，接下來的第一小節即是要介紹這個檔案。<br>
+<br>
+<font size="+1"><strong><a name="25"></a><font size="5">5.3.1 /etc/fstab</font></strong></font><strong><font size="5"> 
+的介紹 </font></strong><br>
+<br>
+</font>　先瀏覽一下其大致內容：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      cat /etc/fstab</strong></font><br>
+      <font face="細明體">/dev/hda5　　/　　　　　　　　reiserfs　　acl,user_xattr　　1 1<br>
+      /dev/hda3　　/boot　　　　　　reiserfs　　acl,user_xattr　　1 2<br>
+      /dev/hda8　　/home　　　　　　reiserfs　　acl,user_xattr　　</font><font color="#FFFFFF" face="細明體">1 
+      2</font><font face="細明體"><br>
+      /dev/hda6　　/usr　　 　　　　reiserfs　　acl,user_xattr　　1 2<br>
+      /dev/hda7　　/var　　 　　　　reiserfs　　acl,user_xattr　　1 2<br>
+      /dev/hda9　　swap　　 　　　　swap　　　　defaults　　　　　0 0<br>
+      proc 　　　　/proc 　 　　　　proc 　　　 defaults 　　　　 0 0<br>
+      sysfs 　　　 /sys 　　　　　　sysfs 　　　noauto 　　　　　 0 0<br>
+      usbfs 　　　 /proc/bus/usb　　usbfs 　　　noauto 　　　　　 0 0<br>
+      devpts 　　　/dev/pts 　　　　devpts 　　 mode=0620,gid=5　 0 0<br>
+      /dev/fd0　　 /media/floppy　　auto 　　　 noauto,user,sync　0 0</font></font> </td>
+  </tr>
+</table>
+<p> 　以下分別從第一至第六欄位依序做介紹：</p>
+<blockquote> 
+  <ol>
+    <li><strong>裝置名稱</strong>：<br>
+      分割區的裝置名稱，一般是使用 /dev/hdax (如 hda1、hda2、&#8230;) 或 /dev/sdax 來做設定，當然也可以使用 
+      fs label 的方式來代替 device-name。 <br>
+      <br>
+    </li>
+    <li><strong>掛載點</strong>：<br>
+      這個應該不成問題。<br>
+      <br>
+    </li>
+    <li><strong>檔案系統類型</strong>：<br>
+      指出此裝置的檔案系統為何。比較有意思的是 Floppy 在這個地方設定成 auto，這就類似於在命令列上執行 mount 時，未使用 -t 參數來指定檔案系統類型的意思差不多，也就是會根據 
+      /etc/filesystems 來找尋合用的檔案系統，而該檔內容中，如於最後一行出現「*」，則表示會去讀取 /proc/filesystems，以套用合適的類型 
+      (有 nodev 標籤的除外)。<br>
+      <br>
+    </li>
+    <li><strong>掛載參數</strong> (options)：<br>
+      就是在 mount 指令中所介紹的那些選項，請自行參考 mount 那邊的說明。當這個欄位指定為 noauto 者，表示在開機過程不會自動掛載這些檔案系統。另外 
+      acl (Access Control Lists) 及 user_xattr (Extended User Attributes) 這兩個選項，是用來讓該檔案系統支援存取控制表及檔案延伸屬性的。<br>
+      <br>
+    </li>
+    <li><strong>備份</strong> (dump)：<br>
+      dump 是用來對 ext2 檔案系統進行備份的指令，而 dump 會根據 /etc/fstab 檔案中這個欄位的設定，來決定備份與否。當設定成 
+      0，表示不做備份，那如果設定成 1，就表示要備份。<br>
+      <br>
+    </li>
+    <li><strong>磁碟檢查</strong> (fsck)：<br>
+      設定系統開機時，fsck 程式執行檔案系統檢查的順序。其值可設定成 0、1 或 2﹔設定成 1，表示該檔案系統是在開機過程中，最優先做磁碟檢查的，由於根檔案系統須先於其它檔案系統作磁碟檢查，故應設為 
+      1。而 root partition 以外的其他 Linux native partition 則設為 2，代表著根檔案系統檢查完畢後，接著也會對這些檔案系統進行檢查。至於非 
+      Linux native 者就設成 0，表示 fsck 程式不會對這些檔案系統進行檢查。<br>
+      這裡還有一個地方要注意，以 ext2 來說，如果上一次您是正常關機的話，則在這次開機時並不會做 fsck，除非是不正常關機，或已到檔案系統最大掛載次數，或距上次執行 
+      fsck 的時間間隔已到時，才會在下次開機時強迫做磁碟檢查。 </li>
+  </ol>
+</blockquote>
+<p>　將檔案系統資訊設定在 /etc/fstab 還有另一個好處，就是當使用 mount 指令執行掛載時，可直接針對 device 或 mount-point 
+  來進行掛載即可。舉例來說，假使在 /etc/fstab 有如下設定：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td height="24" bgcolor="#000000"><font color="#FFFFFF" face="細明體">/dev/cdrom 
+      　/mnt/cdrom 　iso9660 　noauto,user 　0 0</font></td>
+  </tr>
+</table>
+<p> 　此時掛載 cdrom 時，只需執行「<font color="#0000FF">mount /mnt/cdrom</font>」或<font color="#000000">「</font><font color="#0000FF">mount 
+  /dev/cdrom</font>」就行了。<br>
+  <br>
+  　另外在 SLES10 中，如果您已經登入 X-WINDOW 裡了，那當您將光碟片放入後，將可直接於視窗介面或文字介面下對其做存取，不需再額外執行掛載的動作。<br>
+  <br>
+  <br>
+  <font size="+1"><strong><a name="26"></a><font size="5">5.3.2 /etc/fstab 與 /etc/mtab</font><br>
+  </strong></font><font color="#000000"><br>
+  　一般人容易把 /etc/fstab 及 /etc/mtab 這兩個檔案搞混，其實您只要針對檔名的解釋，就應該能很清楚做區分。fstab 是 file 
+  system table，mtab 是 mount table，前者顯示的是檔案系統的靜態資訊，並可設定下次開機時要自動掛載哪些檔案系統 ﹔後者是用來紀錄目前有掛載的檔案系統之動態資訊，會隨者您執行掛載或卸載的動作而呈現不同的內容。</font><br>
+  <br>
+  　如果現在想查詢目前正掛載著哪些檔案系統，那麼可使用以下的方式來觀察： </p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"> <font color="#00FFFF"># <font size="2">以瀏覽檔案方式來觀察：</font></font><br>
+      barry@suse:~&gt; <font color="#FFFF00"><strong>cat /proc/mounts </strong></font><strong><br>
+      </strong>barry@suse:~&gt;<strong> <font color="#FFFF00">cat /etc/mtab</font></strong><br>
+      <br>
+      <font color="#00FFFF"># <font size="2">以指令方式來觀察：</font></font><br>
+      barry@suse:~&gt; <font color="#FFFF00"><strong>mount [-l]</strong></font><br>
+      barry@suse:~&gt; <font color="#FFFF00"><strong>df</strong></font></font></td>
+  </tr>
+</table>
+<p><font color="#000000"> <font size="+2"> </font></font><font color="#0000FF" size="+2"><strong> 
+  <a name="28"></a><font size="6">5.4 磁碟檢查</font></strong></font><br>
+  <font color="#006600"><br>
+  </font> 　剛開始接觸 Linux 的朋友，一定都有個經驗，就是只要遇到操作過程不順，或者無法正常開機時，就會把作業系統重灌一次，這是因為您對系統的相關知識認識的還不夠，不曉得遇到問題時該如何處理，所以才會一直重複安裝作業系統，而一旦您對系統慢慢熟悉之後，自然就懂得如何找出問題點以及如何除錯了。<br>
+  <br>
+  　有很多時候造成無法開機的原因，都是因為系統檔案設定有誤，不過如果您確認系統一些與開機相關的重要檔案都沒設定錯誤，但還是無法順利開啟作業系統時，那可能就要執行磁碟檢查了。<br>
+  <br>
+  　這裡主要是介紹像 fsck、reiserfsck 這幾個磁碟檢查的工具，它們是用來檢查及修復 Linux 的檔案系統。在一般系統正常的情況下，不需使用這些工具，只有在檔案系統出問題時，才考慮去使用它。<br>
+  <br>
+  　一般在執行磁碟檢查時，最好是能在維護模式 (單人模式、救援模式) 下進行，所以先學會如何進入維護模式是必要的。另外如果與開機相關的檔案設定有誤，而造成無法順利啟動系統時，也是需要進入維護模式才能修改檔案。<br>
+  <br>
+  <font size="+1"><strong><a name="29"></a><font size="5">5.4.1 進入維護模式的方式</font></strong></font><br>
+  <br>
+  　以下介紹幾種進入 SuSE 維護模式的方法：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099">單人模式</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>於 grub 選單畫面中，先選取您要開啟的 Linux 作業系統，接著到畫面最底下的 <font color="#0000FF">[Boot 
+      Options]</font><strong> </strong>處輸入數字 1 ，然後按下 Enter 鍵即可，而在您成功輸入 root 密碼後，即能順利進入。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">救援模式</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>先把安裝光碟放入，然後從光碟開機，接著在選單畫面選取「<font color="#0000FF">Rescue System</font>」再按下 
+      Enter 鍵，最後應該會看到「login:」的登入提示，此時請輸入 root 帳號進入即可。再來請執行以下的步驟：<br> <br>
+      <font color="#000099" size="4">　˙ </font><font color="#000099">掛載根目錄：執行「mount 
+      /dev/hda5 /mnt</font><font color="#0000FF">」。</font><br>
+      <font color="#000099" size="4">　˙ </font><font color="#000099">將 /dev 掛載至 
+      /mnt/dev：執行「mount --bind /dev /mnt/dev</font><font color="#0000FF">」。</font><br>
+      <font color="#000099" size="4">　˙</font><font color="#000099"> 改變根目錄位置：執行「chroot 
+      /mnt</font><font color="#0000FF">」</font>。<br>
+      <font color="#000099" size="4">　˙ </font><font color="#000099">把 /etc/fstab 
+      中的其它 partition 掛載進來：執行「mount -a</font><font color="#0000FF">」</font>。<br> <br>
+      當系統維護完畢要重新開機前，請先執行 exit 指令來退出 chroot，然後再執行「init 6」來 reboot 就行了。 </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">Failsafe 模式</font></strong><font color="#000099">：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>在 grub 選單畫面上選擇 Failsafe，然後以 root 來登入就行了。Failsafe 模式是以指定的核心參數來開啟 Linux，當您系統出問題時，可嘗試利用這種方式來進入。</td>
+  </tr>
+</table>
+<br>
+<font color="#000000" size="+1"><strong><a name="30"></a><font size="5">5.4.2 
+執行磁碟檢查</font></strong></font><br>
+<br>
+　執行磁碟檢查之前，請先把即將進行磁碟檢查的分割區 umount，或者 remount 為 read-only ( 例如根目錄 )，然後才開始對該分割區執行檔案系統的檢查工作。再來介紹幾個檢查檔案系統的工具。<br>
+<br>
+<font color="#000000" size="+1"><strong><a name="31"></a><font size="+1"><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></font> 
+指令 fsck</strong></font><br>
+<br>
+　檢查及修復 Linux 檔案系統。<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><strong><font face="細明體">fsck [options] device-name</font></strong></td>
+  </tr>
+</table>
+<br>
+<strong>參數說明</strong>：<br>
+<table width="100%" border="1">
+  <tr> 
+    <td align="center" valign="middle"><font color="#000099">-t</font></td>
+    <td><font color="#000099">指定被檢查裝置的檔案系統類型。</font></td>
+  </tr>
+  <tr> 
+    <td width="7%" align="center" valign="middle"><font color="#000099">-A</font></td>
+    <td width="93%"><font color="#000099">對 /etc/fstab 所列的檔案系統進行檢查。這個參數會在開機過程中、於掛載檔案系統前，被核心來使用，只要是不正常卸載檔案系統時，就會對該檔案系統進行磁碟檢查。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle"><font color="#000099">-r</font></td>
+    <td><font color="#000099"> 使用互動式交談模式來修復檔案系統。一般在執行磁碟檢查時，若發現有要修復的檔案，系統會詢問您是否要修復，等您回答後，才繼續進行下一個動作。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle"><font color="#000099">-a</font></td>
+    <td><font color="#000099"> 不會提出詢問，而自動幫您修復檔案系統。</font></td>
+  </tr>
+</table>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>fsck 
+      -t ext2 /dev/hda10</strong></font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">上式也可寫成 &quot;e2fsck 
+      /dev/hda10&quot;</font><font color="#00FFFF"><br>
+      <br>
+      </font><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>fsck 
+      -a /dev/hda10</strong></font><br>
+      <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">自動修復檔案系統，不做任何的詢問。</font><font color="#00FFFF"> 
+      </font></font></font></font></td>
+  </tr>
+</table>
+<br>
+<font color="#000000" size="+1"><strong><a name="32"></a><font color="#000000" size="+1"><strong><font size="+1"><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></font></strong></font> 
+指令 e2fsck</strong></font><br>
+<br>
+　檢查及修復 ext2 或 ext3 的檔案系統。<strong><br>
+<br>
+常用參數</strong>：<br>
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" align="center" valign="middle"><font color="#000099">-c</font></td>
+    <td width="93%"><font color="#000099"> 檢查有無壞軌。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle"><font color="#000099">-p</font></td>
+    <td><font color="#000099">不詢問使用者而自動修復檔案系統。與 -a 參數差不多意思 。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle"><font color="#000099">-y</font></td>
+    <td><font color="#000099">執行磁碟檢查的過程中，對所有的詢問，系統會自動幫您回答 &quot;yes&quot;。</font></td>
+  </tr>
+</table>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"> suse:~ #<strong><font color="#FFFF00"> 
+      e2fsck -c /dev/hda10</font><br>
+      </strong><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">執行磁碟檢查前，先檢查有無壞軌。 
+      </font> <font color="#FFFFFF"><strong><br>
+      </strong></font> 
+      <p><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">e2fsck -y 
+        /dev/hda10</font></strong><br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">對所有是否修復檔案的詢問，自動幫您回答 
+        yes。</font><font color="#FFFFFF"><br>
+        </font></p></td>
+  </tr>
+</table>
+<br>
+<font color="#FF0000"> <font color="#000000"><strong><font size="+1"><a name="33"></a><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font> 
+指令 reiserfsck</font></strong><br>
+<br>
+　檢查 reiserfs 檔案系統的指令。另外亦可使用 fsck.reiserfs 來進行檢查工作。<br>
+<br>
+<strong>範例說明</strong>：<br>
+</font></font>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      fsck.reiserfs /dev/hda10</strong></font><br>
+      <br>
+      Will read-only check consistency of the filesystem on /dev/hda10<br>
+      Will put log info to 'stdout'</font> <p><font color="#FFFFFF">Do you want 
+        to run this program?[N/Yes] (note need to type Yes if you do): <font color="#FFFF00"><strong>Yes<br>
+        </strong><font color="#FFFFFF">##########　　　　　　　　　　　　　　　　　　　　　　　　　<strong><font color="#00FFFF">↑</font></strong><br>
+        <font face="細明體">reiserfsck</font> --check started at Wed May 3 22:33:54 
+        2006　　　　<strong><font color="#00FFFF" size="2">確定要做磁碟檢查</font></strong><br>
+        ##########<br>
+        Replaying journal..<br>
+        Reiserfs journal '/dev/hda10' in blocks [18..8211]: 0 transactions replayed<br>
+        Checking internal tree..finished<br>
+        Comparing bitmaps..finished<br>
+        Checking Semantic tree:<br>
+        finished<br>
+        No corruptions found<br>
+        There are on the filesystem:<br>
+        Leaves 17<br>
+        Internal nodes 1<br>
+        Directories 30<br>
+        Other files 65<br>
+        Data block pointers 16 (0 of them are zero)<br>
+        Safe links 0<br>
+        ##########<br>
+        <font face="細明體">reiserfsck</font> finished at Wed May 3 22:33:57 2006<br>
+        ##########<br>
+        </font></font></font><font color="#FFFFFF"><br>
+        suse:~ #<strong> <font color="#FFFF00">reiserfsck -y /dev/hda10</font></strong><br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2">加上 
+        -y 參數後，就不會看到 [ Do you want to run this program? ]</font> <font color="#00FFFF" size="2">這個詢問了。</font><br>
+        </font></p></td>
+  </tr>
+</table>
+<font color="#FF0000"><font color="#000000"><br>
+</font></font> <font color="#FF0000"><font color="#000000"><strong><font size="+1"><a name="34"></a><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font> 
+指令 badblocks</font></strong><font size="+1"><strong><br>
+<br>
+</strong></font>　這個指令可檢查您磁碟有無壞軌。<strong></strong><font size="+1"><strong><br>
+<br>
+</strong></font><font color="#FF0000"><font color="#000000"><strong>範例說明</strong>：</font></font><br>
+</font></font>
+<table width="100%" border="0" bordercolor="#CCCCCC">
+  <tr> 
+    <td height="39" bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>badblocks 
+      -v /dev/hda10</strong></font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font> 
+      <font color="#00FFFF" size="2">加上 -v 參數，可以顯示檢查進度。</font></font></td>
+  </tr>
+</table>
+<font color="#FF0000"><font color="#000000"><font size="+1"><strong><br>
+</strong></font></font></font><font color="#0000FF"><strong><font color="#000000" size="+1"><a name="21"></a><font color="#0000FF" size="6">5.5 
+df 及 du 指令</font></font><font size="+1"><br>
+<font color="#000000"><br>
+</font></font></strong><font color="#000000">　</font><font color="#000000">在 5.2.3 
+小節介紹掛載時，有提到可以利用 df 指令來檢視檔案系統的掛載資訊，而實際上這個指令的主要作用，是用來查看目前檔案系統所使用磁碟空間狀況。至於另一個 du 
+指令，則是顯示檔案目錄所使用</font><font color="#0000FF"><font color="#000000">的</font></font><font color="#000000">磁碟空間情形。<font size="+1"><strong><br>
+<br>
+<a name="22"></a></strong></font><font color="#FF0000"><font color="#000000"><strong><font size="+1"><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></font></strong></font></font> 
+<font size="+1"><strong>指令 df</strong></font><br>
+<br>
+　</font><font color="#0000FF"><font color="#000000">報告檔案系統所使用</font><font color="#0000FF"><font color="#0000FF"><font color="#000000">的</font></font></font><font color="#000000">磁碟空間狀況。<font size="+1"><strong></strong></font></font></font><font color="#000000"><br>
+<br>
+</font><font color="#0000FF"><font color="#000000"><strong>指令語法</strong>：</font></font><br>
+</font> 
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><font color="#0000FF"><font color="#000000"><font color="#0000FF"><font color="#000000"><strong><font face="細明體">df 
+      [OPTION]... [FILE]...</font></strong></font></font><font size="+1"><strong></strong></font></font></font></td>
+  </tr>
+</table>
+<font color="#0000FF"><font color="#000000"><br>
+</font><font color="#0000FF"><font color="#000000"><strong>參數說明</strong>：<br>
+</font></font> </font>
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" align="center" valign="middle" nowrap><font color="#000099">-k</font></td>
+    <td width="93%" nowrap><font color="#000099">以 KB 為單位，來顯示檔案系統<font color="#0000FF"><font color="#000099">所使用的磁碟空間狀況</font></font>。此為預設值。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-h</font></td>
+    <td><font color="#000099">會以適當的讀取格式來調整顯示的單位。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-T</font></td>
+    <td><font color="#000099">列出檔案系統類型。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-t</font></td>
+    <td><font color="#000099">指定要查看的檔案系統類型。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-i</font></td>
+    <td><font color="#000099">列出檔案系統的 inode 訊息。</font></td>
+  </tr>
+</table>
+<font color="#0000FF"><font color="#000000"><br>
+<strong>範例說明</strong>： </font></font>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"> suse:~ #<font color="#FFFF00"><strong> 
+      df</strong></font><br>
+      <font face="細明體">Filesystem</font></font> <font color="#FFFFFF" face="細明體">　　　1K-blocks　　　Used 
+      </font> <font color="#FFFFFF" face="細明體">　Available　Use%　Mounted on<br>
+      /dev/hda5</font> <font color="#FFFFFF" face="細明體">　　　　 1261012　　591192　　　669820　 
+      47%　/<br>
+      /dev/hda3</font> <font color="#FFFFFF" face="細明體">　　　　　104376　　 36764</font> 
+      <font color="#FFFFFF" face="細明體">　　　</font> <font color="#FFFFFF" face="細明體">67612　 
+      36%　/boot<br>
+      /dev/hda8</font> <font color="#FFFFFF" face="細明體">　　　　　514028　　 32876　　　481152　　7%　/home<br>
+      /dev/hda6</font> <font color="#FFFFFF" face="細明體">　　　　 2522028　 1775520　　　746508　 
+      71%　/usr<br>
+      /dev/hda7</font> <font color="#FFFFFF" face="細明體">　　　　　514028　　 93596　　　420432　 
+      19%　/var</font><font color="#FFFFFF"> <br>
+      </font> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2"></font><font color="#00FFFF" size="2"></font> 
+      <font color="#00FFFF" size="2">列出目前已掛載的檔案系統所使用磁碟空間的情形。內容中各欄位所代表意義，由左至右</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font> 
+      <font color="#FFFFFF"><font color="#00FFFF" size="2">為</font></font><font color="#00FFFF" size="2">裝置名稱、<font color="#FFFFFF"><font color="#00FFFF">該檔案系統所佔用磁碟空間大小</font><font color="#FFFFFF"><font color="#00FFFF" size="2">、</font></font></font>已使用空間、剩餘可用空間、空間使用率及</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font> 
+      <font color="#FFFFFF"><font color="#00FFFF" size="2">掛載點等。</font></font><font color="#00FFFF" size="2">預設顯示的單位為 
+      KB，如希望以 MB 做單位，則執行 df -m。 </font><br>
+      <br>
+      </font> <font color="#FFFFFF"> suse:~ # <font color="#FFFF00"><strong>df 
+      -h </strong></font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font> </font><font color="#00FFFF" size="2">使用此參數，可讓所顯示磁碟空間大小的單位，視字元長度而自動調整。</font><br>
+      </font> <font color="#FFFFFF"> <font color="#00FFFF"><br>
+      </font> suse:~ #<strong> <font color="#FFFF00">df -T</font></strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font> 
+      <font color="#FFFFFF"><font color="#00FFFF" size="2">讓所列出的內容中，多一個檔案系統類型的欄位。</font></font> 
+      <br>
+      </font> <font color="#FFFFFF"> <br>
+      suse:~ #<strong></strong><strong> <font color="#FFFF00">df -i</font></strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font> 
+      <font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">檢視每個檔案系統 
+      inode count 的資訊。此參數 ReiserFS 不適用，<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font> <font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font></font><font color="#00FFFF" size="2">因其 
+      inode 是屬於動態分配的。</font></font></font><font color="#00FFFF" size="2"> </font></font> 
+      <br>
+      </font> <font color="#FFFFFF"> <br>
+      suse:~ # <strong><font color="#FFFF00">df -t reiserfs</font></strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font> 
+      <font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">只列出檔案系統類型為 
+      reiserfs 者。</font></font><font color="#00FFFF" size="2"> </font> <br>
+      </font> <br>
+      <font color="#FFFFFF">suse:~ #</font> <strong><font color="#FFFF00">df /home/barry<br>
+      </font></strong><font color="#FFFFFF"><font face="細明體">Filesystem</font></font> 
+      <font color="#FFFFFF" face="細明體">　　　1K-blocks　　　Used </font> <font color="#FFFFFF" face="細明體">　Available　Use%　Mounted 
+      on</font><font color="#FFFF00"><br>
+      </font><font color="#FFFFFF" face="細明體">/dev/hda8</font> <font color="#FFFFFF" face="細明體">　　　　　514028　　 
+      32876　　　481152　　7%　/home</font><font color="#FFFF00"> <strong><br>
+      </strong></font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      <font size="2">df 之後，如有指定檔案或目錄時，則會顯示該檔案目錄所在分割區的使用空間情形。</font> </font></font></font> 
+      </font></td>
+  </tr>
+</table>
+<font color="#0000FF"><font color="#000000"><strong><br>
+</strong></font> <strong><font color="#000000" size="+1"><a name="23"></a></font></strong></font><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font size="+1"><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></font></strong></font></font></font></font> 
+<font color="#000000" size="+1"><strong>指令 du</strong></font><br>
+<br>
+　計算檔案目錄所使用的磁碟空間大小。<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td> <strong><font face="細明體">du [OPTION]... [FILE]...</font></strong></td>
+  </tr>
+</table>
+<br>
+<strong>參數說明</strong>：<br>
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" align="center" valign="middle" nowrap><font color="#000099">-k</font></td>
+    <td width="93%"><font color="#000099">以 KB 為單位，來列出檔案目錄所使用的磁碟空間情形。此為預設值。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-h</font></td>
+    <td><font color="#000099">會以適當的讀取格式來調整顯示的單位。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-a</font></td>
+    <td><font color="#000099">輸出的內容中，會包含檔案在內。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-s</font></td>
+    <td><font color="#000099">列出檔案目錄所佔用的總空間數據。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-b</font></td>
+    <td><font color="#000099">指定顯示單位為 bytes ﹔如要以 MB 為單位，則需使用 -m 參數。</font></td>
+  </tr>
+</table>
+<br>
+<strong>範例說明</strong>： 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>du</strong></font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font> </font></font></font></font><font color="#00FFFF" size="2">du 
+      後面未指定檔案目錄時，就是列出目前所在的工作目錄共使用了多少磁碟空間，這其中</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font> </font></font></font></font><font color="#00FFFF" size="2">包括此目錄樹系裡的所有檔案目錄都計算在內。</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font> <font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font></font><font color="#00FFFF" size="2"></font></font></font></font> 
+      <font color="#00FFFF" size="2">另外 du 預設的顯示單位為 KB，所以跟 &quot;du -k&quot;<strong> 
+      </strong> 是相同的。</font><br>
+      </font> <font color="#FFFFFF"> <br>
+      </font> <font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>du 
+      -b /etc/passwd</strong></font><br>
+      2074　 /etc/passwd<br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font> </font></font></font></font><font color="#00FFFF" size="2">顯示 
+      passwd 的檔案大小為 2074 bytes，這跟使用長格式時所看到的檔案大小是一樣的。</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font> <font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font></font><font color="#00FFFF" size="2"></font></font></font></font> 
+      <font color="#00FFFF" size="2">另外如果是以預設的 KB 單位來做計算的話，則看到的結果會是 4 K，</font><font color="#FFFFFF"><font color="#00FFFF" size="2">因為 
+      SuSE 預設的<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font> </font></font></font></font> </font><font color="#00FFFF" size="2">資料區塊大小是 
+      4096 bytes。</font> </font><br>
+      </font> <font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">du 
+      /etc/passwd</font><br>
+      </strong>4　 /etc/passwd<br>
+      </font> <p><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong>du 
+        /etc<br>
+        </strong></font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font></font> </font><font color="#FFFFFF"><font color="#00FFFF" size="2">計算 
+        /etc 目錄共使用了多少磁碟空間。</font> </font></font></font></font></font><font color="#FFFF00"><strong> 
+        </strong></font></font></p>
+      <p><font color="#FFFFFF"> suse:~ #<strong> <font color="#FFFF00">du -a /var<br>
+        </font></strong><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font><strong><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"> 
+        </font></font></font> </strong></font></font></font></font></font><font color="#00FFFF" size="2">加上 
+        -a 參數後，會在螢幕上把所有檔案及目錄其使用的磁碟空間大小，都詳細的列出來。</font><strong><br>
+        </strong><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font><font color="#FFFFFF"><font color="#00FFFF" size="2">如不加此參數，則在螢幕上輸出的內容裡，就只有目錄的資訊。</font></font></font></font> 
+        </font></font></font></font></font></p>
+      <p><font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">du -s /home</font></strong><br>
+        249 　/home<br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font></font> </font><font color="#FFFFFF"><font color="#00FFFF" size="2">只列出 
+        /home 目錄所佔用的總空間數據。</font> </font></font></font></font> </font></p>
+    </td>
+  </tr>
+</table>
+<br>
+ <font color="#006600"><strong><br>
+<font color="#0000FF" size="+1"><a name="38"></a><font size="6">5.6 連結檔</font></font> 
+</strong></font><font size="+2"><br>
+</font><br>
+　在 Linux 中的連結檔有區分成兩種，分別是硬式連結檔 (hard link file) 與符號連結檔 (symbolic link file)，而符號連結檔又稱為軟式連結檔 
+(soft link file)。至於建立連結檔所使用的指令為 <font color="#0000FF">ln</font>，其基本語法如下：<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#CCCCCC"><strong><font face="細明體">ln [OPTION]... TARGET [LINK_NAME]<br>
+      ln [OPTION]... TARGET... DIRECTORY</font></strong></td>
+  </tr>
+</table>
+<br>
+　TARGET 是指所建立的連結檔是連結到哪裡，LINK_NAME 則是指那個即將建立的連結檔名稱 ﹔當 TARGET 有好幾個時，則最後一個引數必須是一個已經存在的目錄，這樣才能在這個目錄下建立與那些 
+TARGET 同名的連結檔出來。<br>
+<br>
+<strong>參數說明</strong>： <br>
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" height="22" align="center" valign="middle" nowrap><font color="#000099">-s</font></td>
+    <td width="93%"><font color="#000099">建立符號連結檔時，所必須使用的參數。當不加此參數而建立起來的連結檔，就是硬式連結檔。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-f</font></td>
+    <td><p><font color="#000099">如要建立的連結檔名稱已經存在時，則會先將此檔移除，然後再讓您建立起這個連結檔。</font></p></td>
+  </tr>
+</table>
+<p> 　接著以下兩小節，就個別針對這兩種連結檔來做說明。<br>
+  <strong><br>
+  <font size="+1"><a name="39"></a><font size="5">5.6.1 符號連結檔</font></font></strong><br>
+  <br>
+  　剛剛前面提到的這兩種類型的連結檔，在運用上其實各有其優缺點，不過由於符號連結檔的優點多於它的缺點，所以還是有比較多的人喜歡使用符號連結檔。至於符號連結檔的相關特性說明如下：</p>
+<blockquote> 
+  <p><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#0000FF">可針對不同分割區內的檔案及目錄做符號連結。</font></p>
+  <p><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+    target file 與 link file 的 inode number 不同。</font></p>
+  <p><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+    target file 與 link file 的檔案屬性不同。</font></p>
+  <p><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+    target file 或 link file 修改內容後，另一個檔案的內容也會跟著改。</font></p>
+  <p><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+    target file 刪除後，link file 就看不到任何內容了。</font></p>
+</blockquote>
+　如對上面的說明有疑慮，請繼續參考以下的範例說明。<br>
+<strong><br>
+範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">這裡是假設 
+      /home 及 /tmp 分屬不同分割區。</font><br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">首先使用 
+      root 身分在 /tmp 目錄下建立 testfile 檔案：</font><font color="#FFFFFF"><br>
+      suse:~ #<font color="#FFFF00"> <strong>cp /etc/passwd /tmp/testfile</strong></font><br>
+      <br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">然後使用 
+      barry 身分建立符號連結檔 softfile：</font><font color="#FFFFFF"><br>
+      barry@suse:~&gt;<strong> <font color="#FFFF00">ln -s /tmp/testfile softfile</font><br>
+      </strong></font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">這就是針對不同分割區內的檔案，執行符號連結的範例。</font><font color="#FFFFFF"><br>
+      <br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">針對目錄做符號連結範例：</font><font color="#FFFFFF"><br>
+      barry@suse:~&gt;<strong> <font color="#FFFF00">ln -s /var softdir</font></strong><br>
+      <br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">使用長格式來比較檔案屬性及 
+      inode number 是否不同：</font><br>
+      barry@suse:~&gt;<strong><font color="#FFFF00"> ls -li /tmp/testfile softfile</font></strong><br>
+      <font face="細明體">37062 -rw-r--r-- 1 root　root　1362 Feb 7 14:30 /tmp/testfile<br>
+      　 28 lrwxrwxrwx 1 barry users 　13 Feb 7 14:32 </font><font color="#00FFFF" face="細明體">softfile</font><font face="細明體"> 
+      -&gt; /tmp/testfile</font><font size="2"><br>
+      </font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">接著請您使用 
+      root 身分去修改 /tmp/testfile 的內容，完成後再觀察 </font><font color="#00FFFF"><br>
+      # </font><font color="#FFFFFF"><font color="#00FFFF" size="2">softfile 的內容是否也有跟著改變，自己練習看看囉 
+      ! </font></font><font color="#00FFFF"><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font size="2">另外要留意的是，barry 
+      對這個符號連結檔的真正存取權限是與 TARGET file 相同的。</font><font color="#00FF00"><br>
+      <br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">最後把 
+      TARGET file 刪除，然後用 barry 登入，並對 softfile 做存取：</font></font></font><br>
+      suse:~ # <font color="#FFFF00"><strong>rm -f /tmp/testfile</strong></font><br>
+      barry@suse:~&gt; <font color="#FFFF00"><strong>cat softfile</strong></font><br>
+      <font face="細明體">cat: softfile: No such file or directory</font><br>
+      <font color="#00FFFF"><font color="#00FF00"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font><font color="#00FFFF" size="2">其實符號連結檔說穿了，也只不過是個 
+      pointer 罷了，其所指向的是一個 path-name ，<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#00FF00"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2">所以當 TARGET 
+      file 刪除後，自然就找不到連結檔了。</font><br>
+      <font color="#00FF00" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#00FF00"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2">請繼續參考以下的範例：</font></font><font color="#00FF00" size="2"><br>
+      </font><font color="#FFFFFF">barry@suse:~&gt; <font color="#FFFF00"><strong>ln 
+      -s /etc/passwd</strong></font><br>
+      barry@suse:~&gt;<strong> <font color="#FFFF00">ls</font></strong><br>
+      <font color="#0099FF" face="細明體">Documents bin <font color="#00FFFF">passwd</font> 
+      public_html</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#00FF00"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font size="2">當忽略 LINK_NAME 時，就會在當前目錄下，建立一個與 TARGET 
+      file 同名稱的連結檔。</font></font></font></font><br>
+      <br>
+      barry@suse:~&gt; <font color="#FFFF00"><strong>ln -s /etc/fstab passwd</strong></font><br>
+      <font face="細明體">ln: creating symbolic link `passwd' to `/etc/fstab': File 
+      exists</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#00FF00"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#00FFFF" size="2">由於 
+      passwd 這個檔名已經存在，所以無法成功建立連結檔。</font></font><br>
+      <br>
+      barry@suse:~&gt;<strong> <font color="#FFFF00">ln -sf /etc/fstab passwd</font></strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#00FF00"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#00FFFF" size="2">加上 
+      -f 參數後，即可先將 passwd 檔案移除，之後當然就能順利建立起連結檔了。</font></font><br>
+      <br>
+      barry@suse:~&gt;<strong> <font color="#FFFF00">mkdir dir</font></strong><br>
+      barry@suse:~&gt; <font color="#FFFF00"><strong>ln -s /etc/passwd /etc/fstab 
+      dir</strong></font><br>
+      barry@suse:~&gt;<font color="#FFFF00"><strong> ls -l dir</strong></font><br>
+      <font face="細明體">lrwxrwxrwx 1 barry users 10 Feb 7 15:06 </font><font color="#00FFFF" face="細明體">fstab</font><font face="細明體"> 
+      -&gt; /etc/fstab<br>
+      lrwxrwxrwx 1 barry users 11 Feb 7 15:06 </font><font color="#00FFFF" face="細明體">passwd</font><font face="細明體"> 
+      -&gt; /etc/passwd</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#00FF00"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#00FFFF" size="2">此範例說明了當有多個 
+      TARGET file 時，最後一個引數必須是一個已經存在的目錄。</font></font><font color="#00FFFF" size="2"> 
+      </font></font></font></td>
+  </tr>
+</table>
+<p> <strong><font size="+1"><a name="40"></a><font size="5">5.6.2 硬式連結檔</font></font></strong><br>
+  <strong><br>
+  　</strong>由於硬式連結檔的形成，會受到一些條件的限制，因此不似符號連結檔般那麼受歡迎，不過話雖如此，還是有它的優點在啦。接著來看看硬式連結檔有哪些特性：</p>
+<blockquote> 
+  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+    </font></strong><font color="#0000FF">無法對不同分割區內的檔案做硬式連結。</font></p>
+  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+    </font></strong><font color="#0000FF">不能針對目錄做硬式連結。</font></p>
+  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+    </font></strong><font color="#0000FF">target file 與 link file 的 inode number 
+    相同。 </font></p>
+  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+    </font></strong><font color="#0000FF">target file 與 link file 的檔案屬性相同。</font></p>
+  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+    </font></strong><font color="#0000FF">target file 或 link file 修改內容後，另一個檔案的內容也會跟著改。 
+    </font></p>
+  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+    </font></strong><font color="#0000FF">任何一個檔案刪除後，另一個檔案仍保有原內容。</font></p>
+</blockquote>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><p><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">這裡還是假設 
+        /home 及 /tmp 分屬不同分割區。<br>
+        </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">首先使用 
+        root 身分在 /tmp 目錄下建立 testfile 檔案： </font><br>
+        suse:~ #<font color="#FFFF00"> <strong>cp /etc/passwd /tmp/testfile</strong></font><br>
+        <br>
+        </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">然後使用 
+        barry 身分建立硬式連結檔 hardfile：</font><font color="#FFFFFF"> <br>
+        barry@suse:~&gt;<font color="#FFFF00"><strong> ln /tmp/testfile hardfile</strong></font><br>
+        <font face="細明體">ln: creating hard link `hardfile' to `/tmp/testfile': 
+        Invalid cross-device link</font><br>
+        </font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">這是針對不同分割區內的檔案，建立硬式連結失敗後所顯示的訊息。</font><font size="2"><br>
+        </font><br>
+        </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">針對目錄做硬式連結：</font><font color="#FFFFFF"> 
+        <br>
+        barry@suse:~&gt; <font color="#FFFF00"><strong>ln /var hardfile</strong></font><br>
+        <font face="細明體">ln: `/var': hard link not allowed for directory</font><br>
+        </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">這是告知您無法對目錄做硬式連結啦。</font><font color="#FFFFFF"><font color="#00FF00"><br>
+        <br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">接著使用 root 
+        身分來複製 /etc/fstab 至 /home/barry 內：</font><br>
+        <font color="#FFFFFF">suse:~ #</font> <strong><font color="#FFFF00">cp 
+        /etc/fstab ~barry</font></strong><font color="#FFFF00"><br>
+        <font color="#00FF00"><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">再來使用 barry 
+        身分建立硬式連結檔：</font><br>
+        <font color="#FFFFFF">barry@suse:~&gt;</font> <font color="#FFFF00"><strong>ln 
+        fstab hardfile</strong></font><br>
+        <br>
+        <font color="#FFFFFF"><font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># 
+        </font><font color="#00FFFF" size="2">比較 target file 跟 hard link file 
+        的相關屬性： </font></font></font></font><br>
+        </font><font color="#FFFFFF">barry@suse:~&gt;<strong> <font color="#FFFF00">ls 
+        -li fstab hardfile</font></strong><br>
+        <font face="細明體">248 -rw-r--r-- 2 root root 865 Feb 7 15:40 fstab<br>
+        248 -rw-r--r-- 2 root root 865 Feb 7 15:40 hardfile</font></font><font color="#00FF00"><br>
+        </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">注意到沒，兩個檔案的 
+        inode number、權限、擁有者、擁有群組、… 全都相同<font color="#00FF00">。</font> </font><font color="#00FF00" size="2"><br>
+        </font></font></font></font></p>
+      </td>
+  </tr>
+</table>
+<br>
+　最後可試著將 target file 或 link file 刪除，結果您會發現另外一個檔案的內容還是可以正常做存取。針對這個特色稍微做個補充 ﹔由於 target 
+file 與 hard link file 的 inode number 是相同的，意即它們是指向同一個 inode，因此所存取的資料區塊是相同的 ﹔現在如果其中一個檔案被刪除了，那另一個檔案還可以保有這個 
+inode 及 data block 的資料，除非您將這兩個檔案都刪除後，此 inode 及 data block 的空間才能被釋放出來。<br>
+<br>
+　其實平常在建立連結時，使用符號連結的機會較大，因為硬式連結畢竟有一些限制存在。而做連結的好處，除了可以節省磁碟空間外，也可以藉著修改 TARGET file，而讓所有連結至這個檔案的使用者，取得檔案內容的一致性。<br>
+<br>
+<font size="+1"><strong><a name="41"></a><font size="5">5.6.3 分割區空間不足的解決方式</font></strong></font><br>
+<br>
+　符號連結檔其實還有個很好用的地方，就是可以暫時解決某個磁碟分割區空間不足的問題。舉個例子來說好了，假設 /home 及 /var 為各自獨立的 partition，而現在發現 
+/home 已經剩沒多少空間可用，但是 /var 的分割區還留有很多可用的空間，此時您就可以利用符號連結的方式來解決這個問題。詳細做法如下：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"><font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2">先將 /home 目錄複製到 /var 
+      中：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>cp -a /home /var/home</strong></font><br>
+      <br>
+      <font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">確定資料已完整複製過去後，再卸載 
+      /home partition：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>umount /home</strong></font><br>
+      <br>
+      <font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">移除 
+      /home 目錄：</font><br>
+      suse:~ #<strong> <font color="#FFFF00">rm -rf /home</font></strong><br>
+      <br>
+      <font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">建立符號連結檔：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>ln -s /var/home /home</strong></font><br>
+      <font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">如果剛剛 
+      /home 目錄未事先移除的話，那這時候便會在 /home 目錄下<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># 
+      </font></font></font></font><font color="#00FFFF" size="2">建立起一個 home 的符號連結檔噢。</font></font><font color="#00FFFF" size="2"> 
+      <br>
+      </font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#00FFFF" size="2">以上就是大致的步驟。<br>
+      <br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#00FFFF" size="2">若要回復原來的狀態，可以這麼做：</font><font color="#00FFFF"><br>
+      </font> <font color="#FFFF00"><font color="#FFFFFF">suse:~ #</font><strong> 
+      rm -rf /home </strong></font><br>
+      <font color="#FFFF00"><font color="#FFFFFF">suse:~ #</font> <strong>mkdir 
+      /home</strong></font><br>
+      <font color="#FFFF00"><font color="#FFFFFF">suse:~ #</font> <strong>mount 
+      /home</strong></font></font></td>
+  </tr>
+</table>
+<br>
+　上面的做法，是針對其它分割區還剩有很多空間時可以使用的，那萬一這顆硬碟已無多餘空間可利用時該怎麼辦呢 ? 此時就要考慮加掛一顆硬碟囉。實際做法也很簡單，首先先使用 
+fdisk 來新增分割區，比如是 /dev/hdb1，並且製造一檔案系統給他，然後接著按照以下的步驟進行：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td height="100" bgcolor="#000000"><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># 
+      </font><font color="#FFFFFF"><font color="#00FFFF" size="2">先建立掛載點：</font></font></font></font></font></font></font></font><br>
+      suse:~ #</font> <strong>mkdir /mnt/hdb1</strong></font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#00FFFF" size="2"></font> 
+      <font color="#00FFFF" size="2">將新增的 partition 掛載上去：</font><br>
+      <font color="#FFFF00"><font color="#FFFFFF">suse:~ #</font> <strong>mount 
+      /dev/hdb1 /mnt/hdb1</strong></font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#00FFFF" size="2"></font> 
+      <font color="#00FFFF" size="2">把 /home 的內容複製到新增的分割區當中：</font><br>
+      <font color="#FFFF00"><font color="#FFFFFF">suse:~ #</font> <strong>cp -a 
+      /home/* /mnt/hdb1</strong></font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font><font color="#00FFFF" size="2"></font> 
+      <font color="#00FFFF" size="2">確定成功複製過去後，再執行卸載：</font><br>
+      <font color="#FFFF00"><font color="#FFFFFF">suse:~ #</font> <strong>umount 
+      /mnt/hdb1</strong></font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font> <font color="#00FFFF" size="2">接著把原本掛載至 
+      /home 的 partition 卸掉：</font> <br>
+      <font color="#FFFF00"><font color="#FFFFFF">suse:~ #</font><strong> umount 
+      /home</strong></font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FF00"><font color="#FFFF00"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">再把剛剛那個新增的分割區掛載至 
+      /home，這樣就大功告成了：</font> </font><br>
+      <font color="#FFFF00"><font color="#FFFFFF">suse:~ #</font> <strong>mount 
+      /dev/hdb1 /home</strong></font></font></td>
+  </tr>
+</table>
+<br>
+　最後請記得要到 /etc/fstab 裡去做個調整：<br>
+<br>
+<table width="49%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td nowrap><strong>/dev/hdb1 　　/home 　　reiserfs 　　acl,user_xattr 　1　 2</strong></td>
+  </tr>
+</table>
+<p><br>
+  <font color="#0000FF" size="+1"><strong><a name="42"></a><font size="6">5.7 
+  磁碟限額管理</font></strong></font> <font size="6"><strong><font color="#0000FF">(Managing 
+  disk quota)</font></strong></font><br>
+  <br>
+  　quota 是用來對使用者或群組做不同的或相同的磁碟空間使用限制，且 quota 只能針對 partition 做限制，而無法針對 partition下的某個目錄設限。比如您想限制使用者在家目錄下的使用空間，那麼就可針對 
+  /home partition 做 quota ﹔又如想限定使用者的信箱容量，則可針對 /var/spool/mail 來做 quota，當然前提是 /var/spool/mail 
+  為一獨立的 partition。<br>
+  <br>
+  <font size="+1"><strong><a name="43"></a><font size="5">5.7.1 確認 quota 套件的安裝</font></strong></font><br>
+  <br>
+  　在設定 quota 之前，請先確認 quota 套件有安裝，不過由於套件管理指令尚未學習到，因此先使用 YaST 來搞定。</p>
+<ol>
+  <li><font color="#000099">進入 YaST2 控制中心後，選取 [軟體管理]：</font><br>
+    <br>
+    <img src="../picture/quota1.png" tppabs="http://www.suse.url.tw/picture/quota1.png" width="756" height="299"> <br>
+    　　　　　　　　　　　　　　　　　 <font size="2">　　圖一：YaST2 控制中心主畫面</font><br>
+    <br>
+  </li>
+  <li><font color="#000099">於 [過濾器] 處選擇 [搜尋]：</font><br>
+    <br>
+    <img src="../picture/quota2.png" tppabs="http://www.suse.url.tw/picture/quota2.png" width="766" height="228"><br>
+    <font size="2">　　　　　　　　　　　　　　　　　　　　　　　　　圖二：套件管理畫面<br>
+    <br>
+    </font> </li>
+  <li><font color="#000099">輸入欲查詢的套件名稱：</font><br>
+    <br>
+    <img src="../picture/quota3.png" tppabs="http://www.suse.url.tw/picture/quota3.png" width="381" height="349"><br>
+    <font size="2">　　　　　　　　　　圖三：套件搜尋畫面</font><br>
+    <br>
+  </li>
+  <li><font color="#000099">於 [動作] 處選擇 [選取]：</font><br>
+    <br>
+    <img src="../picture/quota4.png" tppabs="http://www.suse.url.tw/picture/quota4.png" width="655" height="231"> <br>
+    <font size="2">　　　　　　　　　　　　　　　　　　 圖四：套件處理方式的畫面</font><br>
+    <br>
+    在圖四中，如果搜尋出來的 quota 套件，其名稱的左手邊有出現 [i] 時，表示此套件已安裝在系統上，如果套件名稱的左手邊都是空白的話，那當然就是沒安裝囉，此時就請將此套件 
+    [選取] 起來。 <br>
+    <br>
+  </li>
+  <li><font color="#000099">沒問題的話，就選取 [接受]：</font><br>
+    <br>
+    <img src="../picture/quota5.png" tppabs="http://www.suse.url.tw/picture/quota5.png" width="766" height="474"><br>
+    <font size="2">　　　　　　　　　　　　　　　　　　　　　　　圖五：選取套件後的畫面<br>
+    <br>
+    </font>注意到套件名稱的左手邊多出了個 [+]<font size="2"> </font>的符號<font size="2">，</font>表示該套件已被選取。<font size="2"><br>
+    <br>
+    </font></li>
+  <li><font color="#000099">放入安裝光碟並選取 [確定] 即可：</font><br>
+    <br>
+    <img src="../picture/quota6.png" tppabs="http://www.suse.url.tw/picture/quota6.png" width="325" height="130"><br>
+    <font size="2">　　　　　　　圖六：提示插入光碟畫面</font> <br>
+    <br>
+    接著就直接幫您把 quota 套件安裝上去了。</li>
+</ol>
+<p> <font size="+1"><strong><a name="44"></a><font size="5">5.7.2 設定 quota</font></strong></font><br>
+  <br>
+  　套件問題解決之後，再來即是要開始設定 quota 了。以筆者的環境來說，/dev/hda8 是掛載到 /home，所以等等實做時，就針對 /home 
+  這個 partition 來做 quota，以限定使用者在自己家目錄中的使用空間。</p>
+<table width="48%" border="0">
+  <tr> 
+    <td height="26" nowrap bgcolor="#000000"><strong><font color="#000099" size="4"> 
+      <font color="#FFFFFF">步驟一：讓 /home partition 上的檔案系統支援 quota</font></font></strong><font color="#000099" size="4">&nbsp;</font></td>
+  </tr>
+</table>
+<p> 　首先使用 vi 去編輯 /etc/fstab，並在 /home partition 那一行的 options 欄位處，補上 <font color="#0000FF">usrquota</font> 
+  及 <font color="#0000FF">grpquota</font>，當然如果只想針對使用者做&nbsp;quota，那就補上 usrquota 
+  即可。</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>vi 
+      /etc/fstab</strong></font><br>
+      <font face="細明體">/dev/hda5</font></font><font color="#FFFFFF" face="細明體">　　/　　　　reiserfs 
+      　　acl,user_xattr　　1 1<br>
+      /dev/hda3　　/boot 　 reiserfs 　　acl,user_xattr　　1 2<br>
+      /dev/hda8 　 /home 　 reiserfs 　　acl,user_xattr</font><font color="#FFFFFF"><font color="#FFFF00" face="細明體">,usrquota,grpquota</font></font><font color="#FFFFFF" face="細明體">　1 
+      2</font><font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF">　　　　　　　<font color="#00FFFF" size="2">：略　　　　　　　　　　　　　　</font><font color="#FFFFFF"><font color="#00FFFF" size="2">：略</font></font></font></td>
+  </tr>
+</table>
+<br>
+<table width="31%" border="0">
+  <tr> 
+    <td height="26" nowrap bgcolor="#000000"><font color="#000099" size="4"><strong> 
+      <font color="#FFFFFF">步驟二：重新掛載 /home partition</font></strong></font></td>
+  </tr>
+</table>
+<br>
+　在設定 quota 的過程中，往往會讀入 /etc/mtab 的檔案內容，來作為執行的依據，因此您需要讓 /etc/mtab 檔案裡，準備要做 quota 
+的那個檔案系統支援 quota 才行，也就是在 options 欄位需要有 usrquota 或 grpquota 的相關紀錄存在。此時做法有兩種，第一種是藉由重新開機來讓 
+/etc/fstab 更新 /etc/mtab 的內容 ﹔第二種是藉由重新掛載該檔案系統，以更新其在 /etc/mtab 中的資料。這裡我們就選用第二種方式囉。<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#00FFFF"># <font size="2">重新掛載 /home partition：</font></font><font color="#FFFFFF"><br>
+      suse:~ # <font color="#FFFF00"><strong>mount -o remount /home</strong></font><br>
+      <br>
+      </font><font color="#00FFFF"># <font size="2">確認一下</font></font><font color="#FFFFFF"><font color="#00FFFF"><font size="2">/etc/mtab 
+      中，/home partition 的 options 欄位有 usrquota 及 grpquota：</font></font><br>
+      suse:~ #<strong> <font color="#FFFF00">cat /etc/mtab | grep home</font></strong><br>
+      <font face="細明體">/dev/hda8　　/home　　reiserfs　　rw,acl,user_xattr,</font><font color="#FFFF00" face="細明體">usrquota,grpquota</font><font face="細明體">　0 
+      0</font></font></td>
+  </tr>
+</table>
+<br>
+<font color="#006600"> </font> 
+<table width="48%" border="0">
+  <tr>
+    <td height="27" nowrap bgcolor="#000000"><font color="#000000"><strong><font color="#000099" size="4"> 
+      <font color="#FFFFFF">步驟三：掃描磁碟空間使用情形</font></font></strong></font><font color="#FFFFFF" size="4"><strong>，並產生 
+      quota file</strong></font><font color="#000099" size="4">&nbsp;</font></td>
+  </tr>
+</table>
+<br>
+　這裡是使用 <font color="#0000FF">quotacheck</font> 指令，來掃描檔案系統的磁碟空間使用狀況，並建立 quuota 
+file 於該檔案系統中。以下先來說說這個指令的基本用法。<br>
+<br>
+<font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font size="+1"><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font size="+1"><strong><a name="45"></a></strong></font><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></font></strong></font></font></font></font> 
+<font size="+1"><strong>指令 quotacheck</strong></font><br>
+<br>
+　此指令可用來掃描使用者及群組在這個做 quota 的 partition 裡，已使用的磁碟空間及 inode count，並會自動建立起 aquota.user 
+及 aquota.group 這兩個 quota file 於檔案系統中 (以本範例而言，就是在 /home 目錄下)，而此 quota file 的內容，當然就是剛剛掃描結果後，所產生的靜態紀錄囉。<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td height="19"><strong><font face="細明體">quotacheck [-gufvm] -a|filesystem</font></strong></td>
+  </tr>
+</table>
+<br>
+　filesystem 是指定即將進行掃描的那個裝置名稱 (device-name) 或者是掛載點 (mount-point)。不過當您有使用 -a 參數時，就不需要指定 
+filesystem，也就是說 -a 參數及 filesystem 不能同時指定。<strong><br>
+<br>
+參數說明</strong>：<br>
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" align="center" valign="middle" nowrap><font color="#000099">-g</font></td>
+    <td width="93%"><font color="#000099">掃描群組目前已使用的磁碟空間及 inode count，並建立 aquota.group 
+      檔案。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-u</font></td>
+    <td><font color="#000099">掃描使用者目前已使用的磁碟空間及 inode count，並建立 aquota.user 檔案。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-v</font></td>
+    <td><font color="#000099">顯示執行過程。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-m</font></td>
+    <td><font color="#000099">正常在執行 quotacheck 時，會先將該檔案系統 remount 成 read-only 
+      後，再進行掃描，等完成掃描後，才又再 remount 回 read-write。而當您加上 -m 參數後，就會忽略 remount 這個動作。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-f</font></td>
+    <td><font color="#000099">此參數是用在 quota 啟用的狀態下，強迫執行掃描並寫入 quota file，不過不建議這樣做。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-a</font></td>
+    <td><font color="#000099">根據 /etc/mtab 的內容，來掃描所有要做 quota 的檔案系統。</font></td>
+  </tr>
+</table>
+<strong><br>
+</strong>　了解了這個指令的用法後，接著就來對 /home partition 進行 quotacheck。<strong><br>
+<br>
+範例說明：<br>
+</strong> 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>quotacheck 
+      -guv /home</strong></font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">掃描使用者及群組在 
+      /home partition 裡，已使用的磁碟空間及 inode count，</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font></font><font color="#00FFFF" size="2"> 
+      並將掃描結果寫入 quota file 中。</font><font color="#00FFFF"><br>
+      </font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">如不指定 
+      filesystem，那就直接使用 -a 參數：</font><br>
+      suse:~ #<font color="#FFFF00"> <strong>quotacheck -guva<br>
+      <br>
+      </strong></font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2">掃描過後，確認一下檔案系統中，是否已建立 
+      quota file：<br>
+      </font><font color="#00FFFF"> <font color="#FFFFFF">suse:/home #<strong><font color="#FFFF00"> 
+      ls aquota*</font></strong><br>
+      <font face="細明體">aquota.group aquota.user <br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2">如果原本 /etc/mtab 的 options 
+      欄位只有 usrquota 選項，而無 grpquota，<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2"></font></font></font></font></font></font></font><font color="#00FFFF" size="2">則此時您只會看到 
+      aquota.user 這個 quota file 而已。</font></font></font></font></font></font></font></td>
+  </tr>
+</table>
+<font color="#006600"><strong><br>
+</strong></font>
+<table width="19%" border="0">
+  <tr> 
+    <td height="28" nowrap bgcolor="#000000"><font color="#006600"><strong><font color="#000099" size="4"> 
+      <font color="#FFFFFF">步驟四：啟動 quota</font></font><font color="#000000"></font></strong></font></td>
+  </tr>
+</table>
+<font color="#006600"><strong><font color="#000000"> <br>
+</font></strong><font color="#000000">　利用 <font color="#0000FF">quotaon</font> 
+指令來啟動 quota 的功能。<strong><br>
+<br>
+</strong></font><font color="#006600"><strong><font color="#000000"><font size="+1"><a name="46"></a><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font><font size="+1"> 
+</font></strong></font> <font size="+1"><strong><font color="#000000">指令 quotaon</font></strong></font><font color="#000000"><strong><br>
+<br>
+</strong>　就是啟用檔案系統 quota 功能的指令囉。<strong><br>
+<br>
+指令語法</strong>：<br>
+</font></font> 
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><strong><font face="細明體">quotaon [-guv] -a|filesystem</font></strong></td>
+  </tr>
+</table>
+<font color="#006600"><font color="#000000"><strong><br>
+</strong>　filesystem 可以是 device-name 或 mount-point。而當您有使用 -a 參數時，就不需要指定 filesystem。<strong><br>
+<br>
+參數說明</strong>：<br>
+</font></font>
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" align="center" valign="middle" nowrap><font color="#000099">-u</font></td>
+    <td width="93%"><font color="#000099">啟用使用者的 quota。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-g</font></td>
+    <td><font color="#000099">啟用群組的 quota。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-v</font></td>
+    <td><font color="#000099">顯示執行過程。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-a</font></td>
+    <td><font color="#000099">依據 /etc/mtab 的內容，而將有設定 quota 選項的檔案系統，啟動其 quota 功能。另外如果您有設定開機時啟動 
+      quota 的話，通常就會使用到這個參數來檢查 /etc/fstab，如此才能在開機過程啟動該檔案系統的 quota 功能。</font></td>
+  </tr>
+</table>
+<font color="#006600"><font color="#000000"><strong><br>
+範例說明</strong>：<strong><br>
+</strong></font></font> 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">quotaon 
+      -guva</font></strong><br>
+      <font face="細明體">/dev/hda8 [/home]: group quotas turned on<br>
+      /dev/hda8 [/home]: user quotas turned on</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font></font></font></font></font></font></font></font></font><font size="2"><font color="#00FFFF">啟動使用者及群組的 
+      quota。也可這麼執行：</font></font><br>
+      suse:~ #<strong> <font color="#FFFF00">quotaon -va</font></strong><font size="2"><br>
+      </font><font face="細明體">/dev/hda8 [/home]: group quotas turned on<br>
+      /dev/hda8 [/home]: user quotas turned on</font><br>
+      </font> <p><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font></font></font></font></font></font></font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">若只想啟動使用者 
+        quota，則執行：</font><font color="#FFFFFF"><br>
+        suse:~ #<strong> <font color="#FFFF00">quotaon -uva </font></strong><br>
+        <font face="細明體">/dev/hda8 [/home]: user quotas turned on</font><br>
+        <br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font></font></font></font></font></font></font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">如不使用 
+        -a 參數，那就需指定 filesystem：</font><br>
+        suse:~ # <strong><font color="#FFFF00">quotaon -guv /home</font></strong><br>
+        <font face="細明體">/dev/hda8 [/home]: group quotas turned on<br>
+        /dev/hda8 [/home]: user quotas turned on</font><br>
+        </font> </p></td>
+  </tr>
+</table>
+<blockquote> 
+  <p><font color="#006600"><font color="#000000"><strong><font color="#000099">Tips：</font></strong><font color="#000099" size="2">欲停用 
+    quota 的話，執行 quotaoff 即可：</font><font color="#000099">「</font><font color="#000099" size="2">quotaoff 
+    -va</font><font color="#000099">」</font></font></font> </p>
+</blockquote>
+<font color="#006600"><font color="#000000"><strong> </strong></font></font> 
+<table width="24%" border="0">
+  <tr> 
+    <td height="27" nowrap bgcolor="#000000"><font color="#000099" size="4"><strong> 
+      <font color="#FFFFFF">步驟五：編輯 quota 限額</font></strong></font></td>
+  </tr>
+</table>
+<font color="#000099" size="4"><strong><br>
+　</strong></font><font color="#000099"><font color="#000000">使用 <font color="#0000FF">edquota</font> 
+指令來編輯 quota 限額。</font></font><font color="#000099" size="4"><strong><br>
+</strong></font><br>
+<font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><strong><font size="+1"><a name="47"></a></font><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font> 
+<strong><font size="+1">指令 edquota</font></strong><br>
+<br>
+　edquota 是個 quota 的編輯器，用來編輯 quota file 中使用者或群組的 quota 限額。不過除了這個基本用法之外，edquota 
+還可以拿來做為複製用途，也就是將已經設定好的使用者或群組 quota，複製給其他使用者或群組來使用。另外 edquota 也可設定寬限時間，這部分等等會有說明。<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><strong><font face="細明體">edquota [-p protoname] [-u|-g] username...|groupname...<br>
+      edquota [-u|-g] -t</font></strong></td>
+  </tr>
+</table>
+<br>
+　protoname 是指要複製 quota 的來源使用者或群組名稱，比如您要將 user01 的 quota 限額複製給 user02 及 user03，那麼可執行「<font color="#0000FF">edquota 
+-p user01 -u user02 user03</font>」。<strong><br>
+<br>
+參數說明</strong>：<br>
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" align="center" valign="middle" nowrap><font color="#000099">-u</font></td>
+    <td width="93%"><font color="#000099">編輯使用者 quota。如 edquota -u username。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-g</font></td>
+    <td><font color="#000099">編輯群組 quota。如 edquota -g groupname。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-p</font></td>
+    <td><font color="#000099">複製使用者或群組的 quota 限額給其他的使用者或群組。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-t</font></td>
+    <td><font color="#000099">設定對檔案系統的 soft time 限制。</font></td>
+  </tr>
+</table>
+<br>
+<strong>範例說明一</strong>：<strong>編輯使用者的 quota</strong><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"> <p><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>edquota 
+        -u barry </strong></font><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">進入編輯畫面後的操作方式，都與 
+        vi 相同。</font><br>
+        <font face="細明體">Disk quotas for user barry (uid 1000) :<br>
+        　Filesystem 　　blocks 　 soft　 　 hard 　 　inodes　soft 　hard<br>
+        　/dev/hda8 　　 　2929　<font color="#FFFF00">　8000</font></font><font color="#FFFF00" face="細明體">　　 
+        10000</font><font face="細明體">　 　　　201　　 0 　　 0<br>
+        </font> </font></p></td>
+  </tr>
+</table>
+<p><font color="#000000">　</font><font color="#FFFFFF"><font color="#000000">先針對上面範例中所出現的幾個欄位做個說明：</font></font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="95%"><font color="#000099"><strong>Filesystem：</strong></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>就是指那個做 quota 限額的 /home partition 囉<font color="#000000">。</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">blocks、inodes：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#FFFFFF"><font color="#000000">blocks 及 inodes 是統計 barry 
+      在 /home partition 上，已經使用的磁碟空間及 inode count，所以這兩個欄位不要去做修改。另外 blocks 的單位是 
+      KB。 </font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">soft：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> soft 是用來設定使用者或群組所能使用之磁碟空間或 inode count 的限制<font color="#000000">。當達到這 
+      soft limit 時，螢幕上就會出現警告訊息，如「hda8: warning, user block quota exceeded.</font>」<font color="#000000">。不過雖然如此，只要在寬限期間 
+      (預設七天)內及不超過上限 (hard limit) 的設定，那資料還是可以寫入這個分割區的。當此欄位設定成 0 時，表示不做限制。</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td><strong><font color="#000099">hard：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>hard 是用來設定使用者或群組所能使用磁碟空間或 inode count 的上限<font color="#000000">，也就是說，使用者無論如何都無法超過這裡所做的限制。當此欄位設定成 
+      0 時，表示不做限制。</font></td>
+  </tr>
+</table>
+<p><font color="#FFFFFF"><font color="#000000">　以本範例的設定來說，當使用者 barry 所使用的磁碟空間達 
+  soft limit 的 8000 KB 時，系統會提出警告，並開始預設七天寬限期的倒數計時，在此七天時間內，只要使用磁碟空間不超出 hard limit 
+  的 10000 KB 的話，都可以持續寫入資料至該檔案系統，但若七天期限一到，縱使尚未超過 hard 的限制，亦無法再新增資料。所以當達到 soft limit 
+  時，最好趕快在寬限時間內，把您使用的磁碟空間降至 soft limit 以下，這樣寬限時間的限制就會取消掉。<br>
+  <br>
+  　或許您注意到本範例並未對 inode count 設限，因為 inode count 比較不好掌控磁碟空間的使用情形，當然若是您要同時對這兩者都設限，那倒也是可以的啦。</font></font><br>
+  <br>
+  　在完成了以上的五個步驟後，可以先用 root 身分來檢視一下 barry 的 quota 限額： </p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"> 
+      <strong>quota -u barry</strong></font><br>
+      <font face="細明體">Disk quotas for user barry (uid 1000):<br>
+      　　 Filesystem　blocks　quota　limit　grace　files　quota　limit grace<br>
+      　　　/dev/hda8　　2929 　8000　10000 　 　　　 201 　　 0 　　 0 <br>
+      <br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">如果有設定群組quota，則可執行 
+      &quot;quota -g groupname&quot; 來檢視群組 quota 限額。</font></font></td>
+  </tr>
+</table>
+<br>
+　要查看使用者自己的 quota 限額，直接執行 quota 指令即可： <br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">barry@suse:~&gt;<font color="#FFFF00"> 
+      <strong>quota </strong></font><br>
+      <font face="細明體">Disk quotas for user barry (uid 1000):<br>
+      　　 Filesystem　blocks　quota　limit　grace　files　quota　limit grace<br>
+      　　　/dev/hda8　　2929 　8000　10000 　 　　　 201 　　 0 　　 0 </font></font></td>
+  </tr>
+</table>
+<br>
+<font color="#000000"><strong>範例說明二</strong>：<strong>複製 quota 限額</strong></font> 
+<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>edquota 
+      -p barry -u user01 user02 </strong></font><strong><br>
+      </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">將 
+      barry 的 quota 限額，複製一份予 user01 及 user02。</font><font color="#00FFFF"><br>
+      <br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font></font><font size="2">接著您可以做個確認：</font><br>
+      </font><font color="#FFFFFF">suse:~ #</font> <strong><font color="#FFFF00">quota 
+      -u user01 user02 </font><br>
+      </strong><font face="細明體">Disk quotas for user user01 (uid 1004):<br>
+      　　 Filesystem　blocks　quota　limit　grace　files　quota　limit grace<br>
+      　　　/dev/hda8　　　83 　8000　10000 　 　　　　25　　 0 　　 0</font><br>
+      <font face="細明體">Disk quotas for user user02 (uid 1005):<br>
+      　　 Filesystem　blocks　quota　limit　grace　files　quota　limit grace<br>
+      　　　/dev/hda8　　　75 　8000　10000 　 　　　　<font color="#FFFFFF">24</font> 　　 0 
+      　　 0</font> <strong> </strong></font></td>
+  </tr>
+</table>
+<br>
+　當您要複製 quota 限額給很多人時，可以事先將這些使用者名單寫入檔案內，然後才進行複製的動作：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
+      <strong>vi /etc/quotauser</strong></font><br>
+      user01 <br>
+      user02 <br>
+      user03 <br>
+      　： <br>
+      <br>
+      suse:~ # <font color="#FFFF00"><strong>edquota -p barry -u `cat /etc/quotauser`</strong></font></font></td>
+  </tr>
+</table>
+<br>
+<font color="#000000"><strong>範例說明三</strong>：<strong>修改 soft limit 期限<br>
+</strong><br>
+</font> 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><p><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>edquota 
+        -ut </strong></font><br>
+        <font face="細明體">Grace period before enforcing soft limits for users:<br>
+        Time units may be: days, hours, minutes, or seconds<br>
+        　Filesystem 　　　Block grace period 　　　Inode grace period<br>
+        　/dev/sda7 　　　　　　 </font><font color="#FFFF00" face="細明體">5hours</font><font face="細明體"> 
+        　　　　　　　　　 7days </font> 　　　　　　　<br>
+        </font></p></td>
+  </tr>
+</table>
+<font color="#FFFFFF"><font color="#000000"><br>
+　此即是針對使用者寬限時間的設定，筆者這個地方把它修改成 5 小時，也就是說，當使用者所使用的磁碟空間，一旦超過 soft limit 的限制時，此 5 小時的寬限時間就會開始倒數計時，如在這 
+5 小時內，不趕快將磁碟空間縮減至 soft limit 以下，則等時間一到，使用者便無法再新增任何資料。<br>
+<br>
+　當寬限時間設定成 0，如 0minutes、0hours，是表示一旦超過 soft limit 時，即無法再使用磁碟空間。至於時間可以使用的單位有 seconds、minutes、 
+hours、days。</font></font><font color="#006600">&nbsp;<br>
+<br>
+　<font color="#000000">接著再來談一下 quota 限額的查看方式。當管理者要檢視很多使用者或群組的 quota 限額時，</font><font color="#006600"><font color="#000000">如以前面所學，可能會這麼執行： 
+「quota -u user01 user02 &#8230;</font><font color="#006600"><font color="#006600"><font color="#000000">」</font></font></font><font color="#000000">或者</font><font color="#006600"><font color="#006600"><font color="#000000">「</font></font></font><font color="#000000">quota 
+-g grp01 grp02 &#8230;」，但萬一要是為數眾多時怎麼辦 ? 這時候 <font color="#0000FF">repquota</font> 
+指令就可以派上用場了。</font></font><font color="#000000"><br>
+<br>
+<font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#006600"><font color="#000000"><strong><font size="+1"><a name="48"></a></font></strong></font></font><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font><strong><font size="+1"> 
+<font color="#000000">指令 repquota</font></font></strong></font><br>
+</font><br>
+<font color="#000000">　此指令可用來回報檔案系統 quota 限額的概況。</font><br>
+<br>
+<font color="#000000"><strong>指令語法</strong>：</font><br>
+</font> 
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><font color="#006600"><font color="#000000" face="細明體"><strong>repquota [-vug] -a|filesystem...</strong></font></font></td>
+  </tr>
+</table>
+<font color="#006600"><br>
+<font color="#000000"><strong>參數說明</strong>：<br>
+</font></font> 
+<table width="100%" border="1">
+  <tr> 
+    <td width="7%" align="center" valign="middle" nowrap><font color="#000099">-g</font></td>
+    <td width="93%"><font color="#000099">檢視群組 quota 的使用狀況。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-u</font></td>
+    <td><font color="#000099">檢視使用者 quota 的使用狀況。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-v</font></td>
+    <td><font color="#000099">此參數可額外提供一些系統相關訊息。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-a</font></td>
+    <td nowrap><font color="#000099">依據 /etc/mtab 裡有設定 quota 選項的檔案系統，檢視其 quota 
+      的使用狀況。</font></td>
+  </tr>
+</table>
+<font color="#006600"><br>
+<font color="#000000"><strong>範例說明</strong>：</font></font><br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
+      <strong>repquota -guva　　<br>
+      </strong></font><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#00FFFF"><font size="2">檢視使用者及群組 
+      quota 的使用情形。</font></font></font><br>
+      <br>
+      suse:~ # <font color="#FFFF00"><strong>repquota -gv /home</strong><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font><font color="#00FFFF" size="2"></font></font><font color="#FFFFFF"><font color="#00FFFF"><font size="2"></font></font></font></font><font color="#FFFFFF"><font color="#FFFF00"><font color="#00FFFF" size="2">檢視群組在 
+      /home partition 所使用 quota 的情形。</font></font></font><font color="#FFFF00"></font></font></td>
+  </tr>
+</table>
+<blockquote> 
+  <p><font color="#000099"><strong>Note：</strong><font size="2">當使用 quotacheck 
+    來產生 quota file 時，由於 quota file 的權限為 600，因此一般使用者無法使用 repquota 指令來檢視 quota 限額，除非將 
+    quota file 權限調整成 644 之後才行。不過要調整 quota file 權限前，請記得先執行 &quot;quotaoff -va&quot; 
+    來將 quota 功能關閉，否則無法進行修改。</font></font></p>
+</blockquote>
+<p><font color="#006600"><font color="#000000"> </font></font> <strong><font color="#000000" size="5">5.7.3 
+  設定群組 quota</font></strong><br>
+  <br>
+  　最後稍微提一下群組 quota 怎麼做。當設定群組 quota 限額時，只有在使用者的有效群組為這個要做 quota 的群組時，這些使用者才會受到群組 
+  quota 的限制。這裡就舉個簡單的範例做說明： </p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><p><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font><font color="#00FFFF" size="2">先新增一個群組：</font><br>
+        suse:~ # <font color="#FFFF00"><strong>groupadd grp01</strong></font><br>
+        <br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">將使用者 
+        barry 及 mary 的主要群組修改成 grp01：</font><br>
+        suse:~ # <font color="#FFFF00"><strong>usermod -g grp01 barry</strong></font><br>
+        suse:~ # <font color="#FFFF00"><strong>usermod -g grp01 mary</strong></font> 
+        <br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">如接著下來，barry 
+        及 mary 都沒使用 newgrp 去變更其</font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">有效群組，那麼此時</font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">他們的</font></font></font><br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">有效群組就是這個主要群組。</font> 
+        <br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">再來可嘗試以這兩個一般帳號去建立一些檔案，</font></font><font color="#00FFFF" size="2">看看這些檔案的擁有群組是否為 
+        grp01。</font><br>
+        </font> <font color="#FFFFFF"><br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#FFFF00"><font color="#00FFFF" size="2">編輯群組 
+        quota：</font></font><br>
+        suse:~ #<strong> <font color="#FFFF00">edquota -g grp01<br>
+        </font></strong><font face="細明體">Disk quotas for group grp01 (gid 1000):<br>
+        　Filesystem　　blocks　　soft　　hard　　inodes　soft　hard<br>
+        　/dev/hda8 　　　　 9 　<font color="#FFFF00">20000</font> 　<font color="#FFFF00">25000</font> 
+        　　　　2 　　0 　　0 </font><font color="#FFFF00"><strong><br>
+        </strong></font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><br>
+        # </font></font><font color="#FFFF00"><font color="#00FFFF" size="2">完成後，可以檢視一下此群組的 
+        quota 限額：<br>
+        </font><font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">quota 
+        -g grp01</font></strong></font><font color="#00FFFF" size="2"><br>
+        </font><font color="#FFFFFF"><font face="細明體">Disk quotas for group grp01 
+        (gid 1000):<br>
+        　Filesystem　　blocks　　soft　　hard　　inodes　soft　hard<br>
+        　/dev/hda8 　　　　 9 　20000 　25000 　　　　2 　　0 　　0</font></font><font color="#00FFFF" size="2"><br>
+        <br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font></font></font><font color="#00FFFF" size="2">至於剩下的測試工作就交給您自己囉。</font></font></font></font> 
+      </p>
+      </td>
+  </tr>
+</table>
+<p> 　假使現在 barry 及 mary 的主要群組為 users，且是屬於 grp01 群組的成員，那這時候要測試群組 quota 就更容易了，因為只要以 
+  barry 及 mary 的身分執行「<font color="#0000FF">newgrp grp01<font color="#000000">」</font></font>之後，他們的有效群組就是 
+  grp01 了。看完了以上的說明，是不是覺得很 easy 呢。</p>
+<blockquote> 
+  <p><font color="#000099"><strong>Note：</strong><font size="2">當使用者 quota 與該使用者的有效群組 
+    quota 都做設定時，就以先到達的限制為主囉。</font></font></p>
+</blockquote>
+<p> <strong><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font></font></font> 
+  <font size="4">設定開機時啟動 quota 功能</font></strong><br>
+  <br>
+  　想要在每次開機時，都能自動啟用 quota 功能，則以下提供兩種方式給大家參考：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#00FFFF" size="2">法一：利用 chkconfig 指令</font><font color="#FFFFFF"><br>
+      suse:~ #<font color="#FFFF00"> <strong>chkconfig --level 35 boot.quota on</strong></font> 
+      <br>
+      suse:~ # <font color="#FFFF00"><strong>chkconfig boot.quota 35</strong></font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font><font color="#00FFFF" size="2">以上兩種做法都可以。完成後，請做個確認：</font><br>
+      suse:~ #<strong> <font color="#FFFF00">chkconfig -l </font></strong><font color="#FFFF00"><strong>boot.quota 
+      </strong></font><br>
+      boot.quota 　　0 : off　1 : off　2 : off　<font color="#00FF00">3 : on</font>　4 
+      : off　<font color="#00FF00">5 : on</font>　6 : off<br>
+      <br>
+      </font><font color="#00FFFF" size="2">法二：利用 boot.local 檔案<br>
+      </font><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>vi /etc/init.d/boot.local</strong></font></font><font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF">/sbin/quotaon -va</font></td>
+  </tr>
+</table>
+<p> <br>
+  <strong><font color="#0000FF" size="+1"><a name="49"></a><font size="6">5.8 
+  檔案搜尋</font><br>
+  </font></strong> <br>
+  　在 linux 系統上，存在著那麼多各式各樣的檔案，有想過要是哪天您想查詢某些特定的檔案所存在的位置該怎麼辦 ? 不要急，以下就會介紹幾個檔案搜尋的指令，透過這些指令的操作，便能幫您很快速的找到其所存在的位置。<br>
+  <br>
+  <font color="#000000"><strong><font size="+1"><a name="50"></a></font><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font></font></font> 
+  <font size="+1">指令 find</font></strong></font><font size="+1"><strong> </strong></font></p>
+　find 指令，是依照您所指定的目錄，至其目錄樹系裡頭，遞迴地搜尋所要尋找的檔案。當執行「<font color="#0000FF">find /var</font>」時，即是把 
+/var 目錄樹系裡的所有內容顯示出來。 <strong><br>
+<br>
+指令語法</strong>：
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#CCCCCC"><strong><font face="細明體">find [path...] [expression] 
+      [action]</font></strong></td>
+  </tr>
+</table>
+<br>
+　path 是我們所指定要搜尋的目錄路徑 ﹔expression 則表示可利用一些參數來指定所要搜尋的條件，這樣子就可以縮小搜尋的範圍 ﹔最後那個 action，是對於搜尋出來的結果，要採取什麼動作的意思。 
+<br>
+<br>
+<strong>expression 中的參數說明</strong>：
+<table width="100%" border="1">
+  <tr> 
+    <td width="13%" align="center" valign="middle" nowrap><font color="#000099">-type 
+      filetype</font></td>
+    <td width="87%"><font color="#000099">根據檔案類型來做搜尋。常用到的 filetype 有 d (目錄)、f 
+      (一般檔案)、l (符號連結檔)、b (區塊裝置檔)、c (字元裝置檔) 等等。 </font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-perm mode</font></td>
+    <td><font color="#000099">根據檔案權限來做搜尋。比如「-perm 4755」。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-uid n</font></td>
+    <td><font color="#000099">搜尋檔案擁有者 ID 為 n 者的所有檔案，其中 n 為數字。比如「-uid 1002」。若針對群組的話，就是「-gid 
+      n」。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-user uname</font></td>
+    <td><font color="#000099">搜尋檔案擁有者為 uname 的所有檔案。比如「-user barry」。若針對群組的話，就是「-group 
+      gname」。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-name pattern</font></td>
+    <td><font color="#000099">根據指定的名稱來做搜尋。 pattern 中可以搭配一些萬用字元來使用，不過請記得此 pattern 
+      需用引號來包住，如此方能避免被 shell 解析，而能完整的交由 find 指令及其所搭配的 -name 參數來做處理。比如 -name 'file'、-name 
+      '[a-z]file'、-name 'file*'、-name 'file?'。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099"> -size n[cbkMG]</font></td>
+    <td><font color="#000099">根據檔案大小來做搜尋。n 為數字，[cbkMG] 是所指定的單位 ﹔另外 n 前面可使用「+」(比 
+      n 還要大) 或「-」(比 n 還要小) 等符號。先來認識 [cbkMG] 意義：<br>
+      </font> 
+      <table width="98%" border="0">
+        <tr> 
+          <td width="5%" align="center" valign="top" nowrap><strong><font color="#000099">c 
+            :</font></strong></td>
+          <td width="95%"><font color="#000099">表示 bytes (character)。<br>
+            ˙<font face="細明體">-size 2000c　表示搜尋大小為 2000 bytes 的檔案。</font><br>
+            ˙<font face="細明體">-size +2000c 表示搜尋大於 2000 bytes 的檔案。</font><br>
+            ˙<font face="細明體">-size -2000c 表示搜尋小於 2000 bytes 的檔案。 </font></font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top" nowrap><strong><font color="#000099">b 
+            : </font></strong></td>
+          <td><font color="#000099">表示 512 bytes (block)。<br>
+            1b 代表 1 ~ 512 bytes，2b 代表 513 ~ 1024 bytes，餘依此類推。<br>
+            ˙<font face="細明體">-size 2b　表示搜尋檔案大小是介於 513 ~ 1024 bytes 之間。</font><br>
+            ˙<font face="細明體">-size +2b 表示搜尋大於 1024 bytes 的檔案。</font><br>
+            ˙<font face="細明體">-size -2b 表示搜尋小於 513 bytes 的檔案。</font></font></td>
+        </tr>
+        <tr> 
+          <td align="center" valign="top" nowrap><strong><font color="#000099">k 
+            :</font></strong></td>
+          <td><font color="#000099">表示 Kilobytes (1024 bytes)。<br>
+            1k 代表 1 ~ 1024 bytes，2k 代表 1025 ~ 2048 bytes，餘依此類推。<br>
+            ˙<font face="細明體">-size 2k　表示搜尋檔案大小是介於 1025 ~ 2048 bytes 之間。</font><br>
+            ˙<font face="細明體">-size +2k 表示搜尋大於 2048 bytes 的檔案。</font><br>
+            ˙<font face="細明體">-size -2k 表示搜尋小於 1025 bytes 的檔案。</font></font></td>
+        </tr>
+      </table>
+      <font color="#000099"> 至於 M 及 G 分別是以 MB 及 GB 做單位來搜尋。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-maxdepth 
+      levels</font></td>
+    <td><font color="#000099">依據目錄的最大層級深度來做搜尋 ﹔levels 為一非負數的整數。比如「find /var -maxdepth 
+      3」表示搜尋 /var 目錄結構中的第 0 ~ 3 層，第 0 層就是指 /var 本身。<br>
+      另一個相反的參數為<strong> </strong>-mindepth，比如「find /var -mindepth 3」表示搜尋 /var 
+      目錄結構中的第三層至最後一層。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-mtime n</font></td>
+    <td><font color="#000099">根據檔案的修改時間 (modification time) 來做搜尋。n 為數字，表示 n x 
+      24 小時，也就是 n 天的意思，數字前面可以加上「+」或「-」。比如「-mtime +3」表示搜尋三天前有被修改過的檔案，「-mtime -3」表示搜尋三天內有被修改過的檔案，「-mtime 
+      3」表示搜尋三天前的那一天有被修改過的檔案。<br>
+      這樣子解釋可能還不是很清楚，舉個實際例子好了，假設現在時間是 9 月 20 日早上 10 點，就在此時此刻執行 「find /etc -mtime 
+      3」，那麼三天前的那一天就是指 9/17 AM 10:00 ~ 9/16 AM 10:00，也就是在這個時間範圍內，檔案有被修改過的，都會被搜尋出來 
+      ﹔而「find /etc -mtime -3」，是搜尋在 9/17 AM 10:00 ~ 9/20 AM 10:00 這個時間範圍內，有被修改過的檔案 
+      ﹔最後「find /etc -mtime +3」，則是搜尋在 9/16 AM 10:00 以前，有被修改過的檔案。了解了以上的觀念後，那「find 
+      /etc -mtime 0」應該知道意思吧，就是搜尋 24 小時內有被修改過的檔案。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-atime n</font></td>
+    <td><font color="#000099">根據檔案的存取時間 (access time) 來做搜尋。您只要把上一個欄位解釋中的「修改」兩字改成「存取」來看，然後把 
+      mtime 用 atime 來取代，這樣就可以知道意思了。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-ctime n</font></td>
+    <td><font color="#000099">根據檔案狀態的改變時間 (change time) 來做搜尋。比如您修改了某個檔案的權限、擁有者或擁有群組時，就是改變了這個檔案的狀態。使用「ls 
+      -l --time=ctime」所看到的時間欄位，就是檔案狀態的改變時間。</font></td>
+  </tr>
+</table>
+<strong><br>
+action 中的參數說明</strong>： 
+<table width="100%" border="1">
+  <tr> 
+    <td width="13%" align="center" valign="middle" nowrap><font color="#000099">-exec 
+      command ;</font></td>
+    <td width="87%" nowrap><font color="#000099">將 find 指令的搜尋結果，交給 -exec 後面的指令來處理。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-print</font></td>
+    <td><font color="#000099">將 find 指令的搜尋結果，輸出到螢幕上。這是預設的參數。</font></td>
+  </tr>
+</table>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00"> 
+      find /home -type d</font></strong><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">找出 
+      /home 目錄下，檔案類型為目錄者。</font><br>
+      </font> 
+      <p><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">find /usr/bin 
+        -perm 4755</font><br>
+        </strong><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#FFFF00"><font color="#00FFFF" size="2"></font><font color="#FFFFFF"><font color="#00FFFF" size="2">搜尋 
+        /usr/bin 目錄中，檔案權限為 4755 者。</font></font></font><strong> </strong></font></p>
+      <p><font color="#FFFFFF">suse:~ #<strong><font color="#FFFF00"> find /home 
+        -uid 1006</font><br>
+        </strong><font color="#FFFFFF"><font color="#00FFFF"># <font color="#FFFF00"><font color="#00FFFF" size="2">在 
+        /home 目錄中，只要檔案擁有者 ID 為 1006 者，都會被搜尋出來</font><font size="2"><font color="#FF0000"><font color="#00FFFF">。</font></font></font></font></font></font><strong> 
+        </strong></font></p>
+      <p><font color="#FFFFFF">suse:~ #<strong><font color="#FFFF00"> find /etc 
+        -size 1947c</font><br>
+        </strong><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#FFFF00"><font color="#00FFFF" size="2"></font><font color="#FFFFFF"><font color="#00FFFF" size="2">將 
+        /etc 目錄中，檔案大小剛好為 1947 bytes 的檔案找出。</font></font></font><strong> <br>
+        </strong></font><font color="#FFFFFF"><font color="#00FFFF"><br>
+        </font><font color="#FFFFFF">suse:~ #</font> <strong><font color="#FFFF00">find 
+        /var -size +5M</font></strong><font color="#00FFFF"><br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font><font color="#00FFFF"><font size="2">將 /var 目錄中，大於 5M 的檔案找出。</font></font></font></font> 
+        <font color="#FFFFFF"><strong><br>
+        </strong></font><font color="#FFFFFF"><br>
+        suse:~ # <font color="#FFFF00"> <strong>find /var -size -2b</strong></font><br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#FFFF00"><font color="#00FFFF" size="2"></font></font><font color="#00FFFF" size="2">搜尋 
+        /var 目錄中，小於 513 bytes 的檔案。</font></font> </p>
+      <p><font color="#FFFFFF"> suse:~ # <strong><font color="#FFFF00">find /etc 
+        -name 'passwd'</font><br>
+        </strong><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#FFFF00"><font color="#00FFFF" size="2"></font><font color="#FFFFFF"><font color="#00FFFF" size="2">找出 
+        /etc 目錄中，檔案名稱為 passwd 者。</font></font></font><strong> </strong></font></p>
+      <p><font color="#FFFFFF"> suse:~ # <strong><font color="#FFFF00">find /etc 
+        -name <strong>'</strong>auto*<strong>'</strong></font><br>
+        </strong><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">找出 /etc 目錄中，檔案名稱是以 auto 為首者的所有檔案。<br>
+        </font></font><font color="#FFFFFF"><font color="#00FFFF"><br>
+        <font color="#FFFFFF">suse:~ #</font> <strong><font color="#FFFF00">find 
+        /home/barry -type f -name <strong>'</strong>[0-9]*<strong>'</strong> 
+        -exec rm -f {} \;</font></strong><br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font size="2">將 
+        barry 家目錄中，檔名是以數字為首的檔案找出，並將所搜尋出來的檔案，</font></font><br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#FFFF00"><font color="#00FFFF" size="2"></font></font> 
+        <font color="#00FFFF"> </font><font color="#FFFFFF"><font color="#00FFFF"><font size="2">當成 
+        &quot;-exec&quot; 後面所接指令 rm 的引數，所以這些檔案就會被刪除啦。</font></font></font><font color="#00FFFF"><br>
+        </font></font><font color="#FFFFFF"><font color="#00FFFF"><br>
+        </font>suse:~ # <font color="#FFFF00"> <strong>find /etc /var -type f 
+        -mtime -3</strong></font><br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#FFFF00"><font color="#00FFFF" size="2"></font></font> 
+        <font color="#00FFFF" size="2">將 /etc 及 /var 目錄裡，三天內有被異動過的檔案找出。</font><br>
+        </font><font color="#FFFFFF"><font color="#00FFFF"><br>
+        </font><font color="#FFFFFF">suse:~ #</font><font color="#00FFFF"> <strong><font color="#FFFF00">find 
+        /var <font color="#FFFFFF"><font color="#FFFF00"><strong>-maxdepth 2</strong></font></font></font> 
+        <font color="#FFFF00">-type d </font><br>
+        </strong></font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font><font color="#FFFF00"><font color="#00FFFF" size="2"></font></font></font><font color="#00FFFF"><strong> 
+        </strong></font><font color="#FFFFFF"><font color="#00FFFF"><font size="2">列出 
+        /var 的第 0 ~ 2 層目錄<font color="#FFFFFF"><font color="#00FFFF">。</font></font></font></font></font><font color="#00FFFF"></font></font> 
+      </p>
+      </td>
+  </tr>
+</table>
+<strong> </strong><font color="#FF0000"> <font color="#000000" size="+1"><strong><br>
+<a name="51"></a><font color="#000000"><strong><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font></font></font></strong></font> 
+指令 which</strong></font></font><br>
+<br>
+　which 是用來搜尋指令所存在的位置。which 指令，主要是根據環境變數 PATH 來做搜尋，看看所要尋找的程式，有沒有存在於 PATH 目錄列表中的某個目錄之中。which 
+在搜尋的時候，是按照 PATH 所定義的目錄依序尋找，找到後就不會再往下搜尋，除非加上「<font color="#0000FF">-a</font>」參數。<br>
+<br>
+<strong>範例說明</strong>：
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"><font color="#FFFFFF">suse:~ #</font> 
+      <strong><font color="#FFFF00">which chmod fdisk</font></strong><br>
+      /bin/chmod<br>
+      /sbin/fdisk</font></td>
+  </tr>
+</table>
+<br>
+<font color="#FF0000"> <font color="#000000"><strong><font size="+1"><a name="52"></a><font color="#FF0000"><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></strong></font></font></font></font></strong></font></strong></font></font> 
+指令 locate</font></strong></font><br>
+<br>
+<font color="#000000">　locate 指令，是根據 /var/lib/locatedb 資料庫來做搜尋。</font></font>需要安裝的套件為<font color="#0000FF"> 
+findutils-locate</font>。 <font color="#FF0000"><br>
+<br>
+<strong><font color="#000000">範例說明</font></strong><font color="#000000">：</font><br>
+</font>
+<table width="98%" border="0">
+  <tr> 
+    <td height="85" bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      locate fstab</strong></font><br>
+      <font color="#FFFFFF">/etc/fstab<br>
+      /etc/samba/smbfstab<br>
+      /opt/kde3/bin/update_fstab.sh<br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">搜尋檔名中，含有 
+      fstab 這個 pattern 的檔案。</font></font></font></td>
+  </tr>
+</table>
+<br>
+<font color="#000000"><font size="+1"><strong>　</strong></font>當您建立一些新檔案後，並無法馬上使用 
+locate 指令搜尋出來，因為尚未更新資料庫裡頭的資料，此時可以藉著執行 <font color="#0000FF">updatedb</font> 程式，來立刻更新資料庫：</font> 
+<br>
+<br>
+<table width="30%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td height="25"><font color="#FFFFFF"><font color="#000000">suse:~ </font></font><font color="#000000">#<strong> 
+      updatedb</strong></font></td>
+  </tr>
+</table>
+<br>
+　更新完畢後，再使用 locate 去搜尋看看，應該就找得到了。不過如果您要尋找的是存放在一些暫存目錄中的檔案，如 /tmp、/var/tmp、/var/spool 
+等等，那就會搜尋不到。要調整這方面的限制，需要去修改 /etc/sysconfig/locate 檔案：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>vi 
+      /etc/sysconfig/locate</strong></font><br>
+      <font color="#0099FF"># uptdatedb can skip directories for its database. 
+      The following parameter<br>
+      # says which ones.<br>
+      <font color="#00FFFF"># <font size="2">以下是原本變數的設定：</font></font><br>
+      # UPDATEDB_PRUNEPATHS=&quot;/mnt /cdrom /tmp /usr/tmp /var/tmp /var/spool 
+      /proc /media /sys&quot;</font><font color="#00FFFF"><font color="#FFFFFF">　</font></font><br>
+      <br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">執行 updatedb 
+      時，不會把此變數所定義的這些目錄內容更新至</font><font color="#FFFFFF"><font color="#00FFFF" size="2"> 
+      locate 資料庫，</font></font><font color="#00FFFF" size="2">因此使用</font><br>
+      <font color="#00FFFF">#</font><font color="#FFFFFF"><font color="#00FFFF" size="2"> 
+      </font><font color="#FFFFFF"><font color="#00FFFF" size="2"> locate 指令搜尋時，</font></font><font color="#00FFFF" size="2">這些目錄下的檔案將會搜尋不到。</font> 
+      </font><font color="#00FFFF"> </font><br>
+      <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">現在如果想讓 
+      locate 能找得到 /tmp 及 /var/spool </font></font><font color="#00FFFF" size="2">目錄下的檔案，則需將這兩個目錄<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font></font><font color="#00FFFF" size="2">從 
+      UPDATEDB_PRUNEPATHS</font> <font color="#00FFFF" size="2">變數中移除：</font><br>
+      <font color="#FFFF00">UPDATEDB_PRUNEPATHS=&quot;/mnt /cdrom /usr/tmp /var/tmp 
+      /proc /media /sys&quot; </font><strong>　<br>
+      </strong><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font><font color="#00FFFF" size="2">以上 是已經調整過的內容。 </font></font></font> 
+      </font></td>
+  </tr>
+</table>
+<br>
+<font color="#000000">　</font><font color="#000000">修改完 /etc/sysconfig/locate 
+之後，請執行 /etc/cron.daily 目錄下的 suse.de-updatedb script：<br>
+<br>
+</font> 
+<table width="30%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td nowrap><font color="#FFFFFF"><font color="#000000">suse:~ </font></font><font color="#000000">#<strong> 
+      /etc/cron.daily/suse.de-updatedb</strong></font></td>
+  </tr>
+</table>
+<br>
+　這樣就搞定了<font color="#000000">。</font><font color="#FF0000"><br>
+</font><font color="#000000"> <br>
+</font><br>
+<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( 柏青哥 
+  )</em></font> <br>
+</p>
+</body>
+</html>

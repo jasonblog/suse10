@@ -1,0 +1,1148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>柏青哥的 SuSE Linux -- 架設 Samba Server</title>
+<style type="text/css">
+<!--
+a {
+	color: #000099;
+	text-decoration: none;
+}
+-->
+</style>
+</head>
+
+<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
+<div align="left"> <a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
+  　　作者：陳柏菁 　E-mail：pachingko@ms96.url.com.tw 
+  <table width="100%" border="0">
+    <tr> 
+      <td nowrap> <div align="left"></div>
+        <div align="center"><font color="#0000FF" size="+1"><strong><font color="#000000" size="7">第十四章　架 
+          設 Samba Server</font></strong></font></div>
+        <div align="center"></div></td>
+    </tr>
+  </table>
+  <font color="#660066"><br>
+  <font color="#000000"><strong><font color="#000099" size="+1">索引：</font><font color="#0000FF" size="+1"><br>
+  </font></strong></font></font> 
+  <table width="100%" border="0">
+    <tr> 
+      <td colspan="3"><font color="#000099"><strong>14.1 <a href="#1">網路芳鄰與 SAMBA</a></strong></font></td>
+    </tr>
+    <tr> 
+      <td width="4%"><font color="#000099">&nbsp;</font></td>
+      <td width="6%" align="center" valign="top" nowrap><font color="#000099">14.1.1</font></td>
+      <td width="90%"><a href="#2">淺談網路芳鄰</a></td>
+    </tr>
+    <tr> 
+      <td><font color="#000099">&nbsp;</font></td>
+      <td align="center" valign="top" nowrap><font color="#000099">14.1.2</font></td>
+      <td><a href="#3">認識 SAMBA</a></td>
+    </tr>
+    <tr> 
+      <td><font color="#000099">&nbsp;</font></td>
+      <td align="center" valign="top" nowrap><font color="#000099">14.1.3</font></td>
+      <td><a href="#4">安裝 Samba 所需套件</a></td>
+    </tr>
+    <tr> 
+      <td colspan="3"><font color="#000099"><strong>14.2 <a href="#5">設定 SAMBA</a></strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#000099">&nbsp;</font></td>
+      <td align="center" valign="top" nowrap><font color="#000099">14.2.1</font></td>
+      <td><font color="#000099"><a href="#6">設定 smb.conf (不需認證)</a><br>
+        <a href="#7">檢查 smb.conf 的語法正確性及程式執行狀態</a> <br>
+        <a href="#8">Client 端測試</a> </font></td>
+    </tr>
+    <tr> 
+      <td><font color="#000099">&nbsp;</font></td>
+      <td align="center" valign="top" nowrap><font color="#000099">14.2.2</font></td>
+      <td><font color="#000099"><a href="#9">設定 SAMBA 認證</a> --- <a href="#10">Client 
+        端測試</a></font></td>
+    </tr>
+    <tr> 
+      <td colspan="3"><font color="#000099"><strong>14.3 <a href="#11">Linux 存取及掛載 
+        Windows 的分享目錄</a></strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#000099">&nbsp;</font></td>
+      <td align="center" valign="top" nowrap><font color="#000099">14.3.1</font></td>
+      <td><font color="#000099"><a href="#12">Linux 存取 Windows</a> --- <a href="#14">執行 
+        smbclient 來存取 Windows</a></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#000099">&nbsp;</font></td>
+      <td align="center" valign="top" nowrap><font color="#000099">14.3.2</font></td>
+      <td><font color="#000099"><a href="#15">Linux 掛載 Windows 的分享目錄</a> (smbmount) 
+        ---<br>
+        <a href="#16">設定開機時自動掛載 </a> </font></td>
+    </tr>
+    <tr> 
+      <td colspan="3"><font color="#000099"><strong>14.1 <a href="#17">綜合範例練習</a></strong></font></td>
+    </tr>
+  </table>
+  <br>
+  <hr>
+  <p><font color="#660066"><font color="#000000"><strong><font color="#0000FF" size="+1"> 
+    <a name="1"></a><font size="6">14.1 網路芳鄰與 SAMBA</font></font></strong><br>
+    <br>
+    <strong><font size="+1"><a name="2"></a><font size="5">14.1.1 淺談網路芳鄰</font></font></strong><br>
+    <br>
+    　相信大家都有使用過 Windows 的網路芳鄰吧，是不是感覺非常的方便呢，因為只要透過網路芳鄰，就可以實現 Windows 主機之間的資源分享，不論是要分享檔案或做列印分享，都可說是非常的 
+    easy。網路芳鄰所使用的是一種叫做 CIFS ( Common Internet File System ) 的檔案系統，因此如果您想於網芳中存取某台 
+    Windows 的資源，那這台 Windows 就可稱之為 CIFS Server。<br>
+    <br>
+    　網路芳鄰中所需使用的底層協定是當初 IBM 所發展的 NetBIOS ( Network Basic Input/Output System )，後來 
+    IBM 又繼而發展出 NetBIOS 的延伸版本 NetBEUI ( NetBIOS Extended User Interface ) 協定。NetBEUI 
+    為一傳輸協定，但 NetBIOS 只不過是一個應用程式介面 <font color="#660066">(</font></font><font color="#000000">API 
+    : Application Program Interface )，透過 NetBIOS 所提供一致性的應用程式介面，可讓電腦能夠經由不同的傳輸協定 
+    (如 TCP/IP、NetBEUI、NWLink) 來彼此進行通訊。<br>
+    <br>
+    　在同一個網路段裡頭，NetBEUI 可稱得上是效率最佳的通訊協定，不過由於其不可路由的特性，使得身處不同網段中的主機無法溝通，基於這個原因，Microsoft 
+    網路則運用了一種叫 NetBIOS Over TCP/IP 的技術，來解決這方面的問題。<br>
+    <br>
+    　對 NetBIOS 及 NetBEUI 有了基本認識後，再回到網路芳鄰裡。其實真正能讓網路芳鄰得以實現的一個關鍵，是在於微軟所發展的 SMB (Server 
+    Message Block) 協定，也就是說在 Windows 網路裡，提供檔案及列印分享服務的，就是 SMB 協定。<br>
+    <br>
+    </font></font>　NetBIOS 介面在 Windows 網路裡，並無法直接聯繫 Application 與其下傳輸協定的溝通，當 Application 
+    所要求的服務，如檔案共享、列印共享、磁碟共享 &#8230; 等等這些需求，需透過 SMB 做解譯的動作，然後再交由 NetBIOS 介面做處理，所以在這個過程中，SMB 
+    就擔任 Application 與 NetBIOS 介面的中介角色。 所以說，Application 所發出的命令由 SMB 解譯後，會交由 NetBIOS 
+    將其導向至相對應的傳輸協定之一 ，進而做網路分享服務： </p>
+  <table width="45%" border="1" align="center" cellspacing="0" bordercolor="#000000" bgcolor="#CCCCCC">
+    <tr> 
+      <td height="30" colspan="3" align="center" valign="middle" nowrap><strong>SMB</strong></td>
+    </tr>
+    <tr align="center"> 
+      <td height="43" valign="middle" nowrap><strong>NetBEUI</strong></td>
+      <td nowrap><strong>TCP/IP</strong></td>
+      <td valign="middle" nowrap><strong>NWLink</strong></td>
+    </tr>
+    <tr> 
+      <td height="30" colspan="3" align="center" valign="middle" nowrap><strong>Data 
+        Link Layer </strong></td>
+    </tr>
+  </table>
+  <br>
+  <div align="left"> <font color="#660066"><font color="#000000"><strong><font size="+1"><a name="3"></a><font size="5">14.1.2 
+    認識 SAMBA</font></font></strong><br>
+    <br>
+    　如果在您的網路內，存在著幾台 Unix-Like 的主機，而您想將它們加入網路芳鄰之中，來與 Windows 互相分享資源可行嗎 ? 當然是可以的，這就是今天要架設 
+    Samba Server 的目的了。Samba 整合了 NetBIOS 與 SMB</font> <font color="#000000">協定，使其運作在 
+    TCP/IP 協定上，因此可以讓 Windows 的使用者，在網芳中看到 Samba 這台主機的 NetBIOS name，進而能存取其所分享的資源。<br>
+    <br>
+    　SAMBA 的出現，可說是自由軟體界的一大貢獻。在 SAMBA 尚未發展出來以前，Windows Client 想要存取 Linux 的檔案，通常是利用 
+    FTP 來達成，不過麻煩的是當您想修改 Linux 主機上的檔案資料時，需先將該檔案下載回本地端，等改完後再上傳回去，且 ftp 還需先做好相關設定才行，看到這裡是不是感覺很麻煩呢。所以此時在 
+    Linux 上去架設 Samba Server 可說是上上策啊，因為 Windows Client 可以跟往常一樣，打開網路芳鄰來直接存取 Linux 
+    所分享的資源，甚至還可以在有開放寫入權限的檔案或目錄中，去建立及修改一些資料，如此一來不就解決了 Linux 與 Windows 的溝通管道了嗎 ?</font></font> 
+    <br>
+    <br>
+    　以下針對 SAMBA 的一些特色整理如下： <br>
+  </div>
+</div>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%" align="center" valign="top" nowrap>&nbsp;</td>
+    <td width="3%" align="center" valign="top" nowrap><font size="+1">˙</font></td>
+    <td width="95%">Linux 安裝 SAMBA 來加入 Windows 的網路芳鄰，使其成為網芳中的一份子，而能夠與 Windows 
+      互相分享資源。Samba 的設計，主要是讓 Unix-like 能加入 windows 中，而非 Windows 加入 Unix-like 中。</td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font size="+1">˙</font></td>
+    <td>可擔任 Printer Server，以提供 Windows Client 做遠端列印。</td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font size="+1">˙</font></td>
+    <td>可擔任檔案伺服器，針對不同使用者或群組提供不同的分享目錄，設定不同的權限。</td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font size="+1">˙</font></td>
+    <td>可擔任 PDC（Primary Domain Controler )，而成為管理 NT/2000 網域的主要網域控制站。</td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font size="+1">˙</font></td>
+    <td>可擔任 WINS Server，提供 NetBIOS 名稱解析服務。</td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font size="+1">˙</font></td>
+    <td>提供身分認證的功能。</td>
+  </tr>
+</table>
+<strong><font color="#000000" size="+1"><br>
+<a name="4"></a><font size="5">14.1.3 安裝 Samba 所需套件</font></font></strong><br>
+<br>
+<strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font><font size="4"> 
+Samba 所需套件</font></strong><br>
+<br>
+<table width="61%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td width="18%" nowrap> <div align="center"><font color="#000099"><strong>套件名稱</strong></font></div></td>
+    <td width="82%"> <div align="center"><font color="#000099"><strong>簡　單　描　述</strong></font></div></td>
+  </tr>
+  <tr> 
+    <td nowrap> <div align="center"><font color="#000099">samba</font></div></td>
+    <td><font color="#FFFFFF"><font color="#000099">Samba Server 的主要套件之一。</font></font></td>
+  </tr>
+  <tr> 
+    <td nowrap> <div align="center"><font color="#000099">samba-client</font></div></td>
+    <td><font color="#000099">此套件包含了 Samba 的設定檔及 smb client 所需的一些工具。</font></td>
+  </tr>
+</table>
+<br>
+<strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font><font size="4"> 
+查詢套件清單</font></strong><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">rpm 
+      -ql samba</font></strong><br>
+      <br>
+      </font> <table width="100%" border="0">
+        <tr> 
+          <td width="22%" valign="top" nowrap><font color="#FFFFFF">/etc/init.d/nmb</font></td>
+          <td width="78%"><font color="#00FFFF" size="2">提供 NetBIOS 服務的 script。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/etc/init.d/smb</font></td>
+          <td><font color="#00FFFF" size="2">管理 Samba 服務的 script。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/etc/samba/smbpasswd</font></td>
+          <td nowrap><font color="#00FFFF" size="2">提供 Samba 認證的檔案。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/sbin/smbd</font></td>
+          <td><font color="#00FFFF" size="2">提供檔案分享及列印服務的 daemon。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/sbin/nmbd</font></td>
+          <td><font color="#00FFFF" size="2">提供 NetBIOS 名稱解析服務的 daemon。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/sbin/rcnmb</font></td>
+          <td><font color="#00FFFF" size="2">連結至 /etc/init.d/nmb 的符號連結檔。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/sbin/rcsmb</font></td>
+          <td><font color="#00FFFF" size="2">連結至 /etc/init.d/smb 的符號連結檔。</font></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong><font color="#FFFF00"> 
+      rpm -ql samba-client</font><br>
+      <br>
+      </strong> </font> <table width="100%" border="0">
+        <tr> 
+          <td width="22%" valign="top" nowrap><font color="#FFFFFF">/etc/samba/smb.conf</font></td>
+          <td width="78%"><font color="#00FFFF" size="2">Samba 的主要設定檔。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/bin/findsmb</font></td>
+          <td><font color="#00FFFF" size="2">列出網芳中主機相關資訊的指令。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/bin/smbclient</font></td>
+          <td><font color="#00FFFF" size="2">Linux 在網芳裡存取其他主機所分享之資源時，所使用的指令。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/bin/smbmount</font></td>
+          <td><font color="#00FFFF" size="2">用來把分享目錄掛載到本地端的指令。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/bin/smbpasswd</font></td>
+          <td><font color="#00FFFF" size="2">設定 Samba 認證的工具。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/bin/smbumount</font></td>
+          <td><font color="#00FFFF" size="2">卸載分享目錄時所使用的指令。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/bin/testparm</font></td>
+          <td><font color="#00FFFF" size="2">測試 smb.conf 的設定語法有無錯誤的工具。</font></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<br>
+<strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font><font size="4"> 
+設定開機時啟動 SAMBA 服務</font></strong><br>
+<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td height="42" bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">chkconfig 
+      smb 35</font></strong><br>
+      suse:~ # <strong><font color="#FFFF00">chkconfig nmb 35</font></strong></font></td>
+  </tr>
+</table>
+<br>
+<br>
+<font color="#0000FF" size="+1"><strong><font color="#0000FF" size="+1"><strong><a name="5"></a></strong></font><font size="6">14.2 
+設定 SAMBA</font></strong></font><br>
+<br>
+　設定之前，先規劃一下我們的環境。待會兒的設定範例，就根據這裡的規劃來做設定。<br>
+<br>
+<table width="69%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td width="20%" align="center" valign="middle" nowrap> <div align="center"><font color="#000099"><strong>作業系統</strong></font></div></td>
+    <td width="80%" nowrap> <div align="center"><font color="#000099"><strong>規　劃　項　目</strong></font></div></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#0000CC" face="細明體"><strong>SuSE 
+      Linux<br>
+      </strong></font></td>
+    <td nowrap><font color="#0000CC"> <font color="#0000CC" face="細明體">電腦名稱：suse</font> 
+      <br>
+      <font color="#0000CC" face="細明體">分享目錄：/tmp/sharedir (Client 不需認證)</font><br>
+      <font face="細明體">　　　　　</font><font color="#0000CC" face="細明體">/home/authdir 
+      (Client 需要認證)</font> </font></td>
+  </tr>
+</table>
+<br>
+<br>
+<font size="+1"><strong><a name="6"></a><font size="5">14.2.1 設定 smb.conf</font></strong></font><font size="5"> 
+(不需認證)</font><br>
+<br>
+<font color="#FFFFFF"><font color="#00FFFF"><font color="#000000">　設定檔內容主要是由兩個部分所組成的，第一部份是 
+global 整體設定區段，第二部分則是分享目錄區段。</font></font><font color="#000000">另外檔案中的註解符號為 &quot;#&quot; 
+或 &quot;;&quot;。</font></font><br>
+<br>
+　好了，接著就根據剛剛的規劃，來練習如何設定一台基本的 Samba Server。<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#CCCCCC"><font size="2">1. 先建立分享目錄，並讓所有人對此目錄具寫入權限：</font></font><font color="#999999"><br>
+      </font><font color="#FFFFFF"> suse:~ #<font color="#FFFF00"> <strong>mkdir 
+      /tmp/sharedir</strong></font>　<br>
+      suse:~ #<strong> <font color="#FFFF00">chmod 777 /tmp/sharedir</font></strong>　<br>
+      <br>
+      </font><font color="#CCCCCC">&nbsp;</font><font color="#FFFFFF"><font color="#CCCCCC" size="2">2. 
+      設定 smb.conf：</font><br>
+      suse:~ # <strong><font color="#FFFF00">vi /etc/samba/smb.conf</font></strong><br>
+      <font color="#00FFFF"># <font size="2">global 區段</font></font><br>
+      [global]<br>
+      　　　workgroup = workgroup<br>
+      　　　server string = Samba Server <br>
+      　　　security = share<br>
+      　　　netbios name = suse<br>
+      <font color="#00FFFF"># <font size="2">分享目錄區段</font></font><br>
+      [Public]<br>
+      　　　comment = Share Directory<br>
+      　　　public = yes<br>
+      　　　path = /tmp/sharedir<br>
+      　　　writable = yes </font></td>
+  </tr>
+</table>
+<p><strong> <font size="4"> 　</font></strong>這裡分兩個部分來說明，分別是 global 區段及分享目錄區段：</p>
+<ol>
+  <strong><font size="4">global 區段：</font><br>
+  <br>
+  </strong> 
+  <table width="96%" border="0">
+    <tr> 
+      <td width="4%" align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td width="96%"><font color="#000099"><strong>workgroup</strong></font></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle">&nbsp;</td>
+      <td>設定 Samba Server 所要加入的工作群組為何。請設定成與網芳裡 Windows 的工作群組相同即可。 </td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td><strong><font color="#000099">server string</font></strong></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle">&nbsp;</td>
+      <td>這只是 Client 端在網芳中所看到這台 SAMBA 主機的註解說明而已，不設也沒關係。 </td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td><strong><font color="#000099">security</font></strong></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle">&nbsp;</td>
+      <td>設定 Client 端登入 Samba 時的安全等級，一般常看到的有以下四種：<br> <table width="100%" border="0">
+          <tr> 
+            <td width="4%" align="center" valign="top"><font size="+1">˙</font></td>
+            <td width="96%" valign="top" nowrap><strong>share：</strong>這是最寬鬆的等級，Client 
+              端不須經過認證程序，即可存取 Samba 所分享的資源。</td>
+          </tr>
+          <tr> 
+            <td align="center" valign="top"><font size="+1">˙</font></td>
+            <td valign="top" nowrap><strong>user</strong><strong>：</strong>使用者需先通過認證方可存取，而帳號密碼的檢查工作為 
+              Samba 本身來負責。此為預設值。</td>
+          </tr>
+          <tr> 
+            <td align="center" valign="top"><font size="+1">˙</font></td>
+            <td valign="top" nowrap><strong>server：</strong>使用者需先通過認證方可存取，但帳號密碼的檢查工作是靠另外一台 
+              SMB Server 來負責。</td>
+          </tr>
+          <tr> 
+            <td align="center" valign="top"><font size="+1">˙</font></td>
+            <td valign="top" nowrap><strong>domain</strong><strong>：</strong>當 
+              Samba Server 加入 NT 網域時，藉由另一台 NT 網域控制站主機來進行認證的工作。</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td><strong><font color="#000099">netbios name</font></strong></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle">&nbsp;</td>
+      <td>設定這台 Samba Server 的 NetBIOS 電腦名稱，像我們這裡設定為 suse，那麼 Client 端在網芳中所看到的這台 
+        Samba Server 的名稱就是 suse。如果沒設定這個參數的話，則預設的 NetBIOS name，為您本身的主機名稱 (HOSTNAME)。 
+      </td>
+    </tr>
+  </table>
+  <strong><br>
+  </strong> <strong><font size="4">分享目錄區段</font></strong><font size="4">：</font><br>
+  <br>
+  首先在 [ ] 內所指定的名稱，就是 Client 端在網芳中所看到 Samba 分享目錄的名稱，這個名稱可設定成與真正要分享的目錄名稱相同或不同，看您自己吧 
+  ! <br>
+  <br>
+  <table width="96%" border="0">
+    <tr> 
+      <td width="4%" align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td width="96%"><strong><font color="#000099">comment</font></strong></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle">&nbsp;</td>
+      <td>提供給 Client 端在網芳中所看到該分享目錄的註解說明而已。 </td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td><strong><font color="#000099">public</font></strong></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle">&nbsp;</td>
+      <td>設定此目錄是否允許公開分享。因為我們是採用「security = share」的最寬鬆等級，那當然就設成 yes 囉。如果這個參數沒設定的話，則預設是 
+        no。另外您也可以使用「guest ok」來代替，比如「public = yes」就等於「guest ok = yes」。</td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td><strong><font color="#000099">path</font></strong></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle">&nbsp;</td>
+      <td>設定分享目錄的實際路徑。 </td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td><strong><font color="#000099">writable</font></strong></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle">&nbsp;</td>
+      <td>是否允許對此目錄及目錄中的檔案具有寫入的權限。如果使用者本身對該目錄原本就不具有寫入的權限，就算這裡設定成 yes 也無濟於事 ; 相反過來，若使用者原本已具備寫入權限，但這裡設定成 
+        no，則還是無法寫入。預設是「writable = no」或「read only = yes」。 </td>
+    </tr>
+  </table>
+</ol>
+<p> 　設定完成後，請啟動 SAMBA 服務：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">rcsmb 
+      start</font></strong><br>
+      Starting Samba SMB daemon 　　　 done<br>
+      <br>
+      suse:~ #<strong><font color="#FFFF00"> rcnmb start</font></strong><br>
+      Starting Samba NMB daemon 　　　done</font></td>
+  </tr>
+</table>
+<p> <strong><a name="7"></a><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  檢查 smb.conf 的語法正確性及程式執行狀態</font></strong><br>
+  <br>
+  　 首先利用 testparm 來做個基本測試：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
+      <strong>testparm</strong></font><br>
+      <br>
+      　　　　<font color="#00FFFF" size="2">：略</font><br>
+      Loaded services file OK.<br>
+      Server role : ROLE_STANDALONE<br>
+      Press enter to see a dump of your service definitions <font size="2"><font color="#00FFFF">← 
+      按下 Enter 鍵來繼續。</font><br>
+      <br>
+      </font># Global parameters<br>
+      [global]<br>
+      　　　netbios name = SUSE<br>
+      　　　server string = Samba Server <br>
+      　　　security = SHARE<br>
+      　　　map to guest = Bad User<br>
+      　　　username map = /etc/samba/smbusers <br>
+      　　　　　<font color="#00FFFF" size="2">：略</font><font size="2"><br>
+      </font><br>
+      [Public]<br>
+      　　　comment = Share Directory<br>
+      　　　path = /tmp/sharedir<br>
+      　　　read only = No<br>
+      　　　guest ok = Yes <br>
+      <br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">假使 smb.conf 
+      裡的設定參數設定有誤，則在使用 testparm 去測試時，會有錯誤訊息。<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">您可做個實驗，</font></font><font color="#00FFFF" size="2">故意把 
+      [Public] 區段中的writable 寫成 write，接著再執行 testparm 時<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font><font color="#FFFFFF"><font color="#00FFFF" size="2"></font></font></font><font color="#00FFFF" size="2">就會看到如下的訊息：<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2">Unknown parameter encountered: 
+      &quot;write&quot;<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2">Ignoring unknown parameter 
+      &quot;write&quot; </font></font></td>
+  </tr>
+</table>
+<br>
+　再來可檢查相關程式的執行狀態：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>netstat 
+      -anp | egrep ':137|:138|:139|:445'</strong></font><br>
+      </font><font color="#FFFFFF" face="細明體">tcp　0　0 0.0.0.0:139　　　　　0.0.0.0:*　　LISTEN 
+      　8245/smbd<br>
+      tcp　0　0 0.0.0.0:445　　　　　0.0.0.0:*　　LISTEN 　8245/smbd<br>
+      udp　0　0 192.168.1.111:137　　0.0.0.0:*　　　　　 　8258/nmbd<br>
+      udp　0　0 0.0.0.0:137　　　　　0.0.0.0:*　　　　　 　8258/nmbd<br>
+      udp　0　0 192.168.1.111:138　　0.0.0.0:*　　　　　 　8258/nmbd<br>
+      udp　0　0 0.0.0.0:138　　　　　0.0.0.0:*　 　　　　　8258/nmbd</font><font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF"><br>
+      suse:~ # <font color="#FFFF00"><strong>ps aux | grep mbd</strong></font><br>
+      <font face="細明體">root　8245　0.0　1.1　8860　3008　?</font></font><font color="#FFFFFF" face="細明體"> 
+      Ss　16:46 0:00 /usr/sbin/smbd -D -s /etc/samba/smb.conf<br>
+      root　8246　0.0　1.1　8860　2960　? S　 16:46 0:00 /usr/sbin/smbd -D -s /etc/samba/smb.conf<br>
+      root　8258　0.0　0.7　5804　1960　? Ss　16:46 0:00 /usr/sbin/nmbd -D -s /etc/samba/smb.conf</font><font color="#FFFFFF">&nbsp; 
+      </font></td>
+  </tr>
+</table>
+<br>
+<font color="#000000"><strong><a name="8"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
+Client 端測試</font></strong></font><br>
+<p>　回到 Windows 2000 主機，然後打開網路芳鄰，此時應該可以找到 suse 這台主機噢：</p>
+<p align="center"><img src="../picture/samba1.png" tppabs="http://www.suse.url.tw/picture/samba1.png" width="556" height="382"></p>
+<p> 　對著 Suse 的 icon 點選進去，就可以看到 SAMBA 所分享的目錄：</p>
+<p align="center"> <img src="../picture/samba2.png" tppabs="http://www.suse.url.tw/picture/samba2.png" width="556" height="382"></p>
+<p> 　再從 [Public] 點選進入，並嘗試新增一個資料夾：</p>
+<p align="center"> <img src="../picture/samba3.png" tppabs="http://www.suse.url.tw/picture/samba3.png" width="556" height="375"></p>
+<p> 　瞧，已經成功建立起 testdir 了：</p>
+<p align="center"> <img src="../picture/samba4.png" tppabs="http://www.suse.url.tw/picture/samba4.png" width="556" height="382"></p>
+<div align="left"> 
+  <p><br>
+    <font size="+1"><strong><a name="9"></a><font size="5">14.2.2 設定 Samba 認證</font></strong></font><br>
+    <br>
+    　上一小節由於是採取最寬鬆的等級，所以 everybody 都可以存取 Samba。如果您所分享的目錄是希望使用者需經認證程序方能存取，那麼就需做一些調整才行。以下是筆者對整個 
+    samba 認證的設定步驟：</p>
+</div>
+<ol>
+  <li> 
+    <div align="left"><strong><font size="4">建立分享目錄</font></strong><br>
+      <br>
+      <table width="96%" border="0">
+        <tr> 
+          <td height="74" bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>mkdir 
+            /home/authdir　</strong></font><font color="#00FFFF" size="2"><br>
+            </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">建立認證目錄。</font><br>
+            <br>
+            suse:~ #<font color="#FFFF00"><strong> cp /etc/passwd /home/authdir/file　</strong></font><font color="#00FFFF" size="2"><br>
+            </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"> 
+            複製 passwd 至 /home/authdir/file 。</font></font> <font color="#FFFFFF"><br>
+            <br>
+            suse:~ # <font color="#FFFF00"><strong>chmod 1777 /home/authdir</strong></font>　<br>
+            <font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">讓所有人對 
+            authdir 具所有權限，且讓 authdir 有 Sticky bit 的屬性。</font><font color="#FFFFFF"><br>
+            <br>
+            suse:~ # <font color="#FFFF00"><strong>chmod 666 /home/authdir/file</strong></font>　<br>
+            <font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">讓所有人皆可修改 
+            file 檔案。</font></td>
+        </tr>
+      </table>
+      <br>
+    </div>
+  </li>
+  <li><strong><font size="4">設定 smb.conf</font></strong><br>
+    <br>
+    <table width="96%" border="0">
+      <tr> 
+        <td height="690" bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong> 
+          <font color="#FFFF00">vi /etc/samba/smb.conf</font><br>
+          <br>
+          [global]</strong><br>
+          　　　<strong>workgroup = workgroup<br>
+          　　　server string = Samba Server<br>
+          　　　security = user　</strong><font color="#00FFFF" size="2"><br>
+          　　　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">使用者在存取 
+          SAMBA 時，需輸入帳號密碼，且是透過此台 SAMBA 做認證。<br>
+          </font><strong><br>
+          　　　netbios name = suse</strong><br>
+          　　　 <strong>encrypt passwords = yes　</strong><br>
+          <font color="#00FFFF" size="2">　　　　</font><font color="#00FFFF">#</font> 
+          </font><font color="#00FFFF" size="2">在 SAMBA 與 </font><font color="#00FFFF"><font size="2"> 
+          Client </font></font><font color="#00FFFF" size="2"> 端之間，是以加密方式來傳送密碼。 
+          </font><font color="#FFFFFF"><br>
+          <br>
+          　　　 <strong>smb passwd file = /etc/samba/smbpasswd　</strong><font color="#00FFFF" size="2"><br>
+          　　　　</font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">使用者認證時所依據的檔案。</font><strong><br>
+          　　　</strong><font color="#0099FF"><font color="#99FF66">#</font></font></font><font color="#99FF66"><font size="2"> 
+          以上兩個參數為預設，所以也可以不做設定。</font></font><font color="#FFFFFF"><strong><br>
+          <br>
+          　　　hosts allow = 192.168.1.0/24 192.168.5.　</strong><font color="#00FFFF" size="2"><br>
+          　　　　</font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
+          設定允許存取的來源端。 </font><strong><br>
+          <br>
+          [Auth]<br>
+          　　　comment = Authentication<br>
+          　　　public = no　</strong><br>
+          <font color="#00FFFF" size="2">　　　　</font><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">因為要做認證，所以這裡設定為不公開分享。這是預設值。</font><font color="#FFFFFF"><strong><br>
+          <br>
+          　　　path = /home/authdir </strong><br>
+          <font color="#00FFFF" size="2">　　　　</font><font color="#FFFFFF"><font color="#00FFFF"># 
+          </font></font><font color="#00FFFF" size="2">分享目錄的實際路徑。</font> <strong><br>
+          <br>
+          　　　browseable = yes　</strong><font color="#00FFFF" size="2"><br>
+          　　　　</font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"> 
+          在網芳中，允許看到 Auth 這個分享目錄名稱。這是預設值。</font><strong><br>
+          <br>
+          　　　write list = barry,tina 　</strong><font color="#00FFFF" size="2"><br>
+          　　　　</font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"> 
+          設定擁有寫入權限的使用者或群組名單。 </font><strong><br>
+          　　　　　　<br>
+          　　　valid users = barry,tina<br>
+          <font color="#00FFFF"> 　　　</font></strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">設定能存取此目錄的有效使用者及群組名單。<br>
+          </font><strong><br>
+          　　　create mask = 0600　</strong><font color="#00FFFF" size="2"><br>
+          　　　　</font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">設定使用者在該目錄下新增檔案時的預設權限為 
+          600。 </font><strong><br>
+          <br>
+          　　　directory mask = 0700　</strong><font color="#00FFFF" size="2"><br>
+          　　　　</font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"> 
+          設定使用者在該目錄下新增目錄時的預設權限為 700。 <br>
+          <br>
+          </font><font color="#FFFFFF">suse:~ #</font> <strong><font color="#FFFF00">rcsmb 
+          restart<font size="2"> </font></font></strong></font></td>
+      </tr>
+    </table>
+    <br>
+    　針對這個範例，稍微補充幾個參數的詳細用法：<br>
+    <br>
+    <table width="96%" border="0">
+      <tr> 
+        <td width="2%">&nbsp;</td>
+        <td width="3%" align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+        <td width="95%"><strong><font color="#000099">hosts allow</font></strong><font color="#000099">、<strong>hosts 
+          deny</strong></font></td>
+      </tr>
+      <tr> 
+        <td>&nbsp;</td>
+        <td align="center" valign="middle">&nbsp;</td>
+        <td>當您只想允許少數來源端做存取時，設定 hosts allow 即可 ﹔若只想拒絕少數來源端做存取，則設定 hosts deny 就行了。如 
+          hosts allow 及 hosts deny 同時做設定時，則會先 allow 再 deny。當來源端符合 hosts allow 
+          的設定，就不再往下比對，否則繼續比對 hosts deny，若是兩者都不符合時，則結果是會被 allow 的。建議您在對來源端做控管時，只設定這兩個參數中的其中一個就行了，這樣也才不容易搞混。<br>
+          再來就是其設定格式可以使用主機名稱或 IP 位址，之間可用「, 」或空白字元做區隔，比如：<br> <font color="#0000FF">hosts 
+          allow = 192.168.10.0/255.255.255.0 , .paching.com.tw </font></td>
+      </tr>
+      <tr> 
+        <td>&nbsp;</td>
+        <td align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+        <td><strong><font color="#000099">browseable</font></strong></td>
+      </tr>
+      <tr> 
+        <td>&nbsp;</td>
+        <td align="center" valign="middle">&nbsp;</td>
+        <td><p>是否可以在網芳中看到此分享目錄的名稱。若設定成 No，則使用者無法看見此目錄，就好像被隱藏起來一樣。不過如果 Client 事先已經知道此分享目錄名稱時，則可藉由 
+            [開始] → [執行]，然後輸入「\\suse\auth」來作存取：</p>
+          <p align="center"><img src="../picture/samba7.png" tppabs="http://www.suse.url.tw/picture/samba7.png" width="381" height="172"></p></td>
+      </tr>
+      <tr> 
+        <td>&nbsp;</td>
+        <td align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+        <td><strong><font color="#000099">write list</font></strong></td>
+      </tr>
+      <tr> 
+        <td>&nbsp;</td>
+        <td align="center" valign="middle">&nbsp;</td>
+        <td>這個參數需要在預設「read-only = yes」的情況下才有效。假使您同時設定了「writable = yes」與「write 
+          list」時，那麼當本身具有寫入權限的使用者，其雖未被列在「write list」的名單之中，但這個使用者還是具有寫入權限的。<br>
+          另外也可以針對群組來設限，只要在群組名稱之前加上「@」即可。比如：<br> <font color="#0000FF">write list 
+          = barry,mary,@group01,@group02</font><br>
+          而名稱與名稱之間可用「 ,」或空白字元做區隔。</td>
+      </tr>
+      <tr> 
+        <td>&nbsp;</td>
+        <td align="center" valign="middle"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+        <td><strong><font color="#000099">valid users</font></strong></td>
+      </tr>
+      <tr> 
+        <td>&nbsp;</td>
+        <td align="center" valign="middle">&nbsp;</td>
+        <td>當某個目錄設定此參數時，則只有在列表之中的使用者或群組成員，才可存取這個目錄。至於其設定格式與「write list」相同，不再贅述。</td>
+      </tr>
+    </table>
+    <br>
+    　設定完成後，請重新啟動 SAMBA：<br>
+    <br>
+    <table width="96%" border="0">
+      <tr> 
+        <td height="25" bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">rcsmb 
+          restart</font></strong></font></td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><strong><font size="4">建立使用者認證資料<br>
+    <br>
+    </font></strong> 　待會兒所建立的認證帳號，必須已經存在於 /etc/passwd 之中才行。至於密碼部分，可設定成與 Linux 
+    系統上的密碼 ( /etc/shadow ) 相同或不同，但不管如何設定，使用者最終還是要以這裡所設定的 Samba 密碼為主。<br>
+    <br>
+    　建立 Samba 認證資料的指令為 smbpasswd，至於所建立完成後的帳號密碼，則會產生在 /etc/samba/smbpasswd 檔案內，也就是說使用者在做認證時，所依據的就是這個檔案啦。<font size="4"><strong><br>
+    <br>
+    </strong></font> 
+    <table width="96%" border="0">
+      <tr> 
+        <td height="121" bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+          smbpasswd -a barry</strong></font><br>
+          New SMB password :<br>
+          Retype new SMB password :<br>
+          Added user barry.<br>
+          <br>
+          suse:~ # <font color="#FFFF00"><strong>cat /etc/samba/smbpasswd</strong></font><br>
+          barry:1000:2A89DBF8EE6DF912AAD3B435B51404EE:782E8614AE676814F2C0A1E5994E09E8:[U 
+          ]:LCT-436E9104: </font></td>
+      </tr>
+    </table>
+    <strong><font size="4"><br>
+    　</font></strong>第一次建立該使用者認證資料時，需加上 -a ( add 之意 ) 參數，爾後想要修改這個使用者的 Samba 密碼，則執行「smbpasswd 
+    barry」即可。而當您想把某個使用者從認證檔案中移除時，可執行「smbpasswd -x username」，不然也可以用 vi 進去編輯，直接將該帳號刪除就行了。 
+  </li>
+</ol>
+<p><strong><font color="#000000"><strong> <img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font><font size="+1"> 
+  [ homes ] 區段說明</font></strong><br>
+  <br>
+  　在 smb.conf 裡，會看到一個 homes 的 section，此乃一個特殊的區段設計，其主要作用是為了讓每個認證進來的使用者都能存取自己的家目錄。請注意，homes 
+  這個名稱請勿隨意更改。至於其它相關說明，請參考以下：</p>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr> 
+    <td height="104"><font color="#FFFFFF">[homes]<font color="#00FFFF" size="2">　</font><br>
+      　　　comment = Home Directories<br>
+      　　　valid users = %S<br>
+      　　　browseable = No<br>
+      　　　read only = No<br>
+      　　　inherit acls = Yes</font></td>
+  </tr>
+</table>
+<br>
+<font color="#FFFFFF"><font color="#000000">　「<strong>valid users = %S</strong>」，是表示認證進來的使用者會被當成有效的使用者，且在使用者連線成功後，SAMBA 
+會以使用者的登入帳號名稱作為分享目錄名稱，比如使用者 barry 登入後，就會看到 barry這個分享目錄，因為那個 homes 已經被 barry 名稱取代掉了。<br>
+<br>
+　另外在 [homes] 區段中，並沒有使用 path 去指定路徑，這沒關係啦，因為系統會自動幫您指定到預設的家目錄位置，當然您也可以改變這個預設的路徑，例如當設定成</font><font color="#FFFFFF"><font color="#000000">「</font></font><font color="#000000">path 
+= /userdir/%S」時，則在 barry 登入後，對於 barry 這個分享目錄的實際存取路徑為 /userdir/barry。<br>
+<br>
+ 　再來是「<strong>browseable = No</strong>」，這可不是說使用者看不到自己的家目錄噢，因為這裡的 
+browseable 是繼承 global 裡的設定值 ( global 預設是 browseable = Yes )，也就是說每個使用者都能看到自己的家目錄，但對其它 
+user 來說，您的家目錄是會被隱藏起來的。<br>
+<br>
+　最後是「<strong>inherit acls</strong> <strong>= Yes</strong>」，這是說如果目前的目錄有設定 default 
+acl 的話，則將來在此目錄下所新增的子目錄，其權限會繼承這個目錄的 default acl 設定。另外把這個參數設定成 yes 時，會凌駕在 create 
+mask 及 directory mask 之上，但如果該目錄沒設定 default acl 的話，則不受影響。</font></font><br>
+<p align="left"><strong><a name="10"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
+  Client 端測試<br>
+  <br>
+  </font></strong>　打開網路芳鄰並點選 Suse 主機，此時會出現要求您輸入帳號密碼的對話視窗：</p>
+<p align="center"><img src="../picture/samba5.png" tppabs="http://www.suse.url.tw/picture/samba5.png" width="405" height="131"></p>
+<p align="left"> 　認證通過後，就可以看到 Suse 主機所分享的目錄：</p>
+<p align="center"> <img src="../picture/samba6.png" tppabs="http://www.suse.url.tw/picture/samba6.png" width="545" height="398"></p>
+<p align="left">　有留意到多一個 barry 的分享目錄嗎 ? 這就是 [homes] 區段所帶來的效果。<br>
+  <br>
+  　另外可嘗試在 Auth 目錄中去新增檔案目錄，並檢視這些檔案目錄的預設權限是不是與 &quot;create mask&quot; 與 &quot;directory 
+  mask&quot; 所指定的相同 ? 再來去修改 Auth 目錄下的 file 檔案，看能否成功寫入 ? 萬一練習過程發生問題的話，請再好好檢查一下您相關權限的設定。<strong><font size="+1"> 
+  </font></strong><br>
+  <strong><font color="#0000FF" size="+2"><br>
+  </font><font color="#0000FF" size="+1"><font size="6"><a name="11"></a>14.3 
+  Linux 存取及掛載 Windows 的分享目錄</font></font></strong><br>
+  <br>
+  　前面的範例都是以 Linux 擔任 Samba Server，來提供 Client 端存取，現在則是要以 Linux 作為 Client 端，來存取 
+  Windows 的分享資源。話不多說，馬上來看看要如何操作。<br>
+  <br>
+  <font size="+1"><strong><a name="12"></a><font size="5">14.3.1 Linux 存取 Windows</font></strong></font><br>
+  <br>
+  　 這個地方是以 Windows 2000 來擔任 CIFS Server，因此需先設定好要 share 的資料夾及認證帳號，如此方能讓 Linux Client 
+  做存取。要如何 share 資料夾，相信大家都會，這裡就不說明。至於認證帳號的部分，請從 [開始] → [設定] → [控制台] 進入，並選取 [使用者和密碼]，再來就是點選 
+  [新增]，以建立使用者帳號及密碼 ﹔如果您是用 XP 的話，那認證帳號這部分請略過。<br>
+  <br>
+  　等 Windows 搞定後，接著就教大家如何在 Linux 上頭去存取 Windows 的資源囉。<strong><br>
+  <br>
+  <a name="14"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="+1">執行 
+  smbclient 來存取 Windows</font></strong><br>
+  <br>
+  　在 Linux 文字介面下，要存取 Windows 或 Unix-Like 的分享目錄時，需使用 smbclient<strong> </strong>這支程式，它可以提供一個類似於 
+  ftp 的操作介面，來讓使用者輸入指令。看一下要怎麼做吧：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">barry@suse:~&gt; <strong><font color="#FFFF00">smbclient 
+      -L newwins</font></strong>　<br>
+      <font face="細明體">Password :　<br>
+      Domain=[NEWWINS] OS=[Windows 5.0] Server=[Windows 2000 LAN Manager]<br>
+      <br>
+      　　Sharename 　　　　　Type 　　　Comment<br>
+      　　-------------- 　　 ------- 　 ------------<br>
+      　　IPC$ 　　　　　　　 IPC<br>
+      　　D$　　　　　　　　　Disk<br>
+      </font></font><font color="#FFFF00" face="細明體">　　newdir<font color="#FFFFFF">　　　　　　　</font></font><font color="#FFFFFF" face="細明體">Disk</font><font color="#FFFFFF"><br>
+      </font></td>
+  </tr>
+</table>
+<br>
+　newwins 是筆者 Win2000 主機的 netbios name，而使用 -L 參數，就是先查詢一下那一台 Windows 有提供哪些分享資源，這樣等等才方便直接對其做存取。<br>
+<br>
+　另外在密碼的部分，由於我是以 barry 身分登入 Linux，因此請輸入 Win2000 主機上頭，使用者 barry 的密碼，但若 CIFS Server 
+為 XP 的話，就直接按下 Enter 鍵即可。<br>
+<br>
+　從剛剛指令的執行結果，已知道 newwins 主機有個分享目錄 newdir，所以接著就對其做存取：<br>
+<br>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr> 
+    <td><font color="#FFFFFF">barry@suse:~&gt;<strong><font color="#FFFF00"> smbclient 
+      //newwins/newdir</font></strong><br>
+      Password :<br>
+      Domain=[NEWWINS] OS=[Windows 5.0] Server=[Windows 2000 LAN Manager]<br>
+      smb: \&gt;　</font></td>
+  </tr>
+</table>
+<br>
+　當您看到 smb:\&gt; 提示號時，表示已經進入到 newdir 目錄中囉。而成功登入後，若不曉得在提示號下可以使用什麼指令，可以先輸入「?」或「help」來尋求幫忙，此時您會看到一堆指令，如想知道某個指令的用法，就在「?」或「help」後面輸入指令名稱即可查詢。<br>
+<br>
+　這裡我們就稍微簡單說明一下幾個基本指令的用法好了，比如像<strong> ls</strong> 及<strong> dir </strong>是列出目錄的內容，<strong>cd 
+</strong>是切換目錄，<strong>mkdir</strong> 及 <strong>md</strong> 是建立新目錄，<strong>rmdir 
+</strong>及 <strong>rd</strong> 是刪除空目錄，<strong>rm</strong> 及 <strong>del</strong> 
+是刪除檔案，<strong>pwd</strong> 是顯示目前工作目錄位置，<strong>more</strong> 是瀏覽檔案內容，<strong>rename</strong> 
+是對檔案或目錄重新命名，<strong>get </strong>是下載檔案，<strong>mget </strong>是下載多檔案，若是上傳就用 <strong>put 
+</strong>及 <strong>mput</strong>，最後離開可輸入<strong> exit</strong>、<strong>quit</strong> 
+或 <strong>q</strong> 指令。<br>
+<br>
+　如果您想使用其它使用者的帳號去做認證，可利用 <strong>-</strong>U 參數來指定： <br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF">barry@suse:~&gt; <font color="#FFFF00"><strong>smbclient 
+      //newwins/newdir -U mary</strong></font><br>
+      Password :<br>
+      Domain=[NEWWINS] OS=[Windows 5.0] Server=[Windows 2000 LAN Manager]<br>
+      smb: \&gt;</font></td>
+  </tr>
+</table>
+<br>
+　此時所輸入的密碼，即是 Win2000 主機中 mary 的密碼囉。<br>
+<br>
+<strong><font size="+1"> <a name="15"></a><font size="5">14.3.2 Linux 掛載 Windows 
+的分享目錄</font></font></strong><br>
+<br>
+　有時候，您會覺得在 smb 提示號下操作起來綁手綁腳的，非常的不方便，不過還好在 samba-client 套件裡，有提供<strong> </strong>smbmount 
+指令，來讓您將分享目錄掛載至本地端，就好像在本機操作般方便 ﹔至於卸載時則執行<strong> </strong>smbumount 即可。不過如果想讓一般使用者能夠執行這兩個指令，尚需先將相關程式給予 
+SUID 的屬性： <br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">cd 
+      /usr/bin</font></strong><br>
+      suse:/usr/bin # <font color="#FFFF00"><strong>chmod 4755 smbmnt smbumount</strong></font><br>
+      suse:/usr/bin # <font color="#FFFF00"><strong>ls -l smbmnt smbumount</strong></font><br>
+      -rw<strong>s</strong>r-xr-x 1 root root 9252 Jun 3 03:06<font color="#00FF00"> 
+      smbmnt</font>　<br>
+      -rw<strong>s</strong>r-xr-x 1 root root 7104 Jun 3 03:06<font color="#00FF00"> 
+      smbumount</font> </font></td>
+  </tr>
+</table>
+<br>
+　接著就可以用一般使用者的身分來掛載看看：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#00FFFF"># <font size="2">先建立掛載點：</font></font><font color="#FFFFFF"><br>
+      barry@suse:~&gt; <font color="#FFFF00"><strong>mkdir smb</strong></font>　<font size="2"><br>
+      </font><br>
+      </font><font color="#00FFFF"># <font size="2">執行掛載：</font></font><font color="#FFFFFF"><br>
+      barry@suse:~&gt;<strong><font color="#FFFF00"> smbmount //newwins/newdir 
+      smb</font></strong><br>
+      Password :<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF" size="2"><br>
+      </font><font color="#00FFFF"># <font size="2">新增檔案至資料夾裡：</font></font><font color="#00FFFF" size="2"><br>
+      </font>barry@suse:~&gt; <font color="#FFFF00"><strong>cp /etc/passwd smb/barryfile</strong></font><br>
+      <br>
+      <font color="#00FFFF"># <font size="2">檢查看看：</font></font><br>
+      barry@suse:~&gt;<strong><font color="#FFFF00"> ls smb</font></strong><br>
+      barryfile　<font color="#00FFFF" size="2">← 成功被複製過去了。是不是感覺很方便呢。<br>
+      <br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># <font size="2">實做完畢後執行卸載：</font></font></font><font color="#00FFFF" size="2"><br>
+      </font>barry@suse:~&gt; <font color="#FFFF00"><strong>smbumount smb</strong><font color="#00FFFF" size="2">　<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font><font color="#00FFFF" size="2">執行 smbumount 
+      時，只能針對掛載點進行卸載。</font></font></font></td>
+  </tr>
+</table>
+<p>　除了使用剛剛學過的那兩個指令來掛載卸載外，您亦可使用 mount 及 umount 來執行，不過得用 root 身分就是了：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td height="210" bgcolor="#000000"><font color="#00FFFF"># <font size="2">先建立掛載點：</font></font><font color="#FFFFFF"><br>
+      suse:~ #<font color="#FFFF00"><strong> mkdir /mnt/smb</strong></font><br>
+      <br>
+      </font><font color="#00FFFF"># <font size="2">執行掛載：</font></font><font color="#FFFFFF"><br>
+      suse:~ # <font color="#FFFF00"><strong>mount -t smbfs //newwins/newdir /mnt/smb</strong></font><br>
+      Password :<br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">密碼部分，需輸入 
+      win2000 上 root 的密碼。</font><font color="#FFFFFF"><br>
+      <br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">卸載時</font><font color="#FFFFFF"><font color="#00FFFF" size="2">可以針對來源端或掛載點進行卸載，如下：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>umount /mnt/smb</strong></font><br>
+      suse:~ #<font color="#FFFF00"><strong> umount //newwins/newdir　<br>
+      </strong></font><font size="2"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font><font size="2"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"> 
+      </font></font></font></font><font color="#00FFFF">另外您可指定以某個使用者的身分進行掛載：</font><br>
+      </font>suse:~ # <strong><font color="#FFFF00">mount -t smbfs -o username=barry,password=mypasswd 
+      \</font></strong><br>
+      &gt;<font color="#FFFF00"><strong> //newwins/newdir /mnt/smb </strong></font><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">使用 
+      username 及 password 來指定對方主機上所存在的帳號密碼。另外也可以把</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">&quot;username=barry,password=mypasswd&quot; 
+      簡化成 &quot;username=barry%mypasswd&quot; 。</font></td>
+  </tr>
+</table>
+<p> <strong><a name="16"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
+  設定開機時自動掛載<br>
+  <br>
+  </font></strong>　Client 端想於下次開機時，能自動掛載 SMB/CIFS Server 所分享的目錄，則可於 /etc/fstab 
+  作如下的設定：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td height="60" bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">vi 
+      /etc/fstab</font></strong><br>
+      <strong><br>
+      </strong><font face="細明體">//newwins/newdir /mnt/smb smbfs defaults,username=root,password=mypwd 
+      0 0</font> </font></td>
+  </tr>
+</table>
+<p> 　接著要確定 smbfs 這個網路檔案系統在開機時會啟動：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      chkconfig -l smbfs</strong></font><br>
+      smbfs　0 : off　1 : off　2 : off　3 :<strong> on</strong>　4 : off　5 : <strong>on</strong>　6 
+      : off<br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">這裡所呈現的結果是 
+      OK 的，但如果您看到的都是 off 的話，就設定一下囉：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>chkconfig smbfs 35 </strong></font></font></td>
+  </tr>
+</table>
+<p><br>
+  <font color="#0000FF" size="+1"><strong><a name="17"></a><font size="6">14.4 
+  綜合範例練習</font><br>
+  </strong></font><br>
+  　 以 Samba 作為檔案伺服器 (採認證)，然後把要分享的目錄安置在 /samba 目錄下，並作以下的規劃：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="3%" align="center" valign="top" nowrap>&nbsp;</td>
+    <td width="3%" align="center" valign="top" nowrap>1.</td>
+    <td width="94%">使用者 user1 及 user2 是屬於業務部門的同仁，user3 及 user4 是屬於會計部門。業務部門及會計部門的專用目錄分別為 
+      salesdir 及 accountdir，另外建立一個檔案 planfile 於 salesdir 目錄下。</td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap>2.</td>
+    <td> salesdir 及 accountdir 只有該部門成員可存取，其他人不具任何權限。</td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap>3.</td>
+    <td>業務部門的成員能夠在 salesdir 目錄下作新增刪除的動作，但成員間彼此無法刪除也無法瀏覽對方所建的資料 ﹔而會計部門成員只有 user3 
+      可以在 accountdir下做新增刪除，其他會計成員無法刪除但可以瀏覽 user3 所建的資料。 </td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap>4.</td>
+    <td> planfile 可讓業務部門的成員去修改內容，但無法刪除該檔案。</td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap>5.</td>
+    <td>認證進來的使用者，可以在自己家目錄中建立個人的檔案目錄，且新增檔案的預設權限為 600，新增目錄則為 700。</td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap>6.</td>
+    <td>salesdir 及 accountdir 都只允許 192.168.1.0/24 及 192.168.2.0/24 的來源端做存取，至於個人家目錄則只拒絕 
+      192.168.3.0/24 做存取。</td>
+  </tr>
+</table>
+<blockquote> 
+  <p><font color="#000099"><strong>Tips：</strong></font><font color="#000099" size="2">上面的規劃中，只要套用群組觀念就可以很輕易的解決，也就是說先建立兩個部門所代表的群組，然後分別將成員加入各自的群組中，接著就只針對群組去設限就行了。當然最後還要搭配 
+    smb.conf 的設定，才能達到當初規劃的要求。</font></p>
+</blockquote>
+<p><strong>　</strong>針對這個範例，請參考以下的執行步驟。<br>
+  <br>
+  <font size="4"><strong>步驟一</strong></font>：建立帳號及各部門所屬群組，並將使用者加入群組中。</p>
+<table width="100%" border="0">
+  <tr> 
+    <td height="263" bgcolor="#000000"><font color="#FFFFFF"><font color="#00FFFF" size="2">1. 
+      建立使用者帳號：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>useradd -m user1</strong></font><br>
+      suse:~ #<font color="#FFFF00"><strong> passwd user1</strong></font><br>
+      Changing password for user1.<br>
+      New password:<br>
+      Re-enter new password:<br>
+      Password changed.<br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"> 
+      請接著依序將 user2、user3、user4 給建立起來。</font><font size="2"><br>
+      <br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"></font><font color="#00FFFF" size="2">2. 
+      新增業務部門及會計部門之群組：</font></font><font size="2"><br>
+      </font>suse:~ #<font color="#FFFF00"><strong> groupadd sales</strong></font>　<br>
+      suse:~ # <font color="#FFFF00"><strong>groupadd accounting</strong></font>　<font size="2"><br>
+      <br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"></font></font><font color="#00FFFF" size="2">3. 
+      將成員分別加入各自的群組中：</font></font><font size="2"><br>
+      </font>suse:~ # <font color="#FFFF00"><strong>vi /etc/group</strong></font>　<br>
+      <font face="細明體">sales:!:1004:user1,user2<br>
+      accounting:!:1005:user3,user4 </font></font></td>
+  </tr>
+</table>
+<br>
+<font size="4"><strong>步驟二</strong></font>：建立分享目錄並修改權限。<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"></font></font><font color="#00FFFF" size="2">1. 
+      建立相關目錄及檔案：</font></font><br>
+      suse:~ #<font color="#FFFF00"><strong> mkdir -p /samba/{salesdir,accountdir}</strong></font><br>
+      suse:~ #<font color="#FFFF00"><strong> cd /samba</strong></font><br>
+      suse:/samba #<font color="#FFFF00"><strong> cp /etc/passwd salesdir/planfile<br>
+      </strong></font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"></font></font><font color="#00FFFF" size="2">2. 
+      修改分享目錄之擁有群組：</font></font><br>
+      suse:/samba #<font color="#FFFF00"><strong> chown -R :sales salesdir</strong></font><br>
+      suse:/samba #<font color="#FFFF00"><strong> chown :accounting accountdir</strong></font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"></font></font><font color="#00FFFF" size="2">3. 
+      修改目錄權限：</font></font><br>
+      suse:/samba #<font color="#FFFF00"><strong> chmod 3770 salesdir accountdir<br>
+      </strong></font><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2">由於群組成員彼此無法刪除其他成員所建立的資料，因此需設定分享目錄具 
+      sticky bit 的</font><font color="#00FFFF"><br>
+      # </font></font></font><font color="#00FFFF" size="2">屬性。再來是希望該群組成員所建立的任何檔案目錄，其擁有群組皆為該部門所代表的</font><font color="#FFFFFF" face="細明體"><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">群組，因此給分享目錄具 
+      SGID 的屬性。最後則是希望其他人對該分享目錄不具任何的</font><font color="#FFFFFF" face="細明體"><br>
+      <font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">權限，所以最後一個權限數字設定為 
+      0。</font><font color="#00FFFF" size="2">&nbsp; </font><font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF">suse:/samba # <font color="#FFFF00"><strong>chmod 
+      660 salesdir/planfile</strong></font>　</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font> 
+      </font><font color="#FFFFFF"><font color="#00FFFF" size="2">讓 sales 群組成員能修改 
+      planfile。</font></font> <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font> 
+      </font><font color="#00FFFF" size="2">使用長格式來做個確認：</font><br> <font color="#FFFFFF">suse:/samba 
+      #<font color="#FFFF00"><strong> ls -l</strong></font><br>
+      <font face="細明體"> drwxrws--T　</font></font><font color="#FFFFFF" face="細明體">2　root　accounting　48　Nov 
+      9 07:49</font><font color="#0099FF" face="細明體">　accountdir<br>
+      </font><font color="#FFFFFF" face="細明體"> drwxrws--T　2　root　sales　　　 72　Nov 
+      9 07:51<font color="#0099FF">　</font></font><font color="#0099FF" face="細明體">salesdir 
+      </font> </td>
+  </tr>
+</table>
+<br>
+<font size="4"><strong>步驟三</strong></font>：設定 smb.conf。<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>vi 
+      /etc/samba/smb.conf</strong></font><br>
+      <br>
+      <font face="細明體">[global]<br>
+      　　　workgroup = workgroup<br>
+      　　　security = user<br>
+      　　　netbios name = suse<br>
+      　　　server string = Samba Server<br>
+      　　　encrypt passwords = yes<br>
+      　　　smb passwd file = /etc/samba/smbpasswd <strong><br>
+      </strong><br>
+      [homes]<br>
+      　　　comment = Home Directories<br>
+      　　　valid users = %S<br>
+      　　　browseable = No<br>
+      　　　read only = No<br>
+      <font color="#0099FF">　　　; inherit acls = Yes</font>　<font color="#00FFFF" size="2"><br>
+      </font></font><font color="#00FFFF" face="細明體"> 　　　</font><font color="#00FFFF"># 
+      </font><font color="#00FFFF" size="2">將該行註解起來，不然當您家目錄有設定 default acl 時，則於家目錄下所<br>
+      </font><font color="#00FFFF">　　　# <font color="#FFFFFF"><font color="#00FFFF" size="2">建立</font></font><font size="2">的子目錄權限，會受到</font></font><font color="#00FFFF" size="2"> 
+      default acl 的影響。</font><font face="細明體"><strong><br>
+      </strong>　　　create mask = 0600<br>
+      　　　directory mask = 0700 <br>
+      　　　hosts deny = 192.168.3.0/24<br>
+      <br>
+      [salesdir]<br>
+      　　　public = No<br>
+      　　　path = /samba/salesdir<br>
+      　　　write list = @sales<br>
+      　　　valid users = @sales<br>
+      　　　create mask = 0600<br>
+      　　　directory mask = 0700 <br>
+      　　　hosts allow = 192.168.1.0/24 , 192.168.2.0/24</font> <br>
+      <p><font face="細明體">[accountdir]<br>
+        　　　public = No<br>
+        　　　path = /samba/accountdir<br>
+        　　　write list = user3<br>
+        　　　valid users = @accounting<br>
+        　　　create mask = 0640<br>
+        　　　directory mask = 0750<br>
+        　　　hosts allow = 192.168.1.0/24 , 192.168.2.0/24</font> </p>
+      </font></td>
+  </tr>
+</table>
+<br>
+　如果看不太懂為何要這樣設定，請把當初規劃的內容多看個幾次，然後再比對這裡的設定來看，應該就能明白。沒問題的話，就重新啟動 Samba 吧 :<br>
+<br>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr>
+    <td><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00" face="細明體">rcsmb restart</font></strong><br>
+      suse:~ #<strong> <font color="#FFFF00" face="細明體">rcnmb restart</font></strong></font></td>
+  </tr>
+</table>
+<br>
+<font size="4"><strong>步驟四</strong></font>：建立使用者認證資料。<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      smbpasswd -a user1</strong></font><br>
+      New SMB password :<br>
+      Retype new SMB password:<br>
+      Added user user1.<br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">請接著依序將 user2、user3、user4 
+      給建立起來。</font></font> <font color="#FFFFFF"><br>
+      <br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">做個確認：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>cat /etc/samba/smbpasswd</strong></font>　<font color="#00FFFF" size="2"><br>
+      </font><font color="#00FFFF"> <font color="#FFFFFF" face="細明體">user1:1005:22124EA690B83BFBAAD3B435B51404EE:57D583AA46D571502AAD4BB7AEA09C70:[U 
+      ]:LCT-45ACF9CC:<br>
+      user2:1006:0A174C1272FCBCF7AAD3B435B51404EE:1C4ECC8938FB93812779077127E97662:[U 
+      ]:LCT-45ACFA2A:<br>
+      user3:1007:2CDA6B63200A898FAAD3B435B51404EE:3311033D2045F001DBECB03CEFF71D01:[U 
+      ]:LCT-45ACFA33:<br>
+      user4:1008:2A89DBF8EE6DF912AAD3B435B51404EE:782E8614AE676814F2C0A1E5994E09E8:[U 
+      ]:LCT-45ACFA38: </font></font></font></td>
+  </tr>
+</table>
+<br>
+　最後 Client 端的測試<font color="#000000">，就交由各位練習了。<br>
+<br>
+</font>
+<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( 柏青哥 
+  )</em></font> <br>
+</p>
+</body>
+</html>

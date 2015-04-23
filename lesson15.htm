@@ -1,0 +1,1789 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>柏青哥的 SuSE Linux -- 架設 NFS 及 NIS Server</title>
+<style type="text/css">
+<!--
+a {
+	color: #000099;
+	text-decoration: none;
+}
+-->
+</style>
+</head>
+
+<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#0000FF" vlink="#660066" leftmargin="40">
+<a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a>　　 
+作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw 
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap> <div align="left"></div>
+      <div align="center"><font color="#0000FF" size="+1"><strong><font color="#000000" size="7">第十五章　架 
+        設 NFS 及 NIS Server</font></strong></font></div>
+      <div align="center"></div></td>
+  </tr>
+</table>
+<font color="#660066"><br>
+<font color="#000099" size="+1"><strong>索引：</strong></font><br>
+</font>
+<table width="100%" border="0">
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>15.1 <a href="#1">架設 NFS Server</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td width="4%"><font color="#000099">&nbsp;</font></td>
+    <td width="6%" align="center" valign="top" nowrap><font color="#000099">15.1.1</font></td>
+    <td width="90%"><a href="#2">NFS 概述</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">15.1.2</font></td>
+    <td><a href="#3">安裝 NFS 套件及瀏覽套件內容</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">15.1.3</font></td>
+    <td><font color="#000099"><a href="#4">設定 NFS</a> --- <a href="#5"> /etc/exports 
+      的設定格式 </a>、<a href="#30">/etc/exports 的設定範例</a>、<a href="#6">exportfs</a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">15.1.4</font></td>
+    <td><font color="#000099"><a href="#7">Client 掛載 NFS</a> ---<br>
+      <a href="#8">showmount</a> 、<a href="#9">Client 端掛載 NFS</a>、<a href="#11">使用一般帳號執行掛載</a> 
+      <a href="#31">( sudo )</a>、<br>
+      <a href="#10">設定開機時自動掛載</a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">15.1.5</font></td>
+    <td><a href="#12">對分享目錄做進一步的限定</a></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>15.2 <a href="#13">架設 NIS Server</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">15.2.1</font></td>
+    <td><a href="#14">NIS 的使用時機</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">15.2.2</font></td>
+    <td><a href="#15">安裝 NIS Server 套件及瀏覽套件內容</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">15.2.3</font></td>
+    <td><a href="#16">設定 NIS Server</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">15.2.4</font></td>
+    <td><font color="#000099"><a href="#17">設定 NIS Client</a> ---<br>
+      <a href="#18">Client 端測試</a> 、<a href="#19">NIS Client 查詢 NIS Server 相關資訊的指令</a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">15.2.5</font></td>
+    <td><a href="#20">NIS 與 NFS 的整合</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">15.2.6</font></td>
+    <td><a href="#21">設定 Slave NIS Server</a></td>
+  </tr>
+</table>
+<br>
+<hr>
+<font color="#660066"> </font> 
+<p align="left"><strong><font color="#0000FF" size="+1"><a name="1"></a><font size="6">15.1 
+  架設 NFS Server</font><br>
+  <br>
+  </font><font size="+1"><a name="2"></a><font size="5">15.1.1 NFS 概述</font></font></strong><br>
+  <br>
+  　NFS 全名為<strong> N</strong>etwork <strong>F</strong>ile <strong>S</strong>ystem 
+  ( 網路檔案系統 )，主要是讓 Unix-Like 主機之間，能透過掛載的方式來存取對方所分享出來的資源，也就是說，NFS Client 是將 NFS 
+  Server 所提供的分享目錄掛載至本地端，就好比是在本機操作般一樣。<br>
+  <br>
+  　Windows 本身是不支援 NFS 檔案系統的，除非您額外的加裝一些軟體，不過這並不是本章所要探討的範圍，因此我們這裡的重心還是擺在 Unix-Like 
+  上頭。<br>
+  <br>
+  　NFS 早期是由 SUN 這間公司所發展，其主要是使用 RPC ( Remote Procedure Call：遠端程序呼叫 ) 機制來運作。所謂的 
+  RPC，就是讓用戶端電腦上所執行的程式可以呼叫遠端電腦的程式來幫其執行相關服務，然後再將結果傳回給用戶端。<br>
+  <br>
+  　負責 RPC 服務的一支關鍵 daemon 叫 portmap。當 NFS Server 啟動時需先向 portmap 註冊，接著 portmap 就會<strong>動態分配</strong> 
+  <strong>port number</strong> 給那些提供 NFS 服務的相關 daemon，因此當 Client 端在對 NFS Server 
+  提出服務請求時，必須先通過 portmap ( 監聽 111 port ) 這一關，讓 portmap 來將 NFS 服務相關 daemon 的 port 
+  告知，然後 Client 才曉得要跟哪些 port 做溝通，爾後也才能順利與 NFS Server 做通訊。一般有使用到 RPC 機制的伺服器，就可稱之為 
+  RPC Server。<br>
+  <br>
+  <strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font> 
+  <font size="4">NFS Server 的相關 daemon</font></strong></p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="3%" align="center" valign="top" nowrap>&nbsp;</td>
+    <td width="2%" align="center" valign="middle" nowrap><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099">/usr/sbin/rpc.nfsd</font></strong></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="middle" nowrap>&nbsp;</td>
+    <td>此 daemon 可以用來識別 NFS Client 端的登入身分 ID。</td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="middle" nowrap><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><font color="#000099"><strong>/usr/sbin/rpc.mountd</strong></font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="middle" nowrap>&nbsp;</td>
+    <td><font color="#000000">當接收到 Client 端的掛載請求時<font size="+1">，</font>rpc.mountd 
+      會依據 export list，來檢查此來源端是否允許掛載，及掛載後該使用者的相關權限為何。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="middle" nowrap><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><p><strong><font color="#000099">/usr/sbin/rpc.rquotad</font></strong><br>
+      </p></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="middle" nowrap>&nbsp;</td>
+    <td>如果 NFS Server 本身有限定 quota 限額時，才會使用到這個 daemon。另外此程式是存在於 quota 套件內。</td>
+  </tr>
+</table>
+<p align="left"><strong><font size="+1"><a name="3"></a><font size="5">15.1.2 
+  安裝 NFS 套件及瀏覽套件內容</font></font></strong><br>
+  <br>
+  <strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font> 
+  <font size="4">NFS 相關套件</font></strong></p>
+<table width="100%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td width="16%"> <div align="center"><font color="#000099"><strong>套 件 名 稱</strong></font></div></td>
+    <td width="84%"> <div align="center"><font color="#000099"><strong>簡　單　描　述</strong></font></div></td>
+  </tr>
+  <tr> 
+    <td><div align="center"><font color="#000099">nfs-utils</font></div></td>
+    <td><font color="#000099">NFS Server 的主要套件。</font></td>
+  </tr>
+  <tr> 
+    <td><div align="center"><font color="#000099">portmap-5beta</font></div></td>
+    <td><font color="#000099">當架設任何 RPC Server 時，都必須安裝此套件，因 portmap 這個 daemon 
+      就存在於這個套件內。</font></td>
+  </tr>
+</table>
+<p align="left"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font> 
+  <font size="4">查詢 nfs-utils 套件清單</font></strong></p>
+<table width="100%" border="0">
+  <tr> 
+    <td height="160" bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong><font color="#FFFF00"> 
+      rpm -ql nfs-utils</font></strong><br>
+      </font> <table width="100%" border="0">
+        <tr> 
+          <td width="20%" align="left" valign="top" nowrap><font color="#FFFFFF">/etc/init.d/nfsserver</font></td>
+          <td width="80%"><font color="#00FFFF" size="2">→ 管理 NFS 服務的 script。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/exportfs</font></td>
+          <td><font color="#00FFFF" size="2">→ 維護 export list 的指令。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF"> /usr/sbin/rcnfsserver</font></td>
+          <td><font color="#00FFFF" size="2">→ 連結至 /etc/init.d/nfsserver 的符號連結檔。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/rpc.mountd</font></td>
+          <td><font color="#00FFFF" size="2">→ 參考上一小節的說明。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/rpc.nfsd</font></td>
+          <td><font color="#00FFFF" size="2">→ 參考上一小節的說明。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/showmount</font></td>
+          <td><font color="#00FFFF" size="2">→ 顯示 NFS Server 的掛載資訊。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF">/var/lib/nfs/etab</font></td>
+          <td><font color="#00FFFF" size="2">→ etab 就是 export table 之意。</font></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<p align="left"> <font color="#000000">　先針對 export list 做個解釋。架設 NFS Server 的目的，就是要提供一些分享目錄給特定的來源端掛載，而當您打算把這些目錄分享出來，以提供給 
+  Client 端做存取的這個行為，就叫做 export (輸出)。因此 export list 簡單的說，就是指提供給 Client 端做存取的分享資源一覽表的意思。<br>
+  <br>
+  　再來看看 NFS 的設定檔 /etc/exports 與 /var/lib/nfs/etab 的關聯性。當您第一次啟動 NFS 時，就會把 /etc/exports 
+  的內容寫入 /var/lib/nfs/etab 之中，爾後 /etc/exports 做了修改並重新 export<strong> </strong>時，也會同時更新 
+  etab<strong> </strong>的資料。要是哪天您發覺 exports 與 etab 這兩個檔案的內容有出入，那有可能您曾經修改過 /etc/exports，但忘了重新 
+  export，或者是 NFS 啟動後，有使用 exportfs 指令來對 export table 做異動，這些原因都會造成兩個檔案內容的不一致。</font></p>
+<blockquote>
+  <p align="left"><font color="#000099"><strong>Tips</strong>：<font size="2">NFS 
+    的主要設定檔為 /etc/exports，其不屬於 nfs-utils 套件，而是存放在 netcfg 套件中。</font></font></p>
+</blockquote>
+<p align="left"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font> 
+  <font size="4">設定下次開機時啟動 NFS 服務</font></strong></p>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr>
+    <td height="25"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">chkconfig 
+      nfsserver 35</font></strong></font></td>
+  </tr>
+</table>
+<p align="left"><font size="+1"><strong><a name="4"></a><font size="5">15.1.3 
+  設定 NFS</font></strong></font><br>
+  <br>
+  　以下我們會以兩台 Linux 來實做，一台做 NFS Server (192.168.1.111)，一台做 NFS Client (192.168.1.197)。不過在還沒正式開始設定之前，先做個基本的檢查動作：</p>
+<ol>
+  <li>NFS Server 及 NFS Client 先互 ping 看看，以確保雙方都能夠通訊。如果有一方不通時，請先找出問題來，看看是不是防火牆或其他網路因素所造成的，等解決了之後再進行下一步。<br>
+    <br>
+    <table width="96%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">Client:~ #<font color="#FFFF00"><strong> 
+          ping 192.168.1.111</strong></font><br>
+          PING 192.168.1.111 (192.168.1.111) 56(84) bytes of data.<br>
+          64 bytes from 192.168.1.111: icmp_seq=1 ttl=64 time=0.371 ms<br>
+          64 bytes from 192.168.1.111: icmp_seq=2 ttl=64 time=0.355 ms<br>
+          <br>
+          Server:~ # <font color="#FFFF00"><strong>ping 192.168.1.197</strong></font><br>
+          PING 192.168.1.197 (192.168.1.197) 56(84) bytes of data.<br>
+          64 bytes from 192.168.1.197: icmp_seq=1 ttl=64 time=3.52 ms<br>
+          64 bytes from 192.168.1.197: icmp_seq=2 ttl=64 time=0.342 ms </font></td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li>NFS Server 及 NFS Client 雙方都要啟動 RPC 機制，可使用<strong> </strong>rpcinfo<strong> 
+    </strong>指令來做測試。<br>
+    至於 rpcinfo 的用法請參考以下說明：<br>
+    <br>
+    <strong>指令語法</strong>：<br>
+    <table width="96%" border="0" bgcolor="#CCCCCC">
+      <tr> 
+        <td><strong>rpcinfo -p [Hostname|Address]<br>
+          rpcinfo -u [Hostname|Address] [program-name]</strong></td>
+      </tr>
+    </table>
+    <strong><br>
+    參數說明</strong>：<br>
+    <table width="96%" border="1">
+      <tr> 
+        <td width="7%" align="center" valign="middle" nowrap><strong><font color="#000099">-p</font></strong></td>
+        <td width="93%"><font color="#000099">偵測主機的 portmapper，並列出有向 RPC 登記 (註冊) 
+          的所有程式。</font></td>
+      </tr>
+      <tr> 
+        <td align="center" valign="middle" nowrap><strong><font color="#000099">-u,-t</font></strong></td>
+        <td><font color="#000099">使用 RPC 來呼叫特定主機上的程式，並回報是否有正確收到對方程式的回應。-u：UDP，-t：TCP。</font></td>
+      </tr>
+    </table>
+    <br>
+    了解大致用法後，接著可以在 Client 或 Server 上作測試：<br>
+    <br>
+    <table width="96%" border="0">
+      <tr> 
+        <td height="186" nowrap bgcolor="#000000"><font color="#FFFFFF">Client:~ 
+          #<font color="#FFFF00"><strong> rpcinfo -p localhost</strong></font><br>
+          <font face="細明體">　　　program　　vers　　proto　　port<br>
+          　　　 100000　　　 2</font></font><font color="#FFFFFF" face="細明體">　　　tcp　　 
+          111　　portmapper<br>
+          　　　 100000 　　　2　　　udp　　 111　　portmapper</font><font color="#FFFFFF"><br>
+          </font> <font color="#00FFFF"># </font><font color="#00FFFF" size="2">測試本機的 
+          portmapper，只要有出現 111 port 就 ok 的啦。</font><font color="#FFFFFF"><br>
+          <br>
+          Client:~ #<font color="#FFFF00"><strong> rpcinfo -p 192.168.1.111</strong></font>　<br>
+          <font face="細明體">　　　program　　vers　　proto　　port<br>
+          　　　 100000　　　 2</font></font><font color="#FFFFFF" face="細明體">　　　tcp　　 
+          111　　portmapper<br>
+          　　　 100000 　　　2　　　udp　　 111　　portmapper</font><font color="#FFFFFF"><br>
+          </font> <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">測試 
+          Server 端的 portmapper。</font></font></td>
+      </tr>
+    </table>
+  </li>
+</ol>
+<p align="left">　確認以上執行都沒問題之後，就可以開始設定 NFS 了。<br>
+  <br>
+  <font color="#000000"><strong><a name="5"></a><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  /etc/exports 的設定格式<br>
+  <br>
+  </font></strong>　NFS 的設定內容跟其他 Server 比較起來，真是有夠少的，如果您只有分享一個目錄，那麼設定一行就可以搞定。底下先來了解其設定格式：</font></p>
+<table width="75%" height="8%" border="0">
+  <tr> 
+    <td height="30" valign="middle" nowrap bgcolor="#CCCCCC">分享目錄　允許存取的來源端主機名稱或IP位址(權限參數 
+      1, 權限參數 2,…)　…</td>
+  </tr>
+</table>
+<p align="left"><strong>　</strong>首先是分享目錄，顧名思義就是打算分享給 Client 端掛載的目錄，請用絕對路徑來做設定。<br>
+  <br>
+  　接著是允許存取的來源端，這部分可以使用主機名稱或 IP 位址來設定。以主機名稱來說，比如 *.paching.com.tw，是表示此 domain 內的主機皆允許存取。那要是以 
+  IP 位址來設定的話，則可使用如 192.168.1.0/24 或 192.168.1.0/255.255.255.0 這類的表示法。另外如果設定成「*」，其代表的是允許所有來源端。<br>
+  <br>
+  　緊接著在來源端之後是設定權限參數的部分，在來源端、權限參數及小括弧之間不需留有空白字元，而多個權限參數之間，使用「,」做區隔即可。權限設定是 NFS 
+  最重要的地方，倘若這裡能搞定的話，那後面就沒有什麼了。<br>
+  <br>
+  　對於同一個分享目錄來說，您可以針對不同的來源端而制定不同的權限參數，至於詳細的設定方式，可以參考稍後的範例說明。<br>
+  <br>
+  　接著就來介紹一些重要的權限參數：</p>
+<table width="100%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">權限參數</font></strong></td>
+    <td><div align="center"><strong><font color="#000099">代　表　意　義</font></strong></div></td>
+  </tr>
+  <tr> 
+    <td width="13%" align="center" valign="middle" nowrap><font color="#000099">ro</font></td>
+    <td width="87%"><font color="#000099">預設值。表示 client 端對此目錄的權限為 read-only。當設定成 
+      ro 時，使用者縱使對該分享目錄擁有寫入權限亦無濟於事。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">rw</font></td>
+    <td><font color="#000099">允許 client 端對該目錄具有讀寫權限，不過前提是使用者原本就需對此目錄具有讀寫的權限才行。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">root_squash</font></td>
+    <td><font color="#000099">預設值。表示 client 端若以 root 身分來掛載分享目錄時，會將其身分 squash ( 
+      壓制 ) 成 anonymous account ( ID 為 65534)，也就是說使用者以 (UID,GID) = (0,0) 的身分來存取分享目錄時，其身分會被轉換成 
+      (UID,GID) = (65534,65534)，當然此時對該目錄所實際擁有的權限，就是以 Server 上 ID 65534 的權限為主囉 
+      ! 系統以此作為預設，顯然是為了安全的考量，畢竟 root 的權限太大了。　<br>
+      <strong><font color="#000000">Tips</font></strong><font color="#000000">：</font></font><font color="#000000" size="2">SuSE 
+      裡頭，UID、GID 65534 所代表的分別是 nobody 及 nogroup。</font><font color="#000099">&nbsp; 
+      </font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">no_root_squash</font></td>
+    <td><font color="#000099">不把 root 身分轉換成 anonymous，所以當 client 端以 root 來掛載分享目錄後，會真正擁有 
+      root 的權限。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">all_squash</font></td>
+    <td><font color="#000099">不論任何人 (包含 root 在內) 在存取分享目錄時，其身分都會被轉換成 anonymous。當 
+      no_root_squash 及 all_squash 都設定時，是會以 all_squash 為主的。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">no_all_squash</font></td>
+    <td><font color="#000099">預設值。不會把所有人的身分都壓制成 anonymous，所以當 client 端以一個 (UID,GID) 
+      = (1000,1200) 的使用者身分執行掛載後，對該目錄所擁有的權限是以 Sever 上 (UID,GID) = (1000,1200) 的權限為主。比如使用者 
+      barry 在 Client 端主機的 UID 為 1000，而很巧的在 Server 端主機上也存在著 barry 帳號，但其 UID 為 1100，此時當 
+      Client 端的 barry 掛載目錄後，對該目錄的權限，是以 Server 端 UID 為 1000 的使用者權限為主，而非以 barry 
+      帳號為主。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">anonuid</font></td>
+    <td><font color="#000099">預設為 65534。當 Client 端的使用者被 squash 成 anonymous 時，此 
+      anonymous 的 UID 要設定為何。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">anongid</font></td>
+    <td><font color="#000099">預設為 65534。與上面的意思一樣，只不過是針對 anonymous 的 GID 做設定罷了，不再贅述。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">sync</font></td>
+    <td><font color="#000099">預設值。同步 I/O，也就是在資料異動時，會同步寫入記憶體與磁碟之中。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">async</font></td>
+    <td><font color="#000099">非同步 I/O，也就是將異動的資料先暫存至 cache，再伺機回存磁碟。設定這個參數可以提昇效能，但容易造成資料的遺失。</font></td>
+  </tr>
+</table>
+<p align="left"> 　設定檔的格式就大致如此，應該不難吧。以下會舉幾個範例來做練習。</p>
+<strong><font size="+1"> <a name="30"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+/etc/exports 的設定範例<br>
+<br>
+</font>範例一</strong>： 
+<table width="100%" border="0">
+  <tr> 
+    <td height="250" bgcolor="#000000"><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">建立分享目錄並修改權限：</font><br>
+      Server:~ #<font color="#FFFF00"><strong> mkdir /home/nfsdir</strong></font>　<br>
+      Server:~ #<font color="#FFFF00"><strong> chmod 777 /home/nfsdir<font color="#FFFFFF">　</font></strong></font><br>
+      <br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">設定 
+      /etc/exports：</font><font color="#FFFFFF"> <br>
+      Server:~ # <font color="#FFFF00"><strong>vi /etc/exports</strong></font><br>
+      <font color="#0099FF"># See the exports(5) manpage for a description of 
+      the syntax of this file.<br>
+      # This file contains a list of all directories that are to be exported to<br>
+      # other computers via NFS (Network File System).<br>
+      # This file used by rpc.nfsd and rpc.mountd. See their manpages for details<br>
+      # on how make changes in this file effective.</font><br>
+      <font face="細明體">/home/nfsdir 192.168.1.0/24(rw,sync) *(all_squash,sync) 
+      </font><br>
+      </font> <font color="#00FFFF">#</font><font color="#FFFFFF"> <font color="#00FFFF" size="2">允許 
+      192.168.1.0/24 這個網路段的主機掛載 /home/nfsdir，並對此目錄具有讀寫的權限 ; </font><br>
+      </font><font color="#00FFFF">#</font><font color="#FFFFFF">&nbsp;<font color="#00FFFF" size="2">另外</font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">如果是以 
+      root 身分進行存取，則其身分會被轉換成 anonymous，其他人則不會。</font></font><br>
+      <font color="#00FFFF">#</font><font color="#FFFFFF"> <font color="#00FFFF" size="2">至於其他來源端，不論以何種身分進行掛載，都會被轉換成 
+      anonymous，且只具唯讀權限。</font></font></td>
+  </tr>
+</table>
+<br>
+<strong>範例二</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td height="137" bgcolor="#000000"><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">建立分享目錄並修改權限：</font></font><font color="#FFFFFF"><br>
+      Server:~ # <font color="#FFFF00"><strong>mkdir /tmp/sharedir</strong></font><br>
+      Server:~ #<font color="#FFFF00"><strong> chmod 777 /tmp/sharedir</strong></font><br>
+      <br>
+      </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">設定 
+      /etc/exports：</font><font color="#FFFFFF"><br>
+      Server:~ # <font color="#FFFF00"><strong>vi /etc/exports</strong></font><br>
+      <strong> </strong><font face="細明體">/tmp/sharedir *(rw,all_squash,anonuid=2000,anongid=1500,sync)<strong>　</strong></font><br>
+      <font color="#00FFFF">#</font><font color="#FFFFFF"> <font size="2"><font color="#00FFFF">允許所有來源端掛載 
+      /tmp/sharedir，並對此掛載目錄具讀寫的權限，且無論任何人執行</font></font></font><font color="#00FFFF" size="2"><strong><br>
+      </strong></font><font color="#00FFFF">#</font><strong><font color="#FFFFFF"> 
+      </font></strong><font color="#FFFFFF"><font color="#FFFFFF"><font size="2"><font color="#00FFFF">掛載後，</font></font></font></font><font color="#00FFFF" size="2">其身分皆會被轉換成 
+      UID 2000 及 GID 1500。</font></font></td>
+  </tr>
+</table>
+<br>
+<strong>範例三</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td height="169" bgcolor="#000000"> <p><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">建立分享目錄並修改權限：</font><br>
+        Server:~ # <font color="#FFFF00"><strong>mkdir /home/reportdir</strong></font><br>
+        Server:~ # <font color="#FFFF00"><strong>chmod 1777 /home/reportdir</strong></font><br>
+        <br>
+        </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">設定 
+        /etc/exports：</font><font color="#FFFFFF"><br>
+        Server:~ # <font color="#FFFF00"><strong>vi /etc/exports</strong></font><br>
+        <font face="細明體">/home/reportdir 192.168.1.197(rw,no_root_squash,sync) 
+        </font><br>
+        <font color="#00FFFF">#</font><font color="#FFFFFF"> </font><font color="#00FFFF" size="2">允許 
+        192.168.1.197 的來源端掛載 /home/reportdir，而當執行掛載的身分為 root 時，<strong><br>
+        </strong></font><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#FFFFFF"> 
+        </font><font color="#00FFFF" size="2">掛載後對 </font></font><font color="#00FFFF" size="2">reportdir 
+        </font></font><font color="#00FFFF" size="2">所具有的權限就是 root 的權限，如是其他使用者進行掛載，則其</font><font color="#FFFFFF"><strong><br>
+        </strong><font color="#00FFFF">#</font><font color="#FFFFFF"> </font></font><font color="#00FFFF" size="2">真正擁有的權限就看 
+        Client 端使用者的 UID、GID 為何 ? </font><font color="#FFFFFF"><br>
+        <font color="#00FFFF">#</font><font color="#FFFFFF"> </font> </font><font color="#00FFFF" size="2">比如 
+        Client 端若是以 UID、GID 皆為 1500</font><font color="#FFFFFF"> </font><font color="#00FFFF" size="2">來進行掛載，則對於 
+        reportdir 所擁有<br>
+        </font><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#FFFFFF"> 
+        </font> </font><font color="#00FFFF" size="2"> 的權限，便是以Server 上 UID、GID 
+        為 1500 的權限為主。 <br>
+        </font></p></td>
+  </tr>
+</table>
+<br>
+<strong>範例四</strong>：將以上設定結合起來，再加上一個 CDROM 分享的設定。<br>
+<table width="100%" border="0">
+  <tr> 
+    <td height="170" bgcolor="#000000"> <p><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#FFFFFF"> 
+        </font><font color="#00FFFF" size="2">先建立 cdrom 的掛載點，再執行掛載：</font><br>
+        Server:~ # <font color="#FFFF00"><strong>mkdir /mnt/cdrom</strong></font>　<br>
+        Server:~ # <font color="#FFFF00"><strong>mount /dev/cdrom /mnt/cdrom</strong></font>　<br>
+        <br>
+        </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">設定 
+        /etc/exports：</font><font color="#FFFFFF"><br>
+        Server:~ #<font color="#FFFF00"><strong> vi /etc/exports</strong></font><br>
+        <font face="細明體">/home/nfsdir 192.168.1.0/24(rw,sync) *(all_squash,sync)<br>
+        /tmp/sharedir *(rw,all_squash,anonuid=2000,anongid=1500,sync)　<br>
+        /home/reportdir 192.168.1.197(rw,no_root_squash,sync)<br>
+        </font><font color="#FFFF00" face="細明體">/mnt/cdrom 192.168.1.0/24(ro,sync)</font><br>
+        <font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#FFFFFF"> 
+        </font> <font color="#00FFFF" size="2">最後面那行 cdrom 的分享設定應該沒問題吧 ! </font></font></font></p></td>
+  </tr>
+</table>
+<p align="left"> 　設定完成後請啟動 NFS：</p>
+<table width="45%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td height="41" nowrap>Server:~ # <strong>rcnfsserver start</strong><br>
+      Starting kernel based NFS server 　　　　　　<strong>　</strong>done</td>
+  </tr>
+</table>
+<br>
+　接著您可使用 rpcinfo 或 netstat 指令，去確認 nfs 相關 daemon 的執行狀態：<br>
+<br>
+<table width="45%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td height="42" nowrap>Server:~ #<strong> rpcinfo -p localhost</strong><br>
+      Server:~ #<strong> netstat -anp</strong></td>
+  </tr>
+</table>
+<br>
+　將來要是修改了 /etc/exports 之後，可以不需重新啟動 NFS，而直接執行「exportfs -rv」即可。關於 exportfs 這個指令的用法，請接著參考以下的說明。<br>
+<br>
+<strong><a name="6"></a><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+指令 exportfs</font></strong><br>
+<br>
+　用來維護 NFS Server 的 export table 的指令。<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><strong><font face="細明體">exportfs [-o options,..] [client:/path ..]<br>
+      exportfs [-aruv]<br>
+      exportfs -u [client:/path ..]</font></strong></td>
+  </tr>
+</table>
+<strong><br>
+參數說明</strong>：<br>
+<table width="100%" border="1">
+  <tr> 
+    <td width="6%" align="center" valign="middle" nowrap><strong><font color="#000099">-a</font></strong></td>
+    <td width="94%"><font color="#000099">export 或 unexport 所有的分享目錄。當配合 -u 參數一起使用時，就會把所有的分享目錄做 
+      unexport。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">-r</font></strong></td>
+    <td><font color="#000099">根據 /etc/exports 來 reexport (重新輸出) 所有的分享目錄。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">-u</font></strong></td>
+    <td><font color="#000099">unexport 一個或多個分享目錄。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">-v</font></strong></td>
+    <td><font color="#000099">顯示執行過程。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">-o</font></strong></td>
+    <td><font color="#000099">指定在 export 分享目錄時，所使用的權限參數。</font></td>
+  </tr>
+</table>
+<br>
+　補充 一下指令語法中的 [ client:/path . . ]，client 是針對來源端做指派，可以是 IP 位址或主機名稱，而 path 是 NFS 
+所分享目錄的實際路徑。當您要對 /etc/exports 中沒設定到的分享目錄做 export，或對已設定的分享目錄做新增來源端或修改相同來源端的權限時，這個 
+exportfs 指令就很好用了，也就是說這個指令可以用來修改 export table ( /var/lib/nfs/etab ) 啦。以下的例子會以範例四做基礎，來看看如何使用 
+exportfs。<br>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="99%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">Server:~ # <font color="#FFFF00"><strong>cat 
+      /etc/exports</strong></font></font><font color="#00FFFF" size="2"><strong><br>
+      </strong></font><font color="#FFFFFF" face="細明體">/home/nfsdir 192.168.1.0/24(rw,sync) 
+      *(all_squash,sync)<br>
+      /tmp/sharedir *(rw,all_squash,anonuid=2000,anongid=1500,sync)　<br>
+      /home/reportdir 192.168.1.197(rw,no_root_squash,sync)<br>
+      /mnt/cdrom 192.168.1.0/24(ro,sync)</font><font color="#00FFFF" size="2"><strong><br>
+      <br>
+      </strong><font color="#00FF00">1.</font></font> <font color="#00FF00" size="2">修改 
+      /tmp/sharedir：將所有來源端 (*) 的權限修改成唯讀：</font><font color="#FFFFFF"><br>
+      Server:~ # <strong><font color="#FFFF00">exportfs -o ro *:/tmp/sharedir<font color="#FFFFFF">　</font></font></strong><br>
+      Server:~ #<font color="#FFFF00"> <strong>cat /var/lib/nfs/etab | grep sharedir</strong></font>　<br>
+      /tmp/sharedir *(<strong>ro</strong>,sync,wdelay,hide,nocrossmnt,secure,root_squash,<br>
+      all_squash,subtree_check,secure_locks,acl,mapping=identity,anonuid=2000,<br>
+      anongid=1500) <br>
+      <br>
+      <font color="#00FF00" size="2">2. 修改 /home/reportdir：新增來源端 192.168.1.200，並將 
+      all user 身分轉換成 anonymous：</font><font size="2"><br>
+      </font>Server:~ #<strong> <font color="#FFFF00">exportfs -o ro,all_squash 
+      192.168.1.200:/home/reportdir<font size="2"> </font></font><font size="2"><br>
+      </font></strong>Server:~ #<strong> <font color="#FFFF00">cat /var/lib/nfs/etab 
+      | grep report</font></strong><br>
+      /home/reportdir 192.168.1.200(ro,sync,wdelay,hide,nocrossmnt,secure,<br>
+      root_squash,all_squash,subtree_check,secure_locks,acl,mapping=identity,<br>
+      anonuid=65534,anongid=65534)<br>
+      <br>
+      /home/reportdir 192.168.1.197(rw,sync,wdelay,hide,nocrossmnt,secure,<br>
+      no_root_squash,no_all_squash,subtree_check,secure_locks,acl,mapping<br>
+      =identity,anonuid=65534,anongid=65534)<br>
+      <br>
+      <font color="#00FF00" size="2">3. 新增分享目錄 /tmp/testdir：允許存取的來源端為 192.168.2.0/24，並採用預設的權限：</font><font size="2"><br>
+      </font>Server:~ #<strong><font color="#FFFF00"> exportfs 192.168.2.0/24:/tmp/testdir</font></strong><br>
+      Server:~ # <strong><font color="#FFFF00">cat /var/lib/nfs/etab | grep testdir</font></strong><br>
+      /tmp/testdir 192.168.2.0/24(ro,sync,wdelay,hide,nocrossmnt,secure,<br>
+      root_squash,no_all_squash,subtree_check,secure_locks,acl,<br>
+      mapping=identity,anonuid=65534,anongid=65534) <br>
+      <br>
+      <font color="#00FF00" size="2">4. 將分享給 192.168.2.0/24 的 /tmp/testdir 及 * 
+      的 /home/nfsdir 做 unexport：</font><font color="#00FFFF" size="2"><br>
+      </font> Server:~ # <font color="#FFFF00"><strong>exportfs -uv 192.168.2.0/24:/tmp/testdir 
+      *:/home/nfsdir</strong></font><br>
+      unexporting 192.168.2.0/24:/tmp/testdir<br>
+      unexporting *:/home/nfsdir </font></td>
+  </tr>
+</table>
+<br>
+　以上是使用 exportfs 指令來修改 export table。接著下來您可嘗試執行以下的指令：<br>
+<br>
+<table width="30%" border="0" bgcolor="#CCCCCC">
+  <tr> 
+    <td height="25">Server:~ # <strong>exportfs -rv</strong></td>
+  </tr>
+</table>
+<br>
+　這樣將會把 /etc/exports 的設定內容重新做一次輸出 (reexport)，結果當然就是更新 /var/lib/nfs/etab 囉，所以剛剛使用 
+exportfs 指令去做的修改，都會從 /var/lib/nfs/etab 中消失。<br>
+<br>
+　如果平常您只針對 /etc/exports 在做設定，並無額外使用 exportfs 指令來修改 export table 的話，那麼只要 /etc/exports 
+異動後，就可以執行「exportfs -rv」來讓新的設定值生效。<br>
+<br>
+　一般人往往搞不清楚 exportfs 指令中 <strong>-a </strong>及 <strong>-r</strong> 參數的差別，簡單的說，使用 
+-r 能夠將 /etc/exports 與 export table 做同步更新，而 -a (未搭配 -u 使用時) 則是把 /etc/exports 所有設定的分享目錄輸出至 
+export table 而已，如果之前您有使用 exportfs 指令去新增幾筆資料的話，那這些資料紀錄還是會存在，所以 -a 參數並不能保證 export 
+table 與 /etc/exports 的一致性。假使剛剛您不是執行「exportfs -rv」，而是執行「exportfs -av」的話，就可以很明顯的看出兩者之間的差異。 
+<br>
+<br>
+<font size="+1"><strong><a name="7"></a><font size="5">15.1.4 Client 掛載 NFS </font></strong></font><br>
+<br>
+<font color="#FF0000"></font>　在介紹如何掛載前，先學個叫 showmount 指令的用法，然後才教大家如何掛載。<br>
+<br>
+<strong><a name="8"></a><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+指令 showmount</font></strong><br>
+<br>
+　此指令可用來顯示 NFS Server 上的掛載資訊。<br>
+<br>
+<strong>指令語法</strong>：<strong><br>
+</strong>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><strong><font face="細明體">showmount -e [hostname|IP]</font></strong></td>
+  </tr>
+</table>
+<br>
+　-e 參數可使用 --exports 來代替，是用來輸出 NFS Server 上 export table 的簡要資訊，至於其後就是接 NFS Server 
+的主機名稱或 IP 位址。這對 Client 端想了解 Server 分享什麼目錄時，是非常好用的。<br>
+<br>
+<strong>範例</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">Client:~ # <strong><font color="#FFFF00">showmount 
+      -e 192.168.1.111</font></strong><br>
+      Export list for 192.168.1.111:<br>
+      /tmp/sharedir (everyone)<br>
+      /mnt/cdrom 192.168.1.0/24<br>
+      /home/nfsdir (everyone)<br>
+      /home/reportdir 192.168.1.197</font></td>
+  </tr>
+</table>
+<br>
+　了解了 Server 分享哪些目錄後，接著 NFS Client 就可以進行掛載囉。<br>
+<br>
+<strong><a name="9"></a><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+Client 端掛載 NFS</font></strong><br>
+<br>
+<strong>掛載語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><strong><font face="細明體">mount [NFS Server 的主機名稱或 IP]:[分享目錄的路徑] [掛載點]</font></strong></td>
+  </tr>
+</table>
+<br>
+<strong>範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td height="655" bgcolor="#000000"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font><font color="#00FFFF" size="2">Server 端的設定內容：</font><br>
+      Server:~ # <font color="#FFFF00"><strong>cat /etc/exports</strong></font></font><font color="#00FFFF" size="2"><strong><br>
+      </strong></font><font color="#FFFFFF" face="細明體">/home/nfsdir 192.168.1.0/24(rw,sync) 
+      *(all_squash,sync)<br>
+      /tmp/sharedir *(rw,all_squash,anonuid=2000,anongid=1500,sync)　<br>
+      /home/reportdir 192.168.1.197(rw,no_root_squash,sync)<br>
+      /mnt/cdrom 192.168.1.0/24(ro,sync)</font><font color="#00FFFF"><br>
+      <br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2">以下為 
+      Client 端的掛載測試。<br>
+      </font></font><font color="#00FFFF"><br>
+      # </font><font color="#00FFFF" size="2">先建立掛載點</font><font color="#00FFFF">：</font><br>
+      Client:~ # <strong><font color="#FFFF00">mkdir /mnt/nfs</font></strong>　<font color="#00FFFF" size="2"><br>
+      </font> <br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"> 
+      執行掛載： </font><br>
+      Client:~ # <strong><font color="#FFFF00">mount 192.168.1.111:/home/nfsdir 
+      /mnt/nfs</font></strong><font color="#FFFF00">　</font><font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font><font color="#00FFFF" size="2"></font></font><font color="#00FFFF" size="2"> 
+      掛載成功後，可使用 df 或 mount 指令去做個確認。</font></font><font color="#00FFFF" size="2"> 
+      <br>
+      </font></font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"> 
+      接著馬上建立個檔案做實驗： </font></font><br>
+      <font color="#FFFFFF"> Client:~ #<font color="#FFFF00"> <strong>cd /mnt/nfs</strong></font><br>
+      Client:/mnt/nfs #<strong> <font color="#FFFF00">touch file1</font></strong><br>
+      Client:/mnt/nfs #<strong><font color="#FFFF00"> ls -l</font></strong><br>
+      -rw-r--r-- 1　<strong>nobody　nogroup</strong>　0　Nov 12 2006　file1 <br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">雖然您是以 
+      root 的身分執行掛載，但由於掛載之後，身分已被轉換成 anonymous，</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">因此所建立檔案的 
+      owner 及 group id，皆為預設的 65534。</font><font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF"><br>
+      <font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2">先切離掛載點後，再進行卸載：</font></font></font><br>
+      Client:/mnt/nfs #<strong><font color="#FFFF00"> cd<font color="#FFFFFF">　</font></font></strong><br>
+      Client:~ #<font color="#FFFF00"> <strong>umount /mnt/nfs </strong></font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"> 
+      掛載 /tmp/sharedir 並作測試：</font><br>
+      Client:~ # <strong><font color="#FFFF00">mount 192.168.1.111:/tmp/sharedir 
+      /mnt/nfs</font></strong><br>
+      Client:~ # <strong><font color="#FFFF00">cd /mnt/nfs</font></strong><br>
+      Client:/mnt/nfs #<font color="#FFFF00"> <strong>touch file2</strong></font><br>
+      Client:/mnt/nfs #<font color="#FFFF00"> <strong>ls -l</strong> <strong>file2</strong></font><br>
+      -rw-r--r-- 1　<strong>2000　1500</strong>　0　Nov 12 2006　file2 <br>
+      <font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#00FFFF" size="2">由於 
+      /tmp/sharedir 這個分享目錄的設定中，有指定 anonuid=2000 及 anongid=1500，因此</font><font color="#FFFFFF"><br>
+      <font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#00FFFF" size="2">在 
+      owner 及 group 的欄位才會是那樣。至於為何是顯示 id number，理由很簡單，因為在</font><font color="#FFFFFF"><br>
+      <font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font></font><font color="#00FFFF" size="2"> 
+      Client 端主機</font><font color="#FFFFFF">&nbsp;</font><font color="#00FFFF" size="2">上的</font><font color="#FFFFFF">&nbsp;</font><font color="#00FFFF" size="2">/etc/passwd 
+      及 /etc/group 中，找不到這兩個 id number 所對應的名稱，</font><font color="#FFFFFF"><br>
+      <font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font> </font><font color="#00FFFF" size="2">如果能夠找得</font><font color="#00FFFF" size="2">到的話，</font><font color="#FFFFFF">&nbsp;</font><font color="#00FFFF" size="2">就會顯示 
+      username 及 groupname 了。</font><font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF"><br>
+      <font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2">進行卸載：</font></font></font><br>
+      Client:/mnt/nfs #<strong><font color="#FFFF00"> cd</font></strong><br>
+      Client:~ # <strong><font color="#FFFF00">umount /mnt/nfs</font></strong> 
+      <br>
+      <br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2"> 
+      掛載 /home/reportdir 並作測試：</font><br>
+      Client:~ # <strong><font color="#FFFF00">mount 192.168.1.111:/home/reportdir 
+      /mnt/nfs</font></strong><br>
+      Client:~ # <strong><font color="#FFFF00">cd /mnt/nfs</font></strong><br>
+      Client:/mnt/nfs #<strong> <font color="#FFFF00">touch file3</font></strong><br>
+      Client:/mnt/nfs #<strong> <font color="#FFFF00">ls -l file3</font></strong><br>
+      -rw-r--r-- 1　<strong>root　root　</strong>0　Nov 12 2006　file3 <br>
+      <font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font><font color="#00FFFF" size="2"></font></font><font color="#00FFFF" size="2"> 
+      </font></font><font color="#00FFFF" size="2"></font></font></font> </font><font color="#00FFFF" size="2">注意到沒，file3 
+      的 owner 及 group 皆為 root，這就是 no_root_squash 所發揮的效用啦。 </font> </td>
+  </tr>
+</table>
+<br>
+<strong><strong><a name="11"></a><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+使用一般帳號執行掛載</font></strong><br>
+<br>
+</strong>　剛剛在 Client 端的測試都是使用 root 來進行掛載，如果改成以一般使用者身分來執行的話又如何呢 ?<strong><br>
+<br>
+</strong> 
+<table width="100%" border="0">
+  <tr> 
+    <td height="58" bgcolor="#000000"><font color="#FFFFFF">barry@Client:~&gt;<strong> 
+      <font color="#FFFF00">mkdir nfs</font></strong><br>
+      barry@Client:~&gt;<strong><font color="#FFFF00"> mount 192.168.1.111:/home/nfsdir 
+      nfs</font></strong><br>
+      mount: only root can do that</font></td>
+  </tr>
+</table>
+<br>
+　糟糕，不給掛載，怎麼辦呢 ? 這時候可以考慮在 Client 端安裝 sudo 套件來解決這個問題：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td height="50" bgcolor="#000000"><font color="#FFFFFF">Client:~ #<font color="#FFFF00"><strong> 
+      rpm -qa | grep sudo</strong></font><br>
+      sudo-1.6.8p12-18.2<br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">如查無此套件的話，採光碟安裝即可。 
+      </font></font></td>
+  </tr>
+</table>
+<p> 　安裝了這個套件並做好相關設定後，一般使用者只要在欲執行的指令之前加上 sudo，就能以 root ( 當然也可以是其他 user ) 的身分來執行指令，如此便可解決一般 
+  user 無法 mount NFS 的問題。所以接著就先來認識一下 sudo 囉。</p>
+<blockquote> 
+  <table width="100%" border="0">
+    <tr> 
+      <td width="3%" align="center" valign="middle"><strong><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong></td>
+      <td width="97%"><strong><font color="#000099"><a name="31"></a>sudo 設定檔 
+        (/etc/sudoers) 的內容</font></strong></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle">&nbsp;</td>
+      <td>
+<table width="96%" border="0">
+          <tr> 
+            <td nowrap bgcolor="#000000"><p><font color="#FFFFFF">Client:~ #<strong><font color="#FFFF00"> 
+                visudo</font></strong>　<font color="#00FFFF" size="2">← 或者執行</font><font color="#00FFFF">「</font><font color="#00FFFF" size="2">vi 
+                /etc/sudoers</font><font color="#00FFFF">」</font><font color="#00FFFF" size="2">也行。</font> 
+                <br>
+                <br>
+                # Defaults specification<br>
+                # In the default (unconfigured) configuration, sudo asks for the 
+                root password.<br>
+                # This allows use of an ordinary user account for administration 
+                of a freshly<br>
+                # installed system. When configuring sudo, delete the two<br>
+                # following lines:<br>
+                <strong>Defaults targetpw</strong> # ask for the password of the 
+                target user i.e. root<br>
+                <font color="#00FFFF"># <font size="2">執行 sudo 指令時，會要求輸入目標使用者的密碼。也就是當您利用 
+                sudo 變換成</font><br>
+                # <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font size="2">另一個</font></font></font><font size="2">使用者來執行</font></font></font><font size="2">指令</font></font></font><font size="2">時，需輸入那個使用者的密碼才行 
+                ( root 執行 sudo 時為例外 </font></font></font><font color="#FFFFFF"><font color="#00FFFF"><font size="2">)。<br>
+                </font># <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font size="2">但如果把此行註解</font></font></font><font color="#00FFFF" size="2">起來，則只需</font></font></font><font color="#00FFFF" size="2">輸入本身的密碼。</font><br>
+                <br>
+                <strong>ALL ALL=(ALL) ALL </strong># WARNING! Only use this together 
+                with 'Defaults targetpw'!<br>
+                <font color="#00FFFF"># <font size="2">先了解一下基本設定格式：</font></font><br>
+                <font color="#00FFFF"># </font><font color="#00FFFF" size="2"><strong>可執行sudo指令者 
+                登入的主機=(可變更的身份) 可執行的指令敘述</strong></font> <br>
+                <font color="#00FFFF"># <font size="2">因此上一行設定是說，允許所有人，<font color="#FFFFFF"><font color="#00FFFF">無論從何處登入，皆</font></font>能藉著執行 
+                sudo 來轉換成<br>
+                </font><font color="#FFFFFF"><font color="#00FFFF"># <font size="2">任何</font></font></font><font size="2">使用者的身分，並可執行所有的指令。</font></font><br>
+                <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+                </font></font></font><font color="#00FFFF" size="2">如果您想讓 barry 
+                這個帳號，能藉由 sudo 指令來轉換成 user01 及 user02 ，並可</font><br>
+                <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+                </font></font></font><font color="#FFFFFF"><font color="#00FFFF" size="2">執行所有</font></font><font color="#00FFFF" size="2">指令，那麼可設定如下：</font><br>
+                <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+                </font></font><font size="2">barry ALL=(user01,user02) ALL</font></font><br>
+                <font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+                </font></font><font size="2">另外當未指定所要變更的身分時，則預設僅能變換成 root。</font></font><br>
+                <br>
+                # User privilege specification<br>
+                <strong>root ALL=(ALL) ALL</strong></font> <br>
+                <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">允許 
+                root 能執行 sudo 來變換成任何一個 user 的身分，並可執行所有指令。</font></p>
+              <p><font color="#FFFFFF"># Uncomment to allow people in group wheel 
+                to run all commands<br>
+                # <strong>%wheel ALL=(ALL) ALL<br>
+                </strong><font color="#00FFFF">#</font> <font color="#00FFFF"><font size="2">允許 
+                wheel 群組成員</font></font></font><font color="#00FFFF" size="2">能執行 
+                sudo 來變換成任何一個 user 的身分，並可執行所有指令。</font><font color="#FFFFFF"><strong> 
+                </strong></font></p>
+              <p><font color="#FFFFFF"># Same thing without a password<br>
+                # <strong>%wheel ALL=(ALL) NOPASSWD: ALL<br>
+                </strong><font color="#00FFFF"># <font size="2">讓 wheel 群組成員在執行 
+                sudo 時，不需輸入密碼。<br>
+                </font><br>
+                <font color="#FFFFFF"># %users ALL=(ALL) ALL<br>
+                # %users ALL=/bin/cat /var/log/warn<br>
+                # Samples<br>
+                # %users ALL=/sbin/mount /cdrom,/sbin/umount /cdrom<br>
+                # %users localhost=/sbin/shutdown -h now </font></font></font><font color="#FFFFFF"><strong> 
+                </strong></font></p></td>
+          </tr>
+        </table>
+        <br> <strong>範例</strong>：<br> <table width="96%" border="0">
+          <tr> 
+            <td bgcolor="#000000"> <p><font color="#FFFFFF">barry@Client:~&gt; 
+                <font color="#FFFF00"><strong>cat /var/log/messages</strong></font><br>
+                cat: /var/log/messages : Permission denied<br>
+                <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">一般使用者不具有瀏覽 
+                /var/log/messages 的權限，使用長格式觀察一下就知了。</font><br>
+                <br>
+                barry@Client:~&gt;<strong><font color="#FFFF00"> ls -l /var/log/messages</font></strong><br>
+                <font face="細明體">-rw-r-----　1　root　root　471056　Nov　12 15:13　/var/log/messages 
+                </font><br>
+                <br>
+                barry@Client:~&gt;<font color="#FFFF00"> <strong>sudo cat /var/log/messages</strong></font><font color="#00FFFF">　<font size="2"><br>
+                </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+                </font></font></font><font size="2">在執行程式之前，加上個 sudo 指令 (不加參數)，就表示要以 
+                root 的身分來執行。</font></font> <br>
+                root's password:　<font color="#00FFFF" size="2">← 請輸入目標使用者 root 
+                的密碼。</font>　<br>
+                Nov 11 12:08:12 suse kernel: eth0: no IPv6 routers present<br>
+                Nov 12 11:08:38 suse SuSEfirewall2: Warning: ip6tables does not 
+                support state matching. <br>
+                Nov 12 11:08:38 suse syslog-ng[2621]: STATS: dropped 0<br>
+                Nov 12 11:08:38 suse SuSEfirewall2: Firewall rules unloaded.<br>
+                　　　　　　　　　　　　<font color="#00FFFF" size="2">：略</font><br>
+                <br>
+                <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+                </font></font></font><font size="2"></font></font></font><font color="#00FFFF" size="2">如想要以指定的 
+                user 身分執行 command，請加上 <strong>-u</strong> 參數：</font><br>
+                barry@Client:~&gt;<strong><font color="#FFFF00"> sudo -u mary 
+                touch ~mary/maryfile</font></strong><br>
+                mary's password:　<font color="#00FFFF" size="2">← 請輸入目標使用者 mary 
+                的密碼。</font><br>
+                <br>
+                barry@Client:~&gt;<strong><font color="#FFFF00"> ls -l ~mary/maryfile</font></strong><br>
+                <font face="細明體">-rw-r--r--　1　mary　users　0　Nov 12 15:26　/home/mary/maryfile 
+                </font><br>
+                </font></p></td>
+          </tr>
+        </table>
+        <br>
+        有些時候，您會希望只授權給少數使用者能以 root 的身分執行一些工作，但又不希望這些使用者能知道 root 的密碼，這時候就得調整一下 sudoers 
+        ：<br> <table width="96%" border="0">
+          <tr> 
+            <td bgcolor="#000000"><p><font color="#FFFFFF">Client:~ #<strong><font color="#FFFF00"> 
+                visudo</font></strong></font><br>
+                <br>
+                <font color="#0099FF"># Defaults targetpw<br>
+                # ALL ALL=(ALL) ALL<strong> 　</strong><font color="#00FFFF" size="2"><br>
+                </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+                </font></font></font></font></font></font><font color="#00FFFF" size="2">以上兩行請先註解起來。</font><strong><br>
+                </strong><font color="#0099FF"><font color="#FFFFFF"><font color="#00FFFF" size="2"><br>
+                </font><font color="#FFFFFF" face="細明體">%authgrp ALL=(root) ALL</font><font color="#00FFFF" size="2" face="細明體"> 
+                <br>
+                </font><font color="#0099FF"><font color="#FFFFFF"><font color="#FFFFFF" face="細明體">barry 
+                ALL=(root) ALL</font></font></font><font color="#00FFFF" size="2"> 
+                <br>
+                </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">這樣一來，就只有authgrp 
+                群組成員及使用者 barry ，可以執行 sudo 來變換成 root 身分<br>
+                </font><font color="#00FFFF"># </font><font color="#0099FF"><font color="#0099FF"><font color="#FFFFFF"><font color="#0099FF"><font color="#0099FF"><font color="#FFFFFF"><font color="#00FFFF" size="2">執行</font></font></font></font><font color="#00FFFF" size="2">指令，</font></font></font></font><font color="#00FFFF" size="2">且輸入的是自己的密碼。</font></font></font></font></p></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  
+</blockquote>
+<p>　了解了 sudo 的用法後，再來就直接以一般使用者的身分進行掛載及卸載 NFS：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">barry@Client:~&gt;<font color="#FFFF00"> 
+      <strong>sudo mount 192.168.1.111:/home/reportdir nfs</strong></font><br>
+      barry's password:　<br>
+      barry@Client:~&gt;<strong><font color="#FFFF00"> touch nfs/barryfile</font></strong><br>
+      barry@Client:~&gt;<font color="#FFFF00"> <strong>ls -l nfs/barryfile</strong></font><br>
+      -rw-r--r-- 1　barry　users　0　Nov 12 21:34　nfs/barryfile<br>
+      <br>
+      <font color="#0099FF"><font color="#0099FF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font><font color="#00FFFF" size="2">現在請回到 Server 
+      上，觀察一下 barryfile 的長格式：</font><br>
+      Server:~ # <font color="#FFFF00"><strong>ls -l /home/reportdir/barryfile</strong></font><br>
+      -rw-r--r--　1<strong>　3000　users　</strong>0　Nov 12 22:12　/home/reportdir/barryfile 
+      <br>
+      <font color="#0099FF"><font color="#0099FF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2">咦，奇怪，怎麼在 
+      Server 端所看到 barryfile，其擁有者為 3000 ? 因為這個 id 在 Server 上</font><font color="#FFFFFF"><br>
+      <font color="#0099FF"><font color="#0099FF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2">的 /etc/passwd 
+      檔案內，找不到其所對應的 username 啦。</font><font color="#FFFFFF"><br>
+      </font> <br>
+      <font color="#FFFFFF"><font color="#0099FF"><font color="#0099FF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font></font></font><font color="#00FFFF" size="2">最後 Client 
+      端要卸載時，也請加上 sudo 指令：</font> <br> <font color="#FFFFFF">barry@Client:~&gt;<font color="#FFFF00"> 
+      <strong>sudo umount</strong></font></font><strong><font color="#FFFF00"> 
+      nfs</font></strong></td>
+  </tr>
+</table>
+<strong><strong> <br>
+<a name="10"></a><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+設定開機時自動掛載</font></strong><br>
+<br>
+</strong>　若要系統於開機時自動掛載 nfs 的檔案系統，可於 Client 端的 /etc/fstab 做如下設定：<strong><br>
+<br>
+</strong> 
+<table width="100%" border="0">
+  <tr> 
+    <td height="58" bgcolor="#000000"><font color="#FFFFFF">Client:~ # <font color="#FFFF00"><strong>vi 
+      /etc/fstab</strong></font><br>
+      <br>
+      192.168.1.111:/home/reportdir 　 /mnt/nfs　nfs　defaults　0 0 </font></td>
+  </tr>
+</table>
+<strong><br>
+</strong> <strong> </strong><br>
+<strong><font size="+1"><a name="12"></a><font size="5">15.1.5 對分享目錄做進一步的限定</font></font></strong><br>
+<br>
+　直接以範例來說明比較快。首先在 NFS Server 上建立一分享目錄 /secretdir，並做以下的規劃：<br>
+<br>
+<table width="100%" border="0">
+  <tr>
+    <td width="2%" align="center" valign="top" nowrap>&nbsp;</td>
+    <td width="3%" align="center" valign="top" nowrap>1.</td>
+    <td width="95%">設定允許存取的來源端為 192.168.1.197。</td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap>2.</td>
+    <td>新增一 UID 為 5000 的使用者 admin ，並讓 admin 對此目錄擁有最大權限。</td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" nowrap>&nbsp;</td>
+    <td align="center" valign="top" nowrap>3.</td>
+    <td>新增一 GID 為 5000 的群組 secretgrp，並讓該群組成員 (barry 及 mary) 對此分享目錄具有唯讀權限，其他人 (包括 
+      root) 則不具任何權限。</td>
+  </tr>
+</table>
+<br>
+　下面就針對以上的要求事項做相關設定：<br>
+<br>
+<strong><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
+<font size="4">Server 端的設定</font></strong><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"><font color="#CCCCCC" size="2">1. 建立分享目錄：</font><br>
+      Server:~ # <font color="#FFFF00"><strong>mkdir /secretdir</strong></font><br>
+      Server:~ #<font color="#FFFF00"><strong> cat &gt; /secretdir/secretfile</strong></font>　<font color="#00FFFF" size="2">← 
+      建立此檔是為了方便等會兒實驗用。</font><br>
+      It is a secret file.<br>
+      <font color="#00FFFF"><br>
+      <font color="#CCCCCC" size="2">2. 新增帳號及群組：</font><br>
+      </font> Server:~ # <font color="#FFFF00"><strong>useradd -u 5000 -m admin　</strong></font></font><font color="#FFFFFF"><br>
+      Server:~ #<font color="#FFFF00"><strong> passwd admin</strong></font><br>
+      Changing password for admin.<br>
+      New password:<br>
+      Re-enter new password:<br>
+      Password changed. <br>
+      Server:~ # <font color="#FFFF00"><strong>groupadd -g 5000 secretgrp</strong></font>　</font><font color="#FFFFFF"><br>
+      <strong><font color="#00FFFF" size="2"><br>
+      </font></strong><font color="#CCCCCC" size="2">3. 修改檔案目錄相關屬性：<br>
+      </font> Server:~ #<font color="#FFFF00"><strong> chown -R admin:secretgrp 
+      /secretdir</strong></font><br>
+      Server:~ # <font color="#FFFF00"><strong>chmod 750 /secretdir ; chmod 640 
+      /secretdir/secretfile</strong></font><br>
+      Server:~ # <font color="#FFFF00"><strong>ls -ld /secretdir /secretdir/secretfile</strong></font><br>
+      <font face="細明體">drwxr-x--- 2　admin　secretgrp　80　Nov 12 23:39　/secretdir 
+      <br>
+      -rw-r----- 1　admin　secretgrp　21　Nov 12 23:39　/secretdir/secretfile<br>
+      </font><br>
+      <font color="#CCCCCC" size="2">4. 設定 /etc/exports：</font><br>
+      Server:~ # <font color="#FFFF00"><strong>vi /etc/exports</strong></font><br>
+      <font face="細明體">/secretdir 192.168.1.197(rw,root_squash,sync) </font><br>
+      Server:~ # <strong><font color="#FFFF00">exportfs -rv</font></strong></font></td>
+  </tr>
+</table>
+<br>
+<strong><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
+<font size="4">Client 端的設定及掛載</font></strong><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td height="394" bgcolor="#000000"><font color="#FFFFFF"><font color="#CCCCCC" size="2">1. 
+      新增 id 皆為 5000 的使用者及群組：</font><br>
+      Client:~ #<font color="#FFFF00"> <strong>useradd -u 5000 -m admin</strong></font><br>
+      Client:~ # <strong><font color="#FFFF00">passwd admin</font></strong><br>
+      Changing password for admin.<br>
+      New password:<br>
+      Re-enter new password:<br>
+      Password changed. <br>
+      Client:~ # <strong><font color="#FFFF00">groupadd -g 5000 secretgrp </font></strong><br>
+      <br>
+      <font color="#CCCCCC" size="2">2. 將使用者 barry 及 mary 加入 secretgrp 群組：</font><br>
+      Client:~ # <font color="#FFFF00"><strong>vi /etc/group</strong></font><br>
+      <font face="細明體">secretgrp:!:5000:barry,mary</font><strong><br>
+      </strong><font color="#00FFFF"># <font size="2">client 端在掛載後，對於掛載目錄的權限，會根據 
+      server 上這個使用者的 uid 及其<br>
+      </font># <font color="#FFFFFF"><font color="#00FFFF" size="2">所屬群組</font></font></font><font color="#00FFFF" size="2">的 
+      gid，來決定對此目錄擁有什麼權限。而這裡我們把 barry 及 mary 加入<br>
+      </font><font color="#00FFFF"># <font size="2"> gid 5000 </font></font> <font color="#00FFFF" size="2">的群組後，將來他們對於掛載目錄的權限，就依 
+      sever 上 gid 5000 的群組對此</font><font color="#00FFFF"><strong><br>
+      </strong># </font><font color="#00FFFF" size="2">目錄有何權限而定。</font><strong><br>
+      <br>
+      </strong><font color="#CCCCCC" size="2">3. Client 掛載測試：</font><strong><font size="2"><br>
+      </font></strong><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">使用 
+      barry 帳號掛載測試：</font><strong><font size="2"><br>
+      </font></strong>barry@Client:~&gt; <font color="#FFFF00"><strong>sudo mount 
+      192.168.1.111:/secretdir nfs　</strong></font><br>
+      barry@Client:~&gt;<strong><font color="#FFFF00"> cd nfs</font></strong><br>
+      barry@Client:~/nfs&gt; <font color="#FFFF00"><strong>cat secretfile</strong></font><br>
+      It is a secret file.<br>
+      barry@Client:~/nfs&gt;<strong><font color="#FFFF00"> touch barryfile</font></strong><br>
+      touch: cannot touch `barryfile':<font color="#FFFF00"> Permission denied</font> 
+      <br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">使用 
+      admin 帳號掛載測試：</font><br>
+      admin@Client:~&gt; <font color="#FFFF00"><strong>mkdir nfs</strong></font><br>
+      admin@Client:~&gt;<strong><font color="#FFFF00"> sudo mount 192.168.1.111:/secretdir 
+      nfs</font></strong><br>
+      admin@Client:~&gt;<strong><font color="#FFFF00"> touch nfs/adminfile</font></strong><br>
+      admin@Client:~&gt; <font color="#FFFF00"><strong>ls -l nfs</strong></font><br>
+      -rw-r--r--　1　admin　users　0　Nov 13 21:55　adminfile <br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">使用 
+      root 帳號掛載測試：</font><br>
+      Client:~ #<strong><font color="#FFFF00"> mount 192.168.1.111:/secretdir 
+      /mnt/nfs</font></strong><br>
+      Client:~ #<strong> <font color="#FFFF00">cd /mnt/nfs</font></strong><br>
+      -bash: cd: /mnt/nfs: <font color="#FFFF00">Permission denied</font><strong> 
+      </strong></font></td>
+  </tr>
+</table>
+<p><br>
+  <strong><font color="#0000FF" size="+1"> <a name="13"></a><font size="6">15.2 
+  架設 NIS Server</font></font></strong><br>
+  <br>
+  <strong><font size="+1"><a name="14" id="14"></a><font size="5">15.2.1 NIS 的使用時機</font></font></strong><font color="#000000"><br>
+  <br>
+  　假使您是個系統管理員，平常手邊所管理的 Linux 主機有好幾部，這時候可能會希望每一台主機上的帳號密碼都是相同的，因為這樣就能夠使用同一組帳號密碼來分別登入不同的主機。此時所直接想到的處理方式可能就是土法煉鋼法，也就是到每一部 
+  Linux 主機上去設定帳號密碼，當然如果主機只有兩三部且帳號數也不多時，只要您願多花一點時間，相信是一定可以搞定的 ﹔那萬一管理的主機有個十來部，且使用者帳號有上百個甚至更多，難道還是想一部部來做設定嗎 
+  ? 當然不想啊，是吧 ! 所以這時候您可能會有個想法，看看能不能把所有的帳號密碼都集中在一部 Linux 主機上就好，而其他主機的使用者在登入時，則透過這台主機來做認證的工作。真是個 
+  good idea，但是想歸想，要怎麼實現呢 ? 架設 NIS Server 就能滿足您的要求啦。<br>
+  <br>
+  　NIS 全名為 <strong>N</strong>etwork <strong>I</strong>nformation <strong>S</strong>ystem，顧名思義就是提供網路資訊的一個服務，也是 
+  SUN 這家公司所發展的一套軟體，一樣是運用 RPC 機制來管理。在 NIS 網域裡，可以存在著一台以上的 NIS 伺服器，而這些 Server 就專門負責使用者在登入 
+  NIS Client 端時的認證工作。<br>
+  <br>
+  　由以上說明不難發現 NIS Server 的重要性。如果您網域裡只存在一台 NIS Server，那萬一這台 Server 出狀況，則其他靠 NIS 
+  做認證的使用者，會全部無法登入 NIS Client，因此最好還是存在著至少一台的 Slave NIS。至於其架構圖請參考以下：</font></p>
+<p align="center"><font color="#000000"> <img src="../picture/nis1.png" tppabs="http://www.suse.url.tw/picture/nis1.png" width="468" height="257"></font></p>
+<p><font color="#000000"> 　針對這個架構圖稍微做個說明。首先在 NIS Domain 裡，存在著兩部 NIS Server，一部做 
+  Master，提供給四台的 NIS Client 做登入時的認證，另外一部做 Slave，提供給兩台的 NIS Client 做認證。如果 Master 
+  NIS 出問題時，那四部 NIS Client 會轉而向 Slave NIS 做認證，反過來說，如果 Slave 出問題時，則那兩部 NIS Client 
+  會轉而向 Master 做認證。當然在所有 NIS Client 的主機上，必須要把這兩部 NIS Server 都設定進去，這樣當其中一台出問題時，才有辦法向另一台做查詢。</font></p>
+<blockquote> 
+  <p><strong><font color="#000099">Tips：</font></strong><font color="#000099" size="2">實際上當 
+    NIS Client 啟動 ypbind 服務時，並非依照您所設定的 NIS Server 順序來查詢，而是以最先做出回應的那台 NIS Server 
+    為主。以上圖來說，右邊那兩台 NIS Client 在啟動 ypbind 服務時，剛好先接收到 Slave NIS 的回應，所以當然就以 Slave 
+    NIS 作為主要的認證伺服器了。</font></p>
+</blockquote>
+<p><font color="#000000">　</font><font color="#000000">因為 NIS 與 NFS 相同，都是使用 RPC 
+  來管理，所以等一下在設定 NIS 之前，請先將 Server 與 Client 端的 portmap 啟動。這部分在以下的範例中就不再提了。<br>
+  <br>
+  <strong><font size="+1"><a name="15" id="15"></a><font size="5">15.2.2 安裝 NIS 
+  <font color="#000000"><strong>Server 套</strong></font>件及瀏覽套件內容</font></font><br>
+  <br>
+  </strong>　NIS Server 及 NIS Client 端，各有其所需安裝的套件，所以在實做的過程，您需要分別對扮演著不同角色的主機做個別的設定。而這一小節主要是針對 
+  NIS Server 來做說明。<strong><br>
+  <br>
+  <strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
+  <font size="4">NIS Server 相關套件</font></strong></font></p>
+<table width="85%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td width="13%" nowrap> 
+      <div align="center"><font color="#000099"><strong>套 件 名 稱</strong></font></div></td>
+    <td width="87%"> <div align="center"><font color="#000099"><strong>簡　單　描　述</strong></font></div></td>
+  </tr>
+  <tr> 
+    <td nowrap>
+<div align="center"><font color="#000099">ypserv</font></div></td>
+    <td><font color="#000099">NIS Server 的主要套件。</font></td>
+  </tr>
+  <tr> 
+    <td nowrap>
+<div align="center"><font color="#000099">yp-tools</font></div></td>
+    <td><font color="#000099">非 Server 端的必要套件，不過裡頭有個 nisdomainname 指令，可用來協助設定 
+      nis domain name。</font></td>
+  </tr>
+</table>
+<p><font color="#000000"><strong> <strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
+  <font size="4">檢視套件清單</font></strong></font> </p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"> Server:~ #<font color="#FFFF00"><strong> 
+      rpm -ql ypserv</strong></font><br>
+      <br>
+      </font>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="21%" valign="top" nowrap><font color="#FFFFFF">/etc/ypserv.conf</font></td>
+          <td width="79%"><font color="#00FFFF" size="2">NIS Server 的主要設定檔。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/sbin/ypserv </font></td>
+          <td><font color="#00FFFF" size="2">提供 NIS 服務的 daemon。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/sbin/rpc.yppasswdd</font></td>
+          <td><font color="#00FFFF" size="2">當 NIS Client 端的使用者，執行<strong> </strong>yppasswd 
+            指令來變更密碼時，就是靠這個 daemon 先去比對 client 所輸入的舊密碼是否相符，符合後才允許更新密碼。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/sbin/rpc.ypxfrd </font></td>
+          <td><font color="#00FFFF" size="2">啟動這個 daemon，可以加速 NIS Slave 在大量複製 
+            NIS Master 資料庫時的執行效率。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/etc/init.d/ypserv</font></td>
+          <td><font color="#00FFFF" size="2">管理 NIS 服務的 script。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/etc/init.d/yppasswdd</font></td>
+          <td><font color="#00FFFF" size="2">管理 yppasswd 服務的 script。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/sbin/rcypserv</font></td>
+          <td><font color="#00FFFF" size="2">連結至 /etc/init.d/ypserv 的符號連結檔。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/sbin/rcyppasswdd</font></td>
+          <td><font color="#00FFFF" size="2">連結至 /etc/init.d/yppasswdd 的符號連結檔。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/lib/yp/ypinit</font></td>
+          <td><font color="#00FFFF" size="2">安裝及建立 NIS 資料庫的 script。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/var/yp </font></td>
+          <td><font color="#00FFFF" size="2">NIS 的資料庫就是放在這個目錄下。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/var/yp/securenets</font></td>
+          <td><font color="#00FFFF" size="2">如想要對存取 NIS Server 的來源端做限制，就可以設定在這個檔案內。</font></td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<blockquote> 
+  <p><strong><font color="#000099">Tips：</font></strong><font color="#000099" size="2">yp 
+    就是<strong> y</strong>ellow <strong>p</strong>age 之意，也就是所謂的黃頁。黃頁其實指的是一些工商名錄，如地址簿與電話簿之類的，因此透過 
+    yellow page 的查詢，可以讓我們很快速的找到所需的資訊。NIS 就是類似 yp 這樣的一個功能，所以您會注意到 NIS 的相關套件、檔案、程式名稱之前，幾乎都會加上 
+    yp，這樣應該能夠理解吧 ! </font></p>
+</blockquote>
+<p><strong><font color="#000000"><strong><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></strong></font> 
+  <font size="+1">設定開機時啟動 NIS 服務</font></strong></p>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#000000"><font color="#FFFFFF">Server:~ #<strong> <font color="#FFFF00">chkconfig 
+      ypserv 35</font></strong><br>
+      Server:~ # <strong><font color="#FFFF00">chkconfig yppasswdd 35</font></strong></font></td>
+  </tr>
+</table>
+<p><strong><font size="+1"><br>
+  <a name="16" id="16"></a><font size="5">15.2.3 設定 NIS Server</font><br>
+  </font></strong><br>
+  　請您參考以下的步驟做相關的設定： </p>
+<ol>
+  <li><strong>在 /etc/hosts 檔內，將 NIS Server 的主機名稱與 IP 位址設定進去</strong>：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">Server:~ # <font color="#FFFF00"><strong>vi 
+          /etc/hosts</strong></font><br>
+          192.168.1.111　Server.paching.com.tw　Server </font></td>
+      </tr>
+    </table>
+    　<br>
+  </li>
+  <li><strong>設定 NIS domain name</strong>：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">Server:~ #<font color="#FFFF00"><strong> 
+          nisdomainname paching</strong></font><br>
+          <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">也可使用 
+          ypdomainname<strong> </strong>這個指令來做設定，而這兩個指令都是屬於 yp-tools<strong> </strong></font><font color="#FFFFFF"><br>
+          <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">套件。</font><font color="#FFFFFF">&nbsp;</font><font color="#00FFFF" size="2">如單純的執行 
+          nisdomainname 指令，則會顯示目前 NIS 的 domain name 為何。</font><font color="#FFFFFF"><br>
+          </font> <font color="#FFFFFF"> <br>
+          Server:~ #<strong><font color="#FFFF00"> vi /etc/defaultdomain</font></strong><br>
+          paching<strong> </strong><br>
+          <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">這裡的設定，主要是讓系統在下次開機時，能自動幫我們指定好 
+          NIS Domain Name。&nbsp;&nbsp;</font><font color="#FFFFFF">&nbsp; </font> </td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><strong>設定 ypserv.conf</strong>：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">Server:~ # <font color="#FFFF00"><strong>vi 
+          /etc/ypserv.conf</strong></font><br>
+          <br>
+          </font><font color="#0099FF" face="細明體"># Host　　　　　　:　Domain　　:　Map　　　　　　　　　　:　Security</font><font color="#FFFFFF" face="細明體"><br>
+          </font><font color="#0099FF" face="細明體">#</font><font color="#0099FF" size="2" face="細明體"> 
+          限定的來源端　　　 開放的網域　　對應的資料庫類型　　 　　　　 安全性</font><font color="#FFFFFF"><br>
+          <font face="細明體">*　　　　　　　　 :　*　　　　 :　shadow.byname　　　　　:　port<br>
+          *　　　　　　　　 :　*　　　　 :　passwd.adjunct.byname　:　port</font></font></td>
+      </tr>
+    </table>
+    <br>
+    Security 的部分，可設定成 deny (全部拒絕存取)、none<strong> </strong>(無任何限制，表示皆可存取)、port 
+    (允許小於 1024 port 的來源端作存取)。若無特殊考量，這個地方採用系統預設值即可。但如您考慮到安全性的話，則可做如下的修改：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">Server:~ # <font color="#FFFF00"><strong>vi 
+          /etc/ypserv.conf</strong></font><br>
+          <br>
+          <font face="細明體">127.0.0.0/255.0.0.0　　:　*　　　　:　*　　　　:　port<br>
+          192.168.1.　　　　　　 :　*　　　　:　*　　　　:　port<br>
+          *　　　　　　　　　　　:　*　　　　:　*　　　　:　deny</font></font></td>
+      </tr>
+    </table>
+    <br>
+    來源端「192.168.1.」，代表的就是 192.168.1.0/255.255.255.0。也就是說除了這個來源端允許存取外，拒絕其他所有的來源端做存取。<strong><br>
+    </strong><br>
+  </li>
+  <li><strong>設定 /etc/netgroup</strong>：<br>
+    <br>
+    這個檔案主要是用來設定信任的網路群組，其設定格式如下：<br>
+    <br>
+    <table width="30%" border="0" bgcolor="#CCCCCC">
+      <tr> 
+        <td height="26" nowrap><strong>netgroup (host,user,domain) (host,user,domain) 
+          ..</strong></td>
+      </tr>
+    </table>
+    <br>
+    netgroup 是您的群組名稱，而緊接著在 ( ) 內的 host 表示來源端主機，user 表示 username，domain 就是 NIS 
+    網域名稱。筆者在這個地方是沒做任何的設定，這就表示信任所有的主機、使用者及網域的意思。<br>
+    <br>
+  </li>
+  <li><strong>初次啟動 ypserv 及 yppasswdd</strong>：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">Server:~ #<font color="#FFFF00"><strong> 
+          rcypserv start</strong></font><br>
+          Starting ypserv　　　　　　　　　　　　　<font color="#00FF00"> <strong>done</strong></font><br>
+          　　　　　　　　　　 　　　　　　　　　<br>
+          Server:~ # <font color="#FFFF00"><strong>rcyppasswdd start</strong></font><br>
+          Starting rpc.yppasswdd 　　　　　 　 　 　　<font color="#00FF00"><strong>done</strong></font></font></td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><strong>確認 RPC 有收到程式正確的回應</strong>：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">Server:~ #<strong><font color="#FFFF00"> 
+          rpcinfo -u localhost ypserv</font></strong><br>
+          program 100004 version 1 ready and waiting<br>
+          program 100004 version 2 ready and waiting<br>
+          <br>
+          Server:~ # <font color="#FFFF00"><strong>rpcinfo -u localhost yppasswdd</strong></font><br>
+          program 100009 version 1 ready and waiting</font></td>
+      </tr>
+    </table>
+    <br>
+    如果您執行的結果不是輸出這樣的訊息，表示 RPC 收不到程式的回應。請您務必要看到正確的回應訊息後，再繼續進行下個步驟。<br>
+    <br>
+  </li>
+  <li><strong>建立 NIS 資料庫</strong>：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">Server:~ #<strong><font color="#FFFF00"> 
+          /usr/lib/yp/ypinit -m</font><br>
+          </strong><br>
+          At this point, we have to construct a list of the hosts which will run 
+          NIS servers. <br>
+          Server.paching.com.tw is in the list of NIS server hosts. Please continue 
+          to add<br>
+          the names for the other hosts, one per line. When you are done with 
+          the list, <br>
+          type a &lt;control D&gt;.<br>
+          　　next host to add: Server.paching.com.tw<br>
+          　　next host to add: 　<font size="2"><strong>← 這個地方請按下 Ctrl - D。<br>
+          </strong></font>The current list of NIS servers looks like this: 
+          <p>Server.paching.com.tw</p>
+          <p>Is this correct? [y/n: y]<strong> <font color="#FFFF00">y</font></strong>　<font size="2">← 
+            沒問題的話，就輸入 y 囉 !</font><br>
+            We need a few minutes to build the databases...<br>
+            Building /var/yp/paching/ypservers...<br>
+            Running /var/yp/Makefile...<br>
+            gmake[1]: Entering directory `/var/yp/paching'<br>
+            Updating passwd.byname...<br>
+            Updating passwd.byuid...<br>
+            Updating group.byname...<br>
+            Updating group.bygid...<br>
+            Updating rpc.byname...<br>
+            Updating rpc.bynumber...<br>
+            Updating services.byname...<br>
+            Updating services.byservicename...<br>
+            Updating netid.byname...<br>
+            gmake[1]: Leaving directory `<strong>/var/yp/paching</strong>'</p>
+          <p><strong>Server.paching.com.tw has been set up as a NIS master server</strong>.</p>
+          <p><strong>Now you can run ypinit -s Server.paching.com.tw on all slave 
+            server</strong>.</p>
+          </font></td>
+      </tr>
+    </table>
+    <br>
+    這樣就很輕鬆的建立起 NIS 資料庫了。您可至 /var/yp 目錄裡，找到一個 paching 目錄及 ypservers 檔案，paching 
+    目錄就是存放資料庫檔案之處，至於 ypservers 檔案則是記載著這台 NIS 的主機名稱。<br>
+    <br>
+    另外在剛剛那輸出內容的最後兩行，是告知您 Server.paching.com.tw 這台主機，已經被設定成 NIS Master Server 了，如還要設定 
+    NIS Slave，就在 Slave 主機上執行：「ypinit -s Server.paching.com.tw」。<br>
+    <br>
+    將來您要是在 NIS Server 上去新增帳號或修改帳號密碼相關資訊後，請記得更新資料庫：<br>
+    <br>
+    <table width="30%" border="0">
+      <tr> 
+        <td height="27" nowrap bgcolor="#CCCCCC">Server:~ #<strong> make -C /var/yp</strong></td>
+      </tr>
+    </table>
+  </li>
+</ol>
+<p> 　Server 部分的設定，就介紹到這裡。</p>
+<strong><font size="+1"><br>
+<a name="17" id="17"></a><font size="5">15.2.4 設定 NIS Client</font></font></strong><br>
+<br>
+　按照慣例，先了解需安裝套件及套件內容，然後再對 NIS Client 的相關設定及測試做說明。<br>
+<br>
+<font color="#000000"><strong><font color="#000000"><strong><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></strong></font> 
+<font size="4">NIS Client 相關套件</font></strong></font><br>
+<br>
+<table width="66%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td width="13%" nowrap> 
+      <div align="center"><font color="#000099"><strong>套 件 名 稱</strong></font></div></td>
+    <td width="87%" nowrap> 
+      <div align="center"><font color="#000099"><strong>簡　單　描　述</strong></font></div></td>
+  </tr>
+  <tr> 
+    <td nowrap>
+<div align="center"><font color="#000099">ypbind</font></div></td>
+    <td nowrap><font color="#000099">NIS Client 的主要套件。</font></td>
+  </tr>
+  <tr> 
+    <td nowrap>
+<div align="center"><font color="#000099">yp-tools</font></div></td>
+    <td nowrap><font color="#FFFFFF"><font color="#000099">NIS Client 查詢 NIS Server 
+      相關資訊時所使用的指令，都在這個套件內。</font></font></td>
+  </tr>
+</table>
+<br>
+<strong><font color="#000000"><strong><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></strong></font> 
+<font size="4">檢視套件清單</font></strong><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"> Client:~ #<font color="#FFFF00"><strong> 
+      rpm -ql ypbind </strong></font><br>
+      <br>
+      </font> <table width="100%" border="0">
+        <tr> 
+          <td width="21%" valign="top" nowrap><font color="#FFFFFF">/etc/yp.conf</font></td>
+          <td width="79%"><font color="#00FFFF" size="2">ypbind 的主要設定檔。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/sbin/ypbind </font></td>
+          <td><font color="#00FFFF" size="2">NIS Client 執行的主程式 (daemon)，他會找尋 domain 
+            裡的 NIS Server，並取得其相關資訊。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/etc/init.d/ypbind</font></td>
+          <td><font color="#00FFFF" size="2">管理 ypbind 的 script。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/sbin/rcypbind</font></td>
+          <td><font color="#00FFFF" size="2">連結至 /etc/init.d/ypbind 的符號連結檔。</font></td>
+        </tr>
+      </table>
+      <font color="#FFFFFF"><br>
+      Client:~ #<font color="#FFFF00"><strong> rpm -ql yp-tools</strong></font><br>
+      <br>
+      </font> <table width="100%" border="0">
+        <tr> 
+          <td width="21%" valign="top" nowrap><font color="#FFFFFF">/bin/nisdomainname</font></td>
+          <td width="79%"><font color="#00FFFF" size="2">設定或顯示 NIS Domain Name 
+            的指令。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/bin/ypdomainname</font></td>
+          <td><font color="#00FFFF" size="2">同上。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/bin/ypcat</font></td>
+          <td><font color="#00FFFF" size="2">瀏覽 NIS Server 上頭，資料庫檔案內容的指令。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/bin/ypmatch</font></td>
+          <td><font color="#00FFFF" size="2">此指令可用來顯示資料庫檔案中的部分內容。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/bin/yppasswd</font></td>
+          <td><font color="#00FFFF" size="2">使用者可執行這個指令來修改 NIS Server 上的密碼。</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" nowrap><font color="#FFFFFF">/usr/bin/ypwhich</font></td>
+          <td><font color="#00FFFF" size="2">顯示 NIS Server 的主機名稱或資料庫檔案名稱。</font></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<p><font size="+1"><strong> </strong></font> <font size="+1"><strong> <font color="#000000"><strong><strong><font size="+1"><strong><font color="#000000"><strong><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></strong></font></strong> 
+  設定開機時啟動 ypbind 服務</font></strong></strong></font></strong></font></p>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr>
+    <td height="27"><font color="#FFFFFF">Client:~ #<strong><font color="#FFFF00"> 
+      chkconfig ypbind 35</font></strong></font></td>
+  </tr>
+</table>
+<p><font size="+1"><strong><font color="#000000"><strong><strong><font size="+1"> 
+  <img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></strong></font> 
+  NIS Client 的設定步驟</strong></font></p>
+<ol>
+  <li><strong>於 hosts 檔內，將 NIS Server 的資料設定進去</strong>：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">Client:~ #<font color="#FFFF00"><strong> 
+          vi /etc/hosts</strong></font><br>
+          192.168.1.111　Server.paching.com.tw　Server </font></td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><strong>設定 NIS domain name</strong>：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">Client:~ #<strong> <font color="#FFFF00">nisdomainname 
+          paching</font></strong><br>
+          Client:~ # <font color="#FFFF00"><strong>vi /etc/defaultdomain</strong></font><br>
+          <strong>paching </strong></font></td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><strong>設定 yp.conf</strong>：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><p><font color="#FFFFFF">Client:~ # <font color="#FFFF00"><strong>vi 
+            /etc/yp.conf</strong></font><br>
+            <font color="#0099FF"># <font size="2">指定 NIS Domain Name。</font></font><br>
+            domain paching<br>
+            <br>
+            <font color="#0099FF"># <font size="2">指定所要查詢的 NIS Server。</font></font><br>
+            ypserver Server.paching.com.tw<strong><br>
+            <br>
+            </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">這個地方，您也可以這麼設定：<br>
+            </font><font color="#00FFFF"># </font><font color="#00FFFF" size="2">domain 
+            paching server Server.paching.com.tw<strong> <br>
+            </strong></font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">另外如果設定成：</font><br>
+            <font color="#00FFFF"># </font><font color="#00FFFF" size="2">domain 
+            paching broadcast<strong><br>
+            </strong></font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">這表示會透過廣播的方式，去尋找 
+            domain 裡的 NIS Server。<strong><br>
+            </strong></font> </font></p></td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><strong>設定 Client 端查詢的順序</strong>：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td bgcolor="#000000"><font color="#FFFFFF">Client:~ # <font color="#FFFF00"><strong>vi 
+          /etc/nsswitch.conf</strong></font><br>
+          <font face="細明體">passwd :　　files　nis<br>
+          shadow :　　files　nis<br>
+          group : 　　files　nis<br>
+          hosts :　　 files　nis　dns</font></font></td>
+      </tr>
+    </table>
+    <br>
+    針對這四行設定稍微做個解說：<br>
+    <br>
+    <table width="96%">
+      <tr> 
+        <td width="2%" align="center" valign="middle" nowrap>&nbsp;</td>
+        <td width="10%" align="left" valign="top" nowrap><font color="#000099"><strong><font size="4">˙</font>passwd：</strong></font></td>
+        <td width="88%"><font color="#000099">有關帳號資訊的查詢，是先查本機的 /etc/passwd，查詢不到再向 
+          NIS Server 查詢。</font></td>
+      </tr>
+      <tr> 
+        <td align="center" valign="middle" nowrap>&nbsp;</td>
+        <td align="left" valign="top" nowrap><font color="#000099"><strong><font size="4">˙</font>shadow： 
+          </strong></font></td>
+        <td><font color="#000099">有關密碼的查詢，是先查詢本機的 /etc/shadow，查詢不到再向 NIS Server 
+          查詢。</font></td>
+      </tr>
+      <tr> 
+        <td align="center" valign="middle" nowrap>&nbsp;</td>
+        <td align="left" valign="top" nowrap><font color="#000099"><strong><font size="4">˙</font>group： 
+          </strong></font></td>
+        <td><font color="#000099">有關群組的查詢，是先查本機的 /etc/group，查詢不到再向 NIS Server 
+          查詢。</font></td>
+      </tr>
+      <tr> 
+        <td align="center" valign="middle" nowrap>&nbsp;</td>
+        <td align="left" valign="top" nowrap><font color="#000099"><strong><font size="4">˙</font>hosts： 
+          </strong></font></td>
+        <td><font color="#000099">有關主機名稱的查詢，是先查詢本機的 /etc/hosts 檔，查詢不到再向 NIS Server 
+          查詢，若連 NIS 也查詢不到，再根據本機 /etc/resolv.conf 的設定，向預設的名稱伺服器做查詢。</font></td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><strong>修改 /etc/passwd</strong>：<br>
+    <br>
+    <table width="80%" border="0">
+      <tr> 
+        <td nowrap bgcolor="#000000"><font color="#FFFFFF">Client:~ # <strong><font color="#FFFF00">vi 
+          /etc/passwd</font></strong><br>
+          　　　　　　<font color="#00FFFF" size="2">：略</font><br>
+          <font face="細明體">mysql:x:60:103:MySQL database admin:/var/lib/mysql:/bin/bash<br>
+          dhcpd:x:102:65534:DHCP server daemon:/var/lib/dhcp:/bin/false<br>
+          pop:x:67:100:POP admin:/var/lib/pop:/bin/false <br>
+          </font><strong><font color="#FFFF00" face="細明體">+::::::</font></strong><font face="細明體">　<font color="#00FFFF" size="2"><strong>← 
+          加上這行。</strong></font></font><br>
+          <font color="#00FFFF"># <font size="2">補上這一行的用意，是表示相關資訊在本機查不到時，可以引導 
+          process 到 NIS 去查詢。<br>
+          </font># <font size="2">請注意此行設定中，&quot;<strong>+</strong>&quot; 及其後的六個 
+          &quot;</font><strong>:</strong><font size="2">&quot; 中間無任何空白字元。</font></font></font></td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><strong>初次啟動 ypbind</strong> <strong>及確認 RPC 有收到程式回應</strong>：</li>
+</ol>
+<blockquote> 
+  <table width="80%" border="0">
+    <tr> 
+      <td bgcolor="#000000"><font color="#FFFFFF">Client:~ # <font color="#FFFF00"><strong>rcypbind 
+        start</strong></font><br>
+        Starting ypbind 　　　　　　　　　　<font color="#00FF00">done</font><br>
+        <br>
+        Client:~ # <font color="#FFFF00"><strong>rpcinfo -u localhost ypbind</strong></font><br>
+        program 100007 version 1 ready and waiting<br>
+        program 100007 version 2 ready and waiting</font></td>
+    </tr>
+  </table>
+  
+</blockquote>
+<p>　NIS Client 端的設定大致如此。沒問題的話，再來就可以開始進行測試了。<br>
+  <br>
+  <strong><a name="18" id="18"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  <font size="+1">Client 端測試</font></strong><font size="+1"><br>
+  </font><br>
+  　請使用一個 Server 上存在，但 Client 端不存在的帳號，來看看能否順利從 Client 端透過 Server 的認證而成功登入：</p>
+<table width="80%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">Client login :<font color="#FFFF00"> 
+      <strong>vivian</strong></font><br>
+      Password:　<font color="#00FFFF" size="2">← 請輸入 Server 上使用者 vivian 的密碼。</font><br>
+      Last login: Sat Nov 12 14:29:53 2006<br>
+      <font color="#FFFF00">No directory /home/vivian !</font><br>
+      Logging in with home= &quot; / &quot;<br>
+      vivian@Client: / &gt;</font></td>
+  </tr>
+</table>
+<br>
+　目前雖已成功登入，但卻無家目錄可用，這是因為 Client 端主機根本就不存在 vivian 這個帳號，那當然也就沒家目錄囉。要解決這個問題很容易，只要把 
+NIS 與 NFS 做個整合即可，這部分等一下馬上會說明。<br>
+<br>
+<strong><a name="19" id="19"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+<font size="+1">NIS Client 查詢 NIS Server 相關資訊的指令</font></strong><br>
+<br>
+　以下要介紹的這些指令，請參考 <a href="#15">15.2.2</a> 小節的說明，這裡直接以範例來介紹：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF"> Client:~ # <font color="#FFFF00"><strong>ypwhich 
+      -x</strong></font><br>
+      Client:~ #<font color="#FFFF00"><strong> ypcat -x</strong></font><br>
+      Client:~ # <font color="#FFFF00"><strong>ypmatch -x</strong></font><br>
+      <font face="細明體">Use &quot;ethers&quot;　　　for map &quot;ethers.byname&quot;<br>
+      Use &quot;aliases&quot;　　 for map &quot;mail.aliases&quot;<br>
+      Use &quot;services&quot;　　for map &quot;services.byname&quot;<br>
+      Use &quot;protocols&quot;　 for map &quot;protocols.bynumber&quot;<br>
+      Use &quot;hosts&quot;　　　 for map &quot;hosts.byname&quot;<br>
+      Use &quot;networks&quot;　　for map &quot;networks.byaddr&quot;<br>
+      Use &quot;group&quot;　　　 for map &quot;group.byname&quot;<br>
+      Use &quot;passwd&quot;　　　for map &quot;passwd.byname&quot; </font><br>
+      </font> <font color="#00FFFF"># </font><font color="#00FFFF" size="2">以上三個指令的執行結果是相同的，都是用來顯示 
+      NIS Server 上的資料庫檔案。</font><font color="#00FFFF"><br>
+      #</font><font color="#FFFFFF">&nbsp;</font><font color="#00FFFF" size="2">若單純的執行 
+      ypwhich 指令，不加任何參數，則會顯示 NIS Server 的主機名稱：</font><font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF"> Client:~ # <font color="#FFFF00"><strong>ypwhich</strong></font><br>
+      Server.paching.com.tw<br>
+      <br>
+      Client:~ # <font color="#FFFF00"><strong>ypcat passwd.byname<br>
+      </strong></font><font color="#00FFFF">#</font><font color="#FFFFFF"> <font color="#00FFFF" size="2">列出 
+      UID 1000 以上的使用者帳號資訊。亦可使用 passwd 來代替 passwd.byname：</font></font><font color="#FFFF00"><strong>　</strong></font><font size="2"><br>
+      </font>Client:~ # <font color="#FFFF00"><strong>ypcat passwd</strong></font><br>
+      <font face="細明體">nobody:*:65534:65533:nobody:/var/lib/nobody:/bin/bash<br>
+      vivian:$1$Qyzzh301$:1002:100::/home/vivian:/bin/bash<br>
+      barry:jeI0Y8SUVE0vE:1001:100::/home/barry:/bin/bash<br>
+      mary:KJchA1.8PjUAg:1000:100::/home/mary:/bin/bash</font><br>
+      <br>
+      Client:~ #<font color="#FFFF00"><strong> ypmatch vivian barry passwd</strong></font>　<br>
+      <font face="細明體">vivian:$1$Qyzzh301$:1002:100::/home/vivian:/bin/bash<br>
+      barry:jeI0Y8SUVE0vE:1001:100::/home/barry:/bin/bash</font><br>
+      <font color="#00FFFF">#</font><font color="#FFFFFF"> </font><font color="#00FFFF" size="2">顯示 
+      vivian 及 barry 的帳號資訊。</font><br>
+      <br>
+      Client:~ #<font color="#FFFF00"><strong> ypmatch 1001 passwd.byuid</strong></font>　<br>
+      <font face="細明體">barry:jeI0Y8SUVE0vE:1001:100::/home/barry:/bin/bash</font><br>
+      <font color="#00FFFF">#</font><font color="#FFFFFF"> <font color="#00FFFF" size="2">顯示</font></font> 
+      <font color="#00FFFF" size="2">UID 1001 的帳號資訊。 </font> </font></td>
+  </tr>
+</table>
+<br>
+<font color="#FF0000"><strong><font color="#000000" size="+1"><br>
+<a name="20"></a><font size="5">15.2.5 NIS 與 NFS 的整合</font></font></strong><br>
+<br>
+<font color="#000000">　剛剛在 Client 端做測試時，雖可經由 NIS 認證而成功登入，但美中不足之處，就是使用者沒家目錄可用，這時候您只要在 
+NIS Server 上再去架設 NFS，並將 /home 分享出來，然後 Client 端再把 /home 掛載進來就行了：<strong><br>
+<br>
+<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">NIS 
+Server 上的設定</font></strong></font></font><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td height="90" bgcolor="#000000"><font color="#FFFFFF">Server:~ # <font color="#FFFF00"><strong>vi 
+      /etc/exports</strong></font><br>
+      /home　192.168.1.0/24(rw,sync)<br>
+      <br>
+      Server:~ # <font color="#FFFF00"><strong>rcnfsserver start</strong>　<font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#FFFFFF"> 
+      </font></font><font color="#00FFFF" size="2">如果 NFS 已是啟動狀態，則執行 &quot; exportfs 
+      -rv &quot; 即可。</font> </font></font></td>
+  </tr>
+</table>
+<br>
+<font color="#FF0000"><font color="#000000"><strong> </strong></font><font color="#FF0000"><font color="#000000"><strong><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+</strong></font></font><font color="#000099"><strong>NIS Client</strong></font> 
+<font color="#000000"><strong><font color="#000099">端的測試</font></strong></font> 
+<br>
+<br>
+</font> 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">Client:~ #<font color="#FFFF00"> 
+      <strong>mount 192.168.1.111:/home /home</strong><br>
+      <br>
+      <font color="#FFFFFF">Client:~ #<font color="#FFFF00"><strong> df | grep 
+      home</strong></font>　<br>
+      192.168.1.111:/home　514048　33280　480768　7%　/home <br>
+      <br>
+      <font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#FFFFFF"> 
+      </font></font></font></font><font color="#00FFFF" size="2">如要設定 Client 端在下次開機時能自動掛載家目錄，請至 
+      /etc/fstab<strong> </strong>做設定：</font></font><font color="#00FFFF" size="2"> 
+      <br>
+      </font><font color="#00FFFF"> <font color="#FFFFFF">Client:~ # <font color="#FFFF00"><strong>vi 
+      /etc/fstab </strong></font><br>
+      192.168.1.111:/home　 /home　 nfs　 defaults　 0 0 </font></font></font></font></td>
+  </tr>
+</table>
+<p><font color="#FF0000"><font color="#000000"> 　NIS Client 成功掛載後，您可以用剛剛那個 vivian 
+  帳號再登入一次，這回應該就有家目錄可用了。<br>
+  <br>
+  　另外也可嘗試從另一台主機對 NIS Client 做遠端連線，並輸入 NIS Server 上存在，但 NIS Client 端不存在的帳號做認證，看看能否成功登入。<br>
+  <br>
+  <font size="+1"><strong><a name="21"></a><font size="5">15.2.6 設定 Slave NIS 
+  Server</font></strong></font><font size="5"><br>
+  </font><br>
+  　NIS Server 所扮演的角色非常重要，萬一掛點了，那平常透過 NIS 作認證來存取相關服務的功能就全部停擺，其影響可說是非同小可，所以為了防止有這種事情發生，架設一台以上的 
+  Salve NIS 就有其必要性。</font><font color="#000000"><br>
+  <br>
+  　目前我們的 Master NIS 為 Sever.paching.com.tw，那 Slave NIS 就假設為 Slave.paching.com.tw。首先請把 
+  Master 的主機資訊紀錄於 Slave 的 /etc/hosts 檔：</font></font> </p>
+<table width="100%" border="0">
+  <tr> 
+    <td height="40" bgcolor="#000000"><font color="#FFFFFF">Slave:~ # <font color="#FFFF00"><strong>vi 
+      /etc/hosts</strong></font><strong><br>
+      </strong>192.168.1.111　Server.paching.com.tw　Server</font></td>
+  </tr>
+</table>
+<p><font color="#FF0000"><font color="#000000">　</font><font color="#000000">再來重複 
+  <a href="#16">15.2.3</a> 小節的 2 ~ 6 步驟。如果都沒問題的話，就可以開始與 Master 做資料同步了：</font></font></p>
+<table width="40%" border="0">
+  <tr>
+    <td height="25" nowrap bgcolor="#CCCCCC"><font color="#000000">Slave:~ # <strong>/usr/lib/yp/ypinit 
+      -s Server.paching.com.tw</strong></font></td>
+  </tr>
+</table>
+<p><font color="#FF0000"><font color="#000000"> 　完成後，請檢查您的 /var/yp 目錄下，有沒有多一個 
+  paching 的目錄，如果有的話，那代表 Master 的資料庫已經成功傳送至您 Slave 主機了。<br>
+  <br>
+  　目前在我的環境裡，已經存在一台 Master 與一台 Slave NIS，不過先前的</font> 
+  <font color="#000000">NIS Client 尚未將 Slave 設定進去，那就趕快補上去吧：</font></font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">Client:~ # <font color="#FFFF00"><strong>vi 
+      /etc/hosts</strong></font><br>
+      <font face="細明體">192.168.1.111　Server.paching.com.tw　Server <br>
+      192.168.1.112　Slave.paching.com.tw　 Slave<br>
+      </font><br>
+      Client:~ # <font color="#FFFF00"><strong>vi /etc/yp.conf</strong></font><br>
+      domain paching<br>
+      ypserver Server.paching.com.tw<br>
+      ypserver Slave.paching.com.tw　<font color="#00FFFF" size="2">← 補上這筆設定即可。</font></font></td>
+  </tr>
+</table>
+<br>
+　最後再重新啟動 ypbind :<br>
+<br>
+<table width="30%" border="0">
+  <tr>
+    <td height="23" bgcolor="#CCCCCC">Client:~ #<strong> rcypbind restart</strong></td>
+  </tr>
+</table>
+<br>
+　剩下的測試工作就留給各位囉 !<br>
+<p>&nbsp; </p>
+<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( 柏青哥 
+  )</em></font> <br>
+</p>
+</body>
+</html>

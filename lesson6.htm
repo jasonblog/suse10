@@ -1,0 +1,1440 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>柏青哥的 SuSE Linux -- 開機流程與 Boot Loader</title>
+<style type="text/css">
+<!--
+a {
+	text-decoration: none;
+}
+-->
+</style>
+</head>
+
+<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
+<font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a>　　</font>作者：陳柏菁<font size="+1"> 
+　</font>E-mail：pachingko@ms96.url.com.tw 
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap> <div align="center"><font size="7"><strong>第六章　開機流程與 Boot Loader 
+        </strong></font></div></td>
+  </tr>
+</table>
+<strong><font color="#0000FF" size="+1"><br>
+<font color="#000099">索引：</font></font></strong> 
+<table width="100%" border="0">
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong><a href="#1">6.1 Linux 的開機程序</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td width="3%"><font color="#000099">&nbsp;</font></td>
+    <td width="6%" align="center" valign="top" nowrap><font color="#000099">6.1.1</font></td>
+    <td width="91%"><font color="#000099"><a href="#2">電腦開機簡介</a> --- <a href="#17"><br>
+      </a><a href="#3">MBR 概述</a>、<a href="#4">Boot Loader 簡述</a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">6.1.2</font></td>
+    <td><a href="#5">讓 Linux 與 Windows 共存一顆硬碟</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">6.1.3</font></td>
+    <td><a href="#6">1024 磁柱的問題</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">6.1.4</font></td>
+    <td><font color="#000099"><a href="#7">SLES10 之開機流程</a> --- <br>
+      <a href="#8">/etc/inittab 檔案</a> </font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">6.1.5</font></td>
+    <td><font color="#000099"><a href="#9"> runlevel 相關指令</a> --- <a href="#12">chkconfig</a>、<a href="#10">telinit 
+      及 runlevel</a></font></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>6.2 <a href="#13">Boot Loader 
+      的設定</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">6.2.1</font></td>
+    <td><font color="#000099"><a href="#14">GRUB 設定檔</a> ---<br>
+      <a href="#15">/boot/grub/menu.lst 檔案說明</a> <br>
+      <a href="#16">設定開機密碼</a> <br>
+      <a href="#17">改變 GRUB 安裝位置 </a> </font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">6.2.2</font></td>
+    <td><font color="#000099"><a href="#18">LILO 設定檔</a> --- /etc/lilo.conf</font></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>6.3 <a href="#19">系統關機</a>---<a href="#20">shutdown 
+      </a></strong></font></td>
+  </tr>
+</table>
+<br>
+<hr>
+　 
+<p>　這一章顧名思義就是要介紹 Linux 的開機流程，看看如何從按下主機電源按鈕開始，到最後能完成整個開啟 Linux 作業系統的程序。本章的另一個重點，應該是大家很感興趣的多重開機的設定，對於只有一台電腦的您來說，一定很渴望能在這部主機上安裝多套作業系統吧，果真如此的話，那 
+  boot loader 的部分可就要好好的學學了。<br>
+  <br>
+  <strong><font color="#0000FF" size="+1"><font size="+2"><a name="1"></a><font size="6">6.1 
+  Linux 的開機程序</font></font><br>
+  <br>
+  </font></strong><font color="#000000" size="+1"><strong><a name="2"></a><font size="5">6.1.1 
+  電腦開機簡介</font></strong></font><br>
+  <br>
+  　在還沒正式介紹 Linux 的開機流程之前，先大致認識一下電腦在開機時所會執行的基本工作。講到開機，第一個馬上聯想到的就是 BIOS，所以還是從 BIOS 
+  的觀念開始談起吧 ! <br>
+  <br>
+  　BIOS (Basic Input and Output System) 是燒錄於主機版上的 EEPROM 或 Flash memory 記憶體晶片中的程式，主要是用來記憶週邊裝置及系統的相關設定，且提供一個使用者操作介面來讓我們修改設定值，而您在 
+  BIOS 中所做的設定，會被存放在 CMOS RAM ( 隨機存取記憶體 )&nbsp;中，且這些資料並不會因為您的關機而消失，因為主機板上的鋰電池會負責供應 
+  CMOS RAM 所需的電力。<br>
+  <br>
+  　當打開主機電源後，系統會去讀出儲存在 CMOS RAM 中的 BIOS 設定，並開始進行開機自我測試 (<font color="#000000">P</font>ower 
+  On Self Test :<strong> </strong><font color="#0000FF">POST</font>)，如果還在 POST 
+  階段時，按下 Delete 鍵 (大部分電腦品牌都是使用這個 key)，就可以進入到 BIOS 的設定主畫面，比如您要調整開機順序或修改日期時間等，就可以這麼做。接下來 
+  BIOS 將依照 CMOS 中所設定的開機順序來依序尋找可開機裝置，如果這個裝置是硬碟的話，那就會先去讀取硬碟的第 0 個磁柱的第 0 個磁頭的第一個磁區 
+  (最前面 512 bytes 的磁區)，也就是 MBR (Master Boot Record)。<br>
+  <br>
+  <strong><a name="3"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  <font size="+1">MBR 概述</font></strong><br>
+  <br>
+  　MBR 內存放著 Boot Partition Loader (BPL : 分割區引導程式)、 partition table 及 Magic number，分別各佔據著 
+  446 bytes、64 bytes 及 2 bytes 的空間。<br>
+  <br>
+  　partition table 是包含著四個分割區的紀錄，像起始、結束磁柱的資訊、分割區類型及分割區是否有設定啟動 (Active) 旗標 ﹔而 BPL 
+  即是根據 partition table 裡有設定 Active 旗標的那個 partition，來載入該 partition 的 boot sector，以完成後續的開機作業 
+  ﹔至於 MBR 內剩下的 2 bytes，是存放檢查碼，主要是讓 BPL 去檢查 MBR 磁區的正確性。<br>
+  <br>
+  　MBR 一般是由 DOS/Windows 的分割程式或安裝程式所建立起來的，所以也可以把剛剛提到的分割區引導程式，當成一個 DOS/Windows 的 
+  Loader 來看待。<br>
+  <br>
+  <strong><a name="4"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  <font size="+1">Boot Loader 簡述</font></strong><br>
+  <br>
+  　接著談談 Boot Loader，Boot Loader 就是開機載入程式，其主要功用是用來載入作業系統的核心。而在 Linux 中經常使用的 Loader 
+  有兩種，分別是 LILO (<font color="#0000FF">LI</font>nux <font color="#0000FF">LO</font>ader) 
+  及 GRUB (<font color="#0000FF">GR</font>and <font color="#0000FF">U</font>nified 
+  <font color="#0000FF">B</font>ootloader) ，它們都具有 Boot Manager ( 開機管理程式 ) 的功能，也就是可以管理多重開機的意思，當您一顆硬碟上存在著多套作業系統時，就必須要使用 
+  Boot Manager 來做管理。假使之前您未曾接觸過 Linux 時，可能都會使用 SPFDISK 或 Partition Magic 這一類的 Boot 
+  Manager，但學習了 Linux 之後，就可以使用 LILO 或 GRUB 來管理您的多重開機噢。<br>
+  <br>
+  　一般來說，Linux 的 Boot Loader 為一兩階段程式，第一階段程式碼可以放在 MBR 或 /boot 分割區的 boot sector 裡 
+  ( 若 /boot 沒獨立出來，那就在 root partition 的 boot sector 裡 )，第二階段程式碼則是一定放在 /boot 分割區內 
+  ( 如 /boot 沒獨立出來，也是在 root partition 裡 )。像平常在安裝 Linux 作業系統的過程中，您把 Boot Loader 
+  安置在 MBR 時，那這個就是指 Boot Loader 的第一階段程式碼而言。至於為何不把 Linux Loader 全部放在 MBR ? 理由很簡單，因為 
+  MBR 中能使用的空間有限，Loader 的程式碼根本不夠放。<br>
+  <br>
+  　接著就要開始提到重點了，當您將 Linux Loader 放在 MBR 的時候，它會取代原本分割區引導程式的功能，所以當 BIOS 在載入 MBR 時，就會直接交給 
+  Linux Loader 去執行，此時不論您是使用 LILO、GRUB 或 SPFDISK 來擔任 Boot Manager ，都會看到開機選單畫面，來讓您選擇要進入哪套作業系統。當 
+  Linux Loader 安置在 MBR 中，並選擇要開啟的是 Linux 作業系統時，那第一階段 Boot Loader 的主要任務，就是要載入 Boot 
+  Loader 的第二階段，如此方能完成後續的整個開機作業。<br>
+  <br>
+  　請注意，MBR 一次只能安置一個 Loader，如之前您 MBR 內是使用 SPFDISK 來做開機管理，現在安裝 Linux 時，又把 Linux 
+  Loader 置於 MBR，那當然 MBR 裡的 Loader 就變成是 Linux Loader 了。<br>
+  <br>
+  <font size="+1"><strong><a name="5"></a><font size="5">6.1.2 讓 Linux 與 Windows 
+  共存一顆硬碟</font></strong></font><br>
+  <br>
+  　這裡先教大家如何讓 Windows 與 Linux 共存一顆硬碟的基本做法，而等您本章都學習完畢後，應該有能力去安裝兩套以上的作業系統。 </p>
+<blockquote> 
+  <ol>
+    <li><strong><font color="#000099">先安裝 Windows</font></strong><font color="#000099">：<br>
+      <font color="#000000">您可以事先使用磁碟分割工具 ( 如 SPFDISK ) 將硬碟切割成兩個分割區，來規劃給 Windows 
+      使用，以一顆 80G 的硬碟來講好了，這兩個分割區就可以個別給它個 20 G，一個用來安裝 Windows 作業系統，另一個則可作為備份用途或儲存一些資料，那剩下 
+      40G 的空間，就可以留給 Linux 來使用。<br>
+      </font><br>
+      </font></li>
+    <li><strong><font color="#000099">再安裝 Linux</font></strong><font color="#000099">：</font><br>
+      安裝 Linux 之前，不需事先劃分分割區給其使用 (您要事先切割也不反對啦)，因為在安裝過程就可以進行磁碟分割，不過要注意在規劃 Linux 
+      分割區時，不要去動到 Windows 的那兩個分割區 ( 以 /dev/hda 來說，就是指 /dev/hda1 及 /dev/hda2 )。另外在安裝過程，請將 
+      LILO 或 GRUB 安置在 MBR。</li>
+  </ol>
+</blockquote>
+　這樣安裝完畢後，就可以使用 Linux Loader 來擔任 Boot Manager 囉 ! 此時當然想要開啟哪套作業系統都 OK 的啦。<br>
+<br>
+　您要有個觀念，後裝的 Linux 是認得先裝的 Windows 的，但如果安裝順序顛倒過來，則後裝的 Windows 可是不認得先裝的 Linux，且另一方面，後裝的 
+Windows Loader 會把原本在 MBR 中的 Linux Loader 覆蓋掉，如此會造成無法開啟 Linux，因此筆者才建議把 Linux 安裝在 
+Windows 的後面，如此對初學者而言，會是比較單純的。<br>
+<p align="left"> 　好了，Windows 與 Linux 共存一顆硬碟的基本做法應該已經清楚了，但如果現在想要更進一步安裝更多套作業系統時，比如一套 
+  Windows 再加上三套 Linux，這該怎麼做呢 ? 要達到這個目標，那可能需要學會如何去修改 LILO 或 GRUB 設定檔了。只要把本章內容看完，這些應該都難不倒各位的。<br>
+  <br>
+  　以下大致整理一下 Linux Loader (指第一階段) 安置在 /boot partition 及 MBR 的差異： </p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><font color="#000099"><strong>安置在 /boot 分割區時</strong>：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>可搭配其它 Boot Manager，如 SPFDISK、Partition Magic 來製作開機選單，當然也可以讓 LILO 或 GRUB 
+      來擔任 Boot Manager，不過記得要將 /boot partition 設定為 Active。 </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><font color="#000099"><strong>安置在 MBR 時</strong>：</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>這樣是最單純的做法，因為在 BIOS 載入 MBR 後，就直接交給 Linux Loader 來接管。</td>
+  </tr>
+</table>
+<blockquote> 
+  <p><strong><font color="#000099">Tips：</font></strong><font color="#000099" size="2">當您想將 
+    Linux OS 從硬碟中移除該怎麼做呢 ? 首先可先使用 SPFDISK 來將 Linux 的分割區全部刪除，然後再重建 MBR 就行了。您可以直接在 
+    SPFDISK 裡重建 MBR，也可以在進入 DOS 後執行 &quot;fdisk /mbr&quot;。</font></p>
+</blockquote>
+<p><strong><font size="+1"> <a name="6"></a><font size="5">6.1.3 1024 磁柱的問題</font></font></strong><br>
+  <br>
+  　早期的硬碟容量不大時，其定址方式是採取 CHS (cylinder、head、sector) 實體定址，而所能支援的定址上限只能達 1024 磁柱、16 
+  磁頭及 63 磁區，如果以一個磁區為 512 bytes 來換算的話，則只能使用到 1024 x 16 x 63 x 512 bytes 的磁碟空間，相當於 
+  528 M。但隨著磁碟儲存技術持續的進展，硬碟空間也相對的不斷增加情形下，這樣的限制對於磁碟的存取就會產生問題，為了解決這方面的侷限，因而後來發展出了 
+  LBA (Logical Block Address) 邏輯區塊定址技術，透過這種技術，使得您在對硬碟做存取時，會經由 BIOS 中的 [<font color="#0000FF">INT 
+  13h</font>] 中斷來下命令給硬碟，讓硬碟了解所存取檔案的位置。使用這種技術可以讓我們所能存取磁碟的最大容量為 8.4GB (1024 cylinder)，所以只要 
+  BIOS 支援 [INT 13h] 的 LBA mode，那麼存取 8.4 G 內的資料是 OK 的。<br>
+  <br>
+  　不過後來磁碟容量又突破 8.4 G 以後，這種舊式的 LBA mode 就又無法應付了，因此後來又設計出加強版的 [INT 13h]，使得對硬碟的存取限制高達 
+  9.4 TB 。只要您是使用 1999 年以後的電腦，則 BIOS 應該都會支援 [<font color="#0000FF">INT 13h Extension</font>] 
+  的 LBA mode。<br>
+  <br>
+  　早期接觸 Linux 的人，可能都會習慣將 /boot 目錄獨立成一個分割區並往前安置，就是因為這個 1024 cylinder 的問題。因 /boot 
+  分割區內，存放著 Loader 的第二階段程式碼及作業系統的核心，而為了確保開機過程能順利將其載入，所以才把 /boot 分割區安置在 8.4 G ( 
+  1024 cylinder )以前，這樣才能夠解決無法開機的問題。<br>
+  <br>
+  　再來談到 LILO 與 GRUB 的問題，如果您是使用舊版的 LILO，由於其不支援 [INT 13h Extension]，所以也是會有 1024 
+  cylinder 的問題，但如果是使用新版的 LILO 或 GRUB，則不需擔心這方面的限制，不過前提是 BIOS 需支援 [INT 13h Extension] 
+  的 LBA mode 才行。<br>
+  <br>
+  <strong><font color="#000000" size="+1"><a name="7"></a><font size="5">6.1.4 
+  </font></font></strong><font color="#000000" size="5"><strong>SLES 10 之開機流程</strong></font><br>
+  <br>
+  　這裡就要開始說明 Linux 的整個開機過程，順便把前面學過的部分再做個複習。而在以下的解說中，是假設從硬碟開機，且 Linux Loader 是安裝在 
+  MBR。</p>
+<blockquote> 
+  <ol>
+    <li>按下主機電源後，BIOS 做硬體偵測，並根據 CMOS 中的紀錄來決定開機裝置。</li>
+    <li>接著 BIOS 會載入 MBR 磁區，並將 Linux Loader 載入記憶體，接著主控權就交由 Linux Loader 來接管。</li>
+    <li>再來會看到一個開機選單畫面，來讓您選擇要開啟哪套作業系統。</li>
+    <li>選擇 Linux OS 並按下 Enter 鍵以後，Linux Loader 就把 Linux kernel 及 initramfs (<em><font color="#0000FF">註一</font></em>) 
+      載入記憶體，準備來進行一些初始化的工作。</li>
+    <li>在成功掛載根目錄檔案系統 (rootfs) 後，於 rootfs 中所執行的第一支程式為 init，其 PID 為 1。</li>
+    <li>init 會載入 /etc/inittab (initial table) 的內容，並執行檔案內相關的 scripts。</li>
+    <li>最後就是執行 login 程式，此時會等待您輸入帳號密碼，如果認證無誤的話，就會開啟一個 shell 來讓您使用囉 !</li>
+  </ol>
+</blockquote>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#CCCCCC">
+<p><strong><em><font color="#000099">註一</font></em><font color="#000099">：</font></strong><br>
+        <font color="#000099">在 kernel 啟動時，會把 initramfs ( initial ram-based file 
+        system ) 載入 ram disk，以提供一個最小的 Linux 操作環境。就在成功載入後，initramfs 上的 init 程式會負責以下的工作：</font></p>
+      <blockquote> 
+        <ol>
+          <li><strong><font color="#000099">載入必要的核心模組</font></strong><font color="#000099">：</font><br>
+            <font color="#000099">為了要存取電腦上的硬體設備，比如 SCSI 硬碟，就需要載入相對的 driver。另外將來要存取 
+            rootfs 時，那就需載入該檔案系統的 driver。<br>
+            <br>
+            </font> </li>
+          <li><strong><font color="#000099">提供特殊的裝置檔案</font></strong><font color="#000099">：</font><br>
+            <font color="#000099">被核心所載入的裝置 drivers，udev 都會處理，並於 initramfs 的 /dev 
+            裡，產生那些裝置檔案。 </font><br>
+            <br>
+          </li>
+          <li><strong><font color="#000099">設定 RAID 及 LVM</font></strong><font color="#000099">：</font><br>
+            <font color="#000099">當 rootfs 是處在 RAID 或 LVM 的環境中，則 init 會幫您設定 RAID 
+            或 LVM，這樣將來方能順利存取 rootfs。</font><br>
+            <br>
+          </li>
+          <li><strong><font color="#000099">管理網路組態</font></strong><font color="#000099">：</font><br>
+            <font color="#000099">當透過網路來掛載 rootfs 時，則 init 會確認有否載入網路驅動程式，並檢查是否允許存取 
+            rootfs。 <br>
+            </font></li>
+        </ol>
+      </blockquote>
+      <p><font color="#000099">由以上說明不難發現 initramfs 裡的 init 程式，就是為了真正根目錄檔案系統的掛載以及後續對 
+        rootfs 的存取來做準備，一旦 rootfs 掛載成功，initramfs 就會被清除，緊接著 kernel 會啟動真正根目錄檔案系統上頭的 
+        init 程式，作業系統的啟動或關閉程序就是由它來負責的。　</font></p></td>
+  </tr>
+</table>
+<p>　參考底下的開機流程圖，以加深對這方面的觀念：</p>
+<p align="center"> <img src="../picture/boot.png" tppabs="http://www.suse.url.tw/picture/boot.png" width="425" height="88"><br>
+  <br>
+  <font size="2">開機過程的簡易流程圖</font></p>
+<p> <strong><a name="8"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> 
+  <font size="+1"><strong>檔案 /etc/inittab </strong></font>　<br>
+  <br>
+  　在整個 Linux 開機過程裡，init 程式所載入的 /etc/inittab 檔案，扮演著一個很重要的角色，所以對這個檔案必須要有一些基本的認識。<br>
+  <br>
+  　Linux 作業系統的啟動方式是靠 runlevel 來定義，而當確定了系統要進入的 runlevel 之後，也同時決定了系統將來要使用的相關服務。在 
+  /etc/inittab 裡，對幾個系統的執行等級 ( runlevel ) 有相關說明：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"> <p><font color="#00FFFF"># <strong>runlevel　0</strong>　is　System 
+        halt (Do not use this for initdefault!)<br>
+        <font color="#FFFF00"># <font size="2">系統關機。</font></font><br>
+        <br>
+        #<strong> runlevel　1　</strong>is　Single user mode<br>
+        <font color="#FFFF00"># <font size="2">系統進入單人模式 。</font></font><br>
+        <br>
+        #<strong> runlevel　2</strong>　is　Local multiuser without remote network 
+        (e.g. NFS)<br>
+        <font color="#FFFF00"># <font size="2">本地端多人使用模式，不提供遠端網路服務，如 NFS 等。</font></font><br>
+        <br>
+        # <strong>runlevel　3</strong>　is　Full multiuser with network<br>
+        <font color="#FFFF00"># <font size="2">多人使用的文字介面模式，有網路相關服務。</font></font><br>
+        <br>
+        # <strong>runlevel　4　</strong>is　Not used<br>
+        <font color="#FFFF00"># <font size="2">目前為系統所保留，不使用。</font></font><br>
+        <br>
+        # <strong>runlevel　5　</strong>is　Full multiuser with network and xdm<br>
+        <font color="#FFFF00"># <font size="2">多人使用的圖形介面模式，有網路相關服務。</font></font><font size="2"><br>
+        </font><br>
+        #<strong> runlevel　6</strong>　is　System reboot (Do not use this for initdefault!)<br>
+        <font color="#FFFF00"># <font size="2">系統重新開機。</font></font></font></p></td>
+  </tr>
+</table>
+<br>
+　檔案內容中如果在該行的最前頭加上「#」符號，表示為註解說明而已，註解的那幾行是不會被讀入的。<br>
+<br>
+　再來針對 inittab 檔案中的設定語法作個說明。檔案格式共分四個欄位，每個欄位間用「:」做區隔，就像這樣：<br>
+<br>
+<table width="30%" border="0">
+  <tr> 
+    <td height="24" nowrap bgcolor="#CCCCCC"><font color="#000000" face="細明體"><strong>id：runlevels：action：process</strong></font></td>
+  </tr>
+</table>
+<br>
+　以下是各欄位的介紹：<br>
+<br>
+<table width="100%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">欄 
+      位</font></strong></td>
+    <td nowrap> <div align="left"><strong><font color="#000099">意　　義</font></strong></div></td>
+  </tr>
+  <tr> 
+    <td width="8%" align="center" valign="middle" nowrap><font color="#000099"><strong>id</strong></font></td>
+    <td width="92%" nowrap><font color="#000099">代表該行紀錄的識別名稱，最多可以有四個字元。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">runlevels</font></strong></td>
+    <td><font color="#000099">指定執行等級，可為 0 ~ 6 的數字及 S 等。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">action</font></strong></td>
+    <td><font color="#000099">告知 init 所要採取的動作為何。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">process</font></strong></td>
+    <td><font color="#000099">所要執行的程式及參數。</font></td>
+  </tr>
+</table>
+<br>
+　針對第三個欄位 action 的部分做個補充：<br>
+<br>
+<table width="100%" border="1" cellspacing="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td align="center" valign="middle" nowrap><strong><font color="#000099">Action</font></strong></td>
+    <td> 
+      <div align="center"><font color="#000099"><strong>主　要　作　用</strong></font></div></td>
+  </tr>
+  <tr> 
+    <td width="8%" align="center" valign="middle" nowrap><font color="#000099"><strong>initdefault 
+      </strong></font></td>
+    <td width="92%"><font color="#000099">告訴 init 在系統在開機時，預設要進入的執行等級為何。當 runlevel 
+      設定成 3，表示開機後要以文字介面來登入系統，設定成 5，則是以圖形介面來登入。請注意使用這個 action 時，runlevel 千萬不要指定為 
+      0 或 6。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099"><strong>wait</strong></font></td>
+    <td><p><font color="#000099">表示第二個欄位的 runlevel 被指定後，第四個欄位的 process 將會被執行，且 
+        init 會等待至 process 執行完畢後再繼續進行下一個動作。</font></p></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099"><strong>bootwait 
+      </strong></font></td>
+    <td><font color="#000099">表示在系統開機期間，第四個欄位所指定的 process 將會被執行，且 init 會等待至 process 
+      執行完畢後再進行下一個動作。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099"><strong>ctrlaltdel</strong></font></td>
+    <td><font color="#000099">當使用者按下<strong> </strong>Ctrl-Alt-Del 組合鍵時，init 就會讓第四個欄位所指定的 
+      process 去執行，此時該 process 所執行的動作就是重新開機。如果您不想開放此功能的話，將該行註解起來就是了。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099"><strong>respawn</strong></font></td>
+    <td><font color="#000099">respawn 就是「再生」的意思，也就是指程式終止後，能夠在適當的時機再次的被執行。一般這個 
+      action 常搭配與登入有關係的 process 來使用，比如 mingetty 及 sulogin。 mingetty 是負責提供使用者登入終端機的服務，sulogin 
+      則是系統在進入到單人模式時，所需執行的一支程式。</font></td>
+  </tr>
+</table>
+<br>
+　有了以上的觀念後，接著就來看看 /etc/inittab 的其它內容：<br>
+<br>
+<strong>內容一：</strong><br>
+<br>
+<table width="70%" border="0">
+  <tr> 
+    <td height="41" bgcolor="#000000"><font color="#FFFFFF"> <font color="#00FFFF"># 
+      The default runlevel is defined here</font><br>
+      <font face="細明體">id:5:initdefault: </font></font></td>
+  </tr>
+</table>
+<br>
+　第一筆紀錄是設定開機時預設要進入的 runlevel ﹔設定成 5，表示預設從圖形介面登入。如果希望下次開機時，能以純文字介面登入的話，就把 runlevel 
+欄位改成 3。<br>
+<br>
+<strong>內容二：</strong><br>
+<br>
+<table width="70%" border="0">
+  <tr> 
+    <td height="41" bgcolor="#000000"><font color="#00FFFF"># First script to 
+      be executed, if not booting in emergency (-b) mode</font><font color="#FFFFFF"><br>
+      <font face="細明體">si::bootwait:/etc/init.d/boot</font></font></td>
+  </tr>
+</table>
+<p> 　/etc/init.d/boot 是在開機過程中，init 所執行的第一支 Script，其主要執行的工作，如掛載 procfs、sysfs 及 
+  devpts 這一類的檔案系統、啟動 /etc/init.d/boot.d 目錄中名稱是以 S 開頭的符號連結檔所指向之 scripts <font color="#000099">(註一)，</font>及執行 
+  /etc/init.d/boot.local 這支 script。</p>
+<blockquote> 
+  <p><font color="#000099"><strong>註一</strong>：<font size="2">這些 scripts 主要執行的工作如載入必需之核心模組、啟動 
+    LVM、檢查及掛載本地端的檔案系統 ( 根據 /etc/fstab )、設定硬體時間、備份核心訊息、啟用 swap、設定 hostname 及 yp 
+    等等。</font></font></p>
+</blockquote>
+<p> <strong>內容三：</strong></p>
+<table width="70%" border="0">
+  <tr> 
+    <td bgcolor="#000000"> <p><font color="#00FFFF" face="細明體"># /etc/init.d/rc 
+        takes care of runlevel handling</font><font color="#FFFFFF"><br>
+        <font face="細明體">l0:0:wait:/etc/init.d/rc 0<br>
+        l1:1:wait:/etc/init.d/rc 1<br>
+        l2:2:wait:/etc/init.d/rc 2<br>
+        l3:3:wait:/etc/init.d/rc 3<br>
+        </font> <font color="#00FFFF" face="細明體">#l4:4:wait:/etc/init.d/rc 4</font><font face="細明體"><br>
+        l5:5:wait:/etc/init.d/rc 5<br>
+        l6:6:wait:/etc/init.d/rc 6</font></font></p></td>
+  </tr>
+</table>
+<br>
+　當 boot script 完成了它的工作後，會將主控權交還給 init 程式，init 接著會根據 initdefault 所指定的 runlevel，來決定下一步的動作。由於 
+initdefault 所指定的預設 runlevel 是 5，因此 /etc/init.d/rc 這支&nbsp;script，就會根據 /etc/init.d/rc5.d 
+這個目錄的內容，來決定啟動哪些服務。<br>
+<br>
+　仔細看 /etc/init.d/rc5.d 目錄的內容，發覺其下都是一些符號連結檔，並連結至 /etc/init.d/ 目錄下的 scripts，如以下所示：<br>
+<br>
+<table width="70%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong><font color="#FFFF00"> 
+      ls -l /etc/init.d/rc5.d</font></strong><br>
+      </font><font color="#FFFFFF" face="細明體"><font color="#00FF00"> </font>lrwxrwxrwx　1 
+      root root　7　Oct　7 23:22<font color="#00FFFF">　</font><font color="#00FF00"><font color="#00FFFF">K07cron<font color="#FFFFFF"> 
+      </font></font><font color="#FFFFFF">-&gt;</font> </font></font><font color="#FFFFFF"><font color="#00FF00" face="細明體">../cron</font></font><font color="#FFFFFF" face="細明體"><font color="#00FF00"><br>
+      </font></font><font color="#FFFFFF"><font color="#00FF00"> <font color="#FFFFFF" face="細明體">lrwxrwxrwx　1 
+      root root　6　Oct　7 23:22<font color="#00FFFF">　</font></font><font color="#FFFFFF"><font color="#00FFFF" face="細明體">K09xdm</font><font face="細明體"> 
+      -&gt; </font><font color="#00FF00" face="細明體">../xdm</font> </font></font></font><font color="#FFFFFF" face="細明體"><font color="#00FF00"><br>
+      </font>lrwxrwxrwx　1 root root　7　Oct　7 23:22　<font color="#00FFFF">K08nscd</font> 
+      -&gt; </font><font color="#FFFFFF"><font color="#00FF00" face="細明體">../nscd</font></font><font color="#FFFFFF" face="細明體"><br>
+      lrwxrwxrwx　1 root root　7　Sep　6 00:11　<font color="#00FFFF">K10sshd</font> 
+      -&gt; <font color="#00FF00">../sshd<br>
+      </font>lrwxrwxrwx　1 root root　6　Sep　6 00:11　<font color="#00FFFF">K12nfs</font> 
+      -&gt; <font color="#00FF00">../nfs</font><br>
+      lrwxrwxrwx　1 root root　9　Sep　6 00:11　<font color="#00FFFF">K16syslog</font> 
+      -&gt; <font color="#00FF00">../syslog<br>
+      </font>lrwxrwxrwx　1 root root 10　Sep　6 00:11　<font color="#00FFFF">K17network 
+      </font>-&gt; <font color="#00FF00">../network<br>
+      </font>lrwxrwxrwx　1 root root 10　Aug 29 20:35　<font color="#00FFFF">S05network</font> 
+      -&gt; <font color="#00FF00">../network</font><br>
+      lrwxrwxrwx　1 root root　9　Aug 29 18:37　<font color="#00FFFF">S06syslog</font> 
+      -&gt; <font color="#00FF00">../syslog</font><br>
+      lrwxrwxrwx　1 root root　6　Aug 29 18:41　<font color="#00FFFF">S10nfs</font> 
+      -&gt; <font color="#00FF00">../nfs</font><br>
+      lrwxrwxrwx　1 root root　7　Sep　6 00:11　<font color="#00FFFF">S12sshd</font> 
+      -&gt; <font color="#00FF00">../sshd</font><br>
+      lrwxrwxrwx　1 root root　7　Oct　7 
+      23:22　<font color="#00FFFF">S14nscd</font> 
+      -&gt; <font color="#00FF00">../nscd</font><br>
+      lrwxrwxrwx　1 root root　6　Oct　7 23:22<font color="#FFFFFF">　</font><font color="#00FFFF">S15xdm</font> 
+      -&gt; </font><font color="#FFFFFF"><font color="#00FF00" face="細明體">../xdm 
+      </font></font> <br>
+      <font color="#FFFFFF" face="細明體">lrwxrwxrwx　1 root root　7　Oct　7 23:22　</font><font color="#00FFFF" face="細明體">S15cron 
+      </font><font color="#FFFFFF">-&gt; <font color="#00FF00" face="細明體">../cron </font></font></td>
+  </tr>
+</table>
+<p> 　這些符號連結檔的檔名，不是以 K (Kill) 開頭，就是以 S (Startup、Source) 開頭。就開機過程來說的話，則 S 開頭的符號連結檔所指向的 
+  scripts，會在開機期間被執行 (Startup scripts)，因而能夠啟動系統相關服務 (系統服務都是靠這些 scripts 來管理的)。</p>
+<blockquote> 
+  <p><strong><font color="#000099">Tips：</font></strong><font color="#000099" size="2">假使您已成功進入 
+    runlevel 5，現在又在命令列上執行 &quot;init 3&quot; 來變換成新的 runlevel 時，則當前 runlevel 中的服務 
+    ( 新舊 runlevel 都有啟動的服務除外) 會先被停止，接著才啟動新的 runlevel 裡的服務。也就是說位於 /etc/init.d/rc5.d 
+    目錄中，那些以 K 開頭的連結檔，其指向之 scripts 所管理的服務，會先被終止，接著才啟動 /etc/init.d/rc3.d 目錄中，以 S 
+    開頭的連結檔，其指向之 scripts 所管理的服務。</font></p>
+</blockquote>
+　另外連結檔檔名中的數字大小，表執行先後順序，數字小的會優先被執行，而這些數字請勿任意更動，因不同的服務之間是會有相依關係存在的。<br>
+<br>
+　/etc/init.d 目錄下的 scripts，可以在命令列上接受相關的選項來啟動、停止或重新載入相關的服務，至於常見選項如下：<br>
+<br>
+<table width="100%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td width="10%" align="center"><font color="#000099"><strong>選 項</strong></font></td>
+    <td width="90%"><font color="#000099"><strong>說　明</strong></font></td>
+  </tr>
+  <tr> 
+    <td align="center"><strong><font color="#000099">start</font></strong></td>
+    <td><font color="#000099">啟動服務。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><strong><font color="#000099">stop</font></strong></td>
+    <td><font color="#000099">停止服務。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><strong><font color="#000099">restart</font></strong></td>
+    <td><font color="#000099">重新啟動服務。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><strong><font color="#000099">reload</font></strong></td>
+    <td><font color="#000099">重新載入服務。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><strong><font color="#000099">status</font></strong></td>
+    <td><font color="#000099">顯示服務狀態。</font></td>
+  </tr>
+</table>
+<br>
+　剛剛說過，/etc/init.d/rc 會呼叫所指定 runlevel 中的 scripts，而如果連結至這些 scripts 的符號連結檔是 S 開頭的話，那就相當於傳入 
+start 選項給這些 scripts，因此能啟動相關服務 ﹔要是 K 開頭的話，當然就等於傳入 stop 選項囉。<br>
+<br>
+　接著參考以下的範例：<br>
+<br>
+<table width="70%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
+      <strong>/etc/init.d/sshd </strong></font><strong><font color="#FFFF00">restart</font></strong><br>
+      <font face="細明體">Shutting down SSH daemon 　　　<font color="#00FF00">　done</font><br>
+      Starting SSH daemon 　　　　　 <font color="#00FF00">　done</font></font><br>
+      <font color="#00FFFF"># <font size="2">重新啟動 ssh 服務。</font></font><br>
+      <br>
+      suse:~ #<font color="#FFFF00"> <strong>/etc/init.d/cron status</strong></font><br>
+      <font face="細明體">Checking for Cron: 　　　　　　<font color="#00FF00">　running<br>
+      </font><font color="#00FFFF"># <font size="2">檢視 cron 排程服務的狀態。 </font></font></font></font></td>
+  </tr>
+</table>
+<br>
+　為了簡化操作，SuSE 裡頭還可以這麼執行：<br>
+<br>
+<table width="70%" border="0">
+  <tr>
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
+      </font></font><strong><font color="#FFFF00">rcsshd restart</font></strong><br>
+      <font color="#FFFFFF"><font face="細明體">Shutting down SSH daemon 　　　<font color="#00FF00">　done</font><br>
+      Starting SSH daemon 　　　　　 <font color="#00FF00">　done</font></font><br>
+      </font><br>
+      <font color="#FFFFFF">suse:~ #<font color="#FFFF00"> <strong>rccron status</strong></font></font> 
+      <br>
+      <font color="#FFFFFF"><font face="細明體">Checking for Cron: 　　　　　　<font color="#00FF00">　running</font></font></font></td>
+  </tr>
+</table>
+<br>
+　您會發現跟之前的結果是相同的，想了解為什麼，可以做個追蹤：<br>
+<br>
+<table width="70%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">which 
+      rcsshd</font></strong><br>
+      /usr/sbin/rcsshd<br>
+      <br>
+      suse:~ #<font color="#FFFF00"><strong> ls -l /usr/sbin/rcsshd</strong></font><br>
+      lrwxrwxrwx 1 root root 16 Aug 29 18:45 <font color="#00FFFF">/usr/sbin/rcsshd 
+      </font>-&gt; <font color="#00FF00">/etc/init.d/sshd</font></font></td>
+  </tr>
+</table>
+<br>
+　原來 rcsshd 是個連結至 /etc/init.d/sshd 的符號連結檔。現在應該知道為什麼可以使用 rcxxx 這種方式來管理服務了吧 !<br>
+<br>
+<strong>內容四：<br>
+<br>
+</strong> 
+<table width="70%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#00FFFF"># what to do in single-user mode</font><font color="#FFFFFF"><br>
+      <font color="#FFFFFF" face="細明體">ls:S:wait:/etc/init.d/rc S</font><font face="細明體"><br>
+      </font><font color="#FFFFFF" face="細明體">~~:S:respawn:/sbin/sulogin</font></font></td>
+  </tr>
+</table>
+<br>
+　這是關於進入到單人模式時的設定。執行 /sbin/sulogin 的目的，是為了只允許單一使用者來登入，這個使用者當然就是指 root 了，因此在進入到 
+single user mode 時，會要求您輸入 root 密碼。<br>
+<br>
+<strong>內容五：</strong><br>
+<br>
+<table width="70%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#00FFFF"># what to do when CTRL-ALT-DEL 
+      is pressed</font><font color="#FFFFFF"><br>
+      <font face="細明體">ca::ctrlaltdel:/sbin/shutdown -r -t 4 now</font></font></td>
+  </tr>
+</table>
+<br>
+　當使用者按下 Ctrl-Alt-Delete 組合鍵時，就會執行「<font color="#0000FF">shutdown -r -t 4 now</font>」，也就是重新開機。想想看這樣是不是很不妥，因為如此一來，每個使用者都能夠讓系統 
+reboot。要取消此功能時，只需把該行註解起來即可。<br>
+<br>
+<strong>內容六：</strong><br>
+<br>
+<table width="70%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#00FFFF"># what to do when power fails/returns</font><font color="#FFFFFF"><br>
+      <font face="細明體">pf::powerwait:/etc/init.d/powerfail start<br>
+      pn::powerfailnow:/etc/init.d/powerfail now<br>
+      </font><font color="#00FFFF"><font color="#FFFFFF" face="細明體">po::powerokwait:/etc/init.d/powerfail 
+      stop </font></font></font></td>
+  </tr>
+</table>
+<br>
+　如您有安裝 UPS 不斷電系統，則在發生電力中斷的時候，init 就會根據這些設定來採取行動。<br>
+<br>
+　第一行設定是說電力中斷時，線上使用者會收到如下訊息「THE POWER IS FAILED! SYSTEM GOING DOWN! PLEASE LOG 
+OFF NOW!」，隨即在兩分鐘後重新開機至單人模式中 ﹔第二行設定是說發生斷電時，使用者會收到通知「THE POWER IS FAILED! LOW BATTERY 
+- EMERGENCY SYSTEM SHUTDOWN!」，隨即關機 ﹔第三行是說當電力恢復後，使用者收到的訊息為「THE POWER IS BACK」，並馬上取消 
+shutdown 的動作。<br>
+<br>
+　以上三個 action，可執行「man inittab」自行查閱。另外您要是懂一些 scripts 的話，也可以順便去看一下 /etc/init.d/powerfail 
+的內容，這樣就更清楚剛剛在說什麼了。 <br>
+<br>
+<strong>內容七： </strong> <br>
+<br>
+<table width="70%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#00FFFF"># getty-programs for the normal 
+      runlevels<br>
+      # &lt;id&gt;:&lt;runlevels&gt;:&lt;action&gt;:&lt;process&gt;<br>
+      # The &quot;id&quot; field MUST be the same as the last<br>
+      # characters of the device (after &quot;tty&quot;).</font><font color="#FFFFFF"><br>
+      <font face="細明體">1:2345:respawn:/sbin/mingetty --noclear tty1<br>
+      2:2345:respawn:/sbin/mingetty tty2<br>
+      3:2345:respawn:/sbin/mingetty tty3<br>
+      4:2345:respawn:/sbin/mingetty tty4<br>
+      5:2345:respawn:/sbin/mingetty tty5<br>
+      6:2345:respawn:/sbin/mingetty tty6</font></font></td>
+  </tr>
+</table>
+<p> 　這個部分在說明進入 Runlevel 2 ~ 5 時，會執行 /sbin/mingetty ttyn (n 為 1~6)。以第二行為例，當使用者登入第二個終端機後，mingetty 
+  隨即結束執行，而在使用者登出時，mingetty 又會馬上被執行 ( 這就是 respawn 這個 action 的功效 )，以等待下一個使用者的登入。<br>
+  <br>
+  　以上就是 /etc/inittab 的大致內容。<br>
+  <br>
+  　在開機過程中，往往會在螢幕上看到很多訊息快速閃過您眼前，由於所出現的訊息很多且捲動的速度太快，當然也就無法看個仔細囉，所以在完成整個開機作業並登入系統後，可以使用<strong> 
+  </strong><font color="#0000FF">dmesg</font> 指令，來查看剛剛核心所提供的相關訊息，另外也可以檢視<font color="#0000FF"> 
+  /var/log/boot.msg </font> 檔案。 </p>
+<blockquote> 
+  <p><strong><font color="#000099">Tips：</font></strong><font color="#000099" size="2">從前面介紹的開機流程可以知道 
+    /etc/inittab 的重要性，如果此檔設定有誤的話，可能會造成無法順利開啟作業系統，此時除了使用光碟的救援模式進去修改外，也可以在開機選單畫面下的 
+    [Boot Options]<strong> </strong>處輸入 &quot;rw init=/bin/bash&quot; ，這樣在開機過程就不會呼叫 
+    init 程式，而是改由 bash 來接管。使用這種方式登入是不需要輸入 root 密碼的，因此要是哪天您 root 密碼忘記時，也可透過這種方式登入，來修改 
+    root 密碼。<br>
+    不過在您成功登入後，萬一發現只有根目錄被掛載著，而您還想存取其他 partition 裡的資料時，那執行 &quot;mount -a&quot; 
+    就對了。</font></p>
+</blockquote>
+<font size="+1"><strong> <a name="9"></a><font size="5">6.1.5 runlevel 相關的指令</font></strong></font><br>
+<br>
+<font size="+1"><strong><font size="+1"><a name="12"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font> 
+指令 chkconfig</strong></font><br>
+<br>
+　這個指令可以用來設定系統服務在進入不同 runlevel 時，要啟動或停止該項服務，因此如果希望有哪些服務在開機時，能啟動或關閉，即可使用這個指令去做設定。<br>
+<br>
+　另外請注意一點，當您執行 chkconfig 去設定各個服務在各 runlevel 的啟用狀態時，與該服務目前的啟用狀態無關，也就是不會影響到當前的服務狀態啦。<br>
+<br>
+<strong>指令語法</strong>：<br>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><strong><font face="細明體">chkconfig [names] [runlevel]<br>
+      chkconfig -l|--list [names]<br>
+      chkconfig -a|--add [names]<br>
+      chkconfig -d|--del [names]</font></strong></td>
+  </tr>
+</table>
+<br>
+<strong>參數說明</strong>：<br>
+<table width="88%" border="1">
+  <tr> 
+    <td width="8%"><div align="center"><font color="#000099">-l</font></div></td>
+    <td width="92%"><font color="#000099">列出目前各服務在進入到各個 runlevel 時，是否要啟用。</font></td>
+  </tr>
+  <tr> 
+    <td nowrap> <div align="center"><font color="#000099">-a</font></div></td>
+    <td nowrap><font color="#000099">新增某服務至啟動的行列。代表該服務名稱的 script，需存在於 /etc/init.d 
+      目錄下。</font></td>
+  </tr>
+  <tr> 
+    <td nowrap> <div align="center"><font color="#000099">-d</font></div></td>
+    <td nowrap><font color="#000099">將某服務從啟動行列中移除。</font></td>
+  </tr>
+</table>
+<strong><br>
+範例說明</strong>：<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>chkconfig 
+      -l</strong></font><br>
+      </font><font color="#FFFFFF" face="細明體">apache2　　0:off　1:off　2:off　3:off　4:off　5:off　6:off<br>
+      atd　　　　0:off　1:off　2:off　3:off　4:off　5:off　6:off<br>
+      cron 　　　0:off　1:off</font><font face="細明體"><strong><font color="#00FF00">　</font></strong></font><font color="#00FF00" face="細明體">2:on　 
+      3:on</font><font color="#FFFFFF" face="細明體">　 4:off<font color="#00FF00">　</font></font><font color="#00FF00" face="細明體">5:on<font color="#FFFFFF"> 
+      　 </font></font><font color="#FFFFFF" face="細明體">6:off<br>
+      gpm　　　　0:off　1:off　2:off　3:off　4:off　5:off　6:off<br>
+      network　　0:off　1:off</font><font face="細明體"><strong><font color="#00FF00">　</font></strong></font><font color="#00FF00" face="細明體">2:on　 
+      3:on</font><font color="#FFFFFF" face="細明體">　 4:off<font color="#00FF00">　</font></font><font color="#00FF00" face="細明體">5:on</font><font color="#FFFFFF" face="細明體">　 
+      6:off<br>
+      nfs　　　　0:off　1:off　2:off<font color="#00FF00">　</font></font><font color="#00FF00" face="細明體">3:on</font><font color="#FFFFFF" face="細明體">　 
+      4:off<font color="#00FF00">　</font></font><font color="#00FF00" face="細明體">5:on</font><font color="#FFFFFF" face="細明體">　 
+      6:off</font><font color="#FFFFFF"> <br>
+      </font> <font color="#00FFFF">#</font> <font color="#FFFFFF"><font color="#00FFFF" size="2">列出每個服務在進入不同的 
+      runlevel 時，是否要啟用。比如以 network 那一行來講好了，</font></font><br>
+      <font color="#00FFFF">#</font> <font color="#FFFFFF"><font color="#00FFFF" size="2">其代表意思是說，當進入了 
+      runlevel 2、3 或 5 時，就會啟動網路服務。</font></font><br> <font color="#FFFFFF"><br>
+      suse:~ # <font color="#FFFF00"><strong>chkconfig -l cron <br>
+      </strong></font><font color="#FFFFFF" face="細明體">cron　　　 0:off　1:off<font color="#00FF00">　</font></font><font color="#00FF00" face="細明體">2:on　3:on</font><font color="#FFFFFF" face="細明體">　4:off<font color="#00FF00">　</font></font><font color="#00FF00" face="細明體">5:on<font color="#FFFFFF">　</font></font><font color="#FFFFFF" face="細明體">6:off</font><font color="#FFFF00"><strong><br>
+      </strong></font></font> <font color="#00FFFF">#</font> <font color="#FFFFFF"><font color="#00FFFF" size="2">只列出 
+      cron 這個服務，在進入不同 runlevel 時的啟用狀態。</font></font><br> <font color="#FFFFFF"><br>
+      suse:~ # <font color="#FFFF00"><strong>chkconfig atd 35</strong></font><strong><br>
+      </strong>suse:~ #<strong> <font color="#FFFF00">chkconfig --level 35 atd 
+      on</font> <br>
+      </strong>suse:~ #<font color="#FFFF00"><strong> insserv atd,start=3,5 </strong></font><strong></strong><strong> 
+      <br>
+      </strong></font><font color="#00FFFF">#</font> <font color="#00FFFF" size="2">以上三者所執行的結果是相同的，意即設定在進入到 
+      runlevel 3 或 5 時，</font><br> <font color="#00FFFF">#</font> <font color="#00FFFF" size="2"><font color="#FFFFFF"><font color="#00FFFF">要啟動 
+      atd 服務。 </font></font></font><font color="#FFFFFF">&nbsp;</font><font color="#FFFFFF"><strong><br>
+      </strong><br>
+      suse:~ # <font color="#FFFF00"><strong>chkconfig -l atd <br>
+      </strong></font><font color="#FFFFFF" face="細明體">atd　　　　0:off　1:off　2:off<font color="#00FF00">　</font></font><font color="#00FF00" face="細明體">3:on</font><font color="#FFFFFF" face="細明體">　4:off<font color="#00FF00">　</font></font><font color="#00FF00" face="細明體">5:on<font color="#FFFFFF">　</font></font><font color="#FFFFFF" face="細明體">6:off</font><font color="#FFFF00"><strong> 
+      <br>
+      </strong></font></font> <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">看到結果了吧。</font><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">再來請至 /etc/init.d/rc3.d 
+      及 rc5.d 目錄中，檢視有無 atd 的符號連結檔：<br>
+      </font><font color="#00FFFF"> <font color="#FFFFFF">suse:/etc/init.d #<font color="#FFFF00"><strong> 
+      ls -l rc3.d rc5.d | grep atd</strong></font><br>
+      <font face="細明體">lrwxrwxrwx 1 root root 6 Feb 3 20:37 K11atd -&gt; ../atd<br>
+      lrwxrwxrwx 1 root root 6 Feb 3 20:37 S11atd -&gt; ../atd<br>
+      lrwxrwxrwx 1 root root 6 Feb 3 20:37 K11atd -&gt; ../atd<br>
+      lrwxrwxrwx 1 root root 6 Feb 3 20:37 S11atd -&gt; ../atd</font></font></font><font color="#00FFFF" size="2"><br>
+      </font><font color="#00FFFF">#</font> <font color="#00FFFF" size="2">由此可知，藉由 
+      chkconfig 的設定，其實就是在幫您建立符號連結檔<font color="#00FFFF" size="2">於 rcx.d 目錄中，</font><font color="#FFFFFF"><br>
+      </font></font><font color="#00FFFF">#</font> <font color="#00FFFF" size="2">而該連結檔即是連結至 
+      /etc/init.d 裡的 script。</font><font color="#FFFFFF"><br>
+      <br>
+      suse:~ #<strong> <font color="#FFFF00">chkconfig atd off</font></strong><br>
+      </font><font color="#00FFFF">#</font> <font color="#FFFFFF"><font color="#00FFFF" size="2">進入所有 
+      runlevel 時，都不啟動 atd 服務。</font><br>
+      </font> <font color="#FFFFFF">&nbsp; </font><font color="#FFFFFF"><br>
+      suse:~ # <font color="#FFFF00"><strong>chkconfig -a atd <br>
+      </strong></font><font color="#FFFFFF"><font color="#FFFFFF" face="細明體">atd　　　　0:off　1:off　</font><font color="#FFFFFF"><font color="#00FF00" face="細明體">2:on</font></font><font color="#FFFFFF" face="細明體"><font color="#00FF00">　</font></font><font color="#00FF00" face="細明體">3:on</font><font color="#FFFFFF" face="細明體">　4:off<font color="#00FF00">　</font></font><font color="#00FF00" face="細明體">5:on<font color="#FFFFFF">　</font></font><font color="#FFFFFF" face="細明體">6:off</font><font color="#FFFF00"><strong> 
+      </strong></font></font><font color="#FFFF00"><strong><br>
+      </strong></font></font> <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">將 
+      atd 服務加入啟動行列。要移除的話，使用 &quot;-d&quot; 參數即可。</font><font color="#FFFFFF">&nbsp;</font></td>
+  </tr>
+</table>
+<p>　除了 chkconfig 外，您亦可使用 YaST 去做這件事，以 atd 服務為例，請參考以下的步驟：</p>
+<p>　　1. 首先請執行 YaST 程式，並於主畫面中選擇 [系統] 裡的 [系統服務]：</p>
+<p align="center"><img src="../picture/runlevel1.png" tppabs="http://www.suse.url.tw/picture/runlevel1.png" width="751" height="405"><br>
+  <font size="2">圖一：YaST2 控制中心主畫面</font></p>
+<p>　　2. 先找到 atd 的位置，然後再 [啟用]：</p>
+<p align="center"><img src="../picture/runlevel2.png" tppabs="http://www.suse.url.tw/picture/runlevel2.png" width="759" height="465"><br>
+  <font size="2">圖二：系統服務一覽表</font></p>
+<p align="left">　<em><strong><font color="#000099">　　Note</font></strong></em><font color="#000099">：<font size="2">如現階段不想啟用 
+  atd 服務，只想設定 runlevel 時，那需進入到 [專家模式] 才行，這就留給您自己測試了。</font></font></p>
+<p>　　3. 啟用 atd 服務時，其相依服務也要一併啟用，如下圖所示：</p>
+<p align="center"><img src="../picture/runlevel3.png" tppabs="http://www.suse.url.tw/picture/runlevel3.png" width="370" height="110"><br>
+  <font size="2">圖三：atd 之相依服務說明</font></p>
+<p> 　　4. 下圖是告知您 atd 服務及其相依服務已成功啟動：</p>
+<p align="center"><img src="../picture/runlevel4.png" tppabs="http://www.suse.url.tw/picture/runlevel4.png" width="563" height="134"><br>
+  <font size="2">圖四：atd 及其相依服務啟動成功之提示畫面</font></p>
+<p>　　5. 沒問題的話，就選擇 [完成] 吧：</p>
+<p align="center"><img src="../picture/runlevel5.png" tppabs="http://www.suse.url.tw/picture/runlevel5.png" width="757" height="472"><br>
+  <font size="2">圖五：系統服務主畫面</font></p>
+<p>　　6. 接著會詢問您是否要儲存對 runlevel 的變更，那當然選擇 [是] 囉：</p>
+<p align="center"><img src="../picture/runlevel6.png" tppabs="http://www.suse.url.tw/picture/runlevel6.png" width="206" height="75"><br>
+  <font size="2">圖六：儲存 runlevel 變更的畫面</font></p>
+<font size="+1"><strong><font size="+1"><a name="10"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+<font size="4"><strong>指令 <font color="#000000"> telinit </font>及 runlevel </strong></font><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099">telinit：</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>telinit 是連結至 init 的符號連結檔，在您完成開機作業後，可以使用它來變換 runlevel，比如執行：<br>
+      <font size="4">　<font color="#0000FF">˙</font></font><font color="#0000FF">telinit 
+      6：即告訴 init 要改變 runlevel 到 6，也就是 reboot。<br>
+      <font size="4">　˙</font>telinit 0：即告訴 init 要改變 runlevel 到 0，也就是關機。<br>
+      <font size="4">　˙</font>telinit q：告訴 init 重新載入 /etc/inittab 的內容。</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">runlevel </font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><p>用來查看之前跟現在的 runlevel 為何，舉例如下：</p>
+      <table width="30%" border="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td>suse:~ #<strong> runlevel</strong><br>
+            N　5</td>
+        </tr>
+      </table> <br>
+      那個 5 就是現在的 runlevel，至於 N 是表示前一個 runlevel，如果您進入 runlevel 5 後就沒有再變更過，那麼就會以 
+      N 來代表前一個 runlevel。接著請執行 <font color="#0000FF">init 3<font color="#000000">，</font></font> 
+      然後再輸入 runlevel 去檢視：<br> <br> <table width="30%" border="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td>suse:~ # <strong>init 3<br>
+            </strong><br>
+            suse:~ # <strong>runlevel</strong><br>
+            5　3</td>
+        </tr>
+      </table> <br>
+      結果顯示之前的 runlevel 為 5，而現在的 runlevel 為 3。</td>
+  </tr>
+</table>
+<p> <font color="#0000FF" size="+1"><strong><font size="+2"><a name="13"></a><font size="6">6.2 
+  Boot Loader 的設定</font></font></strong></font><br>
+  <br>
+  　這一節是要介紹 Linux 經常使用的兩種 Boot Loader--- LILO 與 GRUB 的相關設定。如果將來您硬碟上存在好幾套的作業系統，並希望以 
+  LILO 或 GRUB 來擔任 Boot Manager 時，那這兩種 Loader 的設定檔，可要好好的學一學才行。<br>
+  <br>
+  <font size="+1"><strong><a name="14"></a><font size="5">6.2.1 GRUB</font></strong></font> 
+  <font size="5"><strong>設定檔</strong></font><br>
+  <br>
+  　GRUB 本身可支援很多的檔案系統，如 ext2、ext3、reiserfs、minix、fat 等等，因此以 GRUB 擔任 Boot Manager 
+  時，於開機過程 grub 程式才能直接至檔案系統裡去載入與開機相關的檔案 ﹔比如開機時所看到的選單畫面以及後續 kernel、initrd 的載入，就是以 
+  /boot/grub/menu.lst 這個檔案的設定為基礎的，爾後也才能順利掛載根目錄檔案系統及接下來 init 的整個處理流程。<br>
+  <br>
+  　有了以上所提的觀念後，想想看萬一哪天修改了 /boot/grub/menu.lst 之後，您認為還需做什麼事情嗎 ? 當然是不需要囉，因為在下次開機時，grub 
+  程式會自己找到 menu.lst。<br>
+  <br>
+  　GRUB 相關的組態檔有以下三個：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099">/boot/grub/menu.lst</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>此檔主要是對 GRUB 所管理欲啟動之作業系統，所要做的相關設定。當您想做多重開機時，就須先搞定這個檔案才行。至於其詳細設定方式，等一下會利用範例來說明。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">/boot/grub/device.map</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>GRUB 所認得的裝置名稱與傳統 Linux 的裝置名稱可不相同，像 /dev/hda 這個裝置對 GRUB 來說就看不懂了，因此需要借助 
+      device.map 檔案，來指出 GRUB 與 Linux 裝置名稱的對應關係。在您的 device.map 裡，如果看到了這行「<font color="#0000FF">(hd0) 
+      /dev/hda</font>」，那就是說 /dev/hda 這個裝置，對應到 GRUB 所認得的裝置代號是 (hd0)，也就是說第一顆所找到的硬碟，其代號是 
+      (hd0)，那如果能找到第二顆硬碟的話，就是 (hd1) 了。假使您主機上頭只有一顆硬碟，且裝置名稱為 /dev/hdb，此時您 device.map 
+      裡應該是 「<font color="#0000FF">(hd0) /dev/hdb</font>」。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">/etc/grub.conf</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>此檔案主要是包含給 GRUB 外部程式來安裝 Loader 時，所需使用的指令及參數。</td>
+  </tr>
+</table>
+<p><strong><a name="15"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> 
+  <font size="+1"><strong> /boot/grub/menu.lst 檔案說明</strong></font></p>
+<p> 　假設目前硬碟上安裝三套作業系統，一套 Windows 加上兩套 Linux ，如下圖所示：</p>
+<p align="center"> <img src="../picture/boot2.gif" tppabs="http://www.suse.url.tw/picture/boot2.gif" width="309" height="197"><br>
+  <font size="2">磁碟規劃圖示</font></p>
+<p> 　接著就根據上面的安排來看看在 menu.lst 裡要如何做設定：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
+      <strong>vi /boot/grub/menu.lst</strong></font><strong><br>
+      </strong> <font face="細明體">color white/blue black/light-gray</font></font><font color="#FFFFFF" face="細明體"><br>
+      default 0<br>
+      timeout 10<br>
+      gfxmenu (hd0,4)/message<br>
+      <br>
+      title SuSE　　<br>
+      　root (hd0,4)　　<br>
+      　kernel /vmlinuz root=/dev/hda7 vga=788<br>
+      　initrd /initrd<br>
+      <br>
+      title Fedora　　<br>
+      　root (hd0,1)　　<br>
+      　kernel /vmlinuz-2.6.5-1.358 ro vga=788 root=LABEL=/ rhgb <br>
+      　initrd /initrd-2.6.5-1.358.img<strong><br>
+      </strong><br>
+      title Windows 2000　<br>
+      　chainloader (hd0,0)+1　<br>
+      <br>
+      title Floppy<br>
+      　chainloader (fd0)+1</font> <font color="#FFFFFF" face="細明體"><br>
+      <br>
+      title Failsafe -- SUSE Linux Enterprise Server 10<br>
+      　root (hd0,4)<br>
+      　kernel /vmlinuz root=/dev/hda7 vga=normal showopts ide=nodma apm=off acpi=off 
+      noresume nosmp noapic maxcpus=0 edd=off 3<br>
+      　initrd /initrd 　</font></td>
+  </tr>
+</table>
+<p>　設定檔內容分成 global 區段及 system 區段 ( 以 title 做開始的區段 )。在 title 之前的那幾個設定項目，是屬於 global 
+  的設定。再來看到 title 後有指定個名稱，而此名稱就是將來您在 GRUB 選單畫面裡所看到的名稱，當您在選單裡選擇某個 title 所指定的名稱，並按下 
+  Enter 鍵後，就會執行這個 title 區段裡的每個指令。接著來了解 global 的那幾個設定項目及每個 title 區段的設定。</p>
+<table width="15%">
+  <tr> 
+    <td height="23" nowrap bgcolor="#666666"><font color="#FFFFFF"><strong>global 
+      的設定部分</strong></font></td>
+  </tr>
+</table>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099">color white/blue black/light-gray<font size="1">　</font></font></strong><font size="1">&nbsp;</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#FFFFFF"><font color="#000000">這是當您在 GRUB 圖形選單畫面中，按下 [ESC] 
+      鍵而進入到文字選單畫面時，所指定的前景、背景、選項及選項背景的顏色。</font></font><font size="1">&nbsp; </font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">default 0</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#FFFFFF"><font color="#000000">0 代表著第一筆 title 的紀錄，而「default 
+      0」是表示預設要使用第一筆 title 來開機，如以上面的設定範例而言，就是指 SuSE 作業系統。同樣道理，改為「default 1」，就表示預設要以第二筆 
+      title 來開機，此時當然就是指 Fedora 作業系統囉。</font></font> </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">timeout 8</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><font color="#FFFFFF"><font color="#000000">當您看到 GRUB 選單畫面後，如 8 秒內未按下鍵盤的任何 
+      key，則會使用 default 所指定的那一套作業系統來開機。</font></font> </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><strong><font color="#000099">gfxmenu (hd0,4)/message</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>這是指定 GRUB 選單畫面影像資料的檔案。 </td>
+  </tr>
+</table>
+<br>
+<table width="15%">
+  <tr> 
+    <td height="23" nowrap bgcolor="#666666"><font color="#FFFFFF"><strong>第一筆 
+      title 設定 (title SuSE)</strong></font></td>
+  </tr>
+</table>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099">root (hd0,4)</font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>root 指令是用來指定存放 kernel 及 initrd 檔案的 partition，也就是 /boot 目錄所在的那個 partition。而在 
+      hd0 後所接的那個數字，是表示第幾個分割區之意，0 代表第一個 partitioin，1 代表第二個 partition，餘依此類推，所以 (hd0,4) 
+      就是 /dev/hda5 囉。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><font color="#000000"><strong><font color="#000099">kernel /vmlinuz</font></strong> 
+      <font color="#000099"><strong>root=/dev/hda7 vga=788</strong></font></font><font color="#000099">&nbsp;</font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><p><font color="#000000">kernel 指令是用來指定 kernel image 的位置。由於我們的範例中，/boot 
+        目錄擁有獨立的分割區，而 kernel 就在這個分割區內，因此 /vmlinuz 的實際路徑為 /boot/vmlinuz。另外您也可以把「root 
+        (hd0,4)」及「kernel /vmlinuz」這兩個指令合併成一個指令來設定，就像這個樣子：<font color="#0000FF">kernel 
+        (hd0,4)/vmlinuz</font>。<br>
+        在 kernel 路徑之後都是一些核心參數，像 root=/dev/hda7 即是設定真正根目錄的位置，而 vga=788 則是設定文字模式下的解析度。要注意的是此處的 
+        root 是以傳統的 Linux 裝置名稱來命名，因為這個資料是靠核心來讀取的，與 GRUB 沒關係。</font></p>
+      <blockquote> 
+        <p><font color="#000000"><strong><font color="#000099">Tips：</font></strong><font color="#000099"><font size="2">假使現在 
+          / 及 /boot 是處於同一個 partition /dev/hda5 裡，那就需改成 &quot;kernel /boot/vmlinuz&quot;，而合併成一個指令的話就是 
+          &quot;kernel (hd0,4)/boot/vmlinuz&quot;。</font><br>
+          </font></font></p>
+      </blockquote></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><font color="#000000"><strong><font color="#000099">initrd /initrd</font></strong></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td><p><font color="#000000">使用 initrd 指令來指出 initrd 檔案的位置。<br>
+        initrd 的概念，</font><font color="#000000">請參考 [<font color="#000099">6.1.4 
+        SLES 10 之開機流程<font color="#000000">] 中 </font></font>initramfs 的說明。</font></p>
+      </td>
+  </tr>
+</table>
+<br>
+　如果此處不使用 root 指令來簡化 kernel 及 initrd 的設定路徑，那麼就修改如下：<br>
+<br>
+<table width="100%">
+  <tr>
+    <td height="56" nowrap bgcolor="#000000"><font color="#FFFFFF" face="細明體">title SuSE　　 
+      　　<br>
+      　kernel (hd0,4)/vmlinuz root=/dev/hda7 vga=788<br>
+      　initrd (hd0,4)/initrd&nbsp;</font></td>
+  </tr>
+</table>
+<br>
+<table width="15%">
+  <tr> 
+    <td height="23" nowrap bgcolor="#666666"><font color="#FFFFFF"><strong>第二筆 
+      title 設定 (title Fedora)</strong></font></td>
+  </tr>
+</table>
+<p>　kernel 及 initrd 的路徑就不再多做介紹，這裡只針對後面的核心參數部分做說明。<font color="#FFFFFF"><font color="#000000">「<font color="#0000FF">ro</font>」表示在開機過程將 
+  root partition 掛載成 read-only 的意思 ﹔</font><font color="#FFFFFF"><font color="#000000">「</font></font><font color="#000000"><font color="#0000FF">root=LABEL= 
+  /</font></font><font color="#FFFFFF"><font color="#000000">」</font></font><font color="#000000">是使用 
+  fs-label 的方式來指出實際的根目錄，當然您要改成</font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#000000">「</font></font></font><font color="#000000">root=/dev/hda3</font><font color="#FFFFFF"><font color="#000000">」</font></font><font color="#000000">也行 
+  ﹔</font><font color="#FFFFFF"><font color="#000000">「</font></font><font color="#000000"><font color="#0000FF">rhgb</font></font><font color="#FFFFFF"><font color="#000000">」</font></font><font color="#000000">乃 
+  redhat graphical boot 之意，是表示在開機中途會轉成以圖形化的方式來繼續開機。</font></font></p>
+<table width="15%">
+  <tr> 
+    <td height="23" nowrap bgcolor="#666666"><font color="#FFFFFF"><strong>第三筆 
+      title 設定 (title Windows 2000)</strong></font></td>
+  </tr>
+</table>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099">chainloader (hd0,0)+1</font></strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>chainloader 就是把 Loader 的主導權交給另一個 Loader 來控管之意 ﹔+1 是指第一個開機磁區，就是 boot sector。因為我們的 
+      Windows 是安裝在 /dev/hda1，所以整行的設定就是說，把 GRUB 的主導權移交給第一個分割區中的第一個磁區的 Windows loader 
+      來接管。</td>
+  </tr>
+</table>
+<br>
+<table width="11%">
+  <tr> 
+    <td height="23" nowrap bgcolor="#666666"><font color="#FFFFFF"><strong>其它 
+      title 設定 </strong></font></td>
+  </tr>
+</table>
+<br>
+　<font color="#FFFFFF"><font color="#000000">「</font></font><font color="#0000FF">title 
+Floppy</font><font color="#FFFFFF"><font color="#000000">」</font></font>這個區段設定，是允許您從磁片開機。而<font color="#FFFFFF"><font color="#000000">「</font></font><font color="#0000FF">title 
+Failsafe</font><font color="#FFFFFF"><font color="#000000">」</font></font>區段，則是以指定的核心參數來開啟 
+Linux，如您&nbsp;Linux 開機過程發生了狀況，就可以考慮以 Failsafe 的方式進入系統。<br>
+<br>
+　整個 /boot/grub/menu.lst 的設定就介紹到這裡。<br>
+<p> <strong><a name="16"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  <font size="+1">設定開機密碼</font></strong><br>
+  <br>
+  　如果想限制使用者開啟特定的作業系統，可設定開機密碼來做這方面的控管，其步驟如下： <br>
+  <br>
+  <strong><font size="+1">步驟一</font></strong>：使用 grub 或 grub-md5-crypt 指令來建立加密密碼</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><p><font color="#CCCCCC" size="2">法一：使用 grub 指令建立加密密碼</font><font color="#CCCCCC"></font><font color="#FFFFFF"><br>
+        suse:~ #<font color="#FFFF00"> <strong>grub </strong></font><br>
+        grub&gt;<strong> <font color="#FFFF00">md5crypt </font></strong> <br>
+        <br>
+        </font><font color="#FFFFFF">Password: <strong><font color="#FFFF00">****</font></strong>　<font color="#00FFFF" size="2">← 
+        輸入密碼 </font><br>
+        Encrypted: $1$kZb641$nJYYIhjvVNFdd2BPjbc971</font><font color="#FFFFFF"> 
+        <font color="#00FFFF" size="2">← 這是加密後的密碼</font></font></p>
+      <p><font color="#CCCCCC" size="2">法二：使用 grub-md5-crypt 指令建立加密密碼</font><font color="#FFFFFF" size="2"><strong><br>
+        </strong></font><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">grub-md5-crypt</font></strong><br>
+        Password:<br>
+        Retype password:<br>
+        $1$FMb641$e3O27.Zeet.mILf0dnpZu/　</font></p>
+      </td>
+  </tr>
+</table>
+<p><strong><font size="+1">步驟二</font></strong>：設定 /boot/grub/menu.lst</p>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> 
+      <strong>vi /boot/grub/menu.lst</strong></font><strong></strong><br>
+      color white/blue black/light-gray<br>
+      default 0<br>
+      timeout 10<br>
+      gfxmenu (hd0,0)/message<br>
+      <br>
+      <font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 將剛剛所產生的加密密碼貼上來：</font><br>
+      <font color="#FFFF00" face="細明體">password --md5 $1$kZb641$nJYYIhjvVNFdd2BPjbc971</font><font color="#00FFFF" size="2" face="細明體"> 
+      </font><font face="細明體"><br>
+      </font><br>
+      title SuSE　　<br>
+      　root (hd0,4)　　<br>
+      　kernel /vmlinuz root=/dev/hda7 vga=788<br>
+      　initrd /initrd<br>
+      <strong>　</strong><font color="#FFFF00">lock<strong><br>
+      </strong></font><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
+      </font></font><font color="#00FFFF" size="2">在這個 title 中加上 lock 紀錄後，將來要開啟 
+      SuSE 作業系統時，就必需先按下<strong> </strong>[<strong> </strong>p ]<strong> </strong></font><font color="#00FFFF"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
+      來進入開機提示畫面，接著在您輸入正確的開機密碼後，方可順利進入作業系統。<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 
+      </font></font></font></font><font color="#00FFFF" size="2">如希望進入任何作業系統前，都要求輸入開機密碼，就於其 
+      title 區段中補上 lock 即可。</font></font></font></font></td>
+  </tr>
+</table>
+<p><strong><font size="+1">　</font></strong>設定完成後，請重新開機來進行測試。以下即為測試的步驟：</p>
+<p> 　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">於開機選單中選取 
+  SuSE：</font></p>
+<p align="center"><img src="../picture/grub1.png" tppabs="http://www.suse.url.tw/picture/grub1.png" width="718" height="391"><br>
+  <font size="2">圖一：GRUB 選單畫面</font></p>
+<p>　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#0000CC">於圖一按下 
+  Enter 鍵以後，會出現要求您做認證的訊息，如下圖所示：</font></p>
+<p align="center"><img src="../picture/grub2.png" tppabs="http://www.suse.url.tw/picture/grub2.png" width="720" height="226"><br>
+  <font size="2">圖二：要求做認證的畫面</font></p>
+<p>　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">請按下任何鍵回到原畫面後，再按下 
+  [p] 並輸入密碼：</font></p>
+<p align="center"><img src="../picture/grub4.png" tppabs="http://www.suse.url.tw/picture/grub4.png" width="721" height="381"><br>
+  <font size="2">圖三：輸入開機密碼提示畫面</font></p>
+<p>　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">於圖三按下 
+  Enter 鍵後，即回到開機畫面：</font></p>
+<p align="center"><img src="../picture/grub5.png" tppabs="http://www.suse.url.tw/picture/grub5.png" width="718" height="392"><br>
+  <font size="2">圖四：不含認證提示的 GRUB 選單畫面</font></p>
+<p>　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">最後按下 
+  Enter 鍵即可順利開啟作業系統。</font></p>
+<p> <strong><a name="17"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  <font size="+1">改變 GRUB 安裝位置</font><br>
+  <br>
+  　</strong>以下提供兩種方式來改變 GRUB 的安裝位置。</p>
+<ol>
+  <li><strong><font color="#000099">使用 grub 指令進入 grub shell 中做設定</font><br>
+    <br>
+    ˙</strong>安裝 GRUB 在分割區上：<strong><br>
+    </strong> 
+    <table width="70%" border="0">
+      <tr> 
+        <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>grub</strong></font><br>
+          <br>
+          grub&gt; <font color="#FFFF00"><strong>root (hd0,4)<font color="#00FFFF" size="2">　</font></strong></font><font color="#00FFFF" size="2">← 
+          指定 /boot 所在的 partition 位置。</font><font color="#00FFFF"><br>
+          </font><br>
+          grub&gt;<font color="#FFFF00"> <strong>setup (hd0,4)<font color="#00FFFF" size="2">　</font></strong></font><font color="#00FFFF" size="2">← 
+          將 GRUB 安裝在 /dev/hda5 的 boot sector。</font><br>
+          <br>
+          grub&gt;<font color="#FFFF00"> <strong>quit<font color="#00FFFF" size="2">　</font></strong></font><font color="#00FFFF" size="2">← 
+          退出 GRUB 設定。</font><br>
+          </font></td>
+      </tr>
+    </table>
+    <strong><br>
+    <br>
+    </strong><strong>˙</strong>安裝 GRUB 在 MBR 中：<strong><br>
+    </strong> 
+    <table width="70%" border="0">
+      <tr> 
+        <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>grub</strong></font><br>
+          <br>
+          grub&gt;<strong> <font color="#FFFF00">root (hd0,4)</font></strong><font color="#FFFF00"><font color="#00FFFF">　</font></font><font color="#00FFFF" size="2">← 
+          </font><font color="#FFFFFF"><font color="#00FFFF" size="2">指定 /boot 
+          所在的 partition 位置。</font></font><font color="#00FFFF"><br>
+          </font><br>
+          grub&gt;<font color="#FFFF00"> <strong>setup (hd0)</strong><font color="#00FFFF">　</font></font><font color="#00FFFF" size="2">← 
+          將 GRUB 安裝在 MBR。</font><br>
+          <br>
+          grub&gt;<font color="#FFFF00"> <strong>quit<font color="#00FFFF">　</font></strong></font><font color="#00FFFF" size="2">← 
+          退出 GRUB 設定。</font><br>
+          </font></td>
+      </tr>
+    </table>
+    <strong><br>
+    </strong></li>
+  <li><strong><font color="#000099">使用 grub-install 指令做設定<br>
+    <br>
+    </font></strong>
+    <table width="70%" border="0">
+      <tr> 
+        <td height="86" bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>grub-install 
+          /dev/hda</strong></font><br>
+          <font color="#00FFFF"># </font><font color="#00FFFF" size="2">將 GRUB 
+          安裝在 MBR。</font><br>
+          <br>
+          suse:~ #<font color="#FFFF00"><strong> grub-install /dev/hda5 <br>
+          </strong></font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">將 
+          GRUB 安裝在分割區。</font></font><font color="#00FFFF" size="2"><strong> </strong></font></font></td>
+      </tr>
+    </table>
+    
+  </li>
+</ol>
+<p> <font size="+1"><strong><a name="18"></a><font size="5">6.2.2 LILO 設定檔</font></strong></font><br>
+  <br>
+  　LILO 在以前是非常受歡迎的 Linux Loader，不過自從 GRUB 出現後，有被漸漸取代的趨勢，但還是有很多玩家對其情有獨鍾，所以對它也要有一些基本認識。<br>
+  <br>
+  　 LILO 的設定檔在 /etc/lilo.conf，檔案內容與 GRUB 一樣，也是區分成 global 及 system 區段，而每個 system 
+  section 是以 image 或 other 做為設定的開始。接著以下圖的安裝為範例，來檢視 lilo.conf 的內容：</p>
+<p align="center"> <img src="../picture/boot1.gif" tppabs="http://www.suse.url.tw/picture/boot1.gif" width="252" height="172"><br>
+  <font size="2">磁碟規劃圖示</font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong> <font color="#FFFF00">vi 
+      /etc/lilo.conf</font></strong><br>
+      <br>
+      <font color="#0099FF"><strong>##GLOBAL OPTIONS </strong></font><br>
+      <br>
+      <strong>prompt</strong><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">強制顯示 boot 
+      的開機提示訊息。</font><strong><br>
+      <br>
+      message=/boot/message</strong><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">指定 LILO 選單畫面影像訊息的檔案。</font><br>
+      </font> <font color="#FFFFFF"> <br>
+      <strong>timeout=50</strong><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">在選單畫面中，若 5 
+      秒 (50 x 0.1) 內沒按下鍵盤的任何 key，就會開啟預設的作業系統。</font><br>
+      </font><font color="#FFFFFF"><br>
+      </font><font color="#FFFFFF"> <strong>default=SuSE_Linux<br>
+      </strong><font color="#00FFFF"># </font><font color="#00FFFF" size="2">指定預設要開啟的作業系統。記得此處的名稱一定要與底下所提及的 
+      PER-IMAGE SECTION </font> <br>
+      <font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">設定區段中，其中一個 
+      label<strong> </strong>所指定的名稱相同。</font></font> 
+      <p><strong> </strong><font color="#FFFFFF"> <strong>boot=/dev/hda</strong></font><br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">這表示 
+        LILO 是安裝在 MBR 之意。<br>
+        </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font> <font color="#00FFFF" size="2">如果設定成<strong> 
+        </strong> boot=/dev/hda2，那表示 LILO 是安裝在第二個分割區的 boot sector。</font> <br>
+        <font color="#FFFFFF"> <br>
+        <strong>map=/boot/map</strong><br>
+        <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">lilo 
+        是根據這個檔案來找到核心及其他相關資料的所在位置。</font><br>
+        <br>
+        <strong>lba32 </strong><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2">這個參數會產生 
+        32 位元的邏輯區塊位址，這是為了要克服 1024 磁柱的問題啦。</font><br>
+        </font> <font color="#FFFFFF"> <font color="#00FFFF"><br>
+        <font color="#FFFFFF"><strong>password=8888</strong></font><br>
+        </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#FFFFFF"><font color="#00FFFF"><font size="2">設定開機密碼。與 
+        grub 不同的是這裡為明碼，而非編碼後的密碼。</font></font></font></font><font color="#FFFFFF"> 
+        </font></p>
+      </font><font color="#FFFFFF"> 
+      <p><font color="#0099FF"><strong>## PER-IMAGE SECTION</strong></font></p>
+      <strong>image=/boot/vmlinuz<br>
+      　　　label=SuSE_Linux<br>
+      　　　initrd=/boot/initrd<br>
+      　　　root=/dev/hda3<br>
+      　　　vga=788</strong></font> <br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font><font color="#00FFFF" size="2">image 
+      是用來定義 kernel image 的位置 ﹔label 是指定將來在 LILO 選單畫面裡所出現</font></font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">的系統名稱。</font></font><font color="#00FFFF" size="2">至於其他參數的意思都與 
+      GRUB 相同，忘記的話，請回去再複習一次。</font></font><br>
+      <font color="#00FFFF"><br>
+      </font> <font color="#FFFFFF"> <strong>other=/dev/hda1<br>
+      　　　label=Win98</strong></font> <br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font> <font color="#FFFFFF"><font color="#00FFFF" size="2">other 
+      是用來定義另一套系統所在的分割區，以這裡為例即為 win98。</font></font></td>
+  </tr>
+</table>
+<br>
+　使用 lilo 擔任 boot loader 不似 GRUB 般方便，GRUB 本身認識檔案系統，可以在開機過程找到其所需要之資料，但 lilo 就須靠 
+map file 來找到相對應的位置。安裝在 MBR 或 boot sector 的 lilo 會指向 map 的位址，因此當您 lilo.conf 有修改過時，需執行 
+lilo 指令來重新安裝一次 lilo，意即在更新 map 之意。 <br>
+<br>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr>
+    <td height="27"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"> <strong>lilo 
+      -v -v</strong></font></font></td>
+  </tr>
+</table>
+<br>
+　lilo 指令後的「-v」參數，是用來顯示執行 lilo 時的訊息，「-v」輸入愈多次，那顯示在螢幕的訊息就愈多。<br>
+<br>
+　上面的範例只是 Windows 與一套 Linux 共存一顆硬碟的設定，那如果又加上另一套 Linux 的話，就必須再使用 other 去做設定，比如現在又多了一套 
+Fedora，其 /boot partition 在 /dev/hda9，則您可於 lilo.conf 中補上：<br>
+<br>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr> 
+    <td height="27"><font color="#000000"><font color="#FFFFFF" face="細明體">other=/dev/hda9</font></font><font color="#FFFFFF" face="細明體"><br>
+      　　 label=Fedora</font></td>
+  </tr>
+</table>
+<br>
+　這樣當您在 SuSE 的 LILO 選單畫面中選擇要進入 Fedora 時，就會將開機作業引導給 Fedora 的 Boot Loader 去執行。<br>
+<br>
+<strong><font color="#0000FF" size="+1"><font size="+2"><a name="19"></a><font size="6">6.3 
+系統</font></font></font><font color="#0000FF" size="6">關機</font></strong><font size="+1"><br>
+</font><br>
+<font color="#000000">　</font><font color="#000000">平常我們在關機或重新開機時，可能會使用 halt、init、poweroff 
+或 reboot 這一類的指令，不過萬一常常有人對您這台主機做遠端連線時，可能會使得這些使用者無法完成目前的工作而被強迫斷線，因此在這種情況下，使用 <font color="#0000FF">shutdown 
+</font>指令是會比較恰當的，因為使用 shutdown 來關機或重新開機時，可以設定緩衝時間，如此方能讓遠端連線者在接獲關機或 reboot 的通知時，有比較充分的時間來把手邊正在執行的工作做個結束。<br>
+<br>
+<font size="+1"><strong><font size="+1"><font size="1"><a name="20"></a></font></font><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+指令 shutdown</strong></font><br>
+<br>
+<strong>指令語法</strong>：<strong><font size="+1"></font></strong><br>
+</font>
+<table width="100%" border="0" bgcolor="#CCCCCC">
+  <tr>
+    <td><font color="#000000" face="細明體"><strong>shutdown [-rhfF] time [warning-message]</strong></font></td>
+  </tr>
+</table>
+<font color="#000000"><br>
+<strong>參數說明</strong>：<br>
+</font> 
+<table width="72%" border="1">
+  <tr> 
+    <td width="11%" align="center" valign="middle" nowrap><font color="#000099">-h</font></td>
+    <td width="89%"><font color="#000099">系統關機。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-r</font></td>
+    <td><font color="#000099">系統重新開機。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-f</font></td>
+    <td><font color="#000099">重新開機時，忽略磁碟檢查。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" valign="middle" nowrap><font color="#000099">-F</font></td>
+    <td><font color="#000099">重新開機時，強迫做磁碟檢查。</font></td>
+  </tr>
+  <tr> 
+    <td height="22" align="center" valign="middle" nowrap><font color="#000099">-k</font></td>
+    <td><font color="#000099">並非真的關機，只是送出警告訊息給每個人而已。</font></td>
+  </tr>
+</table>
+<font color="#000000"><br>
+<strong>範例說明</strong>：<br>
+</font> 
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #</font> <font color="#FFFFFF"><strong><font color="#FFFF00">shutdown 
+      2</font></strong><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">系統在 
+      2 分鐘後，將會變換 runlevel 至單人維護模式。此時遠端連線者的螢幕上<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">會出現如下訊息：<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#000000"><font color="#00FFFF">The 
+      system is going DOWN to maintenance mode in 2 minutes !</font></font><font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">另外執行 
+      &quot;shutdown +2&quot; 也是一樣的效果。<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">要取消這個 
+      shutdown 動作，按下 Ctrl-C 就行了。</font><font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF"><br>
+      suse:~ #</font> <font color="#FFFFFF"><strong><font color="#FFFF00">shutdown 
+      -r 5 </font></strong><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">系統 
+      5 分鐘後將重新開機。<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">如要立刻重新開機，可執行 
+      &quot;shutdown -r now&quot;﹔那要立刻關機的話，<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">&nbsp;</font><font color="#00FFFF" size="2">就執行 
+      &quot;shutdown -h now&quot;。</font><font color="#00FFFF"><br>
+      </font><font color="#FFFFFF"><br>
+      suse:~ #</font> <font color="#FFFF00"><strong>shutdown -h 3 &quot;Note：Server 
+      will halt in 3 minutes.&quot;</strong></font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">系統 
+      3 分鐘後關機，且連線者會接收到後面所指定的訊息。 </font><font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF"><br>
+      suse:~ #<strong> <font color="#FFFF00">shutdown -Fr now </font></strong><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">現在立刻重新開機，並在開機過程強迫做 
+      fsck。</font><font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF"><br>
+      suse:~ #</font> <font color="#FFFFFF"><strong><font color="#FFFF00">shutdown 
+      -h 18:30 &quot;system will halt at 18:30&quot;</font></strong><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">下午六點三十分關機。如果現在離 
+      18:30 還有一段時間，則使用者暫時不會收到通知，</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">一直要到離關機時間還剩 
+      15 分鐘時，才會接獲通知。</font> </td>
+  </tr>
+</table>
+<font color="#000000"><br>
+<br>
+</font> 
+<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( 柏青哥 
+  )<br>
+  </em></font></p>
+</body>
+</html>

@@ -1,0 +1,1382 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>柏青哥的 SuSE Linux -- 架設 Pure-ftpd  Server</title>
+<style type="text/css">
+<!--
+a {
+	color: #000099;
+	text-decoration: none;
+}
+-->
+</style>
+</head>
+
+<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
+<a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
+　　作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw 
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap> <strong><font size="+1"></font></strong>
+      <div align="center"> 
+        <div align="center"><font size="+1"><font size="7"><strong>第十八章　架 設 FTP 
+          Server</strong></font></font></div>
+        <font color="#0000FF" size="+1"><strong></strong></font></div>
+      <div align="center"></div></td>
+  </tr>
+</table>
+<font color="#660066"><br>
+</font><font color="#000099" size="+1"><strong>索引：</strong></font><font color="#660066"><br>
+</font> 
+<table width="100%" border="0">
+  <tr> 
+    <td colspan="3"><strong><font color="#000099">18.1 <a href="#1">何謂 FTP 及 FTP 
+      的連線流程</a></font></strong></td>
+  </tr>
+  <tr> 
+    <td width="4%">&nbsp;</td>
+    <td width="6%" align="center" valign="top" nowrap><font color="#000099">18.1.1</font></td>
+    <td width="90%"><a href="#2">FTP 簡介</a></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font color="#000099">18.1.2</font></td>
+    <td><a href="#3">FTP 的連線流程</a></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><strong><font color="#000099">18.2 <a href="#4">架設 Pure-ftpd 
+      Server</a></font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font color="#000099">18.2.1</font></td>
+    <td><a href="#5">查詢套件安裝及檢視套件內容</a></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font color="#000099">18.2.2</font></td>
+    <td><a href="#6">設定 Pure-ftpd Server</a></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font color="#000099">18.2.3</font></td>
+    <td><a href="#7">設定虛擬帳號</a></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><strong><font color="#000099">18.3 <a href="#8">架設 vsftpd 
+      Server</a></font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font color="#000099">18.3.1</font></td>
+    <td><a href="#9">查詢套件安裝及檢視套件內容</a></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font color="#000099">18.3.2</font></td>
+    <td><a href="#10">設定 vsftpd Server</a></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font color="#000099">18.3.3</font></td>
+    <td><a href="#11">vsftpd 的綜合範例說明</a></td>
+  </tr>
+</table>
+<font color="#660066"><br>
+</font> 
+<hr>
+<br>
+<font color="#660066"> <strong><font color="#0000FF" size="+1"><font size="+2"><a name="1"></a><font size="6">18.1 
+</font></font></font></strong></font><font size="6"><strong><font color="#0000FF">何謂 
+FTP 及 FTP 的連線流程</font></strong></font><br>
+<br>
+<font size="+1"><strong><a name="2"></a><font size="5">18.1.1 FTP 簡介</font></strong></font><br>
+<br>
+　FTP (File Transfer Protocol) 是在網際網路上已行之多年的檔案傳輸協定，透過這個通訊協定，可以將遠端電腦的檔案資料傳送回本機端 
+(下載)，也可以把本機的檔案資料傳輸至遠端電腦 (上傳) ﹔而所謂的 FTP Server，就是一部專門提供給用戶端進行檔案上傳與下載服務的伺服器。<br>
+<br>
+　我們都知道 Web Server 是用 http 來做資料傳輸的協定，其除了可讓 Client 端瀏覽網頁外，同時也提供檔案上傳與下載的服務，不過它比較適用於小檔案的傳輸，而在對大檔案傳輸時，所表現的穩定度及傳輸效率就不那麼高了。所以想改善 
+http 傳輸檔案上的缺失及效能，最好的方式就是架設一台 FTP Server 了。<br>
+<br>
+　用來架設 FTP Server 的軟體有好幾種，其中最老牌的算是 wu-ftpd，不過也由於其樹大招風的關係，使得在安全性方面會有比較大的隱憂。不過還好後來又陸續發展出一些安全性較佳的伺服器軟體，比方像 
+proftpd、vsftpd 及 pure-ftpd 等，而本章將會針對 pure-ftpd 及 vsftpd 這兩個伺服器軟體來做介紹。<br>
+<br>
+<font color="#000000" size="+1"><strong><a name="3"></a><font size="5">18.1.2 
+FTP 的連線流程 </font></strong></font><br>
+<br>
+　在還沒開始介紹流程之前，要先來了解一下兩台電腦間 TCP 連線建立的過程：<br>
+<br>
+<table width="420" border="1" align="center" cellspacing="0" bordercolor="#000000" bgcolor="#FFFFFF">
+  <tr>
+    <td><img src="../picture/ftp2.gif" tppabs="http://www.suse.url.tw/picture/ftp2.gif" width="340" height="230"> 　　<br>
+    </td>
+  </tr>
+</table>
+<div align="left"> 
+  <p> 　當 Client 向 Server 提出主動連線請求時，會送出連線過程的第一個 TCP 封包給對方，而此時 TCP 封包中的 SYN (同步旗標) 
+    位元值設定為 1，代表的是一個連線的啟動 ﹔接著 Server 端也必須啟動自己的連線並做回應的確認，因此會向 Client 端送出連線過程的第二個封包，此時該封包的 
+    SYN 及 ACK (回應確認旗標) 位元值皆設定為 1 ﹔最後在 Client 端收到對方的封包後，必須做回應確認的動作，因此會送出連線過程的第三個封包給 
+    Server，此時封包的 ACK 位元值設定為 1。至此雙方的連線才正式建立起來，這就是所謂的 TCP Three-Way Handshake ( 
+    TCP 三段式交握 )。<br>
+    <br>
+    　了解了 TCP 連線建立的觀念後，底下就來說明 FTP 連線的過程。不過在此之前，要先了解的是，FTP Client 能採取的連線模式有兩種，分別是主動模式 
+    (Active mode) 及被動模式 (Passive mode)，所以接著會以這兩種不同模式來敘述連線過程。</p>
+</div>
+<table width="100%" border="0">
+  <tr>
+    <td width="2%">&nbsp;</td>
+    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="95%"><strong><font color="#000099" size="4">主動模式下的 FTP 連線</font></strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>當 FTP Client 一開始要連上 FTP Server 時，會先隨機產生一個大於 1024 的 port ( 假設 3000 port 
+      )，來主動對 FTP Server 的 21 port 做連線，等完成了 TCP 三段式交握後，連線才正式建立起來，而這個 3000 port 
+      與 21 port 所建立的連線通道，就叫做命令通道 (command channel )。之所以會稱其為命令通道，當然是只能執行一些基本指令而已囉。<br> 
+      <br>
+      現在若是 Client 端想要下載或上傳資料時，還要另外建立起一條資料通道 (data channel ) 來作為資料傳輸使用。由於 Client 
+      是採取主動模式 (可以想像 Client 要求 Server 做主動連線，也就是 Server 主動連 Client )，因此本身會再開啟另一個大於 
+      1024 的 port ( 假設 5000 port )，然後透過命令通道通知 Server 已準備好這個 data channel 的連接埠，接著 
+      Server 就以 20 port 來主動與 Client 端的 5000 port 建立連線，就在完成了另一次的三段式交握後，此 data channel 
+      便建立起來，至此 Client 方可開始做資料傳輸。</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td><font color="#000000"><strong><font color="#000099" size="4">被動模式</font></strong></font><font color="#000099" size="4"><strong>下的 
+      FTP 連線</strong></font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>一開始 command channel 的建立，與上面所述相同，不再重複，這裡只針對 data channel 的建立做說明。由於此時 Client 
+      是希望採取被動模式 (可以想像 Client 要求 Server 做被動連線，也就是 Client 主動連 Server)，所以會先透過 command 
+      channel 來通知 Server 這個訊息，Sever 收到後就隨機開啟一個大於 1024 的 port (假設 8000 port)，並經由 
+      command channel 知會 Client 已準備好 data channel 的連接埠，接著 Client 也隨機開啟一個大於 1024 
+      的 port (假設 9000 port) 來主動與 Server 建立連線，而完成的三段式交握後，此 8000 port 與 9000 port 
+      之間的 data channel 便建立起來了。</td>
+  </tr>
+</table>
+<br>
+<br>
+<font size="+1"><strong><font color="#0000FF" size="+2"><a name="4"></a><font size="6">18.2 
+架設 Pure-ftpd Server</font></font></strong></font><br>
+<br>
+<font size="+1"><strong><a name="5"></a><font size="5">18.2.1 安裝套件及檢視套件內容</font></strong></font><br>
+<br>
+<strong><font color="#000000"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+<font color="#000000" size="+1">Pure-ftpd 所需</font><font size="+1">套件</font></strong><br>
+<br>
+<table width="35%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td width="29%" nowrap> <div align="center"><font color="#000099"><strong>套 
+        件 名 稱</strong></font></div></td>
+    <td width="71%" nowrap> <div align="center"><font color="#000099"><strong>簡　單　描　述</strong></font></div></td>
+  </tr>
+  <tr> 
+    <td nowrap> <div align="center"><font color="#000099">pure-ftpd</font></div></td>
+    <td nowrap><font color="#FFFFFF"><font color="#000099">pure-ftpd Server 的主要套件。</font></font></td>
+  </tr>
+</table>
+<br>
+<strong><font color="#000000"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font></strong> 
+<strong><font color="#000000" size="4">檢視套件內容</font></strong><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      rpm -ql pure-ftpd</strong></font><br>
+      <br>
+      </font> <table width="100%" border="0">
+        <tr> 
+          <td width="24%" align="left" valign="top" nowrap><font color="#FFFFFF">/etc/init.d/pure-ftpd</font></td>
+          <td width="76%"><font color="#00FFFF" size="2">管理 FTP 服務的 script。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF">/etc/pure-ftpd/pure-ftpd.conf</font></td>
+          <td><font color="#00FFFF" size="2">pure-ftpd 的主要設定檔。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF">/etc/xinetd.d/pure-ftpd</font></td>
+          <td><font color="#00FFFF" size="2">pure-ftpd 可以使用 xinetd 的方式來啟動噢。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/bin/pure-pw 
+            </font></td>
+          <td><font color="#00FFFF" size="2">管理虛擬帳號時，所使用的指令。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/pure-ftpd</font></td>
+          <td><font color="#00FFFF" size="2">FTP 服務的主要執行程式，就是那個監聽 21 port 的 daemon 
+            囉。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/pure-ftpwho</font></td>
+          <td><font color="#00FFFF" size="2">這個指令可以用來查詢目前誰在線上。</font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" nowrap><font color="#FFFFFF">/usr/sbin/rcpure-ftpd</font></td>
+          <td><font color="#00FFFF" size="2">連結至 /etc/init.d/pure-ftpd 的符號連結檔。</font></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<br>
+<strong><font color="#000000"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font></strong> 
+<font size="4"><strong>設定開機時啟動 pure-ftpd 服務</strong></font><br>
+<br>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr> 
+    <td height="27"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">chkconfig 
+      pure-ftpd 35</font></strong></font></td>
+  </tr>
+</table>
+<br>
+<br>
+<strong><font size="+1"><font color="#000000"><a name="6"></a><font size="5">18.2.2 
+設定 Pure-ftpd Server</font></font></font><font color="#000000" size="+1"><br>
+</font></strong><font color="#000000" size="+1"><strong><br>
+</strong></font> <font color="#000000">　一般登入 FTP 最常見的兩種身分，一為匿名 (Anonymous) 登入，一為使用真實帳號 
+(Real User) 登入。<br>
+<br>
+　如果以匿名使用者來說，其登入 FTP 時的預設根目錄位置，就是自己的家目錄，您可以觀察在 /etc/passwd 中 ftp (anonymous) 帳號的家目錄在哪，查到了嗎，沒錯，就是 
+/srv/ftp 啦。<br>
+<br>
+　那 Real User 又如何呢 ? 由於 SuSE 預設是不允許使用真實帳號來登入系統的，因此就算您透過認證的方式來登入 FTP 也沒用，因為最後還是會變成以匿名身分來登入的 
+﹔當然也可以藉由修改設定檔來讓 Real User 登入，不過記得還是要把 Real User 限定在根目錄 (預設為自己的家目錄)下活動噢，比如使用者 barry 
+連線進來後，他就只能對 /home/barry 做存取，而無法存取其他的目錄 。<br>
+<br>
+　那為何要限制使用者所能存取的目錄呢 ? 理由很簡單，因為您不能保證 Real User 對其他目錄不會亂搞一通啊，當您取消了這個限制之後，就等於讓使用者可以自由存取系統上的任何目錄，這樣在無形之中，也會對系統安全構成一大威脅。<br>
+<br>
+　有了以上的基本認知之後，接著就來設定 Pure-ftpd 了。<br>
+<br>
+<strong><font color="#000000"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+<font size="+1">設定 pure-ftpd.conf</font></strong><br>
+<br>
+</font> 
+<table width="100%" border="0">
+  <tr> 
+    <td height="1469" bgcolor="#000000"><font color="#FFFFFF">suse:~ # <strong><font color="#FFFF00">vi 
+      /etc/pure-ftpd/pure-ftpd.conf</font></strong><br>
+      <br>
+      <font color="#00FFFF"># Cage in every user in his home directory</font><br>
+      <strong>ChrootEveryone 　　　yes</strong><br>
+      <font color="#00FF00"># <font size="2">限定每一個使用者都只能在自己家目錄下活動。當設定成 no 時，則 
+      Real User 就能對<br>
+      </font># <font size="2">其他的目錄做存取，不過還要搭配 &quot;AnonymousOnly no</font>&quot; 
+      <font size="2">來使用才行。 </font></font><font color="#FFFF00"><br>
+      </font><br>
+      <font color="#00FFFF"># If the previous option is set to &quot;no&quot;, 
+      members of the following group <br>
+      # <font color="#FFFFFF">won't be caged. Others will be.</font>If you don't 
+      want chroot()ing anyone,<br>
+      # just comment out ChrootEveryone and TrustedGID.</font><br>
+      <strong># TrustedGID 　　　　100</strong><br>
+      <font color="#00FF00">#<font size="2"> 當您將註解拿掉後，GID 100 的群組成員，會被視為信任的使用者，因此可以存取家目錄</font><br>
+      #<font size="2"> 以外的其他目錄。此時無論</font> <font size="2">ChrootEveryone 設定為何，都是一樣的結果。</font></font><font color="#FFFF00"><br>
+      </font><br>
+      <font color="#00FFFF"># Maximum number of simultaneous users</font><br>
+      <strong>MaxClientsNumber 　　10 </strong><br>
+      <font color="#00FF00"># <font size="2">限定最大連線數為 10。</font></font><br>
+      <br>
+      <font color="#00FFFF"># Maximum number of sim clients with the same IP address</font><br>
+      <strong>MaxClientsPerIP 　　　 3</strong><br>
+      <font color="#00FF00"># <font size="2">限定同一來源端位址的最大連線數為 3。</font></font><br>
+      <br>
+      <font color="#00FFFF"># List dot-files even when the client doesn't send 
+      &quot;-a&quot;.</font><br>
+      <strong>DisplayDotFiles 　　　 yes</strong><br>
+      <font color="#00FF00"># <font size="2">這個參數設定成 yes 時，則 Client 可以看到檔名是以 &quot;.&quot; 
+      作開始的隱藏檔。</font></font><br>
+      <br>
+      <font color="#00FFFF"># Don't allow authenticated users - have a public 
+      anonymous FTP only.</font><br>
+      <strong>AnonymousOnly 　　　yes</strong><br>
+      <font color="#00FF00"># <font size="2">是否只允許匿名登入。當您希望 Real User 也能登入時，就設定成 
+      no。</font></font><font color="#FFFF00"><font size="2"><br>
+      </font></font><br>
+      <font color="#00FFFF"># Disallow anonymous connections. Only allow authenticated 
+      users.</font><br>
+      <strong>NoAnonymous 　　　　no</strong><br>
+      <font color="#00FF00"># <font size="2">是否不允許匿名登入。當設定成 no，表示允許匿名登入，但如果希望只有 
+      <br>
+      </font> # <font color="#FFFFFF"><font color="#00FF00"><font size="2">Real 
+      User 能經</font></font></font><font size="2">由認證登入時，這裡就設定成 yes 吧。 </font></font><font size="2"><br>
+      </font><br>
+      <font color="#00FFFF"># Syslog facility (auth, authpriv, daemon, ftp, security, 
+      user, local*)<br>
+      # The default facility is &quot;ftp&quot;. &quot;none&quot; disables logging.</font><br>
+      <strong>SyslogFacility　　　　　ftp</strong> <br>
+      <font color="#00FF00"># <font size="2">您可以在<strong> </strong>/etc/syslog.conf 
+      裡使用<strong> </strong>ftp 這個 facility，來告知 syslogd 要將 ftp 的</font></font></font><font color="#00FF00">&nbsp;<br>
+      # <font size="2">相關訊息紀錄到哪裡</font></font><font color="#FFFFFF"><font color="#00FF00" size="2">。</font><font size="2"><br>
+      </font><br>
+      <font color="#00FFFF"># Don't resolve host names in log files. Logs are 
+      less verbose, but it <br>
+      # uses less bandwidth. Set this to &quot;yes&quot; on very busy servers 
+      or </font><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF">if you don't have a 
+      working DNS.</font><br>
+      <strong>DontResolve　　　　　 yes</strong><br>
+      <font color="#00FF00">#<font size="2"> 紀錄檔內容是否不需解析來源端 ip 所對應的主機名稱。</font></font><br>
+      <br>
+      <font color="#00FFFF"># Maximum idle time in minutes (default = 15 minutes)</font><br>
+      <strong>MaxIdleTime　　　　　 15</strong><br>
+      <font color="#00FF00"># <font size="2">設定 FTP Client 端的閒置時間為 15 分鐘。</font></font><font color="#FFFF00"><br>
+      </font><br>
+      <font color="#00FFFF"># PureDB user database (see README.Virtual-Users)</font><br>
+      <strong># PureDB 　　/etc/pure-ftpd/pureftpd.pdb</strong><br>
+      <font color="#00FF00"># <font size="2">這是使用虛擬帳號登入時，所依據的認證資料庫。</font></font></font> 
+      <font color="#FFFFFF"><br>
+      <br>
+      <font color="#00FFFF"># If you want to enable PAM authentication, uncomment 
+      the following line.</font><br>
+      <strong>PAMAuthentication 　　 yes</strong><br>
+      <font color="#00FF00"># <font size="2">是否使用 PAM 認證模組，來對使用者作認證。</font></font><font color="#FFFF00"><br>
+      </font><br>
+      <font color="#00FFFF"># If you want simple Unix (/etc/passwd) authentication, 
+      uncomment this.</font><br>
+      <strong># UnixAuthentication　　yes</strong><br>
+      <font color="#00FF00">#<font size="2"> 是否依照 UNIX 傳統的 /etc/passwd 來做認證。</font><br>
+      </font><br>
+      <font color="#00FFFF"># Are anonymous users allowed to create new directories 
+      ?</font><br>
+      <strong>AnonymousCanCreateDirs　 no</strong><br>
+      <font color="#00FF00"># <font size="2">是否允許 anonymous 建立目錄。</font></font><font color="#FFFF00"><br>
+      </font><br>
+      <font color="#00FFFF"># Port range for passive connections replies. - for 
+      firewalling.</font><br>
+      <strong># PassivePortRange 30000 50000</strong><br>
+      <font color="#00FF00"># <font size="2">當 Client 端採用被動模式來建立資料通道時，FTP Server 
+      預計所要使用 data channel <br>
+      </font># <font size="2">連接埠的範圍。</font></font><font color="#FFFF00"><br>
+      </font><br>
+      <font color="#00FFFF"># Upload/download ratio for anonymous users.</font><br>
+      <strong># AnonymousRatio　　 1 10</strong><br>
+      <font color="#00FF00"># <font size="2">設定 anonymous 上傳/下載比率。<br>
+      </font>#<font size="2"> 如以 1:10 而言，當 anonymous 上傳了 1MB 的資料後，就能夠下載 10MB 的資料。 
+      </font></font><font size="2"><br>
+      <br>
+      </font><font color="#00FFFF"># Upload/download ratio for all users. This 
+      directive superscedes </font><br>
+      <font color="#00FFFF"># </font><font color="#00FFFF">the previous one.</font><br>
+      <strong># UserRatio　　　　　 1 10</strong><br>
+      <font color="#00FF00"># <font size="2">設定 All User 上傳/下載比率。當 AnonymousRatio 
+      及 UserRatio 都做設定時，<br>
+      </font><font color="#FFFFFF"><font color="#00FF00"># <font size="2"></font></font></font><font size="2">是以 
+      UserRatio 為主。</font></font><font size="2"><br>
+      </font><br>
+      <font color="#00FFFF"># Disallow downloading of files owned by &quot;ftp&quot;, 
+      ie.<br>
+      # files that were uploaded but not validated by a local admin.</font><br>
+      <strong>AntiWarez　　　　　　 yes</strong><br>
+      <font color="#00FF00"># <font size="2">匿名使用者要下載檔案時，如檔案擁有者是 ftp 的話，則不允許被下載。<br>
+      </font># <font size="2">當 FTP 站台開放 anonymous 上傳時 (上傳之後的檔案擁有者為 ftp)，為了防止有些人</font><br>
+      # <font size="2">可能會上傳一些有問題的檔案來供人下載，所以才會使用這個參數來做控管 ; 而在管理者<br>
+      </font># <font size="2">確認上傳的檔案沒問題後，就可以把此檔的擁有者做個改變，這樣就能提供正常下載了，<font color="#FFFF00"><br>
+      </font></font># <font color="#00FF00"><font size="2">當然相關權限還是要設定好就是了。</font></font></font><font color="#00FF00" size="2"><br>
+      </font><br>
+      <font color="#00FFFF"># IP address/port to listen to (default=all IP and 
+      port 21).</font><br>
+      <strong># Bind 　　　　　 127.0.0.1,21</strong><br>
+      <font color="#00FF00"># <font size="2">設定 FTP Server 要在哪個介面位址監聽哪個 port。預設是允許在所有介面位址監聽 
+      21 port。</font></font><font size="2"><br>
+      </font><br>
+      <font color="#00FFFF"># Maximum bandwidth for anonymous users in KB/s</font><br>
+      <strong># AnonymousBandwidth　8</strong><br>
+      <font color="#00FF00"># <font size="2">設定 anonymous 最大上傳、下載頻寬，單位為KB/s。</font></font><font color="#FFFF00"><font size="2"><br>
+      </font></font><br>
+      <font color="#00FFFF"># Maximum bandwidth for *all* users (including anonymous) 
+      in KB/s.<br>
+      # Use AnonymousBandwidth *or* UserBandwidth, both makes no sense.</font><br>
+      <strong># UserBandwidth　　　　8</strong><br>
+      <font color="#00FF00"># <font size="2">設定 All User 最大上傳、下載頻寬。當 AnonymousBandwidth 
+      及 UserBandwidth <br>
+      </font># <font color="#FFFFFF"><font color="#00FF00"><font color="#FFFFFF"><font color="#00FF00"><font size="2">都做</font></font></font><font size="2">設定時，</font></font></font><font size="2">是以 
+      UserBandwidth 為主。</font></font><font color="#FFFF00"><br>
+      </font><br>
+      <font color="#00FFFF"># File creation mask. &lt;umask for files&gt;:&lt;umask 
+      for dirs&gt; . <br>
+      # 177:077 if you feel paranoid. </font><br>
+      <strong>Umask　　　　　　 　177:077</strong><br>
+      <font color="#00FF00"># <font size="2">設定使用者所上傳檔案、目錄 (含建立新目錄) 的預設權限。<br>
+      </font># <font size="2">177:077 表示檔案的預設權限為 600，目錄為 700。</font></font></font> 
+      <font color="#00FF00"><br>
+      </font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># Minimum UID for an authenticated user to log in.</font><br>
+      <strong>MinUID 　　　　　　　40</strong><br>
+      <font color="#00FF00"># <font size="2">設定能允許 Real User 認證登入的最小 UID 為 40，也就是說 
+      UID 40 以上 (含40) <br>
+      </font># <font size="2">的使用者方可認證登入。</font><br>
+      # <font size="2"> 如果您想要允許 root 登入的話，那這個地方請先註解起來，並且在 /etc/ftpusers 檔案<br>
+      </font># <font color="#FFFFFF"><font color="#00FF00"><font size="2">中</font></font></font><font size="2">，將 
+      root 帳號移除。/etc/ftpusers 是用來設定拒絕登入 FTP 的使用者名單。</font></font></font> <font color="#FFFF00"><br>
+      </font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># Users can't delete/write files beginning with a 
+      dot ('.') <br>
+      # even if they own them. If TrustedGID is enabled, this 
+      group<br>
+      # will have access to dot-files, though.</font><br>
+      <strong>ProhibitDotFilesWrite 　 yes</strong><br>
+      <font color="#00FF00"># <font size="2">是否要禁止使用者刪除或修改隱藏檔，即使使用者就是該隱藏檔的擁有者。<br>
+      </font># <font size="2">設定 
+      yes 就表示要禁止啦。</font></font><font color="#FFFF00"><br>
+      </font><br>
+      <font color="#00FFFF"># Prohibit *reading* of files beginning with a dot 
+      (.history, .ssh...)</font><br>
+      <strong>ProhibitDotFilesRead　　no</strong><br>
+      <font color="#00FF00">#<font size="2"> 是否要禁止使用者讀取隱藏檔內容。</font></font></font><font color="#FFFFFF"><br>
+      <br>
+      <font color="#00FFFF"># Never overwrite files. When a file whoose name already 
+      exist is uploaded,<br>
+      # it get automatically renamed to file.1, file.2, file.3, ...</font><br>
+      <strong>AutoRename 　　　　　 yes</strong><br>
+      <font color="#00FF00"># <font size="2">是否開啟自動更名的功能。當設定成 yes ，表示上傳檔案時，若對方目錄內已經存在<br>
+      </font># <font color="#FFFFFF"><font color="#00FF00"><font size="2">一個同檔名的檔案，則會將上傳的那個檔案，</font></font></font><font size="2">作自動更名的動作。</font></font><font color="#FFFF00"><font size="2"><br>
+      </font></font><br>
+      <font color="#00FFFF"># Disallow anonymous users to upload new files (no 
+      = upload is allowed)</font><br>
+      <strong>AnonymousCantUpload　yes</strong><br>
+      <font color="#00FF00"># <font size="2">是否要拒絕 anonymous 上傳。如要開放匿名使用者上傳檔案的話，就設定成 
+      no。<br>
+      </font>#<font size="2"> <font size="2">另外要允許上傳目錄時，除了這裡要</font>設定成 no 以外，AnonymousCanCreateDirs 
+      參數<br>
+      </font>#<font size="2"> 需設定成 yes 才行。</font></font><font color="#00FF00" size="2"><br>
+      </font></font><font color="#FFFFFF" size="2"><br>
+      </font><font color="#00FFFF"># Disallow the CHMOD command. Users can't change 
+      perms of their files.</font><font color="#FFFFFF"><br>
+      <strong># NoChmod 　　　　　　yes</strong><br>
+      <font color="#00FF00"># <font size="2">是否要拒絕使用者執行 chmod 指令來修改權限。</font></font><br>
+      <br>
+      <font color="#00FFFF"># Allow users to resume and upload files, but *NOT* 
+      to delete them.</font><br>
+      <strong># KeepAllFiles　　　　　yes</strong><br>
+      <font color="#00FF00"># <font size="2">當設定成 yes 時，表示使用者無法刪除伺服器上的檔案</font>。</font><br>
+      <br>
+      <font color="#00FFFF"># Automatically create home directories if they are 
+      missing</font><br>
+      <strong># CreateHomeDir　　　　yes</strong><br>
+      <font color="#00FF00"># <font size="2">當使用者家目錄不存在時，是否要自動建立起來。</font></font><br>
+      <br>
+      <font color="#00FFFF"># This option is useful with servers where anonymous 
+      upload is <br>
+      # allowed. As /var/ftp is in /var, it save some space 
+      and protect<br>
+      # the log files. When the partition is more that X percent full,<br>
+      # new uploads are disallowed. </font><br>
+      <strong>MaxDiskUsage　　　　　99</strong><br>
+      <font color="#00FF00"># <font size="2">假使我們將 anonymous 的家目錄改成 /var/ftp (修改 
+      /etc/passwd )，然後又設定允許<br>
+      </font># <font size="2">匿名使用者上傳，那這個參數就很好用了，因為當 
+      /var partition 的使用空間達 99% 時，<br>
+      </font># <font size="2">就不允許匿名使用者再上傳資料，不然 /var/log 目錄下的那些記錄檔可就無法持續<br>
+      </font># <font size="2">記錄一些重要資訊了。</font></font><br>
+      <br>
+      <font color="#00FFFF"># Set to 'yes' if you don't want your users to rename 
+      files.</font><br>
+      <strong>NoRename 　　　　　　 yes</strong><br>
+      <font color="#00FF00"># <font size="2">是否要拒絕使用者對檔案重新命名。 </font></font></font></td>
+  </tr>
+</table>
+<font color="#000000"><br>
+　由於這裡我們是打算以 standalone 的方式來啟動 pure-ftpd，因此設定完成後，第一次啟動 FTP Server，請執行：<br>
+<br>
+</font>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr>
+    <td height="28"><font color="#FFFFFF">suse:~ #<strong><font color="#FFFF00"> 
+      rcpure-ftpd start</font></strong></font></td>
+  </tr>
+</table>
+<font color="#000000"><br>
+　以後設定檔如有做任何的修改，請記得重新啟動 pure-ftpd。另外您也可嘗試使用 xinetd 的方式來啟動 FTP，請讀者自行練習。</font> <br>
+<br>
+　<strong><font size="+1"><br>
+<a name="7"></a><font size="5">18.2.3 設定虛擬帳號 </font></font><font size="5">(Virtual 
+User)</font></strong><br>
+<br>
+　您可以為 pure-ftpd 的用戶端建立虛擬帳號，這個帳號有別於一般使用者登入系統的帳號。而設立虛擬帳號的好處是，除了可與一般帳號做個區隔外，還可以針對每個虛擬帳號設定其個別的上下載頻寬、可使用檔案數、使用空間大小、限制連線時間及來源端控管等等，有意思吧。<br>
+<br>
+　接著就開始來設定虛擬帳號，請參考以下的步驟。<br>
+<br>
+<strong><font size="4">步驟一：設定 pure-ftpd.conf</font></strong><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong><font color="#FFFF00"> 
+      vi /etc/pure-ftpd/pure-ftpd.conf</font></strong><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">找到以下兩個參數，並確定前面的註解符號有拿掉。</font><br>
+      PureDB 　　　　/etc/pure-ftpd/pureftpd.pdb<strong><br>
+      </strong>CreateHomeDir 　　　　　yes <br>
+      <br>
+      <font color="#00FFFF"># </font><font color="#00FFFF" size="2">重新啟動 pure-ftpd 
+      服務： <br>
+      </font><font color="#00FFFF"><font color="#FFFFFF"> suse:~ # <font color="#FFFF00"><strong>rcpure-ftpd 
+      restart </strong></font></font></font></font></td>
+  </tr>
+</table>
+<br>
+<strong><font size="4">步驟二：建立虛擬帳號所共用的 ftp 專屬帳號</font></strong><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td height="38" bgcolor="#000000"><font color="#FFFFFF"><font color="#00FFFF">#</font> 
+      <font color="#00FFFF" size="2">先新增專屬帳號的主要群組：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>groupadd virtualgrp</strong></font><br>
+      <br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2">建立 ftp 專屬帳號：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>useradd -g virtualgrp -m virtualuser</strong></font></font></td>
+  </tr>
+</table>
+<br>
+<strong><font size="4">步驟三：使用 pure-pw 指令來建立虛擬帳號</font></strong><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<font color="#FFFF00"><strong> 
+      pure-pw useradd tina -u virtualuser -d /home/virtualuser/tina</strong></font><br>
+      Password:<br>
+      Enter it again:<br>
+      <font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">一開始先新增一個 
+      tina 的虛擬帳號，並指定其家目錄位置。新增完畢後，您應可以</font><font color="#00FFFF" size="2">在</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF">#</font></font><font color="#00FFFF" size="2"> /etc/pure-ftpd/ 
+      目錄下找到一個叫 pureftpd.passwd 的檔案，而這個檔案就類似於</font><font color="#FFFFFF"><br>
+      <font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">/etc/passwd 
+      啦，只不過它是屬於虛擬帳號的 password file。</font> <font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF"><br>
+      suse:~ # <font color="#FFFF00"><strong>pure-pw mkdb</strong></font><br>
+      <font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2">依據 
+      pureftpd.passwd 來建立認證資料庫 /etc/pure-ftpd/pureftpd.pdb。<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF"># </font> </font><font color="#00FFFF" size="2"> 
+      將來要是 pureftpd.passwd 有異動，須執行 &quot;pure-pw mkdb&quot;，以更新資料庫內容。 </font><font color="#FFFFFF"><br>
+      </font> <font color="#FFFFFF"><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font><font color="#00FFFF" size="2">其實您在建立虛擬帳號的同時，就可以使用 
+      -m 參數來把 pureftpd.pdb 給順便建立起來：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>pure-pw useradd tina -u virtualuser 
+      -d /home/virtualuser/tina -m</strong></font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">-m 
+      參數會幫我們自動更新資料庫，因此使用了這個參數後，即不必再執行 &quot;pure-pw mkdb&quot; 了。 </font></td>
+  </tr>
+</table>
+<br>
+　設定完成後，趕快用 tina 這個虛擬帳號來登入看看。如果沒問題的話，再來看 pure-pw 指令的其他用法：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ # <font color="#FFFF00"><strong>pure-pw 
+      usermod tina -t 100 -T 50 -q 1 -Q 10 -n 30 -N 2 \</strong></font><br>
+      &gt; <font color="#FFFFFF"><font color="#FFFF00"><strong>-z 1400-2230</strong></font></font> 
+      <font color="#FFFF00"><strong>-r 192.168.5.0/24,192.168.1.0/24 -m</strong></font><br>
+      <font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">參數說明：<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+      </font></font></font><font color="#00FFFF" size="2" face="細明體">-t、-T：設定下載及上傳頻寬。</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2" face="細明體">-q、-Q：設定上傳/下載比率。</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2" face="細明體">-n：限定可使用的檔案數</font><font color="#00FFFF" size="2">。</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># <font size="2" face="細明體">-N</font></font></font></font><font color="#00FFFF" size="2" face="細明體">：限制可使用的空間大小(MB)。</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2" face="細明體">-z：限定連線時間。</font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2" face="細明體">-r：允許存取的來源端。</font><br>
+      <font color="#FFFFFF"><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">檢驗一下設定後的結果：</font><br>
+      suse:~ #<font color="#FFFF00"><strong> pure-pw show tina</strong></font><br>
+      </font><font color="#FFFFFF" face="細明體">Login　　　　　　　:　tina</font><font color="#FFFFFF"><br>
+      </font><font color="#FFFFFF" face="細明體">Password　　　　　 :　$2a$07$m72FgmY91h39TISEorGy3sotL5ufknZ2O</font><font color="#FFFFFF"><br>
+      </font><font color="#FFFFFF" face="細明體">UID　　　　　　　　:</font>　<font color="#FFFFFF" face="細明體">1010 
+      (virtualuser)</font><br>
+      <font color="#FFFFFF" face="細明體">GID　　　　　　　　:</font>　<font color="#FFFFFF" face="細明體">2001 
+      (virtualgrp)</font><br>
+      <font color="#FFFFFF" face="細明體">Directory　　　　　:</font>　<font color="#FFFFFF" face="細明體">/home/virtualuser/tina/./</font><br>
+      <font color="#FFFFFF" face="細明體">Full name　　　　　:</font><font color="#FFFFFF"><br>
+      </font><font color="#FFFFFF" face="細明體">Download bandwidth :</font><font color="#FFFFFF">　</font><font color="#FFFFFF" face="細明體">100 
+      Kb (enabled)</font><font color="#FFFFFF"><br>
+      </font><font color="#FFFFFF" face="細明體">Upload bandwidth　 :</font><font color="#FFFFFF">　</font><font color="#FFFFFF" face="細明體">50 
+      Kb (enabled)</font><font color="#FFFFFF"><br>
+      </font><font color="#FFFFFF" face="細明體">Max files　　　　　:　30 
+      (enabled)</font><font color="#FFFFFF"><br>
+      </font><font color="#FFFFFF" face="細明體">Max size　　　　　 :</font><font color="#FFFFFF">　</font><font color="#FFFFFF" face="細明體">2 
+      Mb (enabled)</font><font color="#FFFFFF"><br>
+      </font><font color="#FFFFFF" face="細明體">Ratio　　　　　　　:</font>　<font color="#FFFFFF" face="細明體">1:10 
+      (enabled:enabled)</font><br>
+      <font color="#FFFFFF" face="細明體">Allowed client IPs</font><font color="#FFFFFF" face="細明體"> 
+      :</font>　<font color="#FFFFFF" face="細明體">192.168.5.0/24,192.168.1.0/24</font><br>
+      <font color="#FFFFFF" face="細明體">Time restrictions　:</font><font color="#FFFFFF">　</font><font color="#FFFFFF" face="細明體">1400-2230 
+      (enabled)</font><font color="#FFFFFF"><br>
+      </font> <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">修改 
+      tina 的密碼： </font><font color="#FFFFFF"><br>
+      suse:~ #<font color="#FFFF00"><strong> pure-pw passwd tina -m</strong></font><br>
+      Password:<br>
+      Enter it again:<br>
+      <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># </font></font></font><font color="#00FFFF" size="2">刪除 
+      tina 帳號：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>pure-pw userdel tina -m </strong></font></font></td>
+  </tr>
+</table>
+<br>
+　最後要跟各位補充一點，當啟用虛擬帳號的功能後，平常存在於 /etc/passwd 中的帳號還是可以正常登入 FTP，但若虛擬帳號設定成與一般登入帳號相同時，則是會以虛擬帳號為主的。<br>
+<br>
+<font color="#0000FF" size="+2"><strong><a name="8"></a><font size="6">18.3 架設 
+vsftpd Server</font><br>
+</strong></font><br>
+<font size="+1"><strong><a name="9"></a><font size="5">18.3.1</font></strong></font> 
+<font size="5"><strong>所需套件及檢視套件內容</strong></font><br>
+<br>
+<strong><font color="#000000"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+<font color="#000000" size="+1">vsftpd 所需</font><font size="+1">套件</font></strong><br>
+<br>
+<table width="35%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td width="29%" nowrap> <div align="center"><font color="#000099"><strong>套 
+        件 名 稱</strong></font></div></td>
+    <td width="71%" nowrap> <div align="center"><font color="#000099"><strong>簡　單　描　述</strong></font></div></td>
+  </tr>
+  <tr> 
+    <td nowrap> <div align="center"><font color="#000099">vsftpd</font></div></td>
+    <td nowrap><font color="#FFFFFF"><font color="#000099">vsftpd Server 的主要套件。</font></font></td>
+  </tr>
+</table>
+<br>
+<strong><font color="#000000"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+<font size="4"> 檢視套件內容</font></strong><br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td height="180" bgcolor="#000000"><font color="#FFFFFF">suse:~ #&nbsp; <font color="#FFFF00"><strong>rpm 
+      -ql vsftpd</strong></font></font><font color="#FFFFFF">&nbsp;</font><font color="#FFFFFF" face="細明體"><br>
+      <br>
+      </font> 
+      <table width="100%" border="0">
+        <tr> 
+          <td width="22%" nowrap><font color="#FFFFFF">/etc/init.d/vsftpd</font></td>
+          <td width="78%"><font color="#00FFFF" size="2">管理 FTP 服務的 script。</font><font color="#FFFFFF">&nbsp;</font></td>
+        </tr>
+        <tr> 
+          <td nowrap><font color="#FFFFFF">/etc/logrotate.d/vsftpd</font></td>
+          <td><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">設定紀錄檔輪替的檔案。</font></font></font></td>
+        </tr>
+        <tr> 
+          <td nowrap><font color="#FFFFFF">/etc/pam.d/vsftpd</font></td>
+          <td><font color="#FFFFFF"><font color="#00FFFF" size="2">vsftpd 的 PAM 
+            認證模組設定檔。</font></font></td>
+        </tr>
+        <tr> 
+          <td nowrap><font color="#FFFFFF">/etc/vsftpd.conf</font></td>
+          <td><font color="#FFFFFF"><font color="#00FFFF" size="2">vsftpd 的主要設定檔。</font></font></td>
+        </tr>
+        <tr> 
+          <td nowrap><font color="#FFFFFF">/etc/xinetd.d/vsftpd</font></td>
+          <td><font color="#00FFFF" size="2">vsftpd 也可以使用 xinetd 的方式來啟動。</font></td>
+        </tr>
+        <tr> 
+          <td nowrap><font color="#FFFFFF">/usr/sbin/rcvsftpd </font></td>
+          <td><font color="#00FFFF" size="2">連結至 /etc/init.d/vsftpd 的符號連結檔。</font></td>
+        </tr>
+        <tr> 
+          <td nowrap><font color="#FFFFFF">/usr/sbin/vsftpd</font></td>
+          <td><font color="#FFFFFF"><font color="#00FFFF" size="2">vsftpd 的執行主程式 
+            (daemon)。</font></font></td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<br>
+<font color="#000000" size="+1"><strong><a name="10"></a><font size="5">18.3.2 
+設定 vsftpd Server</font></strong></font><br>
+<br>
+　這裡我們打算以 xinetd 的方式來啟動 vsftpd，因此請先至 /etc/xinetd.d/vsftpd 檔案去做修改：<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#<strong><font color="#FFFF00" face="細明體"> 
+      </font></strong><font color="#FFFF00" face="細明體"><strong>vi /etc/xinetd.d/vsftpd</strong></font></font><font color="#FFFFFF" face="細明體"><br>
+      <br>
+      service ftp<br>
+      {<br>
+      　　　　socket_type 　= stream<br>
+      　　　　protocol 　　 = tcp<br>
+      　　　　wait 　　　　 = no<br>
+      　　　　user 　　　　 = root<br>
+      　　　　server 　　　 = /usr/sbin/vsftpd<br>
+      　　　　</font><font color="#FFFFFF"><font color="#FFFF00" face="細明體">disable 
+      　　　= no</font></font><font color="#00FFFF" size="2" face="細明體"> ← 把 yes 
+      改成 no 即可。</font><font color="#FFFFFF" face="細明體"><br>
+      } </font></td>
+  </tr>
+</table>
+<br>
+　接著請重新啟動 xinetd：　　<br>
+<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#<strong><font color="#FFFF00" face="細明體"> 
+      </font></strong></font><font color="#FFFFFF"><font color="#FFFF00" face="細明體"><strong>rcxinetd 
+      restart</strong></font></font><font color="#FFFFFF" face="細明體"><br>
+      Shutting down xinetd: 　　　　　　　　　　　<font color="#00FF00"><strong>done</strong></font><br>
+      Starting INET services. (xinetd) 　　　　　 <font color="#00FF00"><strong>done</strong></font></font></td>
+  </tr>
+</table>
+<br>
+　這樣 vsftpd 的服務就已經啟動了。再來開始進一步探討 vsftpd.conf 的設定內容。<br>
+<br>
+<strong><font color="#000000"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
+</font></strong><font size="+1"><strong>設定 vsftpd.conf</strong></font><br>
+<br>
+<table width="100%">
+  <tr> 
+    <td bgcolor="#000000"><p><font color="#FFFFFF">suse:~ #<strong><font color="#FFFF00"> 
+        vi /etc/vsftpd.conf</font></strong></font><font color="#00FFFF"><br>
+        </font><font color="#FFFFFF"><br>
+        <strong><font color="#00FF00" size="4">###### General Settings ######</font></strong><br>
+        <br>
+        <font color="#FFFFFF"><font color="#0066FF"># Uncomment this to enable 
+        any form of FTP write command.</font><br>
+        <strong># write_enable=YES</strong><br>
+        <font color="#00FFFF"># <font size="2"><strong>預設為 NO</strong>。是否讓使用者擁有寫入的權限。<br>
+        </font>#<font size="2"> 當指定為 YES 時，才能讓 anon_upload_enable、<font color="#FFFFFF"><font color="#00FFFF">anon_mkdir_write_enable、</font></font><br>
+        </font><font color="#FFFFFF"><font color="#00FFFF">#</font></font><font size="2"> 
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font size="2"><font color="#FFFFFF"><font color="#00FFFF">anon_other_write_enable</font></font></font></font></font></font> 
+        <font size="2">這些參數設定成 YES 時生效。另外這裡<font color="#FFFFFF"><font color="#00FFFF">若設定成 
+        NO，</font></font><br>
+        </font><font color="#FFFFFF"><font color="#00FFFF">#</font></font><font size="2"> 
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font size="2"><font color="#FFFFFF"><font color="#00FFFF">則連 
+        realuser 在自己家目錄下也不具</font></font></font></font></font></font><font size="2">有寫入的權限。</font></font><font size="2"> 
+        </font></font> <font color="#0066FF"><br>
+        <br>
+        </font><font color="#FFFFFF"><font color="#0066FF"># Activate directory 
+        messages - messages given to remote users when they<br>
+        # go into a certain directory.</font><br>
+        <strong>dirmessage_enable=YES</strong><br>
+        <font color="#00FFFF"># </font><font color="#00FFFF" size="2"><strong>預設為 
+        NO</strong>。當使用者切換至某個目錄時，是否要顯示該目錄下 .message (預設) 檔案內的<br>
+        </font><font color="#FFFFFF"><font color="#00FFFF">#</font></font> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">訊</font></font></font><font color="#00FFFF" size="2">息<font color="#FFFFFF"><font color="#00FFFF">。</font></font></font></font></font><font color="#00FFFF" size="2">當然您也可以透過以下 
+        message_file<strong> </strong>參數，來指定不同的檔案。</font><br>
+        <br>
+        <strong># message_file=.message</strong><br>
+        <font color="#FFFFFF"><font color="#00FFFF">#</font></font> <font color="#00FFFF" size="2"><strong>預設為 
+        .message</strong>。當上一個參數指定為 YES 時，如不想使用預設的 .message 檔案，就可以<br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">利用</font></font></font><font color="#00FFFF" size="2">這個參數來指定另一個檔名。</font></font><font color="#0066FF"><br>
+        <br>
+        # It is recommended that you define on your system a unique user which 
+        the<br>
+        # ftp server can use as a totally isolated and unprivileged user.<br>
+        <strong><font color="#FFFFFF"># nopriv_user=ftpsecure<br>
+        </font></strong><font color="#00FFFF"># </font><font color="#FFFFFF"><strong> 
+        <font color="#00FFFF" size="2">預設為 nobody</font></strong><font color="#00FFFF" size="2">。這是設定以哪個帳號來執行 
+        vsftpd 的服務。</font><strong><br>
+        </strong></font><br>
+        </font><font color="#FFFFFF"><font color="#0066FF"># You may fully customise 
+        the login banner string:</font><br>
+        <font color="#FFFF00"><strong><font color="#FFFFFF"># ftpd_banner=<font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF">&quot;</font></font></font>Welcome 
+        to FOOBAR FTP service.</font></strong><font color="#FFFFFF"><strong>&quot;</strong></font><br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+        <font color="#00FFFF" size="2"><strong>預設不顯示</strong>。設定使用者登入 ftp 時，所看到的登入訊息。</font></font></font><font color="#00FFFF" size="2"><font color="#0066FF"><br>
+        </font></font><font color="#00FFFF"># </font><font color="#FFFFFF"><font color="#00FFFF" size="2">如果要提供的訊息內容很多時，則可</font></font><font color="#00FFFF" size="2">事先將這些訊息寫入某個檔案，然後再利用 
+        </font><font color="#0066FF"><br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font><font color="#00FFFF" size="2">banner_file 參數去指定這個檔案的所在位置，如下：</font></font><font color="#0066FF"> 
+        <br>
+        <font color="#FFFFFF"><strong># banner_file=/etc/welcomefile</strong></font><br>
+        <br>
+        </font></font> <font color="#0066FF"># You may specify a file of disallowed 
+        anonymous e-mail addresses. Apparently<br>
+        # useful for combatting certain DoS attacks.</font><font color="#FFFFFF"><br>
+        <strong># deny_email_enable=YES</strong><br>
+        <font color="#00FFFF"># <font size="2"><strong>預設為 NO</strong>。是否要拒絕匿名使用者輸入特定的 
+        E-Mail 密碼。</font></font><br>
+        <font color="#00FFFF"># <font size="2">當設定成 yes 時，以下</font></font> <font color="#00FFFF" size="2"> 
+        banned_email_file 參數所指定的檔案必須存在，否則會造成<font color="#FFFFFF"><br>
+        </font></font><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        </font></font></font><font color="#00FFFF" size="2">所有人都無法登入。 </font><br>
+        <br>
+        <font color="#0066FF"># (default follows)</font><br>
+        <strong># banned_email_file=/etc/vsftpd.banned_emails</strong><br>
+        <font color="#00FFFF">#</font></font> <font color="#00FFFF" size="2">當 
+        deny_email_enable =YES 時，可以把所要拒絕登入的 E-Mail 密碼設定在預設的<br>
+        </font><font color="#00FFFF">#</font> <font color="#00FFFF" size="2"> 
+        /etc/vsftpd.banned_emails 檔案內。</font><font color="#00FFFF" size="2"> </font> 
+        <font color="#FFFFFF"><font color="#00FFFF"><font size="2"><br>
+        <br>
+        </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><strong># 
+        use_localtime=YES</strong></font><br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+        <font color="#FFFFFF"><font color="#00FFFF"><font size="2"><strong>預設為 
+        NO</strong></font></font></font><font color="#00FFFF" size="2">。是否使用本地時間。由於 
+        vsftpd 預設是使用 GMT 時間，因此在您<br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+        </font> <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">上傳檔案或</font></font></font></font><font color="#00FFFF" size="2">目錄後，用長格式去檢查這些檔案目錄<font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">的</font></font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">時間欄位，會發覺與本地端<br>
+        </font><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF"># 
+        <font size="2">時間不同。而在您</font></font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">設定這個參數後，就可以解決這方面的問題。</font></font></font></font></p>
+      <p><font color="#FFFFFF"><font color="#0066FF"><strong><font color="#00FF00" size="+1">###### 
+        <font size="+2">Local FTP user Settings</font> ###### </font></strong><br>
+        <br>
+        </font></font><font color="#0066FF"># Uncomment this to allow local users 
+        to log in.</font><font color="#FFFFFF"><br>
+        <strong># local_enable=YES</strong><br>
+        <font color="#00FFFF"># <font size="2"><strong>預設為 NO</strong>。是否允許在本機擁有真實帳號 
+        (realuser) 的使用者登入。</font></font><font color="#00FFFF"><br>
+        </font><br>
+        <font color="#0066FF"># Default umask for local users is 077. You may 
+        wish to change this to 022,<br>
+        # if your users expect that (022 is used by most other ftpd's)</font><br>
+        <strong># local_umask=022</strong><br>
+        <font color="#00FFFF"># <font size="2"><strong>預設為 077</strong>。這是設定 realuser 
+        上傳檔案目錄時的預設權限。如以 local_umask=022 而言，<br>
+        </font><font color="#FFFFFF"><font color="#00FFFF"># <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font size="2">則上傳</font></font></font><font size="2">或</font></font></font><font size="2">建立目錄時的</font></font></font><font size="2">預設權限就是 
+        755，上傳檔案則為 644</font></font><font color="#00FFFF" size="2">。<br>
+        <br>
+        </font></font> <font color="#0066FF"># Uncomment to put local users in 
+        a chroot( ) jail in their home directory<br>
+        # after login.</font><font color="#FFFFFF"><br>
+        <strong># chroot_local_user=YES</strong><br>
+        <font color="#00FFFF">#</font></font> <strong><font color="#00FFFF" size="2">預設為 
+        NO</font></strong><font color="#00FFFF" size="2">。是否限定 realuser 登入後，以其家目錄作為預設的根目錄位置。當設定成 
+        YES，<br>
+        </font><font color="#00FFFF">#</font> <font color="#00FFFF" size="2">則 
+        realuser 就只能在自己家目錄下活動，而無法切換到家目錄以外的範圍。</font><font color="#FFFFFF" size="2">&nbsp; 
+        </font> </p>
+      <p><font color="#0066FF"># You may specify an explicit list of local users 
+        to chroot( ) to their home<br>
+        # directory. If chroot_local_user is YES, then this list becomes a list 
+        of<br>
+        # users to NOT chroot( ).</font><font color="#FFFFFF"><br>
+        <strong># chroot_list_enable=YES</strong><br>
+        <font color="#00FFFF">#</font></font> <font color="#00FFFF" size="2"><strong><font face="細明體">預設為 
+        NO</font></strong><font face="細明體">。當 chroot_local_user=NO、chroot_list_enable=YES 
+        時，可搭配下一個</font><br>
+        </font><font color="#00FFFF">#</font> <font color="#00FFFF" size="2"> 
+        <font face="細明體">要介紹的參數 chroot_list_file ，來把一些使用者帳號寫入預設的 </font><br>
+        </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> <font color="#00FFFF" size="2"><font face="細明體">/etc/vsftpd.chroot_list 
+        檔案之中，</font></font><font face="細明體">這樣一來，這些使用者就只能在自己家目錄下活動。</font><br>
+        </font><font color="#00FFFF">#</font> <font color="#00FFFF" size="2" face="細明體"> 
+        </font><font color="#00FFFF" size="2"><font face="細明體">但反過來，當 </font></font><font color="#00FFFF" size="2" face="細明體">chroot_local_user=YES、chroot_list_enable=YES 
+        時，則在</font><font color="#00FFFF" size="2"><br>
+        </font><font color="#00FFFF">#</font> <font color="#00FFFF" size="2"> 
+        <font color="#00FFFF" size="2" face="細明體">/etc/vsftpd.chroot_list </font><font face="細明體">之中的帳號，就可以在家目錄外活動，而沒設定在此檔之中的</font><br>
+        </font><font color="#00FFFF">#</font> <font color="#00FFFF" size="2"><font face="細明體">使用者，就只能以家目錄作為</font></font><font color="#00FFFF" size="2" face="細明體">預設的根目錄。</font><font color="#FFFFFF"><br>
+        <br>
+        <font color="#0066FF"># (default follows)</font><br>
+        <strong># chroot_list_file=/etc/vsftpd.chroot_list</strong><br>
+        <font color="#00FFFF">#</font></font> <font color="#00FFFF" size="2">參考以上說明。至於檔案設定格式是一個帳號佔用一行。<br>
+        <br>
+        </font><font color="#FFFFFF"><font color="#0066FF"># This option represents 
+        a directory which vsftpd will try to change into <br>
+        # </font><font color="#FFFFFF"><font color="#0066FF">after a local </font></font><font color="#0066FF">login.</font><font color="#00FFFF"><br>
+        <font color="#FFFFFF"><strong># local_root=/srv/ftp/realdir</strong></font></font><font color="#FFFFFF"><strong><font size="2"> 
+        </font></strong></font><font color="#00FFFF" size="2"><br>
+        </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> <strong>預設為不啟用</strong>。當您想讓所有 
+        realuser 登入時，</font></font><font color="#00FFFF" size="2">皆以同一個目錄作為其預設登入的<br>
+        </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 根目錄，就啟用這個參數。<br>
+        <br>
+        </font><font color="#FFFFFF"><strong># userlist_enable=YES</strong><br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+        <font color="#00FFFF" size="2"><strong>預設為 NO</strong>。設定成 YES 時，表示 vsftpd 
+        會載入 userlist_file 參數所指定的檔案，<br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font> 
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">以讀取其內</font></font><font color="#00FFFF" size="2">的使</font></font><font color="#00FFFF" size="2">用</font></font><font color="#00FFFF" size="2">者名單。</font><font size="2"><br>
+        </font><br>
+        <strong># userlist_deny=YES</strong><br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+        <font color="#00FFFF" size="2"><strong>預設為 YES</strong>。當 userlist_enable=YES、userlist_deny=YES 
+        時，則被設定在以下<br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font> 
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2"> 
+        userlist_file 參數所指</font></font><font color="#00FFFF" size="2">定</font></font><font color="#00FFFF" size="2">檔</font></font><font color="#00FFFF" size="2">案內的使用者，將會被拒絕登入。<br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font> 
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">若 
+        userlist_enable=YES、userlist_deny=NO 時，則只有設</font></font><font color="#00FFFF" size="2">定在</font></font> 
+        <font color="#00FFFF" size="2">userlist_file 參數<font color="#FFFFFF"><font color="#FFFFFF">所</font></font><br>
+        </font><font color="#00FFFF">#</font><font color="#00FFFF" size="2"> 指定檔案內的使用者<font color="#FFFFFF"><font color="#00FFFF">，能被允許登入，其他人則會被拒絕，包括 
+        ftp 帳號</font></font>在內。</font><br>
+        <br>
+        <strong># userlist_file=/etc/vsftpd.user_list</strong><br>
+        <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+        <font color="#00FFFF" size="2"><strong>預設為 /etc/vsftpd.user_list</strong>。可將被允許或拒絕的使用者帳號寫入，至於這些帳號是<br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+        <font color="#FFFFFF"><font color="#00FFFF" size="2">會</font></font><font color="#00FFFF" size="2">被允許</font></font><font color="#00FFFF" size="2">或拒絕，則端看 
+        userlist_deny 怎麼設定 (參考上一個參數的說明)。<br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+        </font> <font color="#FFFFFF"><font color="#00FFFF" size="2">不過還要注意另一個檔案<strong> 
+        /etc/ftpusers</strong>，一般我們</font></font><font color="#00FFFF" size="2">會將一些拒絕登入的帳號寫入此檔，<br>
+        </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+        </font> <font color="#FFFFFF"><font color="#00FFFF" size="2">比如</font></font><font color="#00FFFF" size="2">您</font></font><font color="#00FFFF" size="2">想讓 
+        root 帳號登入 ftp 時，就需先把 root 從 ftpusers 檔案中移除才行。</font></p>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#0066FF"># The 
+      maximum data transfer rate permitted, in bytes per second, for<br>
+      # local authenticated users. The default is 0 (unlimited). </font><br>
+      <strong># local_max_rate=7200</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 0</strong>。設定 realuser 上傳及下載的傳輸速率，單位為 
+      bytes/sec。而預設值 0 表示不設限。 </font></font><font size="2"><br>
+      <br>
+      </font><font color="#FFFFFF"><strong># user_config_dir=/etc/vsftpd/limitdir</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2">可以利用這個參數來個別<font color="#FFFFFF"><font color="#00FFFF">設定</font></font>使用者的傳輸頻寬，比如想限定使用者 
+      barry 的上傳下載</font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">頻寬，</font></font></font></font></font><font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      </font> <font color="#FFFFFF"><font color="#FFFFFF"></font></font><font color="#00FFFF" size="2">可以至 
+      /etc/vsftpd/limitdir 目錄下去建立一個 barry 檔案 ，然後再把 local_max_rate <br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font></font></font><font color="#00FFFF" size="2"> 
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">參數</font></font></font><font color="#00FFFF">設定進</font></font></font></font></font><font color="#00FFFF" size="2">去就行了。<br>
+      <br>
+      </font><font color="#FFFFFF"><strong># guest_enable=YES</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 NO</strong>。當 realuser 登入時，是否要將其身份轉換成訪客。若設定成 
+      YES 時，則可以<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      </font> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">利用</font></font></font></font><font color="#00FFFF" size="2"> 
+      guest_username 參數來指定訪客的身份，如未指定，則預設為 ftp。</font><br>
+      <br>
+      <strong># guest_username=guest</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 ftp</strong>。當 guest_username=YES 
+      時才有作用。 </font></font><font color="#00FFFF" size="2"> <br>
+      </font></font><font size="2"><strong><font color="#00FF00" size="+1"> <br>
+      ###### <font size="+2">Anonymus FTP user Settings</font> ######</font></strong><br>
+      <br>
+      </font><font color="#0066FF"># Allow anonymous FTP?</font><br>
+      <strong>anonymous_enable=YES </strong><br>
+      <font color="#00FFFF"># <font size="2"><strong>預設為 YES</strong>。是否允許匿名使用者 
+      (anonymous) 登入。</font></font><br>
+      <br>
+      <font color="#0066FF"># Anonymous users will only be allowed to download 
+      files which are<br>
+      # world readable.<br>
+      #</font><br>
+      <strong>anon_world_readable_only=yes </strong><br>
+      <font color="#00FFFF">#</font> <font color="#FFFFFF"><font color="#00FFFF"><font size="2"><strong>預設為 
+      YES</strong>。</font></font></font><font color="#00FFFF" size="2">當設定成 yes，表示匿名使用者下載檔案時，如果 
+      others 對此檔案具有<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">可讀的權限，則允許下載。</font><br>
+      <font color="#FFFFFF"><font color="#00FFFF">#</font> </font><font color="#00FFFF" size="2">舉個例子，假使您的 
+      FTP 允許 anonymous 上傳，且上傳後該檔案權限為 600 ( 此時 others <br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font> 
+      </font></font><font color="#00FFFF" size="2">對此檔案不具有可讀權限 )，則此參數</font><font color="#FFFFFF"><font color="#00FFFF" size="2">設定為 
+      yes 的情況下， anonymous</font> <font color="#00FFFF" size="2">是不允許對這些</font></font><font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font> 
+      <font color="#FFFFFF"><font color="#00FFFF" size="2">檔案進行下載的。</font></font><font color="#00FFFF" size="2"></font> 
+      </font></font><br>
+      <br>
+      <font color="#0066FF"># This option represents a directory which vsftpd 
+      will try to change into <br>
+      # after an anonymous login.</font><br>
+      <strong># anon_root=/ftp/anondir</strong><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2"><strong>預設為不啟用</strong>。想改變 
+      anonymous 預設登入的根目錄位置，就設定這個參數吧 !</font><br>
+      <br>
+      <font color="#0066FF"># Uncomment this to allow the anonymous FTP user to 
+      upload files. This only<br>
+      # has an effect if the above global write enable is activated. Also, you 
+      will<br>
+      # obviously need to create a directory writable by the FTP user.</font><br>
+      <strong># anon_upload_enable=YES</strong><br>
+      <font color="#00FFFF"># <font size="2"><strong>預設為 NO</strong>。是否允許匿名使用者上傳檔案。如果設定允許的話，則在 
+      Server 上，<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
+      <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font size="2">您必須</font></font></font><font size="2">事先建立一個可以讓 
+      anonymous 擁有寫入權限的目錄</font></font></font><font size="2">才行。</font></font><br>
+      <br>
+      <font color="#0066FF"># Default umask for anonymus users is 077. You may 
+      wish to change this to 022,<br>
+      # if your users expect that (022 is used by most other ftpd's) </font><br>
+      <strong># anon_umask=022</strong><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2"><strong>預設為 
+      077</strong>。設定 anonymous </font><font color="#FFFFFF"><font color="#00FFFF"><font size="2">上傳檔案目錄時的預設權限。</font></font></font><br>
+      <br>
+      <font color="#0066FF"># Uncomment this if you want the anonymous FTP user 
+      to be able to create<br>
+      # new directories.<br>
+      <strong><font color="#FFFFFF"># anon_mkdir_write_enable=YES</font></strong></font><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2"><strong>預設為 
+      NO</strong>。是否允許匿名使用者上傳或建立目錄。<br>
+      </font><br>
+      <font color="#0066FF"># Uncomment this to enable anonymus FTP users to perform 
+      other write operations<br>
+      # like deletion and renaming.</font><br>
+      <strong># anon_other_write_enable=YES</strong><br>
+      <font color="#00FFFF"># <font size="2"><strong>預設為 NO</strong>。是否允許匿名使用者具備其他的寫入權限，比如刪除檔案目錄，或對檔案目錄<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF">#</font></font> <font size="2">重新命名等。 
+      </font> </font><br>
+      <br>
+      <font color="#0066FF"># If you want, you can arrange for uploaded anonymous 
+      files to be owned by<br>
+      # a different user. Note! Using &quot;root&quot; for uploaded files is not<br>
+      # recommended!</font><br>
+      <strong># chown_uploads=YES</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 NO</strong>。匿名使用者上傳檔案後，是否允許安排檔案的擁有者為另一個使用者而非 
+      ftp。<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font> 
+      <font color="#FFFFFF"><font color="#00FFFF" size="2">若</font></font><font color="#00FFFF" size="2">設定成 
+      YES，可搭配 chown_username 參數，去指定該檔案的擁有者是誰，如沒指定，則預<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font> 
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">設</font></font><font color="#00FFFF" size="2">為</font></font> 
+      <font color="#00FFFF" size="2">root。請注意這裡是只針對上傳的檔案而言，目錄在這個地方並不適用。</font> 
+      <br>
+      <br>
+      <strong># chown_username=whoever</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 root</strong>。需搭配 chown_uploads=YES 
+      來設定。</font><br>
+      <br>
+      <font color="#0066FF"># The maximum data transfer rate permitted, in bytes 
+      per second, for anonymous<br>
+      # authenticated users. The default is 0 (unlimited).</font> <br>
+      <strong># anon_max_rate=7200</strong> <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 0</strong>。設定 anonymous 上傳及下載的傳輸速率， 
+      0 表示不設限。</font></font><br>
+      <br>
+      <font color="#00FF00" size="+1"><strong>###### <font size="+2">Log Settings</font> 
+      ######</strong></font><br>
+      <br>
+      <font color="#0066FF"># Log to the syslog daemon instead of using an logfile.</font><br>
+      <strong>syslog_enable=YES</strong><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2"><strong>預設為 
+      NO</strong>。當設定成 YES 時，會把原本要紀錄到 /var/log/vsftpd.log 中的 ftp 資訊，<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font> 
+      <font color="#FFFFFF"><font color="#00FFFF" size="2">改依</font></font> <font color="#00FFFF" size="2">syslogd 
+      daemon 所主要參考的檔案 syslog.conf，來決定把</font></font> <font color="#00FFFF" size="2">ftp 
+      相關訊息</font><font color="#00FFFF"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font><font color="#00FFFF" size="2"> 
+      </font><font color="#FFFFFF"><font color="#00FFFF" size="2">紀錄到哪裡，以 SUSE 
+      </font><font color="#00FFFF"></font></font><font color="#00FFFF" size="2">而言，就是指 
+      /var/log/messages。</font></font><font color="#00FFFF"> <br>
+      </font><br>
+      <font color="#0066FF"># Uncomment this to log all FTP requests and responses.</font><br>
+      <strong># log_ftp_protocol=YES</strong><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2"><strong>預設為 
+      NO</strong>。是否要將所有 ftp 的需求及回應都紀錄下來。</font><br>
+      <br>
+      <font color="#0066FF"># Activate logging of uploads/downloads.</font><br>
+      <strong># xferlog_enable=YES</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 NO</strong>。是否要將 ftp 的上傳/下載資訊記錄下來。<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
+      </font><font color="#00FFFF" size="2">若設定 YES，則預設會紀錄在</font> <font color="#00FFFF" size="2">/var/log/vsftpd.log 
+      檔案中。</font><br>
+      <font color="#0066FF"><br>
+      # You may override where the log file goes if you like. The default is shown<br>
+      # below.</font><br>
+      <strong># vsftpd_log_file=/var/log/vsftpd.log</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
+      <font color="#00FFFF" size="2">這是 vsftpd 預設的紀錄檔。</font><br>
+      <br>
+      <font color="#0066FF"># If you want, you can have your log file in standard 
+      ftpd xferlog format</font><br>
+      <font color="#0066FF"># Note: This disables the normal logging unless you 
+      enable dual_log_enable below.</font> <br>
+      <strong># xferlog_std_format=YES</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 NO</strong>。是否以 wu-ftpd 標準的 xferlog 
+      格式，來作為記錄檔的紀錄格式。當設定成 YES<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2"> 
+      時，</font></font><font color="#00FFFF" size="2">預設的紀錄檔</font></font><font color="#00FFFF" size="2">為 
+      /var/log/xferlog</font></font><font color="#00FFFF" size="2">。</font><br>
+      <br>
+      <font color="#0066FF"># You may override where the log file goes if you 
+      like. The default is shown<br>
+      # below.</font><br>
+      <strong># xferlog_file=/var/log/xferlog</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
+      <font color="#00FFFF" size="2">當 xferlog_std_format=YES 時，預設就是記錄在這個檔案。</font><br>
+      <br>
+      <font color="#0066FF"># Enable this to have booth logfiles. Standard xferlog 
+      and vsftpd's <br>
+      </font><font color="#FFFFFF"><font color="#0066FF"># </font></font><font color="#0066FF">own 
+      style log.</font><br>
+      <strong># dual_log_enable=YES</strong><br>
+      <font color="#00FFFF">#</font> <font color="#00FFFF" size="2"><strong>預設為 
+      NO</strong>。當設定為 YES 時，會同時將 ftp 資訊紀錄在 /var/log/xferlog 及 /var/log/vsftpd.log 
+      中。</font><br>
+      <br>
+      <font color="#00FF00" size="+1"><strong>###### <font size="+2">Transfer 
+      Settings</font> ######</strong></font><br>
+      <br>
+      <font color="#0066FF"># Make sure PORT transfer connections originate from 
+      port 20 (ftp-data).</font><br>
+      <strong>connect_from_port_20=YES</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 NO</strong>。在主動模式下建立資料通道時，是否啟用 
+      20 port。 <br>
+      <br>
+      </font><font color="#FFFFFF"><font color="#0099FF"># You may change the 
+      default value for timing out an idle session.</font><br>
+      <strong># idle_session_timeout=600</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 300 秒</strong>。設定閒置時間為何。若設定 100 
+      秒，就表示使用者在 100 秒內<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font> 
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">都沒</font></font></font><font color="#00FFFF" size="2">執行任何命令</font></font><font color="#00FFFF" size="2">動作時，將會被斷線。 
+      </font></font><font color="#00FFFF" size="2"> <br>
+      <br>
+      </font><font color="#0066FF"># You may change the default value for timing 
+      out a data connection.</font><font color="#00FFFF"><br>
+      <strong><font color="#FFFFFF"># data_connection_timeout=120</font></strong> 
+      </font><font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 300 秒</strong>。</font></font></font><font color="#00FFFF" size="2">設定資料傳輸時所能閒置的秒數。<br>
+      <br>
+      </font><font color="#00FFFF"> <font color="#FFFFFF"><strong># ascii_upload_enable=YES<br>
+      </strong><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font></font></font> 
+      </font><font color="#00FFFF" size="2"><strong>預設為 NO</strong>。是否允許以 ASCII 
+      格式來上傳資料。<br>
+      </font><strong><br>
+      # ascii_download_enable=YES </strong></font></font><font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 NO</strong>。<font color="#00FFFF">是否允許以 
+      ASCII 格式來下載資料。</font></font><font color="#00FFFF" size="2"><br>
+      <br>
+      </font><font color="#FFFFFF"><font color="#0066FF"># Set to NO if you want 
+      to disallow the PASV method of obtaining a data<br>
+      # connection.</font><font color="#FFFF00"><br>
+      <strong><font color="#FFFFFF"># pasv_enable=YES<br>
+      # port_enable=YES </font></strong></font><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設皆為 YES</strong>。是否允許 client 端使用主動模式或被動模式來建立連線。</font></font><font color="#00FFFF" size="2"><br>
+      <br>
+      </font><font color="#FFFFFF"><font color="#0066FF"># PAM setting. Do NOT 
+      change this unless you know what you do!</font><br>
+      <strong>pam_service_name=vsftpd</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 ftp</strong>。這裡是指定 vsftpd 所使用 
+      pam 模組服務的名稱，其路徑為 /etc/pam.d/vsftpd。</font> </font><font color="#00FFFF" size="2"> 
+      <br>
+      <br>
+      </font><font color="#FFFFFF"><font color="#0066FF"># Set listen=YES if you 
+      want vsftpd to run standalone</font><br>
+      <strong>listen=NO</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 NO</strong>。是否以 standalone 的方式來啟動 
+      vsftpd 服務。</font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">由於我們當初是規劃使用</font></font></font><font color="#00FFFF" size="2"><br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      </font> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">xinetd 
+      </font></font></font> <font color="#00FFFF" size="2">的方式</font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font><font color="#00FFFF" size="2">，因此需確定 
+      listen 設定為 NO。</font></font><font color="#00FFFF" size="2"> <br>
+      <br>
+      </font><font color="#FFFF00"><strong><font color="#FFFFFF"># listen_port=21</font></strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 21 port</strong></font><font color="#00FFFF">。<font size="2">設定於建立命令通道時所使用的 
+      port number。</font> </font></font> <br>
+      <br>
+      <strong># tcp_wrappers=YES</strong><br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設為 NO</strong>。是否讓 /usr/sbin/vsftpd 
+      支援 tcp_wrappers。若設定成 YES，則連線進來的<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      </font> <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">封包將會</font></font><font color="#00FFFF" size="2">經</font></font><font color="#00FFFF" size="2">過</font></font> 
+      <font color="#00FFFF" size="2">/etc/hosts.allow 及 /etc/hosts.deny 的過濾。<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#FFFFFF"><font color="#00FFFF" size="2">這個參數是特別針對以 standalone 
+      方式來啟動 vsftpd 服務而</font></font><font color="#00FFFF" size="2">設</font></font><font color="#00FFFF" size="2">計的，若您是使用 
+      xinetd <br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF" size="2">來啟動</font></font><font color="#00FFFF" size="2">的話，</font></font><font color="#00FFFF" size="2">則不管 
+      tcp_warppers 參數設定為何，都會使用到 tcpd 的</font></font><font color="#00FFFF" size="2">過濾機制。</font><font color="#00FFFF"><br>
+      </font><br>
+      <font color="#FFFF00"><strong><font color="#FFFFFF"># max_clients=20</font></strong> 
+      <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <strong><font color="#00FFFF" size="2">預設為 0</font></strong><font color="#00FFFF" size="2">。以 
+      standalone 來啟動 vsftpd 前提下，限定 client 端的最大連線數為何。<br>
+      </font><font color="#FFFFFF"><font color="#FFFF00"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font></font></font> 
+      <font color="#00FFFF" size="2">預設值 0， 表示不限制連線數。 </font></font> <font color="#00FFFF"><br>
+      </font> <strong><br>
+      # pasv_min_port=8000</strong><br>
+      <strong># pasv_max_port=9000</strong> <br>
+      <font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      <font color="#00FFFF" size="2"><strong>預設皆為 0</strong>。設定被動模式下建立資料通道時，所啟用的 
+      data port number 的範圍。<br>
+      </font><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font></font></font> 
+      </font> <font color="#FFFFFF"><font color="#00FFFF" size="2">預設值 0 ，表示 </font></font><font color="#00FFFF" size="2">any 
+      port 之意。</font> </font></td>
+  </tr>
+</table>
+<p> 　設定檔修改過後，請記得重新啟動 xinetd。<br>
+  <br>
+  　以上只是列舉部分設定參數來做說明而已，如讀者對其他 vsftpd 的參數有興趣的話，可 &quot; man vsftpd.conf &quot; 來自行查閱。<br>
+  <br>
+  <font color="#000000" size="+1"><strong><a name="11"></a><font size="5">18.3.3 
+  vsftpd 的綜合範例練習</font></strong></font><br>
+  <br>
+  　　以下舉個實際的設定範例給大家參考。所要求的事項如下：</p>
+<ol>
+  <li><strong>一般設定部分</strong>：<br>
+    <table width="96%" border="0">
+      <tr> 
+        <td width="3%" align="center" valign="top"><font size="+2">˙</font></td>
+        <td width="97%">當使用者登入 FTP 站台時，會看到如下的歡迎訊息：<br> <br>
+          ############################################<br>
+          ########## Welcome to barry's FTP Site ###########<br>
+          ############################################ <br> </td>
+      </tr>
+      <tr> 
+        <td align="center" valign="top"><font size="+2">˙</font></td>
+        <td>請讓 vsftpd 使用本地端的時間。</td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><strong>Realuser 設定部分</strong>：<br>
+    <table width="96%" border="0">
+      <tr> 
+        <td width="3%" align="center" valign="top"><font size="+2">˙</font></td>
+        <td width="97%">允許 realuser 能登入 FTP，且除了使用者 barry 及 david 外，其他 realuser 
+          都只能以自己的家目錄作為登入時預設的根目錄位置。</td>
+      </tr>
+      <tr> 
+        <td align="center" valign="top"><font size="+2">˙</font></td>
+        <td>拒絕 tina 及 mary 這兩個帳號登入 FTP。</td>
+      </tr>
+      <tr> 
+        <td align="center" valign="top"><font size="+2">˙</font></td>
+        <td>設定使用者 barry 及 david 的上傳/下載頻寬為 200 KB/sec，其他 realuser 則為 80 KB/sec。</td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><strong>Anonymous 設定部分</strong>：<br>
+    <table width="96%" border="0">
+      <tr> 
+        <td width="3%" align="center" valign="top"><font size="+2">˙</font></td>
+        <td width="97%">允許 anonymous 可以上傳檔案 (請事先建立 /srv/ftp/upload 目錄，來提供給 anonymous 
+          上傳檔案用) 及下載 ，而上傳後的檔案，無法馬上提供給其他人下載，亦無法被刪除。</td>
+      </tr>
+      <tr> 
+        <td align="center" valign="top"><font size="+2">˙</font></td>
+        <td>設定 anonymous 的上傳/下載頻寬為 50 KB/sec。</td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li> <strong>Log 設定部分</strong>：<br>
+    <br>
+    將使用者上傳/下載的資訊，同時紀錄在 /var/log/vsftpd.log 及 /var/log/xferlog 中。<br>
+    <br>
+  </li>
+  <li><strong>檔案傳輸設定部分</strong>：<br>
+    <table width="100%" border="0">
+      <tr> 
+        <td width="3%" align="center" valign="top" nowrap><font size="+2">˙</font></td>
+        <td width="97%">使用者閒置三分鐘沒執行任何命令動作，將會被斷線。另外在做資料傳輸時，如果閒置時間超過兩分鐘，也會被斷線。</td>
+      </tr>
+      <tr> 
+        <td align="center" valign="top" nowrap><font size="+2">˙</font></td>
+        <td>不允許使用 ASCII 格式來上傳/下載資料。</td>
+      </tr>
+      <tr> 
+        <td align="center" valign="top" nowrap><font size="+2">˙</font></td>
+        <td>以 xinetd 方式來啟動 vsftpd。</td>
+      </tr>
+    </table>
+  </li>
+</ol>
+<strong>設定範例</strong>：<br>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#000000"><font color="#FFFFFF">suse:~ #<strong><font color="#FFFF00"> 
+      vi /etc/vsftpd.conf</font></strong></font><font color="#00FFFF">&nbsp;</font><br>
+      <br>
+      <font color="#FFFFFF"><strong><font color="#00FF00">###### 一般設定 ######</font></strong></font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#FFFFFF">write_enable=YES</font></font><br> 
+      <font color="#FFFFFF"><font color="#0066FF"><font color="#FFFFFF">banner_file=/etc/welcomefile</font></font></font><br> 
+      <font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF">use_localtime=YES</font></font></font></font></font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#0066FF"><strong><font color="#00FF00">###### 
+      RealUser 相關設定 ######</font></strong></font></font><br> <br>
+      <font color="#FFFFFF">local_enable=YES</font><br> <font color="#FFFFFF">chroot_local_user=YES</font><br> 
+      <font color="#FFFFFF">chroot_list_enable=YES</font><br> <font color="#FFFFFF">chroot_list_file=/etc/vsftpd.chroot_list</font><br> 
+      <font color="#FFFFFF">local_max_rate=80000<br>
+      user_config_dir=/etc/limitdir<strong><br>
+      </strong></font><br>
+      <font color="#FFFFFF"><strong><font color="#00FF00">###### Anonymous 相關設定 
+      ######</font></strong></font><br>
+      <br>
+      <font color="#FFFFFF">anonymous_enable=YES</font><br> <font color="#FFFFFF">anon_world_readable_only=YES<br>
+      anon_upload_enable=YES</font><br> <font color="#FFFFFF">anon_umask=077 </font><br> 
+      <font color="#FFFFFF">anon_mkdir_write_enable=NO</font><br> <font color="#FFFFFF">anon_other_write_enable=NO 
+      </font><br> <font color="#FFFFFF">anon_max_rate=50000 </font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#00FF00"><strong>###### Log 相關設定 ######</strong></font></font><br>
+      <br>
+      <font color="#FFFFFF">xferlog_enable=YES</font><br> <font color="#FFFFFF">vsftpd_log_file=/var/log/vsftpd.log</font><br> 
+      <font color="#FFFFFF">xferlog_std_format=YES</font><br> <font color="#FFFFFF">xferlog_file=/var/log/xferlog</font><br> 
+      <font color="#FFFFFF">dual_log_enable=YES&nbsp; </font><br>
+      <br>
+      <font color="#FFFFFF"><font color="#00FF00"><strong>###### 檔案傳輸設定 ######</strong></font></font><br>
+      <font color="#FFFFFF"><br>
+      idle_session_timeout=180</font><br> <font color="#FFFFFF">data_connection_timeout=120</font><br> 
+      <font color="#FFFFFF">ascii_upload_enable=NO<br>
+      ascii_download_enable=NO<br>
+      pam_service_name=vsftpd <br>
+      <font color="#FFFFFF">listen=NO</font></font></td>
+  </tr>
+</table>
+<p>　完成後請重新啟動 xinetd：</p>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#FFFFFF" face="細明體">suse:~ </font><font color="#FFFFFF">#</font><font color="#FFFFFF" face="細明體">&nbsp; 
+      </font><font color="#FFFFFF"><font color="#FFFF00" face="細明體"><strong>rcxinetd 
+      restart</strong></font></font><font color="#FFFFFF" face="細明體"><br>
+      Shutting down xinetd: 　　　　　　　　　　<font color="#00FF00"><strong>done</strong></font><br>
+      Starting INET services. (xinetd) 　　　　 <font color="#00FF00"><strong>done</strong></font></font></td>
+  </tr>
+</table>
+<br>
+　接著就開始針對相關參數所指定的檔案目錄做相關設定囉：<br>
+　　<br>
+<table width="100%" border="0">
+  <tr> 
+    <td bgcolor="#000000"><font color="#00FF00" size="2">1. 設定登入 FTP 時的顯示訊息：</font><font color="#FFFFFF"><br>
+      suse:~ #<font color="#FFFF00"><strong> vi /etc/welcomefile</strong></font><br>
+      ###########################################<br>
+      ########## Welcome to barry's FTP Site ##########<br>
+      ###########################################<br>
+      <br>
+      <font color="#00FF00" size="2">2. 設定只有 barry 及 david 登入後，不會被侷限在家目錄下活動：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>vi /etc/vsftpd.chroot_list</strong></font><br>
+      barry<br>
+      david<br>
+      <br>
+      <font color="#00FF00" size="2">3. 拒絕 mary 及 tina 登入 FTP 站台：</font><br>
+      suse:~ # <font color="#FFFF00"><strong>vi /etc/ftpusers</strong></font><br>
+      mary<br>
+      tina<br>
+      <font color="#00FFFF"># <font size="2">要讓 /etc/ftpusers 這個檔案產生效用，須確定在 vsftpd.conf 
+      中的 pam_service_name 參數<br>
+      </font><font color="#FFFFFF"><font color="#00FFFF">#</font></font> <font color="#FFFFFF"><font color="#00FFFF"><font size="2">指定為</font></font></font> 
+      <font size="2">vsftpd 才行。由於這裡牽涉到 PAM 模組設定的問題，所以就先不提了。</font></font><br>
+      <br>
+      <font color="#00FF00" size="2">4. 限定 barry 及 david 的最大傳輸速度<strong>：</strong></font><br>
+      suse:~ # <font color="#FFFF00"><strong>mkdir /etc/limitdir</strong></font><br>
+      suse:~ #<font color="#FFFF00"><strong> vi /etc/limitdir/barry</strong></font><br>
+      local_max_rate=200000<br>
+      <font color="#00FFFF"># <font size="2">david 的做法，也請如法炮製一番。</font></font><font size="2"><br>
+      </font><br>
+      <font color="#00FF00" size="2">5. 設定 anonymous 的上傳目錄：</font><br>
+      suse:~ #<font color="#FFFF00"><strong> mkdir /srv/ftp/upload </strong></font><br>
+      suse:~ # <font color="#FFFF00"><strong>chown ftp /srv/ftp/upload <br>
+      </strong><font color="#FFFFFF"><font color="#00FFFF"><font color="#FFFFFF"><font color="#00FFFF">#</font></font> 
+      </font></font><font color="#00FFFF" size="2">將上傳目錄的擁有者改為 
+      ftp，不然 anonymous 是無法上傳資料的噢。</font></font></font></td>
+  </tr>
+</table>
+<p> 　到這裡，整個 FTP 的設定才算完成。接著您可以根據實際環境的需求，來嘗試設定適合自己環境了噢。<br>
+</p>
+<p>　　</p>
+<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( 柏青哥 
+  )</em></font> <br>
+</p>
+</body>
+</html>

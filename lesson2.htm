@@ -1,0 +1,784 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>柏青哥的 SuSE Linux -- 安裝 SuSE Linux</title>
+<style type="text/css">
+<!--
+a {
+	color: #000099;
+	text-decoration: none;
+}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
+<div align="left"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a>　　作者：陳柏菁<font size="+2">　</font>E-mail：pachingko@ms96.url.com.tw 
+</div>
+<table width="100%" border="0">
+  <tr> 
+    <td nowrap> <div align="center"><font size="+1"><font size="7"><strong>第二章 
+        　 安 裝 SuSE Linux </strong></font></font></div></td>
+  </tr>
+</table>
+<font color="#000000"> <font color="#000099" size="+1"><strong><br>
+索引：</strong></font></font> 
+<table width="100%" border="0">
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>2.1 <a href="#1">安裝 Linux 前需有的認知</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td width="3%"><font color="#000099">&nbsp;</font></td>
+    <td width="5%" align="center" valign="top" nowrap><font color="#000099">2.1.1</font></td>
+    <td width="92%"><a href="#2">Linux 的目錄結構</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">2.1.2</font></td>
+    <td><a href="#3">檔案系統及裝置檔案的認識</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">2.1.3</font></td>
+    <td><a href="#5">磁碟分割與掛載</a></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>2.2 <a href="#7">安裝 SuSE Linux</a></strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">2.2.1</font></td>
+    <td><a href="#8">規劃磁碟空間配置</a></td>
+  </tr>
+  <tr> 
+    <td><font color="#000099">&nbsp;</font></td>
+    <td align="center" valign="top" nowrap><font color="#000099">2.2.2</font></td>
+    <td><a href="#9">開始安裝 SuSE Linux</a></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><strong><font color="#000099">2.3 <a href="#18">使用 VMware 
+      來安裝 SuSE Linux</a></font></strong></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font color="#000099">2.3.1</font></td>
+    <td><a href="#16">下載及安裝 VMware</a></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="top" nowrap><font color="#000099">2.3.2</font></td>
+    <td><a href="#17">執行 VMware 來安裝 SuSE Linux</a></td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#000099"><strong>2.4 <a href="#11">YaST 工具簡介</a></strong></font></td>
+  </tr>
+</table>
+<br>
+<hr>
+<p><font color="#000000"><br>
+  　在學習安裝 Linux 之前，有一些觀念您必須要先建立起來，包括 Linux 的目錄結構、檔案系統的認識、裝置名稱及分割區 (partition) 等等。或許對於第一次接觸 
+  Linux 的您來說，有部分內容可能會看得有點吃力，不過沒關係，在往後的章節裡邊，對這些相關的概念，都還會有更進一步的說明。<br>
+  <br>
+  <font color="#0000FF" size="+1"><strong><a name="1"></a><font size="6">2.1 安裝 
+  Linux 前需有的認知</font></strong></font><br>
+  <br>
+  　這裡是要跟大家簡單的介紹安裝前需先了解的事項，而有了這些初步的認識之後，您在安裝 Linux 時，才不會有一種知其所以、卻不知其所以然的感覺。<br>
+  <br>
+  <strong><a name="2"></a><font size="5">2.1.1 Linux 的目錄結構</font></strong><font size="4"><br>
+  </font><br>
+  　Linux 的目錄結構，是一個階層式的樹狀結構，最上層為根目錄 (root directory)，以 &quot; / &quot; 來表示，至於在根目錄下還有一些主要目錄，當然設置這些不同的目錄是有其個別的用途啦。<br>
+  <br>
+  　在 Linux 檔案系統裡頭的目錄配置，是符合 <font color="#0000FF">FHS</font> 的標準規範的。FHS (Filesystem 
+  Hierarchy Standard) 主要是針對兩層目錄來定義，第一層是定義根目錄的下一層目錄要存放些什麼資料，比如 /lib 是安置函式庫的地方，/bin 
+  及 /sbin 是放置可執行程式，/etc 是存放設定檔等等 ﹔第二層則是定義 /usr 及 /var 的下一層目錄又要存放些什麼資料，比如 /usr/src 
+  是存放原始碼，/var/log 是存放紀錄檔。<br>
+  <br>
+  　只要您所使用的 Linux Distribution 是符合 FHS 標準的話，那相關檔案所存放的位置應該不難找到。至於 FHS 的詳細解說可以參考：<a href="javascript:if(confirm(%27http://www.pathname.com/fhs/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.pathname.com/fhs/%27" tppabs="http://www.pathname.com/fhs/" target="_blank">http://www.pathname.com/fhs/</a> 
+  。</font></p>
+<p><font color="#000000">　接著以底下的樹狀目錄結構圖，來解釋每個目錄的功用：</font></p>
+<p align="center"><font color="#000000"> <img src="../picture/dirtree.png" tppabs="http://www.suse.url.tw/picture/dirtree.png" width="613" height="200"></font><br>
+  <font size="2">目錄樹狀結構圖</font></p>
+<table width="100%" border="1" cellpadding="4">
+  <tr bgcolor="#CCCCCC"> 
+    <td align="center"><strong><font color="#000099">目 錄</font></strong></td>
+    <td><strong><font color="#000099">應 存 放 之 資 料</font></strong></td>
+  </tr>
+  <tr> 
+    <td width="9%" align="center"><font color="#000099"><strong>/boot</strong></font></td>
+    <td width="91%"><font color="#000099">存放一些與開機有關的檔案，像 Linux 的 kernel 及 GRUB 
+      設定檔都在這目錄中。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/etc</strong></font></td>
+    <td><font color="#000099">存放著系統主要的設定檔。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/home</strong></font></td>
+    <td><font color="#000099">一般使用者的家目錄，預設就在這個目錄下。比如以使用者 barry 來說，其個人家目錄就在 /home/barry。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/root</strong></font></td>
+    <td><font color="#000099">管理者 root 的個人家目錄。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/bin</strong></font></td>
+    <td><font color="#000099">一般使用者常使用的指令會放在這裡。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/sbin</strong></font></td>
+    <td><font color="#000099">管理者 root 常使用的指令會放在這裡。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/tmp</strong></font></td>
+    <td><font color="#000099">提供給一般使用者暫時存放檔案資料的地方 ﹔另外程式執行時的暫時資料也會放在這裡。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/mnt</strong></font></td>
+    <td><font color="#000099">這是提供給 cdrom 或 floppy 所使用的掛載點 (mount point)。 至於掛載的概念，後面馬上會提及。</font></td>
+  </tr>
+  <tr> 
+    <td align="center" nowrap><font color="#000099"><strong>/media</strong></font></td>
+    <td nowrap><font color="#000099">與 /mnt 的性質差不多。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/var</strong></font></td>
+    <td><font color="#000099">此目錄存放的大都是一些經常變動的檔案資料，較重要的有：<br>
+      <br>
+      <font size="4">˙</font>/var/log：存放系統紀錄檔。<br>
+      <font size="4">˙</font>/var/spool：佇列資料暫存處。像使用者的信件，即存放在 /var/spool/mail 目錄下。<br>
+      <font size="4">˙</font>/var/lib：存放資料庫之所在。比如 rpm 及 locate 資料庫。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/srv</strong></font></td>
+    <td><font color="#000099">存放某些服務需要使用到的資料，比如：<br>
+      <br>
+      <font size="4">˙</font>/srv/www：存放網頁資料的目錄。<br>
+      <font size="4">˙</font>/srv/ftp：匿名使用者登入 ftp 站台時，其預設的根目錄位置。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/lib</strong></font></td>
+    <td><font color="#000099">存放函式庫的地方。當程式在執行時，會呼叫此處的相關函式來協助執行。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/proc</strong></font></td>
+    <td><font color="#000099">proc 是一個虛擬檔案系統，而其所存放的資料就在 /proc 目錄中，且這個目錄本身不佔硬碟空間，至於目錄中所顯示的資訊是由核心來提供。核心平常會把系統及程式執行的現況，經由 
+      proc 這個虛擬檔案系統來做出相關的回應，而這些回應的訊息就放在 /proc 裡。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/dev</strong></font></td>
+    <td><font color="#000099">在 Linux 系統中，會把週邊設備及裝置當成檔案來看待，而這些裝置檔案可以在 /dev 目錄裡找到。比如 
+      /dev/fd0 (the first floppy disk)、/dev/lp0 (LPT1 : the first parallel port)、/dev/ttyS0 
+      (com1 : the first serial port)、/dev/tty1 (the first virtual console)、/dev/tty2、/dev/hda、/dev/hdb3、/dev/sda&#8230; 
+      等等。</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#000099"><strong>/usr</strong></font></td>
+    <td><font color="#000099">當 Linux 剛安裝完成後，會發現佔最多空間的就是 /usr 目錄，那當然囉，它所包含的資訊也最為豐富。以下就列舉幾個其下的子目錄來做參考：<br>
+      <br>
+      <font size="4">˙</font>/usr/bin：與 /bin 的意思差不多，比較屬於使用者導向。<br>
+      <font size="4">˙</font>/usr/sbin：與 /sbin 差不多意思。<br>
+      <font size="4">˙</font>/usr/src：存放原始碼的地方，比如核心原始碼就放在這裡邊。<br>
+      <font size="4">˙</font>/usr/share：提供給使用者所分享的文件就放在這裡。比如：<br>
+      　--- /usr/share/doc：存放很多的套件相關說明文件。<br>
+      　--- /usr/share/man：man page 資料存放處。<br>
+      <font size="4">˙</font>/usr/local：自行下載軟體來安裝時的預設安裝位置。<br>
+      <font size="4">˙</font>/usr/lib：函式庫的存放位置。</font><font color="#000099"><br>
+      <br>
+      這裡說明一下 /bin、/sbin 及 /usr/bin、/usr/sbin 的差別。/sbin 目錄主要是存放一些開機過程、系統復原或系統緊急修復時，需使用到的程式 
+      ﹔而 /bin 則是包含一些當沒有其他檔案系統被掛載時 (比如單人模式)，可以被執行的程式。至於除了這兩個目錄外的其他一般程式，就放在 /usr/bin 
+      與 /usr/sbin 了。</font></td>
+  </tr>
+</table>
+<p align="left"><font color="#000000">　如果您是第一次接觸 Linux，會覺得說怎麼光是它的目錄結構就那麼複雜，不免心理感到有點慌，其實我們上面所列出每個目錄的功用，乍看之下是很多沒錯，但千萬不要去死記，因為隨著您學習時間的拉長，且對系統整體的概念愈來愈清晰時，自然而然的就會了解這些目錄是做什麼用的。<br>
+  <br>
+  <strong><a name="3"></a><font size="5">2.1.2 檔案系統</font></strong><font size="+1"><strong><font size="5">及裝置檔案的認識</font></strong><br>
+  </font><br>
+  　何謂檔案系統 ? 就是管理檔案的系統囉。在電腦系統中，資料是存放在儲存裝置中的，至於這些資料到底要存放在裝置裡的哪個位置，就必須要有一套管理這些檔案資料的系統來做處理，此即檔案系統是也。<br>
+  <br>
+  　 如您曾經安裝過 Windows 的話，應該很清楚的知道，在安裝之前必須先對分割區執行格式化的動作，而這個動作就是在製造一個檔案系統給這個分割區來使用，這樣待會兒在安裝的過程，才能順利把檔案資料寫入此分割區的檔案系統中。<br>
+  <br>
+  　Windows 有 Windows 的檔案系統，如 VFAT、NTFS 等，那 Linux 當然也有它專用的檔案系統，如 ext2、ext3、reiserfs、JFS 
+  &#8230; 等等，由於這兩種作業系統所使用的檔案系統架構完全不相同，所以資料存取的模式自然也就不一樣啦。<br>
+  <br>
+  　受許多玩家青睞的 RedHat，其預設的檔案系統為 ext3，而今天要學的 SuSE，則是使用 ReiserFS，當然您想讓 SuSE 使用 ext3 
+  也是可行的。至於其他有關檔案系統的相關課題，等到第五章再做進一步的說明。<br>
+  <br>
+  　再來談談裝置檔案部分。在 Linux 系統中，會把周邊設備及裝置當成檔案來看待，並將這些裝置檔案存放在 /dev 目錄下，這部分於先前的目錄結構中已有提及，而這裡主要是針對與磁碟相關的裝置來做探討。<br>
+  <br>
+  　傳統的主機板上有兩個 IDE Controller，每個 IDE Controller 可接兩個裝置，而在第一個 IDE Controller (Primary) 
+  上的第一個裝置 (Master)，其檔案名稱為 hda，第二個裝置 (Slave)，其檔案名稱為 hdb ﹔至於第二個 IDE Controller (Secondary) 
+  上的第一個裝置 (Master)，其檔案名稱為 hdc，第二個裝置 (Slave) 就為 hdd。</font></p>
+<table width="42%" border="1">
+  <tr bgcolor="#CCCCCC"> 
+    <td width="30%" nowrap>
+<div align="center"><font color="#000099"><strong>IDE</strong></font></div></td>
+    <td width="35%" nowrap>
+<div align="center"><font color="#000099"><strong>裝置檔案</strong></font></div></td>
+    <td width="35%" nowrap>
+<div align="center"><font color="#000099"><strong>jump 位置</strong></font></div></td>
+  </tr>
+  <tr> 
+    <td rowspan="2" nowrap>
+<div align="center"><font color="#000099">IDE0<br>
+        (Primary) </font></div></td>
+    <td nowrap>
+<div align="center"><font color="#000099">/dev/hda</font></div></td>
+    <td nowrap>
+<div align="center"><font color="#000099">Master</font></div></td>
+  </tr>
+  <tr> 
+    <td nowrap>
+<div align="center"><font color="#000099">/dev/hdb</font></div></td>
+    <td nowrap>
+<div align="center"><font color="#000099">Slave</font></div></td>
+  </tr>
+  <tr> 
+    <td rowspan="2"><div align="center"><font color="#000099">IDE1 <br>
+        (Secondary)</font></div></td>
+    <td nowrap>
+<div align="center"><font color="#000099">/dev/hdc</font></div></td>
+    <td nowrap>
+<div align="center"><font color="#000099">Master</font></div></td>
+  </tr>
+  <tr> 
+    <td nowrap>
+<div align="center"><font color="#000099">/dev/hdd</font></div></td>
+    <td nowrap>
+<div align="center"><font color="#000099">Slave</font></div></td>
+  </tr>
+</table>
+<p align="left"><font color="#000000">　在裝置檔案名稱後面，若接一個數字，則此數字代表的就是 partition number 
+  (分割區代號)，比如 /dev/hda3 是表示第一個 IDE Controller 上的第一顆硬碟中的第三個分割區，hdd5 是表示第二個 IDE Controller 
+  上的第二顆硬碟中的第五個分割區。<br>
+  <br>
+  　如果您不是使用傳統的 IDE 硬碟，而是使用 SCSI 的硬碟，則其裝置檔案名稱為 sda、sdb、… 等，那分割區自然就是以 sda1、sda2、&#8230; 
+  來表示囉 ! 至於目前的主流 SATA 硬碟，通常其裝置檔案名稱也是以 sda、sdb、… 來命名居多。</font></p>
+<blockquote> 
+  <p align="left"><font color="#000099"><strong>Tips：</strong><font size="2">Linux 
+    的檔案系統與 Windows 完全不相同，在 Windows 底下，每個分割區或裝置都有其各自的磁碟機代號，以分割區來說，如您硬碟上的 hda1 是安裝 
+    Win2000，hda2 是用來存放一些備份資料，那麼在 Windows 中這兩個分割區分別是以 C 磁碟機 ( C: ) 及 D 磁碟機 ( D: 
+    ) 來表示，但在 Linux 裡，並沒有所謂的磁碟槽概念。</font></font></p>
+</blockquote>
+<p align="left"><font color="#000000"> <strong><a name="5"></a><font size="5">2.1.3 
+  磁碟分割</font></strong><font size="4"><strong><font size="5">與掛載</font></strong><br>
+  </font><br>
+  　這一小節一開始，先來聊聊磁碟的構造。一顆硬碟中會有好幾片的磁碟盤，每個磁碟盤會有兩面，每一面都有其各自的讀寫磁頭 (Head)。而磁碟盤由內到外一圈一圈的同心圓，就叫做磁軌 
+  (Track) ﹔磁碟盤最外圍的磁軌為第零軌，依序往圓心累計編號。再來每一片磁碟盤的相同編號磁軌所組成的一組磁軌就叫做磁柱 (Cylinder)，此<font color="#0000FF">磁柱即是磁碟分割的最小計算單位</font>。</font>接著把磁碟盤從圓心開始，分別畫出無數條半徑，如此便分割成一片一片的扇形區域，像這樣每兩條半徑所分割出來的區域，就稱為磁區 
+  (Sector)，每一個磁區的大小通常為 512 bytes。</p>
+<p align="left">　有了以上的觀念後，那麼通常在計算一顆<font color="#000000">硬碟容量時，即可使用以下的公式做計算：<br>
+  <br>
+  　　　 　　　　<font color="#0000FF">磁柱數(每個表面的磁軌數) x磁頭數(可讀寫的表面) x磁區數 x 每個磁區大小 <br>
+  </font> <br>
+  　熟悉了磁碟構造後，以下開始說明分割區的部分。磁碟分割區可區分為主要分割區 (primary partition) 及延伸分割區 (extended partition)，而一顆硬碟上頭，最多只能有四個主要分割區，其 
+  partition number 為 1~ 4，如以 hda 來說的話，就是 hda1、hda2、hda3、hda4。所以在規劃磁碟分割的時候，如果分割區數小於等於四個時，則全部切割成主分割是沒問題的，但若分割區數比四個還多時，那就必須要有延伸分割區的存在了。延伸分割區的 
+  partition number 也是 1~ 4，不過不能與 primary partition 重複，以 hda 來說，當所規劃的主分割為 hda1 
+  及 hda2 時，則延伸分割區就只能為 hda3 或 hda4 了。<br>
+  <br>
+  　您不能對延伸分割區本身製造檔案系統，因此需要在延伸分割區之中，再去切割成幾個邏輯分割區 (logical partition) 出來，然後才能對此邏輯分割區進行格式化的動作，而邏輯分割區的 
+  partition number 是從 5 開始的。<br>
+  <br>
+  　了解了分割區的概念後，或許您會想知道整顆硬碟到底可切割成多少個 partition，一般來說，如使用的是 IDE 硬碟，其 partition number 
+  可達 63，若是 SATA 或 SCSI 硬碟，則其 partition number 只能達 15 而已。</font></p>
+<p align="left"><font color="#000000">　最後談談掛載的概念。在 Linux 中，所有被 Linux kernel 所支援的檔案系統，都必須被掛載到根目錄下的某個目錄或子目錄當中，才能夠被存取使用，被掛載的這個目錄就稱為掛載點 
+  (mount-point)，而將檔案系統掛載至掛載點的動作便稱為掛載 (mount )。比如您要存取 cdrom 或 floppy 時，就必需先將它們掛載至根目錄下 
+  (如 /media/cdrom、/mnt/floppy) 才行 ﹔那對磁碟分割區來說也是一樣的道理，您必須要把分割區掛載至根目錄下之後，才能存取該 partition 
+  的內容。<br>
+  <br>
+  　在 Linux 的目錄結構中，已了解到最上層為根目錄，所以想當然爾，在啟動 Linux 作業系統的過程中，第一個需被掛載的 partition 就是 
+  root partition。<br>
+  <br>
+  <font color="#0000FF" size="+1"><strong><a name="7"></a><font size="6">2.2 安裝 
+  SuSE Linux</font></strong></font><br>
+  <br>
+  　筆者通常會建議初學者在安裝 Linux 時，能使用單純一點的環境，也就是使用主機上唯一的一顆硬碟，來專門安裝 Linux，除非您熟悉多重開機的做法，否則先不要嘗試。不過若您迫切想學 
+  Linux，但不會做多重開機，而手邊也沒多餘的電腦可用，那只好利用 vmware 來應急一下，關於這一部份在 2.3 節會有相關說明。</font></p>
+<p align="left"><font color="#000000">　另外了解一下安裝 SLES10 (SuSE Linux Enterprise 
+  Server 10) 的最低系統需求，首先記憶體部分建議是 512 MB，供軟體安裝的最小硬碟空間是 750 MB，至於支援的處理器平台有 x86、AMD64、Intel 
+  EM64T、Itanium 處理器系列等等。<br>
+  <br>
+  <strong><a name="8"></a><font size="5">2.2.1 規劃磁碟空間配置</font><br>
+  <br>
+  </strong>　一般而言，安裝 Linux 作業系統最少要有兩個 partition，分別為 / 及 swap。swap 是所謂的交換區或稱為虛擬記憶體，其主要作用是當實體記憶體不足時，會先將一些平常使用頻率較低的程式暫存至 
+  swap 內，這樣才可讓出更多的實體記憶體來給真正要執行的程式使用，而等程式執行完畢後，再把那些剛剛放在 swap 裡的程式放回記憶體內。<br>
+  <br>
+  　等一下安裝 Linux 時，會練習切割三個分割區，來分別提供給 /、/home 及 swap 使用。將來要是您對系統更加熟識時，可以練習劃分更多的 partition，比如可讓 
+  /、/boot、/usr、/var、/home、/srv、/tmp 目錄都擁有自己的 partition。那劃分那麼多 partition 要幹嘛 ? 
+  這就說來話長了，等您對 Linux 有更進一步的認識時，自然就能體會它的好處了。<br>
+  <br>
+  　再來談到磁碟空間的配置。如果依照筆者的需求，所需安裝軟體大約 2G 上下，而硬碟空間有 5G 可使用，因此等一下會給 root partition 4G，/home 
+  partition 300M，swap partition 也是 300M，還剩下的空間，將來可提供做磁碟分割練習用。如果您的磁碟空間不像筆者那麼少的話，則可以適時的將這些分割區調整大一些。<br>
+  <br>
+  <strong><a name="9"></a><font size="5">2.2.2 開始安裝 SuSE Linux<br>
+  </font></strong> <br>
+  　首先請先確定 BIOS 所設定的開機順序中，其光碟開機必須是在硬碟開機之前，確認之後就把書上所附的 dvd 安裝光碟放入，接著即開始進行 SuSE Linux 
+  的安裝了。</font></p>
+<p align="left"><font color="#000000"><strong><font color="#000099" size="4">1. 
+  開機畫面選項</font></strong></font></p>
+<p align="center"><font color="#000000"><img src="../picture/install1.png" tppabs="http://www.suse.url.tw/picture/install1.png" width="789" height="588"><br>
+  <font size="2">圖1：開機畫面</font> </font></p>
+<blockquote> 
+  <p align="left">先介紹圖1 左下角的幾個按鍵<font color="#000000">。按下 F2 可選擇安裝時候的語言 ﹔F3 是設定安裝時候的解析度，另外還有個文字模式的選項，這是當您採圖形化安裝有困難時，即可選擇在文字模式下安裝 
+    ﹔F4 是選擇安裝的來源，通常為 VCD 或 DVD 居多，裡頭也可讓您選擇從 HTTP、NFS、FTP 伺服器來安裝。</font></p>
+  <p align="left"><font color="#000000">為了能讓大家看懂安裝過程的每一步驟，因此這裡先選擇安裝時候的語言為繁體中文：</font></p>
+</blockquote>
+<p align="center"><font color="#000000"><img src="../picture/install2.png" tppabs="http://www.suse.url.tw/picture/install2.png" width="784" height="590"><br>
+  <font size="2">圖2：選擇安裝語言</font></font></p>
+<blockquote>
+  <p align="left">接著您就會看到美美的中文畫面<font color="#000000">，是不是感覺比較平易近人了呢 ? 再來請於開機功能表中選取 
+    [安裝]，隨即按下 [Enter] 鍵：</font></p>
+</blockquote>
+<p align="center"><font color="#000000"><img src="../picture/install3.png" tppabs="http://www.suse.url.tw/picture/install3.png" width="775" height="588"><br>
+  <font size="2">圖3：繁體中文的開機畫面</font></font></p>
+<p align="left"><font color="#000099" size="4"><strong>2. 軟體授權合約、安裝模式選擇及時區設定</strong></font></p>
+<blockquote>
+  <p align="left"><font color="#000000">下圖是軟體授權合約的內容，當然是要同意的啦：</font></p>
+</blockquote>
+<p align="center"><font color="#000000"><img src="../picture/install4.png" tppabs="http://www.suse.url.tw/picture/install4.png" width="636" height="595"><br>
+  <font size="2">圖4：授權合約畫面</font></font></p>
+<blockquote>
+  <p align="left"><font color="#000000">安裝模式的選擇，就採 [全新安裝]：</font></p>
+</blockquote>
+<p align="center"><font color="#000000"><img src="../picture/install5.png" tppabs="http://www.suse.url.tw/picture/install5.png" width="195" height="71"><br>
+  <font size="2">圖5：安裝模式選擇畫面 </font></font></p>
+<blockquote>
+  <p align="left">時區的部分<font color="#000000">，請選亞洲/台北，並將硬體時鐘設為 [本地時間]：</font></p>
+</blockquote>
+<p align="center"><font color="#000000"><img src="../picture/install6.png" tppabs="http://www.suse.url.tw/picture/install6.png" width="624" height="555"><br>
+  <font size="2">圖6：時區的選擇 </font></font></p>
+<p align="left"><strong><font color="#000099" size="4">3. 安裝設定部分</font></strong></p>
+<blockquote>
+  <p align="left"><font color="#000000">這是整個安裝過程最重要的地方了。先點選 [磁碟分割程式] 來開始進行磁碟分割吧：</font></p>
+</blockquote>
+<p align="center"><font color="#000000"><img src="../picture/install7.png" tppabs="http://www.suse.url.tw/picture/install7.png" width="622" height="557"><br>
+  <font size="2">圖7：安裝設定主畫面 </font></font></p>
+<blockquote> 
+  <p align="left"><font color="#000000">由於我們是要自己手動去做磁碟分割，所以這裡選擇 [建立自訂的分割區設定]：</font></p>
+</blockquote>
+<p align="center"><font color="#000000"><img src="../picture/install8.png" tppabs="http://www.suse.url.tw/picture/install8.png" width="623" height="407"><br>
+  <font size="2">圖8：磁碟分割方式的選擇畫面 </font></font></p>
+<blockquote>
+  <p align="left">再來選取 [自訂分割區] 來繼續<font color="#000000">：</font></p>
+</blockquote>
+<p align="center"><font color="#000000"><img src="../picture/install9.png" tppabs="http://www.suse.url.tw/picture/install9.png" width="350" height="101"><br>
+  <font size="2">圖9：選擇自訂分割區 </font></font></p>
+<blockquote> 
+  <p align="left"><font color="#000000">開始要做磁碟分割了。請點選 [建立] 來新增第一個分割區：</font></p>
+</blockquote>
+<p align="center"><font color="#000000"><img src="../picture/install10.png" tppabs="http://www.suse.url.tw/picture/install10.png" width="622" height="554"><br>
+  <font size="2">圖10：磁碟分割主畫面 </font></font></p>
+<blockquote>
+  <p align="left">由於當初是規劃三個分割區，因此筆者待會兒都會把這三個分割區設定為 [主要分割區]：</p>
+</blockquote>
+<p align="center"><img src="../picture/install11.png" tppabs="http://www.suse.url.tw/picture/install11.png" width="625" height="557"><br>
+  <font size="2">圖11：選擇分割區類型</font></p>
+<blockquote>
+  <p align="left">接著針對這個分割區，設定其相關資訊。筆者是制定此分割區大小為 4G，且要格式化成 Reiser 的檔案系統，並選擇將此分割區掛載至根目錄上：</p>
+</blockquote>
+<p align="center"><img src="../picture/install12.png" tppabs="http://www.suse.url.tw/picture/install12.png" width="565" height="371"><br>
+  <font size="2">圖12：分割區設定畫面</font></p>
+<blockquote> 
+  <p align="left">設定完成後，可在以下畫面中，看到剛剛所建立的那個分割區<font color="#000000">。沒問題的話，請繼續點選 
+    [建立] 來新增其他的分割區：</font></p>
+</blockquote>
+<p align="center"><img src="../picture/install13.png" tppabs="http://www.suse.url.tw/picture/install13.png" width="625" height="557"><br>
+  <font size="2">圖13：磁碟分割主畫面 </font></p>
+<blockquote> 
+  <p align="left">此時還是會看到選擇分割區類型的畫面，選主分割就對了，這個步驟就略過囉。<br>
+    <br>
+    而以下是所建立的第二個分割區之設定畫面。此分割區大小規劃為 300M，一樣是格式化成 Reiser 的檔案系統，並將其掛載至 /home 目錄：</p>
+</blockquote>
+<p align="center"><img src="../picture/install14.png" tppabs="http://www.suse.url.tw/picture/install14.png" width="785" height="587"><br>
+  <font size="2">圖14：分割區設定畫面</font> </p>
+<blockquote>
+  <p align="left">最後還有個 swap 分割區尚未建立，請點選 [建立] 來繼續：</p>
+</blockquote>
+<p align="center"><img src="../picture/install15.png" tppabs="http://www.suse.url.tw/picture/install15.png" width="625" height="557"><br>
+  <font size="2">圖15：磁碟分割主畫面 </font></p>
+<blockquote> 
+  <p align="left"><font color="#000000"> [檔案系統] 的地方選擇 swap，選擇完後，掛載點就會自動出現 swap，而此 
+    swap partition 大小設定為 300M：</font></p>
+</blockquote>
+<p align="center"><img src="../picture/install16.png" tppabs="http://www.suse.url.tw/picture/install16.png" width="559" height="365"><br>
+  <font size="2">圖16：swap 分割區設定畫面</font> </p>
+<blockquote> 
+  <p align="left"><font color="#000000">一般是建議 swap 空間最起碼要與您的實體記憶體相仿，或兩倍、三倍不等，並沒有硬性的規定。不過實際的空間規劃，還是要根據您系統及環境的需求來做決定。好了，磁碟分割部分已經結束了，請按下 
+    [完成] 囉：</font></p>
+</blockquote>
+<p align="center"><img src="../picture/install17.png" tppabs="http://www.suse.url.tw/picture/install17.png" width="624" height="588"><br>
+  <font size="2">圖17：磁碟分割主畫面 </font></p>
+<blockquote>
+  <p align="left">回到安裝設定畫面後，再來是針對 [軟體] 的部分做設定：</p>
+</blockquote>
+<p align="center"><img src="../picture/install18.png" tppabs="http://www.suse.url.tw/picture/install18.png" width="622" height="554"><br>
+  <font size="2">圖18：安裝設定主畫面</font></p>
+<blockquote>
+  <p align="left">這邊開始，是選擇我們所要安裝的軟體。於圖 19 的左下角有個 [詳細資訊]，點選進去看看：</p>
+</blockquote>
+<p align="center"><img src="../picture/install19.png" tppabs="http://www.suse.url.tw/picture/install19.png" width="623" height="555"><br>
+  <font size="2">圖19：軟體選擇的主畫面</font></p>
+<blockquote>
+  <p align="left">等一下會把本書將來會使用到的軟體，都給他安裝上去。而筆者這個地方是採用 [搜尋] 的方式，來將所要安裝的軟體選取起來：</p>
+</blockquote>
+<p align="center"><img src="../picture/install20.png" tppabs="http://www.suse.url.tw/picture/install20.png" width="308" height="240"><br>
+  <font size="2">圖20：選擇要使用的過濾器畫面</font></p>
+<blockquote>
+  <p align="left">先輸入要尋找的軟體套件名稱 quota，再按下 [搜尋] 按鈕，最後把搜尋到的套件選起來：</p>
+</blockquote>
+<p align="center"><img src="../picture/install21.png" tppabs="http://www.suse.url.tw/picture/install21.png" width="811" height="602"><br>
+  <font size="2">圖21： 使用搜尋方式選取套件的畫面</font></p>
+<blockquote> 
+  <p align="left">接著請再重複上圖的 (1)、(2)、(3) 步驟，依序把 findutils-locate、syslogd、ncftp、gcc、telnet-server、bind、bind-chrootenv、dhcp-server、ypserv、apache2、apache2-prefork、qpopper、pure-ftpd、vsftpd 
+    等套件，全部選起來。完成後，點選圖21 的 [接受] 按鈕，此時應該會看到下圖的自動變更套件畫面，而裡邊所列出的套件，是為了解決剛剛所選取套件的相依性問題：</p>
+  </blockquote>
+<p align="center"><img src="../picture/install22.png" tppabs="http://www.suse.url.tw/picture/install22.png" width="607" height="463"><br>
+  <font size="2">圖22：自動變更套件的畫面</font></p>
+<blockquote>
+  <p align="left">軟體部分解決之後，請點選 [專家] 來觀看更多的設定項目：</p>
+</blockquote>
+<p align="center"><img src="../picture/install23.png" tppabs="http://www.suse.url.tw/picture/install23.png" width="622" height="553"><br>
+  <font size="2">圖23：安裝設定主畫面 </font></p>
+<blockquote>
+  <p align="left">確認一下 [時區] 及 [語言] 的部分，有無要修改之處，如一切 OK 的話，就按下 [接受]：</p>
+</blockquote>
+<p align="center"><img src="../picture/install24.png" tppabs="http://www.suse.url.tw/picture/install24.png" width="622" height="584"><br>
+  <font size="2">圖24：檢查[時區]及[語言]的設定</font></p>
+<blockquote>
+  <p align="left">如已確定要開始進行安裝，請點選 [安裝]：</p>
+</blockquote>
+<p align="center"><img src="../picture/install25.png" tppabs="http://www.suse.url.tw/picture/install25.png" width="567" height="407"><br>
+  <font size="2">圖25：確認安裝畫面</font></p>
+<blockquote>
+  <p align="left">以下是安裝套件的畫面，此過程會花費您較多的時間，請耐心等待：</p>
+</blockquote>
+<p align="center"><img src="../picture/install26.png" tppabs="http://www.suse.url.tw/picture/install26.png" width="622" height="553"><br>
+  <font size="2">圖26：套件安裝畫面</font></p>
+<blockquote>
+  <p align="left">在完成了基本安裝後，系統將準備重新開機：</p>
+</blockquote>
+<p align="center"><img src="../picture/install27.png" tppabs="http://www.suse.url.tw/picture/install27.png" width="622" height="553"><br>
+  <font size="2">圖27：系統準備重新開機畫面</font></p>
+<p align="left"><strong><font color="#000099" size="4">4. 基本安裝完成後的組態設定</font></strong></p>
+<blockquote>
+  <p align="left">重新開機後，即會看到開機選單畫面，此時請選擇 [SUSE Linux Enterprise Server 10] 並按下 
+    [Enter] 鍵：　</p>
+</blockquote>
+<p align="center"><img src="../picture/install28.png" tppabs="http://www.suse.url.tw/picture/install28.png" width="781" height="587"><br>
+  <font size="2">圖28：開機選單畫面</font></p>
+<blockquote>
+  <p align="left">把您的主機名稱及網域名稱設定上去：</p>
+</blockquote>
+<p align="center"><img src="../picture/install29.png" tppabs="http://www.suse.url.tw/picture/install29.png" width="628" height="593"><br>
+  <font size="2">圖29：主機名稱及網域名稱設定畫面</font></p>
+<blockquote> 
+  <p align="left">再來是設定管理者 root 的密碼。root 這個 super user 可是系統上擁有最高權限的人噢，就好比是 Windows 
+    裡的 Administrator 這個帳號一樣。而在您完成密碼設定後，可要把它記住，因將來使用 root 身分登入系統時，就是要輸入這個密碼：</p>
+</blockquote>
+<p align="center"><img src="../picture/install30.png" tppabs="http://www.suse.url.tw/picture/install30.png" width="623" height="589"><br>
+  <font size="2">圖30：設定 root 密碼畫面</font></p>
+<blockquote>
+  <p align="left">當 root 密碼設定得不夠安全時，系統會出現各種警告訊息，並詢問您是否確認要使用此密碼，如圖31。如果您這台機器，平常只是做練習用途，那倒是可不理會這些警告訊息，否則密碼可是要設定複雜一點噢：</p>
+</blockquote>
+<p align="center"><img src="../picture/install30.5.png" tppabs="http://www.suse.url.tw/picture/install30.5.png" width="327" height="110"><br>
+  <font size="2">圖31：密碼不安全時的警告訊息</font></p>
+<blockquote>
+  <p align="left">以下是有關於網路組態的設定，請點選 [網路介面] 進去瞧瞧：</p>
+</blockquote>
+<p align="center"><img src="../picture/install31.png" tppabs="http://www.suse.url.tw/picture/install31.png" width="622" height="553"><br>
+  <font size="2">圖32：網路組態主畫面</font></p>
+<blockquote>
+  <p align="left">在網卡組態綜覽這個地方，點選 [編輯] 來對網路介面做相關設定：</p>
+</blockquote>
+<p align="center"><img src="../picture/install32.png" tppabs="http://www.suse.url.tw/picture/install32.png" width="577" height="592"><br>
+  <font size="2">圖33：網卡組態綜覽畫面</font></p>
+<blockquote> 
+  <p align="left"><font color="#000000">當您所使用的 IP 位址是透過 DHCP 提供的話 (如 IP 分享器或 Cable 
+    Modem)，請選擇 [自動位址設定]，如是使用 ADSL 撥接或有固定 IP 位址的話，則可選擇 [靜態位址設定]。以下是筆者的設定範例：</font> 
+  </p>
+</blockquote>
+<p align="center"><img src="../picture/install33.png" tppabs="http://www.suse.url.tw/picture/install33.png" width="577" height="589"><br>
+  <font size="2">圖34：網路位址設定畫面</font></p>
+<blockquote>
+  <p align="left">網路介面設定好後，就進行 [下一步]：</p>
+</blockquote>
+<p align="center"><img src="../picture/install34.png" tppabs="http://www.suse.url.tw/picture/install34.png" width="575" height="590"><br>
+  <font size="2">圖35：網卡組態綜覽畫面</font> </p>
+<blockquote> 
+  <p align="left">回網路組態畫面後，如不做其它的設定，則點選 [下一步] 來繼續：</p>
+</blockquote>
+<p align="center"><img src="../picture/install35.png" tppabs="http://www.suse.url.tw/picture/install35.png" width="625" height="588"><br>
+  <font size="2">圖36：網路組態主畫面</font> </p>
+<blockquote>
+  <p align="left">這是系統正幫您寫入網路組態的畫面：</p>
+</blockquote>
+<p align="center"><img src="../picture/install36.png" tppabs="http://www.suse.url.tw/picture/install36.png" width="625" height="559"><br>
+  <font size="2">圖37：儲存網路組態畫面</font></p>
+<blockquote>
+  <p align="left">以下是測試網路連線的選擇，這邊就先跳過了：</p>
+</blockquote>
+<p align="center"><img src="../picture/install37.png" tppabs="http://www.suse.url.tw/picture/install37.png" width="623" height="591"><br>
+  <font size="2">圖38：網路連線測試的選擇畫面</font></p>
+<blockquote>
+  <p align="left">再來是安裝設定部分，筆者選擇 [跳過組態]：</p>
+</blockquote>
+<p align="center"><img src="../picture/install38.png" tppabs="http://www.suse.url.tw/picture/install38.png" width="625" height="591"><br>
+  <font size="2">圖39：安裝設定畫面</font></p>
+<blockquote>
+  <p align="left">使用者驗證方式，請選擇 [本地 /etc/passwd]，這表示以本機上的 /etc/passwd 檔案來管理使用者帳號。將來如果您學會了 
+    LDAP 或 NIS 後，即可選擇以 LDAP 或 NIS 伺服器，來管理網路中的使用者認證資料：</p>
+</blockquote>
+<p align="center"><img src="../picture/install39.png" tppabs="http://www.suse.url.tw/picture/install39.png" width="623" height="588"><br>
+  <font size="2">圖40：選擇使用者驗證方式畫面</font></p>
+<blockquote>
+  <p align="left">接著您可新增一個一般使用者帳號，不過此步驟要略過也可以啦，因為有些人是習慣等整個作業系統安裝完畢後，才用 root 身分來新增帳號，看您自己囉：</p>
+</blockquote>
+<p align="center"><img src="../picture/install40.png" tppabs="http://www.suse.url.tw/picture/install40.png" width="623" height="590"><br>
+  <font size="2">圖41：新增帳號畫面</font></p>
+<blockquote>
+  <p align="left">看到以下畫面，表示相關組態設定已差不多完成了：</p>
+</blockquote>
+<p align="center"><img src="../picture/install41.png" tppabs="http://www.suse.url.tw/picture/install41.png" width="622" height="553"><br>
+  <font size="2">圖42：寫入系統組態畫面</font></p>
+<blockquote>
+  <p align="left">版本說明畫面中，有興趣的人可以稍微看一下，不然就進行 [下一步]：</p>
+</blockquote>
+<p align="center"><img src="../picture/install42.png" tppabs="http://www.suse.url.tw/picture/install42.png" width="623" height="587"><br>
+  <font size="2">圖43：版本說明畫面</font></p>
+<p align="left"><strong><font color="#000099" size="4">5. 硬體組態及登入畫面</font></strong></p>
+<blockquote>
+  <p align="left">硬體組態部分，可算是安裝程序中的最後階段，在這裡可以做顯示卡、印表機及音效卡的組態設定。通常 YaST 會自動偵測到這些裝置，並做好組態的規劃。而筆者在這個地方就只調整個解析度而已，其他部分都套用預設的組態：</p>
+</blockquote>
+<p align="center"><img src="../picture/install43.png" tppabs="http://www.suse.url.tw/picture/install43.png" width="623" height="585"><br>
+  <font size="2">圖44：硬體組態畫面</font></p>
+<blockquote> 
+  <p align="left">以下是安裝已完成之畫面。在這視窗的下方，有個 Autoyast 的選項，它是用來複製這個新安裝系統的設定，而在您選取此項目之後，即會把系統目前所做的設定儲存在 
+    /root/autoinst.xml 檔案裡：</p>
+</blockquote>
+<p align="center"><img src="../picture/install44.png" tppabs="http://www.suse.url.tw/picture/install44.png" width="623" height="585"><br>
+  <font size="2">圖45：安裝已完成的畫面</font></p>
+<blockquote>
+  <p align="left">由於筆者剛剛有選取 [複製 Autoyast 的這個系統]，當然接著就開始進行複製的動作：</p>
+</blockquote>
+<p align="center"><img src="../picture/install45.png" tppabs="http://www.suse.url.tw/picture/install45.png" width="367" height="91"><br>
+  <font size="2">圖46：複製系統設定的畫面</font></p>
+<blockquote>
+  <p align="left">複製完成後，即看到登入的畫面了：</p>
+</blockquote>
+<p align="center"><img src="../picture/install46.png" tppabs="http://www.suse.url.tw/picture/install46.png" width="782" height="582"><br>
+  <font size="2">圖47：安裝完成後之登入畫面</font></p>
+<p align="left">　整個 SuSE Linux 的安裝就是如此<font color="#000000">囉。</font><font color="#000000"><br>
+  <br>
+  <strong><font color="#0000FF" size="+2"><a name="18"></a></font></strong> <font color="#0000FF" size="6"><strong>2.3 
+  使用 VMware 來安裝 SuSE Linux</strong></font></font></p>
+<p>　VMware (Virtual Machine Software) 是一套虛擬機器的軟體，它可以讓您在現有的 PC ( 此 PC 稱為 Host PC 
+  ) 中再模擬出一台或一台以上的 PC ( 此 PC 稱為 Guest PC )，說得白話一點，就是可以讓您在現行的作業系統下，再去安裝其他作業系統的意思，這對電腦數不夠的您來說，可不失為一良好的解決方式。不過您主機本身的等級可是要高一點噢，因為 
+  Guest PC 所需使用的資源，可是從 Host PC 而來的，所以您主機本身必須要有足夠的記憶體與硬碟空間才行。</p>
+<p>　由於筆者的構想，是希望能在 Windows 中去跑 Linux，因此需要去下載 for Windows 的 VMware 軟體。當然如果將來有一天，您想在 
+  Linux 中去跑 Linux 或 Windows，那就須下載 for Linux 的 VMware 囉。<br>
+  <br>
+  <font size="+1"><strong><a name="16"></a><font size="5">2.3.1 下載及安裝 VMware</font></strong></font></p>
+<p> 　在<font color="#000000">了解了 VMware 的大致概念後，接著就請您先至 VMware 網站 <a href="javascript:if(confirm(%27http://www.vmware.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.vmware.com/%27" tppabs="http://www.vmware.com/" target="_blank">http://www.vmware.com/</a> 
+  去下載 for Windows 的試用版，並將其安裝上去。詳細步驟請參考以下：</font></p>
+<p><font color="#000099" size="4"><strong>1. 連上 VMware 網站，並點選 [EVALUATE NOW]：</strong></font></p>
+<p align="center"><img src="../picture/vmware0.5.png" tppabs="http://www.suse.url.tw/picture/vmware0.5.png" width="813" height="582"></p>
+<p><strong><font color="#000099" size="4">2. 請點選以下連結來進行登錄：</font></strong></p>
+<p align="center"><img src="../picture/vmware1.png" tppabs="http://www.suse.url.tw/picture/vmware1.png" width="813" height="582"></p>
+<p><strong><font color="#000099" size="4">3. 點選 [Register] 來註冊個人資料，並準備開始下載 VMware：</font></strong></p>
+<p align="center"><img src="../picture/vmware2.png" tppabs="http://www.suse.url.tw/picture/vmware2.png" width="813" height="582"><br>
+  <strong><font size="+2"><br>
+  ↓</font></strong></p>
+<p align="center"><img src="../picture/vmware3.png" tppabs="http://www.suse.url.tw/picture/vmware3.png" width="813" height="582"></p>
+<blockquote>
+  <p>填寫完後，請按下 [Continue] 按鈕，接著就看到以下的畫面：</p>
+</blockquote>
+<p align="center"><img src="../picture/vmware4.png" tppabs="http://www.suse.url.tw/picture/vmware4.png" width="813" height="582"></p>
+<blockquote> 
+  <p>現在已經把一組序號寄到您剛剛所註冊的 E-mail 中了，可以先去瞧瞧。再來您會看到軟體的授權同意書，好多密密麻麻的英文字，看得真頭疼，沒關係，直接拉到最底下點選 
+    [Yes] 即可：</p>
+</blockquote>
+<p align="center"><img src="../picture/vmware6.png" tppabs="http://www.suse.url.tw/picture/vmware6.png" width="813" height="582"></p>
+<blockquote> 
+  <p>最後終於看到下載的畫面了，不囉唆，趕快下載去：</p>
+</blockquote>
+<p align="center"><img src="../picture/vmware7.png" tppabs="http://www.suse.url.tw/picture/vmware7.png" width="813" height="582"></p>
+<blockquote> 
+  <p>好不容易把 VMware 下載完了，再來就準備進行安裝囉。</p>
+</blockquote>
+<p><strong><font color="#000099" size="4">4. 執行 VMware 安裝精靈：</font></strong></p>
+<blockquote>
+  <p>如果剛剛您有把 VMware 下載回電腦中，請找到該檔案位置，並於圖示上按滑鼠左鍵兩下，來開始執行 VMware 安裝精靈，這樣就可以把 VMware 
+    Workstation 安裝於您電腦中：</p>
+</blockquote>
+<p align="center"><img src="../picture/vmware8.png" tppabs="http://www.suse.url.tw/picture/vmware8.png" width="504" height="379"></p>
+<p align="center"><img src="../picture/vmware9.png" tppabs="http://www.suse.url.tw/picture/vmware9.png" width="504" height="379"></p>
+<p align="center"><img src="../picture/vmware10.png" tppabs="http://www.suse.url.tw/picture/vmware10.png" width="504" height="379"></p>
+<p align="center"><img src="../picture/vmware11.png" tppabs="http://www.suse.url.tw/picture/vmware11.png" width="504" height="379"></p>
+<p align="center"><img src="../picture/vmware12.png" tppabs="http://www.suse.url.tw/picture/vmware12.png" width="504" height="379"></p>
+<p align="center"><img src="../picture/vmware13.png" tppabs="http://www.suse.url.tw/picture/vmware13.png" width="504" height="379"></p>
+<p align="center"><img src="../picture/vmware14.png" tppabs="http://www.suse.url.tw/picture/vmware14.png" width="504" height="379"></p>
+<p align="center"><img src="../picture/vmware15.png" tppabs="http://www.suse.url.tw/picture/vmware15.png" width="504" height="379"></p>
+<p align="center"><img src="../picture/vmware16.png" tppabs="http://www.suse.url.tw/picture/vmware16.png" width="504" height="379"></p>
+<p align="center"><img src="../picture/vmware17.png" tppabs="http://www.suse.url.tw/picture/vmware17.png" width="368" height="171"></p>
+      
+<blockquote>
+  <p>以上是很基本的安裝步驟，應該沒啥問題。</p>
+</blockquote>
+<p><strong><font size="+1"><a name="17"></a><font size="5">2.3.2 執行 VMware 來安裝 
+  SuSE Linux</font></font></strong></p>
+<p><font color="#000000">　現在在您 Windows 的桌面上，應該可以看到一個 [VMware Workstation] 的連結 
+  icon，請直接執行之，並參考以下的程序來完成整個 SuSE Linux 的安裝：</font></p>
+<p><font color="#000099" size="4"><strong>1. 開始新增虛擬機器：</strong></font></p>
+<p align="center"><img src="../picture/vmware18.png" tppabs="http://www.suse.url.tw/picture/vmware18.png" width="733" height="530"></p>
+<p><strong><font color="#000099" size="4">2. 按 [下一步] 來繼續：</font></strong></p>
+<p align="center"><img src="../picture/vmware19.png" tppabs="http://www.suse.url.tw/picture/vmware19.png" width="441" height="381"></p>
+<p><strong><font color="#000099" size="4">3. 選擇典型 (Typical) 的安裝方式：</font></strong></p>
+<p align="center"><img src="../picture/vmware20.png" tppabs="http://www.suse.url.tw/picture/vmware20.png" width="441" height="381"></p>
+<p><strong><font color="#000099" size="4">4. 選擇您 Guest PC 所要安裝的作業系統：</font></strong></p>
+<p align="center"><img src="../picture/vmware21.png" tppabs="http://www.suse.url.tw/picture/vmware21.png" width="441" height="381"></p>
+<p><strong><font color="#000099" size="4">5. 建立虛擬機器名稱及選擇安裝位置：</font></strong></p>
+<p align="center"><img src="../picture/vmware22.png" tppabs="http://www.suse.url.tw/picture/vmware22.png" width="441" height="381"></p>
+<blockquote> 
+  <p>虛擬機器是以檔案的方式存在於電腦之中，因此您所選擇要安裝 SuSE Linux 的地方，需要有足夠的空間來儲存這個檔案，妥善規劃一下吧 ! </p>
+</blockquote>
+<p><strong><font color="#000099" size="4">6. 選擇所要使用的網路型態：</font></strong></p>
+<p align="center"><img src="../picture/vmware23.png" tppabs="http://www.suse.url.tw/picture/vmware23.png" width="441" height="381"></p>
+<blockquote> 
+  <p>這裡稍微解釋一下常見的兩種網路連接方式：</p>
+  <table width="96%" border="0">
+    <tr>
+      <td width="4%" align="center"><strong><font color="#000099" size="4">˙</font></strong></td>
+      <td width="96%"><strong><font color="#000099">Use bridged networking</font></strong><font color="#000099">：</font></td>
+    </tr>
+    <tr>
+      <td align="center">&nbsp;</td>
+      <td>如果外部網路能提供一個 IP 位址給 Guest PC 的話，就選擇這個項目。比如平常您 Host PC 是透過 ADSL 或 DHCP 
+        來取得 IP，現在也希望 Guest PC 能使用相同方式來取得時，那選此項目就對了。</td>
+    </tr>
+    <tr>
+      <td align="center"><strong><font color="#000099" size="4">˙</font></strong></td>
+      <td><strong><font color="#000099">Use network address translation(NAT)</font></strong><font color="#000099"> 
+        ：</font></td>
+    </tr>
+    <tr>
+      <td align="center">&nbsp;</td>
+      <td>如果 Guest PC 無法向外部網路取得 IP 位址時，可選擇這個項目來讓 Guest PC 透過 Host PC 連上 Internet。 
+      </td>
+    </tr>
+  </table>
+  
+</blockquote>
+<p><strong><font color="#000099" size="4">7. 設定虛擬磁碟空間大小：</font></strong></p>
+<p align="center"><img src="../picture/vmware24.png" tppabs="http://www.suse.url.tw/picture/vmware24.png" width="441" height="381"></p>
+<blockquote> 
+  <p>針對以上兩個選項做個說明：</p>
+  <table width="96%" border="0">
+    <tr>
+      <td width="4%" align="center"><strong><font color="#000099" size="4">˙</font></strong></td>
+      <td width="96%"><strong><font color="#000099">Allocate all disk space now</font></strong><font color="#000099">：</font></td>
+    </tr>
+    <tr>
+      <td align="center">&nbsp;</td>
+      <td>是否要事先分配所指定的虛擬磁碟空間大小。當您磁碟空間足夠時，可以考慮勾選此項目，且如此一來，您虛擬磁碟運作起來也會比較有效率。</td>
+    </tr>
+    <tr>
+      <td align="center"><strong><font color="#000099" size="4">˙</font></strong></td>
+      <td><strong><font color="#000099">Split disk into 2 GB files</font></strong><font color="#000099">：</font></td>
+    </tr>
+    <tr>
+      <td align="center">&nbsp;</td>
+      <td>當您 Windows 是使用 VFAT 檔案系統時，必須要把這個項目勾選起來，以免超過其檔案大小的限制。比如 FAT 16 限定檔案大小為 
+        2GB，FAT 32 則為 4GB。那如果使用 NTFS 的話，則毋須擔心，因其檔案大小限制是 4TB。</td>
+    </tr>
+  </table>
+  
+</blockquote>
+<p><strong><font color="#000099" size="4">8. 其他項目的調整：</font></strong></p>
+<p align="center"><img src="../picture/vmware25.png" tppabs="http://www.suse.url.tw/picture/vmware25.png" width="811" height="418"></p>
+<blockquote> 
+  <p>在上面這個畫面中，您可以點選 [ Memory ] 來調整提供給虛擬主機所使用的記憶體大小，也可以點選 [ CD-ROM ] 來指出光碟機實際所存在的位置。如下所示：</p>
+  <table width="96%" border="0">
+    <tr> 
+      <td width="46%"><div align="right"><img src="../picture/vmware26.png" tppabs="http://www.suse.url.tw/picture/vmware26.png" width="316" height="512"></div></td>
+      <td width="5%">&nbsp;</td>
+      <td width="49%"><img src="../picture/vmware27.png" tppabs="http://www.suse.url.tw/picture/vmware27.png" width="314" height="468"></td>
+    </tr>
+  </table>
+  
+</blockquote>
+<p><strong><font color="#000099" size="4">9. 將安裝光碟放入，準備啟動虛擬主機來安裝 SuSE Linux：</font></strong></p>
+<p align="center"><img src="../picture/vmware28.png" tppabs="http://www.suse.url.tw/picture/vmware28.png" width="811" height="426"></p>
+<blockquote> 
+  <p>從這個地方開始，就與 2.2.2 小節所介紹的安裝步驟相同，不再重複囉。 　　</p>
+</blockquote>
+<p><font color="#000099" size="4"><strong>10. </strong></font><font color="#000000"><strong><font color="#000099" size="+1">VMware 
+  安裝後的操作及調整</font></strong></font></p>
+<table width="100%" border="0">
+  <tr> 
+    <td width="3%">&nbsp;</td>
+    <td width="3%" align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+    <td width="94%"><font color="#000099">滑鼠游標切換：</font>當按下 Ctrl-Alt 鍵後，會將滑鼠游標由 
+      Guest PC 切換至 Host PC ，如要回到 Guest PC 裡頭，則只須把滑鼠游標移至 Guest PC 的視窗，並按下滑鼠左鍵就行了。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+    <td><font color="#000099">全螢幕切換：</font>要讓 Guest PC 顯示全螢幕，可選擇上方的 <img src="../picture/vm.png" tppabs="http://www.suse.url.tw/picture/vm.png" width="18" height="17"> 
+      按鈕，或按下 Ctrl-Alt-Enter 的組合鍵。回復時按下 Ctrl-Alt 即可。</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+    <td><font color="#000099">調整網路：</font>如當初在安裝 SuSE Linux 時，於 [Network Type] 
+      那裡，您是選擇 NAT，但現在想讓 Guest PC 向外部取得 IP，則可於 [Devices] 的地方點選 [Ethernet]，並於 [Network 
+      connection] 處選擇 [Bridged] 就行了。</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="top"><font color="#000099" size="4">˙</font></td>
+    <td><font color="#000099">終端機切換：<font color="#000000">當使用 Ctrl-Alt-Fn 在切換終端機時，不要馬上鬆開按鍵，需直到您看到切換成功後才放開。</font></font></td>
+  </tr>
+</table>
+<p> <font color="#0000FF" size="+1"><strong><a name="11"></a><font size="6">2.4 
+  YaST 工具簡介</font></strong></font><br>
+  <br>
+  　SuSE Linux 裡頭，有一個很強悍的工具叫做 YaST(Yet another Setup Tool)，舉凡系統的安裝過程及進入到系統後的設定，幾乎都能夠靠他來搞定，且不論是在文字介面或者圖形介面下，皆能使用這個工具來操作。不過話雖如此，可千萬不要過度依賴他，尤其是初學者。如果打從您學習 
+  SuSE 開始，就一直使用 YaST 來設定系統，那將會造成對相關指令及設定檔的不熟悉，甚至對於系統上的一些重要觀念也會忽略掉，所以建議玩 SuSE 的朋友，把 
+  YaST 當成一個輔助工具來看待就好。另外提醒一下，當使用 YaST 時，可是要以 root 的身分來操作噢。<br>
+  <br>
+  　話不多說，馬上來認識 YaST 吧 ! 一般在使用 YaST 時，會先進入 YaST2 控制中心，然後再選取特定的項目來做設定。而進入 YaST2 控制中心的方式有很多，比如您可以在圖形介面下，從 
+  [電腦] → [YaST] 進入：</p>
+<p align="center"><img src="../picture/yast1.png" tppabs="http://www.suse.url.tw/picture/yast1.png" width="811" height="605"><br>
+  <font size="2">圖一：選取 YaST 工具的畫面</font></p>
+<p>　也可先開啟一個終端機，然後在命令列上執行 yast2 指令：</p>
+<p align="center"><img src="../picture/yast2.png" tppabs="http://www.suse.url.tw/picture/yast2.png" width="789" height="591"><br>
+  <font size="2">圖二：執行 yast2 指令來進入YaST2 控制中心</font></p>
+<p>　利用圖一的方式或於圖二的命令列上執行 <font color="#000000">yast2</font> 指令，會進入到圖形模式的 YaST2 控制中心。如於圖二的命令列上執行 
+  yast 指令，則會進入到文字模式的 YaST2 控制中心，另外在 tty1~tty6 的文字介面下執行 yast 或 yast2 指令時，也是會進入文字模式中。</p>
+<p>　接著舉個利用 YaST 來新增帳號的範例，而這個範例是在文字模式下操作的，因此您不能使用滑鼠，只能利用 [↑]、[↓] 鍵及 [Tab] 鍵來移動至要做設定的項目，並於選取完畢後，按下 
+  [Enter] 鍵來做進一步的處理。以下就開始來做新增帳號的練習囉。</p>
+<p>　首先於 YaST2 控制中心裡，由 [安全性與使用者] 中選取 [使用者管理]，然後按下 [Enter] 鍵： </p>
+<p align="center"><img src="../picture/yast3.png" tppabs="http://www.suse.url.tw/picture/yast3.png" width="759" height="473">　<br>
+  <font size="2">圖三：文字模式的 YaST2 控制中心　</font></p>
+<p>　接著使用 [Tab] 鍵來移動至 [新增] 按鈕：</p>
+<p align="center"><img src="../picture/yast4.png" tppabs="http://www.suse.url.tw/picture/yast4.png" width="754" height="473"> <br>
+  <font size="2">圖四：使用者及群組管理畫面</font></p>
+<p>　在輸入使用者帳號及密碼後，移動至 [接受] 按鈕：</p>
+<p align="center"><img src="../picture/yast5.png" tppabs="http://www.suse.url.tw/picture/yast5.png" width="757" height="470"><br>
+  <font size="2">圖五：新增帳號畫面</font></p>
+<p>　最後在移動至 [完成] 按鈕並按下 [Enter] 鍵後，就成功建立起一個使用者帳號了：</p>
+<p align="center"><img src="../picture/yast6.png" tppabs="http://www.suse.url.tw/picture/yast6.png" width="755" height="473"><br>
+  <font size="2">圖六：使用者及群組管理畫面</font></p>
+<p>　 剛剛在文字模式的操作過程中，如果覺得使用 [Tab] 鍵來選取按鈕不方便，那麼可先按下 [F1] 來查看一些相關按鍵的功用，如此可加快您的操作效率，自己練習看看。</p>
+<p>　上面所介紹的範例，是於 YaST2 控制中心裡，藉由選取特定的項目來做設定，當然您亦可以在命令列上執行 &quot;yast2 module&quot; 
+  來直接呼叫該模組，以進行相關設定工作，比如要設定 ADSL 時，可執行 &quot;yast2 dsl&quot;，設定 X-WINDOW 時，可執行 
+  &quot;yast2 x11&quot;。另外想了解有哪些模組可供使用，執行 &quot;yast2 -l&quot; 或 &quot;yast2 --list&quot; 
+  來查看即可。<br>
+  　　<br>
+  　基本操作就是如此簡單而已。至於其他的設定項目，筆者在此處就不浪費篇幅做介紹了。<br>
+  <br>
+  <br>
+</p>
+<p align="center"><font color="#000000"><em>copyright &copy; 2006 by barry ( 柏青哥 
+  )</em></font> </p>
+</body>
+</html>
