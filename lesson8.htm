@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
 <title>柏青哥的 SuSE Linux -- 排程工作與系統紀錄檔</title>
 <style type="text/css">
 <!--
@@ -13,8 +13,8 @@ a {
 </style>
 </head>
 
-<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
-<a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
+<body background="sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
+<a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
 　　作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw 
 <table width="100%" border="0">
   <tr> 
@@ -136,7 +136,7 @@ a {
 　最後一種方式應該很好理解，比如說您希望某些 scripts 能每天或每週被執行的話，那就分別把它們安置在 /etc/cron.daily 及 /etc/cron.weekly 
 目錄下即可。因此以下只教大家如何利用前面兩種方式來編輯 crontab 排程。<br>
 <br>
-<strong><a name="4"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+<strong><a name="4"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
 <font size="+1">使用 crontab 指令建立排程</font></strong><br>
 <br>
 　每個使用者預設都可以執行這個指令來編寫屬於自己的排程工作。<br>
@@ -338,7 +338,7 @@ a {
 <br>
 　原來 crontab 程式具有 SUID<strong> </strong>的屬性，這下子總該恍然大悟了吧 !<br>
 <br>
-<strong><a name="5"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+<strong><a name="5"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
 <font size="+1">編輯排程設定檔</font></strong><br>
 <br>
 　管理者可以直接去編輯排程的設定檔，至於編輯的格式跟我們使用 crontab 指令去編輯時差不多，只不過多了個執行身份的設定而已。以下會分別在 /etc/crontab 
@@ -347,7 +347,7 @@ a {
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><strong><font color="#000099"><a name="20"></a>編輯 /etc/crontab</font></strong></td>
   </tr>
   <tr> 
@@ -448,7 +448,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099"><a name="21"></a>編輯 /etc/cron.d/*</font></strong></td>
   </tr>
   <tr> 
@@ -466,7 +466,7 @@ a {
   </tr>
 </table>
 <br>
-<strong><a name="6"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+<strong><a name="6"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
 <font size="+1">限定使用者執行 crontab</font></strong><br>
 <br>
 　系統預設所有使用者都能執行 crontab 指令，來設定自己的排程工作，因此如果對這方面想要稍做限制的話，可以利用 /etc/cron.deny 及 /etc/cron.allow 
@@ -475,7 +475,7 @@ a {
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><strong><font color="#000099"><a name="22"></a>/etc/cron.deny</font></strong>：</td>
   </tr>
   <tr> 
@@ -501,7 +501,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099"><a name="23"></a>/etc/cron.allow</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -606,7 +606,7 @@ a {
 <br>
 　這裡主要是教大家使用 at 指令來編輯 at 排程，當然與 at 相關的檔案也要有所認識。at 學會了後，那另一個指令 batch 就更簡單了。<br>
 <br>
-<strong><a name="10"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+<strong><a name="10"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
 <font size="+1">使用 at 指令建立 at 排程</font></strong><font size="+1"><strong><br>
 <br>
 </strong></font>　利用 at 指令所編輯的排程，只會在指定的時間執行那麼一次而已。<font size="+1"><strong><br>
@@ -737,14 +737,14 @@ at 排程工作設定在檔案內，然後執行 &quot;<font color="#0000FF">at -f file time</f
   </tr>
 </table>
 <br>
-<font size="+1"></font> <strong><font size="+1"><a name="11"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+<font size="+1"></font> <strong><font size="+1"><a name="11"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
 at 相關檔案</font><br>
 <br>
 </strong>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><strong><font color="#000099">/var/spool/atjobs/*</font></strong>：</td>
   </tr>
   <tr> 
@@ -760,7 +760,7 @@ at 相關檔案</font><br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">/etc/at.deny、/etc/at.allow</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -791,7 +791,7 @@ at 相關檔案</font><br>
   </tr>
 </table>
 <strong><br>
-</strong> <strong><a name="12"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+</strong> <strong><a name="12"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
 <font size="+1">使用 batch 指令建立 at 排程</font></strong><br>
 <br>
 <font color="#FF0000"><font color="#000000">　還有個可以執行 at 排程的指令叫 <font color="#0000FF">batch</font>，</font></font>利用 

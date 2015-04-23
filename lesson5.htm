@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
 <title>柏青哥的 SuSE Linux -- 檔案系統</title>
 <style type="text/css">
 <!--
@@ -13,9 +13,9 @@ a {
 </style>
 </head>
 
-<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#660066" leftmargin="40">
+<body background="sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#660066" leftmargin="40">
 <p>&nbsp;</p>
-<p><font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a>　　</font>作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw</p>
+<p><font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a>　　</font>作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw</p>
 <table width="100%" border="0">
   <tr> 
     <td nowrap> 
@@ -153,18 +153,18 @@ a {
   <br>
   　如果您接觸 Linux 已有一段時間的話，應該曾經使用過 ext2 這個傳統的檔案系統，先來說說它的一些特色：<br>
   <br>
-  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">支援最長檔名為 
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">支援最長檔名為 
   255 個字元。<br>
   <br>
-  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 支援單一檔案的最大容量為 16 GB 
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 支援單一檔案的最大容量為 16 GB 
   ~ 2 TB。<br>
   <br>
-  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 支援單一分割區的最大容量為 2 TB 
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 支援單一分割區的最大容量為 2 TB 
   ~ 16 TB。<br>
   <br>
-  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 檔案的存取與管理，是以「inode」來實現。<br>
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 檔案的存取與管理，是以「inode」來實現。<br>
   <br>
-  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 可加快系統執行效率。<br>
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 可加快系統執行效率。<br>
   <br>
   　<font color="#000000">針對最後一個特色稍微做個補充 ﹔ext2 檔案系統，會把我們所更動的資料先暫存至記憶體的緩衝區內，直到緩衝區空間滿了或系統閒置時才回存磁碟。大家都知道記憶體處理資料的效能要比磁碟高上許多，所以採用這種非同步 
   (async) I/O 的處理方式，的確對其執行效能是加分的。</font> </font></p>
@@ -179,7 +179,7 @@ a {
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><font color="#000099"><strong>ext3</strong>：</font></td>
   </tr>
   <tr> 
@@ -196,7 +196,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>reiserfs</strong>：</font></td>
   </tr>
   <tr> 
@@ -212,7 +212,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>XFS</strong>：</font></td>
   </tr>
   <tr> 
@@ -227,7 +227,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>JFS</strong>：</font></td>
   </tr>
   <tr> 
@@ -243,7 +243,7 @@ a {
   </font></strong><font color="#000000">　這裡分別針對 ext2 (ext3) 及 ReiserFS 來跟各位解說。 
   <br>
   <br>
-  </font><font color="#336600"><font color="#000000"><a name="4"></a><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
+  </font><font color="#336600"><font color="#000000"><a name="4"></a><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
   ext2 (ext3)</font></strong></font><font size="+1"><strong><font color="#0000FF"> 
   <font color="#000000">檔案系統<br>
   <br>
@@ -252,7 +252,7 @@ a {
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><font color="#000099"><a name="14"></a><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="3%" align="center"><font color="#000099"><a name="14"></a><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td width="95%"><font color="#000099"><strong>資料區塊 (data block) 的觀念</strong>：</font></td>
   </tr>
   <tr> 
@@ -273,7 +273,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><a name="15"></a><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><a name="15"></a><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><font color="#000099"><strong>inode (index node) 的觀念</strong>：</font></td>
   </tr>
   <tr> 
@@ -289,7 +289,7 @@ a {
         indirect pointer。<br>
         <br>
         inode 結構圖大致以下：</font></p>
-      <p align="center"><font color="#000000"> <img src="../picture/inode.jpg" tppabs="http://www.suse.url.tw/picture/inode.jpg" width="379" height="218"> 
+      <p align="center"><font color="#000000"> <img src="inode.jpg" tppabs="http://www.suse.url.tw/picture/inode.jpg" width="379" height="218"> 
         <br>
         <font size="2">圖一：inode 結構圖</font></font></p>
       <p><font color="#000000"> 從剛剛介紹的 inode 觀念裡，並沒有提到檔案名稱，因其不是存放在 inode 中，而是安置於上一層目錄的資料區塊裡頭。</font></p></td>
@@ -301,7 +301,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><a name="16"></a><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><a name="16"></a><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">inode number</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -316,7 +316,7 @@ a {
         另外您還需了解目錄的資料區塊內容，在目錄的資料區塊裡，所存放的是其下的檔案目錄名稱，及這些檔案目錄的 inode number。以下圖來說，此目錄內存在著 
         file1 檔案及其 inode number，而藉由 file1 的 inode number，即可以找到 inode table 裡 file1 
         的 inode。</p>
-      <p align="center"> <img src="../picture/inode1.jpg" tppabs="http://www.suse.url.tw/picture/inode1.jpg" width="323" height="147"> 
+      <p align="center"> <img src="inode1.jpg" tppabs="http://www.suse.url.tw/picture/inode1.jpg" width="323" height="147"> 
         <br>
         <font size="2">圖二： 目錄內容及 inode 關聯性圖示</font></p>
       <p> 當您將分割區格式化成 ext2 的檔案系統時，區塊數 (block count) 及 inode 數 (inode count) 就已經固定下來了，所以每個分割區都有它們固定的 
@@ -344,7 +344,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><a name="17"></a><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><a name="17"></a><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">超級區塊 (Super Block)</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -410,7 +410,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><a name="66"></a><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><a name="66"></a><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">檔案系統的結構</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -423,7 +423,7 @@ a {
         Super Block，至於存在於其他 block groups 中的 Super Block，則稱為 Backup Super Block，所以萬一主要的超級區塊損壞時，還會有備份的超級區塊來讓您對檔案系統做正常存取噢。<br>
         <br>
         接著來探討每個 Block Group 是由哪幾個部分來組成的，請參考下圖：</p>
-      <p align="center"> <img src="../picture/blockgroup.png" tppabs="http://www.suse.url.tw/picture/blockgroup.png" width="362" height="180"> 
+      <p align="center"> <img src="blockgroup.png" tppabs="http://www.suse.url.tw/picture/blockgroup.png" width="362" height="180"> 
         <br>
         <font size="2">圖三：檔案系統架構圖 </font><br>
       </p>
@@ -559,14 +559,14 @@ a {
     如果今天我們所製造的每個檔案都很大，有可能會造成磁碟空間都用盡了，但卻還有 inode 可用的現象發生 ﹔反過來說，如果建立了很多的小檔案，那就有可能會造成 
     inode 用光了，但尚有磁碟空間可使用的狀況。</font></p>
 </blockquote>
-<p><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><a name="5"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font> 
+<p><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><a name="5"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font> 
   <font size="+1">ReiserFS</font></strong> <font size="+1"><strong>檔案系統</strong></font><br>
   <br>
   　直接就來說明這個檔案系統的幾個特色： </p>
 <table width="100%" border="0">
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">提高磁碟空間之利用：</font></strong></td>
   </tr>
   <tr> 
@@ -576,7 +576,7 @@ a {
   </tr>
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="3%" align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td width="95%"><font color="#000099"><strong>優異的磁碟儲存效能：</strong></font></td>
   </tr>
   <tr> 
@@ -586,7 +586,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">動態分配 inode：</font></strong></td>
   </tr>
   <tr> 
@@ -596,7 +596,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">可回收使用空間：</font></strong></td>
   </tr>
   <tr> 
@@ -608,7 +608,7 @@ a {
   </tr>
   <tr>
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><font color="#000099"><strong>快速回復資料：</strong></font></td>
   </tr>
   <tr>
@@ -625,11 +625,11 @@ a {
 <br>
 　以下開始要為大家說明，如何在硬碟上新增一個分割區，並且讓這個分割區至最後能夠被我們來存取使用。要達到這個目的就必須執行以下三個步驟：<br>
 <br>
-<font color="#000099">　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> 
+<font color="#000099">　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> 
 <font color="#000099">執行磁碟分割來新增分割區。<br>
-　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> <font color="#000099"> 
+　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> <font color="#000099"> 
 將此分割區進行格式化，也就是建立檔案系統<font color="#000000">。</font><br>
-　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> <font color="#000099"> 
+　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> <font color="#000099"> 
 執行分割區掛載，來把這個 partition 掛載至根目錄下的某個點。</font><br>
 <br>
 　接著下來的各小節，就是針對這些步驟做介紹。<br>
@@ -638,7 +638,7 @@ a {
 <br>
 　這裡會使用<strong> </strong>fdisk 這個指令來建立分割區，fdisk 幾乎可適用在所有的 distribution 上頭。<br>
 <br>
-<font color="#000000"><strong><font size="+1"><a name="8"></a></font><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font><font size="+1"> 
+<font color="#000000"><strong><font size="+1"><a name="8"></a></font><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font><font size="+1"> 
 指令 </font></strong></font> <font size="+1"><strong><font color="#FF0000"><font color="#000000">fdisk</font></font></strong><font color="#FF0000"><font color="#000000"></font></font></font><br>
 <br>
 　管理 partition table 的工具，常用來建立及刪除 partition。<br>
@@ -901,7 +901,7 @@ system id 是多少，可以輸入<font color="#0000FF"> l </font>指令來查詢。這些基本操
 　當成功建立起磁碟分割區後，必須製造一個檔案系統來給它使用，即所謂的分割區格式化。而此處會介紹 <font color="#0000FF">mkfs</font>、<font color="#0000FF">mke2fs</font>、<font color="#0000FF">mkreiserfs</font><strong> 
 </strong>等指令，來幫我們完成這個工作。另外還有個 <font color="#0000FF">mkswap</font> 指令，在稍後也會一併說明。<br>
 <font color="#000000"><br>
-<font size="+1"><strong><a name="10"></a></strong></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
+<font size="+1"><strong><a name="10"></a></strong></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
 <font size="+1"><strong>指令 mkfs</strong></font></font> <br>
 <br>
 　建立 Linux 檔案系統的指令。<br>
@@ -954,7 +954,7 @@ system id 是多少，可以輸入<font color="#0000FF"> l </font>指令來查詢。這些基本操
   </tr>
 </table>
 <br>
-<strong><font size="+1"><a name="11"></a></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
+<strong><font size="+1"><a name="11"></a></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
 <font size="4">指令</font> <font size="+1">mke2fs</font></strong> <br>
 <br>
 　建立 ext2 或 ext3 檔案系統的指令。<br>
@@ -1036,7 +1036,7 @@ system id 是多少，可以輸入<font color="#0000FF"> l </font>指令來查詢。這些基本操
   </tr>
 </table>
 <br>
-<a name="12"></a><font size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
+<a name="12"></a><font size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
 指令 mkreiserfs (mkfs.reiserfs)</strong></font><br>
 <br>
 　建立 ReiserFS 檔案系統的指令。<br>
@@ -1087,7 +1087,7 @@ system id 是多少，可以輸入<font color="#0000FF"> l </font>指令來查詢。這些基本操
   </tr>
 </table>
 <br>
-<strong><font size="+1"><a name="13"></a></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font><font size="+1"> 
+<strong><font size="+1"><a name="13"></a></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font><font size="+1"> 
 指令 mkswap</font></strong><br>
 <br>
 　mkswap 指令，可針對分割區或檔案進行格式化的動作，以產生可提供系統使用的 swap 區域。而這個地方主要是針對分割區來做介紹。<br>
@@ -1133,7 +1133,7 @@ Linux 所支援的檔案系統，掛載至根目錄下的某個目錄或子目錄中，這樣才能夠開始對其進
 (CD-ROM)、udf (DVD-ROM)，以及像 nfs、smbfs 這類的網路檔案系統等等，要存取這些檔案系統就必須將它們掛載進來，而執行掛載任務的就是 
 <font color="#0000FF">mount</font><strong> </strong>這個指令。<br>
 <br>
-<font color="#000000" size="+1"><strong><a name="19"></a><font size="+1"></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
+<font color="#000000" size="+1"><strong><a name="19"></a><font size="+1"></font><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font> 
 指令 mount</strong></font><br>
 <br>
 　掛載檔案系統的指令。<br>
@@ -1320,7 +1320,7 @@ Linux 所支援的檔案系統，掛載至根目錄下的某個目錄或子目錄中，這樣才能夠開始對其進
   <p><strong><font color="#000099">Tips</font></strong>：<font color="#000099" size="2">執行 
     mount 指令時，沒使用 -t 參數來指定檔案系統類型也是可以的，因為系統會根據 /etc/filesystems 去尋找您合用的檔案系統。</font></p>
 </blockquote>
-<font size="+1"><strong><a name="20"></a><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font> 
+<font size="+1"><strong><a name="20"></a><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font> 
 指令 umount</strong></font><br>
 <br>
 　卸載檔案系統的指令。<br>
@@ -1527,7 +1527,7 @@ device 掛載至 mount-point 上頭，所以在開機完成後，便可很輕鬆的存取每個 partition
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><strong><font color="#000099">單人模式</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -1543,7 +1543,7 @@ device 掛載至 mount-point 上頭，所以在開機完成後，便可很輕鬆的存取每個 partition
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">救援模式</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -1568,7 +1568,7 @@ device 掛載至 mount-point 上頭，所以在開機完成後，便可很輕鬆的存取每個 partition
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">Failsafe 模式</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -1583,7 +1583,7 @@ device 掛載至 mount-point 上頭，所以在開機完成後，便可很輕鬆的存取每個 partition
 <br>
 　執行磁碟檢查之前，請先把即將進行磁碟檢查的分割區 umount，或者 remount 為 read-only ( 例如根目錄 )，然後才開始對該分割區執行檔案系統的檢查工作。再來介紹幾個檢查檔案系統的工具。<br>
 <br>
-<font color="#000000" size="+1"><strong><a name="31"></a><font size="+1"><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></font> 
+<font color="#000000" size="+1"><strong><a name="31"></a><font size="+1"><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></font> 
 指令 fsck</strong></font><br>
 <br>
 　檢查及修復 Linux 檔案系統。<br>
@@ -1630,7 +1630,7 @@ device 掛載至 mount-point 上頭，所以在開機完成後，便可很輕鬆的存取每個 partition
   </tr>
 </table>
 <br>
-<font color="#000000" size="+1"><strong><a name="32"></a><font color="#000000" size="+1"><strong><font size="+1"><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></font></strong></font> 
+<font color="#000000" size="+1"><strong><a name="32"></a><font color="#000000" size="+1"><strong><font size="+1"><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></font></strong></font> 
 指令 e2fsck</strong></font><br>
 <br>
 　檢查及修復 ext2 或 ext3 的檔案系統。<strong><br>
@@ -1667,7 +1667,7 @@ device 掛載至 mount-point 上頭，所以在開機完成後，便可很輕鬆的存取每個 partition
   </tr>
 </table>
 <br>
-<font color="#FF0000"> <font color="#000000"><strong><font size="+1"><a name="33"></a><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font> 
+<font color="#FF0000"> <font color="#000000"><strong><font size="+1"><a name="33"></a><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font> 
 指令 reiserfsck</font></strong><br>
 <br>
 　檢查 reiserfs 檔案系統的指令。另外亦可使用 fsck.reiserfs 來進行檢查工作。<br>
@@ -1711,7 +1711,7 @@ device 掛載至 mount-point 上頭，所以在開機完成後，便可很輕鬆的存取每個 partition
   </tr>
 </table>
 <font color="#FF0000"><font color="#000000"><br>
-</font></font> <font color="#FF0000"><font color="#000000"><strong><font size="+1"><a name="34"></a><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font> 
+</font></font> <font color="#FF0000"><font color="#000000"><strong><font size="+1"><a name="34"></a><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font> 
 指令 badblocks</font></strong><font size="+1"><strong><br>
 <br>
 </strong></font>　這個指令可檢查您磁碟有無壞軌。<strong></strong><font size="+1"><strong><br>
@@ -1734,7 +1734,7 @@ df 及 du 指令</font></font><font size="+1"><br>
 小節介紹掛載時，有提到可以利用 df 指令來檢視檔案系統的掛載資訊，而實際上這個指令的主要作用，是用來查看目前檔案系統所使用磁碟空間狀況。至於另一個 du 
 指令，則是顯示檔案目錄所使用</font><font color="#0000FF"><font color="#000000">的</font></font><font color="#000000">磁碟空間情形。<font size="+1"><strong><br>
 <br>
-<a name="22"></a></strong></font><font color="#FF0000"><font color="#000000"><strong><font size="+1"><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></font></strong></font></font> 
+<a name="22"></a></strong></font><font color="#FF0000"><font color="#000000"><strong><font size="+1"><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></font></strong></font></font> 
 <font size="+1"><strong>指令 df</strong></font><br>
 <br>
 　</font><font color="#0000FF"><font color="#000000">報告檔案系統所使用</font><font color="#0000FF"><font color="#0000FF"><font color="#000000">的</font></font></font><font color="#000000">磁碟空間狀況。<font size="+1"><strong></strong></font></font></font><font color="#000000"><br>
@@ -1835,7 +1835,7 @@ df 及 du 指令</font></font><font size="+1"><br>
   </tr>
 </table>
 <font color="#0000FF"><font color="#000000"><strong><br>
-</strong></font> <strong><font color="#000000" size="+1"><a name="23"></a></font></strong></font><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font size="+1"><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></font></strong></font></font></font></font> 
+</strong></font> <strong><font color="#000000" size="+1"><a name="23"></a></font></strong></font><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font size="+1"><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></font></strong></font></font></font></font> 
 <font color="#000000" size="+1"><strong>指令 du</strong></font><br>
 <br>
 　計算檔案目錄所使用的磁碟空間大小。<br>
@@ -1958,14 +1958,14 @@ TARGET 同名的連結檔出來。<br>
   <br>
   　剛剛前面提到的這兩種類型的連結檔，在運用上其實各有其優缺點，不過由於符號連結檔的優點多於它的缺點，所以還是有比較多的人喜歡使用符號連結檔。至於符號連結檔的相關特性說明如下：</p>
 <blockquote> 
-  <p><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#0000FF">可針對不同分割區內的檔案及目錄做符號連結。</font></p>
-  <p><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <p><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#0000FF">可針對不同分割區內的檔案及目錄做符號連結。</font></p>
+  <p><font color="#0000FF"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
     target file 與 link file 的 inode number 不同。</font></p>
-  <p><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <p><font color="#0000FF"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
     target file 與 link file 的檔案屬性不同。</font></p>
-  <p><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <p><font color="#0000FF"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
     target file 或 link file 修改內容後，另一個檔案的內容也會跟著改。</font></p>
-  <p><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <p><font color="#0000FF"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
     target file 刪除後，link file 就看不到任何內容了。</font></p>
 </blockquote>
 　如對上面的說明有疑慮，請繼續參考以下的範例說明。<br>
@@ -2054,19 +2054,19 @@ TARGET 同名的連結檔出來。<br>
   <strong><br>
   　</strong>由於硬式連結檔的形成，會受到一些條件的限制，因此不似符號連結檔般那麼受歡迎，不過話雖如此，還是有它的優點在啦。接著來看看硬式連結檔有哪些特性：</p>
 <blockquote> 
-  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <p><strong><font color="#0000FF"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
     </font></strong><font color="#0000FF">無法對不同分割區內的檔案做硬式連結。</font></p>
-  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <p><strong><font color="#0000FF"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
     </font></strong><font color="#0000FF">不能針對目錄做硬式連結。</font></p>
-  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <p><strong><font color="#0000FF"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
     </font></strong><font color="#0000FF">target file 與 link file 的 inode number 
     相同。 </font></p>
-  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <p><strong><font color="#0000FF"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
     </font></strong><font color="#0000FF">target file 與 link file 的檔案屬性相同。</font></p>
-  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <p><strong><font color="#0000FF"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
     </font></strong><font color="#0000FF">target file 或 link file 修改內容後，另一個檔案的內容也會跟著改。 
     </font></p>
-  <p><strong><font color="#0000FF"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+  <p><strong><font color="#0000FF"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
     </font></strong><font color="#0000FF">任何一個檔案刪除後，另一個檔案仍保有原內容。</font></p>
 </blockquote>
 <strong>範例說明</strong>：<br>
@@ -2226,25 +2226,25 @@ fdisk 來新增分割區，比如是 /dev/hdb1，並且製造一檔案系統給他，然後接著按照以下的
 <ol>
   <li><font color="#000099">進入 YaST2 控制中心後，選取 [軟體管理]：</font><br>
     <br>
-    <img src="../picture/quota1.png" tppabs="http://www.suse.url.tw/picture/quota1.png" width="756" height="299"> <br>
+    <img src="quota1.png" tppabs="http://www.suse.url.tw/picture/quota1.png" width="756" height="299"> <br>
     　　　　　　　　　　　　　　　　　 <font size="2">　　圖一：YaST2 控制中心主畫面</font><br>
     <br>
   </li>
   <li><font color="#000099">於 [過濾器] 處選擇 [搜尋]：</font><br>
     <br>
-    <img src="../picture/quota2.png" tppabs="http://www.suse.url.tw/picture/quota2.png" width="766" height="228"><br>
+    <img src="quota2.png" tppabs="http://www.suse.url.tw/picture/quota2.png" width="766" height="228"><br>
     <font size="2">　　　　　　　　　　　　　　　　　　　　　　　　　圖二：套件管理畫面<br>
     <br>
     </font> </li>
   <li><font color="#000099">輸入欲查詢的套件名稱：</font><br>
     <br>
-    <img src="../picture/quota3.png" tppabs="http://www.suse.url.tw/picture/quota3.png" width="381" height="349"><br>
+    <img src="quota3.png" tppabs="http://www.suse.url.tw/picture/quota3.png" width="381" height="349"><br>
     <font size="2">　　　　　　　　　　圖三：套件搜尋畫面</font><br>
     <br>
   </li>
   <li><font color="#000099">於 [動作] 處選擇 [選取]：</font><br>
     <br>
-    <img src="../picture/quota4.png" tppabs="http://www.suse.url.tw/picture/quota4.png" width="655" height="231"> <br>
+    <img src="quota4.png" tppabs="http://www.suse.url.tw/picture/quota4.png" width="655" height="231"> <br>
     <font size="2">　　　　　　　　　　　　　　　　　　 圖四：套件處理方式的畫面</font><br>
     <br>
     在圖四中，如果搜尋出來的 quota 套件，其名稱的左手邊有出現 [i] 時，表示此套件已安裝在系統上，如果套件名稱的左手邊都是空白的話，那當然就是沒安裝囉，此時就請將此套件 
@@ -2253,7 +2253,7 @@ fdisk 來新增分割區，比如是 /dev/hdb1，並且製造一檔案系統給他，然後接著按照以下的
   </li>
   <li><font color="#000099">沒問題的話，就選取 [接受]：</font><br>
     <br>
-    <img src="../picture/quota5.png" tppabs="http://www.suse.url.tw/picture/quota5.png" width="766" height="474"><br>
+    <img src="quota5.png" tppabs="http://www.suse.url.tw/picture/quota5.png" width="766" height="474"><br>
     <font size="2">　　　　　　　　　　　　　　　　　　　　　　　圖五：選取套件後的畫面<br>
     <br>
     </font>注意到套件名稱的左手邊多出了個 [+]<font size="2"> </font>的符號<font size="2">，</font>表示該套件已被選取。<font size="2"><br>
@@ -2261,7 +2261,7 @@ fdisk 來新增分割區，比如是 /dev/hdb1，並且製造一檔案系統給他，然後接著按照以下的
     </font></li>
   <li><font color="#000099">放入安裝光碟並選取 [確定] 即可：</font><br>
     <br>
-    <img src="../picture/quota6.png" tppabs="http://www.suse.url.tw/picture/quota6.png" width="325" height="130"><br>
+    <img src="quota6.png" tppabs="http://www.suse.url.tw/picture/quota6.png" width="325" height="130"><br>
     <font size="2">　　　　　　　圖六：提示插入光碟畫面</font> <br>
     <br>
     接著就直接幫您把 quota 套件安裝上去了。</li>
@@ -2328,7 +2328,7 @@ fdisk 來新增分割區，比如是 /dev/hdb1，並且製造一檔案系統給他，然後接著按照以下的
 　這裡是使用 <font color="#0000FF">quotacheck</font> 指令，來掃描檔案系統的磁碟空間使用狀況，並建立 quuota 
 file 於該檔案系統中。以下先來說說這個指令的基本用法。<br>
 <br>
-<font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font size="+1"><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font size="+1"><strong><a name="45"></a></strong></font><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></font></strong></font></font></font></font> 
+<font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font size="+1"><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><font size="+1"><strong><a name="45"></a></strong></font><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></font></strong></font></font></font></font> 
 <font size="+1"><strong>指令 quotacheck</strong></font><br>
 <br>
 　此指令可用來掃描使用者及群組在這個做 quota 的 partition 裡，已使用的磁碟空間及 inode count，並會自動建立起 aquota.user 
@@ -2417,7 +2417,7 @@ filesystem，也就是說 -a 參數及 filesystem 不能同時指定。<strong><br>
 </font></strong><font color="#000000">　利用 <font color="#0000FF">quotaon</font> 
 指令來啟動 quota 的功能。<strong><br>
 <br>
-</strong></font><font color="#006600"><strong><font color="#000000"><font size="+1"><a name="46"></a><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font><font size="+1"> 
+</strong></font><font color="#006600"><strong><font color="#000000"><font size="+1"><a name="46"></a><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font><font size="+1"> 
 </font></strong></font> <font size="+1"><strong><font color="#000000">指令 quotaon</font></strong></font><font color="#000000"><strong><br>
 <br>
 </strong>　就是啟用檔案系統 quota 功能的指令囉。<strong><br>
@@ -2499,7 +2499,7 @@ filesystem，也就是說 -a 參數及 filesystem 不能同時指定。<strong><br>
 　</strong></font><font color="#000099"><font color="#000000">使用 <font color="#0000FF">edquota</font> 
 指令來編輯 quota 限額。</font></font><font color="#000099" size="4"><strong><br>
 </strong></font><br>
-<font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><strong><font size="+1"><a name="47"></a></font><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font> 
+<font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#336600"><font color="#336600"><strong><font size="+1"><a name="47"></a></font><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></font></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font> 
 <strong><font size="+1">指令 edquota</font></strong><br>
 <br>
 　edquota 是個 quota 的編輯器，用來編輯 quota file 中使用者或群組的 quota 限額。不過除了這個基本用法之外，edquota 
@@ -2555,7 +2555,7 @@ filesystem，也就是說 -a 參數及 filesystem 不能同時指定。<strong><br>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="3%" align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td width="95%"><font color="#000099"><strong>Filesystem：</strong></font></td>
   </tr>
   <tr> 
@@ -2570,7 +2570,7 @@ filesystem，也就是說 -a 參數及 filesystem 不能同時指定。<strong><br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">blocks、inodes：</font></strong></td>
   </tr>
   <tr> 
@@ -2587,7 +2587,7 @@ filesystem，也就是說 -a 參數及 filesystem 不能同時指定。<strong><br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">soft：</font></strong></td>
   </tr>
   <tr> 
@@ -2604,7 +2604,7 @@ filesystem，也就是說 -a 參數及 filesystem 不能同時指定。<strong><br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">hard：</font></strong></td>
   </tr>
   <tr> 
@@ -2712,7 +2712,7 @@ hours、days。</font></font><font color="#006600">&nbsp;<br>
 -g grp01 grp02 &#8230;」，但萬一要是為數眾多時怎麼辦 ? 這時候 <font color="#0000FF">repquota</font> 
 指令就可以派上用場了。</font></font><font color="#000000"><br>
 <br>
-<font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#006600"><font color="#000000"><strong><font size="+1"><a name="48"></a></font></strong></font></font><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font><strong><font size="+1"> 
+<font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#006600"><font color="#000000"><strong><font size="+1"><a name="48"></a></font></strong></font></font><font color="#336600"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font><strong><font size="+1"> 
 <font color="#000000">指令 repquota</font></font></strong></font><br>
 </font><br>
 <font color="#000000">　此指令可用來回報檔案系統 quota 限額的概況。</font><br>
@@ -2820,7 +2820,7 @@ hours、days。</font></font><font color="#006600">&nbsp;<br>
   <p><font color="#000099"><strong>Note：</strong><font size="2">當使用者 quota 與該使用者的有效群組 
     quota 都做設定時，就以先到達的限制為主囉。</font></font></p>
 </blockquote>
-<p> <strong><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font></font></font> 
+<p> <strong><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font></font></font> 
   <font size="4">設定開機時啟動 quota 功能</font></strong><br>
   <br>
   　想要在每次開機時，都能自動啟用 quota 功能，則以下提供兩種方式給大家參考：</p>
@@ -2848,7 +2848,7 @@ hours、days。</font></font><font color="#006600">&nbsp;<br>
   </font></strong> <br>
   　在 linux 系統上，存在著那麼多各式各樣的檔案，有想過要是哪天您想查詢某些特定的檔案所存在的位置該怎麼辦 ? 不要急，以下就會介紹幾個檔案搜尋的指令，透過這些指令的操作，便能幫您很快速的找到其所存在的位置。<br>
   <br>
-  <font color="#000000"><strong><font size="+1"><a name="50"></a></font><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font></font></font> 
+  <font color="#000000"><strong><font size="+1"><a name="50"></a></font><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font></font></font> 
   <font size="+1">指令 find</font></strong></font><font size="+1"><strong> </strong></font></p>
 　find 指令，是依照您所指定的目錄，至其目錄樹系裡頭，遞迴地搜尋所要尋找的檔案。當執行「<font color="#0000FF">find /var</font>」時，即是把 
 /var 目錄樹系裡的所有內容顯示出來。 <strong><br>
@@ -3036,7 +3036,7 @@ action 中的參數說明</strong>：
   </tr>
 </table>
 <strong> </strong><font color="#FF0000"> <font color="#000000" size="+1"><strong><br>
-<a name="51"></a><font color="#000000"><strong><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font></font></font></strong></font> 
+<a name="51"></a><font color="#000000"><strong><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font size="+1"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></font></strong></font></font></font></font></strong></font> 
 指令 which</strong></font></font><br>
 <br>
 　which 是用來搜尋指令所存在的位置。which 指令，主要是根據環境變數 PATH 來做搜尋，看看所要尋找的程式，有沒有存在於 PATH 目錄列表中的某個目錄之中。which 
@@ -3052,7 +3052,7 @@ action 中的參數說明</strong>：
   </tr>
 </table>
 <br>
-<font color="#FF0000"> <font color="#000000"><strong><font size="+1"><a name="52"></a><font color="#FF0000"><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></strong></font></font></font></font></strong></font></strong></font></font> 
+<font color="#FF0000"> <font color="#000000"><strong><font size="+1"><a name="52"></a><font color="#FF0000"><font color="#000000" size="+1"><strong><font color="#000000"><strong><font color="#006600"><font color="#000000"><font color="#006600"><font color="#006600"><strong><font color="#000000"><font color="#0000FF"><font color="#000000"><font color="#FF0000"><font color="#000000"><strong><font color="#FF0000"><font color="#000000"><strong><font color="#000000" size="+1"><strong><font color="#000000" size="+1"><strong><strong><font color="#000000" size="+1"><strong><strong><font color="#336600"><font color="#336600"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></font></strong></strong></font></strong></strong></font></strong></font></strong></font></font></strong></font></font></font></font></font></strong></font></font></font></font></strong></font></strong></font></font> 
 指令 locate</font></strong></font><br>
 <br>
 <font color="#000000">　locate 指令，是根據 /var/lib/locatedb 資料庫來做搜尋。</font></font>需要安裝的套件為<font color="#0000FF"> 

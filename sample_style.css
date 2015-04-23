@@ -1,0 +1,61 @@
+table, tr, th, td, p,br { font-family: "新細明體","細明體","宋體","verdana","Taipei" ; }
+
+/* Green #297d04--------------------------------------------------------------------------------------------------- */
+.content-12      { color: #363636; font-style: normal; font-size: 12px;line-height: 18px;}
+
+.navigation-12 { color: #000000; font-style: normal; font-size: 12px;line-height: 20px; }
+.navigation-12 A:link{color:#000000; text-decoration: none; }
+.navigation-12 A:visited{color:#000000; text-decoration: none; }
+.navigation-12 A:hover{color:#08218c; text-decoration: underline;}
+
+.navigation-pi-12 { color: #FF47FF; font-style: normal; font-size: 12px;line-height: 20px; }
+.navigation-pi-12 A:link{color:#FF47FF; text-decoration: none; }
+.navigation-pi-12 A:visited{color:#FF47FF; text-decoration: none; }
+.navigation-pi-12 A:hover{color:#08218c; text-decoration: underline;}
+
+.menu-or-12 { color: #ff2c00; font-style: normal; font-size: 12px; line-height: 16px; }
+.menu-or-12 A:link{color:#ff2c00; text-decoration: none; }
+.menu-or-12 A:visited{color:#ff2c00; text-decoration: none; }
+.menu-or-12 A:hover{color:#08218c; text-decoration: none; }
+
+.title-gn-12 { color: #297d04; font-style: normal; font-size: 12px; line-height: 16px; }
+.title-gn-12 A:link{color:#297d04; text-decoration: none; }
+.title-gn-12 A:visited{color:#297d04; text-decoration: none; }
+.title-gn-12 A:hover{color:#237500; text-decoration: none; }
+
+.menu-gy-12 { color: #363636; font-style: normal; font-size: 12px; line-height: 16px; }
+.menu-gy-12 A:link{color:#363636; text-decoration: none; }
+.menu-gy-12 A:visited{color:#363636; text-decoration: none; }
+.menu-gy-12 A:hover{color:#08218c; text-decoration: none; }
+
+.link-co-12 { color: blue; font-style: normal; font-size: 12px; line-height: 20px; }
+.link-co-12 A:link{color:blue; text-decoration: none; }
+.link-co-12 A:visited{color:blue; text-decoration: none; }
+.link-co-12 A:hover{color:red; text-decoration: none; }
+
+.linkpro-co-12 { color: #ff0066; font-style: normal; font-size: 12px; line-height: 20px; }
+.linkpro-co-12 A:link{color:#ff0066; text-decoration: none; }
+.linkpro-co-12 A:visited{color:#ff0066; text-decoration: none; }
+.linkpro-co-12 A:hover{color:#FF0000; text-decoration: none; }
+
+.footer-12    { color: #08218C; font-style: normal; font-size: 12px;line-height: 18px;  text-decoration: none; }
+.footer-12    A:link{color:#08218C; text-decoration: none; }
+.footer-12    A:visited{color:#08218C; text-decoration: none; }
+.footer-12    A:hover{color:#08218C; text-decoration: underline;}
+
+.menu-bl-12 { color: #004272; font-style: normal; font-size: 12px; line-height: 16px; }
+.menu-bl-12 A:link{color:#004272; text-decoration: none; }
+.menu-bl-12 A:visited{color:#004272; text-decoration: none; }
+.menu-bl-12 A:hover{color:#082081; text-decoration: underline; }
+
+.headerlink {  font-size: 12px; font-weight: bold; color: #000000}
+.news {  font-size: 15px; font-weight: bold; color: #000000}
+.footer {  font-size: 12px; font-weight: bold; text-decoration: none; color: #000000}
+.copyright {  font-size: 12px}
+A.headerlink:hover {  color: #000000; text-decoration: underline}
+A.headerlink:link {  color: #000000; text-decoration: underline}
+A.headerlink:visited {  color: #000000; text-decoration: underline}
+A.news:hover {  color: #000000; text-decoration: underline}
+A.news:link {  color: #000000; text-decoration: none}
+A.news:visited {  color: #000000; text-decoration: underline}
+.style1 {font-weight: bold; font-size: 12px;}

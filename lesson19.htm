@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
 <title>柏青哥的 SuSE Linux -- 架設 SSH  Server</title>
 <style type="text/css">
 <!--
@@ -13,8 +13,8 @@ a {
 </style>
 </head>
 
-<body bgcolor="#FFFFFF" background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
-<a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
+<body bgcolor="#FFFFFF" background="sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
+<a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
 　　作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw 
 <table width="100%" border="0">
   <tr> 
@@ -98,7 +98,7 @@ a {
   SHell)，可讓我們所傳輸的資料都事先經過加密，因此 Client 端可以使用 scp 指令在兩台電腦間很安全的複製資料，也可以使用 sftp 指令來安心的存取 
   ftp 服務。 <br>
   <br>
-  <strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  <strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
   SSH 協定的版本<br>
   <br>
   </font></strong>　SSH 協定目前有 SSH1 ( SSH protocol version 1 ) 及 SSH2 ( SSH protocol 
@@ -106,12 +106,12 @@ a {
   <br>
   　在 SSH 上頭，常見到的加密演算法有 RSA、DSA 及 Diffie-Hellman 等。SSH1 主要是使用 RSA 的加密技術，而 SSH2 
   除了 RSA 以外，還有 DSA 及 Diffie-Hellman 等等。 </p>
-<p><font size="+1"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font> 
+<p><font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font> 
   SSH 加密流程</strong></font></p>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><strong><font color="#000099">SSH1 加密技術</font></strong></td>
   </tr>
   <tr> 
@@ -172,7 +172,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">SSH2 加密技術</font></strong></td>
   </tr>
   <tr> 
@@ -209,7 +209,7 @@ a {
 <p><strong><font size="+1"><font color="#000000"><a name="3"></a><font size="5">19.1.2 
   需安裝套件及檢視套件內容</font><br>
   <br>
-  </font></font><font size="+1"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+  </font></font><font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
   <font color="#000000" size="4">SSH 所需套件</font></strong></p>
 <table width="35%" border="1">
   <tr bgcolor="#CCCCCC"> 
@@ -225,7 +225,7 @@ a {
 <p><strong><font color="#000000"> 　</font></strong><font color="#000000">SuSE 
   預設就已經把此套件以及其相依套件都幫您裝上了，所以這部分不用各位操心。 <strong><br>
   <br>
-  <font size="+1"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+  <font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
   <font size="4">查詢套件內容</font></strong></font></p>
 <table width="100%" border="0">
   <tr> 
@@ -295,19 +295,19 @@ a {
   </tr>
 </table>
 <p> 　針對以上幾個檔案做個簡短說明：</p>
-<p><font color="#000099"><strong>　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099"><strong>　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   sshd_config</strong></font>：SSH Server 的主要設定檔。</p>
-<p><font color="#000099"><strong>　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099"><strong>　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   ssh_host_key、ssh_host_key.pub：</strong><font color="#000000"> ssh1 的 RSA private 
   key 及 RSA public key。</font></font></p>
-<p><font color="#000099"><strong>　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099"><strong>　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   ssh_host_rsa_key、ssh_host_rsa_key.pub：</strong><font color="#000000">ssh2 的 
   RSA private key 及 RSA public key。</font></font></p>
-<p><font color="#000099"><strong>　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099"><strong>　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   ssh_host_dsa_key、ssh_host_dsa_key.pub：</strong><font color="#000000">ssh2 的 
   DSA private key 及 DSA public key。</font><strong><br>
   </strong></font><br>
-  <strong><font color="#000000"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font></strong> 
+  <strong><font color="#000000"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font></strong> 
   <font size="4"><strong>設定 sshd_config</strong></font><br>
   <br>
   　接著就對 SSH Server 的設定檔做個大略的解說：</p>
@@ -400,7 +400,7 @@ a {
 <font size="+1"><strong><font color="#000000"><a name="5"></a><font size="5">19.1.4 
 SSH Client 端常使用的連線工具</font></font></strong></font><br>
 <br>
-<strong><font size="+1"><a name="6"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
+<strong><font size="+1"><a name="6"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
 <font color="#000000" size="+1"><strong>指令 ssh</strong></font><strong><font size="+1"> 
 及 putty</font></strong> <font size="4"><strong>軟體</strong></font><br>
 <br>
@@ -409,7 +409,7 @@ SSH Client 端常使用的連線工具</font></font></strong></font><br>
 <table width="100%" border="0">
   <tr>
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center" valign="middle"><font color="#000099"><strong><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong></font></td>
+    <td width="3%" align="center" valign="middle"><font color="#000099"><strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong></font></td>
     <td width="95%"><strong><font color="#000099">ssh for Linux：</font></strong></td>
   </tr>
   <tr>
@@ -434,7 +434,7 @@ SSH Client 端常使用的連線工具</font></font></strong></font><br>
   </tr>
   <tr>
     <td>&nbsp;</td>
-    <td align="center" valign="middle"><font color="#000099"><strong><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong></font></td>
+    <td align="center" valign="middle"><font color="#000099"><strong><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></strong></font></td>
     <td><strong><font color="#000099">putty for Windows：</font></strong></td>
   </tr>
   <tr>
@@ -446,27 +446,27 @@ SSH Client 端常使用的連線工具</font></font></strong></font><br>
         在這個網頁裡，還可看到像 pscp、psftp 等這一類的工具，視您需要而做選擇囉。<br>
         <br>
         當您將 putty 下載回來後，請直接執行 putty 程式，然後就會看到設定畫面：</p>
-      <p align="center"> <img src="../picture/ssh1.png" tppabs="http://www.suse.url.tw/picture/ssh1.png" width="426" height="435"> 
+      <p align="center"> <img src="ssh1.png" tppabs="http://www.suse.url.tw/picture/ssh1.png" width="426" height="435"> 
         <br>
         <font size="2">圖一：putty 設定主畫面</font></p>
       <p> 接著請輸入伺服器的位址及所使用協定，並於 [Saved Sessions] 處填寫個具代表性的名稱，最後按下 [Save] 來將設定紀錄保留下來：</p>
-      <p align="center"> <img src="../picture/ssh2.png" tppabs="http://www.suse.url.tw/picture/ssh2.png" width="426" height="435"> 
+      <p align="center"> <img src="ssh2.png" tppabs="http://www.suse.url.tw/picture/ssh2.png" width="426" height="435"> 
         <br>
         <font size="2">圖二：設定 SSH Server 位址及使用協定</font></p>
       <p> 以下是選擇性的調整。首先調整 putty 視窗大小：</p>
-      <p align="center"> <img src="../picture/ssh3.png" tppabs="http://www.suse.url.tw/picture/ssh3.png" width="426" height="435"> 
+      <p align="center"> <img src="ssh3.png" tppabs="http://www.suse.url.tw/picture/ssh3.png" width="426" height="435"> 
         <br>
         <font size="2">圖三：調整 putty 視窗大小</font></p>
       <p>再來調整一下字型的部分，請先點選 [Appearance]，然後按下右邊的 [Change]：</p>
-      <p align="center"><img src="../picture/ssh4.png" tppabs="http://www.suse.url.tw/picture/ssh4.png" width="426" height="435"> 
+      <p align="center"><img src="ssh4.png" tppabs="http://www.suse.url.tw/picture/ssh4.png" width="426" height="435"> 
         <br>
         <font size="2">圖四：修改喜好設定 </font></p>
       <p>這裡就視您需要做調整囉： </p>
-      <p align="center"><img src="../picture/ssh5.png" tppabs="http://www.suse.url.tw/picture/ssh5.png" width="437" height="319"> 
+      <p align="center"><img src="ssh5.png" tppabs="http://www.suse.url.tw/picture/ssh5.png" width="437" height="319"> 
         <br>
         <font size="2">圖五：調整使用字型及大小</font></p>
       <p>修改完成後，請點選 [Session] 來回到主畫面，再按一次 [Save] 把剛剛所做的修改保留下來：</p>
-      <p align="center"><img src="../picture/ssh6.png" tppabs="http://www.suse.url.tw/picture/ssh6.png" width="426" height="435"> 
+      <p align="center"><img src="ssh6.png" tppabs="http://www.suse.url.tw/picture/ssh6.png" width="426" height="435"> 
         <br>
         <font size="2">圖六：完成後之畫面</font></p>
       <p>就這麼簡單而已，自己試試看噢。 </p>
@@ -474,7 +474,7 @@ SSH Client 端常使用的連線工具</font></font></strong></font><br>
   </tr>
 </table>
 <br>
-<strong><font size="+1"><a name="7"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong><font size="+1"><strong> 
+<strong><font size="+1"><a name="7"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong><font size="+1"><strong> 
 指令 scp</strong></font> <br>
 <br>
 　想要在兩主機之間很安全的執行複製的動作，就使用這個指令吧 !<strong><br>
@@ -519,7 +519,7 @@ SSH Client 端常使用的連線工具</font></font></strong></font><br>
   </tr>
 </table>
 <br>
-<strong><font size="+1"><a name="8"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
+<strong><font size="+1"><a name="8"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
 <strong><font size="+1">指令 sftp</font></strong> <br>
 <br>
 　這是另一個可以使用的檔案傳輸工具，與 ftp 操作介面類似，不過其所傳輸的資料是會事先經過加密的噢。<br>
@@ -736,60 +736,60 @@ linux 及 windows 上頭所需安裝的軟體先搞定再說。　　<br>
 <br>
 　至於 windows 的話，請先至 www.realvnc.com 下載 VNC 軟體，然後再進行安裝。詳細步驟請參考以下。<br>
 <br>
-<strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> <font size="+1"><strong>下載 
+<strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> <font size="+1"><strong>下載 
 VNC 軟體 ( for windows )</strong></font><br>
 <br>
-　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#0000CC">連上 
+　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#0000CC">連上 
 VNC 網站，並點選 <strong>[download it now]</strong>： </font> 
-<p align="center"> <img src="../picture/vnc1.png" tppabs="http://www.suse.url.tw/picture/vnc1.png" width="666" height="479"></p>
-<p align="left">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099"></font><font color="#000099">點選 
+<p align="center"> <img src="vnc1.png" tppabs="http://www.suse.url.tw/picture/vnc1.png" width="666" height="479"></p>
+<p align="left">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099"></font><font color="#000099">點選 
   <strong>[Download &amp; use]</strong>：</font></p>
-<p align="center"> <img src="../picture/vnc2.png" tppabs="http://www.suse.url.tw/picture/vnc2.png" width="666" height="479"></p>
-<p align="left">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">點選 
+<p align="center"> <img src="vnc2.png" tppabs="http://www.suse.url.tw/picture/vnc2.png" width="666" height="479"></p>
+<p align="left">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">點選 
   <strong>[Procceed to download]</strong>：</font></p>
-<p align="center"> <img src="../picture/vnc3.png" tppabs="http://www.suse.url.tw/picture/vnc3.png" width="666" height="479"></p>
-<p align="left"> 　　 <img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"><font color="#000099"> 
+<p align="center"> <img src="vnc3.png" tppabs="http://www.suse.url.tw/picture/vnc3.png" width="666" height="479"></p>
+<p align="left"> 　　 <img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"><font color="#000099"> 
   下載 for windows 的免費 VNC 軟體：</font> </p>
-<p align="center"> <img src="../picture/vnc4.png" tppabs="http://www.suse.url.tw/picture/vnc4.png" width="666" height="479"></p>
-　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">接受聲明並下載：</font> 
-<p align="center"> <img src="../picture/vnc5.png" tppabs="http://www.suse.url.tw/picture/vnc5.png" width="666" height="479"></p>
-<p align="left">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">將下載檔案儲存起來： 
+<p align="center"> <img src="vnc4.png" tppabs="http://www.suse.url.tw/picture/vnc4.png" width="666" height="479"></p>
+　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">接受聲明並下載：</font> 
+<p align="center"> <img src="vnc5.png" tppabs="http://www.suse.url.tw/picture/vnc5.png" width="666" height="479"></p>
+<p align="left">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099">將下載檔案儲存起來： 
   </font></p>
-<p align="center"><img src="../picture/vnc6.png" tppabs="http://www.suse.url.tw/picture/vnc6.png" width="398" height="269"></p>
-<div align="left"> <strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
+<p align="center"><img src="vnc6.png" tppabs="http://www.suse.url.tw/picture/vnc6.png" width="398" height="269"></p>
+<div align="left"> <strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
   安裝 VNC<br>
   <br>
   　</font></strong>啟動剛剛下載回來的執行程式來開始進行安裝，步驟如下： <font size="+1"><strong><br>
   </strong></font> 
-  <p align="center"> <img src="../picture/vnc7.png" tppabs="http://www.suse.url.tw/picture/vnc7.png" width="503" height="385"><br>
+  <p align="center"> <img src="vnc7.png" tppabs="http://www.suse.url.tw/picture/vnc7.png" width="503" height="385"><br>
     <font size="2">圖一：VNC 設定精靈畫面</font><br>
     <br>
-    <img src="../picture/vnc8.png" tppabs="http://www.suse.url.tw/picture/vnc8.png" width="503" height="385"><br>
+    <img src="vnc8.png" tppabs="http://www.suse.url.tw/picture/vnc8.png" width="503" height="385"><br>
     <font size="2">圖二：接受授權同意聲明</font><br>
     <br>
-    <img src="../picture/vnc9.png" tppabs="http://www.suse.url.tw/picture/vnc9.png" width="503" height="385"><br>
+    <img src="vnc9.png" tppabs="http://www.suse.url.tw/picture/vnc9.png" width="503" height="385"><br>
     <font size="2">圖三：VNC 預設的安裝位置畫面</font><font size="1"> </font> </p>
-  <p align="center"> <img src="../picture/vnc10.png" tppabs="http://www.suse.url.tw/picture/vnc10.png" width="503" height="385"><br>
+  <p align="center"> <img src="vnc10.png" tppabs="http://www.suse.url.tw/picture/vnc10.png" width="503" height="385"><br>
     <font size="2">圖四：選擇安裝項目</font><br>
     <br>
-    <img src="../picture/vnc11.png" tppabs="http://www.suse.url.tw/picture/vnc11.png" width="503" height="385"> <br>
+    <img src="vnc11.png" tppabs="http://www.suse.url.tw/picture/vnc11.png" width="503" height="385"> <br>
     <font size="2">圖五： 設定存放 VNC 程式捷徑之處</font><br>
     <br>
-    <img src="../picture/vnc12.png" tppabs="http://www.suse.url.tw/picture/vnc12.png" width="503" height="385"> <br>
+    <img src="vnc12.png" tppabs="http://www.suse.url.tw/picture/vnc12.png" width="503" height="385"> <br>
     <font size="2">圖六：執行額外工作的設定畫面 </font></p>
-  <p align="center">　　<img src="../picture/vnc13.png" tppabs="http://www.suse.url.tw/picture/vnc13.png" width="503" height="385"><br>
+  <p align="center">　　<img src="vnc13.png" tppabs="http://www.suse.url.tw/picture/vnc13.png" width="503" height="385"><br>
     <font size="2">圖七：準備安裝畫面 </font><font size="1"> </font> </p>
-  <p align="center"> <img src="../picture/vnc13.2.png" tppabs="http://www.suse.url.tw/picture/vnc13.2.png" width="353" height="428"> 
+  <p align="center"> <img src="vnc13.2.png" tppabs="http://www.suse.url.tw/picture/vnc13.2.png" width="353" height="428"> 
     <br>
     <font size="2">圖八：準備設定 VNC Server 的密碼</font><br>
     <br>
-    <img src="../picture/vnc13.4.png" tppabs="http://www.suse.url.tw/picture/vnc13.4.png" width="325" height="139"><br>
+    <img src="vnc13.4.png" tppabs="http://www.suse.url.tw/picture/vnc13.4.png" width="325" height="139"><br>
     <font size="2">圖九：設定 VNC Server 密碼畫面</font> </p>
   <p align="left">　　在圖九中按下 [OK] 後，會回到圖八畫面，此時點選 [確定] 即可。</p>
-  <p align="center"> <img src="../picture/vnc14.png" tppabs="http://www.suse.url.tw/picture/vnc14.png" width="503" height="385"><br>
+  <p align="center"> <img src="vnc14.png" tppabs="http://www.suse.url.tw/picture/vnc14.png" width="503" height="385"><br>
     <font size="2">圖十：重要訊息畫面</font> <br>
     <br>
-    <img src="../picture/vnc15.png" tppabs="http://www.suse.url.tw/picture/vnc15.png" width="503" height="385"><br>
+    <img src="vnc15.png" tppabs="http://www.suse.url.tw/picture/vnc15.png" width="503" height="385"><br>
     <font size="2">圖十一：VNC 設定精靈完成畫面</font> </p>
   <p align="left">　這樣就安裝完畢了，夠簡單吧。</p>
   <font size="+1"><strong> </strong></font><strong><font size="+1"> <a name="13"></a><font size="5">19.2.3 
@@ -798,7 +798,7 @@ VNC 網站，並點選 <strong>[download it now]</strong>： </font>
   　這一小節主要是要介紹如何以 Linux 擔任 VNC server，並讓 Windows 的 Client 端能對其進行遠端操控，因此重點就放在 Linux 
   的設定上頭囉。<br>
   <br>
-  <strong><font size="+1"><a name="14"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  <strong><font size="+1"><a name="14"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
   </font><font color="#000000"><font size="+1"><strong>設定 Linux 擔任 VNC server</strong></font></font><font size="+1"> 
   </font></strong><br>
   <br>
@@ -806,7 +806,7 @@ VNC 網站，並點選 <strong>[download it now]</strong>： </font>
   <table width="100%" border="0">
     <tr> 
       <td width="2%">&nbsp;</td>
-      <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
       <td width="95%"><strong><font color="#000099">初次啟動 VNC server</font></strong></td>
     </tr>
     <tr> 
@@ -846,7 +846,7 @@ VNC 網站，並點選 <strong>[download it now]</strong>： </font>
     </tr>
     <tr> 
       <td>&nbsp;</td>
-      <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
       <td><strong><font color="#000099">修改 VNC 預設要執行的 Script</font></strong></td>
     </tr>
     <tr> 
@@ -876,7 +876,7 @@ VNC 網站，並點選 <strong>[download it now]</strong>： </font>
     </tr>
     <tr> 
       <td>&nbsp;</td>
-      <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
       <td><strong><font color="#000099">重新啟動 VNC server</font></strong></td>
     </tr>
     <tr> 
@@ -911,7 +911,7 @@ VNC 網站，並點選 <strong>[download it now]</strong>： </font>
     </tr>
   </table>
   <font color="#000000"> <br>
-  <strong><font size="+1"><a name="15"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
+  <strong><font size="+1"><a name="15"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong> 
   <strong><font size="+1">Windows 遠端操控 Linux</font></strong> <br>
   <br>
   　這裡會分別以安裝在 Windows 上的 VNC viewer 軟體及網頁瀏覽器方式，來對 Linux 做遠端操控。 <br>
@@ -920,7 +920,7 @@ VNC 網站，並點選 <strong>[download it now]</strong>： </font>
   <table width="100%" border="0">
     <tr>
       <td width="2%">&nbsp;</td>
-      <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
       <td width="95%"><strong><font color="#000099">使用 VNC viewer</font></strong> 
         <font color="#000099"><strong>程式</strong></font></td>
     </tr>
@@ -929,19 +929,19 @@ VNC 網站，並點選 <strong>[download it now]</strong>： </font>
       <td align="center">&nbsp;</td>
       <td><p align="left">如果您剛剛在 Windows 上頭安裝 VNC 軟體時，是按照筆者的步驟進行的話，那麼在您工作列上應該可以看到 
           VNC viewer 這個應用程式的 icon，請直接點選來執行，此時應該可以看到如下的畫面：</p>
-        <p align="center"> <img src="../picture/vnc16.png" tppabs="http://www.suse.url.tw/picture/vnc16.png" width="342" height="133"><br>
+        <p align="center"> <img src="vnc16.png" tppabs="http://www.suse.url.tw/picture/vnc16.png" width="342" height="133"><br>
           <font size="2">圖一：指定 VNC viewer 欲連線之主機</font> </p>
         <p>請將您 Linux 主機位址填寫進去吧，另外要注意到在位址後端需指定 VNC 所提供的 X Server 視窗編號噢。沒問題的話請點選 
           [OK]，接下來即會要求您輸入當初在 VNC Server 上所設定的密碼：</p>
-        <p align="center"><img src="../picture/vnc19.png" tppabs="http://www.suse.url.tw/picture/vnc19.png" width="368" height="99"><br>
+        <p align="center"><img src="vnc19.png" tppabs="http://www.suse.url.tw/picture/vnc19.png" width="368" height="99"><br>
           <font color="#000000" size="2">圖二：指定連線密碼 </font></p>
         <p>這時候應該能順利看到 Linux 的視窗桌面了。另外如果想開啟多個視窗桌面，那麼請點選圖一底下的 [options] 項目，並於 [Misc] 
           中把 [Shared connection] 選項打勾即可：</p>
-        <p align="center"><img src="../picture/vnc17.png" tppabs="http://www.suse.url.tw/picture/vnc17.png" width="352" height="352"><br>
+        <p align="center"><img src="vnc17.png" tppabs="http://www.suse.url.tw/picture/vnc17.png" width="352" height="352"><br>
           <font size="2">圖三：設定能開啟多視窗畫面</font> </p>
         <p>而在此選項底下，還有個 [Full-screen mode]，這當然就是全螢幕模式囉 ﹔在您調整成 Full-screen mode 
           後，如想調整回來，可按下 F8 並選取 [還原] 就行了。調整完畢，請把設定值保留起來：</p>
-        <p align="center"><img src="../picture/vnc18.png" tppabs="http://www.suse.url.tw/picture/vnc18.png" width="352" height="352"><br>
+        <p align="center"><img src="vnc18.png" tppabs="http://www.suse.url.tw/picture/vnc18.png" width="352" height="352"><br>
           <font size="2">圖四：儲存設定參數畫面 </font></p>
         <blockquote> 
           <p><strong><font color="#000099">Tips：</font></strong><font color="#000099" size="2">剛剛在 
@@ -957,14 +957,14 @@ VNC 網站，並點選 <strong>[download it now]</strong>： </font>
     </tr>
     <tr>
       <td>&nbsp;</td>
-      <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+      <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
       <td><strong><font color="#000099">使用網頁瀏覽器</font></strong></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
       <td align="center">&nbsp;</td>
       <td><p>如果您沒安裝 VNC viewer 軟體也沒關係啦，直接於瀏覽器的網址處輸入 VNC server 的位址即可：</p>
-        <p align="center"><img src="../picture/vnc20.png" tppabs="http://www.suse.url.tw/picture/vnc20.png" width="534" height="340"></p>
+        <p align="center"><img src="vnc20.png" tppabs="http://www.suse.url.tw/picture/vnc20.png" width="534" height="340"></p>
         <p>請留意網址後端的連接埠須指定 5801 port，也就是把 5800 port 加上您 VNC server 所提供的 X Server 
           視窗編號 ﹔如果當初 VNC server 提供的視窗編號是 2 的話，那這裡就須指定 5802 port。</p></td>
     </tr>
@@ -979,8 +979,8 @@ VNC 網站，並點選 <strong>[download it now]</strong>： </font>
     </strong></font><br>
     　假如您 Windows 上頭的 VNC server 已啟動，且也已設定好連線密碼了，接著就可以在 Linux 上作測試囉。首先請您登入 X-Window，開啟一個 
     terminal 並執行 vncviewer 指令，然後輸入 server 的 IP 及連線密碼即可：</font></p>
-  <p align="center"><img src="../picture/vnc22.png" tppabs="http://www.suse.url.tw/picture/vnc22.png" width="671" height="232"></p>
-  <p align="center"><font color="#000000"><img src="../picture/vnc23.png" tppabs="http://www.suse.url.tw/picture/vnc23.png" width="671" height="227"></font></p>
+  <p align="center"><img src="vnc22.png" tppabs="http://www.suse.url.tw/picture/vnc22.png" width="671" height="232"></p>
+  <p align="center"><font color="#000000"><img src="vnc23.png" tppabs="http://www.suse.url.tw/picture/vnc23.png" width="671" height="227"></font></p>
   <p align="left"><font color="#000000">　認證成功後，就可以開始遠端操控 Windows 了噢。另外如果您是想使用瀏覽器做連線的話，請於 
     URL 上頭輸入： http://192.168.1.220:5800/，自己試試看吧 !<br>
     <br>

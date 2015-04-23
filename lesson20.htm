@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
 <title>PAM 認證模組</title>
 <style type="text/css">
 <!--
@@ -13,8 +13,8 @@ a {
 </style>
 </head>
 
-<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#0000FF" vlink="#660066" leftmargin="40">
-<p align="left"><font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a><font size="+2"><strong>　</strong></font></font>作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw</p>
+<body background="sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#0000FF" vlink="#660066" leftmargin="40">
+<p align="left"><font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a><font size="+2"><strong>　</strong></font></font>作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw</p>
 <p align="center"><font size="7"><strong>第二十章 　PAM 認 證 模 組</strong></font></p>
 <font color="#000000" size="+1"><strong><font color="#000099" size="+1"><strong>索引：</strong></font><br>
 </strong></font>
@@ -83,7 +83,7 @@ a {
 </table>
 <font color="#000000"><br>
 　如您還不太清楚 PAM 所扮演的角色，請參考以下這個架構圖再配合上面的說明來看，應該就會有概念了</font><font color="#000000" size="+1">：</font> 
-<p align="center"><img src="../picture/pam.gif" tppabs="http://www.suse.url.tw/picture/pam.gif" width="364" height="225"><br>
+<p align="center"><img src="pam.gif" tppabs="http://www.suse.url.tw/picture/pam.gif" width="364" height="225"><br>
   <font size="2">圖一：PAM 的架構圖</font></p>
 <p>　至於為何要取名為可插入式的認證模組呢 ? 因為它是一組隨時可讓管理員來彈性使用的認證函式庫<font color="#000000">，比如您只希望有少數使用者可以執行 
   su 指令來切換成其他 user 或 root 的身份，那麼可以在 /etc/pam.d/su 檔案中去引用<strong> </strong>pam_wheel.so 
@@ -96,7 +96,7 @@ a {
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><strong><font color="#000099">/lib/libpam*.so：</font></strong></td>
   </tr>
   <tr> 
@@ -112,7 +112,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">/etc/pam.d/*：</font></strong></td>
   </tr>
   <tr> 
@@ -129,7 +129,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">/lib/security/*：</font></strong></td>
   </tr>
   <tr> 
@@ -144,7 +144,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">/etc/security/*</font></strong><font color="#000099"><strong>：</strong></font></td>
   </tr>
   <tr> 
@@ -156,7 +156,7 @@ a {
 <p><font color="#000000"> 　</font><font color="#000000">了解了相關檔案的配置之後，我們再以 PAM 
   認證的詳細流程圖來跟各位說明：</font> </p>
 <div align="left"> 
-  <p align="center"><font color="#000000"> <img src="../picture/pam1.png" tppabs="http://www.suse.url.tw/picture/pam1.png" width="388" height="145"> 
+  <p align="center"><font color="#000000"> <img src="pam1.png" tppabs="http://www.suse.url.tw/picture/pam1.png" width="388" height="145"> 
     <br>
     <font size="2">圖二：PAM 的認證流程</font></font></p>
   <p align="left"><font color="#000000"> 　在圖二的流程圖中，是說明應用程式會先去呼叫 PAM 函式，然後再由其去讀取 
@@ -207,7 +207,7 @@ a {
   </table>
   <p align="left"><font color="#000000"> 　其中除了 options 欄位外，其餘都是必要設定的欄位。底下分別來對這幾個欄位做相關說明：</font><font color="#000000" size="+1"><strong><br>
     <br>
-    </strong></font><font size="+1"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+    </strong></font><font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
     <font color="#000000"><strong><font size="+1">模組類型</font></strong></font><font color="#000000" size="+1"><strong><br>
     <br>
     　</strong></font><font color="#000000">這部分總共區分成四種</font><font color="#000000" size="+1"><strong> 
@@ -234,7 +234,7 @@ a {
       <td><font color="#000099">這個模組類型裡所使用的模組，是與使用者在存取服務前後需執行的一些工作有關聯。比如紀錄掛載目錄的資訊、使用者做資料交換時的訊息紀錄等等。</font></td>
     </tr>
   </table>
-  <p align="left"><font size="+1"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font><font color="#000000" size="+1"><strong> 
+  <p align="left"><font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font><font color="#000000" size="+1"><strong> 
     控制旗標 <br>
     <br>
     </strong></font><font color="#000000">　一個認證模組在執行認證檢查時，有可能成功 (success)，也有可能失敗 
@@ -280,14 +280,14 @@ a {
         include 所含括的檔案內容，是會在 include 的那個位置被插入的。</font></td>
     </tr>
   </table>
-  <p align="left"><font size="+1"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+  <p align="left"><font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
     <strong><font color="#000000" size="+1">模組路徑</font></strong><br>
     <br>
     <font color="#000000"> 　如果這個欄位只設定模組名稱，未指定其實際路徑，則表示此模組是被安置在預設的 /lib/security 
     目錄中。至於在 include 旗標後的 include file，則是被放置在 /etc/pam.d 目錄中。</font><font color="#000000" size="+1"><strong> 
     <br>
     <br>
-    </strong></font><font size="+1"><strong><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
+    </strong></font><font size="+1"><strong><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></font></strong></font> 
     <strong><font color="#000000" size="+1">模組參數</font></strong> <br>
     <br>
     <font color="#000000"> 　這裡舉幾個模組參數給大家參考一下：</font> </p>
@@ -544,7 +544,7 @@ a {
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><font color="#0000FF"><font color="#000000"><strong><font color="#000099">測試 
       pam_securetty.so</font></strong> <font color="#000099"><strong>模組</strong></font></font></font></td>
   </tr>
@@ -578,7 +578,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#0000FF"><font color="#000000"><strong><font color="#000099">測試 
       pam_nologin.so</font> </strong><font color="#000099"><strong>模組</strong></font><strong></strong></font></font></td>
   </tr>
@@ -604,7 +604,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#0000FF"><font color="#000000"><strong><font color="#000099">測試 
       pam_limits.so <strong>模組</strong></font></strong></font></font></td>
   </tr>
@@ -644,7 +644,7 @@ a {
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#0000FF"><font color="#000000"><strong><font color="#000099">測試</font></strong></font></font> 
       <font color="#000099"> pam_time.so <strong>模組</strong></font></strong></td>
   </tr>
@@ -915,7 +915,7 @@ SSH 服務。<br>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><strong><font color="#000099">測試 pam_wheel.so 模組</font></strong></td>
   </tr>
   <tr> 

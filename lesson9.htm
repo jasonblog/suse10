@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
 <title>柏青哥的 SuSE Linux -- 系統紀錄檔</title>
 <style type="text/css">
 <!--
@@ -13,8 +13,8 @@ a {
 </style>
 </head>
 
-<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
-<a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
+<body background="sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
+<a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a> 
 　　作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw 
 <table width="100%" border="0">
   <tr> 
@@ -556,7 +556,7 @@ facility 是使用同一個 level，並採用相同的 action，則這兩個 facility 間需先用 &qu
       }; </font></td>
   </tr>
 </table>
-<p><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="+1"><strong>探討 
+<p><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> <font size="+1"><strong>探討 
   long_hostnames( )、keep_hostname( ) </strong></font><br>
   <br>
   　當進行訊息紀錄轉送時，log server 上的 syslog-ng 在預設情況下，會去改寫所收到訊息內的主機名稱 [ keep_hostname(no) 
@@ -566,9 +566,9 @@ facility 是使用同一個 level，並採用相同的 action，則這兩個 facility 間需先用 &qu
 <p>　假使現在有三台主機透過 DNS 解析的結果如下： 192.168.1.1 ( server1 )、192.168.1.2 ( server2 )、192.168.1.3 
   ( server3 )，其中 server1 原本的主機名稱是 linux (根據 /etc/HOSTNAME)，而在 linux 主機上所產生的訊息會傳送到 
   server2，接著 server2 再把訊息傳給 server3，參考一下架構圖：</p>
-<p align="center"><img src="../picture/log.png" tppabs="http://www.suse.url.tw/picture/log.png" width="499" height="136"> </p>
+<p align="center"><img src="log.png" tppabs="http://www.suse.url.tw/picture/log.png" width="499" height="136"> </p>
 <p>　如果現在 Client 端對 server1 進行 ssh 遠端連線，則每一部 server 紀錄檔內之訊息，所顯示的主機名稱如下表所示：</p>
-<p align="center"><img src="../picture/syslog-ng.png" tppabs="http://www.suse.url.tw/picture/syslog-ng.png" width="645" height="232"></p>
+<p align="center"><img src="syslog-ng.png" tppabs="http://www.suse.url.tw/picture/syslog-ng.png" width="645" height="232"></p>
 <strong><em><font color="#000099">　</font></em></strong><font color="#000000">在上表中所看到的 
 src，是 syslog-ng.conf 中設定 source 時所使用的識別字 ( identifier )。 </font> 
 <p><strong><font size="+1"><a name="8"></a><font size="5">9.2.3 訊息來源 ( Sources 
@@ -652,7 +652,7 @@ src，是 syslog-ng.conf 中設定 source 時所使用的識別字 ( identifier )。 </font>
 <strong><font size="+1"><br>
 </font></strong>　接著以下會針對部分 source driver 做個探討。<br>
 <font size="+1"><strong><br>
-<img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> unix-stream( ) 及 unix-dgram( 
+<img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> unix-stream( ) 及 unix-dgram( 
 )<br>
 </strong></font><br>
 　這兩個 source driver 剛剛已介紹過，不過要留意核心如果是在 2.4.0 版以後，則應該對 /dev/log 這個 socket 使用 unix-dgram，如指定成 
@@ -688,7 +688,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
     <td><font color="#000099">限定同時間能允許的串流連線數。另外此選項只能用於 unix-stream( ) 之中。預設為 10。</font></td>
   </tr>
 </table>
-<p> <font size="+1"><strong> <img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+<p> <font size="+1"><strong> <img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
   tcp( ) 及 udp( )</strong></font><br>
   <br>
   　先來看看 tcp( ) 及 udp( ) 這兩個 source driver 的宣告方式：</p>
@@ -1350,7 +1350,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><font color="#000099"><strong>compress</strong></font></td>
   </tr>
   <tr> 
@@ -1366,7 +1366,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>dateext</strong></font></td>
   </tr>
   <tr> 
@@ -1382,7 +1382,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>maxage 365</strong>　</font></td>
   </tr>
   <tr> 
@@ -1398,7 +1398,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>rotate 99</strong></font></td>
   </tr>
   <tr> 
@@ -1414,7 +1414,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>missingok</strong>&nbsp;</font></td>
   </tr>
   <tr> 
@@ -1430,7 +1430,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>notifempty</strong></font></td>
   </tr>
   <tr> 
@@ -1446,7 +1446,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>size +4096k</strong></font></td>
   </tr>
   <tr> 
@@ -1462,7 +1462,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>create 640 root root</strong>&nbsp;</font></td>
   </tr>
   <tr> 
@@ -1477,7 +1477,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>sharedscripts</strong>&nbsp;</font></td>
   </tr>
   <tr> 
@@ -1494,7 +1494,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><font color="#000099"><strong>postrotate</strong></font></td>
   </tr>
   <tr> 
@@ -1535,7 +1535,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
   <font color="#000000"><br>
   　以下舉個 syslogd 與 logrotate 的實際範例給各位做參考，看看這兩者如何搭配起來做設定。<br>
   　</font><font size="4"><strong><br>
-  </strong></font><font size="+1"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
+  </strong></font><font size="+1"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
   <font size="4"><strong> 要求事項如下</strong></font></p>
 <p><font color="#0000FF" face="細明體">一. 設定 syslog.conf：</font></p>
 <blockquote> 
@@ -1560,7 +1560,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
 </blockquote>
 <p><font color="#0000FF" face="細明體">三. 將您目前所設定的這台主機，當成 log (syslogd) server 來使用。</font><font face="細明體"><br>
   </font><br>
-  <strong><font size="+1"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
+  <strong><font size="+1"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
   <font size="4"><strong> </strong></font><font size="4">相關設定如下</font></strong><br>
   <br>
   <font color="#0000FF" face="細明體">一. 設定 syslog.conf：</font></p>
@@ -1611,7 +1611,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
   <br>
   　這裡介紹三個與使用者登入紀錄有關的檔案，不過您無法直接瀏覽這些檔案的內容，必須透過指令才能存取這些檔案。<br>
   <br>
-  <font color="#000000"><strong><a name="18"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  <font color="#000000"><strong><a name="18"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
   <font size="4">/var/log/lastlog (指令 lastlog)</font></strong></font><br>
   <br>
   　紀錄使用者最後一次登入系統的時間。只要是 /etc/passwd 檔案中所存在的帳號，都會紀錄在這個檔案內 (除了 nobody 帳號)，因此您可以了解到有哪些帳號從未登入系統。</p>
@@ -1628,7 +1628,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
       mary　　　　tty3　　　　　　　　　　　Mon Jan 29 11:11:47 +0800 2007</font></td>
   </tr>
 </table>
-<p> <strong><a name="19"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+<p> <strong><a name="19"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
   <font size="4">/var/run/utmp (指令 who、w 或 finger)</font></strong></p>
 <p>　紀錄目前有哪些使用者登入系統，包括本機及遠端登入。而當使用者登出後，就會從此檔案中被移除。</p>
 <table width="100%" border="0">
@@ -1650,7 +1650,7 @@ unix-stream，反而會無法取得核心的訊息。最後來補充一下它們可使用的選項。<br>
     <td nowrap>suse:~ #<strong> chmod 660 /var/run/utmp</strong></td>
   </tr>
 </table>
-<p><font color="#000000"><strong><a name="20"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="4"> 
+<p><font color="#000000"><strong><a name="20"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="4"> 
   /var/log/wtmp (指令 last )<br>
   <br>
   </font></strong>　紀錄使用者登入及登出的時間，並會統計登入至登出的存續時間。<strong> </strong></font></p>

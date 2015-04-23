@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
 <title>柏青哥的 SuSE Linux -- 網路組態設定與服務</title>
 <style type="text/css">
 <!--
@@ -13,8 +13,8 @@ a {
 </style>
 </head>
 
-<body background="../sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
-<font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="../first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a>　　</font>作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw 
+<body background="sumtextb.jpg" tppabs="http://www.suse.url.tw/sumtextb.jpg" link="#000099" vlink="#000099" alink="#000099" leftmargin="40">
+<font size="+1"><a href="index-1.htm" tppabs="http://www.suse.url.tw/sles10/index.htm" target="_blank"><img src="first.GIF" tppabs="http://www.suse.url.tw/first.GIF" width="40" height="40" border="0" align="middle"></a>　　</font>作者：陳柏菁<font size="+1">　</font>E-mail：pachingko@ms96.url.com.tw 
 <table width="100%" border="0">
   <tr> 
     <td nowrap> <div align="left"></div>
@@ -149,7 +149,7 @@ E 則是保留給實驗網路來使用，所以這裡將只探討 class A ~ class C。緊接著就來看看如
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><strong><font color="#000099" size="4">Class A</font></strong>：最左邊第一個位元固定為<strong> 
       0</strong>。</td>
   </tr>
@@ -185,7 +185,7 @@ E 則是保留給實驗網路來使用，所以這裡將只探討 class A ~ class C。緊接著就來看看如
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099" size="4">Class B</font></strong><font color="#000099" size="4">：</font><font color="#000000">最左邊兩個位元固定為<strong> 
       10</strong>。</font></td>
   </tr>
@@ -213,7 +213,7 @@ E 則是保留給實驗網路來使用，所以這裡將只探討 class A ~ class C。緊接著就來看看如
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099" size="4">Class C</font></strong><font color="#000099" size="4">：</font><font color="#000000">最左邊三個位元固定為<strong> 
       110</strong>。</font></td>
   </tr>
@@ -296,7 +296,7 @@ Private IP<strong> </strong>範圍： <br>
   　為了解決以上種種的問題，由 IETF (Internet Engineering Task Force) 提出了 CIDR (Classless Inter-Domain 
   Routing) 的架構，也就是網路位元不再受限於 8、16、24 位元，而是根據網路遮罩來定義，這使得位址的分配更具彈性，也比較符合實際需求。<br>
   <br>
-  <strong><a name="5"></a><font size="+1"><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
+  <strong><a name="5"></a><font size="+1"><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"> 
   子網路 (Subnet) 規劃<br>
   <br>
   </font></strong>　將一個網路區段再切割成幾個子網段 (subnet) 的規劃，就是我們要探討的主題。以 class B 來說，一個 class 
@@ -322,7 +322,7 @@ Private IP<strong> </strong>範圍： <br>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><strong><font color="#000099">第一個子網段</font></strong></td>
   </tr>
   <tr> 
@@ -358,7 +358,7 @@ Private IP<strong> </strong>範圍： <br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">第二個子網段</font></strong></td>
   </tr>
   <tr> 
@@ -394,7 +394,7 @@ Private IP<strong> </strong>範圍： <br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">第三個子網段</font></strong></td>
   </tr>
   <tr> 
@@ -427,7 +427,7 @@ Private IP<strong> </strong>範圍： <br>
   </tr>
 </table>
 <p> 　做到這裡，或許各位已經發覺有個規律性，就是每個網段都是以等差級數來增加，所以您可以很快的把剩下的子網段都推算出來，這就交給各位去練習了。</p>
-<p><strong><a name="6"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
+<p><strong><a name="6"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="+1"> 
   網路段整合</font></strong> <font size="+1"><strong>(Supernet)<br>
   <br>
   </strong></font>　當您申請了數個 class C 的網路區段後，可以透過整合的方式來將其合併成一個網段，比如您目前申請了 210.10.36.0、210.10.37.0、210.10.38.0、210.10.39.0 
@@ -456,7 +456,7 @@ Private IP<strong> </strong>範圍： <br>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><strong><font color="#000099" size="4"><a name="9"></a>設定網路介面</font></strong></td>
   </tr>
   <tr> 
@@ -512,7 +512,7 @@ Private IP<strong> </strong>範圍： <br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099" size="4"><a name="10"></a>設定 Default Gateway</font></strong></td>
   </tr>
   <tr> 
@@ -537,7 +537,7 @@ Private IP<strong> </strong>範圍： <br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099" size="4"><a name="11"></a>設定 DNS 位址</font></strong></td>
   </tr>
   <tr> 
@@ -588,19 +588,19 @@ Private IP<strong> </strong>範圍： <br>
   <br>
   　關於 ADSL 的設定，這裡會提供兩種方式給大家做參考。<br>
   <br>
-  <strong><a name="41"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> 
+  <strong><a name="41"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong> 
   <font size="4"><strong>使用 YaST 設定 ADSL</strong></font></font></p>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td width="3%" align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td width="95%"><font color="#000000"><font color="#000099"><strong>請執行 &quot;yast 
       dsl&quot; 進入設定畫面並選取 [新增]：</strong></font></font></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><div align="center"><img src="../picture/dsl1.png" tppabs="http://www.suse.url.tw/picture/dsl1.png" width="749" height="470"></div></td>
+    <td><div align="center"><img src="dsl1.png" tppabs="http://www.suse.url.tw/picture/dsl1.png" width="749" height="470"></div></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -609,13 +609,13 @@ Private IP<strong> </strong>範圍： <br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">設定 ADSL 組態：</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><p align="center"><img src="../picture/dsl2.png" tppabs="http://www.suse.url.tw/picture/dsl2.png" width="754" height="473"></p>
+    <td><p align="center"><img src="dsl2.png" tppabs="http://www.suse.url.tw/picture/dsl2.png" width="754" height="473"></p>
       <p>[裝置啟用] 部分，看您要使用 [手動] 方式來啟動 ADSL，還是希望 [開機時] 自動啟動 ADSL。<br>
         [使用者控制] 是說要不要允許一般使用者可以啟動或停止 ADSL。<br>
       </p></td>
@@ -627,13 +627,13 @@ Private IP<strong> </strong>範圍： <br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">選擇 internet 服務提供者：</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><div align="center"><img src="../picture/dsl3.png" tppabs="http://www.suse.url.tw/picture/dsl3.png" width="751" height="468"></div></td>
+    <td><div align="center"><img src="dsl3.png" tppabs="http://www.suse.url.tw/picture/dsl3.png" width="751" height="468"></div></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -642,13 +642,13 @@ Private IP<strong> </strong>範圍： <br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">輸入 ISP 所提供給您的帳號及密碼：</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><div align="center"><img src="../picture/dsl4.png" tppabs="http://www.suse.url.tw/picture/dsl4.png" width="760" height="473"></div></td>
+    <td><div align="center"><img src="dsl4.png" tppabs="http://www.suse.url.tw/picture/dsl4.png" width="760" height="473"></div></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -657,13 +657,13 @@ Private IP<strong> </strong>範圍： <br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">設定網路連線的相關參數：</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><p align="center"><img src="../picture/dsl5.png" tppabs="http://www.suse.url.tw/picture/dsl5.png" width="761" height="478"></p>
+    <td><p align="center"><img src="dsl5.png" tppabs="http://www.suse.url.tw/picture/dsl5.png" width="761" height="478"></p>
       <p>[閒置逾時] 預設 300 秒，也就是說您閒置了五分鐘後會自動斷線。如想一直保持連線狀態，把它改為 0 秒就行了。<br>
       </p></td>
   </tr>
@@ -674,13 +674,13 @@ Private IP<strong> </strong>範圍： <br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">回主畫面後選取 [完成]：</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><div align="center"><img src="../picture/dsl6.png" tppabs="http://www.suse.url.tw/picture/dsl6.png" width="760" height="476"></div></td>
+    <td><div align="center"><img src="dsl6.png" tppabs="http://www.suse.url.tw/picture/dsl6.png" width="760" height="476"></div></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
@@ -689,13 +689,13 @@ Private IP<strong> </strong>範圍： <br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
+    <td align="center"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></td>
     <td><strong><font color="#000099">儲存 ADSL 組態：</font></strong></td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
     <td align="center">&nbsp;</td>
-    <td><p align="center"><img src="../picture/dsl7.png" tppabs="http://www.suse.url.tw/picture/dsl7.png" width="747" height="469"></p>
+    <td><p align="center"><img src="dsl7.png" tppabs="http://www.suse.url.tw/picture/dsl7.png" width="747" height="469"></p>
       <p>要不要繼續設定郵件，就看您自己囉。<br>
       </p></td>
   </tr>
@@ -706,7 +706,7 @@ Private IP<strong> </strong>範圍： <br>
 <p><font color="#000000">　如果剛剛您是選擇用手動的方式來啟動 ADSL，現在想馬上啟動 ADSL時，可以執行 &quot;<font color="#0000FF">ifup 
   dsl0</font>&quot;，要結束連線時就執行 &quot;<font color="#0000FF">ifdown dsl0</font>&quot;。<br>
   <br>
-  </font><font color="#000000"><strong><a name="42"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="4"> 
+  </font><font color="#000000"><strong><a name="42"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"><font size="4"> 
   使用 adsl-setup 指令做設定</font></strong><br>
   <br>
   　這部分請先確定 rp-pppoe 套件有安裝，不過 SLES10 光碟裡並沒有提供這個套件，所以請先至以下 FTP 站台下載此套件：<br>
@@ -906,7 +906,7 @@ Private IP<strong> </strong>範圍： <br>
   <br>
   　網管人員常常會碰到員工反應一些問題，諸如：電腦不能上網、無法存取某某台電腦的資料夾、無法寄信、…，而當您碰到這類問題時所想到的第一件事，就是檢查網路連線狀況，因此基本的網路偵測指令您一定要學習。<br>
   <br>
-  <font size="+1"><strong><a name="17"></a></strong></font><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font><font size="+1"><strong> 
+  <font size="+1"><strong><a name="17"></a></strong></font><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font><font size="+1"><strong> 
   指令 ping</strong></font><br>
   <br>
   　這算是最簡單的網路偵測指令，可用來對兩主機之間的連線狀況進行測試報告。<br>
@@ -1006,7 +1006,7 @@ Private IP<strong> </strong>範圍： <br>
     echo request 封包被對方的防火牆所阻擋，或者對方主機 /proc/sys/net/ipv4/icmp_echo_ignore_all 之值設定為 
     1。雖然 ping 不成功，但對方所提供的服務還是可以正常存取，比如這台主機是 web server 的話，那您還是可以瀏覽網頁的。</font></font></p>
 </blockquote>
-<font size="+1"><strong><a name="18"></a></strong></font><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font><font size="+1"><strong> 
+<font size="+1"><strong><a name="18"></a></strong></font><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font><font size="+1"><strong> 
 指令 traceroute</strong></font><br>
 <br>
 　此指令是用來追蹤封包從來源端到目的端的路由過程所經過的節點。當您管理的網路環境較大，且存在著好幾個路由的節點，則在網路出現狀況並懷疑是某個節點出問題時，即可使用這種方式來查出那台有問題的 
@@ -1057,7 +1057,7 @@ Gateway 主機。<strong><br>
 <br>
 　本小節主要是介紹有關網路介面及路由表的指令。在這裡，您將會學習到如何觀察網路介面及路由表的資訊，當然關於網路介面的設定以及路由表的修改，也是一定要會的啦。<br>
 <br>
-<strong><font size="+1"><a name="20"></a></font><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font><font size="+1"> 
+<strong><font size="+1"><a name="20"></a></font><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font><font size="+1"> 
 指令 ifconfig</font></strong><br>
 <br>
 　這是用來設定網路介面的指令。如單純的執行<strong>&nbsp;</strong>ifconfig，其後未接任何的引數，則可以用來顯示目前已啟動的網路介面相關資訊。<br>
@@ -1123,32 +1123,32 @@ Gateway 主機。<strong><br>
 </table>
 <p> 　對於以上兩個介面所顯示的資訊，做個概略的補充：<br>
   <br>
-  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099"><strong>HWaddr</strong>：網卡的實體位址，即所謂的 
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <font color="#000099"><strong>HWaddr</strong>：網卡的實體位址，即所謂的 
   MAC 位址。 </font></p>
-<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   <strong>inet addr</strong>：此介面的 IP 位址。其後的 Bcast 是廣播位址，Mask 是網路遮罩。</font></p>
-<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"><strong> 
+<p><font color="#000099">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"><strong> 
   UP</strong>：表示該介面已啟動。</font></p>
-<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   <strong>RUNNING</strong>：此介面是處於執行狀態。</font></p>
-<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   <strong>MTU</strong>：此介面所允許的封包最大傳輸單元 (Maximum Transmission Unit) 是幾 bytes。</font></p>
-<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   <strong>Metric</strong>：路由的權值。<br>
   <br>
-  　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <strong>RX </strong>：該介面對於封包的接收狀況。<br>
+  　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> <strong>RX </strong>：該介面對於封包的接收狀況。<br>
   　 　 　 　　packets 表封包數，errors 表錯誤封包數，dropped 表丟棄封包數。</font></p>
-<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   <strong>TX</strong>：該介面對於封包的傳送狀況。</font></p>
-<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   <strong>collisions</strong>：封包碰撞次數。</font></p>
-<p><font color="#FFFFFF"><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> 
+<p><font color="#FFFFFF"><font color="#000099">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font> 
   <font color="#000099" face="細明體"><strong>txqueuelen</strong>：代表傳輸資料的緩衝區儲存長度大小。</font></font></p>
-<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   <strong>RX bytes</strong>：封包總接收量為多少 bytes。</font></p>
-<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
+<p><font color="#000099">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"> 
   <strong>TX bytes</strong>：封包總傳送量為多少 bytes。</font></p>
-<p><font color="#000099">　　<img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"><strong> 
+<p><font color="#000099">　　<img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"><strong> 
   Interrupt</strong>：網卡的 IRQ 中斷位址。</font></p>
 <blockquote> 
   <p><font color="#000099"><strong>Tips：</strong></font><font color="#000099" size="2">之前我們所介紹的 
@@ -1209,7 +1209,7 @@ Gateway 主機。<strong><br>
   </tr>
 </table>
 <font color="#000099"><font color="#000000"> </font></font><br>
-<font size="+1"><strong><a name="22"></a><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
+<font size="+1"><strong><a name="22"></a><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font> 
 指令 route</strong></font><br>
 <br>
 　此指令可以用來顯示及修改 routing table。單純的執行<strong> </strong>route 指令，即可顯示目前 routing table 
@@ -1295,7 +1295,7 @@ Gateway 主機。<strong><br>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center" valign="middle"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="3%" align="center" valign="middle"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td width="95%"><strong><font color="#000099">Destination</font></strong>：</td>
   </tr>
   <tr> 
@@ -1312,7 +1312,7 @@ Gateway 主機。<strong><br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center" valign="middle"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center" valign="middle"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">Gateway：</font></strong></td>
   </tr>
   <tr> 
@@ -1329,7 +1329,7 @@ Gateway 主機。<strong><br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center" valign="middle"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center" valign="middle"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">Genmask：</font></strong></td>
   </tr>
   <tr> 
@@ -1345,7 +1345,7 @@ Gateway 主機。<strong><br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center" valign="middle"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center" valign="middle"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">Flags：</font></strong></td>
   </tr>
   <tr> 
@@ -1360,7 +1360,7 @@ Gateway 主機。<strong><br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center" valign="middle"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center" valign="middle"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">Iface：</font></strong></td>
   </tr>
   <tr> 
@@ -1427,17 +1427,17 @@ Gateway 主機。<strong><br>
   </li>
 </ol>
 <p> <strong><font size="+1"><br>
-  <strong><font color="#000000"><strong><a name="40"></a><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong> 
+  <strong><font color="#000000"><strong><a name="40"></a><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong> 
   綜合範例</font><font size="4">練習</font></strong><br>
   <br>
   　以下會以一台 Linux 主機做 Router，來連接 192.168.5.0/24 (以 192.168.5.5 主機做代表) 及 192.168.10.0/24 
   (以 192.168.10.10 主機做代表) 這兩個網路段，其架構圖如下：</p>
-<p align="center"> <img src="../picture/router.gif" tppabs="http://www.suse.url.tw/picture/router.gif" width="514" height="122"></p>
+<p align="center"> <img src="router.gif" tppabs="http://www.suse.url.tw/picture/router.gif" width="514" height="122"></p>
 <p> 　接著就來介紹如何使兩個不同網段的主機能夠彼此通訊：</p>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="3%" align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td width="95%"><strong><font color="#000099">Router 的設定</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -1484,7 +1484,7 @@ Gateway 主機。<strong><br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">設定 A 主機</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -1509,7 +1509,7 @@ Gateway 主機。<strong><br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">設定 B 主機</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -1545,7 +1545,7 @@ Gateway 主機。<strong><br>
 </strong>　所謂的遠端連線，就是對遠端主機進行登入的動作。平常大家都喜歡用 telnet 連上 BBS 來參與討論，或者使用 ftp 軟體至各大 FTP 
 站台抓取資料，所以說每個人可都是經常在做遠端連線呢。以下會介紹幾個在 Linux 下的遠端連線工具給大家認識。<strong><br>
 <br>
-<a name="24"></a><font size="+1"><strong><font size="+1"><strong><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong> 
+<a name="24"></a><font size="+1"><strong><font size="+1"><strong><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong> 
 telnet</font> 與 <font size="+1">ssh</font><br>
 <br>
 </strong>　這兩個指令，可以讓您對遠端的主機進行連線操控，好用的很。如果您是一個大公司的系統管理者，可能所管理的主機分散在各地，這時候想要對這些主機進行控管及設定時，就可以使用這些連線軟體來幫您搞定。<br>
@@ -1621,7 +1621,7 @@ telnet</font> 與 <font size="+1">ssh</font><br>
   </tr>
 </table>
 <strong><br>
-</strong> <font size="+1"><strong><a name="25"></a><font size="+1"><strong><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font> 
+</strong> <font size="+1"><strong><a name="25"></a><font size="+1"><strong><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font> 
 ftp 與 ncftp</strong></font><br>
 <br>
 　要連上 FTP 站台去下載或上傳資料時，即可利用這兩個指令，不過使用 ncftp 時，可要先確定 ncftp 套件有裝噢。<br>
@@ -1757,7 +1757,7 @@ ftp 與 ncftp</strong></font><br>
 </strong>　系統管理者往往需要去了解所管理的主機到底啟用了哪些網路服務，以及這些服務目前的網路連線狀態是如何等等，而<strong> </strong>netstat 
 指令就可以幫您檢視這方面的訊息。<br>
 <strong><br>
-<font size="+1"><a name="27"></a><strong><font size="+1"><strong><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong> 
+<font size="+1"><a name="27"></a><strong><font size="+1"><strong><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong> 
 指令 netstat</font></strong><br>
 <br>
 　這個指令非常的好用，可以用來檢查網路狀態、路由資訊、介面訊息等。<br>
@@ -1886,7 +1886,7 @@ ftp 與 ncftp</strong></font><br>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="3%" align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td width="95%"><strong><font color="#000099">系統服務</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -1901,7 +1901,7 @@ ftp 與 ncftp</strong></font><br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">網路服務</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -1988,7 +1988,7 @@ daemon，都是這樣常駐系統的話，那鐵定會用掉很多系統資源而增加系統負載，因此在 Lin
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="3%" align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td width="95%"><strong><font color="#000099">standalone</font></strong><font color="#000099">：</font></td>
   </tr>
   <tr> 
@@ -2005,7 +2005,7 @@ daemon，都是這樣常駐系統的話，那鐵定會用掉很多系統資源而增加系統負載，因此在 Lin
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">xinetd：</font></strong></td>
   </tr>
   <tr> 
@@ -2022,7 +2022,7 @@ daemon，都是這樣常駐系統的話，那鐵定會用掉很多系統資源而增加系統負載，因此在 Lin
   　與 xinetd 有關的組態檔分別是 /etc/xinetd.conf 及位於 /etc/xinetd.d/ 目錄下的那些檔案。當您所提供的網路服務是靠 
   xinetd 啟動時，那對這些檔案就要有所認識。<br>
   <br>
-  <strong><font size="+1"><a name="32"></a><strong><font size="+1"><strong><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong> 
+  <strong><font size="+1"><a name="32"></a><strong><font size="+1"><strong><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong> 
   檔案 /etc/xinetd.conf</font></strong><br>
   <br>
   　這是 xinetd 的主要設定檔，來看看這個檔案的內容：</p>
@@ -2124,7 +2124,7 @@ defaults 之上，那如果沒有設定到的，就會套用 defaults 裡邊的設定囉。再來說明 defa
 　在檔案的最後頭還有個「includedir /etc/xinetd.d」，這是</font>說其他服務的設定參數可以存放在 /etc/xintd.d 目錄下的相關檔案內。當然您要是想把那些服務都設定在 
 /etc/xinetd.conf 內也是可行的，不過一般習慣是會安置在 /etc/xinetd.d 之中啦，這樣比較方便管理。 <br>
 <br>
-<font size="+1"><strong><a name="33"></a><font size="+1"><strong><font size="+1"><strong><font color="#000000"><strong><img src="../picture/1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong></font> 
+<font size="+1"><strong><a name="33"></a><font size="+1"><strong><font size="+1"><strong><font color="#000000"><strong><img src="1775.gif" tppabs="http://www.suse.url.tw/picture/1775.gif" width="18" height="18"></strong></font></strong></font></strong></font> 
 檔案 /etc/xinetd.d/*</strong></font><br>
 <br>
 　這裡就是要介紹 /etc/xinetd.d 目錄下的那些檔案的設定內容。接著底下會以 telnet 做範例，不過請先確定 telnet-server 套件已裝上，還沒裝的話，拿出光碟來安裝即可。<br>
@@ -2234,7 +2234,7 @@ hosts.deny。<br>
 <table width="100%" border="0">
   <tr> 
     <td width="2%">&nbsp;</td>
-    <td width="3%" align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td width="3%" align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td width="95%"><strong><font color="#000099">daemon_list</font></strong></td>
   </tr>
   <tr> 
@@ -2250,7 +2250,7 @@ hosts.deny。<br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">client_list</font></strong></td>
   </tr>
   <tr> 
@@ -2267,7 +2267,7 @@ hosts.deny。<br>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#000099"><img src="../picture/icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
+    <td align="center"><font color="#000099"><img src="icon.jpg" tppabs="http://www.suse.url.tw/picture/icon.jpg" width="11" height="11"></font></td>
     <td><strong><font color="#000099">option</font></strong></td>
   </tr>
   <tr> 
